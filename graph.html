@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Einfacher Graph mit Cytoscape.js&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://unpkg.com/cytoscape@3.21.1/dist/cytoscape.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#cy {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid black;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;h2&gt;Einfaches Graph-Modell&lt;/h2&gt;</p>
+<p class="p1">&lt;div id="cy"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Daten für den Graphen (Knoten und Kanten)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const graphData = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>nodes: [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { id: 'A' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { id: 'B' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { id: 'C' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { id: 'D' } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>edges: [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { source: 'A', target: 'B' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { source: 'A', target: 'C' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { source: 'B', target: 'D' } },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ data: { source: 'C', target: 'D' } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>]</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Initialisierung von Cytoscape</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const cy = cytoscape({</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container: document.getElementById('cy'), // Element, in dem der Graph angezeigt wird</p>
+<p class="p1"><span class="Apple-converted-space">    </span>elements: graphData,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>style: [ // Styles für die Knoten und Kanten</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>selector: 'node',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>style: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'background-color': '#0074D9',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'label': 'data(id)',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'color': '#fff'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>selector: 'edge',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>style: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'width': 3,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'line-color': '#FF4136',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'target-arrow-color': '#FF4136',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>'target-arrow-shape': 'triangle'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>layout: {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>name: 'grid',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rows: 2</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
