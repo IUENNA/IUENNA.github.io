@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Mapping with QGIS – IUENNA Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background: #eee;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+        .button {
+            display: inline-block;
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        #live-map {
+            margin-top: 2rem;
+            height: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Web Mapping with QGIS – IUENNA Project</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>This simple web mapping project demonstrates how to create a web mapping application with QGIS and the <strong>qgis2web</strong> plugin. The aim is to make long-term archival data more accessible and individually manageable.</p>
+            <p>
+                <a href="#steps" class="button">Go to Steps</a>
+                <a href="#example-code" class="button">Go to Example Code</a>
+                <a href="#benefits" class="button">Go to Benefits</a>
+                <a href="#ai-tools" class="button">Go to AI Tools</a>
+            </p>
+        </section>
+
+        <section id="steps">
+            <h2>Steps to Create the Web Mapping Application</h2>
+            <ol>
+                <li>Install QGIS on your computer (<a href="https://qgis.org/en/site/">Official QGIS Website</a>).</li>
+                <li>Prepare your data in QGIS, e.g., by adding vector data (Shapefiles) or raster data.</li>
+                <li>Install the <strong>qgis2web</strong> plugin via the QGIS Plugin Manager.</li>
+                <li>Export your project as a web map using qgis2web. Select options such as Leaflet or OpenLayers.</li>
+                <li>Copy the exported files (HTML, CSS, JavaScript) to your GitHub repository.</li>
+                <li>Enable GitHub Pages for your repository to make the map available online.</li>
+            </ol>
+        </section>
+
+        <section id="example-code">
+            <h2>Example Code</h2>
+            <p>The following HTML code shows a minimalist web mapping integration:</p>
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Example Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
+    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="map" style="width: 100%; height: 500px;"&gt;&lt;/div&gt;
+    &lt;script&gt;
+        var map = L.map('map').setView([48.2082, 16.3738], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </section>
+
+        <section id="live-map">
+            <h2>Live Web Mapping Application</h2>
+            <p>Below is an embedded example of a live web mapping application:</p>
+            <div id="live-map"></div>
+            <script>
+                var liveMap = L.map('live-map').setView([48.2082, 16.3738], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(liveMap);
+            </script>
+        </section>
+
+        <section id="ai-tools">
+            <h2>Using Generative AI Tools</h2>
+            <p>Generative AI tools like ChatGPT can significantly ease the setup of web pages like this. By providing step-by-step guidance, generating boilerplate code, and offering explanations for technical concepts, these tools make it accessible for users with varying levels of expertise to create and customize web mapping applications. ChatGPT, for instance, was instrumental in drafting the content and structure of this page, ensuring clarity and functionality.</p>
+        </section>
+
+        <section id="benefits">
+            <h2>Benefits</h2>
+            <p>This approach is quick, cost-efficient, and easy to reproduce. It also allows users without advanced technical knowledge to present their data online.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 IUENNA Project</p>
+    </footer>
+</body>
+</html>
 
