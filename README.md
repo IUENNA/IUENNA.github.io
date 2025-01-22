@@ -1,5 +1,7 @@
 # openIng the soUthErn jauNtal as a micro-regioN for future Archaeology
 
+![IUENNA Logo](https://iuenna.hypotheses.org/logo-placeholder.png "IUENNA Logo")
+
 **IUENNA** is an innovative project aimed at advancing the use of digital methods in Austrian archaeology. By addressing complex cultural-historical questions, actively shaping the Digital Humanities in Classical Studies, and ensuring the long-term preservation of cultural heritage, IUENNA contributes to sustainable knowledge management. The project focuses on the archaeological micro-region of the Jauntal (Carinthia, Austria) and is funded by the Austrian Academy of Sciences' [Go!Digital 3.0 program](https://www.oeaw.ac.at/foerderungen/godigital/godigital-30).
 
 ## Project Framework
