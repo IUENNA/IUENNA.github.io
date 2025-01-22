@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; gap: 10px;">
-    <img src="https://iuenna.hypotheses.org/logo-placeholder.png" alt="IUENNA Logo" style="height: 50px;">
+    <img src="https://www.oeaw.ac.at/fileadmin/_processed_/0/5/csm_IUENNA_01_neu_" alt="IUENNA Logo" style="height: 50px;">
     <h1>Opening the Southern Jauntal as a Micro-Region for Future Archaeology</h1>
 </div>
 
