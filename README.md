@@ -16,3 +16,7 @@ This page provides simple and reusable web applications to demonstrate practical
 ## Learn More on Our Website
 
 Visit our dedicated project page at [iuenna.hypotheses.org](https://iuenna.hypotheses.org).
+
+## Follow Us on X (Twitter)
+
+[![Twitter Icon](https://cdn-icons-png.flaticon.com/512/733/733579.png)](https://twitter.com/project_iuenna) Follow our updates on [X (Twitter)](https://twitter.com/project_iuenna).
