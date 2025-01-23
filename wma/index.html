@@ -15,18 +15,18 @@
             font-family: Arial, sans-serif;
             height: 100%;
             display: flex;
+            flex-direction: row;
         }
 
         #map {
             height: 100%;
-            width: 600px;
+            width: 60%;
         }
 
         #sidebar {
             height: 100%;
-            width: 400px;
-            display: flex;
-            flex-direction: column;
+            width: 40%;
+        flex-direction: column;
             border-left: 1px solid #ccc;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
@@ -113,12 +113,12 @@
             <input id="location-input" type="text" placeholder="Geolocation eingeben...">
             <div id="location-suggestions" class="autocomplete-suggestions"></div>
             
-            <span id="counter">Angezeigte Ressourcen: 0</span>
+            <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
             <button id="locate-button">Standort anzeigen</button>
         </div>
         <div id="results">
-            <h3>Gefilterte Ressourcen</h3>
+            <h3>Gefilterte Objekte</h3>
             <ul id="results-list"></ul>
         </div>
     </div>
@@ -189,26 +189,19 @@
         const resetButton = document.getElementById('reset-button');
         const resultsList = document.getElementById('results-list');
 
-        // GeoJSON-Datei laden mit Debugging
+        // GeoJSON-Datei laden
         fetch('R00_WGS84.geojson')
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Fehler beim Laden der GeoJSON-Datei:', response.status, response.statusText);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log('GeoJSON-Daten erfolgreich geladen:', data); // Debugging-Ausgabe
                 geojsonData = data;
                 preprocessData(); // Daten vorab verarbeiten
                 filterMarkers();
                 setupAutocomplete();
             })
-            .catch(error => console.error('Fehler beim Verarbeiten der GeoJSON-Datei:', error));
+            .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
         // Vorberechnung der Filterdaten
         function preprocessData() {
-            console.log('Daten werden vorbereitet...'); // Debugging-Ausgabe
             preprocessedData = geojsonData.features.map(feature => {
                 const properties = feature.properties || {};
                 return {
@@ -221,7 +214,6 @@
                     pid: properties.pid || '#'
                 };
             });
-            console.log('Vorbereitete Daten:', preprocessedData); // Debugging-Ausgabe
         }
 
         function filterMarkers() {
@@ -259,4 +251,51 @@
                 }
             });
 
-            map.add
+            map.addLayer(markerCluster);
+            counter.textContent = `Angezeigte Objekte: ${count}`;
+        }
+
+        function setupAutocomplete() {
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects))]; // Original-Schreibweise
+            const titles = [...new Set(preprocessedData.map(d => d.title))];
+            const locations = [...new Set(preprocessedData.map(d => d.location))];
+
+            addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
+            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
+            addAutocomplete(locationInput, locationSuggestionsDiv, locations);
+        }
+
+        function addAutocomplete(input, suggestionsDiv, data) {
+            input.addEventListener('input', () => {
+                const value = input.value.toLowerCase();
+                suggestionsDiv.innerHTML = '';
+                if (value) {
+                    const filtered = data.filter(item => item.toLowerCase().includes(value)).slice(0, 10);
+                    filtered.forEach(item => {
+                        const div = document.createElement('div');
+                        div.textContent = item;
+                        div.className = 'autocomplete-suggestion';
+                        div.addEventListener('click', () => {
+                            input.value = item;
+                            suggestionsDiv.innerHTML = '';
+                            filterMarkers();
+                        });
+                        suggestionsDiv.appendChild(div);
+                    });
+                }
+            });
+        }
+
+        resetButton.addEventListener('click', () => {
+            subjectInput.value = '';
+            nameInput.value = '';
+            locationInput.value = '';
+            map.setView([46.55269, 14.66768], 10);
+            filterMarkers();
+        });
+
+        map.on('moveend', filterMarkers);
+        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterMarkers));
+    </script>
+</body>
+</html>
