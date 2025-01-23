@@ -114,8 +114,7 @@
             .then(data => {
                 geojsonData = data;
                 preprocessData();
-                map.fitBounds(L.geoJSON(geojsonData).getBounds());
-                filterMarkers();
+                addMarkersToMap();
                 setupAutocomplete();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
@@ -131,6 +130,18 @@
                     pid: properties.pid || '#'
                 };
             });
+        }
+
+        function addMarkersToMap() {
+            preprocessedData.forEach(data => {
+                if (!data.coordinates) return;
+
+                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
+                marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                markerCluster.addLayer(marker);
+            });
+
+            map.addLayer(markerCluster);
         }
 
         function setupAutocomplete() {
