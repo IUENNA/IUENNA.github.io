@@ -84,6 +84,8 @@
         <input id="location-input" type="text" placeholder="Geolocations durchsuchen...">
         <div id="location-suggestions" class="autocomplete-suggestions"></div>
 
+        <button id="reset-button">Filter zurücksetzen</button>
+        <span id="counter">Angezeigte Ressourcen: 0</span>
         <button id="export-csv-button">Export als CSV</button>
         <button id="export-geojson-button">Export als GeoJSON</button>
     </div>
@@ -106,6 +108,8 @@
         const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
         const nameSuggestionsDiv = document.getElementById('name-suggestions');
         const locationSuggestionsDiv = document.getElementById('location-suggestions');
+        const resetButton = document.getElementById('reset-button');
+        const counterElement = document.getElementById('counter');
         const exportCsvButton = document.getElementById('export-csv-button');
         const exportGeoJsonButton = document.getElementById('export-geojson-button');
 
@@ -116,6 +120,7 @@
                 preprocessData();
                 addMarkersToMap();
                 setupAutocomplete();
+                updateCounter();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
@@ -145,7 +150,7 @@
         }
 
         function setupAutocomplete() {
-            const subjects = [...new Set(preprocessedData.map(d => d.subjects).flat())];
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
             const titles = [...new Set(preprocessedData.map(d => d.title))];
             const locations = [...new Set(preprocessedData.map(d => d.location))];
 
@@ -167,6 +172,7 @@
                         suggestionDiv.addEventListener('click', () => {
                             input.value = suggestion;
                             suggestionsDiv.innerHTML = '';
+                            updateCounter();
                         });
                         suggestionsDiv.appendChild(suggestionDiv);
                     });
@@ -174,11 +180,23 @@
             });
         }
 
+        function updateCounter() {
+            const filteredData = preprocessedData.filter(data => {
+                const matchSubject = subjectInput.value === '' || data.subjects.toLowerCase().includes(subjectInput.value.toLowerCase());
+                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
+                const matchLocation = locationInput.value === '' || data.location.toLowerCase().includes(locationInput.value.toLowerCase());
+
+                return matchSubject && matchTitle && matchLocation;
+            });
+
+            counterElement.textContent = `Angezeigte Ressourcen: ${filteredData.length}`;
+        }
+
         function exportToCsv() {
             const csvContent = preprocessedData
                 .filter(data => data.coordinates)
                 .map(data => {
-                    return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
+                    return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${data.coordinates},${data.pid}`;
                 }).join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -193,8 +211,9 @@
                 type: 'Feature',
                 properties: {
                     title: data.title,
-                    subjects: data.subjects,
-                    location: data.location
+                    subjects: data.subjects.split(',').join(', '),
+                    location: data.location,
+                    pid: data.pid
                 },
                 geometry: {
                     type: 'Point',
@@ -213,6 +232,13 @@
             link.download = 'export.geojson';
             link.click();
         }
+
+        resetButton.addEventListener('click', () => {
+            subjectInput.value = '';
+            nameInput.value = '';
+            locationInput.value = '';
+            updateCounter();
+        });
 
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
