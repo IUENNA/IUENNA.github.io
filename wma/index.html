@@ -26,6 +26,8 @@
         #search-container {
             padding: 15px;
             border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
+            position: relative;
         }
 
         #search-container label {
@@ -38,10 +40,30 @@
             width: 100%;
         }
 
+        .autocomplete-suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            max-height: 150px;
+            overflow-y: auto;
+            width: calc(100% - 30px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-suggestion:hover {
+            background: #f0f0f0;
+        }
+
         #results {
-            flex: 1;
             padding: 15px;
             overflow-y: auto;
+            box-sizing: border-box;
         }
 
         #results ul {
@@ -74,21 +96,24 @@
     <div id="map"></div>
     <div id="search-container">
         <label for="subject-input">Thema:</label>
-        <input id="subject-input" type="text" placeholder="Thema eingeben...">
+        <input id="subject-input" type="text" placeholder="Themen durchsuchen...">
+        <div id="subject-suggestions" class="autocomplete-suggestions"></div>
 
         <label for="name-input">Titel:</label>
-        <input id="name-input" type="text" placeholder="Titel eingeben...">
+        <input id="name-input" type="text" placeholder="Titel durchsuchen...">
+        <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
         <label for="location-input">Geolocation:</label>
-        <input id="location-input" type="text" placeholder="Geolocation eingeben...">
+        <input id="location-input" type="text" placeholder="Geolocations durchsuchen...">
+        <div id="location-suggestions" class="autocomplete-suggestions"></div>
 
-        <span id="counter">Angezeigte Objekte: 0</span>
+        <span id="counter">Angezeigte Ressourcen: 0</span>
         <button id="reset-button">Filter zurücksetzen</button>
         <button id="export-csv-button">Export als CSV</button>
         <button id="export-geojson-button">Export als GeoJSON</button>
     </div>
     <div id="results">
-        <h3>Gefilterte Objekte</h3>
+        <h3>Gefilterte Ressourcen (Übersicht)</h3>
         <ul id="results-list"></ul>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -107,6 +132,9 @@
         const subjectInput = document.getElementById('subject-input');
         const nameInput = document.getElementById('name-input');
         const locationInput = document.getElementById('location-input');
+        const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
+        const nameSuggestionsDiv = document.getElementById('name-suggestions');
+        const locationSuggestionsDiv = document.getElementById('location-suggestions');
         const counter = document.getElementById('counter');
         const resetButton = document.getElementById('reset-button');
         const resultsList = document.getElementById('results-list');
@@ -120,6 +148,7 @@
                 preprocessData();
                 map.fitBounds(L.geoJSON(geojsonData).getBounds());
                 filterMarkers();
+                setupAutocomplete();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
@@ -133,6 +162,37 @@
                     coordinates: feature.geometry?.coordinates || null,
                     pid: properties.pid || '#'
                 };
+            });
+        }
+
+        function setupAutocomplete() {
+            const subjects = [...new Set(preprocessedData.map(d => d.subjects).flat())];
+            const titles = [...new Set(preprocessedData.map(d => d.title))];
+            const locations = [...new Set(preprocessedData.map(d => d.location))];
+
+            addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
+            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
+            addAutocomplete(locationInput, locationSuggestionsDiv, locations);
+        }
+
+        function addAutocomplete(input, suggestionsDiv, suggestions) {
+            input.addEventListener('input', () => {
+                const query = input.value.toLowerCase();
+                suggestionsDiv.innerHTML = '';
+                if (query) {
+                    const filteredSuggestions = suggestions.filter(item => item.toLowerCase().includes(query)).slice(0, 10);
+                    filteredSuggestions.forEach(suggestion => {
+                        const suggestionDiv = document.createElement('div');
+                        suggestionDiv.textContent = suggestion;
+                        suggestionDiv.classList.add('autocomplete-suggestion');
+                        suggestionDiv.addEventListener('click', () => {
+                            input.value = suggestion;
+                            suggestionsDiv.innerHTML = '';
+                            filterMarkers();
+                        });
+                        suggestionsDiv.appendChild(suggestionDiv);
+                    });
+                }
             });
         }
 
@@ -154,11 +214,14 @@
 
                 if (matchSubject && matchName && matchLocation && map.getBounds().contains([data.coordinates[1], data.coordinates[0]])) {
                     const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
-                    marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br><a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                    marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${data.title} - ${data.subjects} - ${data.location}`;
+                    li.innerHTML = `<b>${data.title}</b><br>${data.subjects}<br>${data.location} - 🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`;
+                    li.addEventListener('click', () => {
+                        map.setView([data.coordinates[1], data.coordinates[0]], 15);
+                    });
                     resultsList.appendChild(li);
 
                     count++;
@@ -166,13 +229,15 @@
             });
 
             map.addLayer(markerCluster);
-            counter.textContent = `Angezeigte Objekte: ${count}`;
+            counter.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
         function exportToCsv() {
-            const csvContent = preprocessedData.map(data => {
-                return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
-            }).join('\n');
+            const csvContent = preprocessedData
+                .filter(data => map.getBounds().contains([data.coordinates[1], data.coordinates[0]]))
+                .map(data => {
+                    return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
+                }).join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
@@ -183,7 +248,7 @@
 
         function exportToGeoJson() {
             const filteredFeatures = preprocessedData.filter(data => {
-                return data.coordinates !== null;
+                return data.coordinates !== null && map.getBounds().contains([data.coordinates[1], data.coordinates[0]]);
             }).map(data => ({
                 type: 'Feature',
                 properties: {
@@ -218,6 +283,9 @@
             map.fitBounds(L.geoJSON(geojsonData).getBounds());
             filterMarkers();
         });
+
+        // Karte aktualisieren, wenn der Benutzer zoomt oder die Karte verschiebt
+        map.on('moveend', filterMarkers);
 
         // Suchleiste in der Karte
         const searchControl = L.Control.geocoder({
