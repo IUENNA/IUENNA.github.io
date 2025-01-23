@@ -60,29 +60,6 @@
             background: #f0f0f0;
         }
 
-        #results {
-            padding: 15px;
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-
-        #results ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #results li {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
-            border-radius: 4px;
-        }
-
-        #results li:hover {
-            background: #f0f0f0;
-        }
-
         #counter {
             font-weight: bold;
         }
@@ -107,14 +84,8 @@
         <input id="location-input" type="text" placeholder="Geolocations durchsuchen...">
         <div id="location-suggestions" class="autocomplete-suggestions"></div>
 
-        <span id="counter">Angezeigte Ressourcen: 0</span>
-        <button id="reset-button">Filter zurücksetzen</button>
         <button id="export-csv-button">Export als CSV</button>
         <button id="export-geojson-button">Export als GeoJSON</button>
-    </div>
-    <div id="results">
-        <h3>Gefilterte Ressourcen (Übersicht)</h3>
-        <ul id="results-list"></ul>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -135,9 +106,6 @@
         const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
         const nameSuggestionsDiv = document.getElementById('name-suggestions');
         const locationSuggestionsDiv = document.getElementById('location-suggestions');
-        const counter = document.getElementById('counter');
-        const resetButton = document.getElementById('reset-button');
-        const resultsList = document.getElementById('results-list');
         const exportCsvButton = document.getElementById('export-csv-button');
         const exportGeoJsonButton = document.getElementById('export-geojson-button');
 
@@ -188,7 +156,6 @@
                         suggestionDiv.addEventListener('click', () => {
                             input.value = suggestion;
                             suggestionsDiv.innerHTML = '';
-                            filterMarkers();
                         });
                         suggestionsDiv.appendChild(suggestionDiv);
                     });
@@ -196,42 +163,9 @@
             });
         }
 
-        function filterMarkers() {
-            const subjectQuery = subjectInput.value.toLowerCase();
-            const nameQuery = nameInput.value.toLowerCase();
-            const locationQuery = locationInput.value.toLowerCase();
-
-            markerCluster.clearLayers();
-            resultsList.innerHTML = '';
-            let count = 0;
-
-            preprocessedData.forEach(data => {
-                if (!data.coordinates) return;
-
-                const matchSubject = !subjectQuery || data.subjects.toLowerCase().includes(subjectQuery);
-                const matchName = !nameQuery || data.title.toLowerCase().includes(nameQuery);
-                const matchLocation = !locationQuery || data.location.toLowerCase().includes(locationQuery);
-
-                if (matchSubject && matchName && matchLocation && map.getBounds().contains([data.coordinates[1], data.coordinates[0]])) {
-                    const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
-                    marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
-                    markerCluster.addLayer(marker);
-
-                    const li = document.createElement('li');
-                    li.innerHTML = `<b>Titel:</b> ${data.title}<br><b>Thema:</b> ${data.subjects}<br><b>Geolocation:</b> ${data.location} <br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`;
-                    resultsList.appendChild(li);
-
-                    count++;
-                }
-            });
-
-            map.addLayer(markerCluster);
-            counter.textContent = `Angezeigte Ressourcen: ${count}`;
-        }
-
         function exportToCsv() {
             const csvContent = preprocessedData
-                .filter(data => map.getBounds().contains([data.coordinates[1], data.coordinates[0]]))
+                .filter(data => data.coordinates)
                 .map(data => {
                     return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
                 }).join('\n');
@@ -244,9 +178,7 @@
         }
 
         function exportToGeoJson() {
-            const filteredFeatures = preprocessedData.filter(data => {
-                return data.coordinates !== null && map.getBounds().contains([data.coordinates[1], data.coordinates[0]]);
-            }).map(data => ({
+            const filteredFeatures = preprocessedData.filter(data => data.coordinates).map(data => ({
                 type: 'Feature',
                 properties: {
                     title: data.title,
@@ -273,31 +205,6 @@
 
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
-        resetButton.addEventListener('click', () => {
-            subjectInput.value = '';
-            nameInput.value = '';
-            locationInput.value = '';
-            map.fitBounds(L.geoJSON(geojsonData).getBounds());
-            filterMarkers();
-        });
-
-        map.on('moveend', filterMarkers);
-
-        const searchControl = L.Control.geocoder({
-            position: 'topright',
-            defaultMarkGeocode: true
-        }).on('markgeocode', function(e) {
-            const bbox = e.geocode.bbox;
-            const poly = L.polygon([
-                bbox.getSouthEast(),
-                bbox.getNorthEast(),
-                bbox.getNorthWest(),
-                bbox.getSouthWest()
-            ]).addTo(map);
-            map.fitBounds(poly.getBounds());
-        }).addTo(map);
-
-        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterMarkers));
     </script>
 </body>
 </html>
