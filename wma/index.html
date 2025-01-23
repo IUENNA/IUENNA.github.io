@@ -96,7 +96,7 @@
     <script>
         let geojsonData = null;
         let preprocessedData = [];
-        let selectedResources = [];
+        let filteredData = [];
 
         const map = L.map('map').setView([43.3673302, 12.595675], 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -161,7 +161,7 @@
         function filterAndDisplayMarkers() {
             markerCluster.clearLayers();
 
-            const filteredData = preprocessedData.filter(data => {
+            filteredData = preprocessedData.filter(data => {
                 const matchSubject = subjectInput.value.split(',').every(val => data.subjects.toLowerCase().includes(val.trim().toLowerCase()));
                 const matchTitle = nameInput.value.split(',').every(val => data.title.toLowerCase().includes(val.trim().toLowerCase()));
                 const matchLocation = locationInput.value.split(',').every(val => data.location.toLowerCase().includes(val.trim().toLowerCase()));
@@ -179,26 +179,6 @@
 
             map.addLayer(markerCluster);
             updateCounter(filteredData.length);
-        }
-
-        function filterVisibleMarkers() {
-            markerCluster.clearLayers();
-
-            const bounds = map.getBounds();
-            const visibleData = preprocessedData.filter(data => {
-                return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
-            });
-
-            visibleData.forEach(data => {
-                if (!data.coordinates) return;
-
-                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
-                marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
-                markerCluster.addLayer(marker);
-            });
-
-            map.addLayer(markerCluster);
-            updateCounter(visibleData.length);
         }
 
         function setupAutocomplete() {
@@ -237,8 +217,7 @@
         }
 
         function exportToCsv() {
-            const csvContent = preprocessedData
-                .filter(data => data.coordinates)
+            const csvContent = filteredData
                 .map(data => {
                     return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${data.coordinates},${data.pid}`;
                 }).join('\n');
@@ -251,7 +230,7 @@
         }
 
         function exportToGeoJson() {
-            const filteredFeatures = preprocessedData.filter(data => data.coordinates).map(data => ({
+            const filteredFeatures = filteredData.map(data => ({
                 type: 'Feature',
                 properties: {
                     title: data.title,
@@ -284,7 +263,13 @@
             filterAndDisplayMarkers();
         });
 
-        selectVisibleButton.addEventListener('click', filterVisibleMarkers);
+        selectVisibleButton.addEventListener('click', () => {
+            const bounds = map.getBounds();
+            filteredData = preprocessedData.filter(data => {
+                return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
+            });
+            filterAndDisplayMarkers();
+        });
 
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
