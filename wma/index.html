@@ -26,7 +26,6 @@
         #search-container {
             padding: 15px;
             border-bottom: 1px solid #ccc;
-            box-sizing: border-box;
         }
 
         #search-container label {
@@ -40,9 +39,9 @@
         }
 
         #results {
+            flex: 1;
             padding: 15px;
             overflow-y: auto;
-            box-sizing: border-box;
         }
 
         #results ul {
@@ -75,21 +74,21 @@
     <div id="map"></div>
     <div id="search-container">
         <label for="subject-input">Thema:</label>
-        <input id="subject-input" type="text" placeholder="Themen durchsuchen...">
+        <input id="subject-input" type="text" placeholder="Thema eingeben...">
 
         <label for="name-input">Titel:</label>
-        <input id="name-input" type="text" placeholder="Titel durchsuchen...">
+        <input id="name-input" type="text" placeholder="Titel eingeben...">
 
         <label for="location-input">Geolocation:</label>
-        <input id="location-input" type="text" placeholder="Geolocations durchsuchen...">
+        <input id="location-input" type="text" placeholder="Geolocation eingeben...">
 
-        <span id="counter">Angezeigte Ressourcen: 0</span>
+        <span id="counter">Angezeigte Objekte: 0</span>
         <button id="reset-button">Filter zurücksetzen</button>
         <button id="export-csv-button">Export als CSV</button>
         <button id="export-geojson-button">Export als GeoJSON</button>
     </div>
     <div id="results">
-        <h3>Gefilterte Ressourcen</h3>
+        <h3>Gefilterte Objekte</h3>
         <ul id="results-list"></ul>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -159,7 +158,7 @@
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${data.title} - ${data.subjects} - ${data.location} - 🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`;
+                    li.innerHTML = `${data.title} - ${data.subjects} - ${data.location}`;
                     resultsList.appendChild(li);
 
                     count++;
@@ -171,11 +170,9 @@
         }
 
         function exportToCsv() {
-            const csvContent = preprocessedData
-                .filter(data => map.getBounds().contains([data.coordinates[1], data.coordinates[0]]))
-                .map(data => {
-                    return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
-                }).join('\n');
+            const csvContent = preprocessedData.map(data => {
+                return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
+            }).join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
@@ -186,7 +183,7 @@
 
         function exportToGeoJson() {
             const filteredFeatures = preprocessedData.filter(data => {
-                return data.coordinates !== null && map.getBounds().contains([data.coordinates[1], data.coordinates[0]]);
+                return data.coordinates !== null;
             }).map(data => ({
                 type: 'Feature',
                 properties: {
@@ -221,9 +218,6 @@
             map.fitBounds(L.geoJSON(geojsonData).getBounds());
             filterMarkers();
         });
-
-        // Karte aktualisieren, wenn der Benutzer zoomt oder die Karte verschiebt
-        map.on('moveend', filterMarkers);
 
         // Suchleiste in der Karte
         const searchControl = L.Control.geocoder({
