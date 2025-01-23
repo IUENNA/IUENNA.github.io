@@ -181,6 +181,26 @@
             updateCounter(filteredData.length);
         }
 
+        function filterVisibleMarkers() {
+            markerCluster.clearLayers();
+
+            const bounds = map.getBounds();
+            const visibleData = preprocessedData.filter(data => {
+                return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
+            });
+
+            visibleData.forEach(data => {
+                if (!data.coordinates) return;
+
+                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
+                marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                markerCluster.addLayer(marker);
+            });
+
+            map.addLayer(markerCluster);
+            updateCounter(visibleData.length);
+        }
+
         function setupAutocomplete() {
             const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
             const titles = [...new Set(preprocessedData.map(d => d.title))];
@@ -221,7 +241,7 @@
                 .filter(data => data.coordinates)
                 .map(data => {
                     return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${data.coordinates},${data.pid}`;
-                }).join('\\n');
+                }).join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
@@ -264,13 +284,7 @@
             filterAndDisplayMarkers();
         });
 
-        selectVisibleButton.addEventListener('click', () => {
-            selectedResources = preprocessedData.filter(data => {
-                const bounds = map.getBounds();
-                return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
-            });
-            alert(`Ausgewählte Ressourcen: ${selectedResources.length}`);
-        });
+        selectVisibleButton.addEventListener('click', filterVisibleMarkers);
 
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
