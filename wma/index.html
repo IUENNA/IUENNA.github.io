@@ -221,7 +221,7 @@
                 .filter(data => data.coordinates)
                 .map(data => {
                     return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${data.coordinates},${data.pid}`;
-                }).join('\n');
+                }).join('\\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
