@@ -145,7 +145,7 @@
 
             geojsonData.features.forEach(feature => {
                 const properties = feature.properties || {};
-                const subject = properties.hasSubject || 'Kein Thema';
+                const subjects = (properties.hasSubject || 'Kein Thema').split(',').map(s => s.trim());
                 const title = properties.hasTitle || 'Unbekannt';
                 const location = properties.hasSpatialCoverage || 'Keine Geolocation';
                 const pid = properties.pid || '#';
@@ -154,7 +154,7 @@
                 if (!geometry || !geometry.coordinates) return;
 
                 const coordinates = geometry.coordinates;
-                const matchSubject = !subjectQuery || subject.toLowerCase().includes(subjectQuery);
+                const matchSubject = !subjectQuery || subjects.some(s => s.toLowerCase().includes(subjectQuery));
                 const matchName = !nameQuery || title.toLowerCase().includes(nameQuery);
                 const matchLocation = !locationQuery || location.toLowerCase().includes(locationQuery);
                 const matchBounds = bounds.contains([coordinates[1], coordinates[0]]);
@@ -165,7 +165,7 @@
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${title} - ${subject} - ${location} (<a href="${pid}" target="_blank">ARCHE Permalink</a>)`;
+                    li.innerHTML = `${title} - ${subjects.join(', ')} - ${location} (<a href="${pid}" target="_blank">ARCHE Permalink</a>)`;
                     li.addEventListener('click', () => {
                         map.setView(marker.getLatLng(), 15);
                         marker.openPopup();
@@ -181,7 +181,7 @@
         }
 
         function setupAutocomplete() {
-            const subjects = [...new Set(geojsonData.features.map(f => f.properties.hasSubject || 'Kein Thema'))];
+            const subjects = [...new Set(geojsonData.features.flatMap(f => (f.properties.hasSubject || '').split(',').map(s => s.trim())))];
             const titles = [...new Set(geojsonData.features.map(f => f.properties.hasTitle || 'Unbekannt'))];
             const locations = [...new Set(geojsonData.features.map(f => f.properties.hasSpatialCoverage || 'Keine Geolocation'))];
 
