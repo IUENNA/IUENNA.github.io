@@ -141,8 +141,10 @@
                 const properties = feature.properties || {};
                 return {
                     title: properties.hasTitle || 'Unbekannt',
-                    subjects: (properties.hasSubject || '').split(',').map(s => s.trim().toLowerCase()),
-                    location: (properties.hasSpatialCoverage || 'Keine Geolocation').toLowerCase(),
+                    subjects: (properties.hasSubject || '').split(',').map(s => s.trim()), // Original-Schreibweise
+                    subjectsLowerCase: (properties.hasSubject || '').split(',').map(s => s.trim().toLowerCase()), // Für die Suche
+                    location: properties.hasSpatialCoverage || 'Keine Geolocation',
+                    locationLowerCase: (properties.hasSpatialCoverage || 'Keine Geolocation').toLowerCase(), // Für die Suche
                     coordinates: feature.geometry?.coordinates || null,
                     pid: properties.pid || '#'
                 };
@@ -162,9 +164,9 @@
             preprocessedData.forEach(data => {
                 if (!data.coordinates) return;
 
-                const matchSubject = !subjectQuery || data.subjects.some(s => s.includes(subjectQuery));
+                const matchSubject = !subjectQuery || data.subjectsLowerCase.some(s => s.includes(subjectQuery));
                 const matchName = !nameQuery || data.title.toLowerCase().includes(nameQuery);
-                const matchLocation = !locationQuery || data.location.includes(locationQuery);
+                const matchLocation = !locationQuery || data.locationLowerCase.includes(locationQuery);
                 const matchBounds = bounds.contains([data.coordinates[1], data.coordinates[0]]);
 
                 if (matchSubject && matchName && matchLocation && matchBounds) {
@@ -189,7 +191,7 @@
         }
 
         function setupAutocomplete() {
-            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects))];
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects))]; // Original-Schreibweise
             const titles = [...new Set(preprocessedData.map(d => d.title))];
             const locations = [...new Set(preprocessedData.map(d => d.location))];
 
@@ -203,7 +205,7 @@
                 const value = input.value.toLowerCase();
                 suggestionsDiv.innerHTML = '';
                 if (value) {
-                    const filtered = data.filter(item => item.includes(value)).slice(0, 10);
+                    const filtered = data.filter(item => item.toLowerCase().includes(value)).slice(0, 10);
                     filtered.forEach(item => {
                         const div = document.createElement('div');
                         div.textContent = item;
