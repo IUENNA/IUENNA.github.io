@@ -23,9 +23,17 @@
             width: 100%;
         }
 
+        #content {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+        }
+
         #search-container {
+            width: 50%;
             padding: 15px;
-            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
         #search-container label {
@@ -39,9 +47,10 @@
         }
 
         #results {
-            flex: 1;
+            width: 50%;
             padding: 15px;
             overflow-y: auto;
+            box-sizing: border-box;
         }
 
         #results ul {
@@ -72,24 +81,26 @@
 </head>
 <body>
     <div id="map"></div>
-    <div id="search-container">
-        <label for="subject-input">Thema:</label>
-        <input id="subject-input" type="text" placeholder="Thema eingeben...">
+    <div id="content">
+        <div id="search-container">
+            <label for="subject-input">Thema:</label>
+            <input id="subject-input" type="text" placeholder="Thema eingeben...">
 
-        <label for="name-input">Titel:</label>
-        <input id="name-input" type="text" placeholder="Titel eingeben...">
+            <label for="name-input">Titel:</label>
+            <input id="name-input" type="text" placeholder="Titel eingeben...">
 
-        <label for="location-input">Geolocation:</label>
-        <input id="location-input" type="text" placeholder="Geolocation eingeben...">
+            <label for="location-input">Geolocation:</label>
+            <input id="location-input" type="text" placeholder="Geolocation eingeben...">
 
-        <span id="counter">Angezeigte Objekte: 0</span>
-        <button id="reset-button">Filter zurücksetzen</button>
-        <button id="export-csv-button">Export als CSV</button>
-        <button id="export-geojson-button">Export als GeoJSON</button>
-    </div>
-    <div id="results">
-        <h3>Gefilterte Objekte</h3>
-        <ul id="results-list"></ul>
+            <span id="counter">Angezeigte Objekte: 0</span>
+            <button id="reset-button">Filter zurücksetzen</button>
+            <button id="export-csv-button">Export als CSV</button>
+            <button id="export-geojson-button">Export als GeoJSON</button>
+        </div>
+        <div id="results">
+            <h3>Gefilterte Objekte</h3>
+            <ul id="results-list"></ul>
+        </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
