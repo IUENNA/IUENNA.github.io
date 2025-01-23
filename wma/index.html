@@ -62,9 +62,6 @@
             <label for="subject-input">Thema:</label>
             <input id="subject-input" type="text" placeholder="Thema eingeben...">
             
-            <label for="coverage-input">Räumliche Abdeckung:</label>
-            <input id="coverage-input" type="text" placeholder="Ort eingeben...">
-            
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
         </div>
@@ -91,7 +88,6 @@
         // Eingabefelder und Buttons
         const nameInput = document.getElementById('name-input');
         const subjectInput = document.getElementById('subject-input');
-        const coverageInput = document.getElementById('coverage-input');
         const counter = document.getElementById('counter');
         const resetButton = document.getElementById('reset-button');
         const resultsList = document.getElementById('results-list');
@@ -111,7 +107,6 @@
         function filterMarkers() {
             const nameQuery = nameInput.value.toLowerCase();
             const subjectQuery = subjectInput.value.toLowerCase();
-            const coverageQuery = coverageInput.value.toLowerCase();
             const bounds = map.getBounds(); // Aktueller Kartenausschnitt
 
             markerCluster.clearLayers();
@@ -122,22 +117,27 @@
                 const properties = feature.properties || {}; // Fallback für fehlende properties
                 const title = properties.hasTitle || 'Unbekannt';
                 const subject = properties.hasSubject || 'Kein Thema';
-                const coverage = properties.hasSpatialCoverage || 'Keine Abdeckung';
-                const link = properties.pid || '#';
-                const coordinates = feature.geometry.coordinates;
+                const pid = properties.pid || '#';
+                const geometry = feature.geometry; // Geometrie des Features
 
+                // Prüfen, ob Geometrie und Koordinaten existieren
+                if (!geometry || !geometry.coordinates) {
+                    console.warn('Feature ohne gültige Geometrie:', feature);
+                    return; // Überspringe dieses Feature
+                }
+
+                const coordinates = geometry.coordinates;
                 const matchName = !nameQuery || title.toLowerCase().includes(nameQuery);
                 const matchSubject = !subjectQuery || subject.toLowerCase().includes(subjectQuery);
-                const matchCoverage = !coverageQuery || coverage.toLowerCase().includes(coverageQuery);
                 const matchBounds = bounds.contains([coordinates[1], coordinates[0]]);
 
-                if (matchName && matchSubject && matchCoverage && matchBounds) {
+                if (matchName && matchSubject && matchBounds) {
                     const marker = L.marker([coordinates[1], coordinates[0]]);
-                    marker.bindPopup(`<b>${title}</b><br>${coverage}<br><a href="${link}" target="_blank">Details</a>`);
+                    marker.bindPopup(`<b>${title}</b><br><a href="${pid}" target="_blank">Permanenter Link</a>`);
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${title} - ${subject} - ${coverage} (<a href="${link}" target="_blank">Details</a>)`;
+                    li.innerHTML = `${title} - ${subject} (<a href="${pid}" target="_blank">Permanenter Link</a>)`;
                     li.addEventListener('click', () => {
                         map.setView(marker.getLatLng(), 15);
                         marker.openPopup();
@@ -156,13 +156,12 @@
         resetButton.addEventListener('click', () => {
             nameInput.value = '';
             subjectInput.value = '';
-            coverageInput.value = '';
             map.setView([46.55269, 14.66768], 10); // Standardansicht
             filterMarkers();
         });
 
         // Filter aktualisieren bei Eingabe
-        [nameInput, subjectInput, coverageInput].forEach(input => {
+        [nameInput, subjectInput].forEach(input => {
             input.addEventListener('input', filterMarkers);
         });
 
