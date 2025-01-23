@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA Web Mapping Application</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         body, html {
@@ -94,7 +95,7 @@
         </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
         let geojsonData = null;
         const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
@@ -160,11 +161,11 @@
 
                 if (matchSubject && matchName && matchLocation && matchBounds) {
                     const marker = L.marker([coordinates[1], coordinates[0]]);
-                    marker.bindPopup(`<b>${title}</b><br>${location}<br><a href="${pid}" target="_blank">Permanenter Link</a>`);
+                    marker.bindPopup(`<b>${title}</b><br>${location}<br><a href="${pid}" target="_blank">ARCHE Permalink</a>`);
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${title} - ${subject} - ${location} (<a href="${pid}" target="_blank">Permanenter Link</a>)`;
+                    li.innerHTML = `${title} - ${subject} - ${location} (<a href="${pid}" target="_blank">ARCHE Permalink</a>)`;
                     li.addEventListener('click', () => {
                         map.setView(marker.getLatLng(), 15);
                         marker.openPopup();
