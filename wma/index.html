@@ -28,6 +28,22 @@
             margin-bottom: 10px;
             width: 90%;
         }
+        .autocomplete-suggestions {
+            position: absolute;
+            border: 1px solid #ccc;
+            background: white;
+            z-index: 1000;
+            max-height: 150px;
+            overflow-y: auto;
+            width: calc(90% - 2px);
+        }
+        .autocomplete-suggestion {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestion:hover {
+            background: #f0f0f0;
+        }
         #results {
             padding: 10px;
             border-top: 1px solid #ccc;
@@ -58,9 +74,11 @@
         <div id="search-container">
             <label for="name-input">Titel:</label>
             <input id="name-input" type="text" placeholder="Titel eingeben...">
+            <div id="name-suggestions" class="autocomplete-suggestions"></div>
             
             <label for="subject-input">Thema:</label>
             <input id="subject-input" type="text" placeholder="Thema eingeben...">
+            <div id="subject-suggestions" class="autocomplete-suggestions"></div>
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
@@ -74,7 +92,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
-        // Karte initialisieren
+        let geojsonData = null;
+        const nameSuggestionsDiv = document.getElementById('name-suggestions');
+        const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
         const map = L.map('map').setView([46.55269, 14.66768], 10);
 
         // OpenStreetMap Layer hinzufügen
@@ -82,8 +102,12 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Cluster-Gruppe erstellen
-        const markerCluster = L.markerClusterGroup();
+        const markerCluster = L.markerClusterGroup({
+            chunkedLoading: true,
+            chunkInterval: 200,
+            chunkDelay: 50,
+            maxClusterRadius: 50
+        });
 
         // Eingabefelder und Buttons
         const nameInput = document.getElementById('name-input');
@@ -97,34 +121,28 @@
             .then(response => response.json())
             .then(data => {
                 geojsonData = data;
-                filterMarkers(); // Initiale Filterung
+                filterMarkers();
+                setupAutocomplete();
             })
-            .catch(error => {
-                console.error('Fehler beim Laden der GeoJSON-Datei:', error);
-            });
+            .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
-        // Filterfunktion
         function filterMarkers() {
             const nameQuery = nameInput.value.toLowerCase();
             const subjectQuery = subjectInput.value.toLowerCase();
-            const bounds = map.getBounds(); // Aktueller Kartenausschnitt
+            const bounds = map.getBounds();
 
             markerCluster.clearLayers();
             resultsList.innerHTML = '';
             let count = 0;
 
             geojsonData.features.forEach(feature => {
-                const properties = feature.properties || {}; // Fallback für fehlende properties
+                const properties = feature.properties || {};
                 const title = properties.hasTitle || 'Unbekannt';
                 const subject = properties.hasSubject || 'Kein Thema';
                 const pid = properties.pid || '#';
-                const geometry = feature.geometry; // Geometrie des Features
+                const geometry = feature.geometry;
 
-                // Prüfen, ob Geometrie und Koordinaten existieren
-                if (!geometry || !geometry.coordinates) {
-                    console.warn('Feature ohne gültige Geometrie:', feature);
-                    return; // Überspringe dieses Feature
-                }
+                if (!geometry || !geometry.coordinates) return;
 
                 const coordinates = geometry.coordinates;
                 const matchName = !nameQuery || title.toLowerCase().includes(nameQuery);
@@ -152,20 +170,44 @@
             counter.textContent = `Angezeigte Objekte: ${count}`;
         }
 
-        // Filter zurücksetzen
+        function setupAutocomplete() {
+            const titles = [...new Set(geojsonData.features.map(f => f.properties.hasTitle || 'Unbekannt'))];
+            const subjects = [...new Set(geojsonData.features.map(f => f.properties.hasSubject || 'Kein Thema'))];
+
+            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
+            addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
+        }
+
+        function addAutocomplete(input, suggestionsDiv, data) {
+            input.addEventListener('input', () => {
+                const value = input.value.toLowerCase();
+                suggestionsDiv.innerHTML = '';
+                if (value) {
+                    const filtered = data.filter(item => item.toLowerCase().includes(value)).slice(0, 10);
+                    filtered.forEach(item => {
+                        const div = document.createElement('div');
+                        div.textContent = item;
+                        div.className = 'autocomplete-suggestion';
+                        div.addEventListener('click', () => {
+                            input.value = item;
+                            suggestionsDiv.innerHTML = '';
+                            filterMarkers();
+                        });
+                        suggestionsDiv.appendChild(div);
+                    });
+                }
+            });
+        }
+
         resetButton.addEventListener('click', () => {
             nameInput.value = '';
             subjectInput.value = '';
-            map.setView([46.55269, 14.66768], 10); // Standardansicht
+            map.setView([46.55269, 14.66768], 10);
             filterMarkers();
         });
 
-        // Filter aktualisieren bei Eingabe
-        [nameInput, subjectInput].forEach(input => {
-            input.addEventListener('input', filterMarkers);
-        });
-
         map.on('moveend', filterMarkers);
+        [nameInput, subjectInput].forEach(input => input.addEventListener('input', filterMarkers));
     </script>
 </body>
 </html>
