@@ -7,46 +7,28 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <style>
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
         }
-
-        #map {
-            height: 100%;
-            width: 60%;
-        }
-
-        #sidebar {
-            height: 100%;
-            width: 40%;
+        #map { height: 60vh; }
+        #container {
             display: flex;
             flex-direction: column;
-            border-left: 1px solid #ccc;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
-
         #search-container {
-            padding: 15px;
-            border-bottom: 1px solid #ccc;
+            padding: 10px;
         }
-
         #search-container label {
             display: block;
             margin: 5px 0;
         }
-
         #search-container input, #search-container button {
             margin-bottom: 10px;
-            width: 100%;
+            width: 90%;
         }
-
         .autocomplete-suggestions {
             position: absolute;
             border: 1px solid #ccc;
@@ -54,29 +36,25 @@
             z-index: 1000;
             max-height: 150px;
             overflow-y: auto;
-            width: calc(100% - 20px);
+            width: calc(90% - 2px);
         }
-
         .autocomplete-suggestion {
             padding: 5px;
             cursor: pointer;
         }
-
         .autocomplete-suggestion:hover {
             background: #f0f0f0;
         }
-
         #results {
-            flex: 1;
-            padding: 15px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
             overflow-y: auto;
+            max-height: 40vh;
         }
-
         #results ul {
             list-style: none;
             padding: 0;
         }
-
         #results li {
             margin-bottom: 10px;
             padding: 10px;
@@ -84,19 +62,16 @@
             background: #f9f9f9;
             border-radius: 4px;
         }
-
         #results li:hover {
             background: #f0f0f0;
         }
-
         #counter {
             font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div id="map"></div>
-    <div id="sidebar">
+    <div id="container">
         <div id="search-container">
             <label for="subject-input">Thema:</label>
             <input id="subject-input" type="text" placeholder="Thema eingeben...">
@@ -113,6 +88,7 @@
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
         </div>
+        <div id="map"></div>
         <div id="results">
             <h3>Gefilterte Objekte</h3>
             <ul id="results-list"></ul>
@@ -121,6 +97,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script>
         let geojsonData = null;
         let preprocessedData = []; // Array zur Vorberechnung der Filterdaten
