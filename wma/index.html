@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
         #map { height: 60vh; }
         #container {
             display: flex;
@@ -14,7 +19,6 @@
         }
         #search-container {
             padding: 10px;
-            font-family: Arial, sans-serif;
         }
         #search-container label {
             display: block;
@@ -65,13 +69,13 @@
     <div id="container">
         <div id="search-container">
             <label for="name-input">Name:</label>
-            <input id="name-input" type="text" placeholder="Name suchen...">
+            <input id="name-input" type="text" placeholder="Name eingeben...">
             
             <label for="category-input">Kategorie (Komma getrennt):</label>
-            <input id="category-input" type="text" placeholder="Kategorie(n) suchen...">
+            <input id="category-input" type="text" placeholder="Kategorie(n) eingeben...">
             
             <label for="description-input">Beschreibung:</label>
-            <input id="description-input" type="text" placeholder="Beschreibung suchen...">
+            <input id="description-input" type="text" placeholder="Beschreibung eingeben...">
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Suche zurücksetzen</button>
@@ -110,15 +114,25 @@
         const resultsList = document.getElementById('results-list');
 
         // GeoJSON-Datei laden
-        fetch('wma/R00_WGS84.geojson')
-            .then(response => response.json())
+        fetch('R00_WGS84.geojson')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('GeoJSON-Datei konnte nicht geladen werden.');
+                }
+                return response.json();
+            })
             .then(data => {
                 geojsonData = data;
                 filterMarkers(); // Initiale Filterung
+            })
+            .catch(error => {
+                console.error('Fehler beim Laden der GeoJSON-Datei:', error);
             });
 
         // Filterfunktion
         function filterMarkers() {
+            if (!geojsonData) return; // Falls keine Daten geladen wurden
+
             const nameQuery = nameInput.value.toLowerCase();
             const categoryQueries = categoryInput.value.toLowerCase().split(',').map(cat => cat.trim());
             const descriptionQuery = descriptionInput.value.toLowerCase();
