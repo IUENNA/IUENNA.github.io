@@ -95,7 +95,6 @@
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
-            <button id="locate-button">Standort anzeigen</button>
             <button id="export-csv-button">Export als CSV</button>
             <button id="export-geojson-button">Export als GeoJSON</button>
         </div>
@@ -113,7 +112,7 @@
 
         const map = L.map('map').setView([46.55269, 14.66768], 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.9 Projekt IUENNA</a>'
+            attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
         }).addTo(map);
 
         const markerCluster = L.markerClusterGroup();
@@ -131,7 +130,8 @@
             .then(data => {
                 geojsonData = data;
                 preprocessData();
-                filterMarkers();
+                map.fitBounds(L.geoJSON(geojsonData).getBounds());
+            filterMarkers();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
@@ -164,7 +164,7 @@
                 const matchName = !nameQuery || data.title.toLowerCase().includes(nameQuery);
                 const matchLocation = !locationQuery || data.location.toLowerCase().includes(locationQuery);
 
-                if (matchSubject && matchName && matchLocation) {
+                if (matchSubject && matchName && matchLocation && map.getBounds().contains([data.coordinates[1], data.coordinates[0]])) {
                     const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
                     marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br><a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
                     markerCluster.addLayer(marker);
@@ -227,6 +227,7 @@
             subjectInput.value = '';
             nameInput.value = '';
             locationInput.value = '';
+            map.fitBounds(L.geoJSON(geojsonData).getBounds());
             filterMarkers();
         });
 
