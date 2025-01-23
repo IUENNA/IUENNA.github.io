@@ -101,6 +101,24 @@
             attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
         }).addTo(map);
 
+        // Maßstab hinzufügen
+        L.control.scale({ position: 'bottomleft' }).addTo(map);
+
+        // Suchfunktion in der Karte hinzufügen
+        const searchControl = L.Control.geocoder({
+            position: 'topright',
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
+
         const markerCluster = L.markerClusterGroup();
         const subjectInput = document.getElementById('subject-input');
         const nameInput = document.getElementById('name-input');
@@ -118,7 +136,7 @@
             .then(data => {
                 geojsonData = data;
                 preprocessData();
-                addMarkersToMap();
+                filterAndDisplayMarkers();
                 setupAutocomplete();
                 updateCounter();
             })
@@ -137,8 +155,18 @@
             });
         }
 
-        function addMarkersToMap() {
-            preprocessedData.forEach(data => {
+        function filterAndDisplayMarkers() {
+            markerCluster.clearLayers();
+
+            const filteredData = preprocessedData.filter(data => {
+                const matchSubject = subjectInput.value === '' || data.subjects.toLowerCase().includes(subjectInput.value.toLowerCase());
+                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
+                const matchLocation = locationInput.value === '' || data.location.toLowerCase().includes(locationInput.value.toLowerCase());
+
+                return matchSubject && matchTitle && matchLocation;
+            });
+
+            filteredData.forEach(data => {
                 if (!data.coordinates) return;
 
                 const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
@@ -147,6 +175,7 @@
             });
 
             map.addLayer(markerCluster);
+            updateCounter(filteredData.length);
         }
 
         function setupAutocomplete() {
@@ -172,7 +201,7 @@
                         suggestionDiv.addEventListener('click', () => {
                             input.value = suggestion;
                             suggestionsDiv.innerHTML = '';
-                            updateCounter();
+                            filterAndDisplayMarkers();
                         });
                         suggestionsDiv.appendChild(suggestionDiv);
                     });
@@ -180,16 +209,8 @@
             });
         }
 
-        function updateCounter() {
-            const filteredData = preprocessedData.filter(data => {
-                const matchSubject = subjectInput.value === '' || data.subjects.toLowerCase().includes(subjectInput.value.toLowerCase());
-                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
-                const matchLocation = locationInput.value === '' || data.location.toLowerCase().includes(locationInput.value.toLowerCase());
-
-                return matchSubject && matchTitle && matchLocation;
-            });
-
-            counterElement.textContent = `Angezeigte Ressourcen: ${filteredData.length}`;
+        function updateCounter(count = 0) {
+            counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
         function exportToCsv() {
@@ -237,11 +258,13 @@
             subjectInput.value = '';
             nameInput.value = '';
             locationInput.value = '';
-            updateCounter();
+            filterAndDisplayMarkers();
         });
 
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
+
+        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterAndDisplayMarkers));
     </script>
 </body>
 </html>
