@@ -191,19 +191,26 @@
         const resetButton = document.getElementById('reset-button');
         const resultsList = document.getElementById('results-list');
 
-        // GeoJSON-Datei laden
+        // GeoJSON-Datei laden mit Debugging
         fetch('R00_WGS84.geojson')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fehler beim Laden der GeoJSON-Datei:', response.status, response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
+                console.log('GeoJSON-Daten erfolgreich geladen:', data); // Debugging-Ausgabe
                 geojsonData = data;
                 preprocessData(); // Daten vorab verarbeiten
                 filterMarkers();
                 setupAutocomplete();
             })
-            .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
+            .catch(error => console.error('Fehler beim Verarbeiten der GeoJSON-Datei:', error));
 
         // Vorberechnung der Filterdaten
         function preprocessData() {
+            console.log('Daten werden vorbereitet...'); // Debugging-Ausgabe
             preprocessedData = geojsonData.features.map(feature => {
                 const properties = feature.properties || {};
                 return {
@@ -216,6 +223,7 @@
                     pid: properties.pid || '#'
                 };
             });
+            console.log('Vorbereitete Daten:', preprocessedData); // Debugging-Ausgabe
         }
 
         function filterMarkers() {
@@ -255,6 +263,7 @@
 
             map.addLayer(markerCluster);
             counter.textContent = `Angezeigte Objekte: ${count}`;
+            console.log(`Filter abgeschlossen: ${count} Objekte gefunden.`); // Debugging-Ausgabe
         }
 
         function setupAutocomplete() {
