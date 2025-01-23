@@ -92,6 +92,10 @@
         #counter {
             font-weight: bold;
         }
+
+        .leaflet-bar {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -112,6 +116,7 @@
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
+            <button id="locate-button">Standort anzeigen</button>
         </div>
         <div id="results">
             <h3>Gefilterte Objekte</h3>
@@ -127,6 +132,7 @@
         const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
         const nameSuggestionsDiv = document.getElementById('name-suggestions');
         const locationSuggestionsDiv = document.getElementById('location-suggestions');
+        const locateButton = document.getElementById('locate-button');
         const map = L.map('map').setView([46.55269, 14.66768], 10);
 
         // OpenStreetMap Layer hinzufügen
@@ -151,8 +157,11 @@
             map.fitBounds(poly.getBounds());
         }).addTo(map);
 
-        // Standortsuche hinzufügen
-        map.locate({ setView: true, maxZoom: 16 });
+        // Standortsuche nur bei Button-Klick
+        locateButton.addEventListener('click', () => {
+            map.locate({ setView: true, maxZoom: 16 });
+        });
+
         map.on('locationfound', function(e) {
             const radius = e.accuracy / 2;
 
