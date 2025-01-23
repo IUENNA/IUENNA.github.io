@@ -19,18 +19,16 @@
 
         #map {
             height: 100%;
-            flex: 3;
+            width: 60%;
         }
 
         #sidebar {
             height: 100%;
-            flex: 2;
+            width: 40%;
             display: flex;
             flex-direction: column;
             border-left: 1px solid #ccc;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-            min-width: 400px;
-            max-width: 400px;
         }
 
         #search-container {
@@ -261,52 +259,4 @@
                 }
             });
 
-            map.addLayer(markerCluster);
-            counter.textContent = `Angezeigte Objekte: ${count}`;
-            console.log(`Filter abgeschlossen: ${count} Objekte gefunden.`); // Debugging-Ausgabe
-        }
-
-        function setupAutocomplete() {
-            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects))]; // Original-Schreibweise
-            const titles = [...new Set(preprocessedData.map(d => d.title))];
-            const locations = [...new Set(preprocessedData.map(d => d.location))];
-
-            addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
-            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
-            addAutocomplete(locationInput, locationSuggestionsDiv, locations);
-        }
-
-        function addAutocomplete(input, suggestionsDiv, data) {
-            input.addEventListener('input', () => {
-                const value = input.value.toLowerCase();
-                suggestionsDiv.innerHTML = '';
-                if (value) {
-                    const filtered = data.filter(item => item.toLowerCase().includes(value)).slice(0, 10);
-                    filtered.forEach(item => {
-                        const div = document.createElement('div');
-                        div.textContent = item;
-                        div.className = 'autocomplete-suggestion';
-                        div.addEventListener('click', () => {
-                            input.value = item;
-                            suggestionsDiv.innerHTML = '';
-                            filterMarkers();
-                        });
-                        suggestionsDiv.appendChild(div);
-                    });
-                }
-            });
-        }
-
-        resetButton.addEventListener('click', () => {
-            subjectInput.value = '';
-            nameInput.value = '';
-            locationInput.value = '';
-            map.setView([46.55269, 14.66768], 10);
-            filterMarkers();
-        });
-
-        map.on('moveend', filterMarkers);
-        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterMarkers));
-    </script>
-</body>
-</html>
+            map.add
