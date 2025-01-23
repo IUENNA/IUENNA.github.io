@@ -218,7 +218,7 @@
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `<b>${data.title}</b><br>${data.subjects}<br>${data.location} - 🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`;
+                    li.innerHTML = `<b>Titel:</b> ${data.title}<br><b>Thema:</b> ${data.subjects}<br><b>Geolocation:</b> ${data.location} <br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`;
                     resultsList.appendChild(li);
 
                     count++;
