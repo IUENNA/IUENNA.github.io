@@ -15,22 +15,12 @@
             font-family: Arial, sans-serif;
             height: 100%;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
         }
 
         #map {
-            height: 100vh;
-            width: 60%;
-        }
-
-        #sidebar {
-            height: 100%;
-            width: 40%;
-            flex-direction: column;
-            border-left: 1px solid #ccc;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            box-sizing: border-box;
+            height: 50vh;
+            width: 100%;
         }
 
         #search-container {
@@ -49,7 +39,7 @@
         }
 
         #results {
-            min-height: 200px;
+            flex: 1;
             padding: 15px;
             overflow-y: auto;
         }
@@ -82,26 +72,24 @@
 </head>
 <body>
     <div id="map"></div>
-    <div id="sidebar">
-        <div id="search-container">
-            <label for="subject-input">Thema:</label>
-            <input id="subject-input" type="text" placeholder="Thema eingeben...">
-            
-            <label for="name-input">Titel:</label>
-            <input id="name-input" type="text" placeholder="Titel eingeben...">
-            
-            <label for="location-input">Geolocation:</label>
-            <input id="location-input" type="text" placeholder="Geolocation eingeben...">
-            
-            <span id="counter">Angezeigte Objekte: 0</span>
-            <button id="reset-button">Filter zurücksetzen</button>
-            <button id="export-csv-button">Export als CSV</button>
-            <button id="export-geojson-button">Export als GeoJSON</button>
-        </div>
-        <div id="results">
-            <h3>Gefilterte Objekte</h3>
-            <ul id="results-list"></ul>
-        </div>
+    <div id="search-container">
+        <label for="subject-input">Thema:</label>
+        <input id="subject-input" type="text" placeholder="Thema eingeben...">
+
+        <label for="name-input">Titel:</label>
+        <input id="name-input" type="text" placeholder="Titel eingeben...">
+
+        <label for="location-input">Geolocation:</label>
+        <input id="location-input" type="text" placeholder="Geolocation eingeben...">
+
+        <span id="counter">Angezeigte Objekte: 0</span>
+        <button id="reset-button">Filter zurücksetzen</button>
+        <button id="export-csv-button">Export als CSV</button>
+        <button id="export-geojson-button">Export als GeoJSON</button>
+    </div>
+    <div id="results">
+        <h3>Gefilterte Objekte</h3>
+        <ul id="results-list"></ul>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -110,7 +98,7 @@
         let geojsonData = null;
         let preprocessedData = [];
 
-        const map = L.map('map').setView([43.3673302,12.595675], 10);
+        const map = L.map('map').setView([43.3673302, 12.595675], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
         }).addTo(map);
@@ -131,7 +119,7 @@
                 geojsonData = data;
                 preprocessData();
                 map.fitBounds(L.geoJSON(geojsonData).getBounds());
-            filterMarkers();
+                filterMarkers();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
