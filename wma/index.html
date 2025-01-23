@@ -10,9 +10,9 @@
         #map { height: 60vh; }
         #container {
             display: flex;
+            flex-direction: column;
         }
         #search-container {
-            flex: 1;
             padding: 10px;
             font-family: Arial, sans-serif;
         }
@@ -20,17 +20,15 @@
             display: block;
             margin: 5px 0;
         }
-        #search-container input {
+        #search-container input, #search-container button {
             margin-bottom: 10px;
             width: 90%;
         }
         #results {
-            flex: 1;
             padding: 10px;
-            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
             overflow-y: auto;
-            max-height: 60vh;
-            display: none; /* Liste standardmäßig versteckt */
+            max-height: 40vh;
         }
         #results ul {
             list-style: none;
@@ -49,17 +47,17 @@
         #counter {
             font-weight: bold;
         }
-        #reset-button {
+        #export-button {
             margin-top: 10px;
             padding: 8px 12px;
-            background: #d9534f;
+            background: #5cb85c;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
-        #reset-button:hover {
-            background: #c9302c;
+        #export-button:hover {
+            background: #4cae4c;
         }
     </style>
 </head>
@@ -67,28 +65,29 @@
     <div id="container">
         <div id="search-container">
             <label for="name-input">Name:</label>
-            <input id="name-input" type="text" placeholder="Name eingeben...">
+            <input id="name-input" type="text" placeholder="Name suchen...">
             
-            <label for="category-input">Kategorie:</label>
-            <input id="category-input" type="text" placeholder="Kategorie eingeben...">
+            <label for="category-input">Kategorie (Komma getrennt):</label>
+            <input id="category-input" type="text" placeholder="Kategorie(n) suchen...">
             
             <label for="description-input">Beschreibung:</label>
-            <input id="description-input" type="text" placeholder="Beschreibung eingeben...">
+            <input id="description-input" type="text" placeholder="Beschreibung suchen...">
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Suche zurücksetzen</button>
+            <button id="export-button">Exportiere Ergebnisse als GeoJSON</button>
         </div>
+        <div id="map"></div>
         <div id="results">
             <h3>Gefilterte Objekte</h3>
             <ul id="results-list"></ul>
         </div>
     </div>
-    <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
         // Karte initialisieren
-        var map = L.map('map').setView([48.2082, 16.3738], 13);
+        const map = L.map('map').setView([48.2082, 16.3738], 13);
 
         // OpenStreetMap Layer hinzufügen
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -96,89 +95,93 @@
         }).addTo(map);
 
         // Cluster-Gruppe erstellen
-        var markerCluster = L.markerClusterGroup();
+        const markerCluster = L.markerClusterGroup();
 
-        // Beispiel-Daten (GeoJSON mit Mehrfachkategorien)
-        var geojsonData = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "properties": { "name": "Punkt 1", "category": "A, B", "description": "Schöne Aussicht" },
-                    "geometry": { "type": "Point", "coordinates": [16.3738, 48.2082] }
-                },
-                {
-                    "type": "Feature",
-                    "properties": { "name": "Punkt 2", "category": "B, C", "description": "Historischer Ort" },
-                    "geometry": { "type": "Point", "coordinates": [16.3748, 48.2092] }
-                },
-                {
-                    "type": "Feature",
-                    "properties": { "name": "Punkt 3", "category": "A, C", "description": "Naturdenkmal" },
-                    "geometry": { "type": "Point", "coordinates": [16.3758, 48.2102] }
-                }
-            ]
-        };
+        // Globale Variable für GeoJSON-Daten
+        let geojsonData = null;
 
-        // Inputs
-        var nameInput = document.getElementById('name-input');
-        var categoryInput = document.getElementById('category-input');
-        var descriptionInput = document.getElementById('description-input');
-        var counter = document.getElementById('counter');
-        var resultsDiv = document.getElementById('results');
-        var resultsList = document.getElementById('results-list');
-        var resetButton = document.getElementById('reset-button');
+        // Eingabefelder und Buttons
+        const nameInput = document.getElementById('name-input');
+        const categoryInput = document.getElementById('category-input');
+        const descriptionInput = document.getElementById('description-input');
+        const counter = document.getElementById('counter');
+        const resetButton = document.getElementById('reset-button');
+        const exportButton = document.getElementById('export-button');
+        const resultsList = document.getElementById('results-list');
+
+        // GeoJSON-Datei laden
+        fetch('wma/R00_WGS84.geojson')
+            .then(response => response.json())
+            .then(data => {
+                geojsonData = data;
+                filterMarkers(); // Initiale Filterung
+            });
 
         // Filterfunktion
         function filterMarkers() {
-            var nameQuery = nameInput.value.toLowerCase();
-            var categoryQuery = categoryInput.value.toLowerCase();
-            var descriptionQuery = descriptionInput.value.toLowerCase();
-            var bounds = map.getBounds(); // Aktueller Kartenausschnitt
+            const nameQuery = nameInput.value.toLowerCase();
+            const categoryQueries = categoryInput.value.toLowerCase().split(',').map(cat => cat.trim());
+            const descriptionQuery = descriptionInput.value.toLowerCase();
+            const bounds = map.getBounds(); // Aktueller Kartenausschnitt
 
-            markerCluster.clearLayers(); // Cluster zurücksetzen
-            resultsList.innerHTML = ''; // Ergebnisse zurücksetzen
-            let count = 0; // Zähler für gefilterte Objekte
+            markerCluster.clearLayers();
+            resultsList.innerHTML = '';
+            let filteredFeatures = [];
+            let count = 0;
 
-            geojsonData.features.forEach(function (feature) {
-                var categories = feature.properties.category.split(',').map(cat => cat.trim().toLowerCase()); // Kategorien als Array
-                var matchName = nameQuery === '' || feature.properties.name.toLowerCase().includes(nameQuery);
-                var matchCategory = categoryQuery === '' || categories.includes(categoryQuery); // Prüfung auf einzelne Kategorie
-                var matchDescription = descriptionQuery === '' || feature.properties.description.toLowerCase().includes(descriptionQuery);
-                var matchBounds = bounds.contains([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]); // Punkt innerhalb des Kartenausschnitts?
+            geojsonData.features.forEach(feature => {
+                const { name, category, description } = feature.properties;
+                const categories = category.split(',').map(cat => cat.trim().toLowerCase());
+                const matchName = !nameQuery || name.toLowerCase().includes(nameQuery);
+                const matchCategory = !categoryQueries[0] || categoryQueries.every(q => categories.includes(q));
+                const matchDescription = !descriptionQuery || description.toLowerCase().includes(descriptionQuery);
+                const matchBounds = bounds.contains([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
 
                 if (matchName && matchCategory && matchDescription && matchBounds) {
-                    var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
-                    marker.bindPopup(`<b>${feature.properties.name}</b><br>${feature.properties.description}`);
+                    const marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
+                    marker.bindPopup(`<b>${name}</b><br>${description}`);
                     markerCluster.addLayer(marker);
 
-                    // Zur Ergebnisliste hinzufügen
-                    var li = document.createElement('li');
-                    li.textContent = `${feature.properties.name} - ${feature.properties.category} - ${feature.properties.description}`;
+                    const li = document.createElement('li');
+                    li.textContent = `${name} - ${category} - ${description}`;
+                    li.addEventListener('click', () => {
+                        map.setView(marker.getLatLng(), 15);
+                        marker.openPopup();
+                    });
                     resultsList.appendChild(li);
 
+                    filteredFeatures.push(feature);
                     count++;
                 }
             });
 
-            map.addLayer(markerCluster); // Cluster zur Karte hinzufügen
-            counter.textContent = `Angezeigte Objekte: ${count}`; // Zähler aktualisieren
+            map.addLayer(markerCluster);
+            counter.textContent = `Angezeigte Objekte: ${count}`;
 
-            // Ergebnisliste ein- oder ausblenden
-            if (count > 0) {
-                resultsDiv.style.display = 'block'; // Liste anzeigen
-            } else {
-                resultsDiv.style.display = 'none'; // Liste verstecken
-            }
+            // Export-Button Funktionalität
+            exportButton.onclick = () => exportToGeoJSON(filteredFeatures);
         }
 
-        // Reset-Funktion
+        // Ergebnisse als GeoJSON exportieren
+        function exportToGeoJSON(filteredFeatures) {
+            const geojson = {
+                type: 'FeatureCollection',
+                features: filteredFeatures
+            };
+            const blob = new Blob([JSON.stringify(geojson)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'filtered_results.geojson';
+            link.click();
+        }
+
+        // Filter zurücksetzen
         function resetFilters() {
             nameInput.value = '';
             categoryInput.value = '';
             descriptionInput.value = '';
-            map.setView([48.2082, 16.3738], 13); // Standardansicht
-            filterMarkers(); // Alle Filter zurücksetzen
+            map.setView([48.2082, 16.3738], 13);
+            filterMarkers();
         }
 
         // Event-Listener
@@ -187,9 +190,6 @@
         descriptionInput.addEventListener('input', filterMarkers);
         map.on('moveend', filterMarkers);
         resetButton.addEventListener('click', resetFilters);
-
-        // Initiale Filterung
-        filterMarkers();
     </script>
 </body>
 </html>
