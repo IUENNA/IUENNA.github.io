@@ -96,6 +96,8 @@
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script>
         let geojsonData = null;
         let preprocessedData = []; // Array zur Vorberechnung der Filterdaten
@@ -106,8 +108,40 @@
 
         // OpenStreetMap Layer hinzufügen
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | &copy; <a href="https://iuenna-project.org" target="_blank">IUENNA Projekt</a>'
         }).addTo(map);
+
+        // Maßstab hinzufügen
+        L.control.scale({ position: 'bottomleft' }).addTo(map);
+
+        // Geocoder hinzufügen
+        L.Control.geocoder({
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
+
+        // Standortsuche hinzufügen
+        map.locate({ setView: true, maxZoom: 16 });
+        map.on('locationfound', function(e) {
+            const radius = e.accuracy / 2;
+
+            L.marker(e.latlng).addTo(map)
+                .bindPopup("Ihr Standort (ungefähre Genauigkeit: " + radius + " Meter)").openPopup();
+
+            L.circle(e.latlng, radius).addTo(map);
+        });
+
+        map.on('locationerror', function(e) {
+            alert("Standort konnte nicht gefunden werden: " + e.message);
+        });
 
         const markerCluster = L.markerClusterGroup({
             chunkedLoading: true,
