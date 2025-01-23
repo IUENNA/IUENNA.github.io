@@ -97,7 +97,7 @@
         const resultsList = document.getElementById('results-list');
 
         // GeoJSON-Datei laden
-        fetch('wma/R00_WGS84.geojson')
+        fetch('R00_WGS84.geojson')
             .then(response => response.json())
             .then(data => {
                 geojsonData = data;
