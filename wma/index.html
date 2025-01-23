@@ -169,7 +169,7 @@
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${data.title} - ${data.subjects} - ${data.location}`;
+                    li.innerHTML = `${data.title} - ${data.subjects} - ${data.location} (<a href="${data.pid}" target="_blank">ARCHE Permalink</a>)`;
                     resultsList.appendChild(li);
 
                     count++;
@@ -181,9 +181,11 @@
         }
 
         function exportToCsv() {
-            const csvContent = preprocessedData.map(data => {
-                return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
-            }).join('\n');
+            const csvContent = preprocessedData
+                .filter(data => map.getBounds().contains([data.coordinates[1], data.coordinates[0]]))
+                .map(data => {
+                    return `${data.title},${data.subjects},${data.location},${data.coordinates}`;
+                }).join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
@@ -194,7 +196,7 @@
 
         function exportToGeoJson() {
             const filteredFeatures = preprocessedData.filter(data => {
-                return data.coordinates !== null;
+                return data.coordinates !== null && map.getBounds().contains([data.coordinates[1], data.coordinates[0]]);
             }).map(data => ({
                 type: 'Feature',
                 properties: {
@@ -229,6 +231,9 @@
             map.fitBounds(L.geoJSON(geojsonData).getBounds());
             filterMarkers();
         });
+
+        // Karte aktualisieren, wenn der Benutzer zoomt oder die Karte verschiebt
+        map.on('moveend', filterMarkers);
 
         // Suchleiste in der Karte
         const searchControl = L.Control.geocoder({
