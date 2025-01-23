@@ -72,13 +72,17 @@
 <body>
     <div id="container">
         <div id="search-container">
+            <label for="subject-input">Thema:</label>
+            <input id="subject-input" type="text" placeholder="Thema eingeben...">
+            <div id="subject-suggestions" class="autocomplete-suggestions"></div>
+            
             <label for="name-input">Titel:</label>
             <input id="name-input" type="text" placeholder="Titel eingeben...">
             <div id="name-suggestions" class="autocomplete-suggestions"></div>
             
-            <label for="subject-input">Thema:</label>
-            <input id="subject-input" type="text" placeholder="Thema eingeben...">
-            <div id="subject-suggestions" class="autocomplete-suggestions"></div>
+            <label for="location-input">Geolocation:</label>
+            <input id="location-input" type="text" placeholder="Geolocation eingeben...">
+            <div id="location-suggestions" class="autocomplete-suggestions"></div>
             
             <span id="counter">Angezeigte Objekte: 0</span>
             <button id="reset-button">Filter zurücksetzen</button>
@@ -90,11 +94,12 @@
         </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.js"></script>
     <script>
         let geojsonData = null;
-        const nameSuggestionsDiv = document.getElementById('name-suggestions');
         const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
+        const nameSuggestionsDiv = document.getElementById('name-suggestions');
+        const locationSuggestionsDiv = document.getElementById('location-suggestions');
         const map = L.map('map').setView([46.55269, 14.66768], 10);
 
         // OpenStreetMap Layer hinzufügen
@@ -110,8 +115,9 @@
         });
 
         // Eingabefelder und Buttons
-        const nameInput = document.getElementById('name-input');
         const subjectInput = document.getElementById('subject-input');
+        const nameInput = document.getElementById('name-input');
+        const locationInput = document.getElementById('location-input');
         const counter = document.getElementById('counter');
         const resetButton = document.getElementById('reset-button');
         const resultsList = document.getElementById('results-list');
@@ -127,8 +133,9 @@
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
 
         function filterMarkers() {
-            const nameQuery = nameInput.value.toLowerCase();
             const subjectQuery = subjectInput.value.toLowerCase();
+            const nameQuery = nameInput.value.toLowerCase();
+            const locationQuery = locationInput.value.toLowerCase();
             const bounds = map.getBounds();
 
             markerCluster.clearLayers();
@@ -137,25 +144,27 @@
 
             geojsonData.features.forEach(feature => {
                 const properties = feature.properties || {};
-                const title = properties.hasTitle || 'Unbekannt';
                 const subject = properties.hasSubject || 'Kein Thema';
+                const title = properties.hasTitle || 'Unbekannt';
+                const location = properties.hasSpatialCoverage || 'Keine Geolocation';
                 const pid = properties.pid || '#';
                 const geometry = feature.geometry;
 
                 if (!geometry || !geometry.coordinates) return;
 
                 const coordinates = geometry.coordinates;
-                const matchName = !nameQuery || title.toLowerCase().includes(nameQuery);
                 const matchSubject = !subjectQuery || subject.toLowerCase().includes(subjectQuery);
+                const matchName = !nameQuery || title.toLowerCase().includes(nameQuery);
+                const matchLocation = !locationQuery || location.toLowerCase().includes(locationQuery);
                 const matchBounds = bounds.contains([coordinates[1], coordinates[0]]);
 
-                if (matchName && matchSubject && matchBounds) {
+                if (matchSubject && matchName && matchLocation && matchBounds) {
                     const marker = L.marker([coordinates[1], coordinates[0]]);
-                    marker.bindPopup(`<b>${title}</b><br><a href="${pid}" target="_blank">Permanenter Link</a>`);
+                    marker.bindPopup(`<b>${title}</b><br>${location}<br><a href="${pid}" target="_blank">Permanenter Link</a>`);
                     markerCluster.addLayer(marker);
 
                     const li = document.createElement('li');
-                    li.innerHTML = `${title} - ${subject} (<a href="${pid}" target="_blank">Permanenter Link</a>)`;
+                    li.innerHTML = `${title} - ${subject} - ${location} (<a href="${pid}" target="_blank">Permanenter Link</a>)`;
                     li.addEventListener('click', () => {
                         map.setView(marker.getLatLng(), 15);
                         marker.openPopup();
@@ -171,11 +180,13 @@
         }
 
         function setupAutocomplete() {
-            const titles = [...new Set(geojsonData.features.map(f => f.properties.hasTitle || 'Unbekannt'))];
             const subjects = [...new Set(geojsonData.features.map(f => f.properties.hasSubject || 'Kein Thema'))];
+            const titles = [...new Set(geojsonData.features.map(f => f.properties.hasTitle || 'Unbekannt'))];
+            const locations = [...new Set(geojsonData.features.map(f => f.properties.hasSpatialCoverage || 'Keine Geolocation'))];
 
-            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
             addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
+            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
+            addAutocomplete(locationInput, locationSuggestionsDiv, locations);
         }
 
         function addAutocomplete(input, suggestionsDiv, data) {
@@ -200,14 +211,15 @@
         }
 
         resetButton.addEventListener('click', () => {
-            nameInput.value = '';
             subjectInput.value = '';
+            nameInput.value = '';
+            locationInput.value = '';
             map.setView([46.55269, 14.66768], 10);
             filterMarkers();
         });
 
         map.on('moveend', filterMarkers);
-        [nameInput, subjectInput].forEach(input => input.addEventListener('input', filterMarkers));
+        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterMarkers));
     </script>
 </body>
 </html>
