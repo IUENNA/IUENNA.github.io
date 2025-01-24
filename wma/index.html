@@ -35,7 +35,7 @@
             margin: 5px 0;
         }
 
-        #search-container input, #search-container button {
+        #search-container select, #search-container input, #search-container button {
             margin-bottom: 10px;
             width: 100%;
         }
@@ -72,17 +72,15 @@
 <body>
     <div id="map"></div>
     <div id="search-container">
-        <label for="subject-input">Thema:</label>
-        <input id="subject-input" type="text" placeholder="Themen durchsuchen...">
-        <div id="subject-suggestions" class="autocomplete-suggestions"></div>
+        <label for="subject-select">Thema:</label>
+        <select id="subject-select" multiple></select>
 
         <label for="name-input">Titel:</label>
         <input id="name-input" type="text" placeholder="Titel durchsuchen...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
-        <label for="location-input">Geolocation:</label>
-        <input id="location-input" type="text" placeholder="Geolocations durchsuchen...">
-        <div id="location-suggestions" class="autocomplete-suggestions"></div>
+        <label for="location-select">Geolocation:</label>
+        <select id="location-select" multiple></select>
 
         <button id="reset-button">Filter zurücksetzen</button>
         <span id="counter">Angezeigte Ressourcen: 0</span>
@@ -122,12 +120,9 @@
         }).addTo(map);
 
         const markerCluster = L.markerClusterGroup();
-        const subjectInput = document.getElementById('subject-input');
+        const subjectSelect = document.getElementById('subject-select');
         const nameInput = document.getElementById('name-input');
-        const locationInput = document.getElementById('location-input');
-        const subjectSuggestionsDiv = document.getElementById('subject-suggestions');
-        const nameSuggestionsDiv = document.getElementById('name-suggestions');
-        const locationSuggestionsDiv = document.getElementById('location-suggestions');
+        const locationSelect = document.getElementById('location-select');
         const resetButton = document.getElementById('reset-button');
         const counterElement = document.getElementById('counter');
         const exportCsvButton = document.getElementById('export-csv-button');
@@ -139,8 +134,8 @@
             .then(data => {
                 geojsonData = data;
                 preprocessData();
+                populateDropdowns();
                 filterAndDisplayMarkers();
-                setupAutocomplete();
                 updateCounter();
             })
             .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
@@ -158,13 +153,35 @@
             });
         }
 
+        function populateDropdowns() {
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
+            const locations = [...new Set(preprocessedData.map(d => d.location))];
+
+            subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectSelect.appendChild(option);
+            });
+
+            locations.forEach(location => {
+                const option = document.createElement('option');
+                option.value = location;
+                option.textContent = location;
+                locationSelect.appendChild(option);
+            });
+        }
+
         function filterAndDisplayMarkers() {
             markerCluster.clearLayers();
 
+            const selectedSubjects = Array.from(subjectSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+            const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+
             filteredData = preprocessedData.filter(data => {
-                const matchSubject = subjectInput.value === '' || data.subjects.toLowerCase().includes(subjectInput.value.toLowerCase());
+                const matchSubject = selectedSubjects.length === 0 || selectedSubjects.some(subject => data.subjects.toLowerCase().includes(subject));
                 const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
-                const matchLocation = locationInput.value === '' || data.location.toLowerCase().includes(locationInput.value.toLowerCase());
+                const matchLocation = selectedLocations.length === 0 || selectedLocations.some(location => data.location.toLowerCase().includes(location));
 
                 return matchSubject && matchTitle && matchLocation;
             });
@@ -179,37 +196,6 @@
 
             map.addLayer(markerCluster);
             updateCounter(filteredData.length);
-        }
-
-        function setupAutocomplete() {
-            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
-            const titles = [...new Set(preprocessedData.map(d => d.title))];
-            const locations = [...new Set(preprocessedData.map(d => d.location))];
-
-            addAutocomplete(subjectInput, subjectSuggestionsDiv, subjects);
-            addAutocomplete(nameInput, nameSuggestionsDiv, titles);
-            addAutocomplete(locationInput, locationSuggestionsDiv, locations);
-        }
-
-        function addAutocomplete(input, suggestionsDiv, suggestions) {
-            input.addEventListener('input', () => {
-                const query = input.value.toLowerCase();
-                suggestionsDiv.innerHTML = '';
-                if (query) {
-                    const filteredSuggestions = suggestions.filter(item => item.toLowerCase().includes(query)).slice(0, 10);
-                    filteredSuggestions.forEach(suggestion => {
-                        const suggestionDiv = document.createElement('div');
-                        suggestionDiv.textContent = suggestion;
-                        suggestionDiv.classList.add('autocomplete-suggestion');
-                        suggestionDiv.addEventListener('click', () => {
-                            input.value = suggestion;
-                            suggestionsDiv.innerHTML = '';
-                            filterAndDisplayMarkers();
-                        });
-                        suggestionsDiv.appendChild(suggestionDiv);
-                    });
-                }
-            });
         }
 
         function updateCounter(count = 0) {
@@ -257,9 +243,9 @@
         }
 
         resetButton.addEventListener('click', () => {
-            subjectInput.value = '';
+            subjectSelect.value = '';
             nameInput.value = '';
-            locationInput.value = '';
+            locationSelect.value = '';
             filterAndDisplayMarkers();
         });
 
@@ -274,7 +260,7 @@
         exportCsvButton.addEventListener('click', exportToCsv);
         exportGeoJsonButton.addEventListener('click', exportToGeoJson);
 
-        [subjectInput, nameInput, locationInput].forEach(input => input.addEventListener('input', filterAndDisplayMarkers));
+        [subjectSelect, nameInput, locationSelect].forEach(input => input.addEventListener('change', filterAndDisplayMarkers));
     </script>
 </body>
 </html>
