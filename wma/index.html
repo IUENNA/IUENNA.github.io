@@ -314,49 +314,68 @@ map.addControl(drawControl);
             drawnItems.addLayer(layer);
         });
 
-        function exportToCsv() {
-            const csvContent = [
-                'Title,Subjects,Location,Coordinates,PID',
-                ...filteredData.map(data => {
-                    const coords = data.coordinates ? `${data.coordinates[0]},${data.coordinates[1]}` : '';
-                    return `${data.title},${data.subjects},${data.location},${coords},${data.pid}`;
-                })
-            ].join('\n');
+        function exportCsv() {
+    const dataToExport = selectedMarkers.length > 0 ? selectedMarkers : filteredData;
+    const exportType = selectedMarkers.length > 0 ? 'ausgewählte' : 'gefilterte';
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'export.csv';
-            link.click();
-        }
+    if (dataToExport.length === 0) {
+        alert(`Keine ${exportType} Ressourcen vorhanden!`);
+        return;
+    }
 
-        function exportToGeoJson() {
-            const geoJsonContent = JSON.stringify({
-                type: 'FeatureCollection',
-                features: filteredData.map(data => ({
-                    type: 'Feature',
-                    properties: {
-                        title: data.title,
-                        subjects: data.subjects,
-                        location: data.location,
-                        pid: data.pid
-                    },
-                    geometry: data.coordinates ? {
-                        type: 'Point',
-                        coordinates: data.coordinates
-                    } : null
-                }))
-            });
+    const csvContent = [
+        'Title,Subjects,Location,Coordinates,PID',
+        ...dataToExport.map(data => {
+            const coords = data.coordinates ? `${data.coordinates[0]},${data.coordinates[1]}` : '';
+            return `${data.title},${data.subjects},${data.location},${coords},${data.pid}`;
+        })
+    ].join('\n');
 
-            const blob = new Blob([geoJsonContent], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'export.geojson';
-            link.click();
-        }
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${exportType}_resources.csv`;
+    link.click();
+}
 
-        exportCsvButton.addEventListener('click', exportToCsv);
-        exportGeoJsonButton.addEventListener('click', exportToGeoJson);
+
+function exportGeoJson() {
+    const dataToExport = selectedMarkers.length > 0 ? selectedMarkers : filteredData;
+    const exportType = selectedMarkers.length > 0 ? 'ausgewählte' : 'gefilterte';
+
+    if (dataToExport.length === 0) {
+        alert(`Keine ${exportType} Ressourcen vorhanden!`);
+        return;
+    }
+
+    const geoJsonContent = JSON.stringify({
+        type: 'FeatureCollection',
+        features: dataToExport.map(data => ({
+            type: 'Feature',
+            properties: {
+                title: data.title,
+                subjects: data.subjects,
+                location: data.location,
+                pid: data.pid
+            },
+            geometry: data.coordinates ? {
+                type: 'Point',
+                coordinates: data.coordinates
+            } : null
+        }))
+    });
+
+    const blob = new Blob([geoJsonContent], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${exportType}_resources.geojson`;
+    link.click();
+}
+
+
+exportCsvButton.addEventListener('click', exportCsv);
+exportGeoJsonButton.addEventListener('click', exportGeoJson);
+
 
         resetButton.addEventListener('click', () => {
             subjectSelect.value = '';
