@@ -74,11 +74,11 @@
     padding: 10px 0; /* Vertikale Innenabstände */
     margin: 10px auto; /* Zentriert den Button */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 14px;
     cursor: pointer;
     display: block; /* Blockelement, notwendig für margin: auto */
-    width: 150px; /* Feste Breite */
+    width: 250px; /* Feste Breite */
     box-sizing: border-box; /* Bezieht Rahmen und Padding in die Breite ein */
     transition: background-color 0.3s ease;
 }
@@ -272,9 +272,6 @@
                 marker: false,
                 circlemarker: false,
                 rectangle: true
-            },
-            edit: {
-                featureGroup: drawnItems
             }
         });
         map.addControl(drawControl);
