@@ -20,7 +20,7 @@
         }
 
         #map {
-            height: 500px;
+            height: 800px;
             width: 100%;
         }
 
@@ -217,30 +217,34 @@
         }
 
         function filterAndDisplayMarkers() {
-            markerCluster.clearLayers();
+    markerCluster.clearLayers();
 
-            const selectedSubjects = Array.from(subjectSelect.selectedOptions).map(opt => opt.value.toLowerCase());
-            const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+    const selectedSubjects = Array.from(subjectSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+    const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+    const query = nameInput.value.toLowerCase();
 
-            filteredData = preprocessedData.filter(data => {
-                const matchSubject = selectedSubjects.length === 0 || selectedSubjects.some(subject => data.subjects.toLowerCase().includes(subject));
-                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
-                const matchLocation = selectedLocations.length === 0 || selectedLocations.some(location => data.location.toLowerCase().includes(location));
+    filteredData = preprocessedData.filter(data => {
+        const matchSubject = selectedSubjects.length === 0 || selectedSubjects.some(subject => data.subjects.toLowerCase().includes(subject));
+        const matchLocation = selectedLocations.length === 0 || selectedLocations.some(location => data.location.toLowerCase().includes(location));
+        const matchQuery = query === '' || 
+            (data.title && data.title.toLowerCase().includes(query)) || 
+            (data.subjects && data.subjects.toLowerCase().includes(query)) || 
+            (data.location && data.location.toLowerCase().includes(query));
 
-                return matchSubject && matchTitle && matchLocation;
-            });
+        return matchSubject && matchLocation && matchQuery;
+    });
 
-            filteredData.forEach(data => {
-                if (!data.coordinates) return;
+    filteredData.forEach(data => {
+        if (!data.coordinates) return;
 
-                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
-                marker.bindPopup(`<b>Titel: ${data.title}</b><br>Geolocation: ${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
-                markerCluster.addLayer(marker);
-            });
+        const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
+        marker.bindPopup(`<b>Titel: ${data.title}</b><br>Geolocation: ${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+        markerCluster.addLayer(marker);
+    });
 
-            map.addLayer(markerCluster);
-            updateCounter(filteredData.length);
-        }
+    map.addLayer(markerCluster);
+    updateCounter(filteredData.length);
+}
 
         function updateCounter(count = 0) {
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
@@ -250,22 +254,31 @@
 nameInput.addEventListener('input', () => {
     const query = nameInput.value.toLowerCase();
     const suggestionsContainer = document.getElementById('name-suggestions');
-    suggestionsContainer.innerHTML = ''; // Vorschläge zurücksetzen
+    suggestionsContainer.innerHTML = ''; // Zurücksetzen der Vorschläge
 
     if (query.length > 0) {
-        // Vorschläge aus `filteredData` filtern
-        const suggestions = filteredData
-            .filter(data => data.title.toLowerCase().includes(query))
-            .slice(0, 10); // Maximal 10 Vorschläge anzeigen
+        // Eindeutige Vorschläge aus allen Feldern
+        const suggestions = Array.from(
+            new Set(
+                filteredData
+                    .filter(data =>
+                        (data.title && data.title.toLowerCase().includes(query)) || // Titel durchsuchen
+                        (data.subjects && data.subjects.toLowerCase().includes(query)) || // Themen durchsuchen
+                        (data.location && data.location.toLowerCase().includes(query)) // Geolocation durchsuchen
+                    )
+                    .map(data => `${data.title} (${data.location})`) // Kombinierte Ausgabe: Titel und Geolocation
+            )
+        ).slice(0, 10); // Maximal 10 Vorschläge anzeigen
 
-        suggestions.forEach(data => {
+        // Vorschläge hinzufügen
+        suggestions.forEach(suggestion => {
             const suggestionElement = document.createElement('div');
             suggestionElement.classList.add('autocomplete-suggestion');
-            suggestionElement.textContent = data.title;
+            suggestionElement.textContent = suggestion;
 
             // Klick auf Vorschlag
             suggestionElement.addEventListener('click', () => {
-                nameInput.value = data.title; // Eingabefeld aktualisieren
+                nameInput.value = suggestion.split(' (')[0]; // Nur Titel ins Eingabefeld übernehmen
                 suggestionsContainer.innerHTML = ''; // Vorschläge ausblenden
                 filterAndDisplayMarkers(); // Filter anwenden
             });
@@ -273,13 +286,16 @@ nameInput.addEventListener('input', () => {
             suggestionsContainer.appendChild(suggestionElement);
         });
     }
+
+    // Sichtbarkeit des Containers
+    suggestionsContainer.style.display = suggestionsContainer.childElementCount > 0 ? 'block' : 'none';
 });
 
 // Ausblenden der Vorschläge bei Klick außerhalb
 document.addEventListener('click', (event) => {
     const suggestionsContainer = document.getElementById('name-suggestions');
     if (!nameInput.contains(event.target)) {
-        suggestionsContainer.innerHTML = '';
+        suggestionsContainer.innerHTML = ''; // Löscht die Inhalte der Vorschlagsliste
     }
 });
 
