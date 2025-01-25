@@ -109,14 +109,14 @@
 <body>
     <div id="map"></div>
     <div id="search-container">
-        <label for="location-select">Geolocation:</label>
+        <label for="location-select">Geolocation auswählen</label>
         <select id="location-select" multiple></select>
 
-        <label for="subject-select">Thema:</label>
+        <label for="subject-select">Themen auswählen</label>
         <select id="subject-select" multiple></select>
 
-        <label for="name-input">Titel:</label>
-        <input id="name-input" type="text" placeholder="Einen Titel suchen...">
+        <label for="name-input">Inhalt suchen</label>
+        <input id="name-input" type="text" placeholder="Alles durchsuchen...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
         <div style="text-align: center; background-color: rgb(68, 150, 251); color: white; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
@@ -250,35 +250,46 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
-// Autovervollständigung für Titel
+// Suche und Autovervollständigung für Inhalte
 nameInput.addEventListener('input', () => {
     const query = nameInput.value.toLowerCase();
     const suggestionsContainer = document.getElementById('name-suggestions');
-    suggestionsContainer.innerHTML = ''; // Zurücksetzen der Vorschläge
+    suggestionsContainer.innerHTML = ''; // Vorschläge zurücksetzen
 
     if (query.length > 0) {
-        // Eindeutige Vorschläge aus allen Feldern
+        // Vorschläge filtern und Titel mit passenden Feldern kombinieren
         const suggestions = Array.from(
             new Set(
                 filteredData
                     .filter(data =>
-                        (data.title && data.title.toLowerCase().includes(query)) || // Titel durchsuchen
-                        (data.subjects && data.subjects.toLowerCase().includes(query)) || // Themen durchsuchen
-                        (data.location && data.location.toLowerCase().includes(query)) // Geolocation durchsuchen
+                        (data.title && data.title.toLowerCase().includes(query)) ||
+                        (data.subjects && data.subjects.toLowerCase().includes(query)) ||
+                        (data.location && data.location.toLowerCase().includes(query))
                     )
-                    .map(data => `${data.title} (${data.location})`) // Kombinierte Ausgabe: Titel und Geolocation
+                    .map(data => {
+                        // Überprüfen, welches Feld den Suchbegriff enthält
+                        let match = '';
+                        if (data.title.toLowerCase().includes(query)) {
+                            match = 'Titel';
+                        } else if (data.subjects.toLowerCase().includes(query)) {
+                            match = data.subjects;
+                        } else if (data.location.toLowerCase().includes(query)) {
+                            match = data.location;
+                        }
+                        return `${data.title} (${match})`; // Titel und das passende Feld kombinieren
+                    })
             )
-        ).slice(0, 10); // Maximal 10 Vorschläge anzeigen
+        ).slice(0, 10); // Maximal 10 eindeutige Vorschläge anzeigen
 
         // Vorschläge hinzufügen
         suggestions.forEach(suggestion => {
             const suggestionElement = document.createElement('div');
             suggestionElement.classList.add('autocomplete-suggestion');
-            suggestionElement.textContent = suggestion;
+            suggestionElement.textContent = suggestion; // Titel (Suchbegriff) anzeigen
 
             // Klick auf Vorschlag
             suggestionElement.addEventListener('click', () => {
-                nameInput.value = suggestion.split(' (')[0]; // Nur Titel ins Eingabefeld übernehmen
+                nameInput.value = suggestion.split(' (')[0]; // Nur den Titel ins Eingabefeld übernehmen
                 suggestionsContainer.innerHTML = ''; // Vorschläge ausblenden
                 filterAndDisplayMarkers(); // Filter anwenden
             });
@@ -287,9 +298,10 @@ nameInput.addEventListener('input', () => {
         });
     }
 
-    // Sichtbarkeit des Containers
+    // Sichtbarkeit des Containers steuern
     suggestionsContainer.style.display = suggestionsContainer.childElementCount > 0 ? 'block' : 'none';
 });
+
 
 // Ausblenden der Vorschläge bei Klick außerhalb
 document.addEventListener('click', (event) => {
