@@ -219,7 +219,7 @@
                 if (!data.coordinates) return;
 
                 const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
-                marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                marker.bindPopup(`<b>Titel: ${data.title}</b><br>Geolocation: ${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
                 markerCluster.addLayer(marker);
             });
 
