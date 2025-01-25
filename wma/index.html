@@ -85,7 +85,6 @@
 
         <span id="counter">Angezeigte Ressourcen: 0</span>
         <button id="export-csv-button">Export als CSV</button>
-        <button id="export-geojson-button">Export als GeoJSON</button>
         <button id="reset-button">Filter zurücksetzen</button>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -96,16 +95,15 @@
         let geojsonData = null;
         let preprocessedData = [];
         let filteredData = [];
+        let selectedMarkers = [];
 
         const map = L.map('map').setView([43.3673302, 12.595675], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
         }).addTo(map);
 
-        // Maßstab hinzufügen
         L.control.scale({ position: 'bottomleft' }).addTo(map);
 
-        // Suchfunktion in der Karte hinzufügen
         const searchControl = L.Control.geocoder({
             position: 'topright',
             defaultMarkGeocode: false
@@ -126,8 +124,6 @@
         const locationSelect = document.getElementById('location-select');
         const resetButton = document.getElementById('reset-button');
         const counterElement = document.getElementById('counter');
-        const exportCsvButton = document.getElementById('export-csv-button');
-        const exportGeoJsonButton = document.getElementById('export-geojson-button');
 
         fetch('R00_WGS84.geojson')
             .then(response => response.json())
@@ -225,11 +221,8 @@
             if (event.layerType === 'rectangle') {
                 const bounds = layer.getBounds();
 
-                const selectedMarkers = [];
-                filteredData.forEach(data => {
-                    if (data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]])) {
-                        selectedMarkers.push(data);
-                    }
+                selectedMarkers = filteredData.filter(data => {
+                    return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
                 });
 
                 markerCluster.clearLayers();
@@ -247,12 +240,23 @@
                     }
                 });
 
-                console.log('Ausgewählte Punkte:', selectedMarkers);
                 updateCounter(selectedMarkers.length);
+                console.log('Ausgewählte Punkte:', selectedMarkers);
             }
 
             drawnItems.addLayer(layer);
         });
+
+        resetButton.addEventListener('click', () => {
+            subjectSelect.value = '';
+            nameInput.value = '';
+            locationSelect.value = '';
+            filterAndDisplayMarkers();
+        });
+
+        subjectSelect.addEventListener('change', filterAndDisplayMarkers);
+        locationSelect.addEventListener('change', filterAndDisplayMarkers);
+        nameInput.addEventListener('input', filterAndDisplayMarkers);
     </script>
 </body>
 </html>
