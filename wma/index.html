@@ -37,24 +37,27 @@
         }
 
         .autocomplete-suggestions {
-            position: absolute;
-            background: white;
-            border: 1px solid #ccc;
-            z-index: 1000;
-            max-height: 150px;
-            overflow-y: auto;
-            width: calc(100% - 30px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 30px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: -10px; /* Falls es zu nah am Input ist */
+}
 
-        .autocomplete-suggestion {
-            padding: 10px;
-            cursor: pointer;
-        }
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
 
-        .autocomplete-suggestion:hover {
-            background: #f0f0f0;
-        }
+.autocomplete-suggestion:hover {
+    background: #f0f0f0;
+}
+
 
         #counter {
             font-weight: bold;
@@ -103,6 +106,7 @@
 
         <label for="name-input">Titel:</label>
         <input id="name-input" type="text" placeholder="Einen Titel durchsuchen...">
+        <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
         <div style="text-align: center; background-color: rgb(68, 150, 251); padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
             <span id="counter">Angezeigte Ressourcen: 0</span>
@@ -127,7 +131,7 @@
 
         const map = L.map('map').setView([43.3673302, 12.595675], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors | <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a> | &copy; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>'
+            attribution: '&copy; OpenStreetMap contributors | <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a> | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>'
         }).addTo(map);
 
         // Maßstab hinzufügen
@@ -231,31 +235,42 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
-        // Autovervollständigung für Titel
-        nameInput.addEventListener('input', () => {
-            const query = nameInput.value.toLowerCase();
-            nameSuggestions.innerHTML = '';
+// Autovervollständigung für Titel
+nameInput.addEventListener('input', () => {
+    const query = nameInput.value.toLowerCase();
+    const suggestionsContainer = document.getElementById('name-suggestions');
+    suggestionsContainer.innerHTML = ''; // Vorschläge zurücksetzen
 
-            if (query.length > 0) {
-                const suggestions = preprocessedData
-                    .filter(data => data.title.toLowerCase().includes(query))
-                    .slice(0, 10);
+    if (query.length > 0) {
+        // Vorschläge aus `filteredData` filtern
+        const suggestions = filteredData
+            .filter(data => data.title.toLowerCase().includes(query))
+            .slice(0, 10); // Maximal 10 Vorschläge anzeigen
 
-                suggestions.forEach(data => {
-                    const suggestionElement = document.createElement('div');
-                    suggestionElement.classList.add('autocomplete-suggestion');
-                    suggestionElement.textContent = data.title;
+        suggestions.forEach(data => {
+            const suggestionElement = document.createElement('div');
+            suggestionElement.classList.add('autocomplete-suggestion');
+            suggestionElement.textContent = data.title;
 
-                    suggestionElement.addEventListener('click', () => {
-                        nameInput.value = data.title;
-                        nameSuggestions.innerHTML = '';
-                        filterAndDisplayMarkers();
-                    });
+            // Klick auf Vorschlag
+            suggestionElement.addEventListener('click', () => {
+                nameInput.value = data.title; // Eingabefeld aktualisieren
+                suggestionsContainer.innerHTML = ''; // Vorschläge ausblenden
+                filterAndDisplayMarkers(); // Filter anwenden
+            });
 
-                    nameSuggestions.appendChild(suggestionElement);
-                });
-            }
+            suggestionsContainer.appendChild(suggestionElement);
         });
+    }
+});
+
+// Ausblenden der Vorschläge bei Klick außerhalb
+document.addEventListener('click', (event) => {
+    const suggestionsContainer = document.getElementById('name-suggestions');
+    if (!nameInput.contains(event.target)) {
+        suggestionsContainer.innerHTML = '';
+    }
+});
 
         document.addEventListener('click', (event) => {
             if (!nameInput.contains(event.target)) {
