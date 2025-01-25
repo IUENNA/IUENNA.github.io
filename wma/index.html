@@ -103,7 +103,23 @@
             attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
         }).addTo(map);
 
+        // Maßstab hinzufügen
         L.control.scale({ position: 'bottomleft' }).addTo(map);
+
+        // Suchfunktion auf der Karte
+        const searchControl = L.Control.geocoder({
+            position: 'topright',
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
 
         const markerCluster = L.markerClusterGroup();
         const subjectSelect = document.getElementById('subject-select');
@@ -188,6 +204,87 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
+        // Autovervollständigung für Titel
+        nameInput.addEventListener('input', () => {
+            const query = nameInput.value.toLowerCase();
+            nameSuggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                const suggestions = preprocessedData
+                    .filter(data => data.title.toLowerCase().includes(query))
+                    .slice(0, 10);
+
+                suggestions.forEach(data => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.classList.add('autocomplete-suggestion');
+                    suggestionElement.textContent = data.title;
+
+                    suggestionElement.addEventListener('click', () => {
+                        nameInput.value = data.title;
+                        nameSuggestions.innerHTML = '';
+                        filterAndDisplayMarkers();
+                    });
+
+                    nameSuggestions.appendChild(suggestionElement);
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!nameInput.contains(event.target)) {
+                nameSuggestions.innerHTML = '';
+            }
+        });
+
+        // Zeichenwerkzeug für Rechteckauswahl
+        const drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        const drawControl = new L.Control.Draw({
+            draw: {
+                polyline: false,
+                polygon: false,
+                circle: false,
+                marker: false,
+                circlemarker: false,
+                rectangle: true
+            },
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        map.on(L.Draw.Event.CREATED, function(event) {
+            const layer = event.layer;
+            if (event.layerType === 'rectangle') {
+                const bounds = layer.getBounds();
+
+                selectedMarkers = filteredData.filter(data => {
+                    return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
+                });
+
+                markerCluster.clearLayers();
+                selectedMarkers.forEach(data => {
+                    if (data.coordinates) {
+                        const marker = L.marker([data.coordinates[1], data.coordinates[0]], {
+                            icon: L.icon({
+                                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            })
+                        });
+                        marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                        markerCluster.addLayer(marker);
+                    }
+                });
+
+                updateCounter(selectedMarkers.length);
+            }
+
+            drawnItems.addLayer(layer);
+        });
+
         function exportToCsv() {
             const csvContent = [
                 'Title,Subjects,Location,Coordinates,PID',
@@ -241,7 +338,6 @@
 
         subjectSelect.addEventListener('change', filterAndDisplayMarkers);
         locationSelect.addEventListener('change', filterAndDisplayMarkers);
-        nameInput.addEventListener('input', filterAndDisplayMarkers);
     </script>
 </body>
 </html>
