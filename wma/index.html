@@ -36,12 +36,6 @@
             margin: 5px 0;
         }
 
-        #search-container select, #search-container input {
-            width: 100%;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
         .autocomplete-suggestions {
             position: absolute;
             background: white;
@@ -70,24 +64,31 @@
             margin-top: 10px;
         }
 
-        .button-styled {
-            text-align: center;
-            background-color: #f0f0f0;
-            padding: 10px 0;
-            margin: 10px auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            display: block;
-            width: 200px; /* Einheitliche feste Breite */
-            box-sizing: border-box; /* Padding und Border in die Breite einbeziehen */
-            transition: background-color 0.3s ease;
-        }
+        #search-container select, #search-container input {
+    width: 100%; /* Nur für die Eingabefelder */
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
 
-        .button-styled:hover {
-            background-color: #e0e0e0;
-        }
+.button-styled {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px 0; /* Vertikale Innenabstände */
+    margin: 10px auto; /* Zentriert den Button */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block; /* Blockelement für zentrierte Darstellung */
+    width: 250px; /* Feste Breite für alle Buttons */
+    box-sizing: border-box; /* Padding und Border in die Breite einbeziehen */
+    transition: background-color 0.3s ease;
+}
+
+.button-styled:hover {
+    background-color: #e0e0e0;
+}
+
 
     </style>
 </head>
@@ -105,21 +106,267 @@
 
         <div style="text-align: center; background-color: #f0f0f0; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
             <span id="counter">Angezeigte Ressourcen: 0</span>
-        </div>
-
-        <div style="text-align: center;">
+          </div>
+          
+          <div style="text-align: center;">
             <button id="export-csv-button" class="button-styled">Export als CSV</button>
             <button id="export-geojson-button" class="button-styled">Export als GeoJSON</button>
             <button id="reset-button" class="button-styled">Filter zurücksetzen</button>
         </div>
+        
     </div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script>
-        // JavaScript bleibt unverändert
+        let geojsonData = null;
+        let preprocessedData = [];
+        let filteredData = [];
+        let selectedMarkers = [];
+
+        const map = L.map('map').setView([43.3673302, 12.595675], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
+        }).addTo(map);
+
+        // Maßstab hinzufügen
+        L.control.scale({ position: 'bottomleft' }).addTo(map);
+
+        // Suchfunktion auf der Karte
+        const searchControl = L.Control.geocoder({
+            position: 'topright',
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
+
+        const markerCluster = L.markerClusterGroup();
+        const subjectSelect = document.getElementById('subject-select');
+        const nameInput = document.getElementById('name-input');
+        const locationSelect = document.getElementById('location-select');
+        const nameSuggestions = document.getElementById('name-suggestions');
+        const resetButton = document.getElementById('reset-button');
+        const counterElement = document.getElementById('counter');
+        const exportCsvButton = document.getElementById('export-csv-button');
+        const exportGeoJsonButton = document.getElementById('export-geojson-button');
+
+        fetch('R00_WGS84.geojson')
+            .then(response => response.json())
+            .then(data => {
+                geojsonData = data;
+                preprocessData();
+                populateDropdowns();
+                filterAndDisplayMarkers();
+                updateCounter();
+            })
+            .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
+
+        function preprocessData() {
+            preprocessedData = geojsonData.features.map(feature => {
+                const properties = feature.properties || {};
+                return {
+                    title: properties.hasTitle || 'Unbekannt',
+                    subjects: properties.hasSubject || '',
+                    location: properties.hasSpatialCoverage || 'Keine Geolocation',
+                    coordinates: feature.geometry?.coordinates || null,
+                    pid: properties.pid || '#'
+                };
+            });
+        }
+
+        function populateDropdowns() {
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
+            const locations = [...new Set(preprocessedData.map(d => d.location))];
+
+            subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectSelect.appendChild(option);
+            });
+
+            locations.forEach(location => {
+                const option = document.createElement('option');
+                option.value = location;
+                option.textContent = location;
+                locationSelect.appendChild(option);
+            });
+        }
+
+        function filterAndDisplayMarkers() {
+            markerCluster.clearLayers();
+
+            const selectedSubjects = Array.from(subjectSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+            const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+
+            filteredData = preprocessedData.filter(data => {
+                const matchSubject = selectedSubjects.length === 0 || selectedSubjects.some(subject => data.subjects.toLowerCase().includes(subject));
+                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
+                const matchLocation = selectedLocations.length === 0 || selectedLocations.some(location => data.location.toLowerCase().includes(location));
+
+                return matchSubject && matchTitle && matchLocation;
+            });
+
+            filteredData.forEach(data => {
+                if (!data.coordinates) return;
+
+                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
+                marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                markerCluster.addLayer(marker);
+            });
+
+            map.addLayer(markerCluster);
+            updateCounter(filteredData.length);
+        }
+
+        function updateCounter(count = 0) {
+            counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
+        }
+
+        // Autovervollständigung für Titel
+        nameInput.addEventListener('input', () => {
+            const query = nameInput.value.toLowerCase();
+            nameSuggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                const suggestions = preprocessedData
+                    .filter(data => data.title.toLowerCase().includes(query))
+                    .slice(0, 10);
+
+                suggestions.forEach(data => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.classList.add('autocomplete-suggestion');
+                    suggestionElement.textContent = data.title;
+
+                    suggestionElement.addEventListener('click', () => {
+                        nameInput.value = data.title;
+                        nameSuggestions.innerHTML = '';
+                        filterAndDisplayMarkers();
+                    });
+
+                    nameSuggestions.appendChild(suggestionElement);
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!nameInput.contains(event.target)) {
+                nameSuggestions.innerHTML = '';
+            }
+        });
+
+        // Zeichenwerkzeug für Rechteckauswahl
+        const drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        const drawControl = new L.Control.Draw({
+            draw: {
+                polyline: false,
+                polygon: false,
+                circle: false,
+                marker: false,
+                circlemarker: false,
+                rectangle: true // Nur Rechtecke zeichnen
+    },
+    edit: {
+        featureGroup: drawnItems, // Benötigt für das Löschen
+        edit: false, // Deaktiviert den Editiermodus
+        remove: true // Aktiviert den Lösch-Button
+    }
+});
+map.addControl(drawControl);
+
+        map.on(L.Draw.Event.CREATED, function(event) {
+            const layer = event.layer;
+            if (event.layerType === 'rectangle') {
+                const bounds = layer.getBounds();
+
+                selectedMarkers = filteredData.filter(data => {
+                    return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
+                });
+
+                markerCluster.clearLayers();
+                selectedMarkers.forEach(data => {
+                    if (data.coordinates) {
+                        const marker = L.marker([data.coordinates[1], data.coordinates[0]], {
+                            icon: L.icon({
+                                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            })
+                        });
+                        marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                        markerCluster.addLayer(marker);
+                    }
+                });
+
+                updateCounter(selectedMarkers.length);
+            }
+
+            drawnItems.addLayer(layer);
+        });
+
+        function exportToCsv() {
+            const csvContent = [
+                'Title,Subjects,Location,Coordinates,PID',
+                ...filteredData.map(data => {
+                    const coords = data.coordinates ? `${data.coordinates[0]},${data.coordinates[1]}` : '';
+                    return `${data.title},${data.subjects},${data.location},${coords},${data.pid}`;
+                })
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'export.csv';
+            link.click();
+        }
+
+        function exportToGeoJson() {
+            const geoJsonContent = JSON.stringify({
+                type: 'FeatureCollection',
+                features: filteredData.map(data => ({
+                    type: 'Feature',
+                    properties: {
+                        title: data.title,
+                        subjects: data.subjects,
+                        location: data.location,
+                        pid: data.pid
+                    },
+                    geometry: data.coordinates ? {
+                        type: 'Point',
+                        coordinates: data.coordinates
+                    } : null
+                }))
+            });
+
+            const blob = new Blob([geoJsonContent], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'export.geojson';
+            link.click();
+        }
+
+        exportCsvButton.addEventListener('click', exportToCsv);
+        exportGeoJsonButton.addEventListener('click', exportToGeoJson);
+
+        resetButton.addEventListener('click', () => {
+            subjectSelect.value = '';
+            nameInput.value = '';
+            locationSelect.value = '';
+            filterAndDisplayMarkers();
+        });
+
+        subjectSelect.addEventListener('change', filterAndDisplayMarkers);
+        locationSelect.addEventListener('change', filterAndDisplayMarkers);
     </script>
 </body>
 </html>
