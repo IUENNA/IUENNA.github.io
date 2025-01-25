@@ -1,57 +1,258 @@
-// Zeichensteuerung hinzufügen
-const drawnItems = new L.FeatureGroup();
-map.addLayer(drawnItems);
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IUENNA Web Mapping Application</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-const drawControl = new L.Control.Draw({
-    draw: {
-        polyline: false,
-        polygon: false,
-        circle: false,
-        marker: false,
-        circlemarker: false,
-        rectangle: true
-    },
-    edit: {
-        featureGroup: drawnItems
-    }
-});
-map.addControl(drawControl);
+        #map {
+            height: 50vh;
+            width: 100%;
+        }
 
-// Listener für das Zeichnen von Rechtecken
-map.on(L.Draw.Event.CREATED, function(event) {
-    const layer = event.layer;
-    if (event.layerType === 'rectangle') {
-        const bounds = layer.getBounds();
+        #search-container {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
+            position: relative;
+        }
 
-        // Marker auswählen, die im Rechteck liegen
-        const selectedMarkers = [];
-        filteredData.forEach(data => {
-            if (data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]])) {
-                selectedMarkers.push(data);
-            }
-        });
+        #search-container label {
+            display: block;
+            margin: 5px 0;
+        }
 
-        // Markierte Marker hervorheben
-        markerCluster.clearLayers();
-        selectedMarkers.forEach(data => {
-            if (data.coordinates) {
-                const marker = L.marker([data.coordinates[1], data.coordinates[0]], {
-                    icon: L.icon({
-                        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41]
-                    })
-                });
+        #search-container select, #search-container input, #search-container button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .autocomplete-suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            max-height: 150px;
+            overflow-y: auto;
+            width: calc(100% - 30px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-suggestion:hover {
+            background: #f0f0f0;
+        }
+
+        #counter {
+            font-weight: bold;
+        }
+
+        .leaflet-bar {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="search-container">
+        <label for="subject-select">Thema:</label>
+        <select id="subject-select" multiple></select>
+
+        <label for="name-input">Titel:</label>
+        <input id="name-input" type="text" placeholder="Einen Titel durchsuchen...">
+        <div id="name-suggestions" class="autocomplete-suggestions"></div>
+
+        <label for="location-select">Geolocation:</label>
+        <select id="location-select" multiple></select>
+
+        <span id="counter">Angezeigte Ressourcen: 0</span>
+        <button id="export-csv-button">Export als CSV</button>
+        <button id="export-geojson-button">Export als GeoJSON</button>
+        <button id="reset-button">Filter zurücksetzen</button>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script>
+        let geojsonData = null;
+        let preprocessedData = [];
+        let filteredData = [];
+
+        const map = L.map('map').setView([43.3673302, 12.595675], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a>'
+        }).addTo(map);
+
+        // Maßstab hinzufügen
+        L.control.scale({ position: 'bottomleft' }).addTo(map);
+
+        // Suchfunktion in der Karte hinzufügen
+        const searchControl = L.Control.geocoder({
+            position: 'topright',
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            const bbox = e.geocode.bbox;
+            const poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        }).addTo(map);
+
+        const markerCluster = L.markerClusterGroup();
+        const subjectSelect = document.getElementById('subject-select');
+        const nameInput = document.getElementById('name-input');
+        const locationSelect = document.getElementById('location-select');
+        const resetButton = document.getElementById('reset-button');
+        const counterElement = document.getElementById('counter');
+        const exportCsvButton = document.getElementById('export-csv-button');
+        const exportGeoJsonButton = document.getElementById('export-geojson-button');
+
+        fetch('R00_WGS84.geojson')
+            .then(response => response.json())
+            .then(data => {
+                geojsonData = data;
+                preprocessData();
+                populateDropdowns();
+                filterAndDisplayMarkers();
+                updateCounter();
+            })
+            .catch(error => console.error('Fehler beim Laden der GeoJSON-Datei:', error));
+
+        function preprocessData() {
+            preprocessedData = geojsonData.features.map(feature => {
+                const properties = feature.properties || {};
+                return {
+                    title: properties.hasTitle || 'Unbekannt',
+                    subjects: properties.hasSubject || '',
+                    location: properties.hasSpatialCoverage || 'Keine Geolocation',
+                    coordinates: feature.geometry?.coordinates || null,
+                    pid: properties.pid || '#'
+                };
+            });
+        }
+
+        function populateDropdowns() {
+            const subjects = [...new Set(preprocessedData.flatMap(d => d.subjects.split(',')))];
+            const locations = [...new Set(preprocessedData.map(d => d.location))];
+
+            subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectSelect.appendChild(option);
+            });
+
+            locations.forEach(location => {
+                const option = document.createElement('option');
+                option.value = location;
+                option.textContent = location;
+                locationSelect.appendChild(option);
+            });
+        }
+
+        function filterAndDisplayMarkers() {
+            markerCluster.clearLayers();
+
+            const selectedSubjects = Array.from(subjectSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+            const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value.toLowerCase());
+
+            filteredData = preprocessedData.filter(data => {
+                const matchSubject = selectedSubjects.length === 0 || selectedSubjects.some(subject => data.subjects.toLowerCase().includes(subject));
+                const matchTitle = nameInput.value === '' || data.title.toLowerCase().includes(nameInput.value.toLowerCase());
+                const matchLocation = selectedLocations.length === 0 || selectedLocations.some(location => data.location.toLowerCase().includes(location));
+
+                return matchSubject && matchTitle && matchLocation;
+            });
+
+            filteredData.forEach(data => {
+                if (!data.coordinates) return;
+
+                const marker = L.marker([data.coordinates[1], data.coordinates[0]]);
                 marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
                 markerCluster.addLayer(marker);
+            });
+
+            map.addLayer(markerCluster);
+            updateCounter(filteredData.length);
+        }
+
+        function updateCounter(count = 0) {
+            counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
+        }
+
+        const drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        const drawControl = new L.Control.Draw({
+            draw: {
+                polyline: false,
+                polygon: false,
+                circle: false,
+                marker: false,
+                circlemarker: false,
+                rectangle: true
+            },
+            edit: {
+                featureGroup: drawnItems
             }
         });
+        map.addControl(drawControl);
 
-        // Optional: Markierte Daten in der Konsole anzeigen
-        console.log('Ausgewählte Punkte:', selectedMarkers);
+        map.on(L.Draw.Event.CREATED, function(event) {
+            const layer = event.layer;
+            if (event.layerType === 'rectangle') {
+                const bounds = layer.getBounds();
 
-        updateCounter(selectedMarkers.length);
-    }
+                const selectedMarkers = [];
+                filteredData.forEach(data => {
+                    if (data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]])) {
+                        selectedMarkers.push(data);
+                    }
+                });
 
-    drawnItems.addLayer(layer);
-});
+                markerCluster.clearLayers();
+                selectedMarkers.forEach(data => {
+                    if (data.coordinates) {
+                        const marker = L.marker([data.coordinates[1], data.coordinates[0]], {
+                            icon: L.icon({
+                                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            })
+                        });
+                        marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
+                        markerCluster.addLayer(marker);
+                    }
+                });
+
+                console.log('Ausgewählte Punkte:', selectedMarkers);
+                updateCounter(selectedMarkers.length);
+            }
+
+            drawnItems.addLayer(layer);
+        });
+    </script>
+</body>
+</html>
