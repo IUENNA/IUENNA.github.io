@@ -104,24 +104,11 @@
 
         L.control.scale({ position: 'bottomleft' }).addTo(map);
 
-        const searchControl = L.Control.geocoder({
-            position: 'topright',
-            defaultMarkGeocode: false
-        }).on('markgeocode', function(e) {
-            const bbox = e.geocode.bbox;
-            const poly = L.polygon([
-                bbox.getSouthEast(),
-                bbox.getNorthEast(),
-                bbox.getNorthWest(),
-                bbox.getSouthWest()
-            ]).addTo(map);
-            map.fitBounds(poly.getBounds());
-        }).addTo(map);
-
         const markerCluster = L.markerClusterGroup();
         const subjectSelect = document.getElementById('subject-select');
         const nameInput = document.getElementById('name-input');
         const locationSelect = document.getElementById('location-select');
+        const nameSuggestions = document.getElementById('name-suggestions');
         const resetButton = document.getElementById('reset-button');
         const counterElement = document.getElementById('counter');
 
@@ -198,6 +185,37 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
+        nameInput.addEventListener('input', () => {
+            const query = nameInput.value.toLowerCase();
+            nameSuggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                const suggestions = preprocessedData
+                    .filter(data => data.title.toLowerCase().includes(query))
+                    .slice(0, 10);
+
+                suggestions.forEach(data => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.classList.add('autocomplete-suggestion');
+                    suggestionElement.textContent = data.title;
+
+                    suggestionElement.addEventListener('click', () => {
+                        nameInput.value = data.title;
+                        nameSuggestions.innerHTML = '';
+                        filterAndDisplayMarkers();
+                    });
+
+                    nameSuggestions.appendChild(suggestionElement);
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!nameInput.contains(event.target)) {
+                nameSuggestions.innerHTML = '';
+            }
+        });
+
         const drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
 
@@ -256,7 +274,6 @@
 
         subjectSelect.addEventListener('change', filterAndDisplayMarkers);
         locationSelect.addEventListener('change', filterAndDisplayMarkers);
-        nameInput.addEventListener('input', filterAndDisplayMarkers);
     </script>
 </body>
 </html>
