@@ -51,21 +51,27 @@
     width: calc(45% - 30px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: -10px; /* Falls es zu nah am Input ist */
-}
-
-.autocomplete-suggestion {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
+    display: none; /* Unsichtbar standardmäßig */
 }
 
 .autocomplete-suggestion:hover {
     background: #f0f0f0;
 }
 
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee; /* Trennt Vorschläge */
+}
+
+.autocomplete-suggestion:last-child {
+    border-bottom: none; /* Keine Linie nach dem letzten Vorschlag */
+}
+
 .autocomplete-suggestions.visible {
     display: block; /* Sichtbar, wenn Vorschläge vorhanden sind */
 }
+
 .autocomplete-suggestions:empty {
     display: none; /* Unsichtbar, wenn leer */
 }
