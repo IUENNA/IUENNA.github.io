@@ -20,7 +20,7 @@
         }
 
         #map {
-            height: 80vh;
+            height: 500px;
             width: 100%;
         }
 
@@ -29,6 +29,7 @@
             border-bottom: 1px solid #ccc;
             box-sizing: border-box;
             position: relative;
+            width:50%
         }
 
         #search-container label {
@@ -114,9 +115,9 @@
         <input id="name-input" type="text" placeholder="Einen Titel suchen...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
-        <div style="text-align: center; background-color: rgb(68, 150, 251); padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
+        <div style="text-align: center; background-color: rgb(68, 150, 251); color: white; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
             <span id="counter">Angezeigte Ressourcen: 0</span>
-          </div>
+        </div>       
           
           <div style="text-align: center;">
             <button id="export-csv-button" class="button-styled">Export als CSV</button>
