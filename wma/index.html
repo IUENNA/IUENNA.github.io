@@ -267,6 +267,43 @@
         subjectSelect.addEventListener('change', filterAndDisplayMarkers);
         locationSelect.addEventListener('change', filterAndDisplayMarkers);
         nameInput.addEventListener('input', filterAndDisplayMarkers);
+
+// Event listener for the Titel input field
+nameInput.addEventListener('input', () => {
+    const query = nameInput.value.toLowerCase();
+    const suggestionsContainer = document.getElementById('name-suggestions');
+    suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+    if (query.length > 0) {
+        const suggestions = preprocessedData
+            .filter(data => data.title.toLowerCase().includes(query))
+            .slice(0, 10); // Limit suggestions to the top 10 matches
+
+        suggestions.forEach(data => {
+            const suggestionElement = document.createElement('div');
+            suggestionElement.classList.add('autocomplete-suggestion');
+            suggestionElement.textContent = data.title;
+
+            // Click event for suggestion selection
+            suggestionElement.addEventListener('click', () => {
+                nameInput.value = data.title;
+                suggestionsContainer.innerHTML = ''; // Clear suggestions
+                filterAndDisplayMarkers(); // Apply the filter
+            });
+
+            suggestionsContainer.appendChild(suggestionElement);
+        });
+    }
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener('click', (event) => {
+    if (!nameInput.contains(event.target)) {
+        document.getElementById('name-suggestions').innerHTML = '';
+    }
+});
+
+
     </script>
 </body>
 </html>
