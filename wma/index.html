@@ -138,7 +138,7 @@
         <input id="name-input" type="text" placeholder="Alles durchsuchen...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
-        <div style="text-align: center; background-color: rgb(68, 150, 251); color: white; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
+        <div style="text-align: center; background-color: rgb(92, 165, 255); color: white; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
             <span id="counter">Angezeigte Ressourcen: 0</span>
         </div>       
           
@@ -159,7 +159,7 @@
         let filteredData = [];
         let selectedMarkers = [];
 
-        const map = L.map('map').setView([43.3673302, 12.595675], 4);
+        const map = L.map('map').setView([43.3673302, 12.595675], 3);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors | <a href="https://iuenna.hypotheses.org/" target="_blank">Go!Digital 3.0 Projekt IUENNA</a> | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>'
         }).addTo(map);
