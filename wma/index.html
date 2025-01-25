@@ -202,49 +202,37 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
-        function exportToCsv() {
-            const csvContent = [
-                'Title,Subjects,Location,X-coordinate,Y-coordinate,PID',
-                ...filteredData.map(data => {
-                    const x = data.coordinates ? data.coordinates[0] : '';
-                    const y = data.coordinates ? data.coordinates[1] : '';
-                    return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${x},${y},${data.pid}`;
-                })
-            ].join('\n');
+        nameInput.addEventListener('input', () => {
+            const query = nameInput.value.toLowerCase();
+            const suggestionsContainer = document.getElementById('name-suggestions');
+            suggestionsContainer.innerHTML = '';
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'export.csv';
-            link.click();
-        }
+            if (query.length > 0) {
+                const suggestions = preprocessedData
+                    .filter(data => data.title.toLowerCase().includes(query))
+                    .slice(0, 10);
 
-        function exportToGeoJson() {
-            const filteredFeatures = filteredData.map(data => ({
-                type: 'Feature',
-                properties: {
-                    title: data.title,
-                    subjects: data.subjects.split(',').join(', '),
-                    location: data.location,
-                    pid: data.pid
-                },
-                geometry: {
-                    type: 'Point',
-                    coordinates: data.coordinates
-                }
-            }));
+                suggestions.forEach(data => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.classList.add('autocomplete-suggestion');
+                    suggestionElement.textContent = data.title;
 
-            const geoJsonContent = JSON.stringify({
-                type: 'FeatureCollection',
-                features: filteredFeatures
-            });
+                    suggestionElement.addEventListener('click', () => {
+                        nameInput.value = data.title;
+                        suggestionsContainer.innerHTML = '';
+                        filterAndDisplayMarkers();
+                    });
 
-            const blob = new Blob([geoJsonContent], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'export.geojson';
-            link.click();
-        }
+                    suggestionsContainer.appendChild(suggestionElement);
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!nameInput.contains(event.target)) {
+                document.getElementById('name-suggestions').innerHTML = '';
+            }
+        });
 
         resetButton.addEventListener('click', () => {
             subjectSelect.value = '';
@@ -266,44 +254,6 @@
 
         subjectSelect.addEventListener('change', filterAndDisplayMarkers);
         locationSelect.addEventListener('change', filterAndDisplayMarkers);
-        nameInput.addEventListener('input', filterAndDisplayMarkers);
-
-// Event listener for the Titel input field
-nameInput.addEventListener('input', () => {
-    const query = nameInput.value.toLowerCase();
-    const suggestionsContainer = document.getElementById('name-suggestions');
-    suggestionsContainer.innerHTML = ''; // Clear previous suggestions
-
-    if (query.length > 0) {
-        const suggestions = preprocessedData
-            .filter(data => data.title.toLowerCase().includes(query))
-            .slice(0, 10); // Limit suggestions to the top 10 matches
-
-        suggestions.forEach(data => {
-            const suggestionElement = document.createElement('div');
-            suggestionElement.classList.add('autocomplete-suggestion');
-            suggestionElement.textContent = data.title;
-
-            // Click event for suggestion selection
-            suggestionElement.addEventListener('click', () => {
-                nameInput.value = data.title;
-                suggestionsContainer.innerHTML = ''; // Clear suggestions
-                filterAndDisplayMarkers(); // Apply the filter
-            });
-
-            suggestionsContainer.appendChild(suggestionElement);
-        });
-    }
-});
-
-// Hide suggestions when clicking outside
-document.addEventListener('click', (event) => {
-    if (!nameInput.contains(event.target)) {
-        document.getElementById('name-suggestions').innerHTML = '';
-    }
-});
-
-
     </script>
 </body>
 </html>
