@@ -61,7 +61,9 @@
 .autocomplete-suggestions.visible {
     display: block; /* Sichtbar, wenn Vorschläge vorhanden sind */
 }
-
+.autocomplete-suggestions:empty {
+    display: none; /* Unsichtbar, wenn leer */
+}
 
         #counter {
             font-weight: bold;
