@@ -68,27 +68,49 @@
         .leaflet-bar {
             margin-top: 10px;
         }
+
+        .button-styled {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+
+.button-styled:hover {
+    background-color: #e0e0e0;
+}
+
     </style>
 </head>
 <body>
     <div id="map"></div>
     <div id="search-container">
+        <label for="location-select">Geolocation:</label>
+        <select id="location-select" multiple></select>
+
         <label for="subject-select">Thema:</label>
         <select id="subject-select" multiple></select>
 
         <label for="name-input">Titel:</label>
         <input id="name-input" type="text" placeholder="Einen Titel durchsuchen...">
 
-        <label for="location-select">Geolocation:</label>
-        <select id="location-select" multiple></select>
-
         <div style="text-align: center; background-color: #f0f0f0; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
             <span id="counter">Angezeigte Ressourcen: 0</span>
           </div>
           
-        <button id="export-csv-button">Export als CSV</button>
-        <button id="export-geojson-button">Export als GeoJSON</button>
-        <button id="reset-button">Filter zurücksetzen</button>
+          <div style="text-align: center;">
+            <button id="export-csv-button" class="button-styled">Export als CSV</button>
+            <button id="export-geojson-button" class="button-styled">Export als GeoJSON</button>
+            <button id="reset-button" class="button-styled">Filter zurücksetzen</button>
+        </div>
+        
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
