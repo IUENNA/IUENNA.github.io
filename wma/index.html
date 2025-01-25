@@ -72,15 +72,15 @@
         .button-styled {
     text-align: center;
     background-color: #f0f0f0;
-    padding: 10px 0; /* Innenabstand nur vertikal */
-    margin: 10px auto;
+    padding: 10px 0; /* Vertikale Innenabstände */
+    margin: 10px auto; /* Zentriert den Button */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    display: inline-block;
-    width: 50px; /* Feste Breite */
-    box-sizing: border-box; /* Innenabstand und Rahmen in die Breite einbeziehen */
+    display: block; /* Blockelement, notwendig für margin: auto */
+    width: 150px; /* Feste Breite des Buttons */
+    box-sizing: border-box; /* Bezieht Rahmen und Padding in die Breite ein */
     transition: background-color 0.3s ease;
 }
 
