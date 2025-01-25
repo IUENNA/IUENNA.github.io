@@ -37,9 +37,8 @@
         }
 
         #search-container select, #search-container input, #search-container button {
-            margin-bottom: 10px;
-            width: 100%;
-        }
+    width: auto; /* Entfernt die globale Breite von 100% */
+}
 
         .autocomplete-suggestions {
             position: absolute;
@@ -79,7 +78,7 @@
     font-size: 14px;
     cursor: pointer;
     display: block; /* Blockelement, notwendig für margin: auto */
-    width: 150px; /* Feste Breite des Buttons */
+    width: 150px; /* Feste Breite */
     box-sizing: border-box; /* Bezieht Rahmen und Padding in die Breite ein */
     transition: background-color 0.3s ease;
 }
