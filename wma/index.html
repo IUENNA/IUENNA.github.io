@@ -270,10 +270,15 @@
                 circle: false,
                 marker: false,
                 circlemarker: false,
-                rectangle: true
-            }
-        });
-        map.addControl(drawControl);
+                rectangle: true // Nur Rechtecke zeichnen
+    },
+    edit: {
+        featureGroup: drawnItems, // Benötigt für das Löschen
+        edit: false, // Deaktiviert den Editiermodus
+        remove: true // Aktiviert den Lösch-Button
+    }
+});
+map.addControl(drawControl);
 
         map.on(L.Draw.Event.CREATED, function(event) {
             const layer = event.layer;
