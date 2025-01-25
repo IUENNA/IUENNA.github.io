@@ -76,17 +76,17 @@
         <select id="subject-select" multiple></select>
 
         <label for="name-input">Titel:</label>
-        <input id="name-input" type="text" placeholder="Titel durchsuchen...">
+        <input id="name-input" type="text" placeholder="Einen Titel durchsuchen...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
         <label for="location-select">Geolocation:</label>
         <select id="location-select" multiple></select>
 
-        <button id="reset-button">Filter zurücksetzen</button>
         <span id="counter">Angezeigte Ressourcen: 0</span>
         <button id="export-csv-button">Export als CSV</button>
         <button id="export-geojson-button">Export als GeoJSON</button>
         <button id="select-visible-button">Angezeigte Ressourcen auswählen</button>
+        <button id="reset-button">Filter zurücksetzen</button>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -203,10 +203,14 @@
         }
 
         function exportToCsv() {
-            const csvContent = filteredData
-                .map(data => {
-                    return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${data.coordinates},${data.pid}`;
-                }).join('\n');
+            const csvContent = [
+                'Title,Subjects,Location,X-coordinate,Y-coordinate,PID',
+                ...filteredData.map(data => {
+                    const x = data.coordinates ? data.coordinates[0] : '';
+                    const y = data.coordinates ? data.coordinates[1] : '';
+                    return `${data.title},${data.subjects.split(',').join(', ')},${data.location},${x},${y},${data.pid}`;
+                })
+            ].join('\\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
@@ -214,53 +218,6 @@
             link.download = 'export.csv';
             link.click();
         }
-
-        function exportToGeoJson() {
-            const filteredFeatures = filteredData.map(data => ({
-                type: 'Feature',
-                properties: {
-                    title: data.title,
-                    subjects: data.subjects.split(',').join(', '),
-                    location: data.location,
-                    pid: data.pid
-                },
-                geometry: {
-                    type: 'Point',
-                    coordinates: data.coordinates
-                }
-            }));
-
-            const geoJsonContent = JSON.stringify({
-                type: 'FeatureCollection',
-                features: filteredFeatures
-            });
-
-            const blob = new Blob([geoJsonContent], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'export.geojson';
-            link.click();
-        }
-
-        resetButton.addEventListener('click', () => {
-            subjectSelect.value = '';
-            nameInput.value = '';
-            locationSelect.value = '';
-            filterAndDisplayMarkers();
-        });
-
-        selectVisibleButton.addEventListener('click', () => {
-            const bounds = map.getBounds();
-            filteredData = preprocessedData.filter(data => {
-                return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
-            });
-            filterAndDisplayMarkers();
-        });
-
-        exportCsvButton.addEventListener('click', exportToCsv);
-        exportGeoJsonButton.addEventListener('click', exportToGeoJson);
-
-        [subjectSelect, nameInput, locationSelect].forEach(input => input.addEventListener('change', filterAndDisplayMarkers));
     </script>
 </body>
 </html>
