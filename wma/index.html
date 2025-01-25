@@ -85,6 +85,7 @@
 
         <span id="counter">Angezeigte Ressourcen: 0</span>
         <button id="export-csv-button">Export als CSV</button>
+        <button id="export-geojson-button">Export als GeoJSON</button>
         <button id="reset-button">Filter zurücksetzen</button>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -111,6 +112,8 @@
         const nameSuggestions = document.getElementById('name-suggestions');
         const resetButton = document.getElementById('reset-button');
         const counterElement = document.getElementById('counter');
+        const exportCsvButton = document.getElementById('export-csv-button');
+        const exportGeoJsonButton = document.getElementById('export-geojson-button');
 
         fetch('R00_WGS84.geojson')
             .then(response => response.json())
@@ -185,85 +188,49 @@
             counterElement.textContent = `Angezeigte Ressourcen: ${count}`;
         }
 
-        nameInput.addEventListener('input', () => {
-            const query = nameInput.value.toLowerCase();
-            nameSuggestions.innerHTML = '';
+        function exportToCsv() {
+            const csvContent = [
+                'Title,Subjects,Location,Coordinates,PID',
+                ...filteredData.map(data => {
+                    const coords = data.coordinates ? `${data.coordinates[0]},${data.coordinates[1]}` : '';
+                    return `${data.title},${data.subjects},${data.location},${coords},${data.pid}`;
+                })
+            ].join('\n');
 
-            if (query.length > 0) {
-                const suggestions = preprocessedData
-                    .filter(data => data.title.toLowerCase().includes(query))
-                    .slice(0, 10);
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'export.csv';
+            link.click();
+        }
 
-                suggestions.forEach(data => {
-                    const suggestionElement = document.createElement('div');
-                    suggestionElement.classList.add('autocomplete-suggestion');
-                    suggestionElement.textContent = data.title;
+        function exportToGeoJson() {
+            const geoJsonContent = JSON.stringify({
+                type: 'FeatureCollection',
+                features: filteredData.map(data => ({
+                    type: 'Feature',
+                    properties: {
+                        title: data.title,
+                        subjects: data.subjects,
+                        location: data.location,
+                        pid: data.pid
+                    },
+                    geometry: data.coordinates ? {
+                        type: 'Point',
+                        coordinates: data.coordinates
+                    } : null
+                }))
+            });
 
-                    suggestionElement.addEventListener('click', () => {
-                        nameInput.value = data.title;
-                        nameSuggestions.innerHTML = '';
-                        filterAndDisplayMarkers();
-                    });
+            const blob = new Blob([geoJsonContent], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'export.geojson';
+            link.click();
+        }
 
-                    nameSuggestions.appendChild(suggestionElement);
-                });
-            }
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!nameInput.contains(event.target)) {
-                nameSuggestions.innerHTML = '';
-            }
-        });
-
-        const drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
-
-        const drawControl = new L.Control.Draw({
-            draw: {
-                polyline: false,
-                polygon: false,
-                circle: false,
-                marker: false,
-                circlemarker: false,
-                rectangle: true
-            },
-            edit: {
-                featureGroup: drawnItems
-            }
-        });
-        map.addControl(drawControl);
-
-        map.on(L.Draw.Event.CREATED, function(event) {
-            const layer = event.layer;
-            if (event.layerType === 'rectangle') {
-                const bounds = layer.getBounds();
-
-                selectedMarkers = filteredData.filter(data => {
-                    return data.coordinates && bounds.contains([data.coordinates[1], data.coordinates[0]]);
-                });
-
-                markerCluster.clearLayers();
-                selectedMarkers.forEach(data => {
-                    if (data.coordinates) {
-                        const marker = L.marker([data.coordinates[1], data.coordinates[0]], {
-                            icon: L.icon({
-                                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png',
-                                iconSize: [25, 41],
-                                iconAnchor: [12, 41]
-                            })
-                        });
-                        marker.bindPopup(`<b>${data.title}</b><br>${data.location}<br>🔗<a href="${data.pid}" target="_blank">ARCHE Permalink</a>`);
-                        markerCluster.addLayer(marker);
-                    }
-                });
-
-                updateCounter(selectedMarkers.length);
-                console.log('Ausgewählte Punkte:', selectedMarkers);
-            }
-
-            drawnItems.addLayer(layer);
-        });
+        exportCsvButton.addEventListener('click', exportToCsv);
+        exportGeoJsonButton.addEventListener('click', exportToGeoJson);
 
         resetButton.addEventListener('click', () => {
             subjectSelect.value = '';
@@ -274,6 +241,7 @@
 
         subjectSelect.addEventListener('change', filterAndDisplayMarkers);
         locationSelect.addEventListener('change', filterAndDisplayMarkers);
+        nameInput.addEventListener('input', filterAndDisplayMarkers);
     </script>
 </body>
 </html>
