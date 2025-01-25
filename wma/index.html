@@ -263,26 +263,32 @@ nameInput.addEventListener('input', () => {
     suggestionsContainer.innerHTML = ''; // Vorschläge zurücksetzen
 
     if (query.length > 0) {
-        // Vorschläge filtern und Titel mit passenden Feldern kombinieren
         const suggestions = Array.from(
             new Set(
                 filteredData
                     .filter(data =>
-                        (data.title && data.title.toLowerCase().includes(query)) ||
-                        (data.subjects && data.subjects.toLowerCase().includes(query)) ||
-                        (data.location && data.location.toLowerCase().includes(query))
+                        (data.title && data.title.toLowerCase().includes(query)) || // Titel durchsuchen
+                        (data.subjects && data.subjects.toLowerCase().includes(query)) || // Subjects durchsuchen
+                        (data.location && data.location.toLowerCase().includes(query)) // Location durchsuchen
                     )
                     .map(data => {
-                        // Überprüfen, welches Feld den Suchbegriff enthält
                         let match = '';
+
+                        // Den spezifischen Treffer finden
                         if (data.title.toLowerCase().includes(query)) {
                             match = 'Titel';
                         } else if (data.subjects.toLowerCase().includes(query)) {
-                            match = data.subjects;
+                            // Nur das exakte Subject anzeigen
+                            const matchedSubject = data.subjects
+                                .split(',')
+                                .map(subject => subject.trim()) // Whitespace entfernen
+                                .find(subject => subject.toLowerCase().includes(query));
+                            match = matchedSubject || 'Subjects';
                         } else if (data.location.toLowerCase().includes(query)) {
                             match = data.location;
                         }
-                        return `${data.title} (${match})`; // Titel und das passende Feld kombinieren
+
+                        return `${data.title} [${match}]`; // Titel und Treffer in eckigen Klammern
                     })
             )
         ).slice(0, 10); // Maximal 10 eindeutige Vorschläge anzeigen
@@ -291,22 +297,26 @@ nameInput.addEventListener('input', () => {
         suggestions.forEach(suggestion => {
             const suggestionElement = document.createElement('div');
             suggestionElement.classList.add('autocomplete-suggestion');
-            suggestionElement.textContent = suggestion; // Titel (Suchbegriff) anzeigen
+            suggestionElement.textContent = suggestion; // Titel [Treffer] anzeigen
 
             // Klick auf Vorschlag
             suggestionElement.addEventListener('click', () => {
-                nameInput.value = suggestion.split(' (')[0]; // Nur den Titel ins Eingabefeld übernehmen
+                nameInput.value = suggestion.split(' [')[0]; // Nur den Titel ins Eingabefeld übernehmen
                 suggestionsContainer.innerHTML = ''; // Vorschläge ausblenden
                 filterAndDisplayMarkers(); // Filter anwenden
             });
 
             suggestionsContainer.appendChild(suggestionElement);
         });
-    }
 
-    // Sichtbarkeit des Containers steuern
-    suggestionsContainer.style.display = suggestionsContainer.childElementCount > 0 ? 'block' : 'none';
+        // Container sichtbar machen, wenn Vorschläge existieren
+        suggestionsContainer.classList.add('visible');
+    } else {
+        // Keine Vorschläge -> Container ausblenden
+        suggestionsContainer.classList.remove('visible');
+    }
 });
+
 
 
 // Ausblenden der Vorschläge bei Klick außerhalb
@@ -385,12 +395,14 @@ map.addControl(drawControl);
     }
 
     const csvContent = [
-        'Title,Subjects,Location,Coordinates,PID',
-        ...dataToExport.map(data => {
-            const coords = data.coordinates ? `${data.coordinates[0]},${data.coordinates[1]}` : '';
-            return `${data.title},${data.subjects},${data.location},${coords},${data.pid}`;
-        })
-    ].join('\n');
+    'Title,Subjects,Location,X-coordinate,Y-coordinate,PID',
+    ...dataToExport.map(data => {
+        const xCoord = data.coordinates ? data.coordinates[0] : ''; // X-Koordinate
+        const yCoord = data.coordinates ? data.coordinates[1] : ''; // Y-Koordinate
+        return `${data.title},${data.subjects},${data.location},${xCoord},${yCoord},${data.pid}`;
+    })
+].join('\n');
+
 
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const link = document.createElement('a');
