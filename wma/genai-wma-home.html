@@ -21,7 +21,6 @@
             color: #fff;
             text-align: center;
             padding: 1rem 0;
-            position: relative;
         }
 
         header img {
@@ -35,23 +34,21 @@
             font-size: 1.8rem;
         }
 
-        .home-button {
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
+        .button {
+            display: inline-block;
             background-color: #007BFF;
-            color: white;
+            color: #fff;
             text-decoration: none;
             padding: 10px 20px;
+            border-radius: 5px;
             font-size: 14px;
             font-weight: bold;
-            border-radius: 5px;
+            margin: 1rem auto;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .home-button:hover {
+        .button:hover {
             background-color: #0056b3;
         }
 
@@ -84,43 +81,25 @@
             color: #fff;
             text-decoration: underline;
         }
-
-        .button {
-            display: inline-block;
-            background-color: #007BFF;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 1rem 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <a href="https://iuenna.github.io/" class="home-button">Home</a>
         <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo">
-        <h1>IUENNA Web Mapping Application</h1>
+        <h1>IUENNA GenAI WMA</h1>
+        <a href="https://iuenna.github.io/" class="button">Home</a>
     </header>
 
     <!-- Main Content -->
     <main>
-        <h2>Interaktive Karte</h2>
-        <p>Erkunden Sie die Karte und entdecken Sie die archäologischen Ressourcen im Jauntal.</p>
+        <h2>Interaktive Map</h2>
+        <p>Discover the map and find archaeological Ressources in the Jauntal Valley, entierly made by using OpenAI's GenAI ChatGPT 4o.</p>
         
         <!-- Embed your map here -->
         <iframe src="DEINE_KARTEN_URL_HIER" title="IUENNA Map"></iframe>
 
-        <a href="https://iuenna.hypotheses.org/" class="button">Weitere Informationen</a>
+        <a href="https://iuenna.github.io/wma/genai-wma.html" class="button">Back</a>
     </main>
 
     <!-- Footer -->
