@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; gap: 25px;">
-    <img src="https://www.oeaw.ac.at/fileadmin/_processed_/0/5/csm_IUENNA_01_neu_4bc16445f0.jpg" alt="IUENNA Logo" style="height: 50px;">
+    <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" style="height: 50px;">
     <h1>openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</h1>
 </div>
 ## **Impressum/Offenlegung**  
