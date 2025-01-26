@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Mapping with QGIS – IUENNA Project</title>
+    <title>Web Mapping with IUENNA Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -60,6 +60,15 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .footer {
+    color: white;
+    text-align: center; /* optional für zentrierten Text */
+}
+
+.footer a {
+    color: white;
+    text-decoration: underline; /* optional */
+}
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -195,8 +204,13 @@
             <p><a href="#" class="button">Back to Top</a></p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 IUENNA Project</p>
-    </footer>
+<footer class="footer">
+    <p>
+        <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
+        <a href="https://iuenna.github.io/impressum-datenschutz">Legal Notice</a> & 
+        <a href="https://iuenna.github.io/impressum-datenschutz">Privacy Policy</a> | 
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+    </p>
+</footer>
 </body>
 </html>
