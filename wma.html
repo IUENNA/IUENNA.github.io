@@ -71,8 +71,8 @@
     <main>
         <section>
             <h2>Overview</h2>
-            <p>This simple web mapping project demonstrates how to create a web mapping application with QGIS and the <strong>qgis2web</strong> plugin. The aim is to make long-term archival data more accessible and individually manageable. Web Mapping Applications (WMAs) are powerful tools for visualizing spatial data, especially in the field of archaeology. By integrating maps with interactive features, WMAs enable researchers and the public to access, explore, and analyze vast collections of archaeological data. In the context of IUENNA, a WMA serves as an interface to navigate archaeological records from the Jauntal region, complementing the ARCHE repository's structured data access. This integration enhances usability and democratizes access to cultural heritage.</p>
-            <p>One of the key components of this project is the use of <a href="https://leafletjs.com/" target="_blank">Leaflet</a>, an open-source JavaScript library for interactive maps. Leaflet enables the addition of various map layers, markers, and geometries, making it a powerful tool for web mapping applications.</p>
+            <p>These simple web mapping project demonstrates how to create web mapping applications using QGIS, the <strong>qgis2web</strong> plugin, Generative Articifial Intelligence (GenAI). The aim is to make long-term archival data, especially in the case of faciliating their re-use for specific tasks, more accessible and individually manageable. Web Mapping Applications (WMAs) are straigthforward as well as powerful tools for visualizing spatial data, consequently the are of high interest in the field of archaeology. By integrating maps with interactive features, WMAs, easily individually tailored to the user's needs, enable researchers and the public to access, explore, and analyze vast collections of archaeological data. In the context of IUENNA, a WMA can most likely serve as an interface to navigate archaeological records from the Jauntal region, complementing the ARCHE repository's structured data access. This integration enhances usability and democratizes general access to cultural heritage, shifiting the information access from narrow analoge data carrieres, mostly accessbile by single resarchers in specific time windows only, to global and ubiquious digital data access.</p>
+            <p>One of the key components of such a project is, aside from a Geographic Information System (GIS) like QIGS, the use of open-source JavaScript librarie for interactive maps like https://openlayers.org/ OpenLayers or <a href="https://leafletjs.com/" target="_blank">Leaflet</a>. Such libraries enable the addition of various map layers, markers, and geometries, making it a powerful tool for WMAs.</p>
             <p>
                 <a href="#steps" class="button">Go to Steps</a>
                 <a href="#example-code" class="button">Go to Example Code</a>
@@ -82,14 +82,14 @@
         </section>
 
         <section id="steps">
-            <h2>Steps to Create the Web Mapping Application</h2>
+            <h2>Steps to Create the Web Mapping Application using QGIS and qgis2web</h2>
             <ol>
-                <li>Install QGIS on your computer (<a href="https://qgis.org/en/site/">Official QGIS Website</a>).</li>
+                <li>Install a GIS like QGIS on your computer (<a href="https://qgis.org/en/site/">Official QGIS Website</a>).</li>
                 <li>Prepare your data in QGIS, e.g., by adding vector data (Shapefiles) or raster data.</li>
                 <li>Install the <strong>qgis2web</strong> plugin via the QGIS Plugin Manager.</li>
                 <li>Export your project as a web map using qgis2web. Select options such as Leaflet or OpenLayers.</li>
-                <li>Copy the exported files (HTML, CSS, JavaScript) to your GitHub repository.</li>
-                <li>Enable GitHub Pages for your repository to make the map available online.</li>
+                <li>Copy the exported files (HTML, CSS, JavaScript) to your classic website, e.g., by using WordPress, or use other services like a GitHub repository.</li>
+                <li>Punlish your webpage or enable GitHub Pages for your repository to make the map easily available online.</li>
             </ol>
             <p><a href="#" class="button">Back to Top</a></p>
         </section>
@@ -129,7 +129,7 @@
 
                 // Adding marker points
                 var marker1 = L.marker([46.5647, 14.8222]).addTo(liveMap);
-                marker1.bindPopup("Globasnitz - A key location in archaeology.").openPopup();
+                marker1.bindPopup("Globasnitz - A key location in late antique Austrian archaeology.").openPopup();
 
                 var marker2 = L.marker([46.5747, 14.8122]).addTo(liveMap);
                 marker2.bindPopup("Another interesting point in Globasnitz.");
