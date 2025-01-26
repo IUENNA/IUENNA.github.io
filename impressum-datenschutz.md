@@ -8,9 +8,12 @@
 
 **Medieninhaber und Herausgeber:**  
 Dr. Dominik Hagmann, BA MA  
+
 c/o kärnten.museum
 Sammlungs- und Wissenschaftszentrum
-9020 Klagenfurt am Wörthersee, Liberogasse 6
+9020 Klagenfurt am Wörthersee
+Liberogasse 6
+
 T: +43 (0)50 536-30599
 E: dominik.hagmann@univie.ac.at
 
