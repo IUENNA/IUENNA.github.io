@@ -112,19 +112,23 @@ header .button:hover {
                 <a href="#steps" class="button">Go to Steps</a>
                 <a href="#example-code" class="button">Go to Example Code</a>
                 <a href="#benefits" class="button">Go to Benefits</a>
-                <a href="#ai-tools" class="button">Go to AI Tools</a>
+                <a href="#ai-tools" class="button">Go to GenAI Tools</a>
             </p>
         </section>
 
         <section id="steps">
-            <h2>Steps to Create the Web Mapping Application</h2>
+            <h2>General Steps to Create a WMA</h2>
             <ol>
-                <li>Install QGIS on your computer (<a href="https://qgis.org/en/site/">Official QGIS Website</a>).</li>
-                <li>Prepare your data in QGIS, e.g., by adding vector data (Shapefiles) or raster data.</li>
-                <li>Install the <strong>qgis2web</strong> plugin via the QGIS Plugin Manager.</li>
-                <li>Export your project as a web map using qgis2web. Select options such as Leaflet or OpenLayers.</li>
-                <li>Copy the exported files (HTML, CSS, JavaScript) to your GitHub repository.</li>
-                <li>Enable GitHub Pages for your repository to make the map available online.</li>
+                <li>Download and install <a href="https://qgis.org/en/site/" target="_blank">QGIS</a> on your computer to start working with geospatial data.</li>
+<li>Prepare your data in QGIS by adding vector data (e.g., Shapefiles) or raster data (e.g., satellite imagery or DEMs). Ensure that your data is properly projected and organized for web mapping purposes.</li>
+<li>Export your data from QGIS as <strong>GeoJSON</strong>, a widely used format for web mapping, to provide the necessary data for your web mapping application (WMA) or Generative AI workflows.</li>
+<li>Install the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin through the QGIS Plugin Manager. This plugin is essential for exporting your QGIS project to a web-based format.</li>
+<li>Export your project as a web map using the qgis2web plugin. You can choose between rendering your map with <a href="https://leafletjs.com/" target="_blank">Leaflet</a> or <a href="https://openlayers.org/" target="_blank">OpenLayers</a>, depending on your needs and familiarity with these libraries.</li>
+<li>Upload the exported files (HTML, CSS, JavaScript, or GeoJSON) to a hosting platform, such as a GitHub repository, institutional server, or personal website, ensuring accessibility and reliability.</li>
+<li>Activate <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> (or another hosting service) for your repository to make your web mapping application (WMA) available online for users to access.</li>
+<li>Enhance your WMA by customizing the code. For example, you can add additional features, refine the styling, or optimize the user interface. Here, Generative AI (GenAI) tools like <a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a> can assist in modifying your WMA or working with the exported GeoJSON data to implement advanced functionality efficiently.</li>
+<li>Alternatively, you can leverage GenAI tools to directly generate your WMA or even create the entire accompanying website, saving significant development time while ensuring customization to your specific needs.</li>
+
             </ol>
             <p><a href="#" class="button">Back to Top</a></p>
         </section>
@@ -155,7 +159,7 @@ header .button:hover {
         </section>
 
         <section id="live-map">
-            <h2>Live Web Mapping Application</h2>
+            <h2>Live WMA</h2>
             <p>Below is an embedded example of a live web mapping application powered by Leaflet:</p>
             <div id="live-map"></div>
             <script>
@@ -202,9 +206,9 @@ header .button:hover {
         </section>
 
         <section id="ai-tools">
-            <h2>Using Generative AI Tools</h2>
-            <p>Generative AI tools like ChatGPT, Claude, and Gemini have revolutionized the way we create and manage digital content. These tools provide invaluable assistance in setting up web pages, offering suggestions, generating code, and refining textual content. For example, Claude excels at generating detailed documents, while Gemini focuses on multimodal tasks, integrating text and images. ChatGPT is widely used for versatile coding and text editing tasks.</p>
-            <p>Generative AI enhances productivity by:
+            <h2>Using GenAI Tools</h2>
+            <p>GenAI tools like ChatGPT, Claude, and Gemini have revolutionized the way we create and manage digital content. These tools provide invaluable assistance in setting up web pages, offering suggestions, generating code, and refining textual content. For example, Claude excels at generating detailed documents, while Gemini focuses on multimodal tasks, integrating text and images. ChatGPT is widely used for versatile coding and text editing tasks.</p>
+            <p>GenAI enhances productivity by:
                 <ul>
                     <li><strong>Time Efficiency:</strong> Automating repetitive coding tasks, allowing developers to focus on more complex challenges.</li>
                     <li><strong>Accessibility:</strong> Lowering the entry barrier for beginners by offering step-by-step guidance and simplifying technical concepts.</li>
@@ -213,7 +217,7 @@ header .button:hover {
                     <li><strong>Versatility:</strong> Supporting a wide array of tasks beyond web development, from content generation to data visualization.</li>
                 </ul>
             </p>
-            <p>Generative AI tools are not just productivity enhancers but also democratize digital innovation, enabling users with minimal technical background to participate effectively in creating and sharing impactful projects.</p>
+            <p>GenAI tools are not just productivity enhancers but also democratize digital innovation, enabling users with minimal technical background to participate effectively in creating and sharing impactful projects.</p>
             <p>Resources to explore further:
                 <ul>
                     <li><a href="https://openai.com/chatgpt">ChatGPT by OpenAI</a></li>
