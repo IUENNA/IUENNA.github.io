@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Mapping with Long-term Archived Archaeological Data – IUENNA Project</title>
+    <title>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -20,6 +20,15 @@
             padding: 1rem 0;
             text-align: center;
         }
+        header img {
+            height: 80px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
         main {
             padding: 2rem;
             max-width: 800px;
@@ -27,12 +36,6 @@
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        pre {
-            background: #eee;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
         }
         footer {
             text-align: center;
@@ -54,145 +57,47 @@
         .button:hover {
             background-color: #0056b3;
         }
-        #live-map {
-            margin-top: 2rem;
-            height: 500px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
     <header>
-        <h1>Web Mapping with QGIS – IUENNA Project</h1>
+        <img src="https://www.oeaw.ac.at/fileadmin/_processed_/0/5/csm_IUENNA_01_neu_4bc16445f0.jpg" alt="IUENNA Logo">
+        <h1>IUENNA: Digital Archaeology in the Jauntal</h1>
     </header>
     <main>
         <section>
-            <h2>Overview</h2>
-            <p>These simple web mapping project demonstrates how to create web mapping applications using QGIS, the <strong>qgis2web</strong> plugin, Generative Articifial Intelligence (GenAI). The aim is to make long-term archival data, especially in the case of faciliating their re-use for specific tasks, more accessible and individually manageable. Web Mapping Applications (WMAs) are straigthforward as well as powerful tools for visualizing spatial data, consequently the are of high interest in the field of archaeology. By integrating maps with interactive features, WMAs, easily individually tailored to the user's needs, enable researchers and the public to access, explore, and analyze vast collections of archaeological data. In the context of IUENNA, a WMA can most likely serve as an interface to navigate archaeological records from the Jauntal region, complementing the ARCHE repository's structured data access. This integration enhances usability and democratizes general access to cultural heritage, shifiting the information access from narrow analoge data carrieres, mostly accessbile by single resarchers in specific time windows only, to global and ubiquious digital data access.</p>
-            <p>One of the key components of such a project is, aside from a Geographic Information System (GIS) like QIGS, the use of open-source JavaScript librarie for interactive maps like https://openlayers.org/ OpenLayers or <a href="https://leafletjs.com/" target="_blank">Leaflet</a>. Such libraries enable the addition of various map layers, markers, and geometries, making it a powerful tool for WMAs.</p>
-            <p>
-                <a href="#steps" class="button">Go to Steps</a>
-                <a href="#example-code" class="button">Go to Example Code</a>
-                <a href="#benefits" class="button">Go to Benefits</a>
-                <a href="#ai-tools" class="button">Go to AI Tools</a>
-            </p>
+            <h2>Project Overview</h2>
+            <p><strong>IUENNA</strong> is an innovative initiative that advances digital methods in Austrian archaeology. By addressing complex cultural-historical questions, actively shaping Digital Humanities in Classical Studies, and ensuring long-term preservation of cultural heritage, IUENNA fosters sustainable knowledge management.</p>
+            <p>The project focuses on the archaeological micro-region of the Jauntal (Carinthia, Austria) and is funded by the Austrian Academy of Sciences' <a href="https://www.oeaw.ac.at/foerderungen/godigital/godigital-30" target="_blank">Go!Digital 3.0 program</a>.</p>
         </section>
 
-        <section id="steps">
-            <h2>Steps to Create the Web Mapping Application using QGIS and qgis2web</h2>
-            <ol>
-                <li>Install a GIS like QGIS on your computer (<a href="https://qgis.org/en/site/">Official QGIS Website</a>).</li>
-                <li>Prepare your data in QGIS, e.g., by adding vector data (Shapefiles) or raster data.</li>
-                <li>Install the <strong>qgis2web</strong> plugin via the QGIS Plugin Manager.</li>
-                <li>Export your project as a web map using qgis2web. Select options such as Leaflet or OpenLayers.</li>
-                <li>Copy the exported files (HTML, CSS, JavaScript) to your classic website, e.g., by using WordPress, or use other services like a GitHub repository.</li>
-                <li>Punlish your webpage or enable GitHub Pages for your repository to make the map easily available online.</li>
-            </ol>
-            <p><a href="#" class="button">Back to Top</a></p>
+        <section>
+            <h2>Project Framework</h2>
+            <p>The IUENNA project is a collaboration among:</p>
+            <ul>
+                <li><a href="https://www.kaernten.museum/" target="_blank">State Museum for Carinthia (kärnten.museum)</a></li>
+                <li><a href="https://www.oeaw.ac.at/oeai" target="_blank">Austrian Archaeological Institute (ÖAI)</a></li>
+                <li><a href="https://www.oeaw.ac.at/acdh" target="_blank">Austrian Center for Digital Humanities and Cultural Heritage (ACDH-CH)</a></li>
+                <li><a href="https://bda.gv.at/" target="_blank">Federal Monuments Authority (BDA)</a></li>
+                <li><a href="https://www.ardig.at/" target="_blank">ARDIG – Archaeological Service Company</a></li>
+            </ul>
+            <p>Through a comprehensive open-science approach, IUENNA establishes a model for the long-term digital preservation of archaeological data and cultural insights.</p>
         </section>
 
-        <section id="example-code">
-            <h2>Example Code</h2>
-            <p>The following HTML code shows a minimalist web mapping integration using Leaflet:</p>
-            <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Example Map&lt;/title&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="map" style="width: 100%; height: 500px;"&gt;&lt;/div&gt;
-    &lt;script&gt;
-        var map = L.map('map').setView([46.5647, 14.8222], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-            </pre>
-            <p><a href="#" class="button">Back to Top</a></p>
+        <section>
+            <h2>About This Repository</h2>
+            <p>This GitHub repository provides reusable web applications and showcases practical use cases for managing and archiving archaeological data sustainably.</p>
         </section>
 
-        <section id="live-map">
-            <h2>Live Web Mapping Application</h2>
-            <p>Below is an embedded example of a live web mapping application powered by Leaflet:</p>
-            <div id="live-map"></div>
-            <script>
-                var liveMap = L.map('live-map').setView([46.5647, 14.8222], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(liveMap);
-
-                // Adding marker points
-                var marker1 = L.marker([46.5647, 14.8222]).addTo(liveMap);
-                marker1.bindPopup("Globasnitz - A key location in late antique Austrian archaeology.").openPopup();
-
-                var marker2 = L.marker([46.5747, 14.8122]).addTo(liveMap);
-                marker2.bindPopup("Another interesting point in Globasnitz.");
-
-                // Adding a circle
-                var circle = L.circle([46.559, 14.83], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 500
-                }).addTo(liveMap);
-                circle.bindPopup("Highlighting an archaeological area in Globasnitz.");
-
-                // Adding a polygon
-                var polygon = L.polygon([
-                    [46.562, 14.82],
-                    [46.565, 14.83],
-                    [46.561, 14.84]
-                ]).addTo(liveMap);
-                polygon.bindPopup("A significant site boundary in Globasnitz.");
-
-                // Adding map controls
-                var baseMaps = {
-                    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-                };
-
-                var overlays = {
-                    "Markers": L.layerGroup([marker1, marker2]),
-                    "Features": L.layerGroup([circle, polygon])
-                };
-
-                L.control.layers(baseMaps, overlays).addTo(liveMap);
-            </script>
-            <p><a href="#" class="button">Back to Top</a></p>
-        </section>
-
-        <section id="ai-tools">
-            <h2>Using Generative AI Tools</h2>
-            <p>Generative AI tools like ChatGPT, Claude, and Gemini have revolutionized the way we create and manage digital content. These tools provide invaluable assistance in setting up web pages, offering suggestions, generating code, and refining textual content. For example, Claude excels at generating detailed documents, while Gemini focuses on multimodal tasks, integrating text and images. ChatGPT is widely used for versatile coding and text editing tasks.</p>
-            <p>Generative AI enhances productivity by:
-                <ul>
-                    <li><strong>Time Efficiency:</strong> Automating repetitive coding tasks, allowing developers to focus on more complex challenges.</li>
-                    <li><strong>Accessibility:</strong> Lowering the entry barrier for beginners by offering step-by-step guidance and simplifying technical concepts.</li>
-                    <li><strong>Error Reduction:</strong> Providing boilerplate code and recommendations that align with best practices, reducing debugging time.</li>
-                    <li><strong>Customization:</strong> Tailoring suggestions and templates to specific needs, saving hours in project-specific implementations.</li>
-                    <li><strong>Versatility:</strong> Supporting a wide array of tasks beyond web development, from content generation to data visualization.</li>
-                </ul>
-            </p>
-            <p>Generative AI tools are not just productivity enhancers but also democratize digital innovation, enabling users with minimal technical background to participate effectively in creating and sharing impactful projects.</p>
-            <p>Resources to explore further:
-                <ul>
-                    <li><a href="https://openai.com/chatgpt">ChatGPT by OpenAI</a></li>
-                    <li><a href="https://www.anthropic.com/claude">Claude by Anthropic</a></li>
-                    <li><a href="https://www.google.com/search?q=Gemini+AI">Gemini by Google DeepMind</a></li>
-                </ul>
-            </p>
-            <p><a href="#" class="button">Back to Top</a></p>
-        </section>
-
-        <section id="benefits">
-            <h2>Benefits</h2>
-            <p>This approach is quick, cost-efficient, and easy to reproduce. It also allows users without advanced technical knowledge to present their data online.</p>
-            <p><a href="#" class="button">Back to Top</a></p>
+        <section>
+            <h2>Explore More</h2>
+            <p>Visit our dedicated project page for detailed insights: <a href="https://iuenna.hypotheses.org" target="_blank" class="button">Visit the IUENNA Website</a></p>
         </section>
     </main>
     <footer>
