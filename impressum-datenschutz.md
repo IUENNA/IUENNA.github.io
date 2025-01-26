@@ -2,7 +2,7 @@
     <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" style="height: 50px;">
     <h1>openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</h1>
 </div>
-## **Impressum/Offenlegung**  
+## **Impressum**  
 
 **Impressum/Offenlegung gemäß §§ 24f. MedienG**  
 
