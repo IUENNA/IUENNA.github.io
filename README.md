@@ -20,4 +20,4 @@ Visit our dedicated project page at [iuenna.hypotheses.org](https://iuenna.hypot
 
 
 ---
-[Legal Notice](https://iuenna.github.io/impressum-datenschutz) | [https://iuenna.github.io/impressum-datenschutz](Privacy Policy) | [https://creativecommons.org/licenses/by/4.0/](CC BY 4.0)
+[Legal Notice](https://iuenna.github.io/impressum-datenschutz) | [Privacy Policy](https://iuenna.github.io/impressum-datenschutz) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
