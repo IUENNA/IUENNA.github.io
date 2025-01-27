@@ -13,8 +13,11 @@ The IUENNA project is a collaboration between the [State Museum for Carinthia (k
 
 The IUENNA project is coordinated by  
 **[Dr. Dominik Hagmann](https://orcid.org/0000-0002-4481-6234)**  
-([kärnten.museum](https://www.kaernten.museum))  
-and **Dipl.-Ing. Franziska Reiner**  
+([kärnten.museum](https://www.kaernten.museum))
+
+and 
+
+**Dipl.-Ing. Franziska Reiner**  
 ([Austrian Archaeological Institute](https://www.oeaw.ac.at/oeai), Austrian Academy of Sciences).  
 
 Both bring significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.
