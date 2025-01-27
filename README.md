@@ -16,6 +16,7 @@ The IUENNA project is coordinated by
 ([kärnten.museum](https://www.kaernten.museum))  
 and **Dipl.-Ing. Franziska Reiner**  
 ([Austrian Archaeological Institute](https://www.oeaw.ac.at/oeai), Austrian Academy of Sciences).  
+
 Both bring significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.
 
 ## About This GitHub Page
