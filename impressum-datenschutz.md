@@ -7,18 +7,29 @@
 **Impressum/Offenlegung gemäß §§ 24f. MedienG**  
 
 **Medieninhaber und Herausgeber:**  
-Dr. Dominik Hagmann, BA MA  
+*Dr. Dominik Hagmann, BA MA*
 
 c/o kärnten.museum
 Sammlungs- und Wissenschaftszentrum
-9020 Klagenfurt am Wörthersee
 Liberogasse 6
+9020 Klagenfurt am Wörthersee
 
 T: +43 (0)50 536-30599
 E: dominik.hagmann@univie.ac.at
 
+*Dipl.-Ing. Franziska Reiner*  
+
+Österreichisches Archäologisches Institut  
+Österreichische Akademie der Wissenschaften  
+Hollandstraße 11-13  
+1020 Wien  
+
+T: +43 (0)1 51581-6101  
+E: franziska.reiner@oeaw.ac.at  
+
+
 **Verantwortlich für den Inhalt:**  
-Dr. Dominik Hagmann, BA MA 
+Dr. Dominik Hagmann, BA MA
 
 **Unternehmensgegenstand:**  
 Private, wissenschaftliche Website zur Bereitstellung von Informationen über das archäologische Go!Digital-3.0-Projekt IUENNA und der damit verbundenne Forschung.
