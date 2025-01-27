@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Mapping with the IUENNA Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Dublin Core Metatags -->
+    <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
+    <meta name="DC.creator" content="Dominik Hagmann">
+    <meta name="DC.contributor" content="IUENNA Project">
+    <meta name="DC.publisher" content="IUENNA Project">
+    <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
+    <meta name="DC.description" content="Interactive anaylsis and presentation of the Jauntal Valley, created using GenAI technologies.">
+    <meta name="DC.date" content="2025-01-27">
+    <meta name="DC.language" content="de">
+    <meta name="DC.identifier" content="https://iuenna.github.io/">
+    <meta name="DC.rights" content="CC BY 4.0">
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -109,7 +120,7 @@ header .button:hover {
 
         <section>
             <h2>Overview</h2>
-            <p>This web mapping project demonstrates how to create Web Mapping Applications (WMAs) effectively using <strong><a href="https://qgis.org/en/site/" target="_blank">QGIS</a></strong>, the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin, and Generative Artificial Intelligence (GenAI) tools, such as <strong><a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a></strong>.</p>
+            <p>This web mapping project demonstrates how to create Web Mapping Applications (WMAs) effectively using <strong><a href="https://qgis.org/en/site/" target="_blank">QGIS</a></strong>, the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin, and Artificial Intelligence (AI) tools, such as <strong><a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a></strong>.</p>
             
             <p>WMAs are versatile tools for visualizing spatial data, making them invaluable in fields like archaeology. They enhance the accessibility and management of archaeological datasets by providing intuitive, interactive maps. With features like layers and markers, WMAs allow researchers and the public to explore, analyze, and interact with large collections of archaeological data.</p>
             
@@ -195,12 +206,12 @@ header .button:hover {
             <ol>
                 <li>Download and install <a href="https://qgis.org/en/site/" target="_blank">QGIS</a> on your computer to start working with geospatial data.</li>
 <li>Prepare your data in QGIS by adding vector data (e.g., Shapefiles) or raster data (e.g., satellite imagery or DEMs). Ensure that your data is properly projected and organized for web mapping purposes.</li>
-<li>Export your data from QGIS as <strong>GeoJSON</strong>, a widely used format for web mapping, to provide the necessary data for your web mapping application (WMA) or Generative AI workflows.</li>
+<li>Export your data from QGIS as <strong>GeoJSON</strong>, a widely used format for web mapping, to provide the necessary data for your web mapping application (WMA) or Generative AI (GenAI) workflows.</li>
 <li>Install the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin through the QGIS Plugin Manager. This plugin is essential for exporting your QGIS project to a web-based format.</li>
 <li>Export your project as a web map using the qgis2web plugin. You can choose between rendering your map with <a href="https://leafletjs.com/" target="_blank">Leaflet</a> or <a href="https://openlayers.org/" target="_blank">OpenLayers</a>, depending on your needs and familiarity with these libraries.</li>
 <li>Upload the exported files (HTML, CSS, JavaScript, or GeoJSON) to a hosting platform, such as a GitHub repository, institutional server, or personal website, ensuring accessibility and reliability.</li>
 <li>Activate <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> (or another hosting service) for your repository to make your web mapping application (WMA) available online for users to access.</li>
-<li>Enhance your WMA by customizing the code. For example, you can add additional features, refine the styling, or optimize the user interface. Here, Generative AI (GenAI) tools like <a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a> can assist in modifying your WMA or working with the exported GeoJSON data to implement advanced functionality efficiently.</li>
+<li>Enhance your WMA by customizing the code. For example, you can add additional features, refine the styling, or optimize the user interface. Here, GenAI tools like <a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a> can assist in modifying your WMA or working with the exported GeoJSON data to implement advanced functionality efficiently.</li>
 <li>Alternatively, you can leverage GenAI tools to directly generate your WMA or even create the entire accompanying website, saving significant development time while ensuring customization to your specific needs.</li>
 
             </ol>
@@ -211,12 +222,12 @@ header .button:hover {
 
         <section id="examples">
             <h2>Examples Using GenAI and qgis2web</h2>
-            <p>Below are two interactive Web Mapping Applications (WMAs) created using cutting-edge tools: Generative AI (GenAI) and the <a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a> plugin. These applications provide access to IUENNA's comprehensive dataset, demonstrating how digital tools enhance the exploration and management of archaeological data:</p>
+            <p>Below are two interactive Web Mapping Applications (WMAs) created using cutting-edge tools: GenAI and the <a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a> plugin. These applications provide access to IUENNA's comprehensive dataset, demonstrating how digital tools enhance the exploration and management of archaeological data:</p>
         
             <div style="margin-top: 20px; text-align: center;">
                 <div style="margin-bottom: 20px; padding: 15px; border: 2px solid #007BFF; border-radius: 8px; background-color: #f4faff; display: inline-block; width: 90%; max-width: 600px;">
                     <h3 style="margin: 0 0 10px;">GenAI WMA</h3>
-                    <p style="margin: 0 0 15px;">Explore a Web Mapping Application created with Generative AI. This WMA showcases how AI can automate and enhance interactive mapping for complex datasets.</p>
+                    <p style="margin: 0 0 15px;">Explore a Web Mapping Application created with GenAI. This WMA showcases how AI can automate and enhance interactive mapping for complex datasets.</p>
                     <a href="https://iuenna.github.io/wma/genai-wma-home.html" target="_blank" class="button" style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;">Explore the GenAI WMA</a>
                 </div>
         
@@ -231,7 +242,26 @@ header .button:hover {
                 <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
             </p>
         </section>
-        
+
+           <!-- AI Declaration -->
+    <section id="ai-declaration">
+        <p>
+            Contents and tools provided on this webpage, including one WMA, have been generated and enhanced using GenAI tools. 
+            These tools assist in creating high-quality content efficiently. However, the webpage or WMA itself do not utilize AI 
+            technologies for its functionality or operation.
+        </p>
+        <h3>Key Points Regarding Our Use of GenAI:</h3>
+        <ul>
+            <li><strong>Content Generation:</strong> GenAI tools have been used to assist in drafting, optimizing, or enhancing certain text elements displayed on this website.</li>
+            <li><strong>Human Oversight:</strong> All AI-generated content is reviewed and validated by our team to ensure accuracy, relevance, and adherence to ethical standards.</li>
+            <li><strong>Transparency:</strong> We are committed to openly disclosing the use of AI in our content creation process.</li>
+        </ul>
+        <p>
+            For inquiries or concerns about our use of GenAI, feel free to contact us at 
+            <a href="mailto:dominik.hagmann@univie.ac.at">dominik.hagmann@univie.ac.at</a>.
+        </p>
+    </section>
+      
         
 
         <section id="example-code">
@@ -330,9 +360,9 @@ header .button:hover {
         
         <section id="benefits">
             <h2>Benefits and Drawbacks</h2>
-            <p>Creating and enhancing web mapping applications (WMAs) using tools like QGIS, qgis2web, and Generative AI offers numerous benefits. One of the key advantages is cost efficiency. With free and open-source tools such as QGIS and Leaflet, users can avoid expensive licensing fees. Hosting platforms like GitHub Pages provide a reliable and cost-effective way to share applications online.</p>
+            <p>Creating and enhancing web mapping applications (WMAs) using tools like QGIS, qgis2web, and GenAI offers numerous benefits. One of the key advantages is cost efficiency. With free and open-source tools such as QGIS and Leaflet, users can avoid expensive licensing fees. Hosting platforms like GitHub Pages provide a reliable and cost-effective way to share applications online.</p>
             
-            <p>Another significant benefit is the ease of use. QGIS, combined with the qgis2web plugin, provides an intuitive interface that allows users to create interactive maps without advanced technical knowledge. Generative AI further simplifies the process by automating complex tasks, offering guidance, and providing ready-to-use templates for web development.</p>
+            <p>Another significant benefit is the ease of use. QGIS, combined with the qgis2web plugin, provides an intuitive interface that allows users to create interactive maps without advanced technical knowledge. GenAI further simplifies the process by automating complex tasks, offering guidance, and providing ready-to-use templates for web development.</p>
             
             <p>Flexibility is another strength of this approach. Web mapping projects can start simple and scale up as needed, integrating additional features like layers, interactive markers, or filters. Once the workflow is established, it can be easily reproduced for other datasets, enhancing productivity and consistency.</p>
             
@@ -342,9 +372,9 @@ header .button:hover {
             
             <p>Performance limitations can also arise when working with large datasets. Web browsers may struggle with rendering extensive GeoJSON files or complex map layers, especially on low-resource devices. Furthermore, hosting on free platforms like GitHub Pages may impose restrictions on file sizes or configurations.</p>
             
-            <p>Finally, data privacy and security should not be overlooked. Exporting and hosting sensitive data online requires careful consideration of data protection policies, especially when using external platforms or Generative AI tools.</p>
+            <p>Finally, data privacy and security should not be overlooked. Exporting and hosting sensitive data online requires careful consideration of data protection policies, especially when using external platforms or GenAI tools.</p>
             
-            <p>Despite these challenges, the benefits of using WMAs, QGIS, and Generative AI far outweigh the drawbacks, making this approach a powerful and innovative solution for modern digital projects.</p>
+            <p>Despite these challenges, the benefits of using WMAs, QGIS, and GenAI far outweigh the drawbacks, making this approach a powerful and innovative solution for modern digital projects.</p>
             <p style="text-align: center; margin-top: 20px;">
                 <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
             </p>
