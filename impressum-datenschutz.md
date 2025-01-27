@@ -51,9 +51,9 @@ Diese Daten werden ausschließlich zur Gewährleistung des Betriebs, der Sicherh
 Diese Website wird von GitHub Pages gehostet. GitHub erhebt und speichert unter Umständen personenbezogene Daten (z. B. IP-Adressen). Weitere Informationen findest du in der Datenschutzerklärung von GitHub:  
 [https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)  
 
-### **4. Verwendung von Leaflet, Leaflet.draw und Google Fonts**  
+### **4. Verwendung von externen Diensten**  
 
-#### **1. Nutzung von Leaflet und Leaflet.draw**  
+#### **1. Nutzung von Leaflet, Leaflet.draw und weiteren, entsprechenden Diensten**  
 Für die Darstellung interaktiver Karten und Zeichenwerkzeuge auf dieser Website nutzen wir die Open-Source-Bibliothek **Leaflet** in Verbindung mit dem Plugin **Leaflet.draw**. Die hierfür benötigten JavaScript- und CSS-Dateien werden über **Content Delivery Networks (CDNs)** geladen.  
 
 **Verwendete CDNs:**  
@@ -73,17 +73,20 @@ Die Verarbeitung der IP-Adresse erfolgt auf Grundlage unseres berechtigten Inter
 **Hinweis:**  
 Falls Sie nicht möchten, dass Ihre IP-Adresse an diese Drittanbieter übermittelt wird, können Sie die Nutzung durch entsprechende Einstellungen in Ihrem Browser verhindern (z. B. durch Blockieren von JavaScript). Dies kann jedoch dazu führen, dass die interaktiven Karten nicht funktionieren.  
 
-### **5. Nutzung von Google Fonts**  
-Unsere Website verwendet **Google Fonts**, um eine einheitliche und ansprechende Darstellung von Schriftarten zu gewährleisten. Beim Aufruf einer Seite lädt der Browser die benötigten Schriftarten direkt von den Servern von Google. Dabei wird die IP-Adresse der Besucher*innen an Google übertragen.  
+### **5. Nutzung von Google Fonts und anderen externen Diensten**  
+Unsere Website verwendet **Google Fonts** und **Cloudflare** *(siehe oben)*, um eine einheitliche und ansprechende Darstellung von Schriftarten sowie eine optimierte Ladegeschwindigkeit der Inhalte zu gewährleisten. Beim Aufruf einer Seite lädt der Browser gegebenenfalls die benötigten Schriftarten, Styles und Ressourcen direkt von den Servern der entsprechenden Anbieter. Im Fall von Google Fonts wird dabei die IP-Adresse der Besucher*innen an Google übertragen.
 
-**Verwendete Quelle:**  
+#### **Quellen und Anbieter**  
 - **Google Fonts:**  
   - URL: [https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap)  
   - Anbieter: **Google LLC**  
   - Anschrift: 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA  
-  - Datenschutzerklärung von Google: [https://policies.google.com/privacy](https://policies.google.com/privacy)  
+  - Datenschutzerklärung: [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
-Die Nutzung von Google Fonts erfolgt auf Grundlage unseres berechtigten Interesses an einer einheitlichen und ansprechenden Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).  
+Die Nutzung von Google Fonts und Cloudflare erfolgt auf Grundlage unseres berechtigten Interesses an einer konsistenten und ansprechenden Darstellung unserer Website sowie einer verbesserten Nutzererfahrung (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO).
+
+#### **Hinweis**  
+Besucher*innen können in den Browser-Einstellungen die Nutzung externer Ressourcen blockieren oder einschränken. Dies kann jedoch die Darstellung und Funktionalität der Website beeinträchtigen.
 
 **Hinweis:**  
 Wenn Sie nicht möchten, dass Google Ihre Daten speichert, können Sie die Nutzung von Google Fonts verhindern, indem Sie entsprechende Add-ons (z. B. NoScript) verwenden oder den Zugriff auf die Google-Server blockieren.  
