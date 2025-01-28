@@ -151,11 +151,14 @@
   </p>
 
 <section id="project-dashboard">
-    <div class="dashboard">
+   <div class="dashboard">
         <!-- Subjects Section -->
         <div class="chart-section">
             <div class="chart-heading">
                 Subjects (n = <span id="subjectCount">0</span>)
+            </div>
+            <div class="chart-description">
+                Distribution of different categories (subjects) across all features.
             </div>
             <canvas id="subjectChart"></canvas>
         </div>
@@ -165,6 +168,9 @@
             <div class="chart-heading">
                 Coverage (Locations) (n = <span id="coverageCount">0</span>)
             </div>
+            <div class="chart-description">
+                Distribution of features across different spatial locations.
+            </div>
             <canvas id="coverageChart"></canvas>
         </div>
 
@@ -172,6 +178,9 @@
         <div class="chart-section">
             <div class="chart-heading">
                 File Formats (n = <span id="fileFormatCount">0</span>)
+            </div>
+            <div class="chart-description">
+                Breakdown of file types (e.g., .tif, .jpg) used in the dataset.
             </div>
             <canvas id="fileFormatChart"></canvas>
         </div>
