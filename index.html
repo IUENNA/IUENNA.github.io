@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
             <!-- Dublin Core Metatags -->
@@ -74,6 +75,31 @@
             display: block;
             margin: 0 auto;
         }
+
+body {
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart-section {
+            width: 30%;
+            min-width: 300px;
+            text-align: center;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        .chart-heading {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        
         .footer {
     color: white;
     text-align: center; /* optional für zentrierten Text */
@@ -126,6 +152,151 @@
   <p>
     The <strong>IUENNA collection</strong> is the first initiative of its kind in Austria, consolidating research spanning far over <strong>100 years</strong> from more than <strong>200 archaeological sites</strong>, primarily (but not exclusively) in the <em>Jauntal/Podjuna Valley</em>, Carinthia. During IUENNA, over <strong>20,000 individual items</strong>, including excavation reports, geophysical surveys, 3D models, and retro-digitized analog materials, were digitized and archived. The data is organized into six semantically defined subcollections: <strong>Hemmaberg (HB)</strong>, <strong>Globasnitz (GLO)</strong>, <strong>Jaunstein (JAU)</strong>, <strong>Sankt Stefan (STE)</strong>, <strong>Jauntal (TAL)</strong>, and <strong>Retrodigitalisate (RET)</strong>. These subcollections feature a detailed and reusable file folder structure for comprehensive data management. Each resource is enriched with freely accessible, globally available, detailed, machine-readable metadata in adherence to the <a href="https://www.go-fair.org/fair-principles/" target="_blank">FAIR</a> and <a href="https://www.gida-global.org/care" target="_blank">CARE</a> principles.
   </p>
+
+<section id="project-dashboard">
+    <div class="dashboard">
+        <!-- Subjects Section -->
+        <div class="chart-section">
+            <div class="chart-heading">
+                Subjects (n = <span id="subjectCount">0</span>)
+            </div>
+            <canvas id="subjectChart"></canvas>
+        </div>
+
+        <!-- Coverage Section -->
+        <div class="chart-section">
+            <div class="chart-heading">
+                Coverage (Locations) (n = <span id="coverageCount">0</span>)
+            </div>
+            <canvas id="coverageChart"></canvas>
+        </div>
+
+        <!-- File Formats Section -->
+        <div class="chart-section">
+            <div class="chart-heading">
+                File Formats (n = <span id="fileFormatCount">0</span>)
+            </div>
+            <canvas id="fileFormatChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Function to get top 10 categories and group the rest as "Other"
+        function getTop10(data) {
+            const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
+            const top10 = sorted.slice(0, 10);
+            const other = sorted.slice(10).reduce((sum, [, count]) => sum + count, 0);
+            if (other > 0) {
+                top10.push(['Other', other]);
+            }
+            return Object.fromEntries(top10);
+        }
+
+        // Load GeoJSON data
+        fetch('https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/7b82dbaa001bb13ce08b2b417f0e77a5ae4fbfec/wma/R00_WGS84.geojson')
+            .then(response => response.json())
+            .then(data => {
+                const subjects = {};
+                const locations = {};
+                const fileFormats = {};
+
+                data.features.forEach(feature => {
+                    const properties = feature.properties;
+
+                    // Count occurrences of each subject
+                    properties.hasSubject.split(',').forEach(subject => {
+                        subject = subject.trim();
+                        subjects[subject] = (subjects[subject] || 0) + 1;
+                    });
+
+                    // Count occurrences of each location
+                    const location = properties.hasSpatialCoverage;
+                    locations[location] = (locations[location] || 0) + 1;
+
+                    // Count file formats (suffixes)
+                    const fileFormat = properties.hasAlternativeTitle.split('.').pop();
+                    fileFormats[fileFormat] = (fileFormats[fileFormat] || 0) + 1;
+                });
+
+                // Reduce to top 10 for each category
+                const topSubjects = getTop10(subjects);
+                const topLocations = getTop10(locations);
+                const topFileFormats = getTop10(fileFormats);
+
+                // Update counts
+                document.getElementById('subjectCount').textContent = Object.values(subjects).reduce((a, b) => a + b, 0);
+                document.getElementById('coverageCount').textContent = Object.values(locations).reduce((a, b) => a + b, 0);
+                document.getElementById('fileFormatCount').textContent = Object.values(fileFormats).reduce((a, b) => a + b, 0);
+
+                // Create bar chart for subjects
+                const subjectCtx = document.getElementById('subjectChart').getContext('2d');
+                new Chart(subjectCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(topSubjects),
+                        datasets: [{
+                            label: 'Subjects',
+                            data: Object.values(topSubjects),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create bar chart for coverage (locations)
+                const coverageCtx = document.getElementById('coverageChart').getContext('2d');
+                new Chart(coverageCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(topLocations),
+                        datasets: [{
+                            label: 'Coverage (Locations)',
+                            data: Object.values(topLocations),
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create pie chart for file formats
+                const fileFormatCtx = document.getElementById('fileFormatChart').getContext('2d');
+                new Chart(fileFormatCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(topFileFormats),
+                        datasets: [{
+                            label: 'File Formats',
+                            data: Object.values(topFileFormats),
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FFCD56', '#4CAF50', '#F44336', '#9C27B0', '#607D8B'],
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            });
+    </script>
+</section>
+
+    
   <p>
     The collection supports advanced <strong>Roman-archaeological research</strong>, <strong>digital-archaeological workflows</strong>, and <strong>GIS-based spatial analysis</strong> through its structured organization and seamless database integration. Data is preserved in sustainable formats such as <a href="https://gdal.org/drivers/raster/geotiff.html" target="_blank">GeoTIFF</a> for georeferenced raster data, <a href="https://www.geopackage.org/" target="_blank">GPKG</a>, <a href="https://en.wikipedia.org/wiki/AutoCAD_DXF" target="_blank">DXF</a>, and <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank">SVG</a> for georeferenced vector data, <a href="https://www.pdfa.org/" target="_blank">PDF/A</a> for documents, <a href="https://en.wikipedia.org/wiki/TIFF" target="_blank">TIFF</a>/<a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank">PNG</a> for high-resolution images, and <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file" target="_blank">OBJ</a> for 3D models. <strong><a href="#project-github">Web Mapping Applications (WMA)</a></strong> further enhances accessibility, allowing users to interactively explore spatial and thematic dimensions of the dataset.
   </p>
