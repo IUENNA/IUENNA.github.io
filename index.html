@@ -41,14 +41,15 @@
             margin: 0;
             font-size: 1.8rem;
         }
-        main {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
         footer {
             text-align: center;
             padding: 1rem 0;
@@ -77,26 +78,43 @@
         }
 
      }
-        .dashboard {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .chart-section {
-            width: 30%;
-            min-width: 300px;
-            text-align: center;
-        }
-        canvas {
-            max-width: 100%;
-            height: 400px; /* Increased height for better visibility */
-        }
-        .chart-heading {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        
+.dashboard {
+    display: flex;
+    justify-content: space-between; /* Spread charts evenly */
+    gap: 20px;
+    flex-wrap: nowrap; /* Prevent wrapping */
+}
+.chart-section {
+    flex: 1; /* Distribute equal width to each chart */
+    max-width: 30%; /* Ensure three charts fit */
+    min-width: 300px; /* Prevent charts from becoming too narrow */
+    text-align: center;
+}
+canvas {
+    width: 100%; /* Scale the charts properly */
+    height: 400px; /* Maintain consistent height */
+}
+
+    .chart-heading {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .chart-description {
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 15px;
+    }
+        @media (max-width: 768px) {
+    .dashboard {
+        flex-wrap: wrap; /* Allow charts to wrap */
+    }
+    .chart-section {
+        flex: 1 1 100%; /* Full width for small screens */
+        max-width: 100%; /* Ensure charts fill the screen */
+        margin-bottom: 20px; /* Add space between stacked charts */
+    }
+}
+
         .footer {
     color: white;
     text-align: center; /* optional für zentrierten Text */
@@ -106,6 +124,8 @@
     color: white;
     text-decoration: underline; /* optional */
 }
+
+        
     </style>
 </head>
 <body>
