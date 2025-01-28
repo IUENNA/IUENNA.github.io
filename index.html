@@ -78,22 +78,27 @@ main {
         }
 
      }
-.dashboard {
-    display: flex;
-    justify-content: space-between; /* Spread charts evenly */
-    gap: 20px;
-    flex-wrap: nowrap; /* Prevent wrapping */
+   .dashboard {
+    display: flex; /* Enable Flexbox */
+    flex-direction: row; /* Arrange items in a row */
+    justify-content: space-around; /* Distribute charts evenly */
+    gap: 20px; /* Space between charts */
+    max-width: 100%; /* Allow full-width layout */
+    flex-wrap: wrap; /* Handle overflow gracefully */
 }
+
 .chart-section {
-    flex: 1; /* Distribute equal width to each chart */
-    max-width: 30%; /* Ensure three charts fit */
-    min-width: 300px; /* Prevent charts from becoming too narrow */
+    flex: none; /* Prevent charts from stretching */
+    width: 30%; /* Set specific width for each chart */
     text-align: center;
 }
+
 canvas {
-    width: 100%; /* Scale the charts properly */
-    height: 400px; /* Maintain consistent height */
+    width: 100%; /* Adjust width dynamically */
+    max-height: 500px; /* Set a consistent height for all bar charts */
+    height: 400px; /* Ensure consistent height */
 }
+
 
     .chart-heading {
         font-size: 1.2em;
@@ -104,16 +109,16 @@ canvas {
         color: #555;
         margin-bottom: 15px;
     }
-        @media (max-width: 768px) {
-    .dashboard {
-        flex-wrap: wrap; /* Allow charts to wrap */
+    @media (max-width: 768px) {
+        .dashboard {
+            flex-direction: column; /* Stack charts vertically on small screens */
+        }
+
+        .chart-section {
+            max-width: 100%; /* Full width for small screens */
+            margin-bottom: 20px; /* Space between stacked charts */
+        }
     }
-    .chart-section {
-        flex: 1 1 100%; /* Full width for small screens */
-        max-width: 100%; /* Ensure charts fill the screen */
-        margin-bottom: 20px; /* Add space between stacked charts */
-    }
-}
 
         .footer {
     color: white;
