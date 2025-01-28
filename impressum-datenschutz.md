@@ -41,8 +41,6 @@ Trotz sorgfältiger Kontrolle übernehme ich keine Haftung für die Inhalte exte
 **Urheberrecht:**
 Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem Urheberrecht. Jegliche Vervielfältigung, Bearbeitung, Verbreitung oder Verwertung bedarf der vorherigen schriftlichen Zustimmung des Urhebers.
 
----
-
 ## **Datenschutzerklärung**
 
 ### **1. Verantwortlicher**
