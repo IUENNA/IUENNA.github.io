@@ -147,7 +147,7 @@ Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit anzupassen
 
 Einige Inhalte auf dieser Website wurden mit Hilfe von generativer Künstlicher Intelligenz (KI) erstellt oder optimiert. Diese Tools unterstützen uns bei der effizienten Erstellung hochwertiger Inhalte. Die Website selbst verwendet jedoch keine KI-Technologien für ihre Funktionalität oder den Betrieb. Die Schwerpunkte in Bezug auf die Verwendung von KI liegen auf unserer Seite im Bereich der
 
-- **Inhaltserstellung**: KI-Tools wurden genutzt, um bestimmte Textelemente dieser Website zu verfassen, zu optimieren oder zu verbessern.
+- **Inhaltserstellung**: Generative KI-Tools (OpenAI ChatGPT-4o und ChatGPT o1; Google Gemini 1.5 Pro) wurden genutzt, um bestimmte Inhalte dieser Website zu verfassen, zu optimieren oder zu verbessern.
 - **Kontrolle**: Alle KI-generierten Inhalte werden von unserem Team geprüft und validiert, um Genauigkeit, Relevanz und die Einhaltung ethischer Standards zu gewährleisten.
 - **Transparenz**: Wir legen großen Wert darauf, die Nutzung von KI in unserem Inhaltsprozess offen und transparent zu kommunizieren.
 
