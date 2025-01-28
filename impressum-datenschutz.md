@@ -141,7 +141,7 @@ Barichgasse 40-42
 ### **9. Änderung der Datenschutzerklärung**
 Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit anzupassen, um Änderungen in rechtlichen Anforderungen oder der Website zu berücksichtigen.
 
-### **10. KI-Erklärung**
+## **KI-Erklärung**
 
 Einige Inhalte auf dieser Website wurden mit Hilfe von generativer Künstlicher Intelligenz (KI) erstellt oder optimiert. Diese Tools unterstützen uns bei der effizienten Erstellung hochwertiger Inhalte. Die Website selbst verwendet jedoch keine KI-Technologien für ihre Funktionalität oder den Betrieb. Die Schwerpunkte in Bezug auf die Verwendung von KI liegen auf unserer Seite im Bereich der
 
