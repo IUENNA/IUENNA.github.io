@@ -99,7 +99,7 @@
             return this._div;
         };
         title.update = function () {
-            this._div.innerHTML = '<h2>Globasnitz - IUENNA - open data - https://hdl.handle.net/21.11115/0000-0015-EBEF-4</h2>';
+            this._div.innerHTML = '<h2>Globasnitz | Open Data</h2>';
         };
         title.addTo(map);
         var abstract = new L.Control({'position':'topright'});
@@ -145,7 +145,7 @@
         var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             pane: 'pane_OSMStandard_0',
             opacity: 0.3,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a> | <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4">IUENNA, CC BY 4.0</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
