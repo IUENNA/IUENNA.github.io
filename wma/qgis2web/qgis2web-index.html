@@ -120,7 +120,42 @@
             abstract.show = function () {
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
-                this._div.innerHTML = 'Weitere Literatur: <br /><br />Reiner, F., & Schwaiger, H. (2022). Geophysikalische Messungen in und um Globasnitz/Globasnica.Rudolfinum - Jahrbuch des Landesmuseums für Kärnten 2021,  66-74. https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf<br /><br />Beschreibung:<br /><br />Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf Basis des Gesamtplanes wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:<br />* Georadar-Daten (glo20_georadar [EPSG:32633],glo24_georadar_all [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar (2020: Teilergebnisse,2024: Gesamtergebnisse) in Globasnitz.<br />* Geomagnetik-Daten (glo24_geomagnetik_all [EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik in Globasnitz mit Stand 2024.<br />* Vektorisierte Ausgrabungsdaten (glo_ausgrabung_features): Enthält die vektorisierte Umzeichnung der Grabungsergebnisse der Ausgrabungen im Gräberfeld Globasnitz lt. dem Gesamtplan von J.  Eitler.<br />* Interpretation der geophysikalischen Messungen (glo_geophysik_features): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.<br />* glo_Glaser_1979_features: Teilweise veraltetes Verzeichnis der Fundzonen nach den Grabungen der Jahre 1913,1914,1922,1923,1924,1925,1928,1968 und 1976 in Globasnitz nach der von F.  Glaser 1979 angefertigte Fundstellenskizze (für die aktuellste Ausführung Glaser 2021,54 Abb. 2). <br /><br />Zitieren als: <br /><br />Hagmann, D., Austrian Archaeological Institute | Austrian Academy of Sciences, & kärnten.museum. (2025). glo_geodaten_open.gpkg. https://hdl.handle.net/21.11115/0000-0015-EBEF-4';
+                this._div.innerHTML = `
+    <strong>Weitere Literatur:</strong><br /><br />
+    Reiner, F., & Schwaiger, H. (2022). Geophysikalische Messungen in und um Globasnitz/Globasnica. 
+    <em>Rudolfinum – Jahrbuch des Landesmuseums für Kärnten 2021</em>, 66–74. 
+    <a href="https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf" target="_blank">https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf</a><br /><br />
+
+    <strong>Beschreibung:</strong><br /><br />
+    Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen 
+    sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf 
+    Basis des Gesamtplans, wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:<br /><br />
+
+    <ul>
+        <li><strong>Georadar-Daten</strong> (<code>glo20_georadar [EPSG:32633]</code>, <code>glo24_georadar_all [EPSG:32633]</code>): 
+            Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar 
+            (2020: Teilergebnisse, 2024: Gesamtergebnisse) in Globasnitz.</li>
+        <li><strong>Geomagnetik-Daten</strong> (<code>glo24_geomagnetik_all [EPSG:32633]</code>): 
+            Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik 
+            in Globasnitz mit Stand 2024.</li>
+        <li><strong>Vektorisierte Ausgrabungsdaten</strong> (<code>glo_ausgrabung_features</code>): 
+            Enthält die vektorisierte Umzeichnung der Grabungsergebnisse der Ausgrabungen im 
+            Gräberfeld Globasnitz gemäß dem Gesamtplan von J. Eitler.</li>
+        <li><strong>Interpretation der geophysikalischen Messungen</strong> (<code>glo_geophysik_features</code>): 
+            Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.</li>
+        <li><strong>Fundzonendaten (Glaser 1979)</strong> (<code>glo_Glaser_1979_features</code>): 
+            Teilweise veraltetes Verzeichnis der Fundzonen nach den Grabungen der Jahre 
+            1913, 1914, 1922, 1923, 1924, 1925, 1928, 1968 und 1976 in Globasnitz nach 
+            der von F. Glaser (1979) angefertigten Fundstellenskizze 
+            (für die aktuellste Ausführung siehe Glaser 2021, S. 54, Abb. 2).</li>
+    </ul><br />
+
+    <strong>Zitieren als:</strong><br /><br />
+    Hagmann, D., Reiner, F., Austrian Archaeological Institute | Austrian Academy of Sciences, & kärnten.museum. (2025). 
+    <em>glo_geodaten_open.gpkg</em>. 
+    <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" target="_blank">https://hdl.handle.net/21.11115/0000-0015-EBEF-4</a>
+`;
+
         };
         abstract.addTo(map);
         var zoomControl = L.control.zoom({
