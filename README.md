@@ -14,7 +14,7 @@ The IUENNA project is a collaboration between the [State Museum for Carinthia (k
 The IUENNA project is coordinated by  
 
 **[Dr. Dominik Hagmann](https://orcid.org/0000-0002-4481-6234)**  
-([kärnten.museum](https://www.kaernten.museum))
+([kärnten.museum](kärnten.museum))
 
 and 
 
