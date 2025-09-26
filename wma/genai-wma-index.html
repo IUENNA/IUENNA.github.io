@@ -140,24 +140,24 @@
 <body>
     <div id="map"></div>
     <div id="search-container">
-        <label for="location-select">Geolocation auswählen</label>
+        <label for="location-select">Choose geolocation</label>
         <select id="location-select" multiple></select>
 
-        <label for="subject-select">Themen auswählen</label>
+        <label for="subject-select">Choose subject</label>
         <select id="subject-select" multiple></select>
 
-        <label for="name-input">Inhalt suchen</label>
-        <input id="name-input" type="text" placeholder="Alles durchsuchen...">
+        <label for="name-input">Search for content</label>
+        <input id="name-input" type="text" placeholder="Search...">
         <div id="name-suggestions" class="autocomplete-suggestions"></div>
 
         <div style="text-align: center; background-color: #007BFF; color: white; padding: 10px; margin: 20px auto; border: 1px solid #ccc; width: fit-content; border-radius: 5px;">
-            <span id="counter">Angezeigte Ressourcen: 0</span>
+            <span id="counter">Resources: 0</span>
         </div>       
           
           <div style="text-align: center;">
-            <button id="export-csv-button" class="button-styled" title="Exportiert die angezeigten Ressourcen als CSV-Datei">Export als CSV</button>
-            <button id="export-geojson-button" class="button-styled" title="Exportiert die angezeigten Ressourcen als GeoJSON-Datei">Export als GeoJSON</button>
-            <button id="reset-button" class="button-styled" title="Setzt alle Filter zurück">Filter zurücksetzen</button>
+            <button id="export-csv-button" class="button-styled" title="Export all resouces as CSV">Export as CSV</button>
+            <button id="export-geojson-button" class="button-styled" title="Export all resouces as ">Export as GeoJSON</button>
+            <button id="reset-button" class="button-styled" title="Reset filter">Reset filter</button>
         </div>
         
     </div>
@@ -487,3 +487,4 @@ exportGeoJsonButton.addEventListener('click', exportGeoJson);
     </script>
 </body>
 </html>
+
