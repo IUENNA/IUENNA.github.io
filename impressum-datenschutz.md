@@ -33,7 +33,7 @@ E: franziska.reiner@oeaw.ac.at
 Dr. Dominik Hagmann, BA MA
 
 **Unternehmensgegenstand:**
-Private, wissenschaftliche Website zur Bereitstellung von Informationen über das archäologische Go!Digital-3.0-Projekt IUENNA und der damit verbundenne Forschung.
+Private, wissenschaftliche Website zur Bereitstellung von Informationen über das beendete archäologische Go!Digital-3.0-Projekt IUENNA und die damit verbundene Forschung.
 
 **Haftungsausschluss:**
 Trotz sorgfältiger Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.

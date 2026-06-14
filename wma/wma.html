@@ -4,274 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Mapping with the IUENNA Project</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <!-- Dublin Core Metatags -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=2.1.5">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
     <meta name="DC.creator" content="Dominik Hagmann; Franziska Reiner">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
-    <meta name="DC.description" content="Interactive anaylsis and presentation of the Jauntal Valley, created using GenAI technologies.">
+    <meta name="DC.description" content="Interactive analysis and presentation of the Jauntal Valley, created using GenAI technologies.">
     <meta name="DC.date" content="2025-01-27">
     <meta name="DC.language" content="de">
     <meta name="DC.identifier" content="https://iuenna.github.io/">
     <meta name="DC.rights" content="CC BY 4.0">
+    
     <style>
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-}
-header img {
-    height: 80px;
-    display: block;
-    margin: 0 auto 10px;
-}
-        header .button {
-    margin-top: 10px;
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-header .button:hover {
-    background-color: #0056b3;
-}
-
-
-        main {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        pre {
-            background: #eee;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background: #333;
-            color: #fff;
-            margin-top: 2rem;
-        }
-        .button {
-            display: inline-block;
-            margin: 0.5rem 0;
-            padding: 0.5rem 1rem;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
+        /* Specific Leaflet map styling */
         #live-map {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             height: 500px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
         }
-        .footer {
-    color: white;
-    text-align: center; /* optional für zentrierten Text */
-}
-
-.footer a {
-    color: white;
-    text-decoration: underline; /* optional */
-}
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-<header>
-    <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo">
-    <h1>Web Mapping with the IUENNA Project</h1>
-   <p><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" 
-   style="display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #FF5733; color: white; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-   Find Our Data on ARCHE
-</a></p>
 
-    <p><a href="https://iuenna.github.io/" class="button">Home</a></p>
-</header>
+    <!-- Sticky Navigation Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">
+                <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
+                <span class="nav-title">IUENNA</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="wma.html" class="nav-link">Web Mapping</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Main Container -->
     <main>
-
-        <section>
-            <h2>Overview</h2>
-            <p>This web mapping project demonstrates how to create Web Mapping Applications (WMAs) effectively using <strong><a href="https://qgis.org/en/site/" target="_blank">QGIS</a></strong>, the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin, and Artificial Intelligence (AI) tools, such as <strong><a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a></strong>.</p>
+        
+        <!-- Hero Header -->
+        <section class="hero-section">
+            <h1 class="hero-title">Web Mapping with the IUENNA Project</h1>
+            <p class="hero-subtitle">Learn how we visualize, analyze, and publish geospatial data for future archaeology.</p>
+            <div class="btn-group">
+                <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
+                    <i class="fa-solid fa-database"></i> Find Our Data on ARCHE
+                </a>
+                <a href="../index.html" class="btn btn-outline">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </div>
             
-            <p>WMAs are versatile tools for visualizing spatial data, making them invaluable in fields like archaeology. They enhance the accessibility and management of archaeological datasets by providing intuitive, interactive maps. With features like layers and markers, WMAs allow researchers and the public to explore, analyze, and interact with large collections of archaeological data.</p>
-            
-            <p>For the IUENNA project, WMAs serve as gateways to navigate archaeological records from the Jauntal region. They enable users to gain an overview of the dataset or perform targeted searches for specific resources or groups of objects. By complementing the <a href="https://arche.acdh.oeaw.ac.at/" target="_blank">ARCHE repository</a>, these applications add customizable, interactive layers tailored to specific tasks, simplifying daily workflows and improving usability.</p>
-            
-            <p>This approach democratizes access to cultural heritage by transitioning from analog resources, often restricted to single-user access at physical locations, to globally accessible, structured digital platforms enriched with metadata. This not only enhances usability but also reduces mechanical stress on fragile physical artifacts, ensuring their preservation for future generations.</p>
-            
-            <p>A crucial component in building WMAs is the use of open-source JavaScript libraries, such as <a href="https://openlayers.org/" target="_blank">OpenLayers</a> and <a href="https://leafletjs.com/" target="_blank">Leaflet</a>. These libraries enable the addition of interactive map layers, markers, geometries, and other features, making them essential tools for web mapping development.</p>
-            
-            <div style="margin-top: 30px; text-align: center;">
-                <a href="#steps" class="button" style="
-                    display: inline-block;
-                    margin: 10px;
-                    padding: 15px 25px;
-                    background-color: #007BFF;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                ">Go to General Steps</a>
-                <a href="#examples" class="button" style="
-                    display: inline-block;
-                    margin: 10px;
-                    padding: 15px 25px;
-                    background-color: #007BFF;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                ">Go to Examples</a>
-                <a href="#example-code" class="button" style="
-                    display: inline-block;
-                    margin: 10px;
-                    padding: 15px 25px;
-                    background-color: #007BFF;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                ">Go to Example Code</a>
-                <a href="#ai-tools" class="button" style="
-                    display: inline-block;
-                    margin: 10px;
-                    padding: 15px 25px;
-                    background-color: #007BFF;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                ">Go to GenAI Tools</a>
-                <a href="#benefits" class="button" style="
-                    display: inline-block;
-                    margin: 10px;
-                    padding: 15px 25px;
-                    background-color: #007BFF;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                ">Go to Benefits and Drawbacks</a>
+            <div class="btn-group" style="margin-top: 1.5rem;">
+                <a href="#steps" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">General Steps</a>
+                <a href="#examples" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Examples</a>
+                <a href="#example-code" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Example Code</a>
+                <a href="#ai-tools" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">GenAI Tools</a>
+                <a href="#benefits" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Benefits &amp; Drawbacks</a>
             </div>
         </section>
-        
-        
 
-        <section id="steps">
-            <h2>General Steps to Create a WMA</h2>
-            <ol>
-                <li>Download and install <a href="https://qgis.org/en/site/" target="_blank">QGIS</a> on your computer to start working with geospatial data.</li>
-<li>Prepare your data in QGIS by adding vector data (e.g., Shapefiles) or raster data (e.g., satellite imagery or DEMs). Ensure that your data is properly projected and organized for web mapping purposes.</li>
-<li>Export your data from QGIS as <strong>GeoJSON</strong>, a widely used format for web mapping, to provide the necessary data for your web mapping application (WMA) or Generative AI (GenAI) workflows.</li>
-<li>Install the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin through the QGIS Plugin Manager. This plugin is essential for exporting your QGIS project to a web-based format.</li>
-<li>Export your project as a web map using the qgis2web plugin. You can choose between rendering your map with <a href="https://leafletjs.com/" target="_blank">Leaflet</a> or <a href="https://openlayers.org/" target="_blank">OpenLayers</a>, depending on your needs and familiarity with these libraries.</li>
-<li>Upload the exported files (HTML, CSS, JavaScript, or GeoJSON) to a hosting platform, such as a GitHub repository, institutional server, or personal website, ensuring accessibility and reliability.</li>
-<li>Activate <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> (or another hosting service) for your repository to make your web mapping application (WMA) available online for users to access.</li>
-<li>Enhance your WMA by customizing the code. For example, you can add additional features, refine the styling, or optimize the user interface. Here, GenAI tools like <a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a> can assist in modifying your WMA or working with the exported GeoJSON data to implement advanced functionality efficiently.</li>
-<li>Alternatively, you can leverage GenAI tools to directly generate your WMA or even create the entire accompanying website, saving significant development time while ensuring customization to your specific needs.</li>
+        <!-- Overview & Steps -->
+        <div class="grid-container">
+            <section class="card">
+                <h2>Overview</h2>
+                <p>This web mapping project demonstrates how to create Web Mapping Applications (WMAs) effectively using <strong><a href="https://qgis.org/en/site/" target="_blank">QGIS</a></strong>, the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin, and Artificial Intelligence (AI) tools, such as <strong><a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a></strong> and <strong>Google Antigravity</strong>.</p>
+                <p>WMAs are versatile tools for visualizing spatial data, making them invaluable in fields like archaeology. They enhance the accessibility and management of archaeological datasets by providing intuitive, interactive maps. With features like layers and markers, WMAs allow researchers and the public to explore, analyze, and interact with large collections of archaeological data.</p>
+                <p>For the IUENNA project, WMAs served as gateways to navigate archaeological records from the Jauntal region. They enabled users to gain an overview of the dataset or perform targeted searches for specific resources or groups of objects. By complementing the <a href="https://arche.acdh.oeaw.ac.at/" target="_blank">ARCHE repository</a>, these applications added customizable, interactive layers tailored to specific tasks, simplifying daily workflows and improving usability.</p>
+            </section>
 
-            </ol>
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
-        </section>
+            <section class="card" id="steps">
+                <h2>General Steps to Create a WMA</h2>
+                <ol style="margin-left: 20px; color: var(--text-muted); line-height: 1.7;">
+                    <li style="margin-bottom: 0.6rem;">Download and install <strong>QGIS</strong> on your computer to start working with geospatial data.</li>
+                    <li style="margin-bottom: 0.6rem;">Prepare your data in QGIS by adding vector data (e.g., Shapefiles) or raster data. Ensure that your data is properly projected and organized.</li>
+                    <li style="margin-bottom: 0.6rem;">Export your data from QGIS as <strong>GeoJSON</strong> (WGS84), a widely used format for web mapping.</li>
+                    <li style="margin-bottom: 0.6rem;">Install the <strong>qgis2web</strong> plugin through the QGIS Plugin Manager.</li>
+                    <li style="margin-bottom: 0.6rem;">Export your project as a web map using the plugin. Choose wether to render with <strong>Leaflet</strong> or <strong>OpenLayers</strong>.</li>
+                    <li style="margin-bottom: 0.6rem;">Upload the exported files (HTML, CSS, JS) to a hosting platform (e.g., GitHub Pages).</li>
+                    <li style="margin-bottom: 0.6rem;">Activate GitHub Pages in your repository settings to make the map publicly available.</li>
+                    <li style="margin-bottom: 0.6rem;">Enhance your WMA by customizing the code. GenAI tools can assist in writing filters, search features, and export functions.</li>
+                </ol>
+            </section>
+        </div>
 
-        <section id="examples">
+        <!-- Examples Section -->
+        <section class="card" id="examples" style="margin-bottom: 3rem;">
             <h2>Examples Using GenAI and qgis2web</h2>
-            <p>Below are two interactive Web Mapping Applications (WMAs) created using cutting-edge tools: GenAI and the <a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a> plugin. These applications provide access to IUENNA's comprehensive dataset, demonstrating how digital tools enhance the exploration and management of archaeological data:</p>
-        
-            <div style="margin-top: 20px; text-align: center;">
-                <div style="margin-bottom: 20px; padding: 15px; border: 2px solid #007BFF; border-radius: 8px; background-color: #f4faff; display: inline-block; width: 90%; max-width: 600px;">
-                    <h3 style="margin: 0 0 10px;">GenAI WMA</h3>
-                    <p style="margin: 0 0 15px;">Explore a Web Mapping Application created with GenAI. This WMA showcases how AI can automate and enhance interactive mapping for complex datasets.</p>
-                    <a href="https://iuenna.github.io/wma/genai-wma-home.html" target="_blank" class="button" style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;">Explore the GenAI WMA</a>
+            <p>Below are two interactive Web Mapping Applications (WMAs) created using cutting-edge tools: GenAI and the qgis2web plugin. These applications provide access to IUENNA's comprehensive dataset, demonstrating how digital tools enhance the exploration and management of archaeological data:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="padding: 1.5rem; border: 2px solid var(--primary); border-radius: var(--radius-lg); background-color: rgba(168, 68, 46, 0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--primary);">GenAI WMA</h3>
+                        <p style="font-size: 0.9rem;">Explore a Web Mapping Application created and enhanced with GenAI. This WMA showcases how AI can automate and enhance interactive mapping for complex datasets.</p>
+                    </div>
+                    <a href="https://iuenna.github.io/wma/genai-wma-home.html" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                        <i class="fa-solid fa-robot"></i> Explore the GenAI WMA
+                    </a>
                 </div>
-        
-                <div style="margin-bottom: 20px; padding: 15px; border: 2px solid #28a745; border-radius: 8px; background-color: #fafff4; display: inline-block; width: 90%; max-width: 600px;">
-                    <h3 style="margin: 0 0 10px;">qgis2web WMA</h3>
-                    <p style="margin: 0 0 15px;">Explore a Web Mapping Application created using QGIS and the qgis2web plugin. This WMA demonstrates the power of open-source tools for interactive mapping.</p>
-                    <a href="https://iuenna.github.io/wma/qgis2web-home.html" target="_blank" class="button" style="padding: 10px 20px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;">Explore the qgis2web WMA</a>
+                
+                <div style="padding: 1.5rem; border: 2px solid var(--secondary); border-radius: var(--radius-lg); background-color: rgba(184, 142, 62, 0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--secondary);">qgis2web WMA</h3>
+                        <p style="font-size: 0.9rem;">Explore a Web Mapping Application created using QGIS and the qgis2web plugin. This WMA demonstrates the power of open-source tools for interactive mapping.</p>
+                    </div>
+                    <a href="https://iuenna.github.io/wma/qgis2web-home.html" target="_blank" class="btn btn-secondary" style="margin-top: 1rem;">
+                        <i class="fa-solid fa-map-location"></i> Explore the qgis2web WMA
+                    </a>
                 </div>
             </div>
-        
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
         </section>
 
-           <!-- AI Declaration -->
-    <section id="ai-declaration">
-        <p>
-            Contents and tools provided on this webpage, including one WMA, have been generated and enhanced using GenAI tools. 
-            These tools assist in creating high-quality content efficiently. However, the webpage or WMA itself do not utilize AI 
-            technologies for its functionality or operation.
-        </p>
-        <h3>Key Points Regarding Our Use of GenAI:</h3>
-        <ul>
-            <li><strong>Content Generation:</strong> GenAI tools have been used to assist in drafting, optimizing, or enhancing certain text elements displayed on this website.</li>
-            <li><strong>Human Oversight:</strong> All AI-generated content is reviewed and validated by our team to ensure accuracy, relevance, and adherence to ethical standards.</li>
-            <li><strong>Transparency:</strong> We are committed to openly disclosing the use of AI in our content creation process.</li>
-        </ul>
-        <p>
-            For inquiries or concerns about our use of GenAI, feel free to contact us at 
-            <a href="mailto:dominik.hagmann@univie.ac.at">dominik.hagmann@univie.ac.at</a>.
-        </p>
-    </section>
-      
-        
-
-        <section id="example-code">
-            <h2>Example Code</h2>
-            <p>The following HTML code shows a minimalist web mapping integration using Leaflet:</p>
-            <pre>
+        <!-- Example Code & Live WMA -->
+        <div class="grid-container">
+            <section class="card" id="example-code">
+                <h2>Example Code</h2>
+                <p>The following HTML code shows a minimalist web mapping integration using Leaflet:</p>
+                <pre style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.85rem; overflow-x: auto; color: var(--text-dark); font-family: monospace;">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;Example Map&lt;/title&gt;
     &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
     &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
@@ -280,113 +146,104 @@ header .button:hover {
     &lt;div id="map" style="width: 100%; height: 500px;"&gt;&lt;/div&gt;
     &lt;script&gt;
         var map = L.map('map').setView([46.5647, 14.8222], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'OpenStreetMap contributors'
+        }).addTo(map);
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-            </pre>
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
-        </section>
+                </pre>
+            </section>
 
-        <section id="live-map">
-            <h2>Live WMA</h2>
-            <p>Below is an embedded example of a live web mapping application powered by Leaflet:</p>
-            <div id="live-map"></div>
-            <script>
-                var liveMap = L.map('live-map').setView([46.5647, 14.8222], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(liveMap);
+            <section class="card" id="live-map-section">
+                <h2>Live Demo WMA</h2>
+                <p>Below is an embedded example of a live web mapping application powered by Leaflet. Use the layers button in the top right to filter details:</p>
+                <div id="live-map"></div>
+            </section>
+        </div>
 
-                // Adding marker points
-                var marker1 = L.marker([46.5647, 14.8222]).addTo(liveMap);
-                marker1.bindPopup("Globasnitz - A key location in archaeology.").openPopup();
+        <!-- AI Tools & Benefits -->
+        <div class="grid-container" style="margin-top: 2rem;">
+            <section class="card" id="ai-tools">
+                <h2>Using GenAI Tools</h2>
+                <p>GenAI tools like ChatGPT by OpenAI, Claude by Anthropic, and Gemini by Google DeepMind (orchestrated via agentic frameworks like <strong>Google Antigravity</strong>) are transformative technologies. In web mapping workflows, developers can export GeoJSON data from QGIS and leverage AI to implement autocomplete search bars, data filters, and map statistics automatically, saving hours of manual scripting.</p>
+                <p>GenAI lowers the entry barrier for beginners by offering step-by-step templates and scripts. This accelerates digital development and allows humanities projects to focus on interpretation, curation, and open-science dissemination.</p>
+            </section>
 
-                var marker2 = L.marker([46.5747, 14.8122]).addTo(liveMap);
-                marker2.bindPopup("Another interesting point in Globasnitz.");
+            <section class="card" id="benefits">
+                <h2>Benefits and Drawbacks</h2>
+                <p><strong>Benefits:</strong></p>
+                <ul style="padding-left: 20px; margin-bottom: 1rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.4rem;">High cost-efficiency through free and open-source software (QGIS, Leaflet) and free hosting on GitHub Pages.</li>
+                    <li style="margin-bottom: 0.4rem;">Democratizes access to cultural heritage by providing a globally accessible, structured digital twin of the datasets.</li>
+                </ul>
+                <p><strong>Drawbacks:</strong></p>
+                <ul style="padding-left: 20px; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.4rem;">Basic understanding of GIS concepts is still required to pre-process data.</li>
+                    <li style="margin-bottom: 0.4rem;">Browsers may struggle to render very large GeoJSON datasets on low-resource mobile devices.</li>
+                </ul>
+            </section>
+        </div>
 
-                // Adding a circle
-                var circle = L.circle([46.559, 14.83], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 500
-                }).addTo(liveMap);
-                circle.bindPopup("Highlighting an archaeological area in Globasnitz.");
-
-                // Adding a polygon
-                var polygon = L.polygon([
-                    [46.562, 14.82],
-                    [46.565, 14.83],
-                    [46.561, 14.84]
-                ]).addTo(liveMap);
-                polygon.bindPopup("A significant site boundary in Globasnitz.");
-
-                // Adding map controls
-                var baseMaps = {
-                    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-                };
-
-                var overlays = {
-                    "Markers": L.layerGroup([marker1, marker2]),
-                    "Features": L.layerGroup([circle, polygon])
-                };
-
-                L.control.layers(baseMaps, overlays).addTo(liveMap);
-            </script>
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
-        </section>
-
-        <section id="ai-tools">
-            <h2>Using GenAI Tools</h2>
-            <p>GenAI tools like <a href="https://openai.com/chatgpt" target="_blank">ChatGPT</a> by OpenAI, <a href="https://www.anthropic.com/claude" target="_blank">Claude</a> by Anthropic, and <a href="https://www.google.com/search?q=Gemini+AI" target="_blank">Gemini</a> by Google DeepMind are transformative technologies that are revolutionizing how digital content and web applications are created. These tools leverage cutting-edge machine learning to assist in generating content, refining existing work, and even producing code tailored to specific needs.</p>
-            
-            <p>ChatGPT is widely recognized for its versatility in coding and text generation. It is frequently used to troubleshoot issues, write boilerplate code, and refine technical documentation. Claude excels in creating detailed, structured documents and complex reports, making it a favorite for academic and professional workflows. On the other hand, Gemini is specifically designed for multimodal tasks, seamlessly integrating text, images, and data into cohesive outputs, which is particularly useful for visually engaging web pages and interactive applications.</p>
-            
-            <p>GenAI tools enhance productivity in many ways. They automate repetitive tasks such as generating code snippets or modifying project structures, enabling developers to focus on more complex and creative challenges. For beginners, these tools lower the entry barrier by offering step-by-step guidance, simplifying technical concepts, and generating initial templates. By providing accurate suggestions and following best practices, GenAI significantly reduces the time spent debugging and troubleshooting. Additionally, it offers tailored outputs to meet the specific requirements of projects, whether it's a unique design, advanced functionality, or optimized workflows. This versatility allows GenAI to support a broad range of applications, from content creation and data visualization to UI/UX design and geospatial analysis.</p>
-            
-            <p>In the context of web mapping, GenAI plays a pivotal role. For instance, developers can export GeoJSON data from QGIS and use tools like ChatGPT to implement and customize web mapping applications more effectively. ChatGPT can generate JavaScript code to integrate GeoJSON data into frameworks like <a href="https://leafletjs.com/" target="_blank">Leaflet</a> or <a href="https://openlayers.org/" target="_blank">OpenLayers</a>, saving hours of manual scripting. Similarly, AI tools can suggest improvements to user interfaces, such as adding search filters, tooltips, or interactivity, ensuring a seamless experience for users.</p>
-            
-            <p>GenAI is not just a tool for efficiency but also an enabler of digital innovation. By democratizing access to advanced technologies, it allows users with minimal technical knowledge to create and share impactful projects. This combination of accessibility and versatility makes GenAI indispensable in modern workflows.</p>
-            
-            <p>For further exploration, you can visit resources such as <a href="https://openai.com/chatgpt" target="_blank">ChatGPT by OpenAI</a>, <a href="https://www.anthropic.com/claude" target="_blank">Claude by Anthropic</a>, and <a href="https://www.google.com/search?q=Gemini+AI" target="_blank">Gemini by Google DeepMind</a>.</p>
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
-        </section>
-        
-        <section id="benefits">
-            <h2>Benefits and Drawbacks</h2>
-            <p>Creating and enhancing web mapping applications (WMAs) using tools like QGIS, qgis2web, and GenAI offers numerous benefits. One of the key advantages is cost efficiency. With free and open-source tools such as QGIS and Leaflet, users can avoid expensive licensing fees. Hosting platforms like GitHub Pages provide a reliable and cost-effective way to share applications online.</p>
-            
-            <p>Another significant benefit is the ease of use. QGIS, combined with the qgis2web plugin, provides an intuitive interface that allows users to create interactive maps without advanced technical knowledge. GenAI further simplifies the process by automating complex tasks, offering guidance, and providing ready-to-use templates for web development.</p>
-            
-            <p>Flexibility is another strength of this approach. Web mapping projects can start simple and scale up as needed, integrating additional features like layers, interactive markers, or filters. Once the workflow is established, it can be easily reproduced for other datasets, enhancing productivity and consistency.</p>
-            
-            <p>One of the most transformative aspects of this workflow is its ability to democratize access to cultural and spatial data. By hosting WMAs online, researchers can make valuable datasets globally accessible, removing traditional barriers such as physical storage or limited access to analog resources. This shift also reduces mechanical strain on physical objects, preserving fragile archaeological materials.</p>
-            
-            <p>However, there are also drawbacks to consider. Although tools like QGIS are user-friendly, a basic understanding of GIS concepts is still required, which can be a barrier for beginners. Additionally, while GenAI tools can generate and modify code, they are not foolproof. Users must carefully validate outputs to ensure functionality and accuracy.</p>
-            
-            <p>Performance limitations can also arise when working with large datasets. Web browsers may struggle with rendering extensive GeoJSON files or complex map layers, especially on low-resource devices. Furthermore, hosting on free platforms like GitHub Pages may impose restrictions on file sizes or configurations.</p>
-            
-            <p>Finally, data privacy and security should not be overlooked. Exporting and hosting sensitive data online requires careful consideration of data protection policies, especially when using external platforms or GenAI tools.</p>
-            
-            <p>Despite these challenges, the benefits of using WMAs, QGIS, and GenAI far outweigh the drawbacks, making this approach a powerful and innovative solution for modern digital projects.</p>
-            <p style="text-align: center; margin-top: 20px;">
-                <a href="#" class="button" style="padding: 10px 20px; background-color: #6c757d; color: #fff; border: none; border-radius: 5px; text-decoration: none;">Back to Top</a>
-            </p>
-        </section>
-        
     </main>
-<footer class="footer">
-    <p>
-        <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-        <a href="https://iuenna.github.io/impressum-datenschutz">Legal Notice</a> & 
-        <a href="https://iuenna.github.io/impressum-datenschutz">Privacy Policy</a> | 
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-    </p>
-</footer>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
+            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; 
+            <a href="../impressum-datenschutz.html">Privacy Policy</a> | 
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+        </p>
+        <p>
+            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash High</a>) | Website Version 2.1.5
+        </p>
+    </footer>
+
+    <!-- Leaflet Script for Live Map -->
+    <script>
+        var liveMap = L.map('live-map').setView([46.5647, 14.8222], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors | IUENNA Project'
+        }).addTo(liveMap);
+
+        // Adding marker points
+        var marker1 = L.marker([46.5647, 14.8222]).addTo(liveMap);
+        marker1.bindPopup("<b>Globasnitz</b><br>A key location in archaeological Jauntal valley research.");
+
+        var marker2 = L.marker([46.5747, 14.8122]).addTo(liveMap);
+        marker2.bindPopup("<b>Jaunstein</b><br>Another important reference point.");
+
+        // Adding a circle
+        var circle = L.circle([46.559, 14.83], {
+            color: '#A8442E', /* Terracotta */
+            fillColor: '#FAF8F5',
+            fillOpacity: 0.4,
+            radius: 500
+        }).addTo(liveMap);
+        circle.bindPopup("Globasnitz core archaeological zone.");
+
+        // Adding a polygon
+        var polygon = L.polygon([
+            [46.562, 14.82],
+            [46.565, 14.83],
+            [46.561, 14.84]
+        ], {
+            color: '#B88E3E' /* Antique Gold */
+        }).addTo(liveMap);
+        polygon.bindPopup("Antiquities preservation zone boundary.");
+
+        // Adding map controls
+        var baseMaps = {
+            "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        };
+
+        var overlays = {
+            "Markers": L.layerGroup([marker1, marker2]),
+            "Features": L.layerGroup([circle, polygon])
+        };
+
+        L.control.layers(baseMaps, overlays).addTo(liveMap);
+    </script>
 </body>
 </html>

@@ -5,237 +5,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-            <!-- Dublin Core Metatags -->
+    <link rel="stylesheet" href="styles.css?v=2.1.5">
+    
+    <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
     <meta name="DC.creator" content="Dominik Hagmann">
     <meta name="DC.creator" content="Franziska Reiner">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
-    <meta name="DC.description" content="Interactive anaylsis and presentation of the Jauntal Valley, created using Free and Open Source Software (FOSS) and GenAI technologies.">
+    <meta name="DC.description" content="Interactive analysis and presentation of the Jauntal Valley, created using Free and Open Source Software (FOSS) and GenAI technologies.">
     <meta name="DC.date" content="2025-01-27">
     <meta name="DC.language" content="de">
     <meta name="DC.identifier" content="https://iuenna.github.io/">
     <meta name="DC.rights" content="CC BY 4.0">
-<style>
-  body {
-    font-family: 'Roboto', Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-
-  header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-  }
-
-  header img {
-    height: 80px;
-    display: block;
-    margin: 0 auto 10px;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 1.8rem;
-  }
-
-  main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    background: #333;
-    color: #fff;
-    margin-top: 2rem;
-  }
-
-  footer a,
-  footer a:visited {
-    color: #fff;
-    text-decoration: underline; /* optional */
-  }
-
-  .button {
-    display: inline-block;
-    margin: 0.5rem 0;
-    padding: 0.5rem 1rem;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-  }
-
-  .button:hover {
-    background-color: #0056b3;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .dashboard {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin: 40px 0;
-  }
-
-  .chart-section {
-    flex: none;
-    width: 30%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .chart-heading {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-
-  .chart-description {
-    font-size: 0.9em;
-    color: #555;
-    margin-bottom: 30px;
-  }
-
-  canvas {
-    width: 100%;
-    max-height: 500px;
-    height: 400px;
-  }
-
-  @media (max-width: 768px) {
-    .dashboard {
-      flex-direction: column;
-    }
-
-    .chart-section {
-      width: 100%;
-    }
-  }
-</style>
 </head>
 <body>
-    <header>
-        <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo">
-        <h1>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</h1>
-        <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" 
-        style="display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #FF5733; color: white; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-        Find Our Data on ARCHE
-     </a>
-     
+
+    <!-- Sticky Navigation Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
+                <span class="nav-title">IUENNA</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="wma/wma.html" class="nav-link">Web Mapping</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <!-- Main Container -->
     <main>
-        <section>
-            <h2>Project Overview</h2>
-            <p><strong>IUENNA</strong> is an innovative initiative that advances digital methods in Austrian archaeology. By addressing complex cultural-historical questions, actively shaping Digital Humanities in Classical Studies, and ensuring long-term preservation of cultural heritage, IUENNA fosters sustainable knowledge management.</p>
-            <p>The project focuses on the archaeological micro-region of the Jauntal (Carinthia, Austria) and is funded by the Austrian Academy of Sciences' <a href="https://www.oeaw.ac.at/foerderungen/godigital/godigital-30" target="_blank">Go!Digital 3.0 program</a>.</p>
-        </section>
-
-        <section id="project-github">
-            <h2>About This GitHub Page</h2>
-            <p>This GitHub Page provides reusable web applications and showcases practical use cases for managing and archiving archaeological data sustainably.</p>
-            <div style="text-align: center; margin: 20px 0;">
-                <a href="https://iuenna.github.io/wma/wma.html" target="_blank" 
-                   style="
-                       display: inline-block;
-                       padding: 15px 25px;
-                       background-color: #007BFF;
-                       color: white;
-                       font-size: 16px;
-                       font-weight: bold;
-                       text-decoration: none;
-                       border-radius: 8px;
-                       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                       transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-                   Web Mapping with the IUENNA Project
-                </a>
-            </div>
-        </section>
         
-  <section id="project-leadership">
-    <h2>Project Leadership</h2>
-    <p>
-      The IUENNA project is coordinated by 
-      <strong>
-        <a href="https://orcid.org/0000-0002-4481-6234" target="_blank" rel="noopener noreferrer">
-          Dr. Dominik Hagmann 
-          <i class="fab fa-orcid" title="ORCID"></i>
-        </a>
-      </strong>
-      (<a href="https://landesmuseum.ktn.gv.at" target="_blank" rel="noopener noreferrer">kärnten.museum</a>) and 
-      <strong>
-        Dipl.-Ing. Franziska Reiner
-      </strong>
-      (<a href="https://www.oeaw.ac.at/oeai" target="_blank" rel="noopener noreferrer">Austrian Archaeological Institute</a>, Austrian Academy of Sciences). Both bring significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.
-    </p>
-  </section>
-
-
-<section id="project-arche">
-  <h1>IUENNA Collection</h1>
-  <p>
-    The <strong>IUENNA collection</strong> is the first initiative of its kind in Austria, consolidating research spanning far over <strong>100 years</strong> from more than <strong>200 archaeological sites</strong>, primarily (but not exclusively) in the <em>Jauntal/Podjuna Valley</em>, Carinthia. In the course of the IUENNA project, every feasible effort was made to digitize and preserve as much available material as possible. This included over <strong>20,000 items</strong>—excavation reports, geophysical surveys, 3D models, and retro-digitized archives—ensuring their long-term accessibility for future research.. The data is organized into six semantically defined subcollections: <strong>Hemmaberg (HB)</strong>, <strong>Globasnitz (GLO)</strong>, <strong>Jaunstein (JAU)</strong>, <strong>Sankt Stefan (STE)</strong>, <strong>Jauntal (TAL)</strong>, and <strong>Retrodigitalisate (RET)</strong>. These subcollections feature a detailed and reusable file folder structure for comprehensive data management. Each resource is enriched with freely accessible, globally available, detailed, machine-readable metadata in adherence to the <a href="https://www.go-fair.org/fair-principles/" target="_blank">FAIR</a> and <a href="https://www.gida-global.org/care" target="_blank">CARE</a> principles.
-  </p>
- 	<p>Status: <b>2025-04-04</b></p>
-
-<section id="project-dashboard">
-   <div class="dashboard">
-        <!-- Subjects Section -->
-        <div class="chart-section">
-            <div class="chart-heading">
-                Subjects (n = <span id="subjectCount">0</span>)
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="hero-logo">
+            <h1 class="hero-title">IUENNA</h1>
+            <p class="hero-subtitle">openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</p>
+            <div class="btn-group">
+                <a href="wma/wma.html" class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i> Web Mapping Portal</a>
+                <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-database"></i> ARCHE Repository</a>
+                <a href="https://iuenna.hypotheses.org/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-square-rss"></i> Project Blog</a>
             </div>
-            <div class="chart-description">
-                Distribution of different categories (subjects) across all resources.
+        </section>
+
+        <!-- Hero Stats Grid -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Years</div>
+                <div class="stat-desc">of archaeological research</div>
             </div>
-            <canvas id="subjectChart"></canvas>
+            <div class="stat-card">
+                <div class="stat-number">20,000+</div>
+                <div class="stat-label">Items</div>
+                <div class="stat-desc">digitized & archived</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Sites</div>
+                <div class="stat-desc">recorded in the Jauntal</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">400+ GB</div>
+                <div class="stat-label">Geodata</div>
+                <div class="stat-desc">openly accessible on ARCHE</div>
+            </div>
+        </section>
+
+        <!-- Two-Column Grid: Overview & Leadership -->
+        <div class="grid-container">
+            <section class="card">
+                <h2>Project Overview</h2>
+                <p><strong>IUENNA</strong> was an innovative initiative that advanced digital methods in Austrian archaeology. By addressing complex cultural-historical questions, actively shaping Digital Humanities in Classical Studies, and ensuring long-term preservation of cultural heritage, IUENNA fostered sustainable knowledge management.</p>
+                <p>The project focused on the archaeological micro-region of the Jauntal (Carinthia, Austria) and was funded by the Austrian Academy of Sciences' <a href="https://www.oeaw.ac.at/foerderungen/godigital/godigital-30" target="_blank">Go!Digital 3.0 program</a>.</p>
+            </section>
+            
+            <section class="card" id="project-leadership">
+                <h2>Project Leadership</h2>
+                <p>
+                    The IUENNA project was coordinated by 
+                    <strong>
+                        <a href="https://orcid.org/0000-0002-4481-6234" target="_blank" rel="noopener noreferrer">
+                            Dr. Dominik Hagmann 
+                            <i class="fab fa-orcid" title="ORCID Link"></i>
+                        </a>
+                    </strong>
+                    (<a href="https://landesmuseum.ktn.gv.at" target="_blank" rel="noopener noreferrer">kärnten.museum</a>) and 
+                    <strong>
+                        Dipl.-Ing. Franziska Reiner
+                    </strong>
+                    (<a href="https://www.oeaw.ac.at/oeai" target="_blank" rel="noopener noreferrer">Austrian Archaeological Institute</a>, Austrian Academy of Sciences). 
+                    Both brought significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.
+                </p>
+            </section>
         </div>
 
-        <!-- Coverage Section -->
-        <div class="chart-section">
-            <div class="chart-heading">
-                Coverage (Locations) (n = <span id="coverageCount">0</span>)
+        <!-- Dashboard Section -->
+        <section class="dashboard-container">
+            <div class="dashboard-header">
+                <h2>IUENNA Collection Dashboard</h2>
+                <p>The IUENNA collection consolidated over a century of archaeological research. Below are live dashboard metrics reflecting the curated collection resources based on the open geodata.</p>
+                <p>Status: <strong>2025-04-04</strong> (Updated: <strong>2026-06-14</strong>)</p>
             </div>
-            <div class="chart-description">
-                Distribution of all resources across different spatial locations.
+            
+            <div class="dashboard-grid">
+                <!-- Subjects Card -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">Subjects (n = <span id="subjectCount">0</span>)</h3>
+                        <p class="chart-desc">Distribution of different categories (subjects) across all resources.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="subjectChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Coverage Card -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">Coverage (Locations) (n = <span id="coverageCount">0</span>)</h3>
+                        <p class="chart-desc">Distribution of all resources across different spatial locations.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="coverageChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- File Formats Card -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">File Formats (n = <span id="fileFormatCount">0</span>)</h3>
+                        <p class="chart-desc">Breakdown of file types (e.g., .tif, .jpg, .gpkg) used in the dataset across all resources.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="fileFormatChart"></canvas>
+                    </div>
+                </div>
             </div>
-            <canvas id="coverageChart"></canvas>
+        </section>
+
+        <!-- Two-Column Grid: Details & Framework -->
+        <div class="grid-container">
+            <section class="card">
+                <h2>IUENNA Collection Details</h2>
+                <p>
+                    The <strong>IUENNA collection</strong> was the first initiative of its kind in Austria, consolidating research spanning far over <strong>100 years</strong> from more than <strong>200 archaeological sites</strong>, primarily (but not exclusively) in the <em>Jauntal/Podjuna Valley</em>, Carinthia. In the course of the IUENNA project, every feasible effort was made to digitize and preserve as much available material as possible. This included over <strong>20,000 items</strong>—excavation reports, geophysical surveys, 3D models, and retro-digitized archives—ensuring their long-term accessibility for future research.
+                </p>
+                <p>
+                    The data is organized into six semantically defined subcollections: <strong>Hemmaberg (HB)</strong>, <strong>Globasnitz (GLO)</strong>, <strong>Jaunstein (JAU)</strong>, <strong>Sankt Stefan (STE)</strong>, <strong>Jauntal (TAL)</strong>, and <strong>Retrodigitalisate (RET)</strong>. These subcollections feature a detailed and reusable file folder structure for comprehensive data management. Each resource is enriched with freely accessible, globally available, detailed, machine-readable metadata in adherence to the <a href="https://www.go-fair.org/fair-principles/" target="_blank">FAIR</a> and <a href="https://www.gida-global.org/care" target="_blank">CARE</a> principles.
+                </p>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i> Explore Data on ARCHE
+                    </a>
+                </div>
+            </section>
+
+            <section class="card" id="project-framework">
+                <h2>Project Framework</h2>
+                <p>The IUENNA project was a collaboration among:</p>
+                <ul>
+                    <li><a href="https://landesmuseum.ktn.gv.at/" target="_blank">State Museum for Carinthia (kärnten.museum)</a></li>
+                    <li><a href="https://www.oeaw.ac.at/oeai" target="_blank">Austrian Archaeological Institute (ÖAI)</a></li>
+                    <li><a href="https://www.oeaw.ac.at/acdh" target="_blank">Austrian Center for Digital Humanities and Cultural Heritage (ACDH-CH)</a></li>
+                    <li><a href="https://bda.gv.at/" target="_blank">Federal Monuments Authority (BDA)</a></li>
+                    <li><a href="https://www.ardig.at/" target="_blank">ARDIG – Archäologischer Dienst GesmbH</a></li>
+                </ul>
+                <p style="margin-top: 1rem;">Through a comprehensive open-science approach, IUENNA established a model study for the long-term digital preservation of archaeological data and cultural insights.</p>
+            </section>
         </div>
 
-        <!-- File Formats Section -->
-        <div class="chart-section">
-            <div class="chart-heading">
-                File Formats (n = <span id="fileFormatCount">0</span>)
-            </div>
-            <div class="chart-description">
-                Breakdown of file types (e.g., .tif, .jpg) used in the dataset across all resources.
-            </div>
-            <canvas id="fileFormatChart"></canvas>
+        <!-- GenAI & Vibe Coding Declaration Section -->
+        <div class="grid-container">
+            <section class="card" id="ai-declaration" style="grid-column: 1 / -1;">
+                <h2>Collaborative Artificial Intelligence &amp; Web Development</h2>
+                <p>
+                    The creation and continuous optimization of this web presence were realized using modern Generative AI (GenAI) tools and pioneering development paradigms such as <strong>Vibe Coding</strong>. In this approach, humans act as creative directors collaborating with AI systems to build complex code architectures efficiently, bypassing manual routine programming.
+                </p>
+                <p>
+                    The agentic AI coding assistant framework <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> (powered by <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash</a>) served as the technical backbone. Operating as an autonomous co-pilot, Antigravity analyzed the repository, designed the unified styling system, and carried out the technical consolidation of the web pages. This synergy between archaeological expertise and agentic AI support showcases new, future-oriented workflows in the Digital Humanities.
+                </p>
+                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem;">Key Points Regarding Our Use of GenAI:</h3>
+                <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.4rem;"><strong>Human-AI Collaboration:</strong> AI models assisted in designing the user interface, cleaning up redundant stylesheets, and implementing the autocomplete filter.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Academic Oversight:</strong> All AI-assisted code structures and textual content were reviewed, validated, and approved by the project leadership.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Transparency:</strong> We are committed to openly disclosing and documenting the use of digital assistants in our research workflows.</li>
+                </ul>
+                <p>
+                    For inquiries or concerns about our use of GenAI, feel free to contact us at 
+                    <a href="mailto:dominik.hagmann@univie.ac.at">dominik.hagmann@univie.ac.at</a>.
+                </p>
+            </section>
         </div>
-    </div>
 
-   <script>
+        <!-- References Section -->
+        <section class="references-section" id="references">
+            <h2>References</h2>
+            <ul class="references-list">
+                <li>
+                    Argote, D. L., López-García, P. A., Torres-García, M. A., &amp; Thrun, M. C. (2025). 
+                    <i>Machine learning for archaeological applications in R</i> (1st ed.). Cambridge University Press. 
+                    <a href="https://doi.org/10.1017/9781009506625" target="_blank" rel="noopener">https://doi.org/10.1017/9781009506625</a>
+                </li>
+                <li>
+                    Caluori, L. (2024). Hey Alexa, why are you called intelligent? An empirical investigation on definitions of AI. 
+                    <i>AI &amp; Society, 39</i>(4), 1905–1919. 
+                    <a href="https://doi.org/10.1007/s00146-023-01643-y" target="_blank" rel="noopener">https://doi.org/10.1007/s00146-023-01643-y</a>
+                </li>
+                <li>
+                    Ciccone, G. (2024). ChatGPT as a digital assistant for archaeology: Insights from the smart anomaly detection assistant development. 
+                    <i>Heritage, 7</i>(10), Article 10. 
+                    <a href="https://doi.org/10.3390/heritage7100256" target="_blank" rel="noopener">https://doi.org/10.3390/heritage7100256</a>
+                </li>
+                <li>
+                    Cobb, P. J. (2023). Large language models and generative AI, oh my!: Archaeology in the time of ChatGPT, Midjourney, and beyond. 
+                    <i>Advances in Archaeological Practice, 11</i>(3), 363–369. 
+                    <a href="https://doi.org/10.1017/aap.2023.20" target="_blank" rel="noopener">https://doi.org/10.1017/aap.2023.20</a>
+                </li>
+                <li>
+                    Fawzy, A., Tahir, A., &amp; Blincoe, K. (2025). 
+                    <i>Vibe coding in practice: Motivations, challenges, and a future outlook -- a grey literature review (arXiv:2510.00328)</i>. arXiv. 
+                    <a href="https://doi.org/10.48550/arXiv.2510.00328" target="_blank" rel="noopener">https://doi.org/10.48550/arXiv.2510.00328</a>
+                </li>
+                <li>
+                    Gattiglia, G. (2025). Managing artificial intelligence in archaeology: An overview. 
+                    <i>Journal of Cultural Heritage, 71</i>, 225–233. 
+                    <a href="https://doi.org/10.1016/j.culher.2024.11.020" target="_blank" rel="noopener">https://doi.org/10.1016/j.culher.2024.11.020</a>
+                </li>
+                <li>
+                    Hagmann, D., &amp; Reiner, F. (2023). openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A «para-description». 
+                    <i>Peer Community Journal, 3</i>, Article e120.
+                    <a href="https://doi.org/10.24072/pcjournal.338" target="_blank" rel="noopener">https://doi.org/10.24072/pcjournal.338</a>            
+                </li>
+                <li>
+                    Meske, C., Hermanns, T., Von Der Weiden, E., Loser, K.-U., &amp; Berger, T. (2025). 
+                    Vibe coding as a reconfiguration of intent mediation in software development: Definition, implications, and research agenda. 
+                    <i>IEEE Access, 13</i>, 213242–213259. 
+                    <a href="https://doi.org/10.1109/ACCESS.2025.3645466" target="_blank" rel="noopener">https://doi.org/10.1109/ACCESS.2025.3645466</a>
+                </li>
+                <li>
+                    Sarkar, A., &amp; Drosos, I. (2025). 
+                    <i>Vibe coding: Programming through conversation with artificial intelligence (arXiv:2506.23253)</i>. arXiv. 
+                    <a href="https://doi.org/10.48550/arXiv.2506.23253" target="_blank" rel="noopener">https://doi.org/10.48550/arXiv.2506.23253</a>
+                </li>
+                <li>
+                    Tenzer, M., Pistilli, G., Brandsen, A., &amp; Shenfield, A. (2024). Debating AI in archaeology: Applications, implications, and ethical considerations. 
+                    <i>Internet Archaeology, 67</i>. 
+                    <a href="https://doi.org/10.11141/ia.67.8" target="_blank" rel="noopener">https://doi.org/10.11141/ia.67.8</a>
+                </li>
+                <li>
+                    Zoldoske, T. (2024). Metadata for discovery: Planning for an information network. 
+                    <i>Internet Archaeology, 65</i>. 
+                    <a href="https://doi.org/10.11141/ia.65.6" target="_blank" rel="noopener">https://doi.org/10.11141/ia.65.6</a>
+                </li>
+                <li>
+                    Zubrow, E. (2024). A prolegomenon on archaeological complexity and disorganization: Fragmentation and missing data. 
+                    <i>Journal of Archaeological Method and Theory, 31</i>(2), 689–706. 
+                    <a href="https://doi.org/10.1007/s10816-023-09636-3" target="_blank" rel="noopener">https://doi.org/10.1007/s10816-023-09636-3</a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
+            <a href="impressum-datenschutz.html">Legal Notice</a> &amp; 
+            <a href="impressum-datenschutz.html">Privacy Policy</a> | 
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+        </p>
+        <p>
+            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash High</a>) | Website Version 2.1.5
+        </p>
+    </footer>
+
+    <!-- Dashboard Scripts -->
+    <script>
         // Function to get top 10 categories and group the rest as "Other"
         function getTop10(data) {
             const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
@@ -278,11 +332,38 @@
                 document.getElementById('coverageCount').textContent = Object.values(locations).reduce((a, b) => a + b, 0);
                 document.getElementById('fileFormatCount').textContent = Object.values(fileFormats).reduce((a, b) => a + b, 0);
 
+                // Common Chart.js styling variables
                 const chartOptions = {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    size: 11,
+                                    weight: 500
+                                },
+                                color: '#202226'
+                            }
+                        }
+                    },
                     scales: {
-                        y: { beginAtZero: true }
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: '#E6E2DB' },
+                            ticks: {
+                                color: '#5C5E62',
+                                font: { family: 'Plus Jakarta Sans', size: 10 }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#5C5E62',
+                                font: { family: 'Plus Jakarta Sans', size: 10 }
+                            }
+                        }
                     }
                 };
 
@@ -293,9 +374,10 @@
                         datasets: [{
                             label: 'Subjects',
                             data: Object.values(topSubjects),
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
+                            backgroundColor: 'rgba(168, 68, 46, 0.75)', /* Terracotta */
+                            borderColor: 'rgba(168, 68, 46, 1)',
+                            borderWidth: 1.5,
+                            borderRadius: 6
                         }]
                     },
                     options: chartOptions
@@ -308,9 +390,10 @@
                         datasets: [{
                             label: 'Coverage (Locations)',
                             data: Object.values(topLocations),
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
+                            backgroundColor: 'rgba(184, 142, 62, 0.75)', /* Antique Gold */
+                            borderColor: 'rgba(184, 142, 62, 1)',
+                            borderWidth: 1.5,
+                            borderRadius: 6
                         }]
                     },
                     options: chartOptions
@@ -322,132 +405,26 @@
                         labels: Object.keys(topFileFormats),
                         datasets: [{
                             data: Object.values(topFileFormats),
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+                            backgroundColor: ['#A8442E', '#B88E3E', '#202226', '#E6E2DB', '#C5A059', '#8D3421'],
+                            borderWidth: 2,
+                            borderColor: '#FFFFFF'
                         }]
                     },
                     options: {
-                        responsive: true
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 },
+                                    color: '#202226'
+                                }
+                            }
+                        }
                     }
                 });
             });
     </script>
-</section>
-
-    
-  <p>
-    The collection supports advanced <strong>Roman-archaeological research</strong>, <strong>digital-archaeological workflows</strong>, and <strong>GIS-based spatial analysis</strong> through its structured organization and seamless database integration. Data is preserved in sustainable formats such as <a href="https://gdal.org/drivers/raster/geotiff.html" target="_blank">GeoTIFF</a> for georeferenced raster data, <a href="https://www.geopackage.org/" target="_blank">GPKG</a>, <a href="https://en.wikipedia.org/wiki/AutoCAD_DXF" target="_blank">DXF</a>, and <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics" target="_blank">SVG</a> for georeferenced vector data, <a href="https://www.pdfa.org/" target="_blank">PDF/A</a> for documents, <a href="https://en.wikipedia.org/wiki/TIFF" target="_blank">TIFF</a>/<a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank">PNG</a> for high-resolution images, and <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file" target="_blank">OBJ</a> for 3D models. <strong><a href="#project-github">Web Mapping Applications (WMA)</a></strong> further enhances accessibility, allowing users to interactively explore spatial and thematic dimensions of the dataset.
-  </p>
-  <p>
-    The IUENNA collection is securely archived in the <strong><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank">ARCHE repository</a></strong>, ensuring long-term sustainability and location-independent accessibility. Within the <a href="https://arche.acdh.oeaw.ac.at/" target="_blank">ARCHE</a> framework, the repository safeguards data through redundancy, secure storage, environmental controls, and proactive monitoring, protecting against natural disasters, physical damage, and mechanical wear. With all materials digitized, the original analog records can be preserved in physical archives under optimal conditions as a backup, eliminating the need for general and frequent direct access. While we generally aimed for free and open access under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a> licenses, partial restrictions apply to some objects. However, in such cases, access remains generally available upon request, and descriptive metadata is always open, providing holistic information instantly. Hosting over <strong>400 GB</strong> of curated data with persistent identifiers for traceability and citation, ARCHE serves as the backbone of IUENNA. Moreover, the IUENNA dataset is fully integrated into the <a href="https://ariadne-infrastructure.eu/" target="_blank">Ariadne Research Infrastructure</a> and <a href="https://www.openaire.eu/" target="_blank">OpenAIRE</a>, significantly enhancing data discoverability and interoperability for the global research community. By creating digital twins of entire archaeological datasets, IUENNA sets a new benchmark for open science and digital preservation in Austrian archaeology. It offers a scalable and transferable model for future projects, while also enabling advanced applications such as artificial intelligence (AI) in archaeological data analysis.
-  </p>
-  <p style="text-align: center;">
-    <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" 
-      style="display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #FF5733; color: white; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-      Find Our Data on ARCHE
-    </a>
-  </p>
-</section>
-
-
-
-
-
-        <section id="project-framework">
-            <h2>Project Framework</h2>
-            <p>The IUENNA project is a collaboration among:</p>
-            <ul>
-                <li><a href="https://landesmuseum.ktn.gv.at/" target="_blank">State Museum for Carinthia (kärnten.museum)</a></li>
-                <li><a href="https://www.oeaw.ac.at/oeai" target="_blank">Austrian Archaeological Institute (ÖAI)</a></li>
-                <li><a href="https://www.oeaw.ac.at/acdh" target="_blank">Austrian Center for Digital Humanities and Cultural Heritage (ACDH-CH)</a></li>
-                <li><a href="https://bda.gv.at/" target="_blank">Federal Monuments Authority (BDA)</a></li>
-                <li><a href="https://www.ardig.at/" target="_blank">ARDIG – Archäologischer Dienst GesmbH</a></li>
-            </ul>
-            <p>Through a comprehensive open-science approach, IUENNA establishes a model for the long-term digital preservation of archaeological data and cultural insights.</p>
-        </section>
-        
-        <section id="project-website">
-            <h2>Explore More</h2>
-            <p>Visit our dedicated project page for detailed insights:</p>
-            <div style="text-align: center; margin: 20px 0;">
-                <a href="https://iuenna.hypotheses.org/" target="_blank" 
-                   style="
-                       display: inline-block;
-                       padding: 15px 25px;
-                       background-color: #28A745;
-                       color: white;
-                       font-size: 16px;
-                       font-weight: bold;
-                       text-decoration: none;
-                       border-radius: 8px;
-                       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                       transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-                   Visit the IUENNA Website
-                </a>
-            </div>
-        </section>
-
-        <section id="references" style="margin-top: 40px;">
-<h2>References</h2>
-    <ul>
-        <li>
-            Argote, D. L., López-García, P. A., Torres-García, M. A., & Thrun, M. C. (2025). 
-            <i>Machine Learning for Archaeological Applications in R</i> (1st ed.). Cambridge University Press. 
-            <a href="https://doi.org/10.1017/9781009506625" target="_blank" rel="noopener">https://doi.org/10.1017/9781009506625</a>
-        </li>
-        <li>
-            Caluori, L. (2024). Hey Alexa, why are you called intelligent? An empirical investigation on definitions of AI. 
-            <i>AI & Society, 39</i>(4), 1905–1919. 
-            <a href="https://doi.org/10.1007/s00146-023-01643-y" target="_blank" rel="noopener">https://doi.org/10.1007/s00146-023-01643-y</a>
-        </li>
-        <li>
-            Ciccone, G. (2024). ChatGPT as a digital assistant for archaeology: Insights from the smart anomaly detection assistant development. 
-            <i>Heritage, 7</i>(10), Article 10. 
-            <a href="https://doi.org/10.3390/heritage7100256" target="_blank" rel="noopener">https://doi.org/10.3390/heritage7100256</a>
-        </li>
-        <li>
-            Cobb, P. J. (2023). Large language models and generative AI, oh my!: Archaeology in the time of ChatGPT, Midjourney, and beyond. 
-            <i>Advances in Archaeological Practice, 11</i>(3), 363–369. 
-            <a href="https://doi.org/10.1017/aap.2023.20" target="_blank" rel="noopener">https://doi.org/10.1017/aap.2023.20</a>
-        </li>
-        <li>
-            Gattiglia, G. (2025). Managing artificial intelligence in archaeology: An overview. 
-            <i>Journal of Cultural Heritage, 71</i>, 225–233. 
-            <a href="https://doi.org/10.1016/j.culher.2024.11.020" target="_blank" rel="noopener">https://doi.org/10.1016/j.culher.2024.11.020</a>
-        </li>
-        <li>
-            Hagmann, D., & Reiner, F. (2023). openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A «para-description». 
-            <i>Peer Community Journal, 3</i>, Article e120.
-            <a href="https://doi.org/10.24072/pcjournal.338" target="_blank" rel="noopener">https://doi.org/10.24072/pcjournal.338</a>            
-        </li>
-        <li>
-            Tenzer, M., Pistilli, G., Brandsen, A., & Shenfield, A. (2024). Debating AI in archaeology: Applications, implications, and ethical considerations. 
-            <i>Internet Archaeology, 67</i>. 
-            <a href="https://doi.org/10.11141/ia.67.8" target="_blank" rel="noopener">https://doi.org/10.11141/ia.67.8</a>
-        </li>
-        <li>
-            Zoldoske, T. (2024). Metadata for discovery: Planning for an information network. 
-            <i>Internet Archaeology, 65</i>. 
-            <a href="https://doi.org/10.11141/ia.65.6" target="_blank" rel="noopener">https://doi.org/10.11141/ia.65.6</a>
-        </li>
-        <li>
-            Zubrow, E. (2024). A prolegomenon on archaeological complexity and disorganization: Fragmentation and missing data. 
-            <i>Journal of Archaeological Method and Theory, 31</i>(2), 689–706. 
-            <a href="https://doi.org/10.1007/s10816-023-09636-3" target="_blank" rel="noopener">https://doi.org/10.1007/s10816-023-09636-3</a>
-        </li>
-    </ul>
-</section>
-        
-        
-    </main>
-<footer class="footer">
-    <p>
-        <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-        <a href="https://iuenna.github.io/impressum-datenschutz">Legal Notice</a> & 
-        <a href="https://iuenna.github.io/impressum-datenschutz">Privacy Policy</a> | 
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-    </p>
-</footer>
-
-
 </body>
 </html>

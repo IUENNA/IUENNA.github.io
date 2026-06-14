@@ -4,196 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA qgis2web WMA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <!-- Dublin Core Metatags -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=2.1.5">
+    
+    <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
     <meta name="DC.creator" content="Dominik Hagmann; Franziska Reiner">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
-    <meta name="DC.description" content="Interactive anaylsis and presentation of the Jauntal Valley, created using GenAI technologies.">
+    <meta name="DC.description" content="Interactive analysis and presentation of the Jauntal Valley, created using GenAI technologies.">
     <meta name="DC.date" content="2025-01-27">
     <meta name="DC.language" content="de">
     <meta name="DC.identifier" content="https://iuenna.github.io/">
     <meta name="DC.rights" content="CC BY 4.0">
-    <style>
-        /* General Styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        /* Header Styles */
-        header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        header img {
-            height: 80px;
-            display: block;
-            margin: 0 auto 10px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .button {
-            display: inline-block;
-            background-color: #007BFF;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 1rem auto;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Main Content Styles */
-        main {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        iframe {
-            width: 100%;
-            height: 1000px; /* Increased height for WMA */
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-/* QGIS2Web Section */
-#qgis2web {
-    margin: 2rem auto;
-    max-width: 800px;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-#qgis2web h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-#qgis2web p, #qgis2web ul {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-}
-
-#qgis2web ul {
-    margin: 1rem 0;
-    padding-left: 20px;
-}
-
-#qgis2web li {
-    margin-bottom: 0.5rem;
-}
-
-#qgis2web a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-#qgis2web a:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
-
-        
-        /* Footer Styles */
-        footer {
-            text-align: center;
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo">
-        <h1>IUENNA qgis2web WMA</h1>
-        <p><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" 
-   style="display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #FF5733; color: white; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease, box-shadow 0.3s ease;">
-   Find Our Data on ARCHE
-</a></p>
 
-        <p><a href="https://iuenna.github.io/" class="button">Home</a></p>
+    <!-- Sticky Navigation Header -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">
+                <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
+                <span class="nav-title">IUENNA</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="wma.html" class="nav-link">Web Mapping</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main>
-        <h2>Interactive Map</h2>
-        <p>Explore the map and discover archaeological resources from the Jauntal region.</p>
-                       <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" class="button">Download the GIS data at ARCHE</a>
         
-        <!-- Embed your map here -->
-        <iframe src="https://iuenna.github.io/wma/qgis2web/qgis2web-index.html" title="IUENNA qgis2web WMA"></iframe>
+        <!-- Hero Header -->
+        <section class="hero-section">
+            <h1 class="hero-title">IUENNA qgis2web WMA</h1>
+            <p class="hero-subtitle">Interactive map of archaeological sites in the Jauntal region, exported directly from QGIS.</p>
+            <div class="btn-group">
+                <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" target="_blank" class="btn btn-secondary">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download GIS Data at ARCHE
+                </a>
+                <a href="wma.html" class="btn btn-outline">
+                    <i class="fa-solid fa-circle-chevron-left"></i> Back to Web Mapping Overview
+                </a>
+            </div>
+        </section>
 
-        <section id="qgis2web">
-  <h2>Using qgis2web to Visualize Data from Globasnitz</h2>
-  <p>
-    The <strong>qgis2web</strong> plugin for QGIS is a practical tool for transforming georeferenced data into interactive web maps. 
-    By applying it to archaeological data from Globasnitz, users can create dynamic maps that combine geophysical surveys, excavation results, and legacy datasets. 
-    The plugin simplifies the process of sharing complex spatial data online, making it accessible to researchers, educators, and the public.
-  </p>
-  <p>
-    One of the key benefits of qgis2web is its ability to seamlessly export map layers, styles, and data into formats compatible with 
-    <strong>Leaflet</strong> or <strong>OpenLayers</strong>, without requiring advanced web development skills. 
-    This is particularly useful for showcasing datasets like georadar and geomagnetic results or visualizing excavation zones with pop-up features and contextual basemaps. 
-    However, its limitations include a lack of advanced customization options, requiring manual HTML or CSS adjustments for polished outputs. 
-    Additionally, large datasets may impact map performance in web browsers.
-  </p>
-  <p>
-    Using qgis2web, users can explore relationships between geophysical findings and excavation results, compare legacy and modern data, 
-    or highlight specific find zones in Globasnitz. While the plugin provides a straightforward workflow, fine-tuning the exported maps for publication often requires further effort.
-  </p>
-  <p><strong>Data Source:</strong><br>
-    Hagmann, D., Reiner, F., Austrian Archaeological Institute | Austrian Academy of Sciences, & kärnten.museum. (2025). 
-    <em>glo_geodaten_open.gpkg</em>. 
-    <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" target="_blank">https://hdl.handle.net/21.11115/0000-0015-EBEF-4</a>
-  </p>
-</section>
+        <!-- Live Map Card -->
+        <section class="card" style="padding: 1rem; margin-bottom: 3rem;">
+            <div class="wma-map-container" style="height: 1000px; border-radius: var(--radius-md);">
+                <iframe src="qgis2web/qgis2web-index.html" class="wma-iframe" title="IUENNA qgis2web WMA"></iframe>
+            </div>
+        </section>
 
+        <!-- Details Section -->
+        <div class="grid-container">
+            <section class="card" id="qgis2web" style="grid-column: 1 / -1;">
+                <h2>Using qgis2web to Visualize Data from Globasnitz</h2>
+                <p>
+                    The <strong>qgis2web</strong> plugin for QGIS is a practical tool for transforming georeferenced data into interactive web maps. By applying it to archaeological data from Globasnitz, users can create dynamic maps that combine geophysical surveys, excavation results, and legacy datasets. The plugin simplifies the process of sharing complex spatial data online, making it accessible to researchers, educators, and the public.
+                </p>
+                <p>
+                    One of the key benefits of qgis2web is its ability to seamlessly export map layers, styles, and data into formats compatible with <strong>Leaflet</strong> or <strong>OpenLayers</strong>, without requiring advanced web development skills. This is particularly useful for showcasing datasets like georadar and geomagnetic results or visualizing excavation zones with pop-up features and contextual basemaps. However, its limitations include a lack of advanced customization options, requiring manual HTML or CSS adjustments for polished outputs. Additionally, large datasets may impact map performance in web browsers.
+                </p>
+                <p>
+                    Using qgis2web, users can explore relationships between geophysical findings and excavation results, compare legacy and modern data, or highlight specific find zones in Globasnitz. While the plugin provides a straightforward workflow, fine-tuning the exported maps for publication often requires further effort.
+                </p>
+                <p><strong>Data Source:</strong><br>
+                    Hagmann, D., Reiner, F., Austrian Archaeological Institute | Austrian Academy of Sciences, &amp; kärnten.museum. (2025). 
+                    <i>glo_geodaten_open.gpkg</i>. 
+                    <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" target="_blank">https://hdl.handle.net/21.11115/0000-0015-EBEF-4</a>
+                </p>
+            </section>
+        </div>
 
-        <a href="https://iuenna.github.io/wma/wma.html" class="button">Back</a>
     </main>
 
     <!-- Footer -->
     <footer>
         <p>
-            <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-            <a href="https://iuenna.github.io/impressum-datenschutz">Legal Notice</a> & 
-            <a href="https://iuenna.github.io/impressum-datenschutz">Privacy Policy</a> | 
+            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
+            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; 
+            <a href="../impressum-datenschutz.html">Privacy Policy</a> | 
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+        </p>
+        <p>
+            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash High</a>) | Website Version 2.1.5
         </p>
     </footer>
 </body>
