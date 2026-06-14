@@ -18,7 +18,7 @@ The IUENNA project was coordinated by
 
 and 
 
-**Dipl.-Ing. Franziska Reiner**  
+**Dipl.-Ing. Franziska Waldhart**  
 ([Austrian Archaeological Institute](https://www.oeaw.ac.at/oeai), Austrian Academy of Sciences).  
 
 Both brought significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.

@@ -18,15 +18,15 @@ Liberogasse 6
 T: +43 (0)50 536-30599
 E: dominik.hagmann@univie.ac.at
 
-*Dipl.-Ing. Franziska Reiner*
+*Dipl.-Ing. Franziska Waldhart*
 
 Österreichisches Archäologisches Institut
 Österreichische Akademie der Wissenschaften
 Hollandstraße 11-13
 1020 Wien
 
-T: +43 (0)1 51581-6101
-E: franziska.reiner@oeaw.ac.at
+T: +43 (0)1 51581-4051
+E: franziska.waldhart@oeaw.ac.at
 
 
 **Verantwortlich für den Inhalt:**
