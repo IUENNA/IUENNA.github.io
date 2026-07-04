@@ -217,7 +217,7 @@ main {
   background-image: url('https://iuenna.hypotheses.org/files/2024/09/7532.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.06;
+  opacity: 0.15;
   z-index: 0;
   pointer-events: none;
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
@@ -225,7 +225,7 @@ main {
 
 .hero-section:hover::after {
   transform: scale(1.04);
-  opacity: 0.10;
+  opacity: 0.25;
 }
 
 .hero-logo {
@@ -724,12 +724,13 @@ footer a:hover * {
 /* Project Leadership Profiles styling */
 .leadership-profiles {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .profile-card {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -787,4 +788,10 @@ footer a:hover * {
 
 .profile-org a:hover {
   color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .leadership-profiles {
+    flex-direction: column;
+  }
 }
