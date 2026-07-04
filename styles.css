@@ -795,3 +795,40 @@ footer a:hover * {
     flex-direction: column;
   }
 }
+
+/* Project Publication Card styles */
+.publication-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.card-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--secondary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .publication-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+}
