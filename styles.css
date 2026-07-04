@@ -720,3 +720,71 @@ footer a:hover * {
     height: 240px;
   }
 }
+
+/* Project Leadership Profiles styling */
+.leadership-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.colors-dark .profile-card {
+  background-color: rgba(30, 30, 30, 0.4);
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary);
+}
+
+.profile-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.profile-info strong a {
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.profile-info strong a:hover {
+  color: var(--primary);
+}
+
+.profile-org {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.profile-org a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.profile-org a:hover {
+  color: var(--primary);
+}
