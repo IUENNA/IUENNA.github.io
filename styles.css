@@ -345,7 +345,7 @@ main {
 }
 
 .dashboard-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem;
 }
 
@@ -732,6 +732,7 @@ footer a:hover * {
 
 .profile-card {
   flex: 1 1 220px;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -740,6 +741,7 @@ footer a:hover * {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   transition: var(--transition);
+  overflow: hidden;
 }
 
 .colors-dark .profile-card {
@@ -766,6 +768,9 @@ footer a:hover * {
   flex-direction: column;
   gap: 0.2rem;
   text-align: left;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .profile-info strong a {
@@ -791,7 +796,7 @@ footer a:hover * {
   color: var(--primary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .leadership-profiles {
     flex-direction: column;
   }
