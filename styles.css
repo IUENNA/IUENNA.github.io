@@ -191,6 +191,11 @@ main {
   overflow: hidden;
 }
 
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-section::before {
   content: '';
   position: absolute;
@@ -199,6 +204,28 @@ main {
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
+  z-index: 2;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://iuenna.hypotheses.org/files/2024/09/7532.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+}
+
+.hero-section:hover::after {
+  transform: scale(1.04);
+  opacity: 0.10;
 }
 
 .hero-logo {
