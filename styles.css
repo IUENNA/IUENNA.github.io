@@ -725,12 +725,13 @@ footer a:hover * {
 .leadership-profiles {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .profile-card {
-  flex: 1;
+  flex: 1 1 220px;
   display: flex;
   align-items: center;
   gap: 1.2rem;
