@@ -64,9 +64,9 @@
                 <div class="stat-desc">of archaeological research</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" data-target="20000" data-suffix="+">20,000+</div>
+                <div class="stat-number" id="heroItemCount" data-target="20788" data-suffix="">20,788</div>
                 <div class="stat-label">Items</div>
-                <div class="stat-desc">digitized & archived</div>
+                <div class="stat-desc">digitized &amp; archived in ARCHE</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" data-target="200" data-suffix="+">200+</div>
@@ -74,8 +74,8 @@
                 <div class="stat-desc">recorded in the Jauntal</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" data-target="400" data-suffix="+ GB">400+ GB</div>
-                <div class="stat-label">Geodata</div>
+                <div class="stat-number" id="heroStorageSize" data-target="357" data-suffix=" GB">357 GB</div>
+                <div class="stat-label">Geodata &amp; Archives</div>
                 <div class="stat-desc">openly accessible on ARCHE</div>
             </div>
         </section>
@@ -155,11 +155,22 @@
         <section class="dashboard-container">
             <div class="dashboard-header">
                 <h2>IUENNA Collection Dashboard</h2>
-                <p>Live metrics reflecting the curated collection resources, derived from the openly accessible geodata.</p>
-                <p>Status: <strong>2025-04-04</strong> (Updated: <strong>2026-06-14</strong>)</p>
+                <p>Metrics reflecting the curated collection resources, harvested directly from the ARCHE repository &amp; spatial geodata.</p>
+                <p id="dashboardStatusText">Status: <strong>2025-03-05</strong> (Harvested from <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" style="color: var(--secondary); text-decoration: underline;">ARCHE Repository</a>)</p>
             </div>
             
             <div class="dashboard-grid">
+                <!-- Subcollections Card (ARCHE) -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">Subcollections (ARCHE) (n = <span id="subcollectionCount">20,788</span>)</h3>
+                        <p class="chart-desc">Distribution of archived items across the six curated subcollections in ARCHE.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="subcollectionChart"></canvas>
+                    </div>
+                </div>
+
                 <!-- Subjects Card -->
                 <div class="chart-card">
                     <div>
@@ -421,6 +432,106 @@
             }
             return Object.fromEntries(top10);
         }
+
+        // Load ARCHE repository statistics
+        fetch('data/arche_stats.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Could not load ARCHE stats');
+                return response.json();
+            })
+            .catch(() => {
+                // Fallback structure in case of direct file:// opening
+                return {
+                    collection: {
+                        total_items: 20788,
+                        total_size_formatted: "356.68 GB",
+                        pid: "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+                        last_updated_in_arche: "2025-03-05T12:15:28"
+                    },
+                    subcollections: [
+                        { code: "RET", title: "Retrodigitalisate (RET)", items: 9341 },
+                        { code: "JAU", title: "Jaunstein (JAU)", items: 4989 },
+                        { code: "HB", title: "Hemmaberg (HB)", items: 3726 },
+                        { code: "GLO", title: "Globasnitz (GLO)", items: 2692 },
+                        { code: "TAL", title: "Jauntal (TAL)", items: 25 },
+                        { code: "STE", title: "Sankt Stefan (STE)", items: 8 }
+                    ]
+                };
+            })
+            .then(archeData => {
+                const totalItems = archeData.collection.total_items || 20788;
+                const subCountEl = document.getElementById('subcollectionCount');
+                if (subCountEl) {
+                    animateValue(subCountEl, 0, totalItems, 1600, '', '', true);
+                }
+
+                // Update hero item counter target
+                const heroItemEl = document.getElementById('heroItemCount');
+                if (heroItemEl) {
+                    heroItemEl.setAttribute('data-target', totalItems);
+                }
+
+                // Update dashboard status text with formatted ARCHE date and PID link
+                const statusEl = document.getElementById('dashboardStatusText');
+                if (statusEl && archeData.collection.last_updated_in_arche) {
+                    const rawDate = archeData.collection.last_updated_in_arche;
+                    const dateStr = rawDate.split('T')[0];
+                    const pidUrl = archeData.collection.pid || "https://id.acdh.oeaw.ac.at/iuenna";
+                    statusEl.innerHTML = `Status: <strong>${dateStr}</strong> (Harvested from <a href="${pidUrl}" target="_blank" style="color: var(--secondary); text-decoration: underline;">ARCHE Repository</a>)`;
+                }
+
+                // Render Subcollections Chart
+                const subLabels = archeData.subcollections.map(s => s.code || s.title);
+                const subValues = archeData.subcollections.map(s => s.items);
+
+                const subChartOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: '#E6E2DB' },
+                            ticks: {
+                                color: '#5C5E62',
+                                font: { family: 'Plus Jakarta Sans', size: 10 }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#5C5E62',
+                                font: { family: 'Plus Jakarta Sans', size: 10 }
+                            }
+                        }
+                    }
+                };
+
+                new Chart(document.getElementById('subcollectionChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: subLabels,
+                        datasets: [{
+                            label: 'Archived Items',
+                            data: subValues,
+                            backgroundColor: [
+                                '#A8442E', /* Terracotta */
+                                '#B88E3E', /* Antique Gold */
+                                '#202226', /* Charcoal */
+                                'rgba(168, 68, 46, 0.7)',
+                                'rgba(184, 142, 62, 0.7)',
+                                'rgba(32, 34, 38, 0.7)'
+                            ],
+                            borderWidth: 1.5,
+                            borderColor: '#FFFFFF',
+                            borderRadius: 6
+                        }]
+                    },
+                    options: subChartOptions
+                });
+            });
 
         // Load GeoJSON data
         fetch('https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/7b82dbaa001bb13ce08b2b417f0e77a5ae4fbfec/wma/R00_WGS84.geojson')

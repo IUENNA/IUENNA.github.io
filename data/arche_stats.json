@@ -1,0 +1,73 @@
+{
+  "harvest_timestamp": "2026-09-04T21:29:29Z",
+  "collection": {
+    "title_de": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+    "title_en": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+    "arche_id": "https://id.acdh.oeaw.ac.at/iuenna",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+    "last_updated_in_arche": "2025-03-05T12:15:28.000065+01",
+    "total_items": 20788,
+    "total_size_bytes": 382979462143,
+    "total_size_formatted": "356.68 GB",
+    "licenses": [
+      "InC: 16316 / CC BY 4.0: 4039"
+    ]
+  },
+  "subcollections": [
+    {
+      "code": "RET",
+      "title": "Retrodigitalisat-Collection (RET)",
+      "items": 9341,
+      "bytes": 290650991123,
+      "formatted_size": "270.69 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B59-B",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792572"
+    },
+    {
+      "code": "JAU",
+      "title": "Jaunstein-Collection (JAU)",
+      "items": 4989,
+      "bytes": 55881335390,
+      "formatted_size": "52.04 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4B-B",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792303"
+    },
+    {
+      "code": "HB",
+      "title": "Hemmaberg-Collection (HB)",
+      "items": 3726,
+      "bytes": 31148982450,
+      "formatted_size": "29.01 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792212"
+    },
+    {
+      "code": "GLO",
+      "title": "Globasnitz-Collection (GLO)",
+      "items": 2692,
+      "bytes": 5136001949,
+      "formatted_size": "4.78 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B30-8",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792169"
+    },
+    {
+      "code": "TAL",
+      "title": "Jauntal-Collection (TAL)",
+      "items": 25,
+      "bytes": 128491410,
+      "formatted_size": "122.54 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B56-E",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792417"
+    },
+    {
+      "code": "STE",
+      "title": "Sankt Stefan-Collection (STE)",
+      "items": 8,
+      "bytes": 33621634,
+      "formatted_size": "32.06 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B53-1",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792411"
+    }
+  ],
+  "harvest_duration_seconds": 0.48
+}
