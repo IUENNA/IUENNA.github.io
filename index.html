@@ -513,36 +513,139 @@
                 const subLabels = archeData.subcollections.map(s => s.code || s.title);
                 const subValues = archeData.subcollections.map(s => s.items);
 
-                const subChartOptions = {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const sc = archeData.subcollections[context.dataIndex];
-                                    return `${context.parsed.y.toLocaleString()} Items (${sc.formatted_size || ''})`;
-                                }
-                            }
-                        }
+        // Shared Chart.js styling variables
+        const commonBarOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    padding: 10,
+                    cornerRadius: 8,
+                    titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 600 },
+                    bodyFont: { family: 'Plus Jakarta Sans', size: 10.5 }
+                }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    grid: { color: 'rgba(230, 226, 219, 0.6)' },
+                    ticks: {
+                        color: '#5C5E62',
+                        font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 }
+                    }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: {
+                        color: '#5C5E62',
+                        font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 },
+                        maxRotation: 45,
+                        minRotation: 45,
+                        autoSkip: false
+                    }
+                }
+            }
+        };
+
+        const commonDoughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '58%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12,
+                        boxHeight: 12,
+                        padding: 10,
+                        font: { family: 'Plus Jakarta Sans', size: 10.5, weight: 500 },
+                        color: '#202226'
+                    }
+                },
+                tooltip: {
+                    padding: 10,
+                    cornerRadius: 8,
+                    titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 600 },
+                    bodyFont: { family: 'Plus Jakarta Sans', size: 10.5 }
+                }
+            }
+        };
+
+        // Harmonized Chart Palettes
+        const brandColors = {
+            terracotta: 'rgba(168, 68, 46, 0.85)',
+            terracottaBorder: '#A8442E',
+            gold: 'rgba(184, 142, 62, 0.85)',
+            goldBorder: '#B88E3E',
+            charcoal: 'rgba(32, 34, 38, 0.85)',
+            charcoalBorder: '#202226',
+            doughnutPalette: ['#A8442E', '#B88E3E', '#202226', '#8D3421', '#C5A059', '#5C5E62', '#D4CEBF']
+        };
+
+        // Load ARCHE repository statistics
+        fetch('data/arche_stats.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Could not load ARCHE stats');
+                return response.json();
+            })
+            .catch(() => {
+                // Fallback structure in case of direct file:// opening
+                return {
+                    collection: {
+                        total_items: 20788,
+                        total_size_formatted: "356.68 GB",
+                        total_size_bytes: 382979462143,
+                        pid: "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+                        last_updated_in_arche: "2025-03-05T12:15:28"
                     },
-                    scales: {
-                        y: { 
-                            beginAtZero: true,
-                            grid: { color: '#E6E2DB' },
-                            ticks: {
-                                color: '#5C5E62',
-                                font: { family: 'Plus Jakarta Sans', size: 10 }
-                            }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: {
-                                color: '#5C5E62',
-                                font: { family: 'Plus Jakarta Sans', size: 10 }
-                            }
-                        }
+                    subcollections: [
+                        { code: "RET", title: "Retrodigitalisate (RET)", items: 9341, bytes: 290650991123, formatted_size: "270.69 GB" },
+                        { code: "JAU", title: "Jaunstein (JAU)", items: 4989, bytes: 55881335390, formatted_size: "52.04 GB" },
+                        { code: "HB", title: "Hemmaberg (HB)", items: 3726, bytes: 31148982450, formatted_size: "29.01 GB" },
+                        { code: "GLO", title: "Globasnitz (GLO)", items: 2692, bytes: 5136001949, formatted_size: "4.78 GB" },
+                        { code: "TAL", title: "Jauntal (TAL)", items: 25, bytes: 128491410, formatted_size: "122.54 MB" },
+                        { code: "STE", title: "Sankt Stefan (STE)", items: 8, bytes: 33621634, formatted_size: "32.06 MB" }
+                    ]
+                };
+            })
+            .then(archeData => {
+                const totalItems = archeData.collection.total_items || 20788;
+                const subCountEl = document.getElementById('subcollectionCount');
+                if (subCountEl) {
+                    animateValue(subCountEl, 0, totalItems, 1600, '', '', true);
+                }
+
+                // Update total storage volume badge
+                const storageTotalEl = document.getElementById('storageVolumeTotal');
+                if (storageTotalEl && archeData.collection.total_size_formatted) {
+                    storageTotalEl.textContent = archeData.collection.total_size_formatted;
+                }
+
+                // Update hero item counter target
+                const heroItemEl = document.getElementById('heroItemCount');
+                if (heroItemEl) {
+                    heroItemEl.setAttribute('data-target', totalItems);
+                }
+
+                // Update dashboard status text with formatted ARCHE date and PID link
+                const statusEl = document.getElementById('dashboardStatusText');
+                if (statusEl && archeData.collection.last_updated_in_arche) {
+                    const rawDate = archeData.collection.last_updated_in_arche;
+                    const dateStr = rawDate.split('T')[0];
+                    const pidUrl = archeData.collection.pid || "https://id.acdh.oeaw.ac.at/iuenna";
+                    statusEl.innerHTML = `Status: <strong>${dateStr}</strong> (Harvested from <a href="${pidUrl}" target="_blank" style="color: var(--secondary); text-decoration: underline;">ARCHE Repository</a>)`;
+                }
+
+                // 1. Render Subcollections Chart (Bar with minBarLength: 10 so TAL and STE are clearly visible)
+                const subLabels = archeData.subcollections.map(s => s.code || s.title);
+                const subValues = archeData.subcollections.map(s => s.items);
+
+                const subChartOptions = JSON.parse(JSON.stringify(commonBarOptions));
+                subChartOptions.plugins.tooltip.callbacks = {
+                    label: function(context) {
+                        const sc = archeData.subcollections[context.dataIndex];
+                        return `${context.parsed.y.toLocaleString()} Items (${sc.formatted_size || ''})`;
                     }
                 };
 
@@ -553,18 +656,11 @@
                         datasets: [{
                             label: 'Archived Items',
                             data: subValues,
-                            backgroundColor: [
-                                '#A8442E', /* Terracotta */
-                                '#B88E3E', /* Antique Gold */
-                                '#202226', /* Charcoal */
-                                'rgba(168, 68, 46, 0.75)',
-                                'rgba(184, 142, 62, 0.75)',
-                                'rgba(32, 34, 38, 0.75)'
-                            ],
+                            backgroundColor: brandColors.terracotta,
+                            borderColor: brandColors.terracottaBorder,
                             borderWidth: 1.5,
-                            borderColor: '#FFFFFF',
                             borderRadius: 6,
-                            minBarLength: 10 /* Ensures TAL (25) and STE (8) bars are clearly visible */
+                            minBarLength: 10
                         }]
                     },
                     options: subChartOptions
@@ -577,46 +673,28 @@
                     return parseFloat(gb.toFixed(2));
                 });
 
+                const storageChartOptions = JSON.parse(JSON.stringify(commonDoughnutOptions));
+                storageChartOptions.plugins.tooltip.callbacks = {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const val = context.parsed;
+                        const sc = archeData.subcollections[context.dataIndex];
+                        return ` ${label}: ${sc ? sc.formatted_size : val + ' GB'}`;
+                    }
+                };
+
                 new Chart(document.getElementById('storageVolumeChart'), {
                     type: 'doughnut',
                     data: {
                         labels: storageLabels,
                         datasets: [{
                             data: storageGBs,
-                            backgroundColor: [
-                                '#A8442E', /* RET - Terracotta */
-                                '#B88E3E', /* JAU - Gold */
-                                '#202226', /* HB - Charcoal */
-                                '#8D3421', /* GLO - Deep Terracotta */
-                                '#C5A059', /* TAL - Light Gold */
-                                '#5C5E62'  /* STE - Slate */
-                            ],
+                            backgroundColor: brandColors.doughnutPalette,
                             borderWidth: 2,
                             borderColor: '#FFFFFF'
                         }]
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 },
-                                    color: '#202226'
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        const label = context.label || '';
-                                        const val = context.parsed;
-                                        return ` ${label}: ${val >= 1 ? val.toFixed(1) + ' GB' : (val * 1024).toFixed(0) + ' MB'}`;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    options: storageChartOptions
                 });
             });
 
@@ -642,9 +720,12 @@
                     const location = properties.hasSpatialCoverage;
                     locations[location] = (locations[location] || 0) + 1;
 
-                    // File Formats
-                    const fileFormat = properties.hasAlternativeTitle.split('.').pop();
-                    fileFormats[fileFormat] = (fileFormats[fileFormat] || 0) + 1;
+                    // File Formats (normalized to lowercase to unify jpg/JPG, etc.)
+                    const rawFormat = properties.hasAlternativeTitle.split('.').pop();
+                    if (rawFormat) {
+                        const fileFormat = rawFormat.toLowerCase();
+                        fileFormats[fileFormat] = (fileFormats[fileFormat] || 0) + 1;
+                    }
 
                     // Research Timeline (Decades from hasCollectedEndDate)
                     const yearStr = properties.hasCollectedEndDate;
@@ -679,60 +760,25 @@
                     animateValue(timelineCountEl, 0, totalDatedItems, 1600, '', '', true);
                 }
 
-                // Common Chart.js styling variables
-                const chartOptions = {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                font: {
-                                    family: 'Plus Jakarta Sans',
-                                    size: 11,
-                                    weight: 500
-                                },
-                                color: '#202226'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: { 
-                            beginAtZero: true,
-                            grid: { color: '#E6E2DB' },
-                            ticks: {
-                                color: '#5C5E62',
-                                font: { family: 'Plus Jakarta Sans', size: 10 }
-                            }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: {
-                                color: '#5C5E62',
-                                font: { family: 'Plus Jakarta Sans', size: 10 }
-                            }
-                        }
-                    }
-                };
-
-                // 3. Render Research Timeline Chart
+                // 3. Render Research Timeline Chart (Bar - Gold)
                 new Chart(document.getElementById('timelineChart'), {
                     type: 'bar',
                     data: {
                         labels: decadeLabels,
                         datasets: [{
-                            label: 'Documented Campaign Items',
+                            label: 'Documented Items',
                             data: decadeCounts,
-                            backgroundColor: 'rgba(184, 142, 62, 0.75)', /* Antique Gold */
-                            borderColor: 'rgba(184, 142, 62, 1)',
+                            backgroundColor: brandColors.gold,
+                            borderColor: brandColors.goldBorder,
                             borderWidth: 1.5,
                             borderRadius: 6,
                             minBarLength: 6
                         }]
                     },
-                    options: chartOptions
+                    options: commonBarOptions
                 });
 
-                // 4. Render Subjects Chart
+                // 4. Render Subjects Chart (Bar - Terracotta)
                 new Chart(document.getElementById('subjectChart'), {
                     type: 'bar',
                     data: {
@@ -740,59 +786,57 @@
                         datasets: [{
                             label: 'Subjects',
                             data: Object.values(topSubjects),
-                            backgroundColor: 'rgba(168, 68, 46, 0.75)', /* Terracotta */
-                            borderColor: 'rgba(168, 68, 46, 1)',
+                            backgroundColor: brandColors.terracotta,
+                            borderColor: brandColors.terracottaBorder,
                             borderWidth: 1.5,
                             borderRadius: 6,
                             minBarLength: 6
                         }]
                     },
-                    options: chartOptions
+                    options: commonBarOptions
                 });
 
-                // 5. Render Coverage (Locations) Chart
+                // 5. Render Coverage (Locations) Chart (Bar - Gold)
                 new Chart(document.getElementById('coverageChart'), {
                     type: 'bar',
                     data: {
                         labels: Object.keys(topLocations),
                         datasets: [{
-                            label: 'Coverage (Locations)',
+                            label: 'Locations',
                             data: Object.values(topLocations),
-                            backgroundColor: 'rgba(32, 34, 38, 0.75)', /* Charcoal */
-                            borderColor: 'rgba(32, 34, 38, 1)',
+                            backgroundColor: brandColors.gold,
+                            borderColor: brandColors.goldBorder,
                             borderWidth: 1.5,
                             borderRadius: 6,
                             minBarLength: 6
                         }]
                     },
-                    options: chartOptions
+                    options: commonBarOptions
                 });
 
-                // 6. Render File Formats Chart
+                // 6. Render File Formats Chart (Doughnut - Harmonized)
+                const formatChartOptions = JSON.parse(JSON.stringify(commonDoughnutOptions));
+                formatChartOptions.plugins.tooltip.callbacks = {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const val = context.parsed;
+                        const pct = ((val / totalFileFormats) * 100).toFixed(1);
+                        return ` .${label}: ${val.toLocaleString()} Items (${pct}%)`;
+                    }
+                };
+
                 new Chart(document.getElementById('fileFormatChart'), {
-                    type: 'pie',
+                    type: 'doughnut',
                     data: {
                         labels: Object.keys(topFileFormats),
                         datasets: [{
                             data: Object.values(topFileFormats),
-                            backgroundColor: ['#A8442E', '#B88E3E', '#202226', '#E6E2DB', '#C5A059', '#8D3421'],
+                            backgroundColor: brandColors.doughnutPalette,
                             borderWidth: 2,
                             borderColor: '#FFFFFF'
                         }]
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 },
-                                    color: '#202226'
-                                }
-                            }
-                        }
-                    }
+                    options: formatChartOptions
                 });
             });
     </script>
