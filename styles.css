@@ -318,6 +318,7 @@ main {
   color: var(--primary);
   line-height: 1;
   margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {

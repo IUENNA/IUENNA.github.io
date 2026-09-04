@@ -6,7 +6,7 @@
     <title>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.1.6">
+    <link rel="stylesheet" href="styles.css?v=2.1.7">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
@@ -59,22 +59,22 @@
         <!-- Hero Stats Grid -->
         <section class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">100+</div>
+                <div class="stat-number" data-target="100" data-suffix="+">100+</div>
                 <div class="stat-label">Years</div>
                 <div class="stat-desc">of archaeological research</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">20,000+</div>
+                <div class="stat-number" data-target="20000" data-suffix="+">20,000+</div>
                 <div class="stat-label">Items</div>
                 <div class="stat-desc">digitized & archived</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">200+</div>
+                <div class="stat-number" data-target="200" data-suffix="+">200+</div>
                 <div class="stat-label">Sites</div>
                 <div class="stat-desc">recorded in the Jauntal</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">400+ GB</div>
+                <div class="stat-number" data-target="400" data-suffix="+ GB">400+ GB</div>
                 <div class="stat-label">Geodata</div>
                 <div class="stat-desc">openly accessible on ARCHE</div>
             </div>
@@ -324,12 +324,93 @@
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
         </p>
         <p>
-            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash</a> and <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>) | Website Version 2.1.6
+            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.5 Flash</a> and <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>) | Website Version 2.1.7
         </p>
     </footer>
 
-    <!-- Dashboard Scripts -->
+    <!-- Animated Counter & Dashboard Scripts -->
     <script>
+        // Smooth ease-out counter animation function (fast at start, gently decelerating towards end)
+        function animateValue(element, start, end, duration = 2000, prefix = '', suffix = '', useSeparator = true) {
+            if (!element) return;
+            
+            // Respect reduced motion accessibility setting
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const finalFormatted = useSeparator ? end.toLocaleString('en-US') : end;
+                element.textContent = prefix + finalFormatted + suffix;
+                return;
+            }
+
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const elapsed = timestamp - startTimestamp;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Quartic ease-out curve (1 - (1-t)^4): fast rise, smooth deceleration
+                const easeOut = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(start + (end - start) * easeOut);
+                
+                const formatted = useSeparator ? current.toLocaleString('en-US') : current;
+                element.textContent = prefix + formatted + suffix;
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    const finalFormatted = useSeparator ? end.toLocaleString('en-US') : end;
+                    element.textContent = prefix + finalFormatted + suffix;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize hero stat counters on page load / visibility
+        function initHeroCounters() {
+            const statNumbers = document.querySelectorAll('.stats-grid .stat-number[data-target]');
+            if (!statNumbers.length) return;
+
+            let hasAnimated = false;
+
+            const runAnimation = () => {
+                if (hasAnimated) return;
+                hasAnimated = true;
+                statNumbers.forEach(el => {
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const prefix = el.getAttribute('data-prefix') || '';
+                    const duration = parseInt(el.getAttribute('data-duration'), 10) || 2000;
+                    const useSeparator = el.getAttribute('data-separator') !== 'false';
+                    animateValue(el, 0, target, duration, prefix, suffix, useSeparator);
+                });
+            };
+
+            if ('IntersectionObserver' in window) {
+                const statsSection = document.querySelector('.stats-grid');
+                if (statsSection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                runAnimation();
+                                observer.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    observer.observe(statsSection);
+                } else {
+                    runAnimation();
+                }
+            } else {
+                runAnimation();
+            }
+        }
+
+        // Run on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroCounters);
+        } else {
+            initHeroCounters();
+        }
+
         // Function to get top 10 categories and group the rest as "Other"
         function getTop10(data) {
             const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
@@ -368,9 +449,13 @@
                 const topLocations = getTop10(locations);
                 const topFileFormats = getTop10(fileFormats);
 
-                document.getElementById('subjectCount').textContent = Object.values(subjects).reduce((a, b) => a + b, 0);
-                document.getElementById('coverageCount').textContent = Object.values(locations).reduce((a, b) => a + b, 0);
-                document.getElementById('fileFormatCount').textContent = Object.values(fileFormats).reduce((a, b) => a + b, 0);
+                const totalSubjects = Object.values(subjects).reduce((a, b) => a + b, 0);
+                const totalLocations = Object.values(locations).reduce((a, b) => a + b, 0);
+                const totalFileFormats = Object.values(fileFormats).reduce((a, b) => a + b, 0);
+
+                animateValue(document.getElementById('subjectCount'), 0, totalSubjects, 1600, '', '', true);
+                animateValue(document.getElementById('coverageCount'), 0, totalLocations, 1600, '', '', true);
+                animateValue(document.getElementById('fileFormatCount'), 0, totalFileFormats, 1600, '', '', true);
 
                 // Common Chart.js styling variables
                 const chartOptions = {
