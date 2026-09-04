@@ -160,7 +160,7 @@
             </div>
             
             <div class="dashboard-grid">
-                <!-- Subcollections Card (ARCHE) -->
+                <!-- 1. Subcollections Card (ARCHE) -->
                 <div class="chart-card">
                     <div>
                         <h3 class="chart-title">Subcollections (ARCHE) (n = <span id="subcollectionCount">20,788</span>)</h3>
@@ -171,7 +171,29 @@
                     </div>
                 </div>
 
-                <!-- Subjects Card -->
+                <!-- 2. Storage Volume Card (ARCHE) -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">Storage Volume (ARCHE) (<span id="storageVolumeTotal">357 GB</span>)</h3>
+                        <p class="chart-desc">Distribution of total storage volume (in GB) across the subcollections in ARCHE.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="storageVolumeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 3. Research Timeline Card -->
+                <div class="chart-card">
+                    <div>
+                        <h3 class="chart-title">Research Timeline (n = <span id="timelineCount">0</span>)</h3>
+                        <p class="chart-desc">Chronological distribution of documented research campaigns spanning 130+ years.</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 4. Subjects Card -->
                 <div class="chart-card">
                     <div>
                         <h3 class="chart-title">Subjects (n = <span id="subjectCount">0</span>)</h3>
@@ -182,7 +204,7 @@
                     </div>
                 </div>
 
-                <!-- Coverage Card -->
+                <!-- 5. Coverage Card -->
                 <div class="chart-card">
                     <div>
                         <h3 class="chart-title">Coverage (Locations) (n = <span id="coverageCount">0</span>)</h3>
@@ -193,11 +215,11 @@
                     </div>
                 </div>
 
-                <!-- File Formats Card -->
+                <!-- 6. File Formats Card -->
                 <div class="chart-card">
                     <div>
                         <h3 class="chart-title">File Formats (n = <span id="fileFormatCount">0</span>)</h3>
-                        <p class="chart-desc">Breakdown of file types (e.g., .tif, .jpg, .gpkg) used in the dataset across all resources.</p>
+                        <p class="chart-desc">Breakdown of file types (e.g., .tif, .jpg, .gpkg) used across all resources.</p>
                     </div>
                     <div class="chart-wrapper">
                         <canvas id="fileFormatChart"></canvas>
@@ -445,16 +467,17 @@
                     collection: {
                         total_items: 20788,
                         total_size_formatted: "356.68 GB",
+                        total_size_bytes: 382979462143,
                         pid: "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
                         last_updated_in_arche: "2025-03-05T12:15:28"
                     },
                     subcollections: [
-                        { code: "RET", title: "Retrodigitalisate (RET)", items: 9341 },
-                        { code: "JAU", title: "Jaunstein (JAU)", items: 4989 },
-                        { code: "HB", title: "Hemmaberg (HB)", items: 3726 },
-                        { code: "GLO", title: "Globasnitz (GLO)", items: 2692 },
-                        { code: "TAL", title: "Jauntal (TAL)", items: 25 },
-                        { code: "STE", title: "Sankt Stefan (STE)", items: 8 }
+                        { code: "RET", title: "Retrodigitalisate (RET)", items: 9341, bytes: 290650991123, formatted_size: "270.69 GB" },
+                        { code: "JAU", title: "Jaunstein (JAU)", items: 4989, bytes: 55881335390, formatted_size: "52.04 GB" },
+                        { code: "HB", title: "Hemmaberg (HB)", items: 3726, bytes: 31148982450, formatted_size: "29.01 GB" },
+                        { code: "GLO", title: "Globasnitz (GLO)", items: 2692, bytes: 5136001949, formatted_size: "4.78 GB" },
+                        { code: "TAL", title: "Jauntal (TAL)", items: 25, bytes: 128491410, formatted_size: "122.54 MB" },
+                        { code: "STE", title: "Sankt Stefan (STE)", items: 8, bytes: 33621634, formatted_size: "32.06 MB" }
                     ]
                 };
             })
@@ -463,6 +486,12 @@
                 const subCountEl = document.getElementById('subcollectionCount');
                 if (subCountEl) {
                     animateValue(subCountEl, 0, totalItems, 1600, '', '', true);
+                }
+
+                // Update total storage volume badge
+                const storageTotalEl = document.getElementById('storageVolumeTotal');
+                if (storageTotalEl && archeData.collection.total_size_formatted) {
+                    storageTotalEl.textContent = archeData.collection.total_size_formatted;
                 }
 
                 // Update hero item counter target
@@ -480,7 +509,7 @@
                     statusEl.innerHTML = `Status: <strong>${dateStr}</strong> (Harvested from <a href="${pidUrl}" target="_blank" style="color: var(--secondary); text-decoration: underline;">ARCHE Repository</a>)`;
                 }
 
-                // Render Subcollections Chart
+                // 1. Render Subcollections Chart (with minBarLength: 10 so TAL and STE are clearly visible)
                 const subLabels = archeData.subcollections.map(s => s.code || s.title);
                 const subValues = archeData.subcollections.map(s => s.items);
 
@@ -488,7 +517,15 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false }
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const sc = archeData.subcollections[context.dataIndex];
+                                    return `${context.parsed.y.toLocaleString()} Items (${sc.formatted_size || ''})`;
+                                }
+                            }
+                        }
                     },
                     scales: {
                         y: { 
@@ -520,16 +557,66 @@
                                 '#A8442E', /* Terracotta */
                                 '#B88E3E', /* Antique Gold */
                                 '#202226', /* Charcoal */
-                                'rgba(168, 68, 46, 0.7)',
-                                'rgba(184, 142, 62, 0.7)',
-                                'rgba(32, 34, 38, 0.7)'
+                                'rgba(168, 68, 46, 0.75)',
+                                'rgba(184, 142, 62, 0.75)',
+                                'rgba(32, 34, 38, 0.75)'
                             ],
                             borderWidth: 1.5,
                             borderColor: '#FFFFFF',
-                            borderRadius: 6
+                            borderRadius: 6,
+                            minBarLength: 10 /* Ensures TAL (25) and STE (8) bars are clearly visible */
                         }]
                     },
                     options: subChartOptions
+                });
+
+                // 2. Render Storage Volume Chart (Doughnut in GB)
+                const storageLabels = archeData.subcollections.map(s => s.code || s.title);
+                const storageGBs = archeData.subcollections.map(s => {
+                    const gb = s.bytes / (1024 * 1024 * 1024);
+                    return parseFloat(gb.toFixed(2));
+                });
+
+                new Chart(document.getElementById('storageVolumeChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: storageLabels,
+                        datasets: [{
+                            data: storageGBs,
+                            backgroundColor: [
+                                '#A8442E', /* RET - Terracotta */
+                                '#B88E3E', /* JAU - Gold */
+                                '#202226', /* HB - Charcoal */
+                                '#8D3421', /* GLO - Deep Terracotta */
+                                '#C5A059', /* TAL - Light Gold */
+                                '#5C5E62'  /* STE - Slate */
+                            ],
+                            borderWidth: 2,
+                            borderColor: '#FFFFFF'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 500 },
+                                    color: '#202226'
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const label = context.label || '';
+                                        const val = context.parsed;
+                                        return ` ${label}: ${val >= 1 ? val.toFixed(1) + ' GB' : (val * 1024).toFixed(0) + ' MB'}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 });
             });
 
@@ -540,33 +627,57 @@
                 const subjects = {};
                 const locations = {};
                 const fileFormats = {};
+                const decades = {};
 
                 data.features.forEach(feature => {
                     const properties = feature.properties;
 
+                    // Subjects
                     properties.hasSubject.split(',').forEach(subject => {
                         subject = subject.trim();
                         subjects[subject] = (subjects[subject] || 0) + 1;
                     });
 
+                    // Spatial Coverage
                     const location = properties.hasSpatialCoverage;
                     locations[location] = (locations[location] || 0) + 1;
 
+                    // File Formats
                     const fileFormat = properties.hasAlternativeTitle.split('.').pop();
                     fileFormats[fileFormat] = (fileFormats[fileFormat] || 0) + 1;
+
+                    // Research Timeline (Decades from hasCollectedEndDate)
+                    const yearStr = properties.hasCollectedEndDate;
+                    if (yearStr && yearStr !== 'n/a' && !isNaN(parseInt(yearStr, 10))) {
+                        const yr = parseInt(yearStr, 10);
+                        if (yr >= 1800 && yr <= 2030) {
+                            const decade = `${Math.floor(yr / 10) * 10}s`;
+                            decades[decade] = (decades[decade] || 0) + 1;
+                        }
+                    }
                 });
 
                 const topSubjects = getTop10(subjects);
                 const topLocations = getTop10(locations);
                 const topFileFormats = getTop10(fileFormats);
 
+                // Sort decades chronologically
+                const sortedDecades = Object.entries(decades).sort((a, b) => parseInt(a[0], 10) - parseInt(b[0], 10));
+                const decadeLabels = sortedDecades.map(([d]) => d);
+                const decadeCounts = sortedDecades.map(([, count]) => count);
+
                 const totalSubjects = Object.values(subjects).reduce((a, b) => a + b, 0);
                 const totalLocations = Object.values(locations).reduce((a, b) => a + b, 0);
                 const totalFileFormats = Object.values(fileFormats).reduce((a, b) => a + b, 0);
+                const totalDatedItems = decadeCounts.reduce((a, b) => a + b, 0);
 
                 animateValue(document.getElementById('subjectCount'), 0, totalSubjects, 1600, '', '', true);
                 animateValue(document.getElementById('coverageCount'), 0, totalLocations, 1600, '', '', true);
                 animateValue(document.getElementById('fileFormatCount'), 0, totalFileFormats, 1600, '', '', true);
+                const timelineCountEl = document.getElementById('timelineCount');
+                if (timelineCountEl) {
+                    animateValue(timelineCountEl, 0, totalDatedItems, 1600, '', '', true);
+                }
 
                 // Common Chart.js styling variables
                 const chartOptions = {
@@ -603,6 +714,25 @@
                     }
                 };
 
+                // 3. Render Research Timeline Chart
+                new Chart(document.getElementById('timelineChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: decadeLabels,
+                        datasets: [{
+                            label: 'Documented Campaign Items',
+                            data: decadeCounts,
+                            backgroundColor: 'rgba(184, 142, 62, 0.75)', /* Antique Gold */
+                            borderColor: 'rgba(184, 142, 62, 1)',
+                            borderWidth: 1.5,
+                            borderRadius: 6,
+                            minBarLength: 6
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                // 4. Render Subjects Chart
                 new Chart(document.getElementById('subjectChart'), {
                     type: 'bar',
                     data: {
@@ -613,12 +743,14 @@
                             backgroundColor: 'rgba(168, 68, 46, 0.75)', /* Terracotta */
                             borderColor: 'rgba(168, 68, 46, 1)',
                             borderWidth: 1.5,
-                            borderRadius: 6
+                            borderRadius: 6,
+                            minBarLength: 6
                         }]
                     },
                     options: chartOptions
                 });
 
+                // 5. Render Coverage (Locations) Chart
                 new Chart(document.getElementById('coverageChart'), {
                     type: 'bar',
                     data: {
@@ -626,15 +758,17 @@
                         datasets: [{
                             label: 'Coverage (Locations)',
                             data: Object.values(topLocations),
-                            backgroundColor: 'rgba(184, 142, 62, 0.75)', /* Antique Gold */
-                            borderColor: 'rgba(184, 142, 62, 1)',
+                            backgroundColor: 'rgba(32, 34, 38, 0.75)', /* Charcoal */
+                            borderColor: 'rgba(32, 34, 38, 1)',
                             borderWidth: 1.5,
-                            borderRadius: 6
+                            borderRadius: 6,
+                            minBarLength: 6
                         }]
                     },
                     options: chartOptions
                 });
 
+                // 6. Render File Formats Chart
                 new Chart(document.getElementById('fileFormatChart'), {
                     type: 'pie',
                     data: {
