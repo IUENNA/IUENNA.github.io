@@ -455,64 +455,6 @@
             return Object.fromEntries(top10);
         }
 
-        // Load ARCHE repository statistics
-        fetch('data/arche_stats.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Could not load ARCHE stats');
-                return response.json();
-            })
-            .catch(() => {
-                // Fallback structure in case of direct file:// opening
-                return {
-                    collection: {
-                        total_items: 20788,
-                        total_size_formatted: "356.68 GB",
-                        total_size_bytes: 382979462143,
-                        pid: "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
-                        last_updated_in_arche: "2025-03-05T12:15:28"
-                    },
-                    subcollections: [
-                        { code: "RET", title: "Retrodigitalisate (RET)", items: 9341, bytes: 290650991123, formatted_size: "270.69 GB" },
-                        { code: "JAU", title: "Jaunstein (JAU)", items: 4989, bytes: 55881335390, formatted_size: "52.04 GB" },
-                        { code: "HB", title: "Hemmaberg (HB)", items: 3726, bytes: 31148982450, formatted_size: "29.01 GB" },
-                        { code: "GLO", title: "Globasnitz (GLO)", items: 2692, bytes: 5136001949, formatted_size: "4.78 GB" },
-                        { code: "TAL", title: "Jauntal (TAL)", items: 25, bytes: 128491410, formatted_size: "122.54 MB" },
-                        { code: "STE", title: "Sankt Stefan (STE)", items: 8, bytes: 33621634, formatted_size: "32.06 MB" }
-                    ]
-                };
-            })
-            .then(archeData => {
-                const totalItems = archeData.collection.total_items || 20788;
-                const subCountEl = document.getElementById('subcollectionCount');
-                if (subCountEl) {
-                    animateValue(subCountEl, 0, totalItems, 1600, '', '', true);
-                }
-
-                // Update total storage volume badge
-                const storageTotalEl = document.getElementById('storageVolumeTotal');
-                if (storageTotalEl && archeData.collection.total_size_formatted) {
-                    storageTotalEl.textContent = archeData.collection.total_size_formatted;
-                }
-
-                // Update hero item counter target
-                const heroItemEl = document.getElementById('heroItemCount');
-                if (heroItemEl) {
-                    heroItemEl.setAttribute('data-target', totalItems);
-                }
-
-                // Update dashboard status text with formatted ARCHE date and PID link
-                const statusEl = document.getElementById('dashboardStatusText');
-                if (statusEl && archeData.collection.last_updated_in_arche) {
-                    const rawDate = archeData.collection.last_updated_in_arche;
-                    const dateStr = rawDate.split('T')[0];
-                    const pidUrl = archeData.collection.pid || "https://id.acdh.oeaw.ac.at/iuenna";
-                    statusEl.innerHTML = `Status: <strong>${dateStr}</strong> (Harvested from <a href="${pidUrl}" target="_blank" style="color: var(--secondary); text-decoration: underline;">ARCHE Repository</a>)`;
-                }
-
-                // 1. Render Subcollections Chart (with minBarLength: 10 so TAL and STE are clearly visible)
-                const subLabels = archeData.subcollections.map(s => s.code || s.title);
-                const subValues = archeData.subcollections.map(s => s.items);
-
         // Shared Chart.js styling variables
         const commonBarOptions = {
             responsive: true,
