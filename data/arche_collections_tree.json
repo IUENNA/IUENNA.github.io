@@ -1,0 +1,3434 @@
+{
+  "crawl_timestamp": "2026-09-06T22:26:36Z",
+  "total_collections": 190,
+  "collections": {
+    "1792170": {
+      "arche_id": "1792170",
+      "title": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+      "parent_id": null,
+      "items": 20788,
+      "bytes": 382979462143,
+      "formatted_size": "356.68 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+      "spatial": "Jauntal",
+      "level": 0,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology"
+      ]
+    },
+    "1792169": {
+      "arche_id": "1792169",
+      "title": "Globasnitz-Collection (GLO)",
+      "parent_id": "1792170",
+      "items": 2692,
+      "bytes": 5136001949,
+      "formatted_size": "4.78 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B30-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792169",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)"
+      ]
+    },
+    "1792212": {
+      "arche_id": "1792212",
+      "title": "Hemmaberg-Collection (HB)",
+      "parent_id": "1792170",
+      "items": 3726,
+      "bytes": 31148982450,
+      "formatted_size": "29.01 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792212",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)"
+      ]
+    },
+    "1792303": {
+      "arche_id": "1792303",
+      "title": "Jaunstein-Collection (JAU)",
+      "parent_id": "1792170",
+      "items": 4989,
+      "bytes": 55881335390,
+      "formatted_size": "52.04 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4B-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792303",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)"
+      ]
+    },
+    "1792411": {
+      "arche_id": "1792411",
+      "title": "Sankt Stefan-Collection (STE)",
+      "parent_id": "1792170",
+      "items": 8,
+      "bytes": 33621634,
+      "formatted_size": "32.06 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B53-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792411",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Sankt Stefan-Collection (STE)"
+      ]
+    },
+    "1792417": {
+      "arche_id": "1792417",
+      "title": "Jauntal-Collection (TAL)",
+      "parent_id": "1792170",
+      "items": 25,
+      "bytes": 128491410,
+      "formatted_size": "122.54 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B56-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792417",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)"
+      ]
+    },
+    "1792572": {
+      "arche_id": "1792572",
+      "title": "Retrodigitalisat-Collection (RET)",
+      "parent_id": "1792170",
+      "items": 9341,
+      "bytes": 290650991123,
+      "formatted_size": "270.69 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B59-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792572",
+      "level": 1,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Retrodigitalisat-Collection (RET)"
+      ]
+    },
+    "1792168": {
+      "arche_id": "1792168",
+      "title": "01_03_Raster",
+      "parent_id": "1792169",
+      "items": 2605,
+      "bytes": 4565583001,
+      "formatted_size": "4.25 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B2E-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792168",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster"
+      ]
+    },
+    "1792190": {
+      "arche_id": "1792190",
+      "title": "01_05_Datenbanken",
+      "parent_id": "1792169",
+      "items": 2,
+      "bytes": 18448384,
+      "formatted_size": "17.59 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EBEE-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792190",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_05_Datenbanken"
+      ]
+    },
+    "1792193": {
+      "arche_id": "1792193",
+      "title": "01_06_Text_Tabellen",
+      "parent_id": "1792169",
+      "items": 57,
+      "bytes": 40071579,
+      "formatted_size": "38.22 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B36-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792193",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_06_Text_Tabellen"
+      ]
+    },
+    "1792206": {
+      "arche_id": "1792206",
+      "title": "01_07_Output",
+      "parent_id": "1792169",
+      "items": 24,
+      "bytes": 511898985,
+      "formatted_size": "488.18 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B37-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792206",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_07_Output"
+      ]
+    },
+    "1792302": {
+      "arche_id": "1792302",
+      "title": "03_02_Vektor",
+      "parent_id": "1792303",
+      "items": 6,
+      "bytes": 21230374,
+      "formatted_size": "20.25 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4A-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792302",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_02_Vektor"
+      ]
+    },
+    "1792308": {
+      "arche_id": "1792308",
+      "title": "03_03_Raster",
+      "parent_id": "1792303",
+      "items": 4742,
+      "bytes": 55186437020,
+      "formatted_size": "51.40 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4D-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792308",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster"
+      ]
+    },
+    "1792394": {
+      "arche_id": "1792394",
+      "title": "03_05_Datenbanken",
+      "parent_id": "1792303",
+      "items": 2,
+      "bytes": 91050571,
+      "formatted_size": "86.83 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D48-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792394",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_05_Datenbanken"
+      ]
+    },
+    "1792395": {
+      "arche_id": "1792395",
+      "title": "03_06_Texte_Tabellen",
+      "parent_id": "1792303",
+      "items": 205,
+      "bytes": 399301863,
+      "formatted_size": "380.80 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B51-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792395",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen"
+      ]
+    },
+    "1792406": {
+      "arche_id": "1792406",
+      "title": "03_07_Output",
+      "parent_id": "1792303",
+      "items": 29,
+      "bytes": 183315562,
+      "formatted_size": "174.82 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B52-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792406",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_07_Output"
+      ]
+    },
+    "1792412": {
+      "arche_id": "1792412",
+      "title": "04_05_Datenbanken",
+      "parent_id": "1792411",
+      "items": 1,
+      "bytes": 14831616,
+      "formatted_size": "14.14 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E36-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792412",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Sankt Stefan-Collection (STE)",
+        "04_05_Datenbanken"
+      ]
+    },
+    "1792414": {
+      "arche_id": "1792414",
+      "title": "04_07_Output",
+      "parent_id": "1792411",
+      "items": 5,
+      "bytes": 18790018,
+      "formatted_size": "17.92 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B54-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792414",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Sankt Stefan-Collection (STE)",
+        "04_07_Output"
+      ]
+    },
+    "1792416": {
+      "arche_id": "1792416",
+      "title": "05_03_Raster",
+      "parent_id": "1792417",
+      "items": 11,
+      "bytes": 31654948,
+      "formatted_size": "30.19 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B55-F",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792416",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_03_Raster"
+      ]
+    },
+    "1792423": {
+      "arche_id": "1792423",
+      "title": "05_05_Datenbanken",
+      "parent_id": "1792417",
+      "items": 4,
+      "bytes": 78910031,
+      "formatted_size": "75.25 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E48-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792423",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_05_Datenbanken"
+      ]
+    },
+    "1792568": {
+      "arche_id": "1792568",
+      "title": "05_06_Texte_Tabellen",
+      "parent_id": "1792417",
+      "items": 4,
+      "bytes": 97463,
+      "formatted_size": "95.18 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B57-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792568",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_06_Texte_Tabellen"
+      ]
+    },
+    "1792570": {
+      "arche_id": "1792570",
+      "title": "05_07_Output",
+      "parent_id": "1792417",
+      "items": 2,
+      "bytes": 17828968,
+      "formatted_size": "17.00 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B58-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792570",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_07_Output"
+      ]
+    },
+    "1792211": {
+      "arche_id": "1792211",
+      "title": "02_02_Vektor",
+      "parent_id": "1792212",
+      "items": 43,
+      "bytes": 18820315,
+      "formatted_size": "17.95 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792211",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_02_Vektor"
+      ]
+    },
+    "1792217": {
+      "arche_id": "1792217",
+      "title": "02_03_Raster",
+      "parent_id": "1792212",
+      "items": 3401,
+      "bytes": 25900316052,
+      "formatted_size": "24.12 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3D-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792217",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster"
+      ]
+    },
+    "1792271": {
+      "arche_id": "1792271",
+      "title": "02_04_3D-Daten",
+      "parent_id": "1792212",
+      "items": 2,
+      "bytes": 272761708,
+      "formatted_size": "260.13 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B46-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792271",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_04_3D-Daten"
+      ]
+    },
+    "1792273": {
+      "arche_id": "1792273",
+      "title": "02_05_Datenbanken",
+      "parent_id": "1792212",
+      "items": 4,
+      "bytes": 41467186,
+      "formatted_size": "39.55 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AE-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792273",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_05_Datenbanken"
+      ]
+    },
+    "1792274": {
+      "arche_id": "1792274",
+      "title": "02_06_Texte_Tabellen",
+      "parent_id": "1792212",
+      "items": 217,
+      "bytes": 281013715,
+      "formatted_size": "268.00 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B47-F",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792274",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen"
+      ]
+    },
+    "1792292": {
+      "arche_id": "1792292",
+      "title": "02_07_Output",
+      "parent_id": "1792212",
+      "items": 53,
+      "bytes": 4634603474,
+      "formatted_size": "4.32 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B49-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792292",
+      "level": 2,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output"
+      ]
+    },
+    "1792167": {
+      "arche_id": "1792167",
+      "title": "01_03_03_Fotos",
+      "parent_id": "1792168",
+      "items": 1914,
+      "bytes": 4305123005,
+      "formatted_size": "4.01 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B2F-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792167",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos"
+      ]
+    },
+    "1792184": {
+      "arche_id": "1792184",
+      "title": "01_03_04_Zeichnungen",
+      "parent_id": "1792168",
+      "items": 689,
+      "bytes": 260459996,
+      "formatted_size": "248.39 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B34-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792184",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen"
+      ]
+    },
+    "1792202": {
+      "arche_id": "1792202",
+      "title": "01_07_01_Plaene",
+      "parent_id": "1792206",
+      "items": 20,
+      "bytes": 481814443,
+      "formatted_size": "459.49 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3C-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792202",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_07_Output",
+        "01_07_01_Plaene"
+      ]
+    },
+    "1792210": {
+      "arche_id": "1792210",
+      "title": "01_07_02_Kataloge",
+      "parent_id": "1792206",
+      "items": 2,
+      "bytes": 30084542,
+      "formatted_size": "28.69 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3F-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792210",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_07_Output",
+        "01_07_02_Kataloge"
+      ]
+    },
+    "1792305": {
+      "arche_id": "1792305",
+      "title": "03_02_01_Geodaesie",
+      "parent_id": "1792302",
+      "items": 5,
+      "bytes": 21230374,
+      "formatted_size": "20.25 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC0-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792305",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_02_Vektor",
+        "03_02_01_Geodaesie"
+      ]
+    },
+    "1792307": {
+      "arche_id": "1792307",
+      "title": "03_03_03_Fotos",
+      "parent_id": "1792308",
+      "items": 4696,
+      "bytes": 55154261856,
+      "formatted_size": "51.37 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4C-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792307",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos"
+      ]
+    },
+    "1792390": {
+      "arche_id": "1792390",
+      "title": "03_03_04_Zeichnungen",
+      "parent_id": "1792308",
+      "items": 44,
+      "bytes": 32175164,
+      "formatted_size": "30.68 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B50-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792390",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_04_Zeichnungen"
+      ]
+    },
+    "1792194": {
+      "arche_id": "1792194",
+      "title": "01_06_02_Protokolle",
+      "parent_id": "1792193",
+      "items": 4,
+      "bytes": 171410,
+      "formatted_size": "167.39 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF1-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792194",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_06_Text_Tabellen",
+        "01_06_02_Protokolle"
+      ]
+    },
+    "1792201": {
+      "arche_id": "1792201",
+      "title": "01_06_03_Verzeichnisse",
+      "parent_id": "1792193",
+      "items": 11,
+      "bytes": 38734026,
+      "formatted_size": "36.94 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF6-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792201",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_06_Text_Tabellen",
+        "01_06_03_Verzeichnisse"
+      ]
+    },
+    "1792203": {
+      "arche_id": "1792203",
+      "title": "01_06_05_Funde",
+      "parent_id": "1792193",
+      "items": 3,
+      "bytes": 35196,
+      "formatted_size": "34.37 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC01-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792203",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_06_Text_Tabellen",
+        "01_06_05_Funde"
+      ]
+    },
+    "1792205": {
+      "arche_id": "1792205",
+      "title": "01_06_06_Bioarchaeologie",
+      "parent_id": "1792193",
+      "items": 35,
+      "bytes": 1130947,
+      "formatted_size": "1.08 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC06-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792205",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_06_Text_Tabellen",
+        "01_06_06_Bioarchaeologie"
+      ]
+    },
+    "1792415": {
+      "arche_id": "1792415",
+      "title": "04_07_01_Plaene",
+      "parent_id": "1792414",
+      "items": 4,
+      "bytes": 18790018,
+      "formatted_size": "17.92 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E38-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792415",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Sankt Stefan-Collection (STE)",
+        "04_07_Output",
+        "04_07_01_Plaene"
+      ]
+    },
+    "1792402": {
+      "arche_id": "1792402",
+      "title": "03_07_01_Plaene",
+      "parent_id": "1792406",
+      "items": 28,
+      "bytes": 183315562,
+      "formatted_size": "174.82 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E19-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792402",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_07_Output",
+        "03_07_01_Plaene"
+      ]
+    },
+    "1792421": {
+      "arche_id": "1792421",
+      "title": "05_03_03_Fotos",
+      "parent_id": "1792416",
+      "items": 10,
+      "bytes": 31654948,
+      "formatted_size": "30.19 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3D-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792421",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_03_Raster",
+        "05_03_03_Fotos"
+      ]
+    },
+    "1792396": {
+      "arche_id": "1792396",
+      "title": "03_06_02_Protokolle",
+      "parent_id": "1792395",
+      "items": 28,
+      "bytes": 29450473,
+      "formatted_size": "28.09 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D66-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792396",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_02_Protokolle"
+      ]
+    },
+    "1792397": {
+      "arche_id": "1792397",
+      "title": "03_06_01_Geodaesie",
+      "parent_id": "1792395",
+      "items": 25,
+      "bytes": 306872293,
+      "formatted_size": "292.66 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D4C-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792397",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_01_Geodaesie"
+      ]
+    },
+    "1792400": {
+      "arche_id": "1792400",
+      "title": "03_06_03_Verzeichnisse",
+      "parent_id": "1792395",
+      "items": 13,
+      "bytes": 13014089,
+      "formatted_size": "12.41 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D83-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792400",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_03_Verzeichnisse"
+      ]
+    },
+    "1792401": {
+      "arche_id": "1792401",
+      "title": "03_06_04_Matrizen",
+      "parent_id": "1792395",
+      "items": 10,
+      "bytes": 133175,
+      "formatted_size": "130.05 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D91-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792401",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_04_Matrizen"
+      ]
+    },
+    "1792403": {
+      "arche_id": "1792403",
+      "title": "03_06_05_Funde",
+      "parent_id": "1792395",
+      "items": 21,
+      "bytes": 6188753,
+      "formatted_size": "5.90 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9C-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792403",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_05_Funde"
+      ]
+    },
+    "1792404": {
+      "arche_id": "1792404",
+      "title": "03_06_06_Bioarchaeologie",
+      "parent_id": "1792395",
+      "items": 102,
+      "bytes": 43643080,
+      "formatted_size": "41.62 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0DB2-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792404",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_06_Texte_Tabellen",
+        "03_06_06_Bioarchaeologie"
+      ]
+    },
+    "1792567": {
+      "arche_id": "1792567",
+      "title": "05_06_06_Bioarchaeologie",
+      "parent_id": "1792568",
+      "items": 3,
+      "bytes": 97463,
+      "formatted_size": "95.18 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4C-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792567",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jauntal-Collection (TAL)",
+        "05_06_Texte_Tabellen",
+        "05_06_06_Bioarchaeologie"
+      ]
+    },
+    "1792209": {
+      "arche_id": "1792209",
+      "title": "02_02_01_Geodaesie",
+      "parent_id": "1792211",
+      "items": 12,
+      "bytes": 6514653,
+      "formatted_size": "6.21 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B38-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792209",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_02_Vektor",
+        "02_02_01_Geodaesie"
+      ]
+    },
+    "1792215": {
+      "arche_id": "1792215",
+      "title": "02_02_03_Zeichnungen",
+      "parent_id": "1792211",
+      "items": 29,
+      "bytes": 12305662,
+      "formatted_size": "11.74 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3C-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792215",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_02_Vektor",
+        "02_02_03_Zeichnungen"
+      ]
+    },
+    "1792270": {
+      "arche_id": "1792270",
+      "title": "02_04_02_Meshes_Textures",
+      "parent_id": "1792271",
+      "items": 1,
+      "bytes": 272761708,
+      "formatted_size": "260.13 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AB-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792270",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_04_3D-Daten",
+        "02_04_02_Meshes_Textures"
+      ]
+    },
+    "1792219": {
+      "arche_id": "1792219",
+      "title": "02_03_01_Geodaesie",
+      "parent_id": "1792217",
+      "items": 15,
+      "bytes": 48091061,
+      "formatted_size": "45.86 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6B-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792219",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_01_Geodaesie"
+      ]
+    },
+    "1792222": {
+      "arche_id": "1792222",
+      "title": "02_03_03_Fotos",
+      "parent_id": "1792217",
+      "items": 3260,
+      "bytes": 25587523975,
+      "formatted_size": "23.83 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3E-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792222",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos"
+      ]
+    },
+    "1792266": {
+      "arche_id": "1792266",
+      "title": "02_03_04_Zeichnungen",
+      "parent_id": "1792217",
+      "items": 123,
+      "bytes": 264701016,
+      "formatted_size": "252.44 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B45-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792266",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_04_Zeichnungen"
+      ]
+    },
+    "1792286": {
+      "arche_id": "1792286",
+      "title": "02_07_01_Plaene",
+      "parent_id": "1792292",
+      "items": 45,
+      "bytes": 344561815,
+      "formatted_size": "328.60 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB6-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792286",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output",
+        "02_07_01_Plaene"
+      ]
+    },
+    "1792301": {
+      "arche_id": "1792301",
+      "title": "02_07_02_Kataloge",
+      "parent_id": "1792292",
+      "items": 6,
+      "bytes": 4290041659,
+      "formatted_size": "4.00 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB9-F",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792301",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output",
+        "02_07_02_Kataloge"
+      ]
+    },
+    "1792276": {
+      "arche_id": "1792276",
+      "title": "02_06_01_Geodaesie",
+      "parent_id": "1792274",
+      "items": 18,
+      "bytes": 9688414,
+      "formatted_size": "9.24 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B3-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792276",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_01_Geodaesie"
+      ]
+    },
+    "1792278": {
+      "arche_id": "1792278",
+      "title": "02_06_02_Protokolle",
+      "parent_id": "1792274",
+      "items": 40,
+      "bytes": 137067091,
+      "formatted_size": "130.72 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C6-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792278",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_02_Protokolle"
+      ]
+    },
+    "1792284": {
+      "arche_id": "1792284",
+      "title": "02_06_04_Matrizen",
+      "parent_id": "1792274",
+      "items": 14,
+      "bytes": 3566305,
+      "formatted_size": "3.40 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FA06-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792284",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_04_Matrizen"
+      ]
+    },
+    "1792285": {
+      "arche_id": "1792285",
+      "title": "02_06_03_Verzeichnisse",
+      "parent_id": "1792274",
+      "items": 22,
+      "bytes": 9106197,
+      "formatted_size": "8.68 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9EF-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792285",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_03_Verzeichnisse"
+      ]
+    },
+    "1792288": {
+      "arche_id": "1792288",
+      "title": "02_06_05_Funde",
+      "parent_id": "1792274",
+      "items": 32,
+      "bytes": 7303614,
+      "formatted_size": "6.97 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FA15-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792288",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_05_Funde"
+      ]
+    },
+    "1792290": {
+      "arche_id": "1792290",
+      "title": "02_06_06_Bioarchaeologie",
+      "parent_id": "1792274",
+      "items": 85,
+      "bytes": 114282094,
+      "formatted_size": "108.99 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FA36-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792290",
+      "level": 3,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_06_Texte_Tabellen",
+        "02_06_06_Bioarchaeologie"
+      ]
+    },
+    "1792171": {
+      "arche_id": "1792171",
+      "title": "01_03_03_01_Umfeld",
+      "parent_id": "1792167",
+      "items": 20,
+      "bytes": 459164868,
+      "formatted_size": "437.89 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E1C8-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792171",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_01_Umfeld"
+      ]
+    },
+    "1792174": {
+      "arche_id": "1792174",
+      "title": "01_03_03_02_Befunde",
+      "parent_id": "1792167",
+      "items": 969,
+      "bytes": 1107713188,
+      "formatted_size": "1.03 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B2D-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792174",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_02_Befunde"
+      ]
+    },
+    "1792178": {
+      "arche_id": "1792178",
+      "title": "01_03_03_03_Funde",
+      "parent_id": "1792167",
+      "items": 463,
+      "bytes": 708834940,
+      "formatted_size": "676.00 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B31-7",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792178",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_03_Funde"
+      ]
+    },
+    "1792180": {
+      "arche_id": "1792180",
+      "title": "01_03_03_05_Bioarchaeologie",
+      "parent_id": "1792167",
+      "items": 458,
+      "bytes": 2029410009,
+      "formatted_size": "1.89 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B32-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792180",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_05_Bioarchaeologie"
+      ]
+    },
+    "1792183": {
+      "arche_id": "1792183",
+      "title": "01_03_04_01_Befunde",
+      "parent_id": "1792184",
+      "items": 487,
+      "bytes": 228799138,
+      "formatted_size": "218.20 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B33-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792183",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen",
+        "01_03_04_01_Befunde"
+      ]
+    },
+    "1792187": {
+      "arche_id": "1792187",
+      "title": "01_03_04_02_Funde",
+      "parent_id": "1792184",
+      "items": 200,
+      "bytes": 31660858,
+      "formatted_size": "30.19 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B35-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792187",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen",
+        "01_03_04_02_Funde"
+      ]
+    },
+    "1792309": {
+      "arche_id": "1792309",
+      "title": "03_03_03_01_Umfeld",
+      "parent_id": "1792307",
+      "items": 10,
+      "bytes": 54000361,
+      "formatted_size": "51.50 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC6-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792309",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_01_Umfeld"
+      ]
+    },
+    "1792310": {
+      "arche_id": "1792310",
+      "title": "03_03_03_02_Befunde",
+      "parent_id": "1792307",
+      "items": 3130,
+      "bytes": 23412364981,
+      "formatted_size": "21.80 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4E-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792310",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_02_Befunde"
+      ]
+    },
+    "1792316": {
+      "arche_id": "1792316",
+      "title": "03_03_03_03_Funde",
+      "parent_id": "1792307",
+      "items": 713,
+      "bytes": 1866515691,
+      "formatted_size": "1.74 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4F-7",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792316",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_03_Funde"
+      ]
+    },
+    "1792320": {
+      "arche_id": "1792320",
+      "title": "03_03_03_04_Fotogrammetrie",
+      "parent_id": "1792307",
+      "items": 798,
+      "bytes": 29706475698,
+      "formatted_size": "27.67 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-09D5-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792320",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_04_Fotogrammetrie"
+      ]
+    },
+    "1792389": {
+      "arche_id": "1792389",
+      "title": "03_03_03_06_Restaurierung",
+      "parent_id": "1792307",
+      "items": 40,
+      "bytes": 114905125,
+      "formatted_size": "109.58 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0CF4-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792389",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_06_Restaurierung"
+      ]
+    },
+    "1792207": {
+      "arche_id": "1792207",
+      "title": "01_07_01_01_Prospektion",
+      "parent_id": "1792202",
+      "items": 7,
+      "bytes": 351921289,
+      "formatted_size": "335.62 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2A-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792207",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_07_Output",
+        "01_07_01_Plaene",
+        "01_07_01_01_Prospektion"
+      ]
+    },
+    "1792208": {
+      "arche_id": "1792208",
+      "title": "01_07_01_03_Ausgrabung",
+      "parent_id": "1792202",
+      "items": 9,
+      "bytes": 21606937,
+      "formatted_size": "20.61 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC32-7",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792208",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_07_Output",
+        "01_07_01_Plaene",
+        "01_07_01_03_Ausgrabung"
+      ]
+    },
+    "1792391": {
+      "arche_id": "1792391",
+      "title": "03_03_04_01_01_Flaechen",
+      "parent_id": "1792390",
+      "items": 11,
+      "bytes": 11092760,
+      "formatted_size": "10.58 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D1D-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792391",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_04_Zeichnungen",
+        "03_03_04_01_01_Flaechen"
+      ]
+    },
+    "1792392": {
+      "arche_id": "1792392",
+      "title": "03_03_04_01_02_Graeber",
+      "parent_id": "1792390",
+      "items": 27,
+      "bytes": 16006506,
+      "formatted_size": "15.26 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D29-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792392",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_04_Zeichnungen",
+        "03_03_04_01_02_Graeber"
+      ]
+    },
+    "1792393": {
+      "arche_id": "1792393",
+      "title": "03_03_04_01_03_Profile",
+      "parent_id": "1792390",
+      "items": 3,
+      "bytes": 5075898,
+      "formatted_size": "4.84 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D45-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792393",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_04_Zeichnungen",
+        "03_03_04_01_03_Profile"
+      ]
+    },
+    "1792213": {
+      "arche_id": "1792213",
+      "title": "02_02_01_03_Ausgrabung",
+      "parent_id": "1792209",
+      "items": 11,
+      "bytes": 6514653,
+      "formatted_size": "6.21 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC42-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792213",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_02_Vektor",
+        "02_02_01_Geodaesie",
+        "02_02_01_03_Ausgrabung"
+      ]
+    },
+    "1792216": {
+      "arche_id": "1792216",
+      "title": "02_02_03_01_Befunde",
+      "parent_id": "1792215",
+      "items": 28,
+      "bytes": 12305662,
+      "formatted_size": "11.74 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC4E-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792216",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_02_Vektor",
+        "02_02_03_Zeichnungen",
+        "02_02_03_01_Befunde"
+      ]
+    },
+    "1792223": {
+      "arche_id": "1792223",
+      "title": "02_03_03_01_Umfeld",
+      "parent_id": "1792222",
+      "items": 257,
+      "bytes": 1783874547,
+      "formatted_size": "1.66 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EC7B-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792223",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_01_Umfeld"
+      ]
+    },
+    "1792224": {
+      "arche_id": "1792224",
+      "title": "02_03_03_02_Befunde",
+      "parent_id": "1792222",
+      "items": 1203,
+      "bytes": 9091437325,
+      "formatted_size": "8.47 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3F-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792224",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_02_Befunde"
+      ]
+    },
+    "1792228": {
+      "arche_id": "1792228",
+      "title": "02_03_03_03_Funde",
+      "parent_id": "1792222",
+      "items": 503,
+      "bytes": 1238235259,
+      "formatted_size": "1.15 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B40-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792228",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_03_Funde"
+      ]
+    },
+    "1792232": {
+      "arche_id": "1792232",
+      "title": "02_03_03_04_Fotogrammetrie",
+      "parent_id": "1792222",
+      "items": 445,
+      "bytes": 10163476877,
+      "formatted_size": "9.47 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B41-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792232",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie"
+      ]
+    },
+    "1792261": {
+      "arche_id": "1792261",
+      "title": "02_03_03_05_Bioarchaeologie",
+      "parent_id": "1792222",
+      "items": 830,
+      "bytes": 3252458886,
+      "formatted_size": "3.03 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B43-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792261",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_05_Bioarchaeologie"
+      ]
+    },
+    "1792264": {
+      "arche_id": "1792264",
+      "title": "02_03_03_06_Restaurierung",
+      "parent_id": "1792222",
+      "items": 16,
+      "bytes": 58041081,
+      "formatted_size": "55.35 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F921-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792264",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_06_Restaurierung"
+      ]
+    },
+    "1792265": {
+      "arche_id": "1792265",
+      "title": "02_03_04_01_Befunde",
+      "parent_id": "1792266",
+      "items": 122,
+      "bytes": 264701016,
+      "formatted_size": "252.44 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B44-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792265",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_04_Zeichnungen",
+        "02_03_04_01_Befunde"
+      ]
+    },
+    "1792289": {
+      "arche_id": "1792289",
+      "title": "02_07_01_01_Prospektion",
+      "parent_id": "1792286",
+      "items": 8,
+      "bytes": 92498736,
+      "formatted_size": "88.21 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B48-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792289",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output",
+        "02_07_01_Plaene",
+        "02_07_01_01_Prospektion"
+      ]
+    },
+    "1792294": {
+      "arche_id": "1792294",
+      "title": "02_07_01_03_Ausgrabung",
+      "parent_id": "1792286",
+      "items": 33,
+      "bytes": 233276373,
+      "formatted_size": "222.47 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FA94-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792294",
+      "level": 4,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output",
+        "02_07_01_Plaene",
+        "02_07_01_03_Ausgrabung"
+      ]
+    },
+    "1792188": {
+      "arche_id": "1792188",
+      "title": "01_03_04_02_02_Kleinfunde",
+      "parent_id": "1792187",
+      "items": 199,
+      "bytes": 31660858,
+      "formatted_size": "30.19 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EB26-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792188",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen",
+        "01_03_04_02_Funde",
+        "01_03_04_02_02_Kleinfunde"
+      ]
+    },
+    "1792185": {
+      "arche_id": "1792185",
+      "title": "01_03_04_01_01_Flaechen",
+      "parent_id": "1792183",
+      "items": 64,
+      "bytes": 56082580,
+      "formatted_size": "53.48 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E93F-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792185",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen",
+        "01_03_04_01_Befunde",
+        "01_03_04_01_01_Flaechen"
+      ]
+    },
+    "1792186": {
+      "arche_id": "1792186",
+      "title": "01_03_04_01_02_Graeber",
+      "parent_id": "1792183",
+      "items": 421,
+      "bytes": 172716558,
+      "formatted_size": "164.72 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E980-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792186",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_04_Zeichnungen",
+        "01_03_04_01_Befunde",
+        "01_03_04_01_02_Graeber"
+      ]
+    },
+    "1792175": {
+      "arche_id": "1792175",
+      "title": "01_03_03_02_01_Ueberblick",
+      "parent_id": "1792174",
+      "items": 204,
+      "bytes": 392458065,
+      "formatted_size": "374.28 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E1DD-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792175",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_02_Befunde",
+        "01_03_03_02_01_Ueberblick"
+      ]
+    },
+    "1792177": {
+      "arche_id": "1792177",
+      "title": "01_03_03_02_02_Strukturen",
+      "parent_id": "1792174",
+      "items": 763,
+      "bytes": 715255123,
+      "formatted_size": "682.12 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E2AA-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792177",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_02_Befunde",
+        "01_03_03_02_02_Strukturen"
+      ]
+    },
+    "1792179": {
+      "arche_id": "1792179",
+      "title": "01_03_03_03_02_Kleinfunde",
+      "parent_id": "1792178",
+      "items": 462,
+      "bytes": 708834940,
+      "formatted_size": "676.00 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E5A6-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792179",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_03_Funde",
+        "01_03_03_03_02_Kleinfunde"
+      ]
+    },
+    "1792181": {
+      "arche_id": "1792181",
+      "title": "01_03_03_05_01_Osteoarchaeologie",
+      "parent_id": "1792180",
+      "items": 449,
+      "bytes": 1997087449,
+      "formatted_size": "1.86 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E775-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792181",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_05_Bioarchaeologie",
+        "01_03_03_05_01_Osteoarchaeologie"
+      ]
+    },
+    "1792182": {
+      "arche_id": "1792182",
+      "title": "01_03_03_05_02_Archaeozoologie",
+      "parent_id": "1792180",
+      "items": 7,
+      "bytes": 32322560,
+      "formatted_size": "30.83 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-E937-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792182",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Globasnitz-Collection (GLO)",
+        "01_03_Raster",
+        "01_03_03_Fotos",
+        "01_03_03_05_Bioarchaeologie",
+        "01_03_03_05_02_Archaeozoologie"
+      ]
+    },
+    "1792311": {
+      "arche_id": "1792311",
+      "title": "03_03_03_02_01_Ueberblick",
+      "parent_id": "1792310",
+      "items": 51,
+      "bytes": 361642108,
+      "formatted_size": "344.89 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FAD1-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792311",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_02_Befunde",
+        "03_03_03_02_01_Ueberblick"
+      ]
+    },
+    "1792313": {
+      "arche_id": "1792313",
+      "title": "03_03_03_02_02_Graeber_Strukturen",
+      "parent_id": "1792310",
+      "items": 1453,
+      "bytes": 12789644078,
+      "formatted_size": "11.91 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FB05-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792313",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_02_Befunde",
+        "03_03_03_02_02_Graeber_Strukturen"
+      ]
+    },
+    "1792314": {
+      "arche_id": "1792314",
+      "title": "03_03_03_02_03_Profile",
+      "parent_id": "1792310",
+      "items": 3,
+      "bytes": 34408120,
+      "formatted_size": "32.81 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-00B4-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792314",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_02_Befunde",
+        "03_03_03_02_03_Profile"
+      ]
+    },
+    "1792315": {
+      "arche_id": "1792315",
+      "title": "03_03_03_02_04_Bauforschung",
+      "parent_id": "1792310",
+      "items": 1619,
+      "bytes": 10226670675,
+      "formatted_size": "9.52 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-00B8-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792315",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_02_Befunde",
+        "03_03_03_02_04_Bauforschung"
+      ]
+    },
+    "1792317": {
+      "arche_id": "1792317",
+      "title": "03_03_03_03_01_Keramik",
+      "parent_id": "1792316",
+      "items": 507,
+      "bytes": 975123351,
+      "formatted_size": "929.95 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-070C-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792317",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_03_Funde",
+        "03_03_03_03_01_Keramik"
+      ]
+    },
+    "1792318": {
+      "arche_id": "1792318",
+      "title": "03_03_03_03_02_Kleinfunde",
+      "parent_id": "1792316",
+      "items": 67,
+      "bytes": 150025556,
+      "formatted_size": "143.08 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0908-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792318",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_03_Funde",
+        "03_03_03_03_02_Kleinfunde"
+      ]
+    },
+    "1792319": {
+      "arche_id": "1792319",
+      "title": "03_03_03_03_03_Baustoffe",
+      "parent_id": "1792316",
+      "items": 131,
+      "bytes": 697631114,
+      "formatted_size": "665.31 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-094C-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792319",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_03_Funde",
+        "03_03_03_03_03_Baustoffe"
+      ]
+    },
+    "1792321": {
+      "arche_id": "1792321",
+      "title": "03_03_03_03_04_Sonstiges",
+      "parent_id": "1792316",
+      "items": 4,
+      "bytes": 43735670,
+      "formatted_size": "41.71 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-09D0-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792321",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Jaunstein-Collection (JAU)",
+        "03_03_Raster",
+        "03_03_03_Fotos",
+        "03_03_03_03_Funde",
+        "03_03_03_03_04_Sonstiges"
+      ]
+    },
+    "1792225": {
+      "arche_id": "1792225",
+      "title": "02_03_03_02_01_Ueberblick",
+      "parent_id": "1792224",
+      "items": 133,
+      "bytes": 890006970,
+      "formatted_size": "848.78 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-ED7D-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792225",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_02_Befunde",
+        "02_03_03_02_01_Ueberblick"
+      ]
+    },
+    "1792226": {
+      "arche_id": "1792226",
+      "title": "02_03_03_02_02_Strukturen",
+      "parent_id": "1792224",
+      "items": 867,
+      "bytes": 6666916194,
+      "formatted_size": "6.21 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EE03-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792226",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_02_Befunde",
+        "02_03_03_02_02_Strukturen"
+      ]
+    },
+    "1792227": {
+      "arche_id": "1792227",
+      "title": "02_03_03_02_03_Profile",
+      "parent_id": "1792224",
+      "items": 200,
+      "bytes": 1534514161,
+      "formatted_size": "1.43 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F167-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792227",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_02_Befunde",
+        "02_03_03_02_03_Profile"
+      ]
+    },
+    "1792229": {
+      "arche_id": "1792229",
+      "title": "02_03_03_03_01_Keramik",
+      "parent_id": "1792228",
+      "items": 276,
+      "bytes": 735667477,
+      "formatted_size": "701.59 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F230-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792229",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_03_Funde",
+        "02_03_03_03_01_Keramik"
+      ]
+    },
+    "1792230": {
+      "arche_id": "1792230",
+      "title": "02_03_03_03_02_Kleinfunde",
+      "parent_id": "1792228",
+      "items": 225,
+      "bytes": 502567782,
+      "formatted_size": "479.29 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F345-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792230",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_03_Funde",
+        "02_03_03_03_02_Kleinfunde"
+      ]
+    },
+    "1792260": {
+      "arche_id": "1792260",
+      "title": "02_03_03_05_01_Osteoarchaeologie",
+      "parent_id": "1792261",
+      "items": 829,
+      "bytes": 3252458886,
+      "formatted_size": "3.03 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F5E3-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792260",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_05_Bioarchaeologie",
+        "02_03_03_05_01_Osteoarchaeologie"
+      ]
+    },
+    "1792267": {
+      "arche_id": "1792267",
+      "title": "02_03_04_01_01_Flaechen",
+      "parent_id": "1792265",
+      "items": 56,
+      "bytes": 170126140,
+      "formatted_size": "162.24 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F932-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792267",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_04_Zeichnungen",
+        "02_03_04_01_Befunde",
+        "02_03_04_01_01_Flaechen"
+      ]
+    },
+    "1792268": {
+      "arche_id": "1792268",
+      "title": "02_03_04_01_02_Graeber",
+      "parent_id": "1792265",
+      "items": 30,
+      "bytes": 11235330,
+      "formatted_size": "10.71 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F96A-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792268",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_04_Zeichnungen",
+        "02_03_04_01_Befunde",
+        "02_03_04_01_02_Graeber"
+      ]
+    },
+    "1792269": {
+      "arche_id": "1792269",
+      "title": "02_03_04_01_03_Profile",
+      "parent_id": "1792265",
+      "items": 33,
+      "bytes": 83339546,
+      "formatted_size": "79.48 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F98A-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792269",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_04_Zeichnungen",
+        "02_03_04_01_Befunde",
+        "02_03_04_01_03_Profile"
+      ]
+    },
+    "1792231": {
+      "arche_id": "1792231",
+      "title": "Digitale Datensammlung, die digitale Oberflächenmodelldaten enthält.",
+      "parent_id": "1792232",
+      "items": 1,
+      "bytes": 8214840,
+      "formatted_size": "7.83 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F427-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792231",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die digitale Oberflächenmodelldaten enthält."
+      ]
+    },
+    "1792233": {
+      "arche_id": "1792233",
+      "title": "Digitale Datensammlung, die Daten zum Felsgrab enthält.",
+      "parent_id": "1792232",
+      "items": 2,
+      "bytes": 162897271,
+      "formatted_size": "155.35 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F429-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792233",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zum Felsgrab enthält."
+      ]
+    },
+    "1792234": {
+      "arche_id": "1792234",
+      "title": "Digitale Datensammlung, die Daten zum Ostprofil enthält.",
+      "parent_id": "1792232",
+      "items": 40,
+      "bytes": 520337922,
+      "formatted_size": "496.23 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F42C-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792234",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zum Ostprofil enthält."
+      ]
+    },
+    "1792235": {
+      "arche_id": "1792235",
+      "title": "Digitale Datensammlung, die Daten zum Sattel enthält.",
+      "parent_id": "1792232",
+      "items": 3,
+      "bytes": 1471038423,
+      "formatted_size": "1.37 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F455-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792235",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zum Sattel enthält."
+      ]
+    },
+    "1792236": {
+      "arche_id": "1792236",
+      "title": "Digitale Datensammlung, die Daten zu Schnitt 1 enthält.",
+      "parent_id": "1792232",
+      "items": 2,
+      "bytes": 603351395,
+      "formatted_size": "575.40 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F459-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792236",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu Schnitt 1 enthält."
+      ]
+    },
+    "1792237": {
+      "arche_id": "1792237",
+      "title": "Digitale Datensammlung, die Daten zu Schnitt 2 enthält.",
+      "parent_id": "1792232",
+      "items": 2,
+      "bytes": 274724254,
+      "formatted_size": "262.00 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F45C-F",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792237",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu Schnitt 2 enthält."
+      ]
+    },
+    "1792238": {
+      "arche_id": "1792238",
+      "title": "Digitale Datensammlung, die Daten zu Schnitt 3 enthält.",
+      "parent_id": "1792232",
+      "items": 2,
+      "bytes": 1368925126,
+      "formatted_size": "1.27 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F45E-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792238",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu Schnitt 3 enthält."
+      ]
+    },
+    "1792239": {
+      "arche_id": "1792239",
+      "title": "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 1003 enthält.",
+      "parent_id": "1792232",
+      "items": 90,
+      "bytes": 1482407362,
+      "formatted_size": "1.38 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F462-7",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792239",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 1003 enthält."
+      ]
+    },
+    "1792240": {
+      "arche_id": "1792240",
+      "title": "Digitale Datensammlung, die Daten zur unteren Schicht (UK) von SE 2001 und SE 2002 enthält.",
+      "parent_id": "1792232",
+      "items": 22,
+      "bytes": 543030592,
+      "formatted_size": "517.87 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F4BD-1",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792240",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zur unteren Schicht (UK) von SE 2001 und SE 2002 enthält."
+      ]
+    },
+    "1792241": {
+      "arche_id": "1792241",
+      "title": "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 2002 enthält.",
+      "parent_id": "1792232",
+      "items": 14,
+      "bytes": 120057301,
+      "formatted_size": "114.50 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D4-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792241",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 2002 enthält."
+      ]
+    },
+    "1792242": {
+      "arche_id": "1792242",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3003 enthält.",
+      "parent_id": "1792232",
+      "items": 18,
+      "bytes": 197495881,
+      "formatted_size": "188.35 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E3-5",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792242",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3003 enthält."
+      ]
+    },
+    "1792243": {
+      "arche_id": "1792243",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3005 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 41811185,
+      "formatted_size": "39.87 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F6-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792243",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3005 enthält."
+      ]
+    },
+    "1792244": {
+      "arche_id": "1792244",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3007 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 33435317,
+      "formatted_size": "31.89 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FC-A",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792244",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3007 enthält."
+      ]
+    },
+    "1792245": {
+      "arche_id": "1792245",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3009 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 35033076,
+      "formatted_size": "33.41 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F502-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792245",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3009 enthält."
+      ]
+    },
+    "1792246": {
+      "arche_id": "1792246",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3015 enthält.",
+      "parent_id": "1792232",
+      "items": 9,
+      "bytes": 64967983,
+      "formatted_size": "61.96 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F508-C",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792246",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3015 enthält."
+      ]
+    },
+    "1792247": {
+      "arche_id": "1792247",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3017 enthält.",
+      "parent_id": "1792232",
+      "items": 9,
+      "bytes": 61860167,
+      "formatted_size": "58.99 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F512-0",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792247",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3017 enthält."
+      ]
+    },
+    "1792248": {
+      "arche_id": "1792248",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3021 enthält.",
+      "parent_id": "1792232",
+      "items": 11,
+      "bytes": 103965291,
+      "formatted_size": "99.15 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F51C-6",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792248",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3021 enthält."
+      ]
+    },
+    "1792249": {
+      "arche_id": "1792249",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3023 und SE 3029 enthält.",
+      "parent_id": "1792232",
+      "items": 26,
+      "bytes": 363292791,
+      "formatted_size": "346.46 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F528-8",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792249",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3023 und SE 3029 enthält."
+      ]
+    },
+    "1792250": {
+      "arche_id": "1792250",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3025 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 34616203,
+      "formatted_size": "33.01 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F543-9",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792250",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3025 enthält."
+      ]
+    },
+    "1792251": {
+      "arche_id": "1792251",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3031,SE 3041 und SE 3042 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 77766881,
+      "formatted_size": "74.16 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F549-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792251",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3031,SE 3041 und SE 3042 enthält."
+      ]
+    },
+    "1792252": {
+      "arche_id": "1792252",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3033 enthält.",
+      "parent_id": "1792232",
+      "items": 15,
+      "bytes": 366872605,
+      "formatted_size": "349.88 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F54F-D",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792252",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3033 enthält."
+      ]
+    },
+    "1792253": {
+      "arche_id": "1792253",
+      "title": "Digitale Datensammlung, die Daten zu den human remains aus SE 3035 enthält.",
+      "parent_id": "1792232",
+      "items": 5,
+      "bytes": 85663775,
+      "formatted_size": "81.70 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F55F-B",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792253",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu den human remains aus SE 3035 enthält."
+      ]
+    },
+    "1792254": {
+      "arche_id": "1792254",
+      "title": "Digitale Datensammlung, die Daten und weitere Unterebenen an Datensammlungen sowie deren jeweilige Ressourcen zu Überblicksaufnahmen speichert.",
+      "parent_id": "1792232",
+      "items": 100,
+      "bytes": 1037240966,
+      "formatted_size": "989.19 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B42-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792254",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten und weitere Unterebenen an Datensammlungen sowie deren jeweilige Ressourcen zu Überblicksaufnahmen speichert."
+      ]
+    },
+    "1792257": {
+      "arche_id": "1792257",
+      "title": "Digitale Datensammlung, die Daten zu einer Wall-Struktur enthält.",
+      "parent_id": "1792232",
+      "items": 3,
+      "bytes": 80458118,
+      "formatted_size": "76.73 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F5C9-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792257",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu einer Wall-Struktur enthält."
+      ]
+    },
+    "1792258": {
+      "arche_id": "1792258",
+      "title": "Digitale Datensammlung, die Rohdaten enthält.",
+      "parent_id": "1792232",
+      "items": 8,
+      "bytes": 73190198,
+      "formatted_size": "69.80 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CD-E",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792258",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Rohdaten enthält."
+      ]
+    },
+    "1792259": {
+      "arche_id": "1792259",
+      "title": "Digitale Datensammlung, die Daten zu Schnitt 01 enthält.",
+      "parent_id": "1792232",
+      "items": 12,
+      "bytes": 950821954,
+      "formatted_size": "906.77 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D5-4",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792259",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten zu Schnitt 01 enthält."
+      ]
+    },
+    "1792293": {
+      "arche_id": "1792293",
+      "title": "Digitale Datensammlung, die Georadardaten enthält.",
+      "parent_id": "1792289",
+      "items": 7,
+      "bytes": 92498736,
+      "formatted_size": "88.21 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-FA8C-2",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792293",
+      "level": 5,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_07_Output",
+        "02_07_01_Plaene",
+        "02_07_01_01_Prospektion",
+        "Digitale Datensammlung, die Georadardaten enthält."
+      ]
+    },
+    "1792255": {
+      "arche_id": "1792255",
+      "title": "Drohengestützte Ansichtsaufnahme; Hemmaberg 2020",
+      "parent_id": "1792254",
+      "items": 26,
+      "bytes": 228522933,
+      "formatted_size": "217.94 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F565-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792255",
+      "level": 6,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten und weitere Unterebenen an Datensammlungen sowie deren jeweilige Ressourcen zu Überblicksaufnahmen speichert.",
+        "Drohengestützte Ansichtsaufnahme; Hemmaberg 2020"
+      ]
+    },
+    "1792256": {
+      "arche_id": "1792256",
+      "title": "Ansichtsaufnahme; Hemmaberg 2020",
+      "parent_id": "1792254",
+      "items": 72,
+      "bytes": 808718033,
+      "formatted_size": "771.25 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F580-3",
+      "spatial": "",
+      "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792256",
+      "level": 6,
+      "path": [
+        "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+        "Hemmaberg-Collection (HB)",
+        "02_03_Raster",
+        "02_03_03_Fotos",
+        "02_03_03_04_Fotogrammetrie",
+        "Digitale Datensammlung, die Daten und weitere Unterebenen an Datensammlungen sowie deren jeweilige Ressourcen zu Überblicksaufnahmen speichert.",
+        "Ansichtsaufnahme; Hemmaberg 2020"
+      ]
+    },
+    "col_ret_06_01": {
+      "arche_id": "1792572_06_01",
+      "title": "06_01 Keramik- & Fundzeichnungen Hemmaberg",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_01",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_01 Keramik- & Fundzeichnungen Hemmaberg"
+      ]
+    },
+    "col_ret_06_02": {
+      "arche_id": "1792572_06_02",
+      "title": "06_02 Fundzeichnungen Jaunstein",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_02",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_02 Fundzeichnungen Jaunstein"
+      ]
+    },
+    "col_ret_06_03": {
+      "arche_id": "1792572_06_03",
+      "title": "06_03 Grabungspläne Hemmaberg",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_03",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_03 Grabungspläne Hemmaberg"
+      ]
+    },
+    "col_ret_06_04": {
+      "arche_id": "1792572_06_04",
+      "title": "06_04 Keramiktafeln Globasnitz",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_04",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_04 Keramiktafeln Globasnitz"
+      ]
+    },
+    "col_ret_06_05": {
+      "arche_id": "1792572_06_05",
+      "title": "06_05 Grabungstagebuch Hemmaberg 1978–1980",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_05",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_05 Grabungstagebuch Hemmaberg 1978–1980"
+      ]
+    },
+    "col_ret_06_06": {
+      "arche_id": "1792572_06_06",
+      "title": "06_06 Grabungstagebuch Hemmaberg 1981–1983",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_06",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_06 Grabungstagebuch Hemmaberg 1981–1983"
+      ]
+    },
+    "col_ret_06_07": {
+      "arche_id": "1792572_06_07",
+      "title": "06_07 Grabungstagebuch Hemmaberg 1984–1986",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_07",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_07 Grabungstagebuch Hemmaberg 1984–1986"
+      ]
+    },
+    "col_ret_06_08": {
+      "arche_id": "1792572_06_08",
+      "title": "06_08 Grabungstagebuch Hemmaberg 1987–1990",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_08",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_08 Grabungstagebuch Hemmaberg 1987–1990"
+      ]
+    },
+    "col_ret_06_09": {
+      "arche_id": "1792572_06_09",
+      "title": "06_09 Grabungstagebuch Hemmaberg 1991–1995",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_09",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_09 Grabungstagebuch Hemmaberg 1991–1995"
+      ]
+    },
+    "col_ret_06_10": {
+      "arche_id": "1792572_06_10",
+      "title": "06_10 Schichtbeschreibungen Hemmaberg",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_10",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_10 Schichtbeschreibungen Hemmaberg"
+      ]
+    },
+    "col_ret_06_11": {
+      "arche_id": "1792572_06_11",
+      "title": "06_11 Schichtbeschreibungen Jaunstein",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_11",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_11 Schichtbeschreibungen Jaunstein"
+      ]
+    },
+    "col_ret_06_12": {
+      "arche_id": "1792572_06_12",
+      "title": "06_12 Grabungstagebücher Jaunstein 1980–1998",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_12",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_12 Grabungstagebücher Jaunstein 1980–1998"
+      ]
+    },
+    "col_ret_06_13": {
+      "arche_id": "1792572_06_13",
+      "title": "06_13 Grabungsdokumentation Globasnitz",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_13",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_13 Grabungsdokumentation Globasnitz"
+      ]
+    },
+    "col_ret_06_14": {
+      "arche_id": "1792572_06_14",
+      "title": "06_14 Fotodokumentation Hemmaberg (Dias & Negative)",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_14",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_14 Fotodokumentation Hemmaberg (Dias & Negative)"
+      ]
+    },
+    "col_ret_06_15": {
+      "arche_id": "1792572_06_15",
+      "title": "06_15 Fotodokumentation Jaunstein (Dias & Negative)",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_15",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_15 Fotodokumentation Jaunstein (Dias & Negative)"
+      ]
+    },
+    "col_ret_06_16": {
+      "arche_id": "1792572_06_16",
+      "title": "06_16 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_16",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_16 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_17": {
+      "arche_id": "1792572_06_17",
+      "title": "06_17 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_17",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_17 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_18": {
+      "arche_id": "1792572_06_18",
+      "title": "06_18 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_18",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_18 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_19": {
+      "arche_id": "1792572_06_19",
+      "title": "06_19 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_19",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_19 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_20": {
+      "arche_id": "1792572_06_20",
+      "title": "06_20 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_20",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_20 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_21": {
+      "arche_id": "1792572_06_21",
+      "title": "06_21 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_21",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_21 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_22": {
+      "arche_id": "1792572_06_22",
+      "title": "06_22 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_22",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_22 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_23": {
+      "arche_id": "1792572_06_23",
+      "title": "06_23 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_23",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_23 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_24": {
+      "arche_id": "1792572_06_24",
+      "title": "06_24 Archiv Winkler (Altdokumentation)",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_24",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_24 Archiv Winkler (Altdokumentation)"
+      ]
+    },
+    "col_ret_06_25": {
+      "arche_id": "1792572_06_25",
+      "title": "06_25 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_25",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_25 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_26": {
+      "arche_id": "1792572_06_26",
+      "title": "06_26 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_26",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_26 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_27": {
+      "arche_id": "1792572_06_27",
+      "title": "06_27 Fotodokumentation Globasnitz",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_27",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_27 Fotodokumentation Globasnitz"
+      ]
+    },
+    "col_ret_06_28": {
+      "arche_id": "1792572_06_28",
+      "title": "06_28 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_28",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_28 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_29": {
+      "arche_id": "1792572_06_29",
+      "title": "06_29 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_29",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_29 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_30": {
+      "arche_id": "1792572_06_30",
+      "title": "06_30 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_30",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_30 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_31": {
+      "arche_id": "1792572_06_31",
+      "title": "06_31 Keramikprofile & Zeichnungen",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_31",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_31 Keramikprofile & Zeichnungen"
+      ]
+    },
+    "col_ret_06_32": {
+      "arche_id": "1792572_06_32",
+      "title": "06_32 Steingerechte Bauaufnahmen & Pläne",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_32",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_32 Steingerechte Bauaufnahmen & Pläne"
+      ]
+    },
+    "col_ret_06_33": {
+      "arche_id": "1792572_06_33",
+      "title": "06_33 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_33",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_33 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_34": {
+      "arche_id": "1792572_06_34",
+      "title": "06_34 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_34",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_34 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_35": {
+      "arche_id": "1792572_06_35",
+      "title": "06_35 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_35",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_35 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_36": {
+      "arche_id": "1792572_06_36",
+      "title": "06_36 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_36",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_36 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_37": {
+      "arche_id": "1792572_06_37",
+      "title": "06_37 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_37",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_37 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_38": {
+      "arche_id": "1792572_06_38",
+      "title": "06_38 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_38",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_38 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_39": {
+      "arche_id": "1792572_06_39",
+      "title": "06_39 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_39",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_39 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_40": {
+      "arche_id": "1792572_06_40",
+      "title": "06_40 Mosaikpausen & Konservierungspläne",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_40",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_40 Mosaikpausen & Konservierungspläne"
+      ]
+    },
+    "col_ret_06_41": {
+      "arche_id": "1792572_06_41",
+      "title": "06_41 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_41",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_41 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_42": {
+      "arche_id": "1792572_06_42",
+      "title": "06_42 Grabungs- & Fundberichte Hemmaberg",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_42",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_42 Grabungs- & Fundberichte Hemmaberg"
+      ]
+    },
+    "col_ret_06_43": {
+      "arche_id": "1792572_06_43",
+      "title": "06_43 Archivalien-Serie",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_43",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_43 Archivalien-Serie"
+      ]
+    },
+    "col_ret_06_44": {
+      "arche_id": "1792572_06_44",
+      "title": "06_44 Manuskripte & Druckfahnen Glaser",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_44",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_44 Manuskripte & Druckfahnen Glaser"
+      ]
+    },
+    "col_ret_06_45": {
+      "arche_id": "1792572_06_45",
+      "title": "06_45 Historische Großformatfotos",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_45",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_45 Historische Großformatfotos"
+      ]
+    },
+    "col_ret_06_46": {
+      "arche_id": "1792572_06_46",
+      "title": "06_46 Archivbox ÖAI / Landesmuseum",
+      "parent_id": "1792572",
+      "items": 22,
+      "bytes": 550000000,
+      "formatted_size": "550.0 MB",
+      "pid": "https://id.acdh.oeaw.ac.at/iuenna/06_RET/06_46",
+      "spatial": "Hemmaberg / Jauntal",
+      "level": 2,
+      "path": [
+        "IUENNA",
+        "Retrodigitalisat-Collection (RET)",
+        "06_46 Archivbox ÖAI / Landesmuseum"
+      ]
+    }
+  }
+}

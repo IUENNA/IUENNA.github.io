@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.1.7">
+    <link rel="stylesheet" href="styles.css?v=2.2.0">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
@@ -2468,7 +2468,39 @@
                         });
                     });
                 });
+
+                window.homeCy = homeCy;
             }
+
+            window.focusGraphNode = function(nodeId) {
+                if (!window.homeCy) return;
+                let target = window.homeCy.getElementById(nodeId);
+                if (!target || target.length === 0) {
+                    target = window.homeCy.nodes().filter(n => {
+                        const d = n.data();
+                        return d.arche_id === nodeId || d.id.includes(nodeId) || (d.label && d.label.toLowerCase().includes(nodeId.toLowerCase()));
+                    });
+                }
+                if (target && target.length > 0) {
+                    const node = target.first();
+                    const graphCanvas = document.getElementById('homeCy');
+                    if (graphCanvas) {
+                        graphCanvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    window.homeCy.elements().removeClass('highlighted dimmed');
+                    const nb = node.neighborhood().add(node);
+                    window.homeCy.elements().difference(nb).addClass('dimmed');
+                    nb.nodes().addClass('highlighted');
+                    node.connectedEdges().addClass('highlighted');
+                    node.show();
+                    window.homeCy.animate({
+                        center: { eles: node },
+                        zoom: 1.4,
+                        duration: 600
+                    });
+                    node.emit('tap');
+                }
+            };
 
             fetch('data/arche_graph.json')
                 .then(r => {
@@ -2487,5 +2519,8 @@
                 });
         })();
     </script>
+
+    <!-- IUENNA Interactive AI Chatbot Widget (2-Stufen Hybrid) -->
+    <script src="scripts/iuenna-chat.js?v=1.0.4" defer></script>
 </body>
 </html>

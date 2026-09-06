@@ -99,6 +99,9 @@ Die Verarbeitung der IP-Adresse erfolgt auf Grundlage unseres berechtigten Inter
 **Hinweis:**
 Falls Sie nicht möchten, dass Ihre IP-Adresse an jsdelivr.net übermittelt wird, können Sie die Nutzung durch entsprechende Einstellungen in Ihrem Browser verhindern (z. B. durch Blockieren von JavaScript). Dies kann jedoch dazu führen, dass die Diagramme nicht angezeigt werden.
 
+#### **3. Interaktiver Sammlungs-Assistent (Client-Side In-Browser KI)**
+
+Unser interaktiver Sammlungs-Assistent (»Frag IUENNA«) wird zu 100 % lokal im Webbrowser Ihres Endgeräts ausgeführt (Client-Side AI). Ihre Suchanfragen und Texteingaben werden zu keinem Zeitpunkt an unsere Server oder an Drittanbieter übertragen und nicht gespeichert. Sofern Sie optional die lokale Browser-KI (SmolLM2 via Transformers.js) aktivieren, wird die komprimierte Modelldatei einmalig über ein Content Delivery Network geladen und im lokalen Browser-Cache Ihres Geräts abgelegt (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO). Es werden keine Nutzerdaten erfasst oder für KI-Modelltrainings verwendet.
 
 ### **5. Nutzung von Google Fonts und anderen externen Diensten**
 Unsere Website verwendet **Google Fonts** und **Cloudflare** *(siehe oben)*, um eine einheitliche und ansprechende Darstellung von Schriftarten sowie eine optimierte Ladegeschwindigkeit der Inhalte zu gewährleisten. Beim Aufruf einer Seite lädt der Browser gegebenenfalls die benötigten Schriftarten, Styles und Ressourcen direkt von den Servern der entsprechenden Anbieter. Im Fall von Google Fonts wird dabei die IP-Adresse der Besucher*innen an Google übertragen.

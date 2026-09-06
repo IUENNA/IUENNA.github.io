@@ -21,18 +21,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run ARCHE Harvester
+      - name: Run ARCHE Harvester & Rebuild Knowledge Base
         run: |
           python3 scripts/harvest_arche.py
+          python3 scripts/build_chat_kb.py
 
       - name: Commit and Push if Changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/arche_stats.json
+          git add data/arche_stats.json data/iuenna_kb.json
           if git diff --staged --quiet; then
-            echo "No changes in ARCHE statistics."
+            echo "No changes in ARCHE statistics or Knowledge Base."
           else
-            git commit -m "chore(data): automated ARCHE statistics update [skip ci]"
+            git commit -m "chore(data): automated ARCHE statistics and KB update [skip ci]"
             git push
           fi

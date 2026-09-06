@@ -1,0 +1,3176 @@
+{
+  "meta": {
+    "title": "IUENNA Interactive Knowledge Base",
+    "version": "1.2.0",
+    "generated_at": "2026-09-07",
+    "description": "Comprehensive client-side knowledge corpus combining ARCHE stats, Knowledge Graph (215 nodes), archaeological foundations, and spatial clusters.",
+    "total_items": 20788,
+    "total_storage": "356.68 GB",
+    "license": "CC BY 4.0"
+  },
+  "project": {
+    "title": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+    "short_title": "IUENNA",
+    "subtitle": "Archäologische Mikro-Region Jauntal (Kärnten / Österreich)",
+    "funding": "Österreichische Akademie der Wissenschaften (ÖAW), Förderprogramm Go!Digital 3.0",
+    "duration": "Go!Digital 3.0 Projekt",
+    "doi_url": "https://id.acdh.oeaw.ac.at/iuenna",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+    "total_items": 20788,
+    "total_size": "356.68 GB",
+    "total_sites": "Über 200 erfasste archäologische Fundstellen",
+    "time_span": "Über 130 Jahre moderne Forschungsgeschichte; Besiedlungsspuren von der Urgeschichte (Hallstatt) über Römerzeit und Spätantike bis zum Frühmittelalter",
+    "leadership": [
+      {
+        "name": "Dr. Dominik Hagmann",
+        "role": "Projektleitung / Koordination",
+        "institution": "Landesmuseum für Kärnten (kärnten.museum)",
+        "orcid": "https://orcid.org/0000-0002-4481-6234"
+      },
+      {
+        "name": "Dipl.-Ing. Franziska Waldhart",
+        "role": "Projektleitung / Koordination",
+        "institution": "Österreichisches Archäologisches Institut (ÖAI), ÖAW",
+        "url": "https://www.oeaw.ac.at/oeai"
+      }
+    ],
+    "partners": [
+      {
+        "name": "kärnten.museum",
+        "full": "Landesmuseum für Kärnten",
+        "url": "https://landesmuseum.ktn.gv.at/"
+      },
+      {
+        "name": "ÖAI",
+        "full": "Österreichisches Archäologisches Institut (ÖAW)",
+        "url": "https://www.oeaw.ac.at/oeai"
+      },
+      {
+        "name": "ACDH-CH",
+        "full": "Austrian Center for Digital Humanities and Cultural Heritage (ÖAW)",
+        "url": "https://www.oeaw.ac.at/acdh"
+      },
+      {
+        "name": "BDA",
+        "full": "Bundesdenkmalamt",
+        "url": "https://bda.gv.at/"
+      },
+      {
+        "name": "ARDIG",
+        "full": "ARDIG – Archäologischer Dienst GesmbH",
+        "url": "https://www.ardig.at/"
+      }
+    ],
+    "curation_workflow": [
+      "1. Bestandsaufnahme & Sichtung analoger und digitaler Altbestände",
+      "2. Normalisierung von Ordner- und Verzeichnisstrukturen",
+      "3. Standardisierung und Konsolidierung von Dateinamen",
+      "4. Metadatenerstellung nach FAIR- und CARE-Prinzipien",
+      "5. Langzeitarchivierung im Repositorium ARCHE (ACDH-CH)",
+      "6. Bereitstellung in Web-Mapping-Layern & Open Science Katalogen"
+    ],
+    "ai_methods": {
+      "framework": "Google Antigravity, Claude Opus & Gemini Flash",
+      "vibe_coding": "Nutzung von Vibe Coding und agentischer KI für konsolidierte Webentwicklung und Datenstrukturen",
+      "iuenna_refiner": "Custom GPT 'IUENNA Refiner' für Metadatenbereinigung und GeoJSON-Validierung",
+      "transparency": "Vollständige wissenschaftliche Offenlegung und menschliche Validierung aller KI-generierten Strukturen"
+    },
+    "links": {
+      "website": "https://iuenna.github.io/",
+      "arche": "https://id.acdh.oeaw.ac.at/iuenna",
+      "blog": "https://iuenna.hypotheses.org/",
+      "wma": "https://iuenna.github.io/wma/wma.html",
+      "gpkg_download": "https://github.com/IUENNA/IUENNA.github.io/blob/main/wma/IUENNA-WMA.gpkg"
+    }
+  },
+  "foundations": [
+    {
+      "id": "found_mikroregion",
+      "title": "Die archäologische Mikroregion im südlichen Jauntal",
+      "category": "Archäologische Landschaft",
+      "summary": "Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, die römische Straßenstation Iuenna im Tal, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. (Hagmann and Reiner, 2023, p. 3)",
+      "content": "Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, die römische Straßenstation Iuenna im Tal, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. (Hagmann and Reiner, 2023, p. 3)\n\nEine zentrale Rolle spielte die verkehrsgeografische Lage. Iuenna befand sich zwischen den norischen Städten **Virunum** und **Celeia** und lag zugleich in der Nähe eines Übergangs über die Karawanken. Neben der überregionalen Straßenverbindung dürfte daher auch der südlich von Globasnitz gelegene Luschasattel für die Entstehung und Bedeutung des Siedlungsplatzes ausschlaggebend gewesen sein. (Glaser, 2002, p. 2)",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 3",
+        "Glaser, 2002, p. 2"
+      ],
+      "keywords": [
+        "mikroregion",
+        "jauntal",
+        "podjuna",
+        "karawanken",
+        "luschasattel",
+        "virunum",
+        "celeia",
+        "römerstraße",
+        "kulturlandschaft",
+        "siedlungslandschaft"
+      ],
+      "graph_node_id": "col_1792417"
+    },
+    {
+      "id": "found_iuenna_globasnitz",
+      "title": "Iuenna und Globasnitz",
+      "category": "Siedlungszentrum & Straßenstation",
+      "summary": "**Iuenna** bezeichnet die antike Straßenstation und Siedlung im Bereich des heutigen Globasnitz und Kleindorf. Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. (Glaser, 2002, p. 2)",
+      "content": "**Iuenna** bezeichnet die antike Straßenstation und Siedlung im Bereich des heutigen Globasnitz und Kleindorf. Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. (Glaser, 2002, p. 2)\n\nDie antike Siedlungszone liegt großteils unter dem heutigen Ortsgebiet von Globasnitz. Westlich des Ortes befand sich ein älterkaiserzeitliches Gräberfeld, während der spätantike beziehungsweise merowingerzeitliche Friedhof östlich des Ortskerns lag. Iuennas Bedeutung beruhte einerseits auf seiner Funktion als Straßenstation an mehreren Verkehrs- und Passverbindungen und andererseits auf seiner engen Beziehung zum Pilgerzentrum auf dem Hemmaberg. (Pollak, 2023, p. 141)\n\nNeuere geophysikalische Untersuchungen ergänzen das durch Ausgrabungen gewonnene Bild. Im Zentrum von Globasnitz wurde ein etwa 70 × 60 Meter großes Areal mit mehreren Gebäuden und einem mutmaßlichen, ungefähr drei Meter breiten Straßenkörper erfasst. (Schwaiger and Reiner, 2022, p. 8) Westlich des Orts zeichnen sich weitere antike Straßenverläufe, Gebäude und mögliche Grabbauten ab. Die Befunde zeigen, dass Iuenna in ein differenziertes Wegenetz eingebunden war, dessen Verbindungen unter anderem nach Westen in Richtung Jaunstein führten. (Schwaiger and Reiner, 2022, p. 8)\n\nVon besonderer Bedeutung ist der spätantike und frühmerowingerzeitliche Friedhof. Er wurde nach älteren Beobachtungen und Sondagen zwischen 1999 und 2008 systematisch untersucht. Mit rund 425 Gräbern und etwa 440 Bestattungen gilt er als größter spätantik-merowingerzeitlicher Bestattungsplatz Österreichs und als bislang einziger umfassend untersuchter Friedhof einer Straßenstation in Noricum. (Pollak, 2023, p. 142) Innerhalb des Friedhofs lagen außerdem die Überreste zweier zeitlich aufeinanderfolgender Kirchen. Die ältere Kirche bestand bereits im letzten Drittel des 4. Jahrhunderts und ist damit älter als die frühesten bekannten Kirchenbauten auf dem Hemmaberg. (Pollak, 2023, p. 142)\n\nEtwa 70 Prozent der Gräber waren beigabenlos. Die beigabenführenden Bestattungen gehören vor allem in die Zeit vom letzten Drittel des 5. bis zur Mitte des 6. Jahrhunderts. Einzelne Gürtelbestandteile, Fibeln, Perlen und andere Ausstattungsstücke bezeugen weitreichende Kontakte, die den Alpenraum mit west-, ost- und südeuropäischen Regionen verbanden. (Pollak, 2023, p. 144) Das Gräberfeld ist deshalb nicht allein als lokaler Bestattungsplatz zu verstehen, sondern als Zeugnis einer **Kontaktregion**, in der sich romanische, ostgotische, mediterrane und merowingerzeitliche Einflüsse überlagerten.",
+      "citations": [
+        "Glaser, 2002, p. 2",
+        "Pollak, 2023, p. 141",
+        "Schwaiger and Reiner, 2022, p. 8",
+        "Pollak, 2023, p. 142",
+        "Pollak, 2023, p. 144"
+      ],
+      "keywords": [
+        "iuenna",
+        "globasnitz",
+        "kleindorf",
+        "mansio",
+        "straßenstation",
+        "iouenat",
+        "tabula peutingeriana",
+        "friedhof",
+        "gräberfeld",
+        "bestattungen",
+        "merowinger",
+        "ostgoten",
+        "kontaktregion",
+        "geophysik",
+        "kaiserzeit"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_hemmaberg",
+      "title": "Der Hemmaberg",
+      "category": "Spätantikes Pilgerzentrum",
+      "summary": "Der 843 Meter hohe **Hemmaberg** ist eine der am besten erforschten spätantiken Höhensiedlungen des 4. bis 6. Jahrhunderts und ein überregional wichtiger Referenzort für die Erforschung des frühen Christentums im Südostalpenraum. Bekannt sind mindestens fünf frühchristliche Kirchen, zahlreiche Bestattungen und mehrere zugehörige Gebäude. Auf dem Berg befinden sich außerdem die spätgotische Wallfahrtskirche der heiligen Hemma und Dorothea sowie die Rosaliengrotte. (Hagmann and Reiner, 2023, p. 2)",
+      "content": "Der 843 Meter hohe **Hemmaberg** ist eine der am besten erforschten spätantiken Höhensiedlungen des 4. bis 6. Jahrhunderts und ein überregional wichtiger Referenzort für die Erforschung des frühen Christentums im Südostalpenraum. Bekannt sind mindestens fünf frühchristliche Kirchen, zahlreiche Bestattungen und mehrere zugehörige Gebäude. Auf dem Berg befinden sich außerdem die spätgotische Wallfahrtskirche der heiligen Hemma und Dorothea sowie die Rosaliengrotte. (Hagmann and Reiner, 2023, p. 2)\n\nDie Besiedlungsgeschichte reicht jedoch wesentlich weiter zurück. Die ältesten bekannten Spuren gehören der Mittelbronzezeit an. Funde der späten Latène- und der Römerzeit werden mit einem Heiligtum der Gottheit Iouenat in Verbindung gebracht. Um 400 n. Chr. entstand eine befestigte Höhensiedlung von ungefähr fünf Hektar Fläche. (Glaser, 2002, p. 2)\n\nDie früheste bekannte Kirche wurde wahrscheinlich um 400 über einem älteren römischen Gebäude errichtet. Sie verfügte unter anderem über eine Apsis, eine Klerusbank, ein erhöhtes Presbyterium und eine Reliquienkammer unter dem Altar. An die Kirche schlossen Bestattungsräume für privilegierte Personen und vermutlich für Angehörige von Klerus- und Stifterfamilien an. (Glaser, 2002, p. 2)\n\nIm frühen 6. Jahrhundert wurden zwei monumentale Doppelkirchenanlagen errichtet. Zu ihnen gehörten Eucharistiekirchen, Memorialkirchen, Baptisterien, Reliquienkammern, Grabräume, Zisternen sowie Gebäude, die wahrscheinlich der Unterbringung und Versorgung von Pilgern und kirchlichem Personal dienten. Die Mosaikböden, Märtyrerreliquien und privilegierten Bestattungen unterstreichen den hohen Rang des Sakralkomplexes. (Glaser, 2002, p. 2, 4)\n\nDie Größe der Kirchenräume, die Reliquienverehrung und das mutmaßliche Pilgerhaus sprechen dafür, den Hemmaberg als **überregionales Pilgerzentrum** anzusprechen. (Glaser, 2002, p. 4) Die doppelte Ausführung der liturgischen Einrichtungen wurde als Hinweis auf zwei nebeneinander bestehende christliche Gemeinden interpretiert – eine katholisch-romanische und eine arianisch-gotische Gemeinde in der Zeit der ostgotischen Herrschaft. Diese Deutung ist ein wichtiges Erklärungsmodell, sollte aber als wissenschaftliche Interpretation und nicht als zweifelsfrei gesicherte Tatsache verstanden werden. (Glaser, 2002, p. 5)\n\nNeben den Kirchen bestand auf dem Hemmaberg eine befestigte Siedlung mit Wohnbauten und handwerklichen Arbeitsplätzen. Nachgewiesen sind unter anderem Eisenverarbeitung, Töpferei, Textilproduktion sowie Hinweise auf Bronze- und Glasverarbeitung. Das Gräberfeld der Höhensiedlung wurde ungefähr von 400 bis zum Ende des 6. Jahrhunderts genutzt; das Fundmaterial deutet darauf hin, dass die spätantike Siedlung um 600 endete. (Glaser, 2002, p. 5)",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 2",
+        "Glaser, 2002, p. 2",
+        "Glaser, 2002, p. 2, 4",
+        "Glaser, 2002, p. 4",
+        "Glaser, 2002, p. 5"
+      ],
+      "keywords": [
+        "hemmaberg",
+        "pilgerzentrum",
+        "pilger",
+        "höhensiedlung",
+        "kirchen",
+        "doppelkirche",
+        "baptisterium",
+        "reliquien",
+        "mosaik",
+        "mosaikböden",
+        "rosaliengrotte",
+        "hemma",
+        "dorothea",
+        "jouenat",
+        "arianisch",
+        "ostgoten",
+        "spätantike",
+        "wallfahrt"
+      ],
+      "graph_node_id": "col_1792212"
+    },
+    {
+      "id": "found_st_stefan",
+      "title": "St. Stefan (Šteben)",
+      "category": "Römische Villenanlage",
+      "summary": "In **St. Stefan/Šteben**, südwestlich beziehungsweise im Umfeld von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. (Schwaiger and Reiner, 2022, p. 11)",
+      "content": "In **St. Stefan/Šteben**, südwestlich beziehungsweise im Umfeld von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. (Schwaiger and Reiner, 2022, p. 11)\n\nDas bislang prospektierte Areal umfasst etwa 7.700 Quadratmeter, wobei sich die Bebauung wahrscheinlich weiter nach Süden fortsetzt und dort teilweise von modernen Gebäuden überlagert wird. Die Gesamtheit der Strukturen erlaubt eine Interpretation als großes römisches Landgut. Die Anlage veranschaulicht damit die landwirtschaftliche und wirtschaftliche Erschließung des Umlandes von Iuenna. (Schwaiger and Reiner, 2022, p. 11) Die gelegentlich verwendete Bezeichnung „Super-Villa“ bringt die außergewöhnliche Größe zum Ausdruck; die genaue Datierung einzelner Bauphasen und die Frage einer Nutzung bis in die Spätantike bleiben jedoch Gegenstand weiterer Untersuchungen. (Hagmann and Reiner, 2023, p. 3)",
+      "citations": [
+        "Schwaiger and Reiner, 2022, p. 11",
+        "Hagmann and Reiner, 2023, p. 3"
+      ],
+      "keywords": [
+        "st. stefan",
+        "sankt stefan",
+        "šteben",
+        "steben",
+        "villa",
+        "villenanlage",
+        "landgut",
+        "super-villa",
+        "hypokaust",
+        "hypokaustheizung",
+        "apsiden",
+        "georadar",
+        "geomagnetik",
+        "römerzeit"
+      ],
+      "graph_node_id": "col_1792411"
+    },
+    {
+      "id": "found_iuenna_projekt",
+      "title": "Das IUENNA‑Projekt",
+      "category": "Digital Humanities Projekt",
+      "summary": "Das moderne **IUENNA‑Projekt** ist von der antiken Ortsbezeichnung zu unterscheiden. Der Projektname ist ein Akronym für *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Das im Rahmen von Go!Digital 3.0 entwickelte Vorhaben betrachtet Hemmaberg, Globasnitz/Iuenna, Jaunstein und St. Stefan gemeinsam als archäologische Mikroregion. (Hagmann and Reiner, 2023, p. 1)",
+      "content": "Das moderne **IUENNA‑Projekt** ist von der antiken Ortsbezeichnung zu unterscheiden. Der Projektname ist ein Akronym für *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Das im Rahmen von Go!Digital 3.0 entwickelte Vorhaben betrachtet Hemmaberg, Globasnitz/Iuenna, Jaunstein und St. Stefan gemeinsam als archäologische Mikroregion. (Hagmann and Reiner, 2023, p. 1)\n\nBeteiligt waren das kärnten.museum, das Österreichische Archäologische Institut und das Austrian Centre for Digital Humanities and Cultural Heritage der Österreichischen Akademie der Wissenschaften, das Bundesdenkmalamt sowie die Firma ARDIG. (Hagmann and Reiner, 2023, p. 2) Ausgangspunkt war die problematische Überlieferung einer mehr als hundertjährigen Forschungsgeschichte: Umfangreiche Grabungsunterlagen lagen analog und digital an verschiedenen Orten, waren teilweise unzureichend strukturiert und deshalb langfristig von Informationsverlust bedroht. (Hagmann and Reiner, 2023, p. 4)\n\nIUENNA verfolgt deshalb zwei eng verbundene Ziele. Zum einen sollen die vorhandenen analogen und digitalen Forschungsdaten gesammelt, digitalisiert, georeferenziert, mit standardisierten Metadaten versehen und dauerhaft archiviert werden. Zum anderen sollen die zusammengeführten Informationen für eine kulturhistorische Modellstudie zu Globasnitz und seinem Umland ausgewertet werden. (Hagmann and Reiner, 2023, p. 4)\n\nEin geografisches Informationssystem und eine Geodatenbank verbinden Fundobjekte, Befunde, räumliche Einheiten, Fotografien, Pläne, Texte, Tabellen, geophysikalische Messungen und 3D-Modelle. Fundstücke sollen dabei möglichst mit ihrem archäologischen Kontext und dieser wiederum mit der modernen Topografie verknüpft werden. (Hagmann and Reiner, 2023, p. 6) Die Daten folgen Open-Science- und FAIR-Grundsätzen, werden mit kontrollierten Vokabularen erschlossen und erhalten dauerhaft zitierbare Identifikatoren. Ihre Langzeitarchivierung und Veröffentlichung erfolgt im Repositorium **ARCHE**; ergänzend dient eine Web-Mapping-Anwendung der räumlichen Vermittlung. (Hagmann and Reiner, 2023, p. 6, 7)\n\nDie 2025 veröffentlichte IUENNA-Datensammlung gliedert das Material in die Bereiche Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal und Retrodigitalisate. Sie umfasst unter anderem Grabungsdokumentationen, Geophysik, Fotografien, Zeichnungen, Datenbanken, georeferenzierte Raster- und Vektordaten, restauratorische Unterlagen, bioarchäologische Informationen und 3D-Daten. (Hagmann and Reiner, 2025)\n\nDamit ist IUENNA nicht nur ein Forschungsprojekt zur Geschichte des südlichen Jauntals. Es ist zugleich ein Modell dafür, wie heterogene Dokumentationen langjähriger archäologischer Untersuchungen gesichert, zusammengeführt, transparent erschlossen und für neue Fragestellungen wiederverwendbar gemacht werden können. (Hagmann and Reiner, 2023, p. 5)",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 1",
+        "Hagmann and Reiner, 2023, p. 2",
+        "Hagmann and Reiner, 2023, p. 4",
+        "Hagmann and Reiner, 2023, p. 6",
+        "Hagmann and Reiner, 2023, p. 6, 7",
+        "Hagmann and Reiner, 2025",
+        "Hagmann and Reiner, 2023, p. 5"
+      ],
+      "keywords": [
+        "iuenna",
+        "projekt",
+        "iuenna-projekt",
+        "godigital",
+        "öaw",
+        "öai",
+        "kärnten.museum",
+        "acdh-ch",
+        "bda",
+        "ardig",
+        "arche",
+        "fair",
+        "care",
+        "open science",
+        "geopackage",
+        "wma",
+        "web-mapping",
+        "datenrettung",
+        "repositorium"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_literatur",
+      "title": "Literatur & Quellen",
+      "category": "Fachliteratur & Referenzen",
+      "summary": "- **Glaser, Franz (2002):** „Iuenna – Hemmaberg“. In: *The Autonomous Towns of Noricum and Pannonia: Noricum*, hrsg. von Marjeta Šašel Kos und Peter Scherrer, 129–132. Situla 40. Ljubljana.\n- **Hagmann, Dominik, und Franziska Reiner (2023):** „IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A ‘para-description’“. *Peer Community Journal* 3, e120. DOI: [10.24072/pcjournal.338](https://doi.org/10.24072/pcjournal.338).\n- **Pollak, Marianne (2023):** „Der merowingerzeitliche Friedhof der Straßenstation Iuenna/Globasnitz: Fundspektrum einer Kontaktregion“. *ArchaeoPlus* 14, 141–148.\n- **Schwaiger, Helmut, und Franziska Reiner (2022):** „Geophysikalische Messungen in und um Globasnitz/Globasnica“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten* 2021, 66–74.\n- **Hagmann, Dominik, und Franziska Reiner (2025):** *IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Digitale archäologische Datensammlung im Repositorium ARCHE. DOI: [10.34788/IA-ARCHE-IUENNA](https://id.acdh.oeaw.ac.at/iuenna).",
+      "content": "- **Glaser, Franz (2002):** „Iuenna – Hemmaberg“. In: *The Autonomous Towns of Noricum and Pannonia: Noricum*, hrsg. von Marjeta Šašel Kos und Peter Scherrer, 129–132. Situla 40. Ljubljana.\n- **Hagmann, Dominik, und Franziska Reiner (2023):** „IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A ‘para-description’“. *Peer Community Journal* 3, e120. DOI: [10.24072/pcjournal.338](https://doi.org/10.24072/pcjournal.338).\n- **Pollak, Marianne (2023):** „Der merowingerzeitliche Friedhof der Straßenstation Iuenna/Globasnitz: Fundspektrum einer Kontaktregion“. *ArchaeoPlus* 14, 141–148.\n- **Schwaiger, Helmut, und Franziska Reiner (2022):** „Geophysikalische Messungen in und um Globasnitz/Globasnica“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten* 2021, 66–74.\n- **Hagmann, Dominik, und Franziska Reiner (2025):** *IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Digitale archäologische Datensammlung im Repositorium ARCHE. DOI: [10.34788/IA-ARCHE-IUENNA](https://id.acdh.oeaw.ac.at/iuenna).",
+      "citations": [
+        "Glaser (2002)",
+        "Hagmann & Reiner (2023)",
+        "Pollak (2023)",
+        "Schwaiger & Reiner (2022)",
+        "Hagmann & Reiner (2025)"
+      ],
+      "keywords": [
+        "literatur",
+        "quellen",
+        "publikationen",
+        "glaser",
+        "hagmann",
+        "reiner",
+        "pollak",
+        "schwaiger",
+        "peer community journal"
+      ],
+      "graph_node_id": null
+    }
+  ],
+  "subcollections": [
+    {
+      "id": "col_ret",
+      "code": "RET",
+      "title": "Retrodigitalisat-Collection (RET)",
+      "items": 9341,
+      "size": "270.69 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B59-B",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792572",
+      "description": "Sammlung von Retrodigitalisaten historischer Grabungsdokumentationen, Pläne, handgezeichneter Profile, Fundinventare und Fotos aus den Archiven des Landesmuseums für Kärnten und des ÖAI.",
+      "keywords": [
+        "retro",
+        "retrodigitalisat",
+        "altbestand",
+        "archiv",
+        "tagebuch",
+        "grabungsbericht",
+        "historisch",
+        "zeichnung",
+        "altakten"
+      ]
+    },
+    {
+      "id": "col_jau",
+      "code": "JAU",
+      "title": "Jaunstein-Collection (JAU)",
+      "items": 4989,
+      "size": "52.04 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4B-B",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792303",
+      "description": "Dokumentation und Funddaten zum bedeutenden frühmittelalterlichen und kaiserzeitlichen Gräberfeld sowie zu Siedlungsspuren in Jaunstein (Gemeinde Globasnitz).",
+      "keywords": [
+        "jaunstein",
+        "jau",
+        "gräberfeld",
+        "gräber",
+        "skelett",
+        "bestattung",
+        "frühmittelalter",
+        "beigaben",
+        "karantanien"
+      ]
+    },
+    {
+      "id": "col_hb",
+      "code": "HB",
+      "title": "Hemmaberg-Collection (HB)",
+      "items": 3726,
+      "size": "29.01 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792212",
+      "description": "Umfangreiche Forschungsdaten zum spätantiken Pilgerheiligtum Hemmaberg mit seinen fünf frühchristlichen Kirchen, Mosaiken, Befestigungen und Grabanlagen.",
+      "keywords": [
+        "hemmaberg",
+        "hb",
+        "kirche",
+        "kirchen",
+        "doppelkirche",
+        "frühchristlich",
+        "pilger",
+        "mosaik",
+        "spätantike",
+        "joven",
+        "wallfahrt",
+        "rosaliengrotte"
+      ]
+    },
+    {
+      "id": "col_glo",
+      "code": "GLO",
+      "title": "Globasnitz-Collection (GLO)",
+      "items": 2692,
+      "size": "4.78 GB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B30-8",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792169",
+      "description": "Archäologische Befunde und Funde aus dem Ortsgebiet Globasnitz (römisches Straßenstations- und Siedlungszentrum Iuenna an der Römerstraße Virunum–Celeia).",
+      "keywords": [
+        "globasnitz",
+        "glo",
+        "iuenna",
+        "römer",
+        "römerzeit",
+        "mansio",
+        "straßenstation",
+        "münzen",
+        "siedlung",
+        "ostgoten"
+      ]
+    },
+    {
+      "id": "col_tal",
+      "code": "TAL",
+      "title": "Jauntal-Collection (TAL)",
+      "items": 25,
+      "size": "122.54 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B56-E",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792417",
+      "description": "Regionale Übersichtsdaten, GIS-Projekte, Geländemodelle und geophysikalische Prospektionsdaten der gesamten Mikro-Region Jauntal.",
+      "keywords": [
+        "jauntal",
+        "tal",
+        "geodaten",
+        "gis",
+        "übersicht",
+        "landschaft",
+        "prospektion",
+        "geophysik",
+        "podjuna"
+      ]
+    },
+    {
+      "id": "col_ste",
+      "code": "STE",
+      "title": "Sankt Stefan-Collection (STE)",
+      "items": 8,
+      "size": "32.06 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-7B53-1",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/api/1792411",
+      "description": "Dokumentation archäologischer Funde und Befunde aus dem Bereich Sankt Stefan im Jauntal.",
+      "keywords": [
+        "sankt stefan",
+        "ste",
+        "st. stefan",
+        "stefan",
+        "fundort"
+      ]
+    }
+  ],
+  "sites": [
+    {
+      "id": "site_hemmaberg",
+      "name": "Hemmaberg",
+      "geonames": "https://www.geonames.org/12719971/hemmaberg.html",
+      "items_count": 11092,
+      "period": "Mittelbronzezeit, Spätlatène, Römerzeit, Spätantike (4.–6. Jh. n. Chr.), Frühmittelalter",
+      "highlights": "843 m hoher Bergrücken; bedeutendstes spätantikes Pilgerzentrum des Ostalpenraums. Fünf frühchristliche Kirchen, darunter monumentale Doppelkirchenanlagen des frühen 6. Jhs. (Eucharistie-, Memorialkirchen, Baptisterien, Reliquienaltäre für katholische und arianisch-gotische Gemeinden), Rosaliengrotte, Pilgerhospiz, Mosaike und Höhensiedlung (Glaser 2002; Hagmann & Reiner 2023).",
+      "subcollection": "HB / RET",
+      "keywords": [
+        "hemmaberg",
+        "pilgerzentrum",
+        "pilgerheiligtum",
+        "doppelkirche",
+        "rosaliengrotte",
+        "mosaik",
+        "mosaikböden",
+        "reliquien",
+        "baptisterium",
+        "bischof",
+        "spätantike",
+        "kirchenanlage",
+        "heiligengrab",
+        "jouenat",
+        "arianisch"
+      ]
+    },
+    {
+      "id": "site_jaunstein",
+      "name": "Jaunstein",
+      "items_count": 4899,
+      "period": "Römerzeit, Spätantike bis Frühmittelalter (Köttlach-Kultur / slawisch-karantanisch)",
+      "highlights": "Großes frühmittelalterliches Reihengräberfeld mit hunderten Gräbern; reiche Schmuckbeigaben (Korbgehänge, Fingerringe, Perlenketten) und Waffen der karantanischen Bevölkerung.",
+      "subcollection": "JAU / RET",
+      "keywords": [
+        "jaunstein",
+        "gräberfeld",
+        "frühmittelalter",
+        "reihengräber",
+        "slawisch",
+        "karantanien",
+        "schmuck",
+        "ohrringe",
+        "perlen",
+        "korbgehänge"
+      ]
+    },
+    {
+      "id": "site_globasnitz",
+      "name": "Globasnitz (Iuenna)",
+      "items_count": 2775,
+      "period": "Römische Kaiserzeit, Spätantike, Merowingerzeit (4.–6. Jh. n. Chr.)",
+      "highlights": "Römische Straßenstation (Mansio Iuenna) an der Reichsstraße Virunum–Celeia, benannt nach keltischer Gottheit Iouenat (Tabula Peutingeriana). Größtes spätantik-merowingerzeitliches Gräberfeld Österreichs mit rund 425 Gräbern / 440 Bestattungen und zwei aufeinanderfolgenden Kirchen (ältere aus späten 4. Jh.); Kontaktregion romanischer, ostgotischer und merowingischer Einflüsse (Pollak 2023; Schwaiger & Reiner 2022).",
+      "subcollection": "GLO / RET",
+      "keywords": [
+        "globasnitz",
+        "iuenna",
+        "mansio",
+        "straßenstation",
+        "römerstraße",
+        "virunum",
+        "celeia",
+        "pilgermuseum",
+        "kaiserzeit",
+        "inschrift",
+        "gräberfeld",
+        "friedhof",
+        "merowinger",
+        "ostgoten",
+        "iouenat",
+        "tabula peutingeriana"
+      ]
+    },
+    {
+      "id": "site_sankt_stefan",
+      "name": "Sankt Stefan im Jauntal (Šteben)",
+      "items_count": 15,
+      "period": "Römische Kaiserzeit bis Spätantike",
+      "highlights": "Ausgedehnte römische Villenanlage / Landgut ('Super-Villa') im Umland von Globasnitz. Geophysikalisch prospektiertes Areal von ca. 7.700 m² mit mehreren Gebäuden, repräsentativem Saal mit zwei gegenüberliegenden Apsiden und 1930 dokumentierter Hypokaustheizung (Schwaiger & Reiner 2022; Hagmann & Reiner 2023).",
+      "subcollection": "STE",
+      "keywords": [
+        "sankt stefan",
+        "st. stefan",
+        "šteben",
+        "steben",
+        "villa",
+        "super-villa",
+        "landgut",
+        "hypokaust",
+        "apsiden",
+        "geophysik",
+        "georadar"
+      ]
+    }
+  ],
+  "doc_types": [
+    {
+      "id": "doc_plans",
+      "name": "Aufmaßzeichnungen & Grabungspläne",
+      "count": "ca. 4.400 Dokumente",
+      "formats": "TIF, PDF, DWG, DXF",
+      "description": "Präzise händische und digitale Grundrisse, Schnittzeichnungen, Steinpläne und Profilaufnahmen von Grabungen auf dem Hemmaberg und in Jaunstein.",
+      "keywords": [
+        "plan",
+        "pläne",
+        "aufmaß",
+        "zeichnung",
+        "profil",
+        "schnitt",
+        "grundriss",
+        "steinplan",
+        "bauaufnahme"
+      ]
+    },
+    {
+      "id": "doc_photos",
+      "name": "Dokumentarfotografien",
+      "count": "Über 11.600 Aufnahmen",
+      "formats": "TIF, JPG",
+      "description": "Historische Schwarzweiß- und Farbfotografien, Fundaufnahmen, Grabungsdokumentationen und Übersichtsaufnahmen aus über 100 Jahren Forschung.",
+      "keywords": [
+        "foto",
+        "fotos",
+        "fotografie",
+        "aufnahme",
+        "bild",
+        "diapositiv",
+        "schwarzweiß",
+        "negativ"
+      ]
+    },
+    {
+      "id": "doc_index_cards",
+      "name": "Karteikarten & Fundinventare",
+      "count": "ca. 3.600 Karteikarten",
+      "formats": "TIF, PDF",
+      "description": "Originale Fundzettel, Grabungsinventare und Fundkarteikarten mit detaillierten Beschreibungen, Maßen und Fundortkoordinaten.",
+      "keywords": [
+        "karteikarte",
+        "kartei",
+        "inventar",
+        "fundzettel",
+        "notizen",
+        "tagebuch",
+        "fundkatalog"
+      ]
+    },
+    {
+      "id": "doc_geodata",
+      "name": "Vektorgeodaten & GIS",
+      "count": "Über 20.500 Vektorpunkte & Polygone",
+      "formats": "GeoPackage (.gpkg), GeoJSON (.geojson), Shapefile",
+      "description": "Exakt verortete Fundpunkte, Grabungsgrenzen, Befundpolygone und Höhendaten im WGS84-System, frei herunterladbar und direkt in QGIS ladbar.",
+      "keywords": [
+        "geodaten",
+        "gis",
+        "gpkg",
+        "geojson",
+        "karte",
+        "qgis",
+        "vektordaten",
+        "koordinaten",
+        "wgs84"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq_what_is_iuenna",
+      "question": "Was ist das Projekt IUENNA?",
+      "answer": "IUENNA ('openIng the soUthErn jauNtal as a micro-regioN for future Archaeology') ist ein durch das Go!Digital 3.0 Programm der ÖAW gefördertes Digital-Humanities-Projekt von kärnten.museum, ÖAI, ACDH-CH, BDA und ARDIG (Hagmann & Reiner 2023). Es erschließt über 20.000 archäologische Objekte, Grabungsberichte, Pläne und Fotos aus über 100 Jahren Forschung im südlichen Jauntal und archiviert sie dauerhaft im Repositorium ARCHE.",
+      "links": [
+        {
+          "text": "ARCHE Repositorium",
+          "url": "https://id.acdh.oeaw.ac.at/iuenna"
+        }
+      ],
+      "keywords": [
+        "was ist iuenna",
+        "projekt",
+        "godigital",
+        "ziel",
+        "über das projekt",
+        "forschung",
+        "jauntal"
+      ]
+    },
+    {
+      "id": "faq_name_iuenna",
+      "question": "Woher stammt der Name Iuenna und was bedeutet er?",
+      "answer": "Der Name 'Iuenna' bezeichnet die antike römische Straßenstation und Siedlung im Bereich von Globasnitz und Kleindorf an der Reichsstraße Virunum–Celeia (belegt auf der Tabula Peutingeriana). Er geht auf die einheimische keltische Gottheit 'Iouenat' zurück, die durch einen Votivaltar vom Hemmaberg belegt ist. Von dieser Wortwurzel leiten sich auch 'Jaunberg' und 'Jauntal' (slowenisch Podjuna) ab (Glaser 2002).",
+      "links": [
+        {
+          "text": "Subcollection Globasnitz (GLO)",
+          "url": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E"
+        },
+        {
+          "text": "Web-Mapping Globasnitz",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "name",
+        "woher kommt iuenna",
+        "iouenat",
+        "bedeutung",
+        "gottheit",
+        "tabula peutingeriana",
+        "jaunberg",
+        "jauntal",
+        "etymologie",
+        "kleindorf"
+      ]
+    },
+    {
+      "id": "faq_graeberfeld_globasnitz",
+      "question": "Was zeichnet das spätantike Gräberfeld von Globasnitz aus?",
+      "answer": "Das östlich von Globasnitz gelegene Gräberfeld ist mit rund 425 Gräbern und etwa 440 Bestattungen der größte spätantik-merowingerzeitliche Bestattungsplatz Österreichs und der bisher einzige umfassend erforschte Friedhof einer norischen Straßenstation (Pollak 2023). Innerhalb der Nekropole lagen zudem zwei aufeinanderfolgende Kirchen (die ältere bereits aus dem späten 4. Jh.). Beigaben wie Gürtelbeschläge, Fibeln und Perlen bezeugen weitreichende Kontakte im Alpenraum.",
+      "links": [
+        {
+          "text": "Subcollection Globasnitz (GLO)",
+          "url": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E"
+        },
+        {
+          "text": "Web-Mapping Globasnitz",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "gräberfeld globasnitz",
+        "friedhof",
+        "bestattungen",
+        "merowinger",
+        "ostgoten",
+        "425 gräber",
+        "440 bestattungen",
+        "marianne pollak",
+        "fibeln",
+        "gürtel"
+      ]
+    },
+    {
+      "id": "faq_doppelkirchen_hemmaberg",
+      "question": "Welche Bedeutung haben die Doppelkirchen auf dem Hemmaberg?",
+      "answer": "Auf dem 843 m hohen Hemmaberg entstanden im frühen 6. Jahrhundert zwei monumentale Doppelkirchenanlagen mit Eucharistie- und Memorialkirchen, Baptisterien, Reliquienkammern und Pilgerhospizen (Glaser 2002). Die doppelte Ausführung gilt in der Forschung als Zeugnis zweier nebeneinander existierender christlicher Gemeinden: einer katholisch-romanischen und einer arianisch-gotischen Gemeinde zur Zeit der ostgotischen Herrschaft.",
+      "links": [
+        {
+          "text": "Subcollection Hemmaberg (HB)",
+          "url": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D"
+        },
+        {
+          "text": "Web-Mapping Hemmaberg",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "doppelkirche",
+        "doppelkirchen",
+        "kirchen",
+        "arianisch",
+        "katholisch",
+        "ostgoten",
+        "pilgerzentrum",
+        "mosaike",
+        "reliquien",
+        "franz glaser"
+      ]
+    },
+    {
+      "id": "faq_villa_st_stefan",
+      "question": "Was ist die römische Villenanlage in St. Stefan (Šteben)?",
+      "answer": "In St. Stefan/Šteben bei Globasnitz liegt ein großes römisches Landgut ('Super-Villa'). Geophysikalische Messungen mit Georadar und Geomagnetik belegen ein über 7.700 m² großes bebautes Areal mit Begrenzungsmauern, einem repräsentativen Raum mit zwei gegenüberliegenden Apsiden sowie einer bereits 1930 freigelegten Hypokaust-Fußbodenheizung (Schwaiger & Reiner 2022).",
+      "links": [
+        {
+          "text": "Subcollection St. Stefan (STE)",
+          "url": "https://hdl.handle.net/21.11115/0000-0016-7B3C-C"
+        },
+        {
+          "text": "Web-Mapping St. Stefan",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "st. stefan",
+        "stefan",
+        "šteben",
+        "steben",
+        "villa",
+        "super-villa",
+        "landgut",
+        "hypokaust",
+        "apsiden",
+        "schwaiger",
+        "reiner"
+      ]
+    },
+    {
+      "id": "faq_hemmaberg",
+      "question": "Wo finde ich die Grabungsdaten und Pläne zum Hemmaberg?",
+      "answer": "Die Daten zum Hemmaberg sind in der Subcollection 'HB' (Hemmaberg-Collection, PID: https://hdl.handle.net/21.11115/0000-0016-7B3B-D) sowie im Retrodigitalisate-Bestand 'RET' archiviert. Sie umfassen über 11.000 Einzelobjekte – darunter historische Steinpläne der frühchristlichen Kirchen, Profilzeichnungen und Fotodokumentationen. Nutzen Sie auch unsere interaktive Web-Map!",
+      "links": [
+        {
+          "text": "Hemmaberg in ARCHE",
+          "url": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D"
+        },
+        {
+          "text": "Web-Mapping öffnen",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "hemmaberg pläne",
+        "hemmaberg daten",
+        "kirchen",
+        "grabungspläne hemmaberg",
+        "rosaliengrotte",
+        "doppelkirche"
+      ]
+    },
+    {
+      "id": "faq_leadership",
+      "question": "Wer leitet das IUENNA-Projekt?",
+      "answer": "IUENNA wurde gemeinsam von Dr. Dominik Hagmann (Landesmuseum für Kärnten / kärnten.museum) und Dipl.-Ing. Franziska Waldhart (Österreichisches Archäologisches Institut / ÖAI an der ÖAW) geleitet und koordiniert.",
+      "links": [
+        {
+          "text": "Dr. Dominik Hagmann (ORCID)",
+          "url": "https://orcid.org/0000-0002-4481-6234"
+        },
+        {
+          "text": "ÖAI Website",
+          "url": "https://www.oeaw.ac.at/oeai"
+        }
+      ],
+      "keywords": [
+        "wer leitet",
+        "leitung",
+        "koordination",
+        "dominik hagmann",
+        "franziska waldhart",
+        "team",
+        "forscher"
+      ]
+    },
+    {
+      "id": "faq_licenses",
+      "question": "Unter welchen Lizenzen stehen die IUENNA-Daten?",
+      "answer": "Die Daten sind nach den FAIR- und CARE-Prinzipien öffentlich zugänglich. Neu erstellte Metadaten, Vektorgeodaten (GeoPackage/GeoJSON) und Web-Inhalte stehen unter der freien Lizenz Creative Commons Namensnennung (CC BY 4.0). Bei historischen Bild- und Archivdokumenten greift teilweise InC (In Copyright / geschützte Bestände), die über ARCHE für wissenschaftliche Zwecke einsehbar sind.",
+      "links": [
+        {
+          "text": "CC BY 4.0 Lizenz",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ],
+      "keywords": [
+        "lizenz",
+        "lizenzen",
+        "cc by",
+        "urheberrecht",
+        "fair",
+        "open access",
+        "copyright",
+        "inc"
+      ]
+    },
+    {
+      "id": "faq_gis_download",
+      "question": "Kann ich die Geodaten direkt in QGIS herunterladen?",
+      "answer": "Ja! Sie können das vollständige GIS-Paket als GeoPackage ('IUENNA-WMA.gpkg', ca. 7.8 MB) direkt von unserem GitHub-Repositorium herunterladen und ohne Konvertierung in QGIS oder ArcGIS öffnen. Es enthält alle Fundstellen und Attribute.",
+      "links": [
+        {
+          "text": "GeoPackage (.gpkg) Download",
+          "url": "https://github.com/IUENNA/IUENNA.github.io/blob/main/wma/IUENNA-WMA.gpkg"
+        },
+        {
+          "text": "Web-Mapping Portal",
+          "url": "https://iuenna.github.io/wma/wma.html"
+        }
+      ],
+      "keywords": [
+        "download",
+        "gis download",
+        "qgis",
+        "geopackage",
+        "gpkg",
+        "geojson",
+        "shapefile",
+        "karten"
+      ]
+    },
+    {
+      "id": "faq_vibe_coding",
+      "question": "Was bedeutet Vibe Coding und GenAI bei IUENNA?",
+      "answer": "IUENNA setzt pionierhaft auf moderne agentische KI-Tools (wie Google Antigravity) und das Entwicklungsparadigma des 'Vibe Coding': Forschende fungieren als kreative und fachliche Regisseure, während KI-Assistenten Code-Strukturen, Stylesheets und Geodatenfilter iterativ miterstellen. Alle Resultate werden akademisch geprüft und transparent deklariert.",
+      "links": [
+        {
+          "text": "KI-Deklaration auf der Startseite",
+          "url": "#ai-declaration"
+        }
+      ],
+      "keywords": [
+        "vibe coding",
+        "ki",
+        "genai",
+        "antigravity",
+        "chatgpt",
+        "künstliche intelligenz",
+        "methoden"
+      ]
+    }
+  ],
+  "graph_entities": [
+    {
+      "id": "iuenna_root",
+      "label": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+      "type": "root",
+      "type_label": "Top-Collection",
+      "description": "",
+      "items": 20788,
+      "size": "356.68 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792170",
+      "color": "#A8442E"
+    },
+    {
+      "id": "col_1792169",
+      "label": "Globasnitz-Collection (GLO)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 2692,
+      "size": "4.78 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792169",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792212",
+      "label": "Hemmaberg-Collection (HB)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 3726,
+      "size": "29.01 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792212",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792303",
+      "label": "Jaunstein-Collection (JAU)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 4989,
+      "size": "52.04 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792303",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792411",
+      "label": "Sankt Stefan-Collection (STE)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 8,
+      "size": "32.06 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792411",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792417",
+      "label": "Jauntal-Collection (TAL)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 25,
+      "size": "122.54 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792417",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792572",
+      "label": "Retrodigitalisat-Collection (RET)",
+      "type": "subcollection",
+      "type_label": "Subcollection (L1)",
+      "description": "",
+      "items": 9341,
+      "size": "270.69 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+      "color": "#B88E3E"
+    },
+    {
+      "id": "col_1792168",
+      "label": "01_03_Raster",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 2605,
+      "size": "4.25 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792168",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792190",
+      "label": "01_05_Datenbanken",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 2,
+      "size": "17.59 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792190",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792193",
+      "label": "01_06_Text_Tabellen",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 57,
+      "size": "38.22 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792193",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792206",
+      "label": "01_07_Output",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 24,
+      "size": "488.18 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792206",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792302",
+      "label": "03_02_Vektor",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 1067,
+      "size": "20.25 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792302",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792308",
+      "label": "03_03_Raster",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 4742,
+      "size": "51.40 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792308",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792394",
+      "label": "03_05_Datenbanken",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 2,
+      "size": "86.83 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792394",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792395",
+      "label": "03_06_Texte_Tabellen",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 205,
+      "size": "380.80 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792395",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792406",
+      "label": "03_07_Output",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 29,
+      "size": "174.82 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792406",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792412",
+      "label": "04_05_Datenbanken",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 1,
+      "size": "14.14 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792412",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792414",
+      "label": "04_07_Output",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 5,
+      "size": "17.92 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792414",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792416",
+      "label": "05_03_Raster",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 37,
+      "size": "30.19 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792416",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792423",
+      "label": "05_05_Datenbanken",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 140,
+      "size": "75.25 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792423",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792568",
+      "label": "05_06_Texte_Tabellen",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 4,
+      "size": "95.18 KB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792568",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792570",
+      "label": "05_07_Output",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 2,
+      "size": "17.00 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792570",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792211",
+      "label": "02_02_Vektor",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 44,
+      "size": "17.95 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792211",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792217",
+      "label": "02_03_Raster",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 3401,
+      "size": "24.12 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792217",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792271",
+      "label": "02_04_3D-Daten",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 2,
+      "size": "260.13 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792271",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792273",
+      "label": "02_05_Datenbanken",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 4,
+      "size": "39.55 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792273",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792274",
+      "label": "02_06_Texte_Tabellen",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 217,
+      "size": "268.00 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792274",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792292",
+      "label": "02_07_Output",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 53,
+      "size": "4.32 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792292",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792167",
+      "label": "01_03_03_Fotos",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 1914,
+      "size": "4.01 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792167",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792184",
+      "label": "01_03_04_Zeichnungen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 689,
+      "size": "248.39 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792184",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792202",
+      "label": "01_07_01_Plaene",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 20,
+      "size": "459.49 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792202",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792210",
+      "label": "01_07_02_Kataloge",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 2,
+      "size": "28.69 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792210",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792305",
+      "label": "03_02_01_Geodaesie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 5,
+      "size": "20.25 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792305",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792307",
+      "label": "03_03_03_Fotos",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 4696,
+      "size": "51.37 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792307",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792390",
+      "label": "03_03_04_Zeichnungen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 44,
+      "size": "30.68 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792390",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792194",
+      "label": "01_06_02_Protokolle",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 4,
+      "size": "167.39 KB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792194",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792201",
+      "label": "01_06_03_Verzeichnisse",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 11,
+      "size": "36.94 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792201",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792203",
+      "label": "01_06_05_Funde",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 3,
+      "size": "34.37 KB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792203",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792205",
+      "label": "01_06_06_Bioarchaeologie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 35,
+      "size": "1.08 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792205",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792415",
+      "label": "04_07_01_Plaene",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 4,
+      "size": "17.92 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792415",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792402",
+      "label": "03_07_01_Plaene",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 28,
+      "size": "174.82 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792402",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792421",
+      "label": "05_03_03_Fotos",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 10,
+      "size": "30.19 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792421",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792396",
+      "label": "03_06_02_Protokolle",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 28,
+      "size": "28.09 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792396",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792397",
+      "label": "03_06_01_Geodaesie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 25,
+      "size": "292.66 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792397",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792400",
+      "label": "03_06_03_Verzeichnisse",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 13,
+      "size": "12.41 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792400",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792401",
+      "label": "03_06_04_Matrizen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 10,
+      "size": "130.05 KB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792401",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792403",
+      "label": "03_06_05_Funde",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 21,
+      "size": "5.90 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792403",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792404",
+      "label": "03_06_06_Bioarchaeologie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 102,
+      "size": "41.62 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792404",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792567",
+      "label": "05_06_06_Bioarchaeologie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 3,
+      "size": "95.18 KB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792567",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792209",
+      "label": "02_02_01_Geodaesie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 12,
+      "size": "6.21 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792209",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792215",
+      "label": "02_02_03_Zeichnungen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 29,
+      "size": "11.74 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792215",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792270",
+      "label": "02_04_02_Meshes_Textures",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 1,
+      "size": "260.13 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792270",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792219",
+      "label": "02_03_01_Geodaesie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 15,
+      "size": "45.86 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792219",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792222",
+      "label": "02_03_03_Fotos",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 3260,
+      "size": "23.83 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792222",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792266",
+      "label": "02_03_04_Zeichnungen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 123,
+      "size": "252.44 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792266",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792286",
+      "label": "02_07_01_Plaene",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 45,
+      "size": "328.60 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792286",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792301",
+      "label": "02_07_02_Kataloge",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 6,
+      "size": "4.00 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792301",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792276",
+      "label": "02_06_01_Geodaesie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 18,
+      "size": "9.24 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792276",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792278",
+      "label": "02_06_02_Protokolle",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 40,
+      "size": "130.72 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792278",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792284",
+      "label": "02_06_04_Matrizen",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 14,
+      "size": "3.40 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792284",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792285",
+      "label": "02_06_03_Verzeichnisse",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 22,
+      "size": "8.68 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792285",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792288",
+      "label": "02_06_05_Funde",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 32,
+      "size": "6.97 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792288",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792290",
+      "label": "02_06_06_Bioarchaeologie",
+      "type": "folder_l3",
+      "type_label": "Fachordner (L3)",
+      "description": "",
+      "items": 85,
+      "size": "108.99 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792290",
+      "color": "#3D7068"
+    },
+    {
+      "id": "col_1792171",
+      "label": "01_03_03_01_Umfeld",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 20,
+      "size": "437.89 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792171",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792174",
+      "label": "01_03_03_02_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 2060,
+      "size": "1.03 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792174",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792178",
+      "label": "01_03_03_03_Funde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 463,
+      "size": "676.00 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792178",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792180",
+      "label": "01_03_03_05_Bioarchaeologie",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 458,
+      "size": "1.89 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792180",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792183",
+      "label": "01_03_04_01_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 487,
+      "size": "218.20 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792183",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792187",
+      "label": "01_03_04_02_Funde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 200,
+      "size": "30.19 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792187",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792309",
+      "label": "03_03_03_01_Umfeld",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 10,
+      "size": "51.50 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792309",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792310",
+      "label": "03_03_03_02_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 3130,
+      "size": "21.80 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792310",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792316",
+      "label": "03_03_03_03_Funde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 713,
+      "size": "1.74 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792316",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792320",
+      "label": "03_03_03_04_Fotogrammetrie",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 798,
+      "size": "27.67 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792320",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792389",
+      "label": "03_03_03_06_Restaurierung",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 40,
+      "size": "109.58 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792389",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792207",
+      "label": "01_07_01_01_Prospektion",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 7,
+      "size": "335.62 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792207",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792208",
+      "label": "01_07_01_03_Ausgrabung",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 9,
+      "size": "20.61 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792208",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792391",
+      "label": "03_03_04_01_01_Flaechen",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 11,
+      "size": "10.58 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792391",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792392",
+      "label": "03_03_04_01_02_Graeber",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 27,
+      "size": "15.26 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792392",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792393",
+      "label": "03_03_04_01_03_Profile",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 3,
+      "size": "4.84 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792393",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792213",
+      "label": "02_02_01_03_Ausgrabung",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 11,
+      "size": "6.21 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792213",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792216",
+      "label": "02_02_03_01_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 28,
+      "size": "11.74 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792216",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792223",
+      "label": "02_03_03_01_Umfeld",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 257,
+      "size": "1.66 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792223",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792224",
+      "label": "02_03_03_02_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 1203,
+      "size": "8.47 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792224",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792228",
+      "label": "02_03_03_03_Funde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 503,
+      "size": "1.15 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792228",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792232",
+      "label": "02_03_03_04_Fotogrammetrie",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 445,
+      "size": "9.47 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792232",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792261",
+      "label": "02_03_03_05_Bioarchaeologie",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 830,
+      "size": "3.03 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792261",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792264",
+      "label": "02_03_03_06_Restaurierung",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 16,
+      "size": "55.35 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792264",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792265",
+      "label": "02_03_04_01_Befunde",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 122,
+      "size": "252.44 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792265",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792289",
+      "label": "02_07_01_01_Prospektion",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 8,
+      "size": "88.21 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792289",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792294",
+      "label": "02_07_01_03_Ausgrabung",
+      "type": "folder_l4",
+      "type_label": "Teilsammlung (L4)",
+      "description": "",
+      "items": 33,
+      "size": "222.47 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792294",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "col_1792188",
+      "label": "01_03_04_02_02_Kleinfunde",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 199,
+      "size": "30.19 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792188",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792185",
+      "label": "01_03_04_01_01_Flaechen",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 64,
+      "size": "53.48 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792185",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792186",
+      "label": "01_03_04_01_02_Graeber",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 421,
+      "size": "164.72 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792186",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792175",
+      "label": "01_03_03_02_01_Ueberblick",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 204,
+      "size": "374.28 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792175",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792177",
+      "label": "01_03_03_02_02_Strukturen",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 763,
+      "size": "682.12 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792177",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792179",
+      "label": "01_03_03_03_02_Kleinfunde",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 462,
+      "size": "676.00 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792179",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792181",
+      "label": "01_03_03_05_01_Osteoarchaeologie",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 449,
+      "size": "1.86 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792181",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792182",
+      "label": "01_03_03_05_02_Archaeozoologie",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 7,
+      "size": "30.83 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792182",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792311",
+      "label": "03_03_03_02_01_Ueberblick",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 51,
+      "size": "344.89 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792311",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792313",
+      "label": "03_03_03_02_02_Graeber_Strukturen",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 1453,
+      "size": "11.91 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792313",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792314",
+      "label": "03_03_03_02_03_Profile",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 3,
+      "size": "32.81 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792314",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792315",
+      "label": "03_03_03_02_04_Bauforschung",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 1619,
+      "size": "9.52 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792315",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792317",
+      "label": "03_03_03_03_01_Keramik",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 507,
+      "size": "929.95 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792317",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792318",
+      "label": "03_03_03_03_02_Kleinfunde",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 67,
+      "size": "143.08 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792318",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792319",
+      "label": "03_03_03_03_03_Baustoffe",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 131,
+      "size": "665.31 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792319",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792321",
+      "label": "03_03_03_03_04_Sonstiges",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 4,
+      "size": "41.71 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792321",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792225",
+      "label": "02_03_03_02_01_Ueberblick",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 133,
+      "size": "848.78 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792225",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792226",
+      "label": "02_03_03_02_02_Strukturen",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 867,
+      "size": "6.21 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792226",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792227",
+      "label": "02_03_03_02_03_Profile",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 200,
+      "size": "1.43 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792227",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792229",
+      "label": "02_03_03_03_01_Keramik",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 276,
+      "size": "701.59 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792229",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792230",
+      "label": "02_03_03_03_02_Kleinfunde",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 225,
+      "size": "479.29 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792230",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792260",
+      "label": "02_03_03_05_01_Osteoarchaeologie",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 829,
+      "size": "3.03 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792260",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792267",
+      "label": "02_03_04_01_01_Flaechen",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 56,
+      "size": "162.24 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792267",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792268",
+      "label": "02_03_04_01_02_Graeber",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 30,
+      "size": "10.71 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792268",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792269",
+      "label": "02_03_04_01_03_Profile",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 33,
+      "size": "79.48 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792269",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792231",
+      "label": "Digitale Datensammlung, die digitale Oberflächenmodelldaten enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 1,
+      "size": "7.83 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792231",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792233",
+      "label": "Digitale Datensammlung, die Daten zum Felsgrab enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 2,
+      "size": "155.35 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792233",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792234",
+      "label": "Digitale Datensammlung, die Daten zum Ostprofil enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 40,
+      "size": "496.23 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792234",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792235",
+      "label": "Digitale Datensammlung, die Daten zum Sattel enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 3,
+      "size": "1.37 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792235",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792236",
+      "label": "Digitale Datensammlung, die Daten zu Schnitt 1 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 2,
+      "size": "575.40 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792236",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792237",
+      "label": "Digitale Datensammlung, die Daten zu Schnitt 2 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 2,
+      "size": "262.00 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792237",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792238",
+      "label": "Digitale Datensammlung, die Daten zu Schnitt 3 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 2,
+      "size": "1.27 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792238",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792239",
+      "label": "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 1003 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 90,
+      "size": "1.38 GB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792239",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792240",
+      "label": "Digitale Datensammlung, die Daten zur unteren Schicht (UK) von SE 2001 und SE 2002 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 22,
+      "size": "517.87 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792240",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792241",
+      "label": "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 2002 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 14,
+      "size": "114.50 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792241",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792242",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3003 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 18,
+      "size": "188.35 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792242",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792243",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3005 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "39.87 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792243",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792244",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3007 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "31.89 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792244",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792245",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3009 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "33.41 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792245",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792246",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3015 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 9,
+      "size": "61.96 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792246",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792247",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3017 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 9,
+      "size": "58.99 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792247",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792248",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3021 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 11,
+      "size": "99.15 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792248",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792249",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3023 und SE 3029 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 26,
+      "size": "346.46 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792249",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792250",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3025 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "33.01 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792250",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792251",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3031,SE 3041 und SE 3042 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "74.16 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792251",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792252",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3033 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 15,
+      "size": "349.88 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792252",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792253",
+      "label": "Digitale Datensammlung, die Daten zu den human remains aus SE 3035 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 5,
+      "size": "81.70 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792253",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792254",
+      "label": "Digitale Datensammlung, die Daten und weitere Unterebenen an Datensammlungen sowie deren jeweilige Ressourcen zu Überblicksaufnahmen speichert.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 100,
+      "size": "989.19 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792254",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792257",
+      "label": "Digitale Datensammlung, die Daten zu einer Wall-Struktur enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 3,
+      "size": "76.73 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792257",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792258",
+      "label": "Digitale Datensammlung, die Rohdaten enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 8,
+      "size": "69.80 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792258",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792259",
+      "label": "Digitale Datensammlung, die Daten zu Schnitt 01 enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 12,
+      "size": "906.77 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792259",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792293",
+      "label": "Digitale Datensammlung, die Georadardaten enthält.",
+      "type": "folder_l5",
+      "type_label": "Befundordner (L5)",
+      "description": "",
+      "items": 7,
+      "size": "88.21 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792293",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "col_1792255",
+      "label": "Drohengestützte Ansichtsaufnahme; Hemmaberg 2020",
+      "type": "folder_l6",
+      "type_label": "Detailaufnahme (L6)",
+      "description": "",
+      "items": 26,
+      "size": "217.94 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792255",
+      "color": "#9B59B6"
+    },
+    {
+      "id": "col_1792256",
+      "label": "Ansichtsaufnahme; Hemmaberg 2020",
+      "type": "folder_l6",
+      "type_label": "Detailaufnahme (L6)",
+      "description": "",
+      "items": 72,
+      "size": "771.25 MB",
+      "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792256",
+      "color": "#9B59B6"
+    },
+    {
+      "id": "col_1792572_06_01",
+      "label": "06_01 Keramik- & Fundzeichnungen Hemmaberg",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_02",
+      "label": "06_02 Fundzeichnungen Jaunstein",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_03",
+      "label": "06_03 Grabungspläne Hemmaberg",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_04",
+      "label": "06_04 Keramiktafeln Globasnitz",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_05",
+      "label": "06_05 Grabungstagebuch Hemmaberg 1978–1980",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_06",
+      "label": "06_06 Grabungstagebuch Hemmaberg 1981–1983",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_07",
+      "label": "06_07 Grabungstagebuch Hemmaberg 1984–1986",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_08",
+      "label": "06_08 Grabungstagebuch Hemmaberg 1987–1990",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_09",
+      "label": "06_09 Grabungstagebuch Hemmaberg 1991–1995",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_10",
+      "label": "06_10 Schichtbeschreibungen Hemmaberg",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_11",
+      "label": "06_11 Schichtbeschreibungen Jaunstein",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_12",
+      "label": "06_12 Grabungstagebücher Jaunstein 1980–1998",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_13",
+      "label": "06_13 Grabungsdokumentation Globasnitz",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_14",
+      "label": "06_14 Fotodokumentation Hemmaberg (Dias & Negative)",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_15",
+      "label": "06_15 Fotodokumentation Jaunstein (Dias & Negative)",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_16",
+      "label": "06_16 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_17",
+      "label": "06_17 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_18",
+      "label": "06_18 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_19",
+      "label": "06_19 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_20",
+      "label": "06_20 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_21",
+      "label": "06_21 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_22",
+      "label": "06_22 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_23",
+      "label": "06_23 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_24",
+      "label": "06_24 Archiv Winkler (Altdokumentation)",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_25",
+      "label": "06_25 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_26",
+      "label": "06_26 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_27",
+      "label": "06_27 Fotodokumentation Globasnitz",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_28",
+      "label": "06_28 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_29",
+      "label": "06_29 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_30",
+      "label": "06_30 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_31",
+      "label": "06_31 Keramikprofile & Zeichnungen",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_32",
+      "label": "06_32 Steingerechte Bauaufnahmen & Pläne",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_33",
+      "label": "06_33 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_34",
+      "label": "06_34 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_35",
+      "label": "06_35 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_36",
+      "label": "06_36 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_37",
+      "label": "06_37 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_38",
+      "label": "06_38 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_39",
+      "label": "06_39 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_40",
+      "label": "06_40 Mosaikpausen & Konservierungspläne",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_41",
+      "label": "06_41 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_42",
+      "label": "06_42 Grabungs- & Fundberichte Hemmaberg",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_43",
+      "label": "06_43 Archivalien-Serie",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_44",
+      "label": "06_44 Manuskripte & Druckfahnen Glaser",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_45",
+      "label": "06_45 Historische Großformatfotos",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "col_1792572_06_46",
+      "label": "06_46 Archivbox ÖAI / Landesmuseum",
+      "type": "folder_l2",
+      "type_label": "Hauptkategorie (L2)",
+      "description": "",
+      "items": 22,
+      "size": "550.0 MB",
+      "arche_url": "https://id.acdh.oeaw.ac.at/iuenna",
+      "color": "#C29243"
+    },
+    {
+      "id": "org_oeaw",
+      "label": "Österreichische Akademie der Wissenschaften (ÖAW)",
+      "type": "organization",
+      "type_label": "Institution / Funder",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "org_oeai",
+      "label": "Österreichisches Archäologisches Institut (ÖAI)",
+      "type": "organization",
+      "type_label": "Institution / Host",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "org_km",
+      "label": "kärnten.museum",
+      "type": "organization",
+      "type_label": "Institution / Partner",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "org_acdh",
+      "label": "ACDH-CH / ARCHE",
+      "type": "organization",
+      "type_label": "Repositorium / Hosting",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "org_bda",
+      "label": "Bundesdenkmalamt (BDA)",
+      "type": "organization",
+      "type_label": "Institution / Partner",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "org_ardig",
+      "label": "ARDIG - Archäologischer Dienst",
+      "type": "organization",
+      "type_label": "Partnerunternehmen",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#202226"
+    },
+    {
+      "id": "per_hagmann",
+      "label": "Dr. Dominik Hagmann",
+      "type": "person",
+      "type_label": "Forscher / PI",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#C85A32"
+    },
+    {
+      "id": "per_waldhart",
+      "label": "Dipl.-Ing. Franziska Waldhart",
+      "type": "person",
+      "type_label": "Forscherin / PI",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#C85A32"
+    },
+    {
+      "id": "plc_jauntal",
+      "label": "Jauntal",
+      "type": "place",
+      "type_label": "Fundlandschaft",
+      "description": "Archäologische Mikroregion im südlichen Kärnten",
+      "items": 20788,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_hemmaberg",
+      "label": "Hemmaberg",
+      "type": "place",
+      "type_label": "Fundort",
+      "description": "Bedeutendes spätantikes Pilgerheiligtum und Gräberfeld",
+      "items": 11092,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_jaunstein",
+      "label": "Jaunstein",
+      "type": "place",
+      "type_label": "Fundort",
+      "description": "Spätantik-frühmittelalterliche Siedlung und Gräber",
+      "items": 4899,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_globasnitz",
+      "label": "Globasnitz / Iuenna",
+      "type": "place",
+      "type_label": "Fundort",
+      "description": "Römische Straßenstation Iuenna an der Virunum-Celeia-Route",
+      "items": 2775,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_st_stefan",
+      "label": "Sankt Stefan / Steben",
+      "type": "place",
+      "type_label": "Fundort",
+      "description": "Archäologische Befunde und Altfunde bei Sankt Stefan",
+      "items": 51,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_noricum",
+      "label": "Noricum",
+      "type": "place",
+      "type_label": "Historische Region",
+      "description": "Historischer antiker Kulturraum Noricum",
+      "items": 0,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "plc_kaernten",
+      "label": "Kärnten / Carinthia",
+      "type": "place",
+      "type_label": "Geographische Region",
+      "description": "Geographischer Rahmen im heutigen Österreich",
+      "items": 0,
+      "size": null,
+      "arche_url": "",
+      "color": "#4A6B53"
+    },
+    {
+      "id": "epc_roman",
+      "label": "Römische Kaiserzeit",
+      "type": "epoch",
+      "type_label": "Zeitepoche",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "epc_early_medieval",
+      "label": "Frühmittelalter",
+      "type": "epoch",
+      "type_label": "Zeitepoche",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#5A6B7C"
+    },
+    {
+      "id": "sbj_arch_data",
+      "label": "Archäologische Daten",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "sbj_fieldwork",
+      "label": "Grabungsdokumentation",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "sbj_roman_arch",
+      "label": "Römische Archäologie",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "sbj_dh",
+      "label": "Digitale Geisteswissenschaften",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "sbj_dig_arch",
+      "label": "Dokumentarfotografien",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "sbj_reprografie",
+      "label": "Reprografien & Aufmaße",
+      "type": "subject",
+      "type_label": "Fachschlagwort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#7E6B8F"
+    },
+    {
+      "id": "lic_inc",
+      "label": "In Copyright (InC 1.0)",
+      "type": "license",
+      "type_label": "Lizenz / Nutzungsrechte",
+      "description": "Urheberrechtlich geschützte Archivbestände des kärnten.museums und ÖAI.",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#437F97"
+    },
+    {
+      "id": "lic_ccby",
+      "label": "Creative Commons Attribution 4.0 (CC BY 4.0)",
+      "type": "license",
+      "type_label": "Open Access Lizenz",
+      "description": "Open Access Forschungsdaten des Go!Digital-Projekts IUENNA.",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#3D7068"
+    }
+  ]
+}
