@@ -1,5 +1,5 @@
 {
-  "harvest_timestamp": "2026-09-04T21:39:15Z",
+  "harvest_timestamp": "2026-09-06T06:47:05Z",
   "collection": {
     "title_de": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
     "title_en": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
@@ -69,5 +69,5 @@
       "arche_uri": "https://arche.acdh.oeaw.ac.at/api/1792411"
     }
   ],
-  "harvest_duration_seconds": 0.49
+  "harvest_duration_seconds": 2.33
 }
