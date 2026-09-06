@@ -1,68 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Einfacher Graph mit Cytoscape.js</title>
-  <script src="https://unpkg.com/cytoscape@3.21.1/dist/cytoscape.min.js"></script>
-  <style>
-    #cy {
-      width: 600px;
-      height: 600px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=index.html">
+    <title>Weiterleitung zum IUENNA ARCHE Knowledge Graph Explorer...</title>
 </head>
 <body>
-
-<h2>Einfaches Graph-Modell</h2>
-<div id="cy"></div>
-
-<script>
-  // Daten für den Graphen (Knoten und Kanten)
-  const graphData = {
-    nodes: [
-      { data: { id: 'A' } },
-      { data: { id: 'B' } },
-      { data: { id: 'C' } },
-      { data: { id: 'D' } }
-    ],
-    edges: [
-      { data: { source: 'A', target: 'B' } },
-      { data: { source: 'A', target: 'C' } },
-      { data: { source: 'B', target: 'D' } },
-      { data: { source: 'C', target: 'D' } }
-    ]
-  };
-
-  // Initialisierung von Cytoscape
-  const cy = cytoscape({
-    container: document.getElementById('cy'), // Element, in dem der Graph angezeigt wird
-    elements: graphData,
-    style: [ // Styles für die Knoten und Kanten
-      {
-        selector: 'node',
-        style: {
-          'background-color': '#0074D9',
-          'label': 'data(id)',
-          'color': '#fff'
-        }
-      },
-      {
-        selector: 'edge',
-        style: {
-          'width': 3,
-          'line-color': '#FF4136',
-          'target-arrow-color': '#FF4136',
-          'target-arrow-shape': 'triangle'
-        }
-      }
-    ],
-    layout: {
-      name: 'grid',
-      rows: 2
-    }
-  });
-</script>
-
+    <p>Weiterleitung zum <a href="index.html">ARCHE Knowledge Graph Explorer</a>...</p>
+    <script>window.location.href = "index.html";</script>
 </body>
 </html>

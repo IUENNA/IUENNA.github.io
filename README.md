@@ -25,7 +25,11 @@ Both brought significant expertise in archaeology and digital humanities to the 
 
 ## About This GitHub Page
 
-This page provides simple and reusable web applications to demonstrate practical use cases for managing and sustainably archiving archaeological data.
+This page provides simple and reusable web applications to demonstrate practical use cases for managing, exploring, and sustainably archiving archaeological data:
+
+- **[Web Mapping Application (WMA)](https://iuenna.github.io/wma/wma.html)**: Interactive spatial exploration of over 20,000 digitized and georeferenced archaeological resources across the Jauntal micro-region.
+- **[ARCHE Knowledge Graph Explorer](https://iuenna.github.io/graph/index.html)**: Interactive semantic network visualization (powered by Cytoscape.js) of the full IUENNA repository corpus on ARCHE (ACDH-CH / ÖAW), including collections, folder structures, research institutions, actors, spatial locations, epochs, and licenses.
+- **[ARCHE Repository Collection](https://id.acdh.oeaw.ac.at/iuenna)**: Direct access to the authoritative, FAIR-compliant long-term archive repository ([PID: 21.11115/0000-0016-7B39-F](https://hdl.handle.net/21.11115/0000-0016-7B39-F)).
 
 ## Learn More on Our Website
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=2.1.7">
     
@@ -33,6 +34,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="wma/wma.html" class="nav-link">Web Mapping</a></li>
+                    <li><a href="graph/index.html" class="nav-link">ARCHE Graph</a></li>
                     <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
                     <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
                 </ul>
@@ -50,6 +52,7 @@
             <p class="hero-subtitle">openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</p>
             <div class="btn-group">
                 <a href="wma/wma.html" class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i> Web Mapping Portal</a>
+                <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);"><i class="fa-solid fa-circle-nodes"></i> ARCHE Graph Explorer</a>
                 <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-database"></i> ARCHE Repository</a>
                 <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a>
                 <a href="https://iuenna.hypotheses.org/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-square-rss"></i> Project Blog</a>
@@ -228,6 +231,47 @@
             </div>
         </section>
 
+        <!-- Interactive ARCHE Knowledge Graph Section -->
+        <section class="card" id="arche-graph" style="margin-bottom: 3rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;">
+                <div>
+                    <h2>ARCHE Knowledge Graph</h2>
+                    <p style="margin-bottom: 0;">Interactive semantic network of the IUENNA repository corpus (20,788 items / 357 GB in ARCHE).</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button id="homeFitBtn" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;"><i class="fa-solid fa-expand"></i> Center View</button>
+                    <a href="graph/index.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Dedicated Explorer
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mini Entity Filter Pills -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;" id="homeFilterPills">
+                <span class="home-chip active" data-type="all" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: var(--text-dark); color: #fff; cursor: pointer; user-select: none;">All</span>
+                <span class="home-chip active" data-type="subcollection" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #B88E3E; margin-right: 4px;"></span>Subcollections</span>
+                <span class="home-chip active" data-type="folder" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; margin-right: 4px;"></span>Folders</span>
+                <span class="home-chip active" data-type="organization" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #202226; margin-right: 4px;"></span>Institutions</span>
+                <span class="home-chip active" data-type="person" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #C85A32; margin-right: 4px;"></span>Researchers</span>
+                <span class="home-chip active" data-type="place" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4A6B53; margin-right: 4px;"></span>Places</span>
+                <span class="home-chip active" data-type="license" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #437F97; margin-right: 4px;"></span>Licenses</span>
+            </div>
+
+            <!-- Graph Canvas -->
+            <div style="position: relative; width: 100%; height: 520px; background: #FAF8F5; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden;">
+                <div id="homeCy" style="width: 100%; height: 100%;"></div>
+                <div id="homeNodeTooltip" style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 16px; font-size: 0.82rem; display: none; justify-content: space-between; align-items: center; box-shadow: var(--shadow-md); z-index: 10;">
+                    <div>
+                        <strong id="homeTooltipTitle" style="color: var(--text-dark); font-size: 0.9rem;">Node Title</strong>
+                        <div id="homeTooltipSub" style="color: var(--text-muted); font-size: 0.75rem;">Description / Details</div>
+                    </div>
+                    <div>
+                        <a href="#" target="_blank" id="homeTooltipArcheLink" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;">Open in ARCHE ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Two-Column Grid: Details & Framework -->
         <div class="grid-container">
             <section class="card">
@@ -238,7 +282,10 @@
                 <p>
                     The data is organized into six semantically defined subcollections: <strong>Hemmaberg (HB)</strong>, <strong>Globasnitz (GLO)</strong>, <strong>Jaunstein (JAU)</strong>, <strong>Sankt Stefan (STE)</strong>, <strong>Jauntal (TAL)</strong>, and <strong>Retrodigitalisate (RET)</strong>. These subcollections feature a detailed and reusable file folder structure for comprehensive data management. Each resource is enriched with freely accessible, globally available, detailed, machine-readable metadata in adherence to the <a href="https://www.go-fair.org/fair-principles/" target="_blank">FAIR</a> and <a href="https://www.gida-global.org/care" target="_blank">CARE</a> principles.
                 </p>
-                <div style="text-align: center; margin-top: 1.5rem;">
+                <div style="text-align: center; margin-top: 1.5rem; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                    <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);">
+                        <i class="fa-solid fa-circle-nodes"></i> ARCHE Graph Explorer
+                    </a>
                     <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i> Explore Data on ARCHE
                     </a>
@@ -781,6 +828,1661 @@
                     options: formatChartOptions
                 });
             });
+
+        // Home ARCHE Knowledge Graph Initialization
+        (function() {
+            const EMBEDDED_GRAPH = {
+  "metadata": {
+    "title": "IUENNA ARCHE Knowledge Graph",
+    "arche_top_collection": "https://id.acdh.oeaw.ac.at/iuenna",
+    "top_collection_id": "1792170",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+    "generated_at": "2026-09-06T21:13:38Z",
+    "total_nodes": 58,
+    "total_edges": 64,
+    "total_items": 20788,
+    "total_size": "356.68 GB",
+    "duration_seconds": 0.0
+  },
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "iuenna_root",
+          "arche_id": "1792170",
+          "label": "IUENNA Top-Collection",
+          "full_title": "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology",
+          "type": "root",
+          "type_label": "Top Collection",
+          "items": 20788,
+          "bytes": 382979462143,
+          "formatted_size": "356.68 GB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792170",
+          "doi_uri": "https://id.acdh.oeaw.ac.at/iuenna",
+          "funder": "Österreichische Akademie der Wissenschaften (Go!Digital 3.0)",
+          "hosting": "ARCHE (ACDH-CH)",
+          "description": "Zentrale Top-Collection des Projekts IUENNA. Umfasst über 20.000 archäologische Objekte, Pläne, Vektordaten, 3D-Modelle und Forschungsdaten aus über 100 Jahren Forschung im Jauntal.",
+          "color": "#A8442E",
+          "icon": "fa-landmark"
+        }
+      },
+      {
+        "data": {
+          "id": "col_ret",
+          "arche_id": "1792572",
+          "code": "RET",
+          "label": "Retrodigitalisat-Collection (RET)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 9341,
+          "bytes": 290650991123,
+          "formatted_size": "270.69 GB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B59-B",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "description": "Umfassende Sammlung retrodigitalisierter Grabungsdokumentationen, Pläne, Profile, Fundzeichnungen und Fotos aus Beständen des kärnten.museums und ÖAI.",
+          "license_info": "InC: 8.515 / CC BY 4.0: 604",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "col_jau",
+          "arche_id": "1792303",
+          "code": "JAU",
+          "label": "Jaunstein-Collection (JAU)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 4989,
+          "bytes": 55881335390,
+          "formatted_size": "52.04 GB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4B-B",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792303",
+          "description": "Forschungs- und Grabungsdaten zur spätantik-frühmittelalterlichen Talsiedlung Jaunstein, inkl. Orthofotos, Rasterdaten, Grabungstagebüchern und Vektor-Plänen.",
+          "license_info": "InC: 4.964 / CC BY 4.0: 25",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "col_hb",
+          "arche_id": "1792212",
+          "code": "HB",
+          "label": "Hemmaberg-Collection (HB)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 3726,
+          "bytes": 31148982450,
+          "formatted_size": "29.01 GB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792212",
+          "description": "Frühchristliches Pilgerheiligtum auf dem Hemmaberg: Kirchenkomplexe, Gräberfelder, Mosaikdokumentationen, 3D-Modelle und historische Grabungsberichte.",
+          "license_info": "InC: 2.547 / CC BY 4.0: 1.110",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "col_glo",
+          "arche_id": "1792169",
+          "code": "GLO",
+          "label": "Globasnitz-Collection (GLO)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 2692,
+          "bytes": 5136001949,
+          "formatted_size": "4.78 GB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B30-8",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792169",
+          "description": "Römische Mansio Iuenna und östliches Gräberfeld im Tal von Globasnitz: Rasterdaten, Fundlisten, anthropologische Dokumentationen und Auswertungen.",
+          "license_info": "InC: 279 / CC BY 4.0: 2.292",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "col_tal",
+          "arche_id": "1792417",
+          "code": "TAL",
+          "label": "Jauntal-Collection (TAL)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 25,
+          "bytes": 128491410,
+          "formatted_size": "122.54 MB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B56-E",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792417",
+          "description": "Mikroregionale Übersichtskarten, Geländemodelle (DGM), Gesamtprojektdatenbanken und GIS-Zusammenstellungen des gesamten Jauntals.",
+          "license_info": "CC BY 4.0: 25",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "col_ste",
+          "arche_id": "1792411",
+          "code": "STE",
+          "label": "Sankt Stefan-Collection (STE)",
+          "type": "subcollection",
+          "type_label": "Subcollection",
+          "items": 8,
+          "bytes": 33621634,
+          "formatted_size": "32.06 MB",
+          "pid": "https://hdl.handle.net/21.11115/0000-0016-7B53-1",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792411",
+          "description": "Ausgrabungsdaten und Fundstellendokumentationen aus Sankt Stefan im Jauntal.",
+          "license_info": "InC: 3 / CC BY 4.0: 5",
+          "color": "#B88E3E",
+          "icon": "fa-folder"
+        }
+      },
+      {
+        "data": {
+          "id": "jau_vektor",
+          "arche_id": "1792302",
+          "label": "03_02_Vektor",
+          "category": "Vektordaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 6,
+          "description": "GIS Vektor-Geodaten und Fundkartierungen",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792302",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "jau_raster",
+          "arche_id": "1792308",
+          "label": "03_03_Raster",
+          "category": "Rasterdaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 4742,
+          "description": "Orthofotos, Befundfotos und georeferenzierte Pläne",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792308",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "jau_db",
+          "arche_id": "1792394",
+          "label": "03_05_Datenbanken",
+          "category": "Datenbanken",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2,
+          "description": "Katalog- und Funddatenbanken Jaunstein",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792394",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "jau_text",
+          "arche_id": "1792395",
+          "label": "03_06_Texte_Tabellen",
+          "category": "Texte & Tabellen",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 205,
+          "description": "Grabungstagebücher, Inventare und Berichte",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792395",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "jau_out",
+          "arche_id": "1792406",
+          "label": "03_07_Output",
+          "category": "Publikationen & Pläne",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 29,
+          "description": "Druckfertige Pläne und Publikationsabbildungen",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792406",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_vektor",
+          "arche_id": "1792211",
+          "label": "02_02_Vektor",
+          "category": "Vektordaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 43,
+          "description": "Gesamt-GIS Hemmaberg, Polygone der Kirchenkomplexe",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792211",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_raster",
+          "arche_id": "1792217",
+          "label": "02_03_Raster",
+          "category": "Rasterdaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 3401,
+          "description": "Befund- und Grabungsfotos, Orthofotos Hemmaberg",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792217",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_3d",
+          "arche_id": "1792271",
+          "label": "02_04_3D-Daten",
+          "category": "3D-Modelle",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2,
+          "description": "Dreidimensionale Rekonstruktionsmodelle & Punktwolken",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792271",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_db",
+          "arche_id": "1792273",
+          "label": "02_05_Datenbanken",
+          "category": "Datenbanken",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 4,
+          "description": "Funddatenbanken und anthropologische Befundtabellen",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792273",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_text",
+          "arche_id": "1792274",
+          "label": "02_06_Texte_Tabellen",
+          "category": "Texte & Tabellen",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 217,
+          "description": "Grabungsberichte, Tagebücher und Grabungskataloge",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792274",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "hb_out",
+          "arche_id": "1792292",
+          "label": "02_07_Output",
+          "category": "Publikationen & Pläne",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 53,
+          "description": "Publikationspläne der Kirchen und Mosaike",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792292",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "glo_raster",
+          "arche_id": "1792168",
+          "label": "01_03_Raster",
+          "category": "Rasterdaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2605,
+          "description": "Fotodokumentation der Gräberfelder und Befunde",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792168",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "glo_db",
+          "arche_id": "1792190",
+          "label": "01_05_Datenbanken",
+          "category": "Datenbanken",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2,
+          "description": "Anthropologische Datenbanken und Gräberkataloge",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792190",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "glo_text",
+          "arche_id": "1792193",
+          "label": "01_06_Text_Tabellen",
+          "category": "Texte & Tabellen",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 57,
+          "description": "Grabungsdokumentationen und Befundlisten",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792193",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "glo_out",
+          "arche_id": "1792206",
+          "label": "01_07_Output",
+          "category": "Publikationen & Pläne",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 24,
+          "description": "Publikationskarten und Fundstellenpläne",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792206",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "tal_raster",
+          "arche_id": "1792416",
+          "label": "05_03_Raster",
+          "category": "Rasterdaten",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 11,
+          "description": "Digitales Geländemodell (DGM) & Satellitenbilder",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792416",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "tal_db",
+          "arche_id": "1792423",
+          "label": "05_05_Datenbanken",
+          "category": "Datenbanken",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 4,
+          "description": "Zentrale IUENNA-Metadatenbank",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792423",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "tal_text",
+          "arche_id": "1792568",
+          "label": "05_06_Texte_Tabellen",
+          "category": "Texte & Tabellen",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 4,
+          "description": "Gesamtberichte und Datenmanagement-Dokumentation",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792568",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "tal_out",
+          "arche_id": "1792570",
+          "label": "05_07_Output",
+          "category": "Publikationen & Pläne",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2,
+          "description": "Web-Karten-Exporte und Datenpublikation",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792570",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ste_db",
+          "arche_id": "1792412",
+          "label": "04_05_Datenbanken",
+          "category": "Datenbanken",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 1,
+          "description": "Funddatenbank Sankt Stefan",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792412",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ste_out",
+          "arche_id": "1792414",
+          "label": "04_07_Output",
+          "category": "Publikationen & Pläne",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 5,
+          "description": "Grabungsberichte und Ergebnisdokumentation",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792414",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ret_keramik",
+          "arche_id": "1792572#keramik",
+          "label": "06 Keramik- & Fundzeichnungen",
+          "category": "Retrodigitalisate",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 1840,
+          "description": "Serien 06_01, 06_02, 06_04, 06_23, 06_31: Fundzeichnungen und Keramiktafeln",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ret_grabung",
+          "arche_id": "1792572#grabung",
+          "label": "06 Grabungsakten (1978–2017)",
+          "category": "Retrodigitalisate",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 3120,
+          "description": "Serien 06_05–06_26: Grabungstagebücher, Schichtbeschreibungen und Akten",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ret_fotos",
+          "arche_id": "1792572#fotos",
+          "label": "06 Historische Fotodokumentation",
+          "category": "Retrodigitalisate",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 2450,
+          "description": "Serien 06_14–06_30, 06_45: Historische Grabungsfotos, Dias und Abzüge",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ret_plaene",
+          "arche_id": "1792572#plaene",
+          "label": "06 Pläne, Profile & Mosaike",
+          "category": "Retrodigitalisate",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 1260,
+          "description": "Serien 06_03, 06_29, 06_32–06_43: Steingerechte Kirchenpläne, Profile, Mosaikpausen",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "ret_archive",
+          "arche_id": "1792572#archive",
+          "label": "06 Privatarchive & Publikationen",
+          "category": "Retrodigitalisate",
+          "type": "folder",
+          "type_label": "Kategorie-Ordner",
+          "items": 671,
+          "description": "Serien 06_24, 06_27, 06_40–06_46: Archiv Winkler, Monographien Glaser/Ladstätter, Archivbox ÖAI",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792572",
+          "color": "#D4A373",
+          "icon": "fa-layer-group"
+        }
+      },
+      {
+        "data": {
+          "id": "org_oeaw",
+          "arche_id": "21003",
+          "label": "Österreichische Akademie der Wissenschaften (ÖAW)",
+          "role": "Fördergeber (Go!Digital 3.0)",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/21003",
+          "description": "Förderung des Projekts IUENNA über das Exzellenzprogramm Go!Digital 3.0 der ÖAW (GD3.0_2021-24_IUENNA).",
+          "color": "#202226",
+          "icon": "fa-building-columns"
+        }
+      },
+      {
+        "data": {
+          "id": "org_oeai",
+          "arche_id": "37483",
+          "label": "Österreichisches Archäologisches Institut (ÖAI)",
+          "role": "Projektpartner, Datenurheber & Rechteinhaber",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/37483",
+          "description": "Führendes Forschungsinstitut der ÖAW. Projektleitung und wissenschaftliche Kuration der archäologischen Daten.",
+          "color": "#202226",
+          "icon": "fa-building-columns"
+        }
+      },
+      {
+        "data": {
+          "id": "org_lmk",
+          "arche_id": "1756728",
+          "label": "kärnten.museum (Landesmuseum Kärnten)",
+          "role": "Projektleitung, Datenurheber & Rechteinhaber",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1756728",
+          "description": "Verwahrungsinstitution der archäologischen Originalfunde und Bestände aus den Grabungen im Jauntal.",
+          "color": "#202226",
+          "icon": "fa-landmark"
+        }
+      },
+      {
+        "data": {
+          "id": "org_acdh",
+          "arche_id": "3313",
+          "label": "ACDH-CH / ARCHE",
+          "role": "Hosting & Repositoriumsbetreiber",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/3313",
+          "description": "Austrian Center for Digital Humanities and Cultural Heritage. Langzeitarchivierung und Bereitstellung der Daten via ARCHE.",
+          "color": "#202226",
+          "icon": "fa-server"
+        }
+      },
+      {
+        "data": {
+          "id": "org_bda",
+          "arche_id": "1756743",
+          "label": "Bundesdenkmalamt (BDA)",
+          "role": "Kooperationspartner & Rechteinhaber",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1756743",
+          "description": "Österreichische Bundesbehörde für Denkmalpflege. Partner im Projekt IUENNA.",
+          "color": "#202226",
+          "icon": "fa-shield-halved"
+        }
+      },
+      {
+        "data": {
+          "id": "org_ardig",
+          "arche_id": "ardig_partner",
+          "label": "ARDIG – Archäologischer Dienst GesmbH",
+          "role": "Projektpartner",
+          "type": "organization",
+          "type_label": "Institution",
+          "arche_url": "https://www.ardig.at/",
+          "description": "Archäologischer Fachdienst, Partner bei Grabungsaufarbeitung und Geodatenmanagement.",
+          "color": "#202226",
+          "icon": "fa-trowel"
+        }
+      },
+      {
+        "data": {
+          "id": "per_dh",
+          "arche_id": "1756725",
+          "label": "Dr. Dominik Hagmann",
+          "role": "Principal Investigator, Kurator, Editor",
+          "affiliation": "kärnten.museum / ÖAI",
+          "orcid": "https://orcid.org/0000-0002-4481-6234",
+          "type": "person",
+          "type_label": "Forscher:in",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1756725",
+          "description": "Projektkoordinator IUENNA. Archäologe mit Schwerpunkt Digitale Archäologie, GIS-Fachdaten und Kuration.",
+          "color": "#C85A32",
+          "icon": "fa-user-tie"
+        }
+      },
+      {
+        "data": {
+          "id": "per_fw",
+          "arche_id": "1756730",
+          "label": "Dipl.-Ing. Franziska Waldhart",
+          "role": "Principal Investigator, Kuratorin, Editorin",
+          "affiliation": "Österreichisches Archäologisches Institut (ÖAI)",
+          "orcid": "https://orcid.org/0000-0002-3647-7977",
+          "type": "person",
+          "type_label": "Forscher:in",
+          "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1756730",
+          "description": "Projektkoordinatorin IUENNA am ÖAI. Spezialistin für Geoinformation, Geodatenmanagement und archäologische Dokumentation.",
+          "color": "#C85A32",
+          "icon": "fa-user-tie"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_jauntal",
+          "arche_id": "1756735",
+          "label": "Jauntal / Podjuna",
+          "type": "place",
+          "type_label": "Fundregion",
+          "category": "Mikroregion",
+          "desc": "Südkärntnerisches Talbecken, zentrale Untersuchungsregion",
+          "color": "#4A6B53",
+          "icon": "fa-map-location-dot"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_hemmaberg",
+          "arche_id": "1756734",
+          "label": "Hemmaberg",
+          "type": "place",
+          "type_label": "Fundort",
+          "category": "Höhensiedlung & Heiligtum",
+          "desc": "Frühchristliche Doppelkirche, Mosaiken, Gräberfelder",
+          "color": "#4A6B53",
+          "icon": "fa-location-dot"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_jaunstein",
+          "arche_id": "1756733",
+          "label": "Jaunstein",
+          "type": "place",
+          "type_label": "Fundort",
+          "category": "Talsiedlung",
+          "desc": "Spätantik-frühmittelalterliche Siedlung und Gräber",
+          "color": "#4A6B53",
+          "icon": "fa-location-dot"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_globasnitz",
+          "arche_id": "1756736",
+          "label": "Globasnitz / Iuenna",
+          "type": "place",
+          "type_label": "Fundort",
+          "category": "Römische Siedlung",
+          "desc": "Römische Straßenstation Iuenna an der Virunum-Celeia-Route",
+          "color": "#4A6B53",
+          "icon": "fa-location-dot"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_st_stefan",
+          "arche_id": "1756737",
+          "label": "Sankt Stefan / Steben",
+          "type": "place",
+          "type_label": "Fundort",
+          "category": "Fundstelle",
+          "desc": "Archäologische Befunde und Altfunde bei Sankt Stefan",
+          "color": "#4A6B53",
+          "icon": "fa-location-dot"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_noricum",
+          "arche_id": "1756731",
+          "label": "Noricum",
+          "type": "place",
+          "type_label": "Historische Region",
+          "category": "Römische Provinz",
+          "desc": "Historischer antiker Kulturraum Noricum",
+          "color": "#4A6B53",
+          "icon": "fa-globe"
+        }
+      },
+      {
+        "data": {
+          "id": "plc_kaernten",
+          "arche_id": "138176",
+          "label": "Kärnten / Carinthia",
+          "type": "place",
+          "type_label": "Geographische Region",
+          "category": "Bundesland",
+          "desc": "Geographischer Rahmen im heutigen Österreich",
+          "color": "#4A6B53",
+          "icon": "fa-earth-europe"
+        }
+      },
+      {
+        "data": {
+          "id": "epc_roman",
+          "periodo_uri": "http://n2t.net/ark:/99152/p0s84tq9w22",
+          "label": "Römische Antike (Römisches Noricum)",
+          "timespan": "ca. 15 v. Chr. – ca. 500 n. Chr.",
+          "type": "period",
+          "type_label": "Epoche",
+          "desc": "Römische Kaiserzeit und Spätantike in der Provinz Noricum",
+          "color": "#5A6B7C",
+          "icon": "fa-hourglass-half"
+        }
+      },
+      {
+        "data": {
+          "id": "epc_early_middle_ages",
+          "periodo_uri": "http://n2t.net/ark:/99152/p0cwwznw938",
+          "label": "Frühmittelalter (Early Middle Ages)",
+          "timespan": "ca. 500 – ca. 1000 n. Chr.",
+          "type": "period",
+          "type_label": "Epoche",
+          "desc": "Slawische und karolingische Besiedlung, Christianisierung im Ostalpenraum",
+          "color": "#5A6B7C",
+          "icon": "fa-clock"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_arch_data",
+          "label": "Archäologische Daten",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-tag"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_fieldwork",
+          "label": "Grabungsdokumentation",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-book-open"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_roman_arch",
+          "label": "Römische Archäologie",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-monument"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_dh",
+          "label": "Digitale Geisteswissenschaften",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-laptop-code"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_dig_arch",
+          "label": "Digitale Archäologie",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-map"
+        }
+      },
+      {
+        "data": {
+          "id": "sbj_preservation",
+          "label": "Langzeitdatenarchivierung",
+          "type": "subject",
+          "type_label": "Fachschlagwort",
+          "color": "#7E6B8F",
+          "icon": "fa-box-archive"
+        }
+      },
+      {
+        "data": {
+          "id": "lic_inc",
+          "label": "InC (In Copyright)",
+          "count": 16316,
+          "type": "license",
+          "type_label": "Lizenz",
+          "uri": "http://rightsstatements.org/vocab/InC/1.0/",
+          "desc": "Urheberrechtlich geschützte Werke, Forschungsberichte und Pläne (16.316 Ressourcen)",
+          "color": "#437F97",
+          "icon": "fa-copyright"
+        }
+      },
+      {
+        "data": {
+          "id": "lic_ccby",
+          "label": "CC BY 4.0",
+          "count": 4039,
+          "type": "license",
+          "type_label": "Lizenz",
+          "uri": "https://creativecommons.org/licenses/by/4.0/",
+          "desc": "Freie Creative-Commons-Lizenz mit Namensnennung (4.039 Ressourcen)",
+          "color": "#437F97",
+          "icon": "fa-creative-commons"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "id": "edge_sub_col_ret_root",
+          "source": "col_ret",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_sub_col_jau_root",
+          "source": "col_jau",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_sub_col_hb_root",
+          "source": "col_hb",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_sub_col_glo_root",
+          "source": "col_glo",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_sub_col_tal_root",
+          "source": "col_tal",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_sub_col_ste_root",
+          "source": "col_ste",
+          "target": "iuenna_root",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_jau_vektor_col_jau",
+          "source": "jau_vektor",
+          "target": "col_jau",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_jau_raster_col_jau",
+          "source": "jau_raster",
+          "target": "col_jau",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_jau_db_col_jau",
+          "source": "jau_db",
+          "target": "col_jau",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_jau_text_col_jau",
+          "source": "jau_text",
+          "target": "col_jau",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_jau_out_col_jau",
+          "source": "jau_out",
+          "target": "col_jau",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_vektor_col_hb",
+          "source": "hb_vektor",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_raster_col_hb",
+          "source": "hb_raster",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_3d_col_hb",
+          "source": "hb_3d",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_db_col_hb",
+          "source": "hb_db",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_text_col_hb",
+          "source": "hb_text",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_hb_out_col_hb",
+          "source": "hb_out",
+          "target": "col_hb",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_glo_raster_col_glo",
+          "source": "glo_raster",
+          "target": "col_glo",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_glo_db_col_glo",
+          "source": "glo_db",
+          "target": "col_glo",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_glo_text_col_glo",
+          "source": "glo_text",
+          "target": "col_glo",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_glo_out_col_glo",
+          "source": "glo_out",
+          "target": "col_glo",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_tal_raster_col_tal",
+          "source": "tal_raster",
+          "target": "col_tal",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_tal_db_col_tal",
+          "source": "tal_db",
+          "target": "col_tal",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_tal_text_col_tal",
+          "source": "tal_text",
+          "target": "col_tal",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_tal_out_col_tal",
+          "source": "tal_out",
+          "target": "col_tal",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ste_db_col_ste",
+          "source": "ste_db",
+          "target": "col_ste",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ste_out_col_ste",
+          "source": "ste_out",
+          "target": "col_ste",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ret_keramik_col_ret",
+          "source": "ret_keramik",
+          "target": "col_ret",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ret_grabung_col_ret",
+          "source": "ret_grabung",
+          "target": "col_ret",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ret_fotos_col_ret",
+          "source": "ret_fotos",
+          "target": "col_ret",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ret_plaene_col_ret",
+          "source": "ret_plaene",
+          "target": "col_ret",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_folder_ret_archive_col_ret",
+          "source": "ret_archive",
+          "target": "col_ret",
+          "label": "isPartOf",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_oeaw_funder",
+          "source": "iuenna_root",
+          "target": "org_oeaw",
+          "label": "hasFunder",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasFunder"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_acdh_hosting",
+          "source": "iuenna_root",
+          "target": "org_acdh",
+          "label": "hasHosting",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasHosting"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_lmk_owner",
+          "source": "iuenna_root",
+          "target": "org_lmk",
+          "label": "hasOwner",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasOwner"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_oeai_owner",
+          "source": "iuenna_root",
+          "target": "org_oeai",
+          "label": "hasOwner",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasOwner"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_bda_owner",
+          "source": "iuenna_root",
+          "target": "org_bda",
+          "label": "hasLicensor",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasLicensor"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_ardig_partner",
+          "source": "iuenna_root",
+          "target": "org_ardig",
+          "label": "hasContributor",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasContributor"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_dh_pi",
+          "source": "iuenna_root",
+          "target": "per_dh",
+          "label": "hasPrincipalInvestigator",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasPrincipalInvestigator"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_fw_pi",
+          "source": "iuenna_root",
+          "target": "per_fw",
+          "label": "hasPrincipalInvestigator",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasPrincipalInvestigator"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_dh_aff_lmk",
+          "source": "per_dh",
+          "target": "org_lmk",
+          "label": "affiliatedWith",
+          "predicate": "schema:memberOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_fw_aff_oeai",
+          "source": "per_fw",
+          "target": "org_oeai",
+          "label": "affiliatedWith",
+          "predicate": "schema:memberOf"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_root_jauntal",
+          "source": "iuenna_root",
+          "target": "plc_jauntal",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_hb",
+          "source": "col_hb",
+          "target": "plc_hemmaberg",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_jau",
+          "source": "col_jau",
+          "target": "plc_jaunstein",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_glo",
+          "source": "col_glo",
+          "target": "plc_globasnitz",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_ste",
+          "source": "col_ste",
+          "target": "plc_st_stefan",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_spatial_ret",
+          "source": "col_ret",
+          "target": "plc_jauntal",
+          "label": "hasSpatialCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_hb_in_jauntal",
+          "source": "plc_hemmaberg",
+          "target": "plc_jauntal",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_jau_in_jauntal",
+          "source": "plc_jaunstein",
+          "target": "plc_jauntal",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_glo_in_jauntal",
+          "source": "plc_globasnitz",
+          "target": "plc_jauntal",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_ste_in_jauntal",
+          "source": "plc_st_stefan",
+          "target": "plc_jauntal",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_jauntal_in_ktn",
+          "source": "plc_jauntal",
+          "target": "plc_kaernten",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_jauntal_in_noricum",
+          "source": "plc_jauntal",
+          "target": "plc_noricum",
+          "label": "locatedIn",
+          "predicate": "schema:containedInPlace"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_temporal_root_epc_roman",
+          "source": "iuenna_root",
+          "target": "epc_roman",
+          "label": "hasTemporalCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasTemporalCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_temporal_root_epc_early_middle_ages",
+          "source": "iuenna_root",
+          "target": "epc_early_middle_ages",
+          "label": "hasTemporalCoverage",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasTemporalCoverage"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_arch_data",
+          "source": "iuenna_root",
+          "target": "sbj_arch_data",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_fieldwork",
+          "source": "iuenna_root",
+          "target": "sbj_fieldwork",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_roman_arch",
+          "source": "iuenna_root",
+          "target": "sbj_roman_arch",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_dh",
+          "source": "iuenna_root",
+          "target": "sbj_dh",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_dig_arch",
+          "source": "iuenna_root",
+          "target": "sbj_dig_arch",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_subject_root_sbj_preservation",
+          "source": "iuenna_root",
+          "target": "sbj_preservation",
+          "label": "hasSubject",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSubject"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_license_root_lic_inc",
+          "source": "iuenna_root",
+          "target": "lic_inc",
+          "label": "hasLicenseSummary",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasLicenseSummary"
+        }
+      },
+      {
+        "data": {
+          "id": "edge_license_root_lic_ccby",
+          "source": "iuenna_root",
+          "target": "lic_ccby",
+          "label": "hasLicenseSummary",
+          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasLicenseSummary"
+        }
+      }
+    ]
+  }
+};
+            const typeColors = {
+                root: '#A8442E',
+                subcollection: '#B88E3E',
+                folder: '#D4A373',
+                organization: '#202226',
+                person: '#C85A32',
+                place: '#4A6B53',
+                period: '#5A6B7C',
+                subject: '#7E6B8F',
+                license: '#437F97'
+            };
+
+            function initHomeGraph(elements) {
+                const homeCy = cytoscape({
+                    container: document.getElementById('homeCy'),
+                    elements: elements,
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'label': 'data(label)',
+                                'color': '#202226',
+                                'font-family': 'Plus Jakarta Sans, sans-serif',
+                                'font-size': '11px',
+                                'font-weight': 600,
+                                'text-valign': 'bottom',
+                                'text-margin-y': 6,
+                                'text-outline-color': '#FAF8F5',
+                                'text-outline-width': '2px',
+                                'background-color': function(ele) {
+                                    return ele.data('color') || typeColors[ele.data('type')] || '#888';
+                                },
+                                'width': function(ele) {
+                                    const t = ele.data('type');
+                                    if (t === 'root') return 56;
+                                    if (t === 'subcollection') return 42;
+                                    if (t === 'organization' || t === 'person' || t === 'place') return 28;
+                                    return 20;
+                                },
+                                'height': function(ele) {
+                                    const t = ele.data('type');
+                                    if (t === 'root') return 56;
+                                    if (t === 'subcollection') return 42;
+                                    if (t === 'organization' || t === 'person' || t === 'place') return 28;
+                                    return 20;
+                                },
+                                'border-width': 2,
+                                'border-color': '#FFFFFF'
+                            }
+                        },
+                        {
+                            selector: 'node[type = "root"]',
+                            style: {
+                                'font-size': '12px',
+                                'font-weight': 700,
+                                'border-width': 3
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 1.5,
+                                'line-color': '#D0C9BF',
+                                'target-arrow-color': '#D0C9BF',
+                                'target-arrow-shape': 'triangle',
+                                'curve-style': 'bezier',
+                                'arrow-scale': 0.8,
+                                'opacity': 0.65
+                            }
+                        },
+                        {
+                            selector: '.dimmed',
+                            style: { 'opacity': 0.15 }
+                        },
+                        {
+                            selector: 'node.highlighted',
+                            style: {
+                                'border-width': 3.5,
+                                'border-color': '#202226',
+                                'opacity': 1
+                            }
+                        },
+                        {
+                            selector: 'edge.highlighted',
+                            style: {
+                                'width': 2.5,
+                                'line-color': '#A8442E',
+                                'target-arrow-color': '#A8442E',
+                                'opacity': 1
+                            }
+                        }
+                    ],
+                    layout: {
+                        name: 'cose',
+                        animate: false,
+                        fit: true,
+                        padding: 30,
+                        nodeRepulsion: function(node) { return 600000; },
+                        idealEdgeLength: function(edge) { return 90; }
+                    }
+                });
+
+                // Fit Button
+                const fitBtn = document.getElementById('homeFitBtn');
+                if (fitBtn) {
+                    fitBtn.addEventListener('click', () => {
+                        homeCy.fit(null, 30);
+                    });
+                }
+
+                // Tooltip on Node Click
+                const tooltip = document.getElementById('homeNodeTooltip');
+                const titleEl = document.getElementById('homeTooltipTitle');
+                const subEl = document.getElementById('homeTooltipSub');
+                const linkEl = document.getElementById('homeTooltipArcheLink');
+
+                homeCy.on('tap', 'node', function(evt) {
+                    const n = evt.target;
+                    const d = n.data();
+                    
+                    homeCy.elements().removeClass('highlighted dimmed');
+                    const nb = n.neighborhood().add(n);
+                    homeCy.elements().difference(nb).addClass('dimmed');
+                    nb.nodes().addClass('highlighted');
+                    n.connectedEdges().addClass('highlighted');
+
+                    titleEl.textContent = d.full_title || d.label;
+                    let metaStr = (d.type_label || d.type) + ' • ';
+                    if (d.items) metaStr += d.items.toLocaleString() + ' Items (' + (d.formatted_size || '') + ')';
+                    else if (d.description || d.desc) metaStr += d.description || d.desc;
+                    subEl.textContent = metaStr;
+
+                    if (d.arche_url) {
+                        linkEl.href = d.arche_url;
+                        linkEl.style.display = 'inline-block';
+                    } else if (d.pid) {
+                        linkEl.href = d.pid;
+                        linkEl.style.display = 'inline-block';
+                    } else {
+                        linkEl.style.display = 'none';
+                    }
+
+                    tooltip.style.display = 'flex';
+                });
+
+                homeCy.on('tap', function(evt) {
+                    if (evt.target === homeCy) {
+                        homeCy.elements().removeClass('highlighted dimmed');
+                        tooltip.style.display = 'none';
+                    }
+                });
+
+                // Filter chips
+                document.querySelectorAll('.home-chip').forEach(chip => {
+                    chip.addEventListener('click', function() {
+                        const type = this.getAttribute('data-type');
+                        if (type === 'all') {
+                            const makeActive = !this.classList.contains('active');
+                            document.querySelectorAll('.home-chip').forEach(c => {
+                                if (makeActive) {
+                                    c.classList.add('active');
+                                    c.style.background = c.getAttribute('data-type') === 'all' ? 'var(--text-dark)' : '#fff';
+                                    c.style.color = c.getAttribute('data-type') === 'all' ? '#fff' : 'var(--text-dark)';
+                                } else {
+                                    c.classList.remove('active');
+                                    c.style.background = '#EDE8E0';
+                                    c.style.color = '#888';
+                                }
+                            });
+                            if (makeActive) {
+                                homeCy.nodes().show();
+                                homeCy.edges().show();
+                            } else {
+                                homeCy.nodes().hide();
+                                homeCy.edges().hide();
+                            }
+                            return;
+                        }
+
+                        this.classList.toggle('active');
+                        const isNowActive = this.classList.contains('active');
+                        this.style.background = isNowActive ? '#fff' : '#EDE8E0';
+                        this.style.color = isNowActive ? 'var(--text-dark)' : '#888';
+
+                        const matching = homeCy.nodes(`[type = "${type}"]`);
+                        if (isNowActive) matching.show();
+                        else matching.hide();
+
+                        homeCy.edges().forEach(e => {
+                            if (e.source().visible() && e.target().visible()) e.show();
+                            else e.hide();
+                        });
+                    });
+                });
+            }
+
+            fetch('data/arche_graph.json')
+                .then(r => {
+                    if (!r.ok) throw new Error('fetch failed');
+                    return r.json();
+                })
+                .catch(e => {
+                    console.warn('Home graph fetch failed, using embedded fallback:', e);
+                    return EMBEDDED_GRAPH;
+                })
+                .then(data => {
+                    initHomeGraph(data.elements);
+                })
+                .catch(e => {
+                    initHomeGraph(EMBEDDED_GRAPH.elements);
+                });
+        })();
     </script>
 </body>
 </html>
