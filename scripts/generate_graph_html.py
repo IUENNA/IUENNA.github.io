@@ -37,10 +37,10 @@ def generate():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IUENNA – ARCHE Knowledge Graph &amp; Corpus Explorer</title>
+    <title>IUENNA – Knowledge Graph &amp; Corpus Explorer</title>
     
     <!-- Dublin Core Metatags -->
-    <meta name="DC.title" content="IUENNA – ARCHE Knowledge Graph &amp; Corpus Explorer">
+    <meta name="DC.title" content="IUENNA – Knowledge Graph &amp; Corpus Explorer">
     <meta name="DC.creator" content="Dominik Hagmann">
     <meta name="DC.creator" content="Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
@@ -608,6 +608,115 @@ def generate():
             flex-shrink: 0;
         }}
 
+        .entity-profile-box, .provenance-box, .temporal-box {{
+            background: #FDFBF7;
+            border: 1px solid #EBE4D8;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+        }}
+        .entity-profile-details {{
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+        }}
+        .entity-prop-row {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            gap: 8px;
+        }}
+        .entity-prop-lbl {{
+            color: var(--text-muted);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }}
+        .entity-prop-val {{
+            color: var(--text-dark);
+            font-weight: 600;
+            text-align: right;
+        }}
+        .external-id-link {{
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.70rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.15s;
+        }}
+        .orcid-link {{
+            background: #EEF7EE;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+        }}
+        .orcid-link:hover {{
+            background: #E0F2E0;
+            color: #1B5E20;
+        }}
+        .wikidata-link {{
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #D1D5DB;
+        }}
+        .wikidata-link:hover {{
+            background: #E5E7EB;
+        }}
+        .provenance-chips-group {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }}
+        .provenance-chip {{
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: 14px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid #DFD7CC;
+            background: #FFFFFF;
+            color: var(--text-dark);
+        }}
+        .provenance-chip:hover {{
+            background: #F5EFE6;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }}
+        .provenance-chip.person-chip i {{
+            color: var(--color-person);
+        }}
+        .provenance-chip.org-chip i {{
+            color: var(--color-organization);
+        }}
+        .temporal-pill-row {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }}
+        .temporal-badge {{
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #EBF3ED;
+            border: 1px solid #B5D5BD;
+            color: #2E6038;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }}
+
         .drawer-footer {{
             padding: 12px 18px;
             border-top: 1px solid var(--panel-border);
@@ -854,7 +963,7 @@ def generate():
                 <ul class="nav-links">
                     <li><a href="../index.html" class="nav-link">Home</a></li>
                     <li><a href="../wma/wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="index.html" class="nav-link active" style="color: var(--primary); font-weight: 600;">ARCHE Graph</a></li>
+                    <li><a href="index.html" class="nav-link active" style="color: var(--primary); font-weight: 600;">Knowledge Graph</a></li>
                     <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
                     <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
                 </ul>
@@ -865,15 +974,17 @@ def generate():
     <!-- App Bar & Collection Stats -->
     <div class="graph-header-bar">
         <div class="graph-title-group">
-            <h1><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> ARCHE Knowledge Graph &amp; Corpus Explorer</h1>
+            <h1><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> IUENNA Knowledge Graph &amp; Corpus Explorer</h1>
             <p>Vollständiges semantisches Netzwerk &amp; Archiv-Korpus des IUENNA-Repositoriums auf ARCHE (ACDH-CH / ÖAW)</p>
         </div>
         <div class="stats-pills">
             <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">20.788</strong> ARCHE-Einträge</span>
             <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.541</strong> Primärressourcen</span>
             <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">190</strong> Sammlungen &amp; Ordner</span>
+            <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">20</strong> Forscher:innen</span>
+            <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">10</strong> Institutionen</span>
             <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
-            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">215</strong> im Graphen</span>
+            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">237</strong> im Graphen</span>
             <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
                 <i class="fa-solid fa-circle-check"></i> Korpus bereit
             </span>
@@ -900,6 +1011,12 @@ def generate():
                 <option value="1">Ebene 1 (6 Subcollections)</option>
                 <option value="2">Ebene 2 (Hauptordner &amp; Archivalien)</option>
                 <option value="3">Ebene 3 (Fachordner)</option>
+            </select>
+
+            <!-- Researcher / Entity Filter Selector -->
+            <label for="researcherSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark); margin-left: 6px;"><i class="fa-solid fa-user-tie" style="color: var(--primary);"></i> Forscher:in:</label>
+            <select id="researcherSelect" class="tool-select" title="Bestände nach Forscher:innen &amp; Institutionen filtern und hervorheben">
+                <option value="all">Alle Forscher:innen &amp; Partner</option>
             </select>
 
             <!-- Ordnerbaum Button -->
@@ -987,6 +1104,59 @@ def generate():
             </div>
 
             <div class="drawer-body">
+                <!-- Person / Organisation Profile Box -->
+                <div id="drawerEntityProfileBox" class="entity-profile-box" style="display: none;">
+                    <div class="drawer-section-title">
+                        <span><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> <span id="drawerEntityProfileHeading">Forscher:innen-Profil</span></span>
+                    </div>
+                    <div class="entity-profile-details">
+                        <div id="drawerEntityAffiliationRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-building-columns"></i> Institution:</span>
+                            <span id="drawerEntityAffiliationVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerEntityOrcidRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-brands fa-orcid" style="color: #A6CE39;"></i> ORCID:</span>
+                            <span class="entity-prop-val"><a id="drawerEntityOrcidLink" href="#" target="_blank" class="external-id-link orcid-link"><i class="fa-brands fa-orcid"></i> <span id="drawerEntityOrcidVal"></span> ↗</a></span>
+                        </div>
+                        <div id="drawerEntityWikidataRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-barcode"></i> Wikidata:</span>
+                            <span class="entity-prop-val"><a id="drawerEntityWikidataLink" href="#" target="_blank" class="external-id-link wikidata-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerEntityWikidataVal"></span> ↗</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Provenance / Researchers & Contributors Box (for collections/folders) -->
+                <div id="drawerProvenanceBox" class="provenance-box" style="display: none;">
+                    <div class="drawer-section-title">
+                        <span><i class="fa-solid fa-user-group" style="color: var(--primary);"></i> Beteiligte Forscher:innen &amp; Institutionen</span>
+                    </div>
+                    <div id="drawerCreatorsGroup" style="margin-bottom: 8px;">
+                        <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Urheber:innen (Creators)</div>
+                        <div id="drawerCreatorsChips" class="provenance-chips-group"></div>
+                    </div>
+                    <div id="drawerContributorsGroup" style="display: none;">
+                        <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Mitwirkende (Contributors)</div>
+                        <div id="drawerContributorsChips" class="provenance-chips-group"></div>
+                    </div>
+                </div>
+
+                <!-- Temporal / Excavation Campaign Box -->
+                <div id="drawerTemporalBox" class="temporal-box" style="display: none;">
+                    <div class="drawer-section-title">
+                        <span><i class="fa-solid fa-clock-rotate-left" style="color: var(--secondary);"></i> Zeitliche Einordnung &amp; Kampagnen</span>
+                    </div>
+                    <div class="temporal-details">
+                        <div id="drawerTemporalCampaign" class="temporal-pill-row"></div>
+                        <div id="drawerTemporalEpoch" style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;"></div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <div class="drawer-section-title">Beschreibung / Kontext</div>
+                    <p class="drawer-desc" id="drawerDesc"></p>
+                </div>
+
                 <!-- Live ARCHE Preview Card -->
                 <div id="drawerPreviewBox" class="drawer-preview-box">
                     <div class="drawer-preview-header">
@@ -1008,10 +1178,14 @@ def generate():
                     </div>
                 </div>
 
-                <!-- Description -->
-                <div>
-                    <div class="drawer-section-title">Beschreibung / Kontext</div>
-                    <p class="drawer-desc" id="drawerDesc"></p>
+                <!-- Associated Collections (for Person / Organisation) -->
+                <div id="drawerEntityCollectionsBox" style="display: none;">
+                    <div class="drawer-section-title">
+                        <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> <span id="drawerEntityCollectionsHeading">Zugeordnete Sammlungen</span></span>
+                        <span id="drawerEntityCollectionsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
+                    </div>
+                    <ul id="drawerEntityCollectionsList" class="relations-list" style="max-height: 180px; overflow-y: auto;"></ul>
+                    <button id="btnFocusEntityCollections" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-crosshairs"></i> Alle zugehörigen Bestände fokussieren</button>
                 </div>
 
                 <!-- Metrics Grid -->
@@ -1400,6 +1574,54 @@ def generate():
                         }}
                     }},
                     {{
+                        selector: "edge[label = 'hasCreator']",
+                        style: {{
+                            "width": 1.3,
+                            "line-color": "#C85A32",
+                            "target-arrow-color": "#C85A32",
+                            "line-style": "dashed",
+                            "opacity": 0.65
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasContributor']",
+                        style: {{
+                            "width": 1.1,
+                            "line-color": "#888888",
+                            "target-arrow-color": "#888888",
+                            "line-style": "dotted",
+                            "opacity": 0.55
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'isMemberOf']",
+                        style: {{
+                            "width": 1.2,
+                            "line-color": "#5A6B7C",
+                            "target-arrow-color": "#5A6B7C",
+                            "line-style": "dashed",
+                            "opacity": 0.55
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasPrincipalInvestigator']",
+                        style: {{
+                            "width": 2.0,
+                            "line-color": "#C85A32",
+                            "target-arrow-color": "#C85A32",
+                            "opacity": 0.85
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasHostInstitution'], edge[label = 'hasFunder']",
+                        style: {{
+                            "width": 1.8,
+                            "line-color": "#202226",
+                            "target-arrow-color": "#202226",
+                            "opacity": 0.75
+                        }}
+                    }},
+                    {{
                         selector: ".dimmed",
                         style: {{
                             "opacity": 0.1
@@ -1458,6 +1680,29 @@ def generate():
 
             updateVisibleNodesCount();
             setupSearch();
+            populateResearcherSelect();
+        }}
+
+        function getNodeByIdFlexible(id) {{
+            if (!cy || !id) return null;
+            const strId = String(id).trim();
+            const cleanId = strId.replace(/^(col_|per_|org_)/, '');
+            const candidates = [
+                strId,
+                `col_${{cleanId}}`,
+                `per_${{cleanId}}`,
+                `org_${{cleanId}}`,
+                cleanId,
+                (cleanId === "1792170" ? "iuenna_root" : null)
+            ].filter(Boolean);
+
+            for (const c of candidates) {{
+                const found = cy.getElementById(c);
+                if (found && found.length > 0) {{
+                    return found;
+                }}
+            }}
+            return null;
         }}
 
         function updateVisibleNodesCount() {{
@@ -1477,6 +1722,69 @@ def generate():
         function resetHighlights() {{
             if (!cy) return;
             cy.elements().removeClass("highlighted dimmed");
+        }}
+
+        // Populate Researcher / Partner Dropdown
+        function populateResearcherSelect() {{
+            const sel = document.getElementById("researcherSelect");
+            if (!sel) return;
+            sel.innerHTML = '<option value="all">Alle Forscher:innen &amp; Partner</option>';
+
+            const peopleAndOrgs = cy.nodes("[type = 'person'], [type = 'organization']");
+            const entityData = [];
+
+            peopleAndOrgs.forEach(n => {{
+                const d = n.data();
+                const cols = cy.edges(`[target = "${{n.id()}}"][label ^= 'has']`).sources().filter(s => {{
+                    const t = s.data("type");
+                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root");
+                }});
+                entityData.push({{
+                    id: n.id(),
+                    label: d.label,
+                    type: d.type,
+                    count: cols.length,
+                    node: n
+                }});
+            }});
+
+            entityData.sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
+            const grpPersons = document.createElement("optgroup");
+            grpPersons.label = "Forscher:innen (Personen)";
+            const grpOrgs = document.createElement("optgroup");
+            grpOrgs.label = "Institutionen & Partner";
+
+            entityData.forEach(item => {{
+                const opt = document.createElement("option");
+                opt.value = item.id;
+                opt.textContent = `${{item.label}} (${{item.count}} Sammlungen)`;
+                if (item.type === "person") grpPersons.appendChild(opt);
+                else grpOrgs.appendChild(opt);
+            }});
+
+            sel.appendChild(grpPersons);
+            sel.appendChild(grpOrgs);
+
+            sel.addEventListener("change", function() {{
+                const val = this.value;
+                if (val === "all") {{
+                    resetHighlights();
+                    closeInspector();
+                    cy.fit(null, 40);
+                }} else {{
+                    const targetNode = cy.$id(val);
+                    if (targetNode && targetNode.length > 0) {{
+                        targetNode.show();
+                        const connectedCols = cy.edges(`[target = "${{val}}"][label ^= 'has']`).sources();
+                        connectedCols.show();
+                        cy.fit(connectedCols.union(targetNode), 60);
+                        highlightNeighbors(targetNode);
+                        openInspector(targetNode);
+                        showNotification(`${{targetNode.data("label")}} ausgewählt: ${{connectedCols.length}} verknüpfte Sammlungen hervorgehoben.`, "success", 3000);
+                    }}
+                }}
+            }});
         }}
 
         // Depth Filter (LOD)
@@ -1622,6 +1930,189 @@ def generate():
                 }};
             }} else {{
                 previewBox.style.display = "none";
+            }}
+
+            // Entity Profile Box (Person or Organisation)
+            const profileBox = document.getElementById("drawerEntityProfileBox");
+            const heading = document.getElementById("drawerEntityProfileHeading");
+            const affilRow = document.getElementById("drawerEntityAffiliationRow");
+            const affilVal = document.getElementById("drawerEntityAffiliationVal");
+            const orcidRow = document.getElementById("drawerEntityOrcidRow");
+            const orcidVal = document.getElementById("drawerEntityOrcidVal");
+            const orcidLink = document.getElementById("drawerEntityOrcidLink");
+            const wikiRow = document.getElementById("drawerEntityWikidataRow");
+            const wikiVal = document.getElementById("drawerEntityWikidataVal");
+            const wikiLink = document.getElementById("drawerEntityWikidataLink");
+
+            if (d.type === "person" || d.type === "organization") {{
+                profileBox.style.display = "block";
+                heading.textContent = d.type === "person" ? "Forscher:innen-Profil" : "Institutions-Profil";
+
+                if (d.affiliation || d.affiliation_name) {{
+                    affilRow.style.display = "flex";
+                    affilVal.textContent = d.affiliation || d.affiliation_name;
+                    if (d.affiliation_id) {{
+                        affilVal.style.cursor = "pointer";
+                        affilVal.style.color = "var(--primary)";
+                        affilVal.title = "Klicken, um Institution im Graphen zu fokussieren";
+                        affilVal.onclick = () => {{
+                            const orgNode = cy.$id(`org_${{d.affiliation_id}}`);
+                            if (orgNode && orgNode.length > 0) {{
+                                orgNode.show();
+                                cy.center(orgNode);
+                                cy.zoom({{ level: 2.0, position: orgNode.position() }});
+                                openInspector(orgNode);
+                                highlightNeighbors(orgNode);
+                            }}
+                        }};
+                    }}
+                }} else {{
+                    affilRow.style.display = "none";
+                }}
+
+                if (d.orcid) {{
+                    orcidRow.style.display = "flex";
+                    orcidVal.textContent = d.orcid;
+                    orcidLink.href = `https://orcid.org/${{d.orcid}}`;
+                }} else {{
+                    orcidRow.style.display = "none";
+                }}
+
+                if (d.wikidata) {{
+                    wikiRow.style.display = "flex";
+                    wikiVal.textContent = d.wikidata;
+                    wikiLink.href = `https://www.wikidata.org/wiki/${{d.wikidata}}`;
+                }} else {{
+                    wikiRow.style.display = "none";
+                }}
+            }} else {{
+                profileBox.style.display = "none";
+            }}
+
+            // Temporal / Excavation Campaign Box
+            const tempBox = document.getElementById("drawerTemporalBox");
+            const tempCamp = document.getElementById("drawerTemporalCampaign");
+            const tempEpoch = document.getElementById("drawerTemporalEpoch");
+            if (d.temporal || d.epoch) {{
+                tempBox.style.display = "block";
+                tempCamp.innerHTML = d.temporal ? `<span class="temporal-badge"><i class="fa-solid fa-calendar-check"></i> ${{d.temporal}}</span>` : "";
+                tempEpoch.innerHTML = d.epoch ? `<i class="fa-solid fa-hourglass-half" style="color: #7E6B8F;"></i> Epoche: <strong>${{d.epoch}}</strong>` : "";
+            }} else {{
+                tempBox.style.display = "none";
+            }}
+
+            // Provenance Box (Creators & Contributors for collections/folders)
+            const provBox = document.getElementById("drawerProvenanceBox");
+            const creatorsGroup = document.getElementById("drawerCreatorsGroup");
+            const creatorsChips = document.getElementById("drawerCreatorsChips");
+            const contribsGroup = document.getElementById("drawerContributorsGroup");
+            const contribsChips = document.getElementById("drawerContributorsChips");
+
+            const hasCreators = d.creators && d.creators.length > 0;
+            const hasContribs = d.contributors && d.contributors.length > 0;
+
+            if (hasCreators || hasContribs) {{
+                provBox.style.display = "block";
+                creatorsChips.innerHTML = "";
+                if (hasCreators) {{
+                    creatorsGroup.style.display = "block";
+                    d.creators.forEach(c => {{
+                        const chip = document.createElement("span");
+                        chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
+                        chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
+                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.addEventListener("click", () => {{
+                            const target = getNodeByIdFlexible(c.id);
+                            if (target && target.length > 0) {{
+                                target.show();
+                                cy.center(target);
+                                cy.zoom({{ level: 1.8, position: target.position() }});
+                                openInspector(target);
+                                highlightNeighbors(target);
+                            }}
+                        }});
+                        creatorsChips.appendChild(chip);
+                    }});
+                }} else {{
+                    creatorsGroup.style.display = "none";
+                }}
+
+                contribsChips.innerHTML = "";
+                if (hasContribs) {{
+                    contribsGroup.style.display = "block";
+                    d.contributors.forEach(c => {{
+                        const chip = document.createElement("span");
+                        chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
+                        chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
+                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.addEventListener("click", () => {{
+                            const target = getNodeByIdFlexible(c.id);
+                            if (target && target.length > 0) {{
+                                target.show();
+                                cy.center(target);
+                                cy.zoom({{ level: 1.8, position: target.position() }});
+                                openInspector(target);
+                                highlightNeighbors(target);
+                            }}
+                        }});
+                        contribsChips.appendChild(chip);
+                    }});
+                }} else {{
+                    contribsGroup.style.display = "none";
+                }}
+            }} else {{
+                provBox.style.display = "none";
+            }}
+
+            // Associated Collections Box (when Person or Organisation is selected)
+            const entColBox = document.getElementById("drawerEntityCollectionsBox");
+            const entColList = document.getElementById("drawerEntityCollectionsList");
+            const entColCount = document.getElementById("drawerEntityCollectionsCount");
+            const entColHeading = document.getElementById("drawerEntityCollectionsHeading");
+            const btnFocusEntCols = document.getElementById("btnFocusEntityCollections");
+
+            if (d.type === "person" || d.type === "organization") {{
+                entColList.innerHTML = "";
+                const incomingEdges = cy.edges(`[target = "${{node.id()}}"][label ^= 'has']`);
+                const colNodes = incomingEdges.sources().filter(s => {{
+                    const t = s.data("type");
+                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root");
+                }});
+
+                if (colNodes.length > 0) {{
+                    entColBox.style.display = "block";
+                    entColCount.textContent = colNodes.length;
+                    entColHeading.textContent = d.type === "person" ? "Beteiligte Sammlungen & Ordner" : "Zugeordnete Sammlungen & Bestände";
+                    colNodes.slice(0, 35).forEach(col => {{
+                        const li = document.createElement("li");
+                        li.className = "relation-item";
+                        li.innerHTML = `
+                            <span class="relation-target"><i class="fa-solid fa-folder" style="color: ${{col.data("color") || "#888"}};"></i> ${{col.data("label")}}</span>
+                            <span class="relation-label">${{col.data("items") ? col.data("items").toLocaleString() + " Items" : "Ordner"}}</span>
+                        `;
+                        li.addEventListener("click", () => {{
+                            col.show();
+                            cy.center(col);
+                            cy.zoom({{ level: 2.0, position: col.position() }});
+                            openInspector(col);
+                            highlightNeighbors(col);
+                        }});
+                        entColList.appendChild(li);
+                    }});
+
+                    if (btnFocusEntCols) {{
+                        btnFocusEntCols.onclick = () => {{
+                            colNodes.show();
+                            cy.fit(colNodes.union(node), 60);
+                            highlightNeighbors(node);
+                            showNotification(`${{colNodes.length}} Sammlungen von ${{d.label}} im Graphen fokussiert.`, "info", 2500);
+                        }};
+                    }}
+                }} else {{
+                    entColBox.style.display = "none";
+                }}
+            }} else {{
+                entColBox.style.display = "none";
             }}
 
             // Stats
@@ -2191,15 +2682,14 @@ def generate():
         }}
 
         function focusCollectionNodeInGraph(archeId) {{
-            if (!cy) return;
-            const targetId = `col_${{archeId}}`;
-            let node = cy.$id(targetId) || cy.$id(archeId) || (archeId === "1792170" ? cy.$id("iuenna_root") : null);
+            if (!cy || !archeId) return;
+            let node = getNodeByIdFlexible(archeId);
 
             if (!node || node.length === 0) {{
                 // If deep level is filtered out, switch depth to all
                 document.getElementById("depthSelect").value = "all";
                 applyDepthFilter("all");
-                node = cy.$id(targetId) || cy.$id(archeId);
+                node = getNodeByIdFlexible(archeId);
             }}
 
             if (node && node.length > 0) {{
@@ -2209,7 +2699,7 @@ def generate():
                 openInspector(node);
                 highlightNeighbors(node);
             }} else {{
-                showNotification(`Ordner [${{archeId}}] im Graphen nicht gefunden.`, "warning");
+                showNotification(`Eintrag [${{archeId}}] im Graphen nicht gefunden.`, "warning");
             }}
         }}
 
@@ -2405,7 +2895,9 @@ def generate():
                         const label = (n.data("label") || "").toLowerCase();
                         const full = (n.data("full_title") || "").toLowerCase();
                         const archeId = (n.data("arche_id") || "").toLowerCase();
-                        return label.includes(query) || full.includes(query) || archeId.includes(query);
+                        const orcid = (n.data("orcid") || "").toLowerCase();
+                        const affil = (n.data("affiliation") || "").toLowerCase();
+                        return label.includes(query) || full.includes(query) || archeId.includes(query) || orcid.includes(query) || affil.includes(query);
                     }});
 
                     let corpusMatches = [];
@@ -2630,16 +3122,17 @@ def generate():
             if (urlParams.get("open") === "tree") {{
                 openTreeModal();
             }}
-            if (urlParams.get("col")) {{
-                focusCollectionNodeInGraph(urlParams.get("col"));
-                if (urlParams.get("expand") === "1" || urlParams.get("autoexpand") === "1") {{
-                    setTimeout(() => {{
-                        const targetCol = urlParams.get("col");
-                        const targetId = `col_${{targetCol}}`;
-                        const n = cy.$id(targetId).length > 0 ? cy.$id(targetId) : cy.$id(targetCol);
-                        if (n && n.length > 0) expandResourcesForNode(n.id());
-                    }}, 450);
-                }}
+            const colParam = urlParams.get("col");
+            if (colParam) {{
+                setTimeout(() => {{
+                    focusCollectionNodeInGraph(colParam);
+                    if (urlParams.get("expand") === "1" || urlParams.get("autoexpand") === "1") {{
+                        setTimeout(() => {{
+                            const n = getNodeByIdFlexible(colParam);
+                            if (n && n.length > 0) expandResourcesForNode(n.id());
+                        }}, 400);
+                    }}
+                }}, 150);
             }}
         }})();
     </script>

@@ -22,6 +22,7 @@ import os
 import sys
 import json
 import time
+import re
 import urllib.parse
 from collections import Counter
 
@@ -492,6 +493,32 @@ def build_graph():
     nodes = []
     edges = []
 
+    # Load creator/contributor relationships and resolved entities
+    creators_file = os.path.join(data_dir, "arche_collection_creators.json")
+    entities_file = os.path.join(data_dir, "arche_resolved_entities.json")
+    col_creators = {}
+    resolved_entities = {}
+    if os.path.exists(creators_file):
+        with open(creators_file, "r", encoding="utf-8") as f:
+            col_creators = json.load(f)
+    if os.path.exists(entities_file):
+        with open(entities_file, "r", encoding="utf-8") as f:
+            resolved_entities = json.load(f)
+
+    # Pre-extract campaign years per collection from corpus items
+    col_years_map = {}
+    for item in corpus_items:
+        cid = item.get("col_id", "")
+        if cid.startswith("col_"):
+            cid = cid[4:]
+        p = " ".join(item.get("path", [])) + " " + item.get("title", "")
+        years = [int(y) for y in re.findall(r'\b(19\d\d|20[0-2]\d)\b', p) if 1950 <= int(y) <= 2026]
+        if years:
+            if cid not in col_years_map:
+                col_years_map[cid] = set()
+            for y in years:
+                col_years_map[cid].add(y)
+
     # Map sample resources to collections for instant live previews
     col_sample_res = {}
     for item in corpus_items:
@@ -547,6 +574,56 @@ def build_graph():
         else:
             ntype = f"folder_l{lvl}"
 
+        # Resolve creators and contributors for this collection
+        c_rel = col_creators.get(raw_arche_id, {})
+        c_creators = []
+        for eid in c_rel.get("creators", []):
+            eid = str(eid)
+            if eid in resolved_entities:
+                ent = resolved_entities[eid]
+                c_creators.append({
+                    "id": f"per_{eid}" if ent.get("type") == "Person" else f"org_{eid}",
+                    "arche_id": eid,
+                    "name": ent["title"],
+                    "type": ent["type"],
+                    "orcid": ent.get("orcid", ""),
+                    "wikidata": ent.get("wikidata", ""),
+                    "affiliation": ent.get("affiliation_name", "")
+                })
+
+        c_contributors = []
+        for eid in c_rel.get("contributors", []):
+            eid = str(eid)
+            if eid in resolved_entities:
+                ent = resolved_entities[eid]
+                c_contributors.append({
+                    "id": f"per_{eid}" if ent.get("type") == "Person" else f"org_{eid}",
+                    "arche_id": eid,
+                    "name": ent["title"],
+                    "type": ent["type"],
+                    "orcid": ent.get("orcid", ""),
+                    "wikidata": ent.get("wikidata", ""),
+                    "affiliation": ent.get("affiliation_name", "")
+                })
+
+        # Determine campaign years / temporal coverage
+        temporal_span = None
+        all_text = " ".join(c.get("path", [])) + " " + title
+        years_found = [int(y) for y in re.findall(r'\b(19\d\d|20[0-2]\d)\b', all_text) if 1950 <= int(y) <= 2026]
+        if raw_arche_id in col_years_map:
+            years_found.extend(col_years_map[raw_arche_id])
+
+        if years_found:
+            sorted_yrs = sorted(list(set(years_found)))
+            if len(sorted_yrs) == 1:
+                temporal_span = f"Kampagne {sorted_yrs[0]}"
+            else:
+                temporal_span = f"Kampagnen {sorted_yrs[0]}–{sorted_yrs[-1]}"
+        elif "retro" in all_text.lower():
+            temporal_span = "Kampagnen 1978–1998 (Retrodigitalisate)"
+        elif lvl == 0:
+            temporal_span = "2023–2024 (Go!Digital 3.0)"
+
         node_data = {
             "id": node_id,
             "arche_id": raw_arche_id,
@@ -563,6 +640,10 @@ def build_graph():
             "pid": c.get("pid", f"https://arche.acdh.oeaw.ac.at/api/{raw_arche_id}"),
             "arche_url": f"https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/{raw_arche_id}" if raw_arche_id.isdigit() else "https://id.acdh.oeaw.ac.at/iuenna",
             "spatial": c.get("spatial", "Jauntal"),
+            "temporal": temporal_span,
+            "epoch": "Römische Kaiserzeit & Frühmittelalter" if lvl <= 2 else None,
+            "creators": c_creators,
+            "contributors": c_contributors,
             "color": color,
             "icon": icon,
             "sample_pid": col_sample_res[node_id]["pid"] if node_id in col_sample_res else None,
@@ -583,30 +664,150 @@ def build_graph():
                 }
             })
 
-    # Contextual Entities
-    # Organizations
-    orgs = [
-        {"id": "org_oeaw", "arche_id": "100", "label": "Österreichische Akademie der Wissenschaften (ÖAW)", "type": "organization", "type_label": "Institution / Funder", "role": "Funder & Träger", "color": "#202226", "icon": "fa-building-columns"},
-        {"id": "org_oeai", "arche_id": "101", "label": "Österreichisches Archäologisches Institut (ÖAI)", "type": "organization", "type_label": "Institution / Host", "role": "Forschung & Projektleitung", "color": "#202226", "icon": "fa-landmark"},
-        {"id": "org_km", "arche_id": "102", "label": "kärnten.museum", "type": "organization", "type_label": "Institution / Partner", "role": "Kuration & Sammlungsbesitz", "color": "#202226", "icon": "fa-building"},
-        {"id": "org_acdh", "arche_id": "103", "label": "ACDH-CH / ARCHE", "type": "organization", "type_label": "Repositorium / Hosting", "role": "Langzeitdatenarchivierung", "color": "#202226", "icon": "fa-server"},
-        {"id": "org_bda", "arche_id": "104", "label": "Bundesdenkmalamt (BDA)", "type": "organization", "type_label": "Institution / Partner", "role": "Denkmalschutz & Kooperation", "color": "#202226", "icon": "fa-shield-halved"},
-        {"id": "org_ardig", "arche_id": "105", "label": "ARDIG - Archäologischer Dienst", "type": "organization", "type_label": "Partnerunternehmen", "role": "Grabungsdienstleistungen", "color": "#202226", "icon": "fa-trowel"}
-    ]
+    # Contextual Entities: All 30 ARCHE Resolved Persons and Organisations
+    for eid, ent in resolved_entities.items():
+        eid = str(eid)
+        etype = ent.get("type", "Person")
+        if etype == "Person":
+            node_id = f"per_{eid}"
+            role_label = "Principal Investigator (PI)" if eid in ["1756725", "1756730"] else "Forscher:in"
+            p_data = {
+                "id": node_id,
+                "arche_id": eid,
+                "label": ent["title"],
+                "type": "person",
+                "type_label": role_label,
+                "role": role_label,
+                "first_name": ent.get("first_name", ""),
+                "last_name": ent.get("last_name", ""),
+                "orcid": ent.get("orcid", ""),
+                "wikidata": ent.get("wikidata", ""),
+                "affiliation": ent.get("affiliation_name", ""),
+                "affiliation_id": ent.get("affiliation_id", ""),
+                "arche_url": ent.get("arche_url", f"https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/{eid}"),
+                "color": "#C85A32",
+                "icon": "fa-user"
+            }
+            nodes.append({"data": p_data})
+        else:
+            node_id = f"org_{eid}"
+            role_label = "Institution / Partner"
+            if eid in ["37483", "1756728"]:
+                role_label = "Forschungsinstitution & Sammlungsbesitz"
+            elif eid == "21003":
+                role_label = "Akademie / Trägerorganisation"
+            elif eid == "1756743":
+                role_label = "Denkmalamt & Kooperation"
+            elif eid == "48505":
+                role_label = "Digital Humanities / ARCHE Repositorium"
+            elif eid == "1756750":
+                role_label = "Archäologischer Dienst"
 
-    for o in orgs:
-        nodes.append({"data": o})
-        edges.append({"data": {"id": f"edge_org_{o['id']}_root", "source": "iuenna_root", "target": o["id"], "label": "hasContributor", "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasContributor"}})
+            o_data = {
+                "id": node_id,
+                "arche_id": eid,
+                "label": ent["title"],
+                "type": "organization",
+                "type_label": "Institution / Partner",
+                "role": role_label,
+                "wikidata": ent.get("wikidata", ""),
+                "affiliation": ent.get("affiliation_name", ""),
+                "arche_url": ent.get("arche_url", f"https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/{eid}"),
+                "color": "#202226",
+                "icon": "fa-building-columns"
+            }
+            nodes.append({"data": o_data})
 
-    # Persons
-    persons = [
-        {"id": "per_hagmann", "arche_id": "106", "label": "Dr. Dominik Hagmann", "type": "person", "type_label": "Forscher / PI", "role": "Principal Investigator (kärnten.museum / ÖAI)", "orcid": "0000-0002-4481-6234", "color": "#C85A32", "icon": "fa-user"},
-        {"id": "per_waldhart", "arche_id": "107", "label": "Dipl.-Ing. Franziska Waldhart", "type": "person", "type_label": "Forscherin / PI", "role": "Principal Investigator (ÖAI / ÖAW)", "orcid": "0000-0002-6022-2977", "color": "#C85A32", "icon": "fa-user"}
-    ]
+    # Provenance Edges: hasCreator and hasContributor from Collections to Persons/Orgs
+    seen_edge_ids = set()
+    for raw_cid, col_rel in col_creators.items():
+        col_node_id = "iuenna_root" if str(raw_cid) == IUENNA_TOP_ID else (str(raw_cid) if str(raw_cid).startswith("col_") else f"col_{raw_cid}")
 
-    for p in persons:
-        nodes.append({"data": p})
-        edges.append({"data": {"id": f"edge_per_{p['id']}_root", "source": "iuenna_root", "target": p["id"], "label": "hasPrincipalInvestigator", "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasPrincipalInvestigator"}})
+        for creator_id in col_rel.get("creators", []):
+            creator_id = str(creator_id)
+            if creator_id in resolved_entities:
+                ent_type = resolved_entities[creator_id].get("type", "Person")
+                target_node_id = f"per_{creator_id}" if ent_type == "Person" else f"org_{creator_id}"
+                edge_id = f"edge_creator_{col_node_id}_{target_node_id}"
+                if edge_id not in seen_edge_ids:
+                    seen_edge_ids.add(edge_id)
+                    edges.append({
+                        "data": {
+                            "id": edge_id,
+                            "source": col_node_id,
+                            "target": target_node_id,
+                            "label": "hasCreator",
+                            "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasCreator"
+                        }
+                    })
+
+        for contrib_id in col_rel.get("contributors", []):
+            contrib_id = str(contrib_id)
+            if contrib_id in resolved_entities:
+                ent_type = resolved_entities[contrib_id].get("type", "Person")
+                target_node_id = f"per_{contrib_id}" if ent_type == "Person" else f"org_{contrib_id}"
+                edge_id = f"edge_contrib_{col_node_id}_{target_node_id}"
+                if edge_id not in seen_edge_ids:
+                    seen_edge_ids.add(edge_id)
+                    edges.append({
+                        "data": {
+                            "id": edge_id,
+                            "source": col_node_id,
+                            "target": target_node_id,
+                            "label": "hasContributor",
+                            "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasContributor"
+                        }
+                    })
+
+    # Institutional Affiliation edges (isMemberOf)
+    for eid, ent in resolved_entities.items():
+        affil_id = str(ent.get("affiliation_id", ""))
+        if affil_id and affil_id in resolved_entities and affil_id != str(eid):
+            ent_node_id = f"per_{eid}" if ent.get("type") == "Person" else f"org_{eid}"
+            org_node_id = f"org_{affil_id}"
+            edge_id = f"edge_member_{ent_node_id}_{org_node_id}"
+            if edge_id not in seen_edge_ids:
+                seen_edge_ids.add(edge_id)
+                edges.append({
+                    "data": {
+                        "id": edge_id,
+                        "source": ent_node_id,
+                        "target": org_node_id,
+                        "label": "isMemberOf",
+                        "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
+                    }
+                })
+
+    # Root Project Leadership (Principal Investigators)
+    for p_lead in ["1756725", "1756730"]:
+        edge_id = f"edge_pi_root_per_{p_lead}"
+        if edge_id not in seen_edge_ids:
+            seen_edge_ids.add(edge_id)
+            edges.append({
+                "data": {
+                    "id": edge_id,
+                    "source": "iuenna_root",
+                    "target": f"per_{p_lead}",
+                    "label": "hasPrincipalInvestigator",
+                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasPrincipalInvestigator"
+                }
+            })
+
+    # Root Host / Funder Institutions
+    for top_org in ["21003", "37483", "1756728", "1756743", "48505"]:
+        if top_org in resolved_entities:
+            edge_id = f"edge_host_root_org_{top_org}"
+            if edge_id not in seen_edge_ids:
+                seen_edge_ids.add(edge_id)
+                edges.append({
+                    "data": {
+                        "id": edge_id,
+                        "source": "iuenna_root",
+                        "target": f"org_{top_org}",
+                        "label": "hasFunder" if top_org == "21003" else ("hasHostInstitution" if top_org == "37483" else "hasContributor"),
+                        "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasContributor"
+                    }
+                })
 
     # Places
     places = [

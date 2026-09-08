@@ -34,7 +34,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="wma/wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="graph/index.html" class="nav-link">ARCHE Graph</a></li>
+                    <li><a href="graph/index.html" class="nav-link">Knowledge Graph</a></li>
                     <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
                     <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
                 </ul>
@@ -52,7 +52,7 @@
             <p class="hero-subtitle">openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</p>
             <div class="btn-group">
                 <a href="wma/wma.html" class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i> Web Mapping Portal</a>
-                <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);"><i class="fa-solid fa-circle-nodes"></i> ARCHE Graph Explorer</a>
+                <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);"><i class="fa-solid fa-circle-nodes"></i> IUENNA Knowledge Graph</a>
                 <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-database"></i> ARCHE Repository</a>
                 <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a>
                 <a href="https://iuenna.hypotheses.org/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-square-rss"></i> Project Blog</a>
@@ -231,46 +231,130 @@
             </div>
         </section>
 
-        <!-- Interactive ARCHE Knowledge Graph Section -->
-        <section class="card" id="arche-graph" style="margin-bottom: 3rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;">
-                <div>
-                    <h2>ARCHE Knowledge Graph</h2>
-                    <p style="margin-bottom: 0;">Interactive semantic network of the IUENNA repository corpus (20,788 items / 357 GB in ARCHE).</p>
+        <!-- Interactive Showcase Section (Knowledge Graph & Web Mapping Application) -->
+        <section class="card showcase-slider-section" id="arche-graph" style="margin-bottom: 3rem;">
+            <!-- Top Navigation Bar for News-Card Carousel -->
+            <div class="showcase-header-bar">
+                <div class="showcase-nav-tabs" role="tablist" aria-label="Explorer Selection">
+                    <button class="showcase-tab active" id="tabGraph" role="tab" aria-selected="true" aria-controls="slide-graph" onclick="switchShowcaseSlide(0)">
+                        <i class="fa-solid fa-circle-nodes"></i>
+                        <span>Knowledge Graph</span>
+                    </button>
+                    <button class="showcase-tab" id="tabWma" role="tab" aria-selected="false" aria-controls="slide-wma" onclick="switchShowcaseSlide(1)">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Web Mapping</span>
+                    </button>
                 </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button id="homeFitBtn" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;"><i class="fa-solid fa-expand"></i> Center View</button>
-                    <a href="graph/index.html?open=corpus" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
-                        <i class="fa-solid fa-database"></i> Browse 20,541 Resources
-                    </a>
-                    <a href="graph/index.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Dedicated Explorer
-                    </a>
+
+                <div class="showcase-header-controls">
+                    <span class="showcase-swipe-hint"><i class="fa-solid fa-arrows-left-right"></i> <span class="hint-text">Swipe to switch</span></span>
+                    <span class="showcase-counter" id="showcaseCounter">1 / 2</span>
+                    <div class="showcase-arrows">
+                        <button class="showcase-nav-btn" id="showcasePrev" onclick="switchShowcaseSlide(0)" title="Previous Explorer" aria-label="Previous Explorer">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="showcase-nav-btn" id="showcaseNext" onclick="switchShowcaseSlide(1)" title="Next Explorer" aria-label="Next Explorer">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Mini Entity Filter Pills -->
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;" id="homeFilterPills">
-                <span class="home-chip active" data-type="all" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: var(--text-dark); color: #fff; cursor: pointer; user-select: none;">All</span>
-                <span class="home-chip active" data-type="subcollection" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #B88E3E; margin-right: 4px;"></span>Subcollections</span>
-                <span class="home-chip active" data-type="folder" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; margin-right: 4px;"></span>Folders</span>
-                <span class="home-chip active" data-type="organization" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #202226; margin-right: 4px;"></span>Institutions</span>
-                <span class="home-chip active" data-type="person" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #C85A32; margin-right: 4px;"></span>Researchers</span>
-                <span class="home-chip active" data-type="place" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4A6B53; margin-right: 4px;"></span>Places</span>
-                <span class="home-chip active" data-type="license" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #437F97; margin-right: 4px;"></span>Licenses</span>
+            <!-- Slide Track Wrapper -->
+            <div class="showcase-track-wrapper" id="showcaseTrackWrapper">
+                <div class="showcase-track" id="showcaseTrack">
+                    <!-- Slide 1: IUENNA Knowledge Graph -->
+                    <div class="showcase-slide active" id="slide-graph" role="tabpanel" aria-labelledby="tabGraph">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;">
+                            <div>
+                                <span class="showcase-badge badge-graph"><i class="fa-solid fa-circle-nodes"></i> Semantic Network • Explorer 1 / 2</span>
+                                <h2>IUENNA Knowledge Graph</h2>
+                                <p style="margin-bottom: 0;">Interactive semantic network of the IUENNA repository corpus (20,788 items / 357 GB in ARCHE).</p>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button id="homeFitBtn" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;"><i class="fa-solid fa-expand"></i> Center View</button>
+                                <a href="graph/index.html?open=corpus" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
+                                    <i class="fa-solid fa-database"></i> Browse 20,541 Resources
+                                </a>
+                                <a href="graph/index.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Dedicated Explorer
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mini Entity Filter Pills -->
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;" id="homeFilterPills">
+                            <span class="home-chip active" data-type="all" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: var(--text-dark); color: #fff; cursor: pointer; user-select: none;">All</span>
+                            <span class="home-chip active" data-type="subcollection" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #B88E3E; margin-right: 4px;"></span>Subcollections</span>
+                            <span class="home-chip active" data-type="folder" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; margin-right: 4px;"></span>Folders</span>
+                            <span class="home-chip active" data-type="organization" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #202226; margin-right: 4px;"></span>Institutions</span>
+                            <span class="home-chip active" data-type="person" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #C85A32; margin-right: 4px;"></span>Researchers</span>
+                            <span class="home-chip active" data-type="place" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4A6B53; margin-right: 4px;"></span>Places</span>
+                            <span class="home-chip active" data-type="license" style="padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; border: 1px solid var(--border-color); background: #fff; color: var(--text-dark); cursor: pointer; user-select: none;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #437F97; margin-right: 4px;"></span>Licenses</span>
+                        </div>
+
+                        <!-- Graph Canvas -->
+                        <div style="position: relative; width: 100%; height: 520px; background: #FAF8F5; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden;">
+                            <div id="homeCy" style="width: 100%; height: 100%;"></div>
+                            <div id="homeNodeTooltip" style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 16px; font-size: 0.82rem; display: none; justify-content: space-between; align-items: center; box-shadow: var(--shadow-md); z-index: 10;">
+                                <div>
+                                    <strong id="homeTooltipTitle" style="color: var(--text-dark); font-size: 0.9rem;">Node Title</strong>
+                                    <div id="homeTooltipSub" style="color: var(--text-muted); font-size: 0.75rem;">Description / Details</div>
+                                </div>
+                                <div>
+                                    <a href="#" target="_blank" id="homeTooltipArcheLink" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;">Open in ARCHE ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: IUENNA Web Mapping Application -->
+                    <div class="showcase-slide" id="slide-wma" role="tabpanel" aria-labelledby="tabWma">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem;">
+                            <div>
+                                <span class="showcase-badge badge-wma"><i class="fa-solid fa-map-location-dot"></i> Web GIS &amp; Geodata • Explorer 2 / 2</span>
+                                <h2>IUENNA Web Mapping Application</h2>
+                                <p style="margin-bottom: 0;">Interactive spatial exploration of archaeological sites, features, and geodata across the Southern Jauntal.</p>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="wma/wma.html" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;">
+                                    <i class="fa-solid fa-book-atlas"></i> Web Mapping Guide
+                                </a>
+                                <a href="https://github.com/IUENNA/IUENNA.github.io/blob/main/wma/IUENNA-WMA.gpkg" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
+                                    <i class="fa-solid fa-file-arrow-down"></i> Download GeoPackage
+                                </a>
+                                <a href="wma/genai-wma-home.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Dedicated Application
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mini Geodata Feature Pills -->
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                            <span class="map-chip" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; background: rgba(168, 68, 46, 0.08); color: var(--primary); font-weight: 600; border: 1px solid rgba(168, 68, 46, 0.2);"><i class="fa-solid fa-monument"></i> 200+ Archaeological Sites</span>
+                            <span class="map-chip" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; background: rgba(184, 142, 62, 0.08); color: var(--secondary); font-weight: 600; border: 1px solid rgba(184, 142, 62, 0.2);"><i class="fa-solid fa-draw-polygon"></i> Surveys &amp; Excavations</span>
+                            <span class="map-chip" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; background: rgba(67, 127, 151, 0.08); color: #437F97; font-weight: 600; border: 1px solid rgba(67, 127, 151, 0.2);"><i class="fa-solid fa-satellite"></i> Basemaps &amp; Lidar DTM</span>
+                            <span class="map-chip" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; background: rgba(74, 107, 83, 0.08); color: #4A6B53; font-weight: 600; border: 1px solid rgba(74, 107, 83, 0.2);"><i class="fa-solid fa-filter"></i> Search &amp; Spatial Filter</span>
+                        </div>
+
+                        <!-- WMA Canvas / Iframe Container -->
+                        <div style="position: relative; width: 100%; height: 520px; background: #FAF8F5; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden;">
+                            <iframe id="homeWmaIframe" data-src="wma/genai-wma-index.html?v=2.1.5" class="wma-iframe" title="IUENNA Web Mapping Application" style="width: 100%; height: 100%; border: none;"></iframe>
+                            <div id="homeWmaPlaceholder" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #FAF8F5; z-index: 2; transition: opacity 0.3s ease;">
+                                <i class="fa-solid fa-map-location-dot fa-2x" style="color: var(--primary); margin-bottom: 0.8rem; animation: pulse 1.5s infinite;"></i>
+                                <div style="font-weight: 600; color: var(--text-dark); margin-bottom: 4px;">Loading Web Mapping Application...</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Interactive geodata layers &amp; spatial queries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Graph Canvas -->
-            <div style="position: relative; width: 100%; height: 520px; background: #FAF8F5; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden;">
-                <div id="homeCy" style="width: 100%; height: 100%;"></div>
-                <div id="homeNodeTooltip" style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 16px; font-size: 0.82rem; display: none; justify-content: space-between; align-items: center; box-shadow: var(--shadow-md); z-index: 10;">
-                    <div>
-                        <strong id="homeTooltipTitle" style="color: var(--text-dark); font-size: 0.9rem;">Node Title</strong>
-                        <div id="homeTooltipSub" style="color: var(--text-muted); font-size: 0.75rem;">Description / Details</div>
-                    </div>
-                    <div>
-                        <a href="#" target="_blank" id="homeTooltipArcheLink" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;">Open in ARCHE ↗</a>
-                    </div>
+            <!-- Bottom Dot Indicators -->
+            <div class="showcase-dots-bar">
+                <div class="showcase-dots">
+                    <button class="showcase-dot active" onclick="switchShowcaseSlide(0)" title="IUENNA Knowledge Graph" aria-label="Slide 1"></button>
+                    <button class="showcase-dot" onclick="switchShowcaseSlide(1)" title="IUENNA Web Mapping Application" aria-label="Slide 2"></button>
                 </div>
             </div>
         </section>
@@ -287,7 +371,7 @@
                 </p>
                 <div style="text-align: center; margin-top: 1.5rem; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
                     <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);">
-                        <i class="fa-solid fa-circle-nodes"></i> ARCHE Graph Explorer
+                        <i class="fa-solid fa-circle-nodes"></i> IUENNA Knowledge Graph
                     </a>
                     <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i> Explore Data on ARCHE
@@ -366,6 +450,13 @@
                     Hagmann, D., &amp; Reiner, F. (2023). openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A «para-description». 
                     <i>Peer Community Journal, 3</i>, Article e120.
                     <a href="https://doi.org/10.24072/pcjournal.338" target="_blank" rel="noopener">https://doi.org/10.24072/pcjournal.338</a>            
+                </li>
+                <li>
+                    Hagmann, D., &amp; Reiner, F. (2025). Today is tomorrow’s yesterday: Langzeitarchivierung im Go!Digital 3.0 Projekt IUENNA. 
+                    In G. Grabherr, B. Kainrath, &amp; F. M. Müller (Eds.), 
+                    <i>Akten des 19. Österreichischen Archäologietages in Innsbruck – 3. bis 5. April 2024</i> 
+                    (IKARUS − Innsbrucker Kulturhistorisch-Archäologische Universitätsschriften, pp. 319–326). innsbruck university press. 
+                    <a href="https://doi.org/10.15203/99106-185-4-37" target="_blank" rel="noopener">https://doi.org/10.15203/99106-185-4-37</a>
                 </li>
                 <li>
                     Meske, C., Hermanns, T., Von Der Weiden, E., Loser, K.-U., &amp; Berger, T. (2025). 
@@ -832,7 +923,7 @@
                 });
             });
 
-        // Home ARCHE Knowledge Graph Initialization
+        // Home IUENNA Knowledge Graph Initialization
         (function() {
             const EMBEDDED_GRAPH = {
   "metadata": {
@@ -2473,6 +2564,9 @@
             }
 
             window.focusGraphNode = function(nodeId) {
+                if (typeof switchShowcaseSlide === 'function' && currentShowcaseSlide !== 0) {
+                    switchShowcaseSlide(0);
+                }
                 if (!window.homeCy) return;
                 let target = window.homeCy.getElementById(nodeId);
                 if (!target || target.length === 0) {
@@ -2518,9 +2612,127 @@
                     initHomeGraph(EMBEDDED_GRAPH.elements);
                 });
         })();
+
+        // Interactive Showcase Carousel Logic (Knowledge Graph & Web Mapping Application)
+        let currentShowcaseSlide = 0;
+
+        function switchShowcaseSlide(index) {
+            if (index < 0) index = 0;
+            if (index > 1) index = 1;
+            currentShowcaseSlide = index;
+
+            const track = document.getElementById('showcaseTrack');
+            const tabGraph = document.getElementById('tabGraph');
+            const tabWma = document.getElementById('tabWma');
+            const counter = document.getElementById('showcaseCounter');
+            const dots = document.querySelectorAll('.showcase-dot');
+
+            if (track) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            if (tabGraph && tabWma) {
+                if (index === 0) {
+                    tabGraph.classList.add('active');
+                    tabGraph.setAttribute('aria-selected', 'true');
+                    tabWma.classList.remove('active');
+                    tabWma.setAttribute('aria-selected', 'false');
+                } else {
+                    tabWma.classList.add('active');
+                    tabWma.setAttribute('aria-selected', 'true');
+                    tabGraph.classList.remove('active');
+                    tabGraph.setAttribute('aria-selected', 'false');
+                }
+            }
+
+            if (counter) {
+                counter.textContent = `${index + 1} / 2`;
+            }
+
+            dots.forEach((dot, i) => {
+                if (i === index) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+
+            if (index === 1) {
+                loadHomeWmaIframe();
+            } else if (index === 0 && window.homeCy) {
+                setTimeout(() => {
+                    try {
+                        window.homeCy.resize();
+                    } catch(e) {}
+                }, 150);
+            }
+        }
+
+        function loadHomeWmaIframe() {
+            const iframe = document.getElementById('homeWmaIframe');
+            if (iframe && !iframe.src && iframe.dataset.src) {
+                iframe.src = iframe.dataset.src;
+                iframe.onload = () => {
+                    const placeholder = document.getElementById('homeWmaPlaceholder');
+                    if (placeholder) {
+                        placeholder.style.opacity = '0';
+                        setTimeout(() => { placeholder.style.display = 'none'; }, 300);
+                    }
+                };
+            }
+        }
+
+        // Touch swipe gesture detection on showcase section
+        (function() {
+            const wrapper = document.getElementById('showcaseTrackWrapper') || document.getElementById('arche-graph');
+            if (!wrapper) return;
+
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            wrapper.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    isSwiping = true;
+                }
+            }, { passive: true });
+
+            wrapper.addEventListener('touchend', function(e) {
+                if (!isSwiping || e.changedTouches.length !== 1) return;
+                isSwiping = false;
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const deltaX = endX - touchStartX;
+                const deltaY = endY - touchStartY;
+
+                // Check for horizontal swipe gesture (>45px and more horizontal than vertical)
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 45) {
+                    if (deltaX < 0) {
+                        // Swiped left -> next slide (Web Mapping)
+                        switchShowcaseSlide(1);
+                    } else {
+                        // Swiped right -> prev slide (Knowledge Graph)
+                        switchShowcaseSlide(0);
+                    }
+                }
+            }, { passive: true });
+
+            // Keyboard navigation when user is focusing within showcase
+            wrapper.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    switchShowcaseSlide(0);
+                } else if (e.key === 'ArrowRight') {
+                    switchShowcaseSlide(1);
+                }
+            });
+
+            // Prefetch WMA iframe shortly after page load
+            window.addEventListener('load', function() {
+                setTimeout(loadHomeWmaIframe, 2500);
+            });
+        })();
     </script>
 
     <!-- IUENNA Interactive AI Chatbot Widget (2-Stufen Hybrid) -->
-    <script src="scripts/iuenna-chat.js?v=1.0.6" defer></script>
+    <script src="scripts/iuenna-chat.js?v=1.0.8" defer></script>
 </body>
 </html>

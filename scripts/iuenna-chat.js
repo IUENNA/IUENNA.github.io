@@ -64,12 +64,12 @@
       </div>
 
       <!-- Mode & Status Bar -->
-      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
         <span style="font-size: 0.78rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-graduation-cap"></i> Verifizierte Fachauskunft (ÖAW / ARCHE)
+          <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i> Schnelle Fachauskunft
         </span>
-        <span style="font-size: 0.72rem; color: #2e7d32; font-weight: 600; background: rgba(46, 125, 50, 0.1); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(46, 125, 50, 0.2);">
-          <i class="fa-solid fa-circle-check"></i> 100% Peer-Reviewed
+        <span style="font-size: 0.70rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+          <i class="fa-solid fa-triangle-exclamation" style="color: #b88e3e; font-size: 0.72rem;"></i> Automatisiert • System kann Fehler machen
         </span>
       </div>
 
@@ -83,16 +83,17 @@
               Ich helfe Ihnen beim Erkunden der über <strong>20.000 archäologischen Objekte</strong>, Grabungspläne und Fotos aus dem Jauntal in <em>ARCHE</em>.
             </p>
             <p style="margin-top: 6px; font-size: 0.8rem; color: var(--text-muted);">
-              Wählen Sie ein Thema oder stellen Sie eine freie Frage:
+              Wählen Sie ein Thema oder stellen Sie eine freie Frage (z. B. nach Fundorten oder Personen wie <em>Franz Glaser</em>):
             </p>
             <div class="chat-chips-container">
+              <button class="chat-chip" data-query="Wer ist Franz Glaser?">👤 Franz Glaser</button>
               <button class="chat-chip" data-query="Ist Globasnitz wirklich die römische Straßenstation Iuenna?">🏛️ Tscherberg vs. Globasnitz</button>
               <button class="chat-chip" data-query="Was ist die Villenanlage von St. Stefan?">🏡 Villenanlage St. Stefan</button>
               <button class="chat-chip" data-query="Warum gibt es auf dem Hemmaberg Doppelkirchen?">⛪ Hemmaberg Doppelkirchen</button>
               <button class="chat-chip" data-query="Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?">💀 Gräberfeld Globasnitz (440 Gräber)</button>
+              <button class="chat-chip" data-query="Wer ist Marianne Pollak?">👤 Marianne Pollak</button>
               <button class="chat-chip" data-query="Wer war L. Barbius Vercaius?">📜 Wer war L. Barbius Vercaius?</button>
               <button class="chat-chip" data-query="Welche Rolle spielten die historischen Skizzen von Hans Winkler?">🎨 Hans Winkler Skizzen</button>
-              <button class="chat-chip" data-query="Was bedeutet der Name des Projekts IUENNA?">👥 Das IUENNA-Projekt</button>
               <button class="chat-chip" data-query="Wie kann ich die Geodaten des Projekts direkt in QGIS nutzen?">🗺️ QGIS GeoPackage (.gpkg)</button>
             </div>
           </div>
@@ -103,14 +104,18 @@
       <!-- Input Area -->
       <div class="chat-input-area">
         <div class="chat-input-row">
-          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Frage stellen (z.B. 'Pläne Hemmaberg', 'Mansio Globasnitz')..." autocomplete="off">
+          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Frage stellen (z.B. 'Wer ist Franz Glaser?', 'Pläne Hemmaberg')..." autocomplete="off">
           <button id="chat-send-btn" class="chat-send-btn" aria-label="Senden" title="Senden">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
         </div>
-        <div class="chat-privacy-footer">
-          <i class="fa-solid fa-shield-halved" style="color: #2e7d32;"></i>
-          <span>100% Client-Side In-Browser • Keine Datenübertragung an Dritte</span>
+        <div class="chat-privacy-footer" style="padding: 6px 14px; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 0.67rem; color: var(--text-muted); line-height: 1.35;">
+            <i class="fa-solid fa-circle-exclamation" style="color: #b88e3e;"></i> <strong>Hinweis:</strong> Dies ist ein automatisierter Recherche-Assistent. Antworten können Fehler enthalten – bitte bei wissenschaftlicher Nutzung Primärquellen in ARCHE &amp; Fachliteratur konsultieren.
+          </span>
+          <span style="font-size: 0.63rem; color: #2e7d32; margin-top: 2px;">
+            <i class="fa-solid fa-shield-halved"></i> 100% Client-Side In-Browser • Keine Datenübertragung an Dritte
+          </span>
         </div>
       </div>
     `;
@@ -133,7 +138,7 @@
 
   // German Stopwords to prevent generic words like 'was', 'ist', 'der' from skewing results
   const GERMAN_STOPWORDS = new Set([
-    'was', 'ist', 'sind', 'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'einem',
+    'was', 'ist', 'sind', 'war', 'waren', 'hat', 'hatte', 'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'einem',
     'eines', 'einen', 'und', 'oder', 'in', 'im', 'zu', 'zum', 'zur', 'von', 'vom', 'mit', 'auf',
     'für', 'wo', 'wie', 'wer', 'welche', 'welcher', 'welches', 'gibt', 'es', 'kann', 'man',
     'finde', 'ich', 'zeig', 'mir', 'bitte', 'über', 'nach', 'an', 'bei'
@@ -412,6 +417,9 @@
       `;
     }
 
+    // Dynamic contextual follow-up suggestions
+    const followUpHtml = generateFollowUpChips(top);
+
     const categoryBadge = top.type === 'synthetic_qa' ? 'Archäologische Fachantwort' :
       (top.type === 'foundation' ? 'Wissenschaftliche Grundlagen' :
       (top.type === 'subcollection' ? 'ARCHE-Subcollection' :
@@ -431,6 +439,58 @@
         ${metaTagsHtml ? `<div class="chat-card-meta">${metaTagsHtml}</div>` : ''}
         ${linksHtml ? `<div class="chat-card-links">${linksHtml}</div>` : ''}
         ${secondaryHtml}
+        ${followUpHtml}
+        <div style="font-size: 0.67rem; color: var(--text-muted); margin-top: 8px; font-style: italic; border-top: 1px dashed var(--border-color); padding-top: 6px; display: flex; align-items: center; gap: 4px;">
+          <i class="fa-solid fa-triangle-exclamation" style="font-size: 0.65rem; color: #b88e3e;"></i> Automatische Projekt-Auskunft (kann Fehler enthalten) • Für Zitate bitte Fachpublikationen prüfen.
+        </div>
+      </div>
+    `;
+  }
+
+  function generateFollowUpChips(top) {
+    if (!top) return '';
+    const text = ((top.title || '') + ' ' + (top.text || '')).toLowerCase();
+    const chips = [];
+
+    if (text.includes('glaser')) {
+      chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Doppelkirchen Hemmaberg' });
+      chips.push({ query: 'Gibt es Grabungspläne zum Hemmaberg?', label: '🗺️ Grabungspläne in ARCHE' });
+      chips.push({ query: 'Wer ist Marianne Pollak?', label: '👤 Marianne Pollak' });
+    } else if (text.includes('pollak')) {
+      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '💀 440 Gräber' });
+      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
+      chips.push({ query: 'Was wurde in Jaunstein gefunden?', label: '🏺 Gräberfeld Jaunstein' });
+    } else if (text.includes('hemmaberg')) {
+      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
+      chips.push({ query: 'Gibt es Grabungspläne zum Hemmaberg?', label: '🗺️ Grabungspläne Hemmaberg' });
+      chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Doppelkirchen' });
+      chips.push({ query: 'Was ist die Rosaliengrotte?', label: '💧 Rosaliengrotte' });
+    } else if (text.includes('globasnitz') || text.includes('tscherberg') || text.includes('ostgräberfeld')) {
+      chips.push({ query: 'Ist Globasnitz wirklich die römische Straßenstation Iuenna?', label: '🏛️ Tscherberg vs. Globasnitz' });
+      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '💀 440 Gräber' });
+      chips.push({ query: 'Wer ist Marianne Pollak?', label: '👤 Marianne Pollak' });
+      chips.push({ query: 'Was ist die Villenanlage von St. Stefan?', label: '🏡 Villa St. Stefan' });
+    } else if (text.includes('st. stefan') || text.includes('barbius') || text.includes('winkler')) {
+      chips.push({ query: 'Wer war L. Barbius Vercaius?', label: '📜 L. Barbius Vercaius' });
+      chips.push({ query: 'Welche Rolle spielten die historischen Skizzen von Hans Winkler?', label: '🎨 Hans Winkler Skizzen' });
+      chips.push({ query: 'Gibt es Pläne zur Villa St. Stefan?', label: '🗺️ Pläne St. Stefan' });
+    } else if (text.includes('jaunstein')) {
+      chips.push({ query: 'Was wurde in Jaunstein gefunden?', label: '🏺 Funde in Jaunstein' });
+      chips.push({ query: 'Zeige mir die Subcollection JAU in ARCHE', label: '📁 ARCHE Subcollection JAU' });
+    } else {
+      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
+      chips.push({ query: 'Ist Globasnitz wirklich die römische Straßenstation Iuenna?', label: '🏛️ Iuenna & Tscherberg' });
+      chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Hemmaberg' });
+      chips.push({ query: 'Wie kann ich die Geodaten des Projekts direkt in QGIS nutzen?', label: '🗺️ QGIS Geodaten' });
+    }
+
+    if (chips.length === 0) return '';
+    return `
+      <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+        <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">Weiterführende Fragen zum Thema:</span>
+        <div class="chat-chips-container" style="margin-top: 4px;">
+          ${chips.map(c => `<button type="button" class="chat-chip" data-query="${escapeHtml(c.query)}">${c.label}</button>`).join('')}
+        </div>
       </div>
     `;
   }
@@ -682,7 +742,12 @@ ${contextSnippet}`
     return div.innerHTML;
   }
 
-  // 6. Main Query Handler
+  // 6. Conversational Dialogue State & Main Handler
+  const dialogueState = {
+    lastTopic: null,
+    lastSite: null
+  };
+
   async function handleUserSubmit(userQuery) {
     if (!userQuery || !userQuery.trim()) return;
     const query = userQuery.trim();
@@ -693,8 +758,92 @@ ${contextSnippet}`
     // 2. Show Typing Indicator
     showTypingIndicator();
 
+    const cleanQ = query.toLowerCase().replace(/[?!.,;:]/g, '').trim();
+
+    // Dialog Intent A: Greetings
+    if (/^(hallo|hi|guten (tag|morgen|abend)|servus|grüß gott|moin|hey)$/i.test(cleanQ)) {
+      setTimeout(() => {
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p><strong>Grüß Gott!</strong> 🏛️</p>
+            <p style="margin-top: 6px; font-size: 0.85rem; line-height: 1.5;">
+              Ich bin Ihr interaktiver Sammlungs-Assistent für das <strong>IUENNA-Projekt</strong> (ÖAW / ÖAI / kärnten.museum).
+              Ich helfe Ihnen beim Erkunden von über 20.000 archäologischen Objekten und Plänen in ARCHE sowie den neuesten Forschungsergebnissen zum Hemmaberg, zu Globasnitz und zur Villa St. Stefan.
+            </p>
+            <p style="margin-top: 6px; font-size: 0.82rem; color: var(--text-muted);">
+              Wählen Sie ein Thema oder stellen Sie eine freie Frage:
+            </p>
+            <div class="chat-chips-container" style="margin-top: 8px;">
+              <button type="button" class="chat-chip" data-query="Erzähl mir vom Hemmaberg">⛪ Hemmaberg</button>
+              <button type="button" class="chat-chip" data-query="Ist Globasnitz die Straßenstation Iuenna?">🏛️ Tscherberg vs. Globasnitz</button>
+              <button type="button" class="chat-chip" data-query="Was ist die Villenanlage von St. Stefan?">🏡 Villa St. Stefan</button>
+              <button type="button" class="chat-chip" data-query="Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?">💀 440 Gräber</button>
+            </div>
+          </div>
+        `);
+      }, 120);
+      return;
+    }
+
+    // Dialog Intent B: Thanks / Feedback
+    if (/^(danke|vielen dank|dankeschön|super|toll|klasse|prima|danke dir|perfekt|danke schön)$/i.test(cleanQ)) {
+      setTimeout(() => {
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p><strong>Sehr gerne!</strong> 😊</p>
+            <p style="margin-top: 6px; font-size: 0.85rem; line-height: 1.5;">
+              Haben Sie noch weitere Fragen zu den Fundstellen, den Grabungsplänen in ARCHE oder den Inschriften? Ich stehe Ihnen jederzeit zur Verfügung.
+            </p>
+            ${dialogueState.lastTopic ? `
+              <p style="margin-top: 6px; font-size: 0.8rem; color: var(--text-muted);">
+                Möchten Sie noch mehr zu <strong>${escapeHtml(dialogueState.lastTopic)}</strong> erfahren?
+              </p>
+            ` : ''}
+          </div>
+        `);
+      }, 120);
+      return;
+    }
+
+    // Dialog Intent C: Help / Overview
+    if (/^(hilfe|help|was kannst du|wer bist du|funktionen)$/i.test(cleanQ)) {
+      setTimeout(() => {
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p><strong>So kann ich Ihnen helfen:</strong> 🔍</p>
+            <ul style="margin: 6px 0 0 16px; padding: 0; font-size: 0.84rem; line-height: 1.5;">
+              <li><strong>Archäologische Fakten:</strong> Fragen Sie nach Bauphasen, Datierungen oder Ausgräbern (z. B. <em>„Doppelkirchen Hemmaberg“</em>, <em>„Villa St. Stefan“</em>).</li>
+              <li><strong>ARCHE Sammlungen:</strong> Finden Sie Grabungspläne, Fundtagebücher und Fotos im Repositorium.</li>
+              <li><strong>Wissensgraph &amp; GIS:</strong> Klicken Sie in den Antwortkarten auf <em>„Im Wissensgraphen zeigen“</em> oder <em>„In Web-GIS ansehen“</em>.</li>
+            </ul>
+          </div>
+        `);
+      }, 120);
+      return;
+    }
+
+    // Multi-turn Pronoun & Topic Expansion (e.g. "Gibt es dazu Pläne?" -> append lastTopic)
+    let effectiveQuery = query;
+    if (dialogueState.lastTopic && /\b(dazu|dort|davon|mehr|weitere|auch|pläne|fotos|bilder|gräber)\b/i.test(query) && !query.toLowerCase().includes(dialogueState.lastTopic.toLowerCase())) {
+      effectiveQuery = `${query} ${dialogueState.lastTopic}`;
+    }
+
     // 3. Search Knowledge Base
-    const results = searchKnowledgeBase(query);
+    const results = searchKnowledgeBase(effectiveQuery);
+
+    // Update conversation topic state
+    if (results && results.length > 0) {
+      const top = results[0];
+      const txt = ((top.title || '') + ' ' + (top.text || '')).toLowerCase();
+      if (txt.includes('hemmaberg')) dialogueState.lastTopic = 'Hemmaberg';
+      else if (txt.includes('globasnitz')) dialogueState.lastTopic = 'Globasnitz';
+      else if (txt.includes('st. stefan') || txt.includes('barbius') || txt.includes('winkler')) dialogueState.lastTopic = 'St. Stefan';
+      else if (txt.includes('jaunstein')) dialogueState.lastTopic = 'Jaunstein';
+      else if (txt.includes('qgis') || txt.includes('geodaten')) dialogueState.lastTopic = 'Geodaten';
+    }
 
     // 4. Return instant verified academic research card
     setTimeout(() => {

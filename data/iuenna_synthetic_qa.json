@@ -622,6 +622,160 @@
     "graph_node_id": "top_iuenna"
   },
   {
+    "id": "qa_person_franz_glaser",
+    "lang": "de",
+    "category": "Forschungsgeschichte & Personen",
+    "question": "Wer ist Franz Glaser und welche Rolle spielt er in der Erforschung des Hemmabergs?",
+    "variations": [
+      "Wer ist Franz Glaser?",
+      "Wer war Franz Glaser?",
+      "Franz Glaser",
+      "Welche Rolle spielt Franz Glaser?",
+      "Wer hat den Hemmaberg ausgegraben?",
+      "Ausgrabungen Franz Glaser Hemmaberg",
+      "Glaser Hemmaberg",
+      "Was hat Franz Glaser erforscht?"
+    ],
+    "answer": "Dr. Franz Glaser (* 1950) ist ein renommierter österreichischer Klassischer und Frühchristlicher Archäologe und langjähriger Kustos bzw. stellvertretender Direktor des Landesmuseums Kärnten (kärnten.museum). Er leitete ab 1978 über drei Jahrzehnte hinweg die Ausgrabungen auf dem Hemmaberg. Glaser entdeckte und erforschte die frühchristlichen Doppelkirchenanlagen, die Mosaikböden, das Pilgerhospiz und die Reliquienkammern unter den Altären. Seine Monografien ('Das frühchristliche Pilgerheiligtum auf dem Hemmaberg', 2002; 'Teurnia und der Hemmaberg', 2008) begründeten die internationale Bekanntheit der Fundstelle. Seine Grabungsdokumentationen, Pläne und Tagebücher bilden eine zentrale Säule des IUENNA-Retrodigitalisierungsprojekts in ARCHE.",
+    "citations": [
+      "Glaser (2002)",
+      "Glaser (1997)",
+      "Hagmann & Reiner (2023)"
+    ],
+    "keywords": [
+      "franz glaser",
+      "glaser",
+      "archäologe",
+      "hemmaberg",
+      "ausgrabung",
+      "landesmuseum kärnten",
+      "kärnten.museum",
+      "doppelkirchen",
+      "pilgerheiligtum",
+      "ausgräber",
+      "grabungsleiter",
+      "mosaike",
+      "reliquien"
+    ],
+    "graph_node_id": "col_1792212"
+  },
+  {
+    "id": "qa_person_marianne_pollak",
+    "lang": "de",
+    "category": "Forschungsgeschichte & Personen",
+    "question": "Wer ist Marianne Pollak und was hat sie in Globasnitz erforscht?",
+    "variations": [
+      "Wer ist Marianne Pollak?",
+      "Wer war Marianne Pollak?",
+      "Marianne Pollak",
+      "Ausgrabungen Gräberfeld Globasnitz Pollak",
+      "Wer hat das Gräberfeld in Globasnitz ausgegraben?",
+      "Pollak Globasnitz"
+    ],
+    "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im spätantiken Ostgräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
+    "citations": [
+      "Pollak (2000)",
+      "Pollak (2002)"
+    ],
+    "keywords": [
+      "marianne pollak",
+      "pollak",
+      "gräberfeld",
+      "globasnitz",
+      "ostgräberfeld",
+      "jaunstein",
+      "bundesdenkmalamt",
+      "ausgräberin"
+    ],
+    "graph_node_id": "col_1792169"
+  },
+  {
+    "id": "qa_person_hans_winkler",
+    "lang": "de",
+    "category": "Forschungsgeschichte & Personen",
+    "question": "Wer war Hans Winkler und warum sind seine Skizzen für IUENNA wichtig?",
+    "variations": [
+      "Wer war Hans Winkler?",
+      "Hans Winkler",
+      "Winkler Skizzen",
+      "Hans Winkler St. Stefan",
+      "Historische Skizzen Hans Winkler",
+      "Welche Rolle spielten die Skizzen von Hans Winkler?"
+    ],
+    "answer": "Hans Winkler war ein historischer Forscher und Zeichner, der in den 1920er und 1930er Jahren detaillierte Skizzen und Fundmeldungen im Jauntal anfertigte. Seine retrodigitalisierten Skizzenbücher (in ARCHE in der Subcollection RET erfasst) lieferten der modernen Bauforschung (Christian Gugl et al.) entscheidende Hinweise zur Rekonstruktion und Neuinterpretation der rund zwei Hektar großen römischen Großvilla von St. Stefan.",
+    "citations": [
+      "Christian Gugl et al.",
+      "Hagmann & Reiner (2023)"
+    ],
+    "keywords": [
+      "hans winkler",
+      "winkler",
+      "skizzen",
+      "ret",
+      "st. stefan",
+      "villa",
+      "retrodigitalisierung"
+    ],
+    "graph_node_id": "col_1792572"
+  },
+  {
+    "id": "qa_person_christian_gugl",
+    "lang": "de",
+    "category": "Forschungsgeschichte & Personen",
+    "question": "Wer ist Christian Gugl und welche Thesen vertritt er zu Iuenna?",
+    "variations": [
+      "Wer ist Christian Gugl?",
+      "Christian Gugl",
+      "Gugl Iuenna",
+      "Gugl Tscherberg",
+      "Was erforscht Christian Gugl?"
+    ],
+    "answer": "Priv.-Doz. Dr. Christian Gugl ist leitender Wissenschaftler am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Experte für römische Provinzialarchäologie und Siedlungstopografie. Er leitet die jüngste archäologische Neubewertung der Mikroregion Globasnitz. Gugl begründete die These, dass Globasnitz ein 7–9 ha großer vicus war, während die Straßenstation Iuenna der Tabula Peutingeriana beim Tscherberg lag, und analysierte die Großvilla St. Stefan.",
+    "citations": [
+      "Christian Gugl et al. (2024)"
+    ],
+    "keywords": [
+      "christian gugl",
+      "gugl",
+      "öai",
+      "öaw",
+      "tscherberg",
+      "vicus",
+      "st. stefan",
+      "neubewertung"
+    ],
+    "graph_node_id": "col_1792169"
+  },
+  {
+    "id": "qa_person_dominik_hagmann",
+    "lang": "de",
+    "category": "Forschungsgeschichte & Personen",
+    "question": "Wer ist Dominik Hagmann und was ist seine Rolle im IUENNA-Projekt?",
+    "variations": [
+      "Wer ist Dominik Hagmann?",
+      "Dominik Hagmann",
+      "Projektleiter IUENNA",
+      "Wer leitet das Projekt IUENNA?",
+      "Hagmann IUENNA"
+    ],
+    "answer": "Dr. Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Laura Waldhart und Sandra Reiner konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
+    "citations": [
+      "Hagmann & Reiner (2023)",
+      "Hagmann & Waldhart (2023)"
+    ],
+    "keywords": [
+      "dominik hagmann",
+      "hagmann",
+      "projektleiter",
+      "öai",
+      "öaw",
+      "fair",
+      "retrodigitalisierung",
+      "arche"
+    ],
+    "graph_node_id": "top_iuenna"
+  },
+  {
     "id": "qa_en_tscherberg_reassessment",
     "lang": "en",
     "category": "Topographical Reassessment",
