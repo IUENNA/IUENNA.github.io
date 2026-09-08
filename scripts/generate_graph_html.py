@@ -21,6 +21,8 @@ def generate():
     
     graph_file = os.path.join(data_dir, "arche_graph.json")
     tree_file = os.path.join(data_dir, "arche_collections_tree.json")
+    search_file = os.path.join(data_dir, "arche_search_index.json")
+    pubs_file = os.path.join(data_dir, "arche_publications.json")
     out_html = os.path.join(project_root, "graph", "index.html")
     
     with open(graph_file, "r", encoding="utf-8") as f:
@@ -28,9 +30,17 @@ def generate():
         
     with open(tree_file, "r", encoding="utf-8") as f:
         tree_data = json.load(f)
+
+    with open(search_file, "r", encoding="utf-8") as f:
+        search_data = json.load(f)
+
+    with open(pubs_file, "r", encoding="utf-8") as f:
+        pubs_data = json.load(f)
         
     embedded_graph_json = json.dumps(graph_data, ensure_ascii=False)
     embedded_tree_json = json.dumps(tree_data, ensure_ascii=False)
+    embedded_search_json = json.dumps(search_data, ensure_ascii=False)
+    embedded_pubs_json = json.dumps(pubs_data, ensure_ascii=False)
 
     html_content = f'''<!DOCTYPE html>
 <html lang="de">
@@ -230,28 +240,35 @@ def generate():
         }}
         .search-dropdown {{
             position: absolute;
-            top: 100%;
+            top: calc(100% + 5px);
             left: 0;
-            right: 0;
+            width: 480px;
+            max-width: 90vw;
             background: #FFFFFF;
             border: 1px solid var(--panel-border);
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            margin-top: 4px;
-            max-height: 380px;
+            border-radius: 10px;
+            box-shadow: 0 14px 36px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08);
+            max-height: 450px;
             overflow-y: auto;
             display: none;
-            z-index: 1000;
-            min-width: 340px;
+            z-index: 1200;
         }}
-        .search-section-header {{
-            padding: 6px 12px;
-            font-size: 0.7rem;
+        .search-category-header {{
+            padding: 7px 12px 5px 12px;
+            font-size: 0.68rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
             color: var(--text-muted);
-            background: #F7F5F0;
-            border-bottom: 1px solid var(--panel-border);
+            background: #F8F6F2;
+            border-bottom: 1px solid #EAE6DF;
+            border-top: 1px solid #EAE6DF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }}
+        .search-category-header:first-child {{
+            border-top: none;
         }}
         .search-item {{
             padding: 8px 12px;
@@ -260,10 +277,66 @@ def generate():
             gap: 10px;
             cursor: pointer;
             border-bottom: 1px solid #F5F3EF;
-            font-size: 0.76rem;
+            font-size: 0.78rem;
+            transition: background 0.1s ease;
         }}
-        .search-item:hover {{
-            background: var(--bg-main);
+        .search-item:last-child {{
+            border-bottom: none;
+        }}
+        .search-item.selected, .search-item:hover {{
+            background: #F4EFEA;
+        }}
+        .search-item-icon {{
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.76rem;
+            flex-shrink: 0;
+            color: #FFFFFF;
+        }}
+        .search-item-body {{
+            flex: 1;
+            min-width: 0;
+        }}
+        .search-item-title {{
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }}
+        .search-item-title mark {{
+            background: #FFE8A3;
+            color: inherit;
+            padding: 0 1px;
+            border-radius: 2px;
+        }}
+        .search-item-sub {{
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 1px;
+        }}
+        .search-item-badge {{
+            font-size: 0.64rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #EDE8E0;
+            color: var(--text-dark);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }}
+        .search-no-results {{
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
         }}
 
         /* Filter Chips */
@@ -978,13 +1051,15 @@ def generate():
             <p>Vollständiges semantisches Netzwerk &amp; Archiv-Korpus des IUENNA-Repositoriums auf ARCHE (ACDH-CH / ÖAW)</p>
         </div>
         <div class="stats-pills">
-            <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">20.788</strong> ARCHE-Einträge</span>
-            <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.541</strong> Primärressourcen</span>
-            <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">190</strong> Sammlungen &amp; Ordner</span>
-            <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">20</strong> Forscher:innen</span>
-            <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">10</strong> Institutionen</span>
+            <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">21.070</strong> ARCHE-Einträge</span>
+            <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.555</strong> Primärressourcen</span>
+            <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">434</strong> Sammlungen &amp; Ordner</span>
+            <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">21</strong> Forscher:innen</span>
+            <span class="stat-pill"><i class="fa-solid fa-book-open"></i> <strong id="pillPubs">23</strong> Publikationen</span>
+            <span class="stat-pill"><i class="fa-solid fa-map-pin"></i> <strong id="pillPlaces">219</strong> Fundorte</span>
+            <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">9</strong> Institutionen</span>
             <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
-            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">237</strong> im Graphen</span>
+            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">504</strong> im Graphen</span>
             <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
                 <i class="fa-solid fa-circle-check"></i> Korpus bereit
             </span>
@@ -1007,9 +1082,9 @@ def generate():
             <!-- Depth Filter (LOD) -->
             <label for="depthSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark); margin-left: 6px;">Tiefe:</label>
             <select id="depthSelect" class="tool-select" title="Hierarchie-Tiefe im Graphen filtern">
-                <option value="all" selected>Alle Ebenen (L1–L6, 190 Ordner)</option>
+                <option value="all" selected>Alle Ebenen (L1–L6, 434 Ordner)</option>
                 <option value="1">Ebene 1 (6 Subcollections)</option>
-                <option value="2">Ebene 2 (Hauptordner &amp; Archivalien)</option>
+                <option value="2">Ebene 2 (Hauptordner &amp; Bestände)</option>
                 <option value="3">Ebene 3 (Fachordner)</option>
             </select>
 
@@ -1020,19 +1095,19 @@ def generate():
             </select>
 
             <!-- Ordnerbaum Button -->
-            <button id="btnOpenTreeModal" class="tool-btn secondary-btn" title="Vollständigen ARCHE-Archivbaum aller 190 Ordner erkunden">
-                <i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> Ordnerbaum (190)
+            <button id="btnOpenTreeModal" class="tool-btn secondary-btn" title="Vollständigen ARCHE-Archivbaum aller 434 Ordner erkunden">
+                <i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> Ordnerbaum (434)
             </button>
 
             <!-- Corpus Catalog Drawer Button -->
-            <button id="btnOpenCorpus" class="tool-btn primary-btn" title="Katalog aller 20.541 ARCHE-Ressourcen durchsuchen">
-                <i class="fa-solid fa-database"></i> Corpus-Katalog (20.541)
+            <button id="btnOpenCorpus" class="tool-btn primary-btn" title="Katalog aller 20.555 ARCHE-Ressourcen durchsuchen">
+                <i class="fa-solid fa-database"></i> Corpus-Katalog (20.555)
             </button>
 
             <!-- Search Autocomplete -->
             <div class="search-box-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="20.788 ARCHE-Einträge durchsuchen (z.B. Mosaik, Drohne, glo10)..." autocomplete="off">
+                <input type="text" id="searchInput" class="search-input" placeholder="21.070 ARCHE-Einträge durchsuchen (z.B. Glaser, Bioarchäologie, 2022, Jauntal)..." autocomplete="off">
                 <div id="searchDropdown" class="search-dropdown"></div>
             </div>
 
@@ -1041,6 +1116,7 @@ def generate():
                 <span class="filter-chip active" data-type="all">Alle</span>
                 <span class="filter-chip active" data-type="subcollection"><span class="chip-dot" style="background: var(--color-l1);"></span>Subcollections</span>
                 <span class="filter-chip active" data-type="folder"><span class="chip-dot" style="background: var(--color-l2);"></span>Ordner</span>
+                <span class="filter-chip active" data-type="publication"><span class="chip-dot" style="background: #7B4F36;"></span>Publikationen</span>
                 <span class="filter-chip active" data-type="resource"><span class="chip-dot" style="background: var(--color-resource);"></span>Ressourcen</span>
                 <span class="filter-chip active" data-type="place"><span class="chip-dot" style="background: var(--color-place);"></span>Fundorte</span>
                 <span class="filter-chip active" data-type="organization"><span class="chip-dot" style="background: var(--color-organization);"></span>Institutionen</span>
@@ -1077,6 +1153,7 @@ def generate():
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l3);"></span> Fachordner (L3)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l4);"></span> Teilsammlungen (L4)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l5);"></span> Befundordner (L5/L6)</li>
+                <li class="legend-item"><span class="legend-icon" style="background: #7B4F36;"></span> Fachpublikation (Literaturnachweis)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-resource);"></span> ARCHE-Datei (Ressource)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-place);"></span> Geographischer Fundort</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-organization);"></span> Institution / Partner</li>
@@ -1125,6 +1202,35 @@ def generate():
                     </div>
                 </div>
 
+                <!-- Publication Profile Box -->
+                <div id="drawerPublicationBox" class="entity-profile-box" style="display: none; border-left: 4px solid #7B4F36;">
+                    <div class="drawer-section-title">
+                        <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> <span id="drawerPubHeading">Publikationsdetails</span></span>
+                    </div>
+                    <div class="entity-profile-details">
+                        <div id="drawerPubAuthorsRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-user-pen"></i> Autor:innen:</span>
+                            <span id="drawerPubAuthorsVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPubYearRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-calendar-day"></i> Erscheinungsjahr:</span>
+                            <span id="drawerPubYearVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPubJournalRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-newspaper"></i> Verlag / Zeitschrift:</span>
+                            <span id="drawerPubJournalVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPubPagesRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-file-lines"></i> Seiten:</span>
+                            <span id="drawerPubPagesVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPubUrlRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Volltext / Link:</span>
+                            <span class="entity-prop-val"><a id="drawerPubUrlLink" href="#" target="_blank" class="external-id-link" style="color: #7B4F36;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPubUrlVal">Online öffnen</span> ↗</a></span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Provenance / Researchers & Contributors Box (for collections/folders) -->
                 <div id="drawerProvenanceBox" class="provenance-box" style="display: none;">
                     <div class="drawer-section-title">
@@ -1149,6 +1255,15 @@ def generate():
                         <div id="drawerTemporalCampaign" class="temporal-pill-row"></div>
                         <div id="drawerTemporalEpoch" style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;"></div>
                     </div>
+                </div>
+
+                <!-- Linked Publications Box (for collections/folders documented by publications) -->
+                <div id="drawerLinkedPubsBox" style="display: none; background: #FAF5F2; border: 1px solid #E4D5CE; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+                    <div class="drawer-section-title" style="margin-bottom: 6px;">
+                        <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> Zugeordnete Fachpublikationen</span>
+                        <span id="drawerLinkedPubsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EBDAD2; color: #7B4F36; font-weight: 700;">0</span>
+                    </div>
+                    <ul id="drawerLinkedPubsList" class="relations-list" style="max-height: 140px; overflow-y: auto;"></ul>
                 </div>
 
                 <!-- Description -->
@@ -1387,9 +1502,11 @@ def generate():
         let cy = null;
         let graphData = {embedded_graph_json};
         let treeData = {embedded_tree_json};
+        let searchIndex = {embedded_search_json};
+        let publicationsData = {embedded_pubs_json};
         let corpusData = null;
         let corpusResources = [];
-        let activeFilters = new Set(["all", "root", "subcollection", "folder", "folder_l2", "folder_l3", "folder_l4", "folder_l5", "folder_l6", "resource", "organization", "person", "place", "period", "subject", "license"]);
+        let activeFilters = new Set(["all", "root", "subcollection", "folder", "folder_l2", "folder_l3", "folder_l4", "folder_l5", "folder_l6", "resource", "organization", "person", "place", "publication", "period", "subject", "license"]);
         let selectedNode = null;
         let currentActivePreviewRes = null;
         let expandedNodesMap = new Map();
@@ -1411,6 +1528,7 @@ def generate():
             resource: "#3D7068",
             organization: "#202226",
             person: "#C85A32",
+            publication: "#7B4F36",
             place: "#4A6B53",
             period: "#5A6B7C",
             subject: "#7E6B8F",
@@ -1493,9 +1611,20 @@ def generate():
 
         // Initialize Cytoscape with elements
         function initCytoscape(elements) {{
+            let safeElements = elements;
+            if (elements && elements.nodes && elements.edges) {{
+                const nodeIds = new Set(elements.nodes.map(n => (n.data ? n.data.id : n.id)));
+                safeElements = {{
+                    nodes: elements.nodes,
+                    edges: elements.edges.filter(e => {{
+                        const d = e.data || e;
+                        return nodeIds.has(d.source) && nodeIds.has(d.target);
+                    }})
+                }};
+            }}
             cy = cytoscape({{
                 container: document.getElementById("cy"),
-                elements: elements,
+                elements: safeElements,
                 style: [
                     {{
                         selector: "node",
@@ -1622,6 +1751,25 @@ def generate():
                         }}
                     }},
                     {{
+                        selector: "edge[label = 'documents']",
+                        style: {{
+                            "width": 1.5,
+                            "line-color": "#7B4F36",
+                            "target-arrow-color": "#7B4F36",
+                            "line-style": "dashed",
+                            "opacity": 0.75
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasAuthor']",
+                        style: {{
+                            "width": 1.4,
+                            "line-color": "#C85A32",
+                            "target-arrow-color": "#C85A32",
+                            "opacity": 0.75
+                        }}
+                    }},
+                    {{
                         selector: ".dimmed",
                         style: {{
                             "opacity": 0.1
@@ -1686,12 +1834,14 @@ def generate():
         function getNodeByIdFlexible(id) {{
             if (!cy || !id) return null;
             const strId = String(id).trim();
-            const cleanId = strId.replace(/^(col_|per_|org_)/, '');
+            const cleanId = strId.replace(/^(col_|per_|org_|pub_|plc_)/, '');
             const candidates = [
                 strId,
                 `col_${{cleanId}}`,
                 `per_${{cleanId}}`,
                 `org_${{cleanId}}`,
+                `pub_${{cleanId}}`,
+                `plc_${{cleanId}}`,
                 cleanId,
                 (cleanId === "1792170" ? "iuenna_root" : null)
             ].filter(Boolean);
@@ -1702,6 +1852,14 @@ def generate():
                     return found;
                 }}
             }}
+            // Fallback: search by arche_id data property
+            const byArcheId = cy.nodes().filter(n => String(n.data("arche_id")) === cleanId);
+            if (byArcheId && byArcheId.length > 0) return byArcheId.first();
+
+            // Fallback: search by exact label match
+            const byLabel = cy.nodes().filter(n => (n.data("label") || "").toLowerCase() === strId.toLowerCase());
+            if (byLabel && byLabel.length > 0) return byLabel.first();
+
             return null;
         }}
 
@@ -1989,6 +2147,102 @@ def generate():
                 profileBox.style.display = "none";
             }}
 
+            // Publication Profile Box
+            const pubBox = document.getElementById("drawerPublicationBox");
+            if (d.type === "publication") {{
+                pubBox.style.display = "block";
+                const pubInfo = publicationsData && (publicationsData[d.arche_id] || publicationsData[d.id]);
+                const authors = (pubInfo && pubInfo.authors) || d.authors || [];
+                const authorsList = Array.isArray(authors) ? authors : (authors ? [authors] : []);
+                const year = (pubInfo && pubInfo.date) || d.year;
+                const journal = (pubInfo && (pubInfo.journal || pubInfo.publisher)) || d.journal || d.publisher;
+                const pages = (pubInfo && pubInfo.pages) || d.pages;
+                const url = (pubInfo && pubInfo.url) || d.url || d.pid;
+
+                const authorsRow = document.getElementById("drawerPubAuthorsRow");
+                const authorsVal = document.getElementById("drawerPubAuthorsVal");
+                if (authorsList && authorsList.length > 0 && authorsList[0]) {{
+                    authorsRow.style.display = "flex";
+                    authorsVal.textContent = authorsList.join(", ");
+                }} else {{
+                    authorsRow.style.display = "none";
+                }}
+
+                const yearRow = document.getElementById("drawerPubYearRow");
+                const yearVal = document.getElementById("drawerPubYearVal");
+                if (year) {{
+                    yearRow.style.display = "flex";
+                    yearVal.textContent = year;
+                }} else {{
+                    yearRow.style.display = "none";
+                }}
+
+                const journalRow = document.getElementById("drawerPubJournalRow");
+                const journalVal = document.getElementById("drawerPubJournalVal");
+                if (journal) {{
+                    journalRow.style.display = "flex";
+                    journalVal.textContent = journal;
+                }} else {{
+                    journalRow.style.display = "none";
+                }}
+
+                const pagesRow = document.getElementById("drawerPubPagesRow");
+                const pagesVal = document.getElementById("drawerPubPagesVal");
+                if (pages) {{
+                    pagesRow.style.display = "flex";
+                    pagesVal.textContent = pages;
+                }} else {{
+                    pagesRow.style.display = "none";
+                }}
+
+                const urlRow = document.getElementById("drawerPubUrlRow");
+                const urlLink = document.getElementById("drawerPubUrlLink");
+                const urlVal = document.getElementById("drawerPubUrlVal");
+                if (url) {{
+                    urlRow.style.display = "flex";
+                    urlLink.href = url;
+                    urlVal.textContent = url.length > 35 ? url.substring(0, 32) + "..." : url;
+                }} else {{
+                    urlRow.style.display = "none";
+                }}
+            }} else {{
+                pubBox.style.display = "none";
+            }}
+
+            // Linked Publications for Collections/Folders
+            const linkedPubsBox = document.getElementById("drawerLinkedPubsBox");
+            const linkedPubsList = document.getElementById("drawerLinkedPubsList");
+            const linkedPubsCount = document.getElementById("drawerLinkedPubsCount");
+            if (d.type && (d.type.startsWith("folder") || d.type === "subcollection" || d.type === "root" || d.type === "collection")) {{
+                const incomingPubEdges = cy.edges(`[target = "${{node.id()}}"][label = 'documents']`);
+                if (incomingPubEdges.length > 0) {{
+                    linkedPubsBox.style.display = "block";
+                    linkedPubsCount.textContent = incomingPubEdges.length;
+                    linkedPubsList.innerHTML = "";
+                    incomingPubEdges.forEach(edge => {{
+                        const pubNode = edge.source();
+                        const li = document.createElement("li");
+                        li.className = "relation-item";
+                        li.innerHTML = `
+                            <span class="relation-target"><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> ${{pubNode.data("label")}}</span>
+                            <span class="relation-label">${{pubNode.data("year") || "Publikation"}}</span>
+                        `;
+                        li.addEventListener("click", () => {{
+                            pubNode.show();
+                            cy.center(pubNode);
+                            cy.zoom({{ level: 2.0, position: pubNode.position() }});
+                            openInspector(pubNode);
+                            highlightNeighbors(pubNode);
+                        }});
+                        linkedPubsList.appendChild(li);
+                    }});
+                }} else {{
+                    linkedPubsBox.style.display = "none";
+                }}
+            }} else {{
+                linkedPubsBox.style.display = "none";
+            }}
+
             // Temporal / Excavation Campaign Box
             const tempBox = document.getElementById("drawerTemporalBox");
             const tempCamp = document.getElementById("drawerTemporalCampaign");
@@ -2175,7 +2429,7 @@ def generate():
             const resHelpText = document.getElementById("drawerResHelpText");
 
             const isFolderLike = d.type && (d.type.startsWith("folder") || d.type === "subcollection" || d.type === "collection");
-            if (isFolderLike && corpusResources.length > 0) {{
+            if (isFolderLike && corpusResources && corpusResources.length > 0) {{
                 resBox.style.display = "block";
                 const archeId = String(d.arche_id || (d.id ? d.id.replace("col_", "") : ""));
                 
@@ -2879,105 +3133,234 @@ def generate():
         const searchInput = document.getElementById("searchInput");
         const searchDropdown = document.getElementById("searchDropdown");
 
+        function highlightMatch(text, tokens) {{
+            if (!text || !tokens || !tokens.length) return text || "";
+            let result = String(text);
+            tokens.forEach(tok => {{
+                if (!tok || tok.length < 1) return;
+                const idx = result.toLowerCase().indexOf(tok.toLowerCase());
+                if (idx !== -1) {{
+                    const matched = result.substring(idx, idx + tok.length);
+                    result = result.substring(0, idx) + "<mark>" + matched + "</mark>" + result.substring(idx + tok.length);
+                }}
+            }});
+            return result;
+        }}
+
         function setupSearch() {{
             let debounceTimer = null;
+            let currentFocusIndex = -1;
+
+            function selectItem(itemEl) {{
+                if (!itemEl) return;
+                const targetType = itemEl.getAttribute("data-target-type");
+                const targetId = itemEl.getAttribute("data-target-id");
+                const targetArcheId = itemEl.getAttribute("data-target-arche-id") || targetId;
+                const targetTitle = itemEl.getAttribute("data-target-title");
+
+                searchDropdown.style.display = "none";
+                searchInput.value = targetTitle;
+                currentFocusIndex = -1;
+
+                if (targetType === "resource") {{
+                    focusResourceInGraph(targetId);
+                }} else {{
+                    focusCollectionNodeInGraph(targetArcheId || targetId);
+                }}
+            }}
+
+            function updateVisualSelection() {{
+                const allItems = searchDropdown.querySelectorAll(".search-item");
+                allItems.forEach((el, idx) => {{
+                    if (idx === currentFocusIndex) {{
+                        el.classList.add("selected");
+                        el.scrollIntoView({{ block: "nearest", behavior: "smooth" }});
+                    }} else {{
+                        el.classList.remove("selected");
+                    }}
+                }});
+            }}
+
+            searchInput.addEventListener("keydown", function(e) {{
+                const allItems = searchDropdown.querySelectorAll(".search-item");
+                if (searchDropdown.style.display !== "block" || allItems.length === 0) return;
+
+                if (e.key === "ArrowDown") {{
+                    e.preventDefault();
+                    currentFocusIndex = (currentFocusIndex + 1) % allItems.length;
+                    updateVisualSelection();
+                }} else if (e.key === "ArrowUp") {{
+                    e.preventDefault();
+                    currentFocusIndex = (currentFocusIndex - 1 + allItems.length) % allItems.length;
+                    updateVisualSelection();
+                }} else if (e.key === "Enter") {{
+                    e.preventDefault();
+                    if (currentFocusIndex >= 0 && currentFocusIndex < allItems.length) {{
+                        selectItem(allItems[currentFocusIndex]);
+                    }} else if (allItems.length > 0) {{
+                        selectItem(allItems[0]);
+                    }}
+                }} else if (e.key === "Escape") {{
+                    searchDropdown.style.display = "none";
+                    currentFocusIndex = -1;
+                    this.blur();
+                }}
+            }});
+
             searchInput.addEventListener("input", function() {{
                 clearTimeout(debounceTimer);
                 const query = this.value.trim().toLowerCase();
                 if (!query) {{
                     searchDropdown.style.display = "none";
+                    currentFocusIndex = -1;
                     return;
                 }}
 
                 debounceTimer = setTimeout(() => {{
                     searchDropdown.innerHTML = "";
-                    const macroMatches = cy.nodes().filter(n => {{
-                        const label = (n.data("label") || "").toLowerCase();
-                        const full = (n.data("full_title") || "").toLowerCase();
-                        const archeId = (n.data("arche_id") || "").toLowerCase();
-                        const orcid = (n.data("orcid") || "").toLowerCase();
-                        const affil = (n.data("affiliation") || "").toLowerCase();
-                        return label.includes(query) || full.includes(query) || archeId.includes(query) || orcid.includes(query) || affil.includes(query);
+                    currentFocusIndex = -1;
+                    const tokens = query.split(/\s+/).filter(Boolean);
+
+                    // 1. Filter Structured ARCHE Index (706 entities)
+                    let matchedEntities = [];
+                    if (searchIndex && searchIndex.length > 0) {{
+                        matchedEntities = searchIndex.filter(item => {{
+                            const textToSearch = [
+                                item.label,
+                                item.sublabel,
+                                item.arche_id,
+                                ...(item.tokens || [])
+                            ].join(" ").toLowerCase();
+                            return tokens.every(tok => textToSearch.includes(tok));
+                        }});
+                    }}
+
+                    // Group by categories
+                    const categoryGroups = {{
+                        "Forscher:innen": [],
+                        "Sammlungen & Ordner": [],
+                        "Publikationen": [],
+                        "Institutionen": [],
+                        "Fundorte": []
+                    }};
+
+                    const seenIds = new Set();
+
+                    matchedEntities.forEach(ent => {{
+                        const cat = ent.category || "Sammlungen & Ordner";
+                        if (!categoryGroups[cat]) categoryGroups[cat] = [];
+                        if (!seenIds.has(ent.arche_id || ent.id)) {{
+                            seenIds.add(ent.arche_id || ent.id);
+                            categoryGroups[cat].push(ent);
+                        }}
                     }});
 
+                    // 2. Search ARCHE Resources (Corpus)
                     let corpusMatches = [];
-                    if (corpusResources && corpusResources.length > 0) {{
+                    if (corpusResources && corpusResources.length > 0 && query.length >= 2) {{
                         corpusMatches = corpusResources.filter(r => {{
-                            return r.title.toLowerCase().includes(query) ||
-                                   r.pid.toLowerCase().includes(query) ||
-                                   r.place.toLowerCase().includes(query) ||
-                                   r.subjs.some(s => s.toLowerCase().includes(query));
+                            const searchStr = `${{r.title}} ${{r.pid}} ${{r.place}} ${{r.folder}} ${{(r.subjs || []).join(" ")}}`.toLowerCase();
+                            return tokens.every(tok => searchStr.includes(tok));
                         }}).slice(0, 15);
                     }}
 
-                    if (macroMatches.length === 0 && corpusMatches.length === 0) {{
-                        searchDropdown.innerHTML = '<div style="padding: 8px 12px; font-size: 0.78rem; color: #888;">Kein passender Eintrag unter 20.788 ARCHE-Objekten gefunden</div>';
+                    let totalMatches = Object.values(categoryGroups).reduce((sum, g) => sum + g.length, 0) + corpusMatches.length;
+
+                    if (totalMatches === 0) {{
+                        searchDropdown.innerHTML = '<div class="search-no-results"><i class="fa-solid fa-magnifying-glass" style="margin-bottom: 6px; font-size: 1.2rem; display: block; opacity: 0.5;"></i>Keine passenden ARCHE-Einträge gefunden</div>';
                         searchDropdown.style.display = "block";
                         return;
                     }}
 
-                    if (macroMatches.length > 0) {{
+                    let globalIndex = 0;
+
+                    const catIcons = {{
+                        "Forscher:innen": "fa-user-tie",
+                        "Sammlungen & Ordner": "fa-folder-tree",
+                        "Publikationen": "fa-book-open",
+                        "Institutionen": "fa-building-columns",
+                        "Fundorte": "fa-map-pin"
+                    }};
+
+                    Object.keys(categoryGroups).forEach(catName => {{
+                        const items = categoryGroups[catName];
+                        if (!items || items.length === 0) return;
+
                         const header = document.createElement("div");
-                        header.className = "search-section-header";
-                        header.textContent = `Struktur- & Kontext-Knoten (${{macroMatches.length}})`;
+                        header.className = "search-category-header";
+                        header.innerHTML = `<span><i class="fa-solid ${{catIcons[catName] || "fa-layer-group"}}"></i> ${{catName}}</span> <span>${{items.length}}</span>`;
                         searchDropdown.appendChild(header);
 
-                        macroMatches.slice(0, 5).forEach(node => {{
-                            const item = document.createElement("div");
-                            item.className = "search-item";
-                            item.innerHTML = `
-                                <span style="width: 8px; height: 8px; border-radius: 50%; background: ${{node.data("color") || "#888"}}; display: inline-block;"></span>
-                                <div style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                    <strong>${{node.data("label")}}</strong>
-                                    <div style="font-size: 0.7rem; color: var(--text-muted);">${{node.data("type_label") || node.data("type")}}</div>
+                        items.slice(0, 8).forEach(item => {{
+                            const itemEl = document.createElement("div");
+                            itemEl.className = "search-item";
+                            itemEl.setAttribute("data-index", globalIndex++);
+                            itemEl.setAttribute("data-target-type", item.type);
+                            itemEl.setAttribute("data-target-id", item.id);
+                            itemEl.setAttribute("data-target-arche-id", item.arche_id || item.id);
+                            itemEl.setAttribute("data-target-title", item.label);
+
+                            const highlightedTitle = highlightMatch(item.label, tokens);
+                            const highlightedSub = highlightMatch(item.sublabel || (item.arche_id ? "ARCHE ID: " + item.arche_id : ""), tokens);
+
+                            itemEl.innerHTML = `
+                                <div class="search-item-icon" style="background: ${{item.color || "#888"}};">
+                                    <i class="fa-solid ${{item.icon || "fa-cube"}}"></i>
                                 </div>
+                                <div class="search-item-body">
+                                    <div class="search-item-title">${{highlightedTitle}}</div>
+                                    <div class="search-item-sub">${{highlightedSub}}</div>
+                                </div>
+                                <span class="search-item-badge">${{item.arche_id ? "#" + item.arche_id : item.type}}</span>
                             `;
-                            item.addEventListener("click", () => {{
-                                searchDropdown.style.display = "none";
-                                searchInput.value = node.data("label");
-                                node.show();
-                                cy.center(node);
-                                cy.zoom({{ level: 2.0, position: node.position() }});
-                                openInspector(node);
-                                highlightNeighbors(node);
-                            }});
-                            searchDropdown.appendChild(item);
+
+                            itemEl.addEventListener("click", () => selectItem(itemEl));
+                            searchDropdown.appendChild(itemEl);
                         }});
-                    }}
+                    }});
 
                     if (corpusMatches.length > 0) {{
                         const header = document.createElement("div");
-                        header.className = "search-section-header";
-                        header.textContent = `ARCHE-Ressourcen (Dateien / Funde) • ${{corpusMatches.length}} Treffer`;
+                        header.className = "search-category-header";
+                        header.innerHTML = `<span><i class="fa-solid fa-file-lines"></i> Dateien &amp; Primärressourcen</span> <span>${{corpusMatches.length}}</span>`;
                         searchDropdown.appendChild(header);
 
                         corpusMatches.forEach(res => {{
-                            const item = document.createElement("div");
-                            item.className = "search-item";
-                            item.innerHTML = `
-                                <i class="fa-solid ${{ftypeIcons[res.type] || "fa-file"}}" style="color: ${{ftypeColors[res.type] || "#3D7068"}}; font-size: 0.85rem;"></i>
-                                <div style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                    <strong style="color: var(--primary);">${{res.title}}</strong>
-                                    <div style="font-size: 0.68rem; color: var(--text-muted);">${{res.place}} • PID: ${{res.pid.split("/").pop()}}</div>
+                            const itemEl = document.createElement("div");
+                            itemEl.className = "search-item";
+                            itemEl.setAttribute("data-index", globalIndex++);
+                            itemEl.setAttribute("data-target-type", "resource");
+                            itemEl.setAttribute("data-target-id", res.id);
+                            itemEl.setAttribute("data-target-arche-id", res.id);
+                            itemEl.setAttribute("data-target-title", res.title);
+
+                            const highlightedTitle = highlightMatch(res.title, tokens);
+                            const highlightedSub = highlightMatch(`${{res.folder}} • ${{res.place}}`, tokens);
+
+                            itemEl.innerHTML = `
+                                <div class="search-item-icon" style="background: ${{ftypeColors[res.type] || "#3D7068"}};">
+                                    <i class="fa-solid ${{ftypeIcons[res.type] || "fa-file"}}"></i>
                                 </div>
-                                <span style="font-size: 0.68rem; background: #EDE8E0; padding: 1px 5px; border-radius: 3px;">Im Graph</span>
+                                <div class="search-item-body">
+                                    <div class="search-item-title">${{highlightedTitle}}</div>
+                                    <div class="search-item-sub">${{highlightedSub}}</div>
+                                </div>
+                                <span class="search-item-badge">Ressource</span>
                             `;
-                            item.addEventListener("click", () => {{
-                                searchDropdown.style.display = "none";
-                                searchInput.value = res.title;
-                                focusResourceInGraph(res.id);
-                            }});
-                            searchDropdown.appendChild(item);
+
+                            itemEl.addEventListener("click", () => selectItem(itemEl));
+                            searchDropdown.appendChild(itemEl);
                         }});
                     }}
 
                     searchDropdown.style.display = "block";
-                }}, 180);
+                }}, 120);
             }});
 
             document.addEventListener("click", (e) => {{
                 if (!document.querySelector(".search-box-wrapper").contains(e.target)) {{
                     searchDropdown.style.display = "none";
+                    currentFocusIndex = -1;
                 }}
             }});
         }}
@@ -3133,6 +3516,17 @@ def generate():
                         }}, 400);
                     }}
                 }}, 150);
+            }}
+            const searchParam = urlParams.get("search") || urlParams.get("s");
+            if (searchParam) {{
+                setTimeout(() => {{
+                    const sInput = document.getElementById("searchInput");
+                    if (sInput) {{
+                        sInput.value = searchParam;
+                        sInput.dispatchEvent(new Event("input", {{ bubbles: true }}));
+                        sInput.focus();
+                    }}
+                }}, 300);
             }}
         }})();
     </script>

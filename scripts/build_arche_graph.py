@@ -72,6 +72,7 @@ def build_graph():
         places_data = json.load(f)
 
     # Flatten collection tree
+    root_node = root_tree.get("root", root_tree)
     collections = []
     def flatten_tree(node, parent_id=None):
         c = dict(node)
@@ -81,7 +82,7 @@ def build_graph():
         for ch in children:
             flatten_tree(ch, node["arche_id"])
 
-    flatten_tree(root_tree)
+    flatten_tree(root_node)
     print(f"[✓] Flattened {len(collections)} collections from tree.")
 
     nodes = []
@@ -337,6 +338,11 @@ def build_graph():
     for lc in licenses:
         nodes.append({"data": lc})
         add_edge({"id": f"edge_lic_{lc['id']}_root", "source": "iuenna_root", "target": lc["id"], "label": "hasLicense", "predicate": "schema:hasLicense"})
+
+    # Ensure 100% graph referential integrity: no edge can reference a non-existent node
+    node_id_set = set(n["data"]["id"] for n in nodes)
+    valid_edges = [e for e in edges if e["data"]["source"] in node_id_set and e["data"]["target"] in node_id_set]
+    edges = valid_edges
 
     # 9. Assemble Graph Payload
     graph_payload = {

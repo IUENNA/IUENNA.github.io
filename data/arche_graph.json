@@ -4,9 +4,9 @@
     "arche_uri": "https://id.acdh.oeaw.ac.at/iuenna",
     "top_collection_id": "1792170",
     "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
-    "generated_at": "2026-09-08T15:59:44Z",
+    "generated_at": "2026-09-08T16:12:25Z",
     "total_nodes": 504,
-    "total_edges": 1410,
+    "total_edges": 1405,
     "total_collections": 434,
     "total_persons": 21,
     "total_organisations": 9,
@@ -14,7 +14,7 @@
     "total_items": 20788,
     "total_resources": 20555,
     "total_size": "356.68 GB",
-    "duration_seconds": 0.006
+    "duration_seconds": 0.012
   },
   "elements": {
     "nodes": [
@@ -31797,15 +31797,6 @@
       },
       {
         "data": {
-          "id": "edge_member_per_66763_org_48505",
-          "source": "per_66763",
-          "target": "org_48505",
-          "label": "isMemberOf",
-          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-        }
-      },
-      {
-        "data": {
           "id": "edge_member_per_75187_org_37483",
           "source": "per_75187",
           "target": "org_37483",
@@ -31932,24 +31923,6 @@
       },
       {
         "data": {
-          "id": "edge_member_per_1756752_org_48505",
-          "source": "per_1756752",
-          "target": "org_48505",
-          "label": "isMemberOf",
-          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-        }
-      },
-      {
-        "data": {
-          "id": "edge_member_per_1756754_org_41760",
-          "source": "per_1756754",
-          "target": "org_41760",
-          "label": "isMemberOf",
-          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-        }
-      },
-      {
-        "data": {
           "id": "edge_member_per_1756755_org_1756728",
           "source": "per_1756755",
           "target": "org_1756728",
@@ -31968,27 +31941,9 @@
       },
       {
         "data": {
-          "id": "edge_org_member_org_3313_org_48505",
-          "source": "org_3313",
-          "target": "org_48505",
-          "label": "isMemberOf",
-          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-        }
-      },
-      {
-        "data": {
           "id": "edge_org_member_org_37483_org_21003",
           "source": "org_37483",
           "target": "org_21003",
-          "label": "isMemberOf",
-          "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-        }
-      },
-      {
-        "data": {
-          "id": "edge_org_member_org_255675_org_504765",
-          "source": "org_255675",
-          "target": "org_504765",
           "label": "isMemberOf",
           "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
         }
