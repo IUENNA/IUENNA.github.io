@@ -64,6 +64,8 @@ def load_foundations(path):
                 continue
             lines = raw.split("\n")
             title = lines[0].replace("## ", "").strip()
+            if title in ["User", "Beaver"]:
+                continue
             body = "\n".join(lines[1:]).strip()
 
             sec_id = f"found_{lang}_" + re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")
@@ -73,7 +75,12 @@ def load_foundations(path):
 
             # German classification
             if lang == "de":
-                if "Mikroregion" in title:
+                if "Forschungsgeschichte" in title:
+                    sec_id = "found_de_forschungsgeschichte"
+                    keywords = ["forschungsgeschichte", "winkler", "hans winkler", "rudolf egger", "egger", "glaser", "franz glaser", "piccottini", "pollak", "marianne pollak", "ladstätter", "jabornegg-altenfels", "hauser", "grabungen", "ausgrabung", "pioniere"]
+                    node_id = "top_iuenna"
+                    category = "Forschungsgeschichte & Pioniere"
+                elif "Mikroregion" in title:
                     sec_id = "found_de_mikroregion"
                     keywords = ["mikroregion", "jauntal", "podjuna", "karawanken", "luschasattel", "virunum", "celeia", "römerstraße", "kulturlandschaft", "siedlungslandschaft"]
                     node_id = "col_1792417"
@@ -88,6 +95,16 @@ def load_foundations(path):
                     keywords = ["hemmaberg", "pilgerzentrum", "pilger", "höhensiedlung", "kirchen", "doppelkirche", "baptisterium", "reliquien", "mosaik", "mosaikböden", "rosaliengrotte", "hemma", "dorothea", "jouenat", "arianisch", "ostgoten", "spätantike", "wallfahrt"]
                     node_id = "col_1792212"
                     category = "Spätantikes Pilgerzentrum"
+                elif "Vertiefende Aspekte" in title or "Alltag" in title:
+                    sec_id = "found_de_alltag_wirtschaft"
+                    keywords = ["alltag", "wirtschaft", "langzeitnutzung", "keramik", "24848", "bronzezeit", "heiligtum", "iuppiter", "abfallgrube", "ernährung", "speisezettel", "getreide", "dinkel", "roggen", "rindfleisch", "schwein", "schaf", "ziege", "weinamphoren", "afrikanische sigillata", "forstenpointner", "ladstätter"]
+                    node_id = "col_1792415"
+                    category = "Alltag, Ernährung & Wirtschaft"
+                elif "Bioarchäologie" in title:
+                    sec_id = "found_de_bioarchaeologie"
+                    keywords = ["bioarchäologie", "bioarchaeologie", "anthropologie", "archäozoologie", "archäobotanik", "skelette", "fußprothese", "fussprothese", "prothese", "amputation", "eisenring", "holzstumpf", "binder", "schädeldeformation", "schädelverformung", "turmschädel", "bandagieren", "ostgoten", "ostgotenzeit", "demografie", "geschlechterverteilung", "kindersterblichkeit", "ad sanctos", "adna", "pollak"]
+                    node_id = "col_1792415"
+                    category = "Bioarchäologie & Anthropologie"
                 elif "Stefan" in title:
                     sec_id = "found_de_st_stefan"
                     keywords = ["st. stefan", "sankt stefan", "šteben", "steben", "villa", "villenanlage", "landgut", "super-villa", "hypokaust", "hypokaustheizung", "apsiden", "georadar", "geomagnetik", "römerzeit", "barbius vercaius", "winkler"]
@@ -98,14 +115,19 @@ def load_foundations(path):
                     keywords = ["iuenna", "projekt", "iuenna-projekt", "godigital", "öaw", "öai", "kärnten.museum", "acdh-ch", "bda", "ardig", "arche", "fair", "care", "open science", "geopackage", "wma", "web-mapping", "datenrettung", "repositorium"]
                     node_id = "top_iuenna"
                     category = "Digital Humanities Projekt"
+                elif "Datenumfang" in title or "Nachhaltigkeit" in title:
+                    sec_id = "found_de_datenumfang_nachhaltigkeit"
+                    keywords = ["datenumfang", "nachhaltigkeit", "digitale nachhaltigkeit", "open access", "lizenzen", "cc by 4.0", "cc0", "350 gb", "650 gb", "200 fundstellen", "20000 objekte", "arche", "fair", "care", "simonsberg", "hangrutsch", "daten-upcycling", "datenrettung", "godigital", "hagmann", "reiner", "math"]
+                    node_id = "top_iuenna"
+                    category = "Dateninfrastruktur & Digitale Nachhaltigkeit"
                 elif "Neue Ergebnisse" in title or "Neubewertung" in title:
                     sec_id = "found_de_neubewertung"
-                    keywords = ["neubewertung", "tscherberg", "vicus", "katharinakogel", "straßenstation", "prospektion", "georadar", "geomagnetik", "christian gugl", "gugl", "gräberstraße", "celeia-virunum", "virunum-celeia", "hauptstraße", "barbius vercaius", "winkler"]
+                    keywords = ["neubewertung", "tscherberg", "vicus", "katharinakogel", "straßenstation", "prospektion", "georadar", "geomagnetik", "christian gugl", "gugl", "gräberstraße", "celeia-virunum", "virunum-celeia", "hauptstraße", "barbius vercaius", "winkler", "münzen", "münzschatz", "322", "tainacherfeld", "reiner", "profant"]
                     node_id = "col_1792169"
                     category = "Topografische Neubewertung & Prospektion"
                 elif "Literatur" in title:
                     sec_id = "found_de_literatur"
-                    keywords = ["literatur", "quellen", "publikationen", "glaser", "hagmann", "reiner", "pollak", "schwaiger", "gugl", "peer community journal"]
+                    keywords = ["literatur", "quellen", "publikationen", "glaser", "hagmann", "reiner", "pollak", "schwaiger", "gugl", "binder", "forstenpointner", "ladstätter", "peer community journal"]
                     node_id = None
                     category = "Fachliteratur & Referenzen"
 
@@ -113,7 +135,12 @@ def load_foundations(path):
             elif lang == "en":
                 category = "Historical & Archaeological Context"
                 keywords = [w.lower() for w in title.split() if len(w) > 3]
-                if "Microregion" in title:
+                if "History of Research" in title:
+                    sec_id = "found_en_history_of_research"
+                    keywords.extend(["history of research", "excavations", "winkler", "egger", "glaser", "pollak", "ladstätter"])
+                    node_id = "top_iuenna"
+                    category = "History of Research"
+                elif "Microregion" in title:
                     sec_id = "found_en_microregion"
                     keywords.extend(["microregion", "jauntal", "podjuna", "landscape", "karawanks"])
                     node_id = "col_1792417"
@@ -125,6 +152,14 @@ def load_foundations(path):
                     sec_id = "found_en_hemmaberg"
                     keywords.extend(["hemmaberg", "pilgrimage", "double churches", "churches", "late antique"])
                     node_id = "col_1792212"
+                elif "Further Perspectives" in title or "Daily Life" in title:
+                    sec_id = "found_en_daily_life_economy"
+                    keywords.extend(["daily life", "economy", "diet", "pottery", "ceramics", "refuse pit", "amphorae", "bronze age"])
+                    node_id = "col_1792415"
+                elif "Bioarchaeology" in title:
+                    sec_id = "found_en_bioarchaeology"
+                    keywords.extend(["bioarchaeology", "anthropology", "prosthesis", "foot prosthesis", "cranial deformation", "demography", "binder", "pollak", "skeletons"])
+                    node_id = "col_1792415"
                 elif "Stefan" in title:
                     sec_id = "found_en_st_stefan"
                     keywords.extend(["st. stefan", "villa", "estate", "hypocaust", "barbius vercaius", "winkler"])
@@ -133,19 +168,31 @@ def load_foundations(path):
                     sec_id = "found_en_iuenna_project"
                     keywords.extend(["iuenna project", "arche", "open science", "fair", "care", "geopackage"])
                     node_id = "top_iuenna"
+                elif "Data Volume" in title:
+                    sec_id = "found_en_data_volume"
+                    keywords.extend(["data volume", "accessibility", "sustainability", "simonsberg", "landslide", "cc by 4.0", "arche"])
+                    node_id = "top_iuenna"
                 elif "New Results" in title:
                     sec_id = "found_en_neubewertung"
-                    keywords.extend(["reassessment", "tscherberg", "vicus", "katharinakogel", "gugl", "geophysics"])
+                    keywords.extend(["reassessment", "tscherberg", "vicus", "katharinakogel", "gugl", "geophysics", "coin hoard", "322 coins"])
                     node_id = "col_1792169"
 
             # Slovenian classification
             elif lang == "sl":
                 category = "Zgodovinski in arheološki kontekst"
                 keywords = [w.lower() for w in title.split() if len(w) > 3]
-                if "mikroregija" in title.lower():
+                if "zgodovina raziskav" in title.lower():
+                    sec_id = "found_sl_zgodovina_raziskav"
+                    keywords.extend(["zgodovina raziskav", "izkopavanja", "winkler", "egger", "glaser", "pollak"])
+                    node_id = "top_iuenna"
+                elif "mikroregija" in title.lower():
                     sec_id = "found_sl_mikroregija"
                     keywords.extend(["mikroregija", "podjuna", "jauntal", "karavanke", "pokrajina"])
                     node_id = "col_1792417"
+                elif "projekt" in title.lower():
+                    sec_id = "found_sl_projekt"
+                    keywords.extend(["projekt iuenna", "arche", "odprta znanost", "fair", "care"])
+                    node_id = "top_iuenna"
                 elif "iuenna" in title.lower():
                     sec_id = "found_sl_iuenna_globasnitz"
                     keywords.extend(["iuenna", "globasnitz", "globasnica", "cestna postaja", "vicus", "grobišče"])
@@ -154,25 +201,43 @@ def load_foundations(path):
                     sec_id = "found_sl_hemmaberg"
                     keywords.extend(["hemmaberg", "gora sv. heme", "romarsko središče", "dvojne cerkve", "cerkve"])
                     node_id = "col_1792212"
+                elif "poglobljeni vidiki" in title.lower() or "vsakdanje" in title.lower():
+                    sec_id = "found_sl_vsakdanje_zivljenje"
+                    keywords.extend(["vsakdanje življenje", "gospodarstvo", "keramika", "prehrana", "amfore", "odpadna jama"])
+                    node_id = "col_1792415"
+                elif "bioarheologija" in title.lower():
+                    sec_id = "found_sl_bioarheologija"
+                    keywords.extend(["bioarheologija", "antropologija", "proteza", "nožna proteza", "deformacije lobanj", "grobišče", "binder", "pollak"])
+                    node_id = "col_1792415"
                 elif "stefan" in title.lower() or "šteben" in title.lower():
                     sec_id = "found_sl_stefan"
                     keywords.extend(["šteben", "st. stefan", "rimska vila", "hipokavst", "barbius vercaius"])
                     node_id = "col_1792411"
-                elif "projekt" in title.lower():
-                    sec_id = "found_sl_projekt"
-                    keywords.extend(["projekt iuenna", "arche", "odprta znanost", "fair", "care"])
+                elif "obseg podatkov" in title.lower():
+                    sec_id = "found_sl_obseg_podatkov"
+                    keywords.extend(["obseg podatkov", "dostopnost", "digitalna trajnost", "arche", "plaz", "simonsberg"])
                     node_id = "top_iuenna"
                 elif "novi rezultati" in title.lower():
                     sec_id = "found_sl_novi_rezultati"
-                    keywords.extend(["nova presoja", "tscherberg", "vicus", "geofizika", "gugl"])
+                    keywords.extend(["nova presoja", "tscherberg", "vicus", "geofizika", "gugl", "zaklad novcev", "322 novcev"])
                     node_id = "col_1792169"
 
-            # Citations extraction including (Author et al.) and (Author, Year)
-            citations = re.findall(r"\(([A-Z][a-zA-Z\s,–-]+(?:,\s*\d{4}[^\)]*|\s+et\s+al\.[^\)]*))\)", body)
+            # Citations extraction including Zotero links and standard parens
+            citations = []
+            zotero_cits = re.findall(r"\[([A-Z][^\]\n]+,\s*\d{4}[^\]\n]*)\]\(zotero:", body)
+            for zc in zotero_cits:
+                clean_zc = re.sub(r",\s*page\s*\d+", "", zc).strip()
+                if clean_zc not in citations:
+                    citations.append(clean_zc)
+            standard_cits = re.findall(r"\(([A-Z][a-zA-Z\s,–-]+(?:,\s*\d{4}[^\)]*|\s+et\s+al\.[^\)]*|\d{4}))\)", body)
+            for sc in standard_cits:
+                sc = sc.strip()
+                if sc not in citations:
+                    citations.append(sc)
             if "Christian Gugl et al." in body and "Christian Gugl et al." not in citations:
                 citations.append("Christian Gugl et al.")
             if sec_id.endswith("literatur"):
-                citations = ["Glaser (2002)", "Christian Gugl et al.", "Hagmann & Reiner (2023)", "Pollak (2023)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)"]
+                citations = ["Glaser (2002)", "Christian Gugl et al.", "Hagmann & Reiner (2023)", "Pollak (2023)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)", "Binder et al. (2016)", "Forstenpointner et al. (2003)"]
 
             paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
             summary = paragraphs[0] if paragraphs else ""

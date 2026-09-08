@@ -487,14 +487,154 @@ SYNTHETIC_CORPUS = [
             "Wer leitet das Projekt IUENNA?",
             "Hagmann IUENNA"
         ],
-        "answer": "Dr. Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Laura Waldhart und Sandra Reiner konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
+        "answer": "Dr. Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Franziska Reiner (geb. Waldhart) und Nicola Math leitete und konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
         "citations": ["Hagmann & Reiner (2023)", "Hagmann & Waldhart (2023)"],
         "keywords": ["dominik hagmann", "hagmann", "projektleiter", "öai", "öaw", "fair", "retrodigitalisierung", "arche"],
         "graph_node_id": "top_iuenna"
     },
 
     # -------------------------------------------------------------
-    # 6. ENGLISCHE KERNFRAGEN (Trilingual Support)
+    # 6. VERTIEFENDE ASPEKTE: BIOARCHÄOLOGIE, ALLTAG, MÜNZEN & METHODEN
+    # -------------------------------------------------------------
+    {
+        "id": "qa_bioarch_fuss_prothese",
+        "lang": "de",
+        "category": "Bioarchäologie & Anthropologie",
+        "question": "Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?",
+        "variations": [
+            "Fußprothese Hemmaberg",
+            "Älteste Prothese Europas Hemmaberg",
+            "Prothese 6. Jahrhundert Hemmaberg",
+            "Grab Fußprothese Hemmaberg",
+            "Wer trug die Prothese am Hemmaberg?",
+            "Amputation Hemmaberg"
+        ],
+        "answer": "2013 wurde im Gräberfeld auf dem Gipfelplateau des Hemmabergs (6. Jh. n. Chr.) das Skelett eines erwachsenen Mannes mit einer Fußprothese entdeckt (Binder et al. 2016). Dem Individuum war der linke Fuß im Knöchelbereich amputiert worden; die Wunde verheilte vollständig. Anstelle des Fußes trug er eine kunstvolle Konstruktion aus einem Holzstumpf mit Eisenring, die ihm das Gehen ermöglichte, was durch sekundäre Arthrosen an Knien und Schultergürtel bestätigt wird. Es handelt sich um eine der ältesten nachgewiesenen Prothesen des Frühmittelalters in Europa und ein herausragendes Zeugnis spätantiker medizinischer Versorgung und sozialer Fürsorge.",
+        "citations": ["Binder et al. (2016)", "Binder (2018)", "Glaser (2014)"],
+        "keywords": ["fußprothese", "prothese", "amputation", "eisenring", "holzstumpf", "binder", "hemmaberg", "bioarchäologie", "6. jahrhundert", "arthrose", "medizin"],
+        "graph_node_id": "col_1792415"
+    },
+    {
+        "id": "qa_bioarch_schaedel_deformation",
+        "lang": "de",
+        "category": "Bioarchäologie & Anthropologie",
+        "question": "Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?",
+        "variations": [
+            "Künstliche Schädeldeformation Globasnitz",
+            "Turmschädel Globasnitz",
+            "Schädelverformung Ostgoten Globasnitz",
+            "Schädeldeformationen Ostgotenzeit",
+            "Bandagieren Säuglinge Schädel Globasnitz"
+        ],
+        "answer": "Ja, im ostgotenzeitlichen Gräberfeld von Globasnitz (5./6. Jh. n. Chr.) wurden bei mindestens 10 Individuen künstliche Schädeldeformationen (sogenannte Turmschädel) nachgewiesen (Pollak 2017, 2021). Diese wurden im Säuglingsalter durch straffes Bandagieren mit Tüchern und Brettchen erzielt. Die Praxis war ein elitäres Status- und Identitätsmerkmal unter ostgermanischem bzw. nomadischem Einfluss (Ostgoten, Alanen, Hunnen) und belegt die enge Einbindung der Siedlungsgemeinschaft in die völkerwanderungszeitliche Elitenkultur.",
+        "citations": ["Pollak (2017)", "Pollak (2021)", "Ladstätter (2000)"],
+        "keywords": ["schädeldeformation", "turmschädel", "schädelverformung", "bandagieren", "globasnitz", "ostgoten", "pollak", "völkerwanderungszeit", "status"],
+        "graph_node_id": "col_1792169"
+    },
+    {
+        "id": "qa_bioarch_demografie",
+        "lang": "de",
+        "category": "Bioarchäologie & Anthropologie",
+        "question": "Welche demografischen Unterschiede zeigen die Bestattungen in Globasnitz und auf dem Hemmaberg?",
+        "variations": [
+            "Demografie Gräberfelder Globasnitz Hemmaberg",
+            "Anthropologie Globasnitz Hemmaberg",
+            "Kindersterblichkeit Hemmaberg",
+            "Geschlechterverteilung Gräberfeld Globasnitz",
+            "aDNA Studie Globasnitz Hemmaberg"
+        ],
+        "answer": "Das Gräberfeld von Globasnitz (422 dokumentierte Gräber) weist eine bemerkenswert ausgewogene Demografie auf: 122 Männer, 119 Frauen und 102 Kinder/Jugendliche, was einer normalen sesshaften Dorfgemeinschaft entspricht (Pollak 2023). Auf dem Gipfelplateau des Hemmabergs hingegen ist der Anteil an Kindergräbern bei den intramuralen und ad sanctos-Bestattungen überproportional hoch (z.B. 21 Kinder/Jugendliche bei nur 7 Erwachsenen in einem Grabungsbereich), was den Wunsch nach sakralem Schutz im Heiltum widerspiegelt. Eine umfassende aDNA-Studie an rund 160 Individuen soll zudem Verwandtschaftsverhältnisse und Herkunftsmuster klären.",
+        "citations": ["Pollak (2023)", "Ladstätter (2000)", "Binder et al. (2016)"],
+        "keywords": ["demografie", "männer", "frauen", "kinder", "kindersterblichkeit", "ad sanctos", "adna", "hemmaberg", "globasnitz", "pollak", "anthropologie"],
+        "graph_node_id": "col_1792415"
+    },
+    {
+        "id": "qa_hemmaberg_alltag_wirtschaft",
+        "lang": "de",
+        "category": "Hemmaberg",
+        "question": "Was verraten die archäologischen Funde über Alltag, Ernährung und Wirtschaft auf dem Hemmaberg?",
+        "variations": [
+            "Alltag und Wirtschaft Hemmaberg",
+            "Ernährung auf dem Hemmaberg",
+            "Keramik Hemmaberg 24848",
+            "Abfallgrube 5. Jahrhundert Hemmaberg",
+            "Was aßen die Menschen auf dem Hemmaberg?",
+            "Weinamphoren Hemmaberg"
+        ],
+        "answer": "Ausgrabungen auf dem Hemmaberg erbrachten 24.848 dokumentierte Keramikfragmente, die eine Besiedlung von der Bronzezeit über das römische Iuppiter-Heiligtum bis in die Spätantike belegen. Eine um 450 n. Chr. verfüllte Abfallgrube lieferte exakte Einblicke in Alltag und Speisezettel: Die pflanzlichen Reste bestanden zu 96,3 % aus Getreide (Dinkel, Roggen, Gerste), ergänzt durch Ackerbohnen und Linsen. Bei den Tierknochen dominierte Rindfleisch vor Schwein und Schaf/Ziege. Mediterrane Feinkeramik (African Red Slip Ware) und Weinamphoren aus der Ägäis und dem östlichen Mittelmeer beweisen, dass die Höhensiedlung trotz Krisenzeiten über blühende Fernhandelsnetzwerke versorgt wurde (Forstenpointner et al. 2003; Ladstätter 2000).",
+        "citations": ["Forstenpointner et al. (2003)", "Ladstätter (2000)", "Glaser (2002)"],
+        "keywords": ["alltag", "wirtschaft", "ernährung", "keramik", "24848", "abfallgrube", "getreide", "dinkel", "roggen", "rindfleisch", "afrikanische sigillata", "amphoren", "forstenpointner"],
+        "graph_node_id": "col_1792415"
+    },
+    {
+        "id": "qa_globasnitz_muenzschatz",
+        "lang": "de",
+        "category": "Topografische Neubewertung",
+        "question": "Was ist über den Münzschatzfund von Globasnitz bekannt?",
+        "variations": [
+            "Münzschatz Globasnitz",
+            "Römischer Münzschatz Globasnitz",
+            "322 Münzen Globasnitz",
+            "Münzhort Globasnitz 1946"
+        ],
+        "answer": "1946 wurde im Ortszentrum von Globasnitz (im Bereich des römischen vicus) ein Hortfund von 322 römischen Münzen geborgen (Reiner & Profant 2025; Glaser 2002). Der Fundkomplex besteht überwiegend aus Bronzemünzen des 3. und 4. Jahrhunderts n. Chr. und belegt sowohl die florierende Geldwirtschaft an der Kreuzung lokaler Verkehrswege als auch Krisen und Verbergungshorizonte in der Spätantike.",
+        "citations": ["Reiner & Profant (2025)", "Glaser (2002)", "Piccottini (1978)"],
+        "keywords": ["münzschatz", "hortfund", "322 münzen", "globasnitz", "vicus", "spätantike", "reiner", "profant", "glaser"],
+        "graph_node_id": "col_1792169"
+    },
+    {
+        "id": "qa_geophysik_methodik_reiner",
+        "lang": "de",
+        "category": "Topografische Neubewertung",
+        "question": "Welche geophysikalischen Prospektionsmethoden wurden in Globasnitz und St. Stefan eingesetzt?",
+        "variations": [
+            "Geophysik Methodik Globasnitz",
+            "Gradiometer und Georadar Globasnitz",
+            "Reiner Profant 2025 Prospektion",
+            "Wie wurde die Siedlung Globasnitz erforscht?",
+            "Geräte Geophysik IUENNA"
+        ],
+        "answer": "In den Kampagnen 2020–2023 wurden modernste zerstörungsfreie Methoden kombiniert (Reiner & Profant 2025; Schwaiger & Reiner 2022): Ein motorisiertes 5-Kanal-Fluxgate-Gradiometer (0,5 m Sondenabstand) erfasste 21 Hektar geomagnetisch. Hochauflösendes Bodenradar (Georadar / GPR, 400 MHz) durchleuchtete rund 4 Hektar bis in 2 Meter Tiefe. Alle Messungen wurden per RTK-GPS (Leica GS18 T) zentimetergenau georeferenziert. Die Datenverarbeitung in ReflexW und ArcGIS Pro ermöglichte die exakte Rekonstruktion der 3 m breiten Nord-Süd-Straße im vicus und der Villenflügel von St. Stefan.",
+        "citations": ["Reiner & Profant (2025)", "Schwaiger & Reiner (2022)"],
+        "keywords": ["geophysik", "fluxgate", "gradiometer", "400 mhz", "georadar", "gpr", "rtk-gps", "reiner", "profant", "schwaiger", "arcgis", "prospektion"],
+        "graph_node_id": "col_1792169"
+    },
+    {
+        "id": "qa_iuenna_datenumfang_nachhaltigkeit",
+        "lang": "de",
+        "category": "IUENNA-Projekt",
+        "question": "Welchen Datenumfang hat das Projekt IUENNA und wie ist die Zugänglichkeit geregelt?",
+        "variations": [
+            "Datenumfang IUENNA",
+            "Open Data IUENNA",
+            "Lizenzen IUENNA ARCHE",
+            "Wie viele Daten hat IUENNA?",
+            "Simonsberg Hangrutsch Daten",
+            "Digitale Nachhaltigkeit IUENNA"
+        ],
+        "answer": "Das Go!Digital-3.0-Projekt (2023–2024, Leitung: D. Hagmann & F. Reiner mit N. Math) bündelt über ein Jahrhundert Forschung zu mehr als 200 Fundstellen. Die archivierte Sammlung in ARCHE umfasst über 20.000 digitale Objekte und mehr als 350 GB (aus 200 GB analogen Rohdaten wurden 650 GB hochauflösende Scans und Geodaten). Der Zugang ist gestuft geregelt: Rund 20 % der Datensätze sind als Open Access (CC BY 4.0) frei downloadbar, 100 % der Metadaten stehen unter CC0, sensible Fundortdaten werden zum Schutz der Bodendenkmale auf Anfrage bereitgestellt. Die Dringlichkeit der digitalen Rettung zeigte der Hangrutsch am Simonsberg nach Extremwetter am 6. August 2023.",
+        "citations": ["Hagmann & Reiner (2025)", "Hagmann et al. (2024)"],
+        "keywords": ["datenumfang", "350 gb", "650 gb", "200 fundstellen", "20000 objekte", "open access", "cc by 4.0", "cc0", "simonsberg", "hangrutsch", "daten-upcycling", "nachhaltigkeit"],
+        "graph_node_id": "top_iuenna"
+    },
+    {
+        "id": "qa_forschungsgeschichte_ueberblick",
+        "lang": "de",
+        "category": "Forschungsgeschichte & Personen",
+        "question": "Wie verlief die Forschungsgeschichte im Jauntal von den Anfängen bis heute?",
+        "variations": [
+            "Forschungsgeschichte Jauntal",
+            "Wer hat wann im Jauntal geforscht?",
+            "Geschichte der Ausgrabungen Hemmaberg Globasnitz",
+            "Pioniere der Archäologie Jauntal"
+        ],
+        "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende Ostgräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
+        "citations": ["Glaser (1982)", "Pollak (2023)", "Hagmann & Reiner (2025)"],
+        "keywords": ["forschungsgeschichte", "mönche", "jabornegg-altenfels", "hauser", "winkler", "egger", "glaser", "pollak", "ausgrabungen", "chronologie"],
+        "graph_node_id": "top_iuenna"
+    },
+    # -------------------------------------------------------------
+    # 7. ENGLISCHE KERNFRAGEN (Trilingual Support)
     # -------------------------------------------------------------
     {
         "id": "qa_en_tscherberg_reassessment",
@@ -529,8 +669,56 @@ SYNTHETIC_CORPUS = [
         "graph_node_id": "col_1792411"
     },
 
+    {
+        "id": "qa_en_bioarch_foot_prosthesis",
+        "lang": "en",
+        "category": "Bioarchaeology",
+        "question": "What is known about the early medieval foot prosthesis from Hemmaberg?",
+        "variations": [
+            "Foot prosthesis Hemmaberg",
+            "Oldest prosthesis in Europe Hemmaberg",
+            "6th century prosthesis Hemmaberg",
+            "Amputation Hemmaberg"
+        ],
+        "answer": "In 2013, the grave of an adult male from the 6th century AD was discovered in the Hemmaberg summit cemetery (Binder et al. 2016). The individual had undergone a completely healed amputation of the left foot at ankle level. He wore an elaborate prosthesis consisting of a wooden peg with an iron ring and leather/organic fastenings, allowing functional mobility confirmed by secondary arthrosis in knee and shoulder. It represents one of the earliest securely contextualised functional prostheses from early medieval Europe.",
+        "citations": ["Binder et al. (2016)", "Binder (2018)"],
+        "keywords": ["prosthesis", "foot prosthesis", "amputation", "iron ring", "wooden peg", "hemmaberg", "binder", "6th century"],
+        "graph_node_id": "col_1792415"
+    },
+    {
+        "id": "qa_en_bioarch_cranial_deformation",
+        "lang": "en",
+        "category": "Bioarchaeology",
+        "question": "Were artificial cranial deformations discovered in the Globasnitz cemetery?",
+        "variations": [
+            "Artificial cranial deformation Globasnitz",
+            "Elongated skulls Globasnitz",
+            "Head binding Ostrogoths Globasnitz",
+            "Tower skulls Globasnitz"
+        ],
+        "answer": "Yes, at least 10 individuals with intentional artificial cranial deformations were identified in the Ostrogothic-period cemetery of Globasnitz (Pollak 2017, 2021). The elongation was achieved during infancy through tight bandage wrapping. This custom was an elite marker influenced by eastern Germanic and Eurasian nomad populations (Ostrogoths, Alans, Huns) during the Migration Period in 5th- and 6th-century Noricum.",
+        "citations": ["Pollak (2017)", "Pollak (2021)"],
+        "keywords": ["cranial deformation", "head binding", "globasnitz", "ostrogoths", "migration period", "pollak", "artificial elongation"],
+        "graph_node_id": "col_1792169"
+    },
+    {
+        "id": "qa_en_data_volume_sustainability",
+        "lang": "en",
+        "category": "IUENNA Project",
+        "question": "What is the data volume and digital preservation policy of the IUENNA project?",
+        "variations": [
+            "Data volume IUENNA",
+            "Open Access IUENNA ARCHE",
+            "Simonsberg landslide data preservation",
+            "How many files in IUENNA?"
+        ],
+        "answer": "Funded by the Austrian Academy of Sciences (Go!Digital 3.0, 2023–2024; D. Hagmann & F. Reiner with N. Math), IUENNA collated research from over 200 sites. The ARCHE repository houses 20,788 digital resources and over 356 GB (scaling from 200 GB raw documentation to 650 GB high-resolution assets). Access is tiered: approx. 20% is open access under CC BY 4.0, 100% of metadata is CC0, while sensitive archaeological spatial data is restricted upon request to protect monuments. The urgency of digital preservation was highlighted by the Simonsberg landslide on 6 August 2023.",
+        "citations": ["Hagmann & Reiner (2025)", "Hagmann et al. (2024)"],
+        "keywords": ["data volume", "arche", "356 gb", "open access", "cc by 4.0", "cc0", "simonsberg", "landslide", "sustainability", "fair"],
+        "graph_node_id": "top_iuenna"
+    },
     # -------------------------------------------------------------
-    # 7. SLOWENISCHE KERNFRAGEN (Podjuna / Koroška)
+    # 8. SLOWENISCHE KERNFRAGEN (Podjuna / Koroška)
     # -------------------------------------------------------------
     {
         "id": "qa_sl_iuenna_tscherberg",
@@ -563,7 +751,55 @@ SYNTHETIC_CORPUS = [
         "citations": ["Christian Gugl et al.", "Schwaiger & Reiner (2022)"],
         "keywords": ["šteben", "st. stefan", "rimska vila", "kopališče", "hipokavst", "apside", "podjuna"],
         "graph_node_id": "col_1792411"
+    },
+    {
+        "id": "qa_sl_bioarheologija_proteza",
+        "lang": "sl",
+        "category": "Bioarheologija",
+        "question": "Kaj je znano o zgodnjesrednjeveški nožni protezi s Hemmaberga?",
+        "variations": [
+            "Nožna proteza Hemmaberg",
+            "Najstarejša proteza v Evropi Hemmaberg",
+            "Amputacija Hemmaberg",
+            "Proteza 6. stoletje Hemmaberg"
+        ],
+        "answer": "Leta 2013 je bil na vršnem platoju Hemmaberga (grob iz 6. stoletja n. št.) odkrit moški z zaceljeno amputacijo levega stopala v gležnju (Binder et al. 2016). Namesto stopala je nosil protezo iz lesenega čepa in železnega obroča. Rentgen, CT in artroza na kolenih ter ramenih potrjujejo funkcionalno rabo proteze (morda ob opori). Gre za enega najstarejših evropskih primerov proteze neposredno ob uporabniku in izjemen dokaz medicinske nege ter socialne podpore v pozni antiki.",
+        "citations": ["Binder et al. (2016)", "Binder (2018)"],
+        "keywords": ["nožna proteza", "proteza", "amputacija", "hemmaberg", "železni obroč", "binder", "6. stoletje", "bioarheologija"],
+        "graph_node_id": "col_1792415"
+    },
+    {
+        "id": "qa_sl_bioarheologija_lobanje",
+        "lang": "sl",
+        "category": "Bioarheologija",
+        "question": "Ali so bile na grobišču v Globasnici odkrite umetne deformacije lobanj?",
+        "variations": [
+            "Umetne deformacije lobanj Globasnica",
+            "Deformirane lobanje Globasnitz",
+            "Povijanje glav vzhodni goti Globasnica"
+        ],
+        "answer": "Da, na grobišču iz časa Vzhodnih Gotov v Globasnici (5. in 6. stoletje n. št.) so bile pri najmanj 10 posameznikih ugotovljene kranijske deformacije (umetno podaljšane lobanje; Pollak 2017, 2021). Deformacijo so dosegli v zgodnjem otroštvu s tesnim povijanjem z obvezami. Šlo je za elitni znak identitete in družbenega statusa pod vplivom vzhodnogermanskih in nomadskih skupin (Vzhodni Goti, Alani, Huni).",
+        "citations": ["Pollak (2017)", "Pollak (2021)"],
+        "keywords": ["deformacije lobanj", "umetna deformacija", "globasnica", "globasnitz", "vzhodni goti", "grobišče", "pollak"],
+        "graph_node_id": "col_1792169"
+    },
+    {
+        "id": "qa_sl_obseg_podatkov_iuenna",
+        "lang": "sl",
+        "category": "Projekt IUENNA",
+        "question": "Kakšen je obseg podatkov in digitalna trajnost projekta IUENNA?",
+        "variations": [
+            "Obseg podatkov IUENNA",
+            "Odprti podatki IUENNA ARCHE",
+            "Zemeljski plaz Simonsberg",
+            "Koliko podatkov ima IUENNA?"
+        ],
+        "answer": "Projekt IUENNA (Go!Digital 3.0, 2023–2024, vodji: D. Hagmann in F. Reiner z N. Math) združuje več kot stoletje raziskav na več kot 200 najdiščih. Zbirka v repozitoriju ARCHE obsega več kot 20.000 digitalnih objektov in več kot 356 GB podatkov (skupaj 650 GB skenov in digitaliziranih gradiv). Dostop je stopenjski: ca. 20 % je prosto dostopnih (CC BY 4.0), 100 % metapodatkov je CC0, občutljive lokacijske točke pa so na voljo na zahtevo za zaščito dediščine. Pomen digitalnega ohranjanja je poudaril tudi plaz na Simonsbergu 6. avgusta 2023.",
+        "citations": ["Hagmann & Reiner (2025)", "Hagmann et al. (2024)"],
+        "keywords": ["obseg podatkov", "arche", "356 gb", "cc by 4.0", "cc0", "simonsberg", "plaz", "trajnost", "fair", "podjuna"],
+        "graph_node_id": "top_iuenna"
     }
+
 ]
 
 def generate_fine_tune_datasets():

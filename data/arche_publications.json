@@ -1,0 +1,476 @@
+{
+  "1756763": {
+    "id": "pub_1756763",
+    "arche_id": "1756763",
+    "type": "Publication",
+    "title": "Geophysikalische Messungen in und um Globasnitz/Globasnica",
+    "author_ids": [
+      "1756730",
+      "94306"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "66-74",
+    "publisher": "Rudolfinum - Jahrbuch des Landesmuseums für Kärnten",
+    "series": "2021",
+    "url": "https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756763",
+    "authors_formatted": "Franziska Reiner, Helmut Schwaiger"
+  },
+  "1756764": {
+    "id": "pub_1756764",
+    "arche_id": "1756764",
+    "type": "Publication",
+    "title": "IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A «para-description».",
+    "author_ids": [
+      "1756725",
+      "1756730"
+    ],
+    "year": "2023",
+    "issued_date": "2023-01-01",
+    "pages": "article nr. e120",
+    "publisher": "Peer Community Journal",
+    "series": "3",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756764",
+    "authors_formatted": "Dominik Hagmann, Franziska Reiner"
+  },
+  "1756767": {
+    "id": "pub_1756767",
+    "arche_id": "1756767",
+    "type": "Publication",
+    "title": "Ausgrabungen im ostgotischen Gräberfeld von Globasnitz abgeschlossen",
+    "author_ids": [
+      "1756746"
+    ],
+    "year": "2009",
+    "issued_date": "2009-01-01",
+    "pages": "89-92",
+    "publisher": "Rudolfinum - Jahrbuch Des Landesmuseums Für Kärnten",
+    "series": "2008",
+    "url": "https://www.zobodat.at/pdf/Rudolfinum_2008_0089-0092.pdf",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756767",
+    "authors_formatted": "Josef Eitler"
+  },
+  "1756782": {
+    "id": "pub_1756782",
+    "arche_id": "1756782",
+    "type": "Publication",
+    "title": "Die römische Siedlung Iuenna und die frühchristlichen Kirchen am Hemmaberg: Ein Führer durch die Ausgrabungen und durch das Museum in der Gemeinde Globasnitz mit einem Anhang zu den antiken Denkmälern des Jauntales. Verlag des Geschichtsvereins für Kärnten.",
+    "author_ids": [
+      "1756744"
+    ],
+    "year": "1982",
+    "issued_date": "1982-01-01",
+    "pages": "",
+    "publisher": "Geschichtsverein für Kärnten",
+    "series": "",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756782",
+    "authors_formatted": "Franz Glaser"
+  },
+  "1756783": {
+    "id": "pub_1756783",
+    "arche_id": "1756783",
+    "type": "Publication",
+    "title": "Ausgrabungen im Westbereich der Straßenstation Iuenna (Globasnitz) im Jahr 2020",
+    "author_ids": [
+      "1756785"
+    ],
+    "year": "2021",
+    "issued_date": "2021-01-01",
+    "pages": "72-79",
+    "publisher": "Rudolfinum - Jahrbuch des Landesmuseums für Kärnten",
+    "series": "2000",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756783",
+    "authors_formatted": "Autor 1756785"
+  },
+  "1756784": {
+    "id": "pub_1756784",
+    "arche_id": "1756784",
+    "type": "Publication",
+    "title": "Provinzialrömische Archäologie  und Antike Numismatik  mit der Außenstelle Römermuseum Teurnia.",
+    "author_ids": [
+      "1756744"
+    ],
+    "year": "2021",
+    "issued_date": "2021-01-01",
+    "pages": "52-70",
+    "publisher": "Rudolfinum - Jahrbuch des Landesmuseums für Kärnten",
+    "series": "2020",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756784",
+    "authors_formatted": "Franz Glaser"
+  },
+  "1756809": {
+    "id": "pub_1756809",
+    "arche_id": "1756809",
+    "type": "Publication",
+    "title": "Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25)",
+    "author_ids": [
+      "1756746",
+      "1756755"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "",
+    "publisher": "Verlag des Landesmuseums für Kärnten",
+    "series": "",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756809",
+    "authors_formatted": "Josef Eitler, Yvonne Seidel"
+  },
+  "1756815": {
+    "id": "pub_1756815",
+    "arche_id": "1756815",
+    "type": "Publication",
+    "title": "Das frühchristliche Pilgerheiligtum auf dem Hemmaberg.",
+    "author_ids": [
+      "1756744"
+    ],
+    "year": "1991",
+    "issued_date": "1991-01-01",
+    "pages": "",
+    "publisher": "Geschichtsverein für Kärnten",
+    "series": "",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756815",
+    "authors_formatted": "Franz Glaser"
+  },
+  "1756816": {
+    "id": "pub_1756816",
+    "arche_id": "1756816",
+    "type": "Publication",
+    "title": "Das spätantike Gräberfeld auf dem Hemmaberg.",
+    "author_ids": [
+      "1756744"
+    ],
+    "year": "1985",
+    "issued_date": "1985-01-01",
+    "pages": "85-89",
+    "publisher": "Carinthia",
+    "series": "I (175)",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756816",
+    "authors_formatted": "Franz Glaser"
+  },
+  "1756857": {
+    "id": "pub_1756857",
+    "arche_id": "1756857",
+    "type": "Publication",
+    "title": "Prosthetics in antiquity—An early medieval wearer of a foot prosthesis (6th century AD) from Hemmaberg/Austria",
+    "author_ids": [
+      "1756744",
+      "1756746",
+      "1756751",
+      "75187"
+    ],
+    "year": "2016",
+    "issued_date": "2016-01-01",
+    "pages": "29-40",
+    "publisher": "International Journal of Paleopathology",
+    "series": "12",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756857",
+    "authors_formatted": "Franz Glaser, Josef Eitler, Michaela Binder, Sabine Ladstätter"
+  },
+  "1756858": {
+    "id": "pub_1756858",
+    "arche_id": "1756858",
+    "type": "Publication",
+    "title": "Die Heilige vom Hemmaberg: Cold Case einer Reliquie",
+    "author_ids": [],
+    "year": "2019",
+    "issued_date": "2019-01-01",
+    "pages": "",
+    "publisher": "Holzhausen Verlag",
+    "series": "2. Edition",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756858",
+    "authors_formatted": "Unbekannt"
+  },
+  "1756882": {
+    "id": "pub_1756882",
+    "arche_id": "1756882",
+    "type": "Publication",
+    "title": "Die materielle Kultur der Spätantike in den Ostalpen: Eine Fallstudie am Beispiel der westlichen Doppelkirchenanlage auf dem Hemmaberg.",
+    "author_ids": [
+      "75187"
+    ],
+    "year": "2000",
+    "issued_date": "2000-01-01",
+    "pages": "",
+    "publisher": "Verlag der Österreichischen Akademie der Wissenschaften",
+    "series": "",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756882",
+    "authors_formatted": "Sabine Ladstätter"
+  },
+  "1756884": {
+    "id": "pub_1756884",
+    "arche_id": "1756884",
+    "type": "Publication",
+    "title": "KG Globasnitz, OG Globasnitz.",
+    "author_ids": [
+      "94306"
+    ],
+    "year": "2024",
+    "issued_date": "2024-01-01",
+    "pages": "127",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "60/2021",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756884",
+    "authors_formatted": "Helmut Schwaiger"
+  },
+  "1756886": {
+    "id": "pub_1756886",
+    "arche_id": "1756886",
+    "type": "Publication",
+    "title": "Bericht über die Grabungen an der Wallanlage am Hemmaberg. Globasnitz/Kärnten.",
+    "author_ids": [
+      "1756741",
+      "75187",
+      "94306"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "D1250-D1265",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "59/2020",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756886",
+    "authors_formatted": "Elise Baudouin, Sabine Ladstätter, Helmut Schwaiger"
+  },
+  "1756888": {
+    "id": "pub_1756888",
+    "arche_id": "1756888",
+    "type": "Publication",
+    "title": "KG Globasnitz, OG Globasnitz.",
+    "author_ids": [
+      "1756741",
+      "75187",
+      "94306"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "144-145",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "59/2020",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756888",
+    "authors_formatted": "Elise Baudouin, Sabine Ladstätter, Helmut Schwaiger"
+  },
+  "1756890": {
+    "id": "pub_1756890",
+    "arche_id": "1756890",
+    "type": "Publication",
+    "title": "Bericht über die Grabungen an der Wallanlage der Spätantiken Höhensiedlung Hemmaberg in Globasnitz/Kärnten.",
+    "author_ids": [
+      "46220",
+      "94306"
+    ],
+    "year": "2024",
+    "issued_date": "2024-01-01",
+    "pages": "D2429-D2445",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "60/2021",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756890",
+    "authors_formatted": "Autor 46220, Helmut Schwaiger"
+  },
+  "1756912": {
+    "id": "pub_1756912",
+    "arche_id": "1756912",
+    "type": "Publication",
+    "title": "Evidence of non-adult vitamin C deficiency in three early medieval sites in the Jaun/Podjuna Valley, Carinthia, Austria",
+    "author_ids": [
+      "1756748",
+      "1756752",
+      "1756754",
+      "75187"
+    ],
+    "year": "2024",
+    "issued_date": "2024-01-01",
+    "pages": "18-29",
+    "publisher": "International Journal of Paleopathology",
+    "series": "45",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756912",
+    "authors_formatted": "Magdalena T. Srienc-Ściesiek, Nina Richards, Sylvia Kirchengast, Sabine Ladstätter"
+  },
+  "1756918": {
+    "id": "pub_1756918",
+    "arche_id": "1756918",
+    "type": "Publication",
+    "title": "Weitere frühmittelalterliche Gräber in Jaunstein",
+    "author_ids": [
+      "1756746"
+    ],
+    "year": "2011",
+    "issued_date": "2011-01-01",
+    "pages": "73-75",
+    "publisher": "Rudolfinum - Jahrbuch Des Landesmuseums Für Kärnten",
+    "series": "2009/2010",
+    "url": "https://www.zobodat.at/pdf/Rudolfinum_2009_2010_0073-0075.pdf",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1756918",
+    "authors_formatted": "Josef Eitler"
+  },
+  "1757010": {
+    "id": "pub_1757010",
+    "arche_id": "1757010",
+    "type": "Publication",
+    "title": "KG Jaunstein, OG Globasnitz.",
+    "author_ids": [
+      "1756748",
+      "75187",
+      "94306"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "145-146",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "59/2020",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1757010",
+    "authors_formatted": "Magdalena T. Srienc-Ściesiek, Sabine Ladstätter, Helmut Schwaiger"
+  },
+  "1757012": {
+    "id": "pub_1757012",
+    "arche_id": "1757012",
+    "type": "Publication",
+    "title": "Bericht über die Grabungen in und um die Filialkirche St. Johannes der Täufer in Jaunstein, Kärnten. 2. - 27. Juli",
+    "author_ids": [
+      "94306"
+    ],
+    "year": "2020",
+    "issued_date": "2020-01-01",
+    "pages": "D769-D786",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "57/2018",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1757012",
+    "authors_formatted": "Helmut Schwaiger"
+  },
+  "1757025": {
+    "id": "pub_1757025",
+    "arche_id": "1757025",
+    "type": "Publication",
+    "title": "Bericht. Geophysikalische Prospektion Römische Straße Globasnitz-Jaunstein",
+    "author_ids": [
+      "1756730",
+      "75187",
+      "94306"
+    ],
+    "year": "2022",
+    "issued_date": "2022-01-01",
+    "pages": "D1274-1280",
+    "publisher": "Fundberichte aus Österreich",
+    "series": "59/2020",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1757025",
+    "authors_formatted": "Franziska Reiner, Sabine Ladstätter, Helmut Schwaiger"
+  },
+  "1757035": {
+    "id": "pub_1757035",
+    "arche_id": "1757035",
+    "type": "Publication",
+    "title": "Adopt, Adapt, and Share! FAIR Archeological Data for Studying Roman Rural Landscapes in Northern Noricum.",
+    "author_ids": [
+      "1756725"
+    ],
+    "year": "2024",
+    "issued_date": "2024-01-01",
+    "pages": "1-21",
+    "publisher": "Journal of Open Humanities Data",
+    "series": "10(13)",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1757035",
+    "authors_formatted": "Dominik Hagmann"
+  },
+  "1757169": {
+    "id": "pub_1757169",
+    "arche_id": "1757169",
+    "type": "Publication",
+    "title": "Der in Kärnten verlaufende Teil der Römerstraße Virunum – Celeia",
+    "author_ids": [],
+    "year": "2018",
+    "issued_date": "2018-01-01",
+    "pages": "105-113",
+    "publisher": "Carinthia",
+    "series": "I (208)",
+    "url": "",
+    "documents": [
+      "1792170"
+    ],
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1757169",
+    "authors_formatted": "Unbekannt"
+  }
+}

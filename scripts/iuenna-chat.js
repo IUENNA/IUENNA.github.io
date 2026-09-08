@@ -85,11 +85,13 @@
             <div class="chat-chips-container">
               <button class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
               <button class="chat-chip" data-query="Ist Globasnitz wirklich die römische Straßenstation Iuenna?">🏛️ Tscherberg vs. Globasnitz</button>
+              <button class="chat-chip" data-query="Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?">🦴 Fußprothese Hemmaberg</button>
+              <button class="chat-chip" data-query="Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?">💀 Schädeldeformationen</button>
               <button class="chat-chip" data-query="Was ist die Villenanlage von St. Stefan?">🏡 Villenanlage St. Stefan</button>
               <button class="chat-chip" data-query="Warum gibt es auf dem Hemmaberg Doppelkirchen?">⛪ Hemmaberg Doppelkirchen</button>
-              <button class="chat-chip" data-query="Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?">💀 Gräberfeld Globasnitz (440 Gräber)</button>
+              <button class="chat-chip" data-query="Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?">⚰️ Gräberfeld Globasnitz (425 Gräber)</button>
               <button class="chat-chip" data-query="Wer ist Marianne Pollak?">👤 Marianne Pollak</button>
-              <button class="chat-chip" data-query="Wer war L. Barbius Vercaius?">📜 Wer war L. Barbius Vercaius?</button>
+              <button class="chat-chip" data-query="Was ist über den Münzschatzfund von Globasnitz bekannt?">🪙 Münzschatz (322 Münzen)</button>
               <button class="chat-chip" data-query="Welche Rolle spielten die historischen Skizzen von Hans Winkler?">🎨 Hans Winkler Skizzen</button>
               <button class="chat-chip" data-query="Wie kann ich die Geodaten des Projekts direkt in QGIS nutzen?">🗺️ QGIS GeoPackage (.gpkg)</button>
             </div>
@@ -449,23 +451,35 @@
     const text = ((top.title || '') + ' ' + (top.text || '')).toLowerCase();
     const chips = [];
 
-    if (text.includes('glaser')) {
+    if (text.includes('prothese') || text.includes('amputation') || text.includes('binder')) {
+      chips.push({ query: 'Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?', label: '🦴 Fußprothese Hemmaberg' });
+      chips.push({ query: 'Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?', label: '💀 Schädeldeformationen' });
+      chips.push({ query: 'Welche demografischen Unterschiede zeigen die Bestattungen in Globasnitz und auf dem Hemmaberg?', label: '📊 Demografie & Bestattungen' });
+    } else if (text.includes('schädel') || text.includes('deformation') || text.includes('turmschädel')) {
+      chips.push({ query: 'Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?', label: '💀 Schädeldeformationen' });
+      chips.push({ query: 'Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?', label: '🦴 Fußprothese Hemmaberg' });
+      chips.push({ query: 'Warum wird das Gräberfeld von Globasnitz als Zeugnis einer \'Kontaktregion\' bezeichnet?', label: '🌍 Ostgoten & Kontaktregion' });
+    } else if (text.includes('münz') || text.includes('schatz') || text.includes('322')) {
+      chips.push({ query: 'Was ist über den Münzschatzfund von Globasnitz bekannt?', label: '🪙 Münzschatz (322 Münzen)' });
+      chips.push({ query: 'Welche geophysikalischen Prospektionsmethoden wurden in Globasnitz und St. Stefan eingesetzt?', label: '📡 Geophysik & Prospektion' });
+      chips.push({ query: 'Ist Globasnitz wirklich die römische Straßenstation Iuenna?', label: '🏛️ Tscherberg vs. Globasnitz' });
+    } else if (text.includes('glaser')) {
       chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Doppelkirchen Hemmaberg' });
       chips.push({ query: 'Gibt es Grabungspläne zum Hemmaberg?', label: '🗺️ Grabungspläne in ARCHE' });
       chips.push({ query: 'Wer ist Marianne Pollak?', label: '👤 Marianne Pollak' });
     } else if (text.includes('pollak')) {
-      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '💀 440 Gräber' });
+      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '💀 425 Gräber' });
+      chips.push({ query: 'Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?', label: '💀 Schädeldeformationen' });
       chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
-      chips.push({ query: 'Was wurde in Jaunstein gefunden?', label: '🏺 Gräberfeld Jaunstein' });
     } else if (text.includes('hemmaberg')) {
-      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
-      chips.push({ query: 'Gibt es Grabungspläne zum Hemmaberg?', label: '🗺️ Grabungspläne Hemmaberg' });
+      chips.push({ query: 'Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?', label: '🦴 Fußprothese (6. Jh.)' });
+      chips.push({ query: 'Was verraten die archäologischen Funde über Alltag, Ernährung und Wirtschaft auf dem Hemmaberg?', label: '🥣 Alltag & Ernährung' });
       chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Doppelkirchen' });
-      chips.push({ query: 'Was ist die Rosaliengrotte?', label: '💧 Rosaliengrotte' });
+      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
     } else if (text.includes('globasnitz') || text.includes('tscherberg') || text.includes('ostgräberfeld')) {
       chips.push({ query: 'Ist Globasnitz wirklich die römische Straßenstation Iuenna?', label: '🏛️ Tscherberg vs. Globasnitz' });
-      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '💀 440 Gräber' });
-      chips.push({ query: 'Wer ist Marianne Pollak?', label: '👤 Marianne Pollak' });
+      chips.push({ query: 'Was ist über den Münzschatzfund von Globasnitz bekannt?', label: '🪙 Münzschatz (322 Münzen)' });
+      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '⚰️ 425 Gräber' });
       chips.push({ query: 'Was ist die Villenanlage von St. Stefan?', label: '🏡 Villa St. Stefan' });
     } else if (text.includes('st. stefan') || text.includes('barbius') || text.includes('winkler')) {
       chips.push({ query: 'Wer war L. Barbius Vercaius?', label: '📜 L. Barbius Vercaius' });
