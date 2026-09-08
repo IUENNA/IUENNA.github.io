@@ -95,9 +95,13 @@ def classify_resource(title, spatial_cov):
         elif any(x in t_lower for x in ["fund", "kleinfund"]):
             col_node = "col_1792178"
             folder_label = "01_03_03_03_Funde"
-        elif any(x in t_lower for x in ["bio", "osteo"]):
-            col_node = "col_1792180"
-            folder_label = "01_03_03_05_Bioarchaeologie"
+        elif any(x in t_lower for x in ["bio", "osteo", "scurvy", "isotop", "anthropo"]):
+            if any(x in t_lower for x in [".xlsx", ".xls", ".csv", ".pdf", ".txt"]):
+                col_node = "col_1792205"
+                folder_label = "01_06_06_Bioarchaeologie"
+            else:
+                col_node = "col_1792180"
+                folder_label = "01_03_03_05_Bioarchaeologie"
         elif any(x in t_lower for x in ["zeich"]):
             col_node = "col_1792184"
             folder_label = "01_03_04_Zeichnungen"
@@ -133,9 +137,13 @@ def classify_resource(title, spatial_cov):
         elif any(x in t_lower for x in ["fund", "kleinfund", "keramik"]):
             col_node = "col_1792228"
             folder_label = "02_03_03_03_Funde"
-        elif any(x in t_lower for x in ["bio", "osteo"]):
-            col_node = "col_1792261"
-            folder_label = "02_03_03_05_Bioarchaeologie"
+        elif any(x in t_lower for x in ["bio", "osteo", "scurvy", "isotop", "anthropo"]):
+            if any(x in t_lower for x in [".xlsx", ".xls", ".csv", ".pdf", ".txt"]):
+                col_node = "col_1792290"
+                folder_label = "02_06_06_Bioarchaeologie"
+            else:
+                col_node = "col_1792261"
+                folder_label = "02_03_03_05_Bioarchaeologie"
         else:
             col_node = "col_1792222"
             folder_label = "02_03_03_Fotos"
@@ -156,6 +164,9 @@ def classify_resource(title, spatial_cov):
         elif any(x in t_lower for x in ["plan", "output"]):
             col_node = "col_1792406"
             folder_label = "03_07_Output"
+        elif any(x in t_lower for x in ["bio", "osteo", "scurvy", "isotop", "anthropo"]):
+            col_node = "col_1792404"
+            folder_label = "03_06_06_Bioarchaeologie"
         elif any(x in t_lower for x in ["befund", "grab"]):
             col_node = "col_1792310"
             folder_label = "03_03_03_02_Befunde"
@@ -181,15 +192,21 @@ def classify_resource(title, spatial_cov):
         col_code = "col_tal"
         col_node = "col_1792416"
         folder_label = "05_03_Raster"
-        if any(x in t_lower for x in ["db"]):
+        if any(x in t_lower for x in ["bio", "osteo", "scurvy", "isotop", "anthropo"]):
+            col_node = "col_1792567"
+            folder_label = "05_06_06_Bioarchaeologie"
+        elif any(x in t_lower for x in ["db", ".gpkg", ".shp"]):
             col_node = "col_1792423"
             folder_label = "05_05_Datenbanken"
         elif any(x in t_lower for x in ["text", "bericht"]):
             col_node = "col_1792568"
             folder_label = "05_06_Texte_Tabellen"
-        elif any(x in t_lower for x in ["output", "karte"]):
+        elif any(x in t_lower for x in ["output", "karte", "grenzen"]):
             col_node = "col_1792570"
             folder_label = "05_07_Output"
+        elif any(x in t_lower for x in [".jpg", ".jpeg"]):
+            col_node = "col_1792421"
+            folder_label = "05_03_03_Fotos"
             
     elif "_" in title and title[:2].isdigit():
         col_code = "col_ret"
@@ -214,6 +231,22 @@ def build_graph():
     
     geojson_path = os.path.join(project_root, "wma", "R00_WGS84.geojson")
     tree_path = os.path.join(data_dir, "arche_collections_tree.json")
+    direct_items_path = os.path.join(data_dir, "arche_direct_items.json")
+
+    # Load authoritative ARCHE direct items if available
+    direct_items = []
+    direct_by_pid = {}
+    direct_by_title = {}
+    if os.path.exists(direct_items_path):
+        print(f"[*] Loading authoritative direct ARCHE items from {direct_items_path}...")
+        with open(direct_items_path, "r", encoding="utf-8") as f:
+            direct_items = json.load(f)
+        for d_item in direct_items:
+            if d_item.get("pid"):
+                direct_by_pid[d_item["pid"]] = d_item
+            if d_item.get("title"):
+                direct_by_title[d_item["title"].lower().strip()] = d_item
+        print(f"[✓] Loaded {len(direct_items)} ARCHE direct items for exact parent mapping.")
 
     # 1. Load harvested collection tree
     if os.path.exists(tree_path):
@@ -307,6 +340,17 @@ def build_graph():
         
         col_code, col_node_id, folder_label = classify_resource(title, spatial)
         
+        # Override with exact ARCHE ontological parent if available!
+        d_match = direct_by_pid.get(pid) or direct_by_title.get(title.lower())
+        if d_match:
+            parent_cid = str(d_match["parent_cid"])
+            col_node_id = f"col_{parent_cid}"
+            if parent_cid in collections:
+                folder_label = collections[parent_cid].get("title", folder_label)
+                p_path = collections[parent_cid].get("path", [])
+                if len(p_path) > 1:
+                    col_code = p_path[1]
+
         subjs = [s.strip() for s in p.get("hasSubject", "").split(",") if s.strip()]
         for s in subjs:
             subj_counts[s] += 1
@@ -324,7 +368,7 @@ def build_graph():
             ftype = "vector"
         elif ext in [".ply", ".obj", ".stl"]:
             ftype = "3d"
-        elif ext in [".accdb", ".sqlite", ".db"]:
+        elif ext in [".accdb", ".sqlite", ".db", ".xlsx", ".xls", ".csv"]:
             ftype = "database"
         elif ext in [".pdf", ".doc", ".docx", ".txt"]:
             ftype = "document"
@@ -357,7 +401,63 @@ def build_graph():
             "coords": coords
         })
 
-    print(f"[✓] Processed {len(corpus_items)} ARCHE resources with live thumbnail links.")
+    # Append any ARCHE direct items not present in GeoJSON
+    existing_pids = set(c["pid"] for c in corpus_items if c.get("pid"))
+    existing_titles = set(c["title"].lower() for c in corpus_items)
+    
+    appended_count = 0
+    for item in direct_items:
+        if item.get("pid") and item["pid"] in existing_pids:
+            continue
+        if item.get("title") and item["title"].lower() in existing_titles:
+            continue
+        
+        title = item["title"]
+        pid = item.get("pid", "")
+        parent_cid = str(item["parent_cid"])
+        col_node_id = f"col_{parent_cid}"
+        matched_col = collections.get(parent_cid, {})
+        folder_label = matched_col.get("title", f"Ordner {parent_cid}")
+        breadcrumb = matched_col.get("path", ["IUENNA", folder_label])
+        spatial = matched_col.get("spatial", "Jauntal")
+        col_code = breadcrumb[1] if len(breadcrumb) > 1 else "col_top"
+        
+        ext = os.path.splitext(title)[1].lower()
+        if ext in [".tif", ".tiff", ".jpg", ".jpeg", ".png"]:
+            ftype = "image"
+        elif ext in [".shp", ".gpkg", ".dxf", ".dwg", ".geojson"]:
+            ftype = "vector"
+        elif ext in [".ply", ".obj", ".stl"]:
+            ftype = "3d"
+        elif ext in [".accdb", ".sqlite", ".db", ".xlsx", ".xls", ".csv"]:
+            ftype = "database"
+        elif ext in [".pdf", ".doc", ".docx", ".txt"]:
+            ftype = "document"
+        else:
+            ftype = "other"
+            
+        thumb_url = f"https://arche-thumbnails.acdh.oeaw.ac.at/?id={urllib.parse.quote(pid, safe='')}&width=360" if pid else ""
+        
+        corpus_items.append({
+            "id": f"res_{len(corpus_items)+1}",
+            "title": title,
+            "col": col_code,
+            "col_id": col_node_id,
+            "folder": folder_label,
+            "path": breadcrumb,
+            "place": spatial,
+            "subjs": ["ARCHE"],
+            "pid": pid,
+            "thumb_url": thumb_url,
+            "date": "n/a",
+            "type": ftype,
+            "coords": None
+        })
+        node_item_counts[col_node_id] += 1
+        col_counts[col_code] += 1
+        appended_count += 1
+
+    print(f"[✓] Processed {len(corpus_items)} ARCHE resources (including {appended_count} non-raster ARCHE files).")
 
     # Save updated collections tree
     tree_payload = {

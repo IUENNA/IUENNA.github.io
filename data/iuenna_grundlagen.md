@@ -1,14 +1,16 @@
+# Grundlagen zum IUENNA-Projekt
+
 # Grundlageninformation zu Hemmaberg, Iuenna, Globasnitz, St. Stefan und dem IUENNA‑Projekt
 
 ## Die archäologische Mikroregion im südlichen Jauntal
 
-Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, die römische Straßenstation Iuenna im Tal, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. (Hagmann and Reiner, 2023, p. 3)
+Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, der römische vicus von Globasnitz und die inzwischen umstrittene Lokalisierung der Straßenstation Iuenna, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. (Hagmann and Reiner, 2023, p. 3)
 
-Eine zentrale Rolle spielte die verkehrsgeografische Lage. Iuenna befand sich zwischen den norischen Städten **Virunum** und **Celeia** und lag zugleich in der Nähe eines Übergangs über die Karawanken. Neben der überregionalen Straßenverbindung dürfte daher auch der südlich von Globasnitz gelegene Luschasattel für die Entstehung und Bedeutung des Siedlungsplatzes ausschlaggebend gewesen sein. (Glaser, 2002, p. 2)
+Eine zentrale Rolle spielte die verkehrsgeografische Lage. Nach der traditionellen Lokalisierung befand sich Iuenna zwischen den norischen Städten **Virunum** und **Celeia** und lag zugleich in der Nähe eines Übergangs über die Karawanken. Neben der überregionalen Straßenverbindung dürfte daher auch der südlich von Globasnitz gelegene Luschasattel für die Entstehung und Bedeutung des Siedlungsplatzes ausschlaggebend gewesen sein. (Glaser, 2002, p. 2)
 
-## Iuenna und Globasnitz
+## Iuenna und Globasnitz: traditionelle Gleichsetzung und Neubewertung
 
-**Iuenna** bezeichnet die antike Straßenstation und Siedlung im Bereich des heutigen Globasnitz und Kleindorf. Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. (Glaser, 2002, p. 2)
+In der älteren Forschung wurde **Iuenna** mit der antiken Siedlung im Bereich des heutigen Globasnitz und Kleindorf gleichgesetzt. Die jüngste Gesamtauswertung stellt diese Identifikation jedoch infrage und unterscheidet zwischen dem vicus von Globasnitz und der möglicherweise bei Tscherberg zu lokalisierenden Straßenstation Iuenna. (Christian Gugl et al.) Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. (Glaser, 2002, p. 2)
 
 Die antike Siedlungszone liegt großteils unter dem heutigen Ortsgebiet von Globasnitz. Westlich des Ortes befand sich ein älterkaiserzeitliches Gräberfeld, während der spätantike beziehungsweise merowingerzeitliche Friedhof östlich des Ortskerns lag. Iuennas Bedeutung beruhte einerseits auf seiner Funktion als Straßenstation an mehreren Verkehrs- und Passverbindungen und andererseits auf seiner engen Beziehung zum Pilgerzentrum auf dem Hemmaberg. (Pollak, 2023, p. 141)
 
@@ -32,9 +34,9 @@ Die Größe der Kirchenräume, die Reliquienverehrung und das mutmaßliche Pilge
 
 Neben den Kirchen bestand auf dem Hemmaberg eine befestigte Siedlung mit Wohnbauten und handwerklichen Arbeitsplätzen. Nachgewiesen sind unter anderem Eisenverarbeitung, Töpferei, Textilproduktion sowie Hinweise auf Bronze- und Glasverarbeitung. Das Gräberfeld der Höhensiedlung wurde ungefähr von 400 bis zum Ende des 6. Jahrhunderts genutzt; das Fundmaterial deutet darauf hin, dass die spätantike Siedlung um 600 endete. (Glaser, 2002, p. 5)
 
-## St. Stefan (Šteben)
+## St. Stefan
 
-In **St. Stefan/Šteben**, südwestlich beziehungsweise im Umfeld von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. (Schwaiger and Reiner, 2022, p. 11)
+In **St. Stefan/Šteben**, rund 1,2 km nördlich von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. (Schwaiger and Reiner, 2022, p. 11)
 
 Das bislang prospektierte Areal umfasst etwa 7.700 Quadratmeter, wobei sich die Bebauung wahrscheinlich weiter nach Süden fortsetzt und dort teilweise von modernen Gebäuden überlagert wird. Die Gesamtheit der Strukturen erlaubt eine Interpretation als großes römisches Landgut. Die Anlage veranschaulicht damit die landwirtschaftliche und wirtschaftliche Erschließung des Umlandes von Iuenna. (Schwaiger and Reiner, 2022, p. 11) Die gelegentlich verwendete Bezeichnung „Super-Villa“ bringt die außergewöhnliche Größe zum Ausdruck; die genaue Datierung einzelner Bauphasen und die Frage einer Nutzung bis in die Spätantike bleiben jedoch Gegenstand weiterer Untersuchungen. (Hagmann and Reiner, 2023, p. 3)
 
@@ -52,9 +54,166 @@ Die 2025 veröffentlichte IUENNA-Datensammlung gliedert das Material in die Bere
 
 Damit ist IUENNA nicht nur ein Forschungsprojekt zur Geschichte des südlichen Jauntals. Es ist zugleich ein Modell dafür, wie heterogene Dokumentationen langjähriger archäologischer Untersuchungen gesichert, zusammengeführt, transparent erschlossen und für neue Fragestellungen wiederverwendbar gemacht werden können. (Hagmann and Reiner, 2023, p. 5)
 
-## Literatur & Quellen
+## Neue Ergebnisse und topografische Neubewertung
+
+Der Gedenkband-Beitrag führt die zwischen 2020 und 2023 gewonnenen Prospektionsdaten mit älteren Grabungs-, Fund- und Fernerkundungsdaten zusammen. In vier Messkampagnen wurden rund 21 ha geomagnetisch und zusätzlich etwa 4 ha mit Georadar untersucht. Dadurch lassen sich erstmals Umfang, innere Gliederung und verkehrsgeografische Einbindung der römischen Siedlungslandschaft um Globasnitz großräumig beurteilen. (Christian Gugl et al.)
+
+Für Globasnitz ergibt sich das Bild eines etwa 7–9 ha großen, nichtstädtischen vicus. Im Ortszentrum wurden mehrere Gebäude und eine Nord-Süd-Straße nachgewiesen; westlich davon zeichnen sich weitere Straßen, ummauerte Gebäudekomplexe und eine mindestens 400 m lange Gräberstraße mit teils aufwendig ausgestatteten Grabbezirken ab. Die Siedlung war somit von beachtlicher Größe, lag jedoch mehr als drei Kilometer südlich der Hauptstraße Celeia–Virunum und war über mehrere Neben- beziehungsweise Stichstraßen an diese angebunden. (Christian Gugl et al.)
+
+Diese Lage spricht gegen die bisher häufig angenommene Funktion von Globasnitz als Straßenstation Iuenna. Als alternative Lokalisierung wird **Tscherberg** vorgeschlagen: Der Ort lag unmittelbar an der römischen Haupttrasse, weist Hinweise auf römerzeitliche Bebauung auf und stimmt ungefähr mit der auf der *Tabula Peutingeriana* genannten Entfernung von 23 römischen Meilen ab Virunum überein. Die Identifikation bleibt eine begründete Hypothese, da der weitere Straßenverlauf und die archäologische Situation noch nicht hinreichend untersucht sind. Globasnitz wäre demnach ein vicus unbekannten antiken Namens, während die spätantike Befestigung auf dem Katharinakogel als Nachfolgesiedlung des bei Tscherberg vermuteten Iuenna verstanden werden könnte. (Christian Gugl et al.)
+
+Für die Entstehung und Bedeutung des vicus werden deshalb andere Faktoren diskutiert. Dazu gehören die umliegenden Landgüter lokaler und städtischer Eliten sowie eine mögliche kultische Anziehungskraft des Hemmabergs und der Rosaliengrotte. Ein römerzeitliches Quellheiligtum und eine Kontinuität vom paganen Kultplatz zum spätantiken christlichen Pilgerzentrum sind denkbar, bislang aber nicht archäologisch gesichert. (Christian Gugl et al.)
+
+In **St. Stefan**, rund 1,2 km nördlich von Globasnitz, konnte ein etwa 2 ha großer, mehrphasiger Villenkomplex nachgewiesen werden. Die mindestens drei Bauphasen umfassende Anlage besitzt Hofmauern, mehrere Raumgruppen, Nebengebäude sowie ein Badegebäude mit Hypokausten und Wasserkanal. Typologisch gehört sie zu den im südlichen Noricum verbreiteten Orthogonalanlagen mit funktionaler Trennung zwischen repräsentativem Wohnbereich und landwirtschaftlich genutzten Teilen. Die in der Pfarrkirche verbaute Grabinschrift des ehemaligen Virunenser Ädilen L. Barbius Vercaius könnte auf den sozial gehobenen Kreis der Grundbesitzer in dieser Villenlandschaft hinweisen. (Christian Gugl et al.)
+
+Auch die Bedeutung des IUENNA-Projekts lässt sich nun konkreter fassen. Die in ARCHE archivierte Sammlung umfasst mehr als 20.000 digitale Ressourcen aus über hundert Jahren Forschung, darunter Grabungsberichte, geophysikalische Messbilder, retrodigitalisierte Archivalien und 3D-Modelle. Sie ist in sechs semantisch definierte Untersammlungen gegliedert und verwendet nachhaltige Dateiformate. Neben den FAIR-Prinzipien berücksichtigt das Projekt ausdrücklich die CARE-Prinzipien und schafft damit eine Grundlage für offene, ethisch verantwortungsvolle, interdisziplinäre und künftig auch KI-gestützte Forschung. Die Wiederverwendung von Hans Winklers retrodigitalisierten Skizzen bei der Interpretation des Badegebäudes von St. Stefan zeigt exemplarisch den unmittelbaren wissenschaftlichen Nutzen dieser Dateninfrastruktur. (Christian Gugl et al.)
+
+---
+
+# Background Information on Hemmaberg, Iuenna, Globasnitz, St. Stefan, and the IUENNA Project
+
+## The Archaeological Microregion in the Southern Jauntal
+
+Hemmaberg and the archaeological sites within the present-day municipality of Globasnitz are not isolated monuments but form an interconnected **archaeological microregion in the southern Jauntal**. It includes the hilltop settlement and Early Christian pilgrimage centre on Hemmaberg, the Roman vicus of Globasnitz and the now disputed location of the road station Iuenna, the villa complex at St. Stefan, and the sites at Jaunstein. Together, they document more than two millennia of development, from prehistory through the Roman and Late Antique periods to the Early Middle Ages. (Hagmann and Reiner, 2023, page 3)
+
+Transport geography played a central role. According to the traditional localisation, Iuenna was situated between the Norican cities of **Virunum** and **Celeia** and close to a crossing of the Karawanks. In addition to the interregional road connection, the Luscha Pass south of Globasnitz may therefore have contributed to the emergence and significance of the settlement. (Glaser, 2002, page 2)
+
+## Iuenna and Globasnitz: Traditional Identification and Reassessment
+
+Earlier research identified **Iuenna** with the ancient settlement in the area of present-day Globasnitz and Kleindorf. The latest synthesis questions this identification and distinguishes between the vicus of Globasnitz and the road station Iuenna, which may have been located near Tscherberg. (Christian Gugl et al.) The name is recorded in the *Tabula Peutingeriana*, a Roman road map preserved in a medieval copy. It has been associated with the local Celtic deity **Iouenat**, known from a votive altar found on Hemmaberg; the same linguistic root probably survives in the names Jaunberg and Jauntal. (Glaser, 2002, page 2)
+
+Much of the ancient settlement zone lies beneath the modern village of Globasnitz. An Early Imperial cemetery was situated west of the village, while the Late Antique and early Merovingian cemetery lay east of its centre. In the traditional interpretation, Iuenna owed its importance both to its role as a road station within a network of routes and mountain passes and to its close relationship with the pilgrimage centre on Hemmaberg. (Pollak, 2023, page 141)
+
+Recent geophysical investigations complement the evidence obtained through excavation. In the centre of Globasnitz, an area measuring approximately 70 × 60 metres revealed several buildings and a probable road about three metres wide. (Schwaiger and Reiner, 2022, page 8) Further ancient roads, buildings, and possible funerary structures have been detected west of the village. The evidence demonstrates that the settlement was integrated into a differentiated road network, with connections extending westwards towards Jaunstein. (Schwaiger and Reiner, 2022, page 8)
+
+The Late Antique and early Merovingian cemetery is of particular importance. Following earlier observations and trial excavations, it was systematically investigated between 1999 and 2008. With approximately 425 graves containing around 440 burials, it is considered Austria’s largest Late Antique–Merovingian burial ground and the only extensively investigated cemetery associated with a road station in Noricum. (Pollak, 2023, page 142) The cemetery also contained the remains of two successive churches. The earlier church was already in use during the final third of the fourth century and thus predates the earliest known churches on Hemmaberg. (Pollak, 2023, page 142)
+
+Approximately 70 per cent of the graves contained no grave goods. Burials with grave goods date mainly from the final third of the fifth century to the middle of the sixth century. Belt fittings, brooches, beads, and other objects attest to far-reaching contacts linking the Alpine region with western, eastern, and southern Europe. (Pollak, 2023, page 144) The cemetery should therefore be understood not merely as a local burial ground but as evidence of a **contact region** in which Roman provincial, Ostrogothic, Mediterranean, and Merovingian influences overlapped.
+
+## Hemmaberg
+
+At an elevation of 843 metres, **Hemmaberg** is one of Austria’s best-researched Late Antique hilltop settlements of the fourth to sixth centuries and an important supraregional reference site for the study of early Christianity in the southeastern Alpine region. At least five Early Christian churches, numerous burials, and several associated buildings are known. The hill also contains the Late Gothic pilgrimage church of Saints Hemma and Dorothea and the Rosalia Grotto. (Hagmann and Reiner, 2023, page 2)
+
+The history of settlement extends considerably further back. The earliest known traces date to the Middle Bronze Age. Finds from the Late La Tène and Roman periods have been connected with a sanctuary of the deity Iouenat. Around AD 400, a fortified hilltop settlement covering approximately five hectares was established. (Glaser, 2002, page 2)
+
+The earliest known church was probably constructed around AD 400 above an older Roman building. It included an apse, a clergy bench, an elevated presbytery, and a reliquary chamber beneath the altar. Burial rooms for privileged individuals, probably including members of clerical and donor families, adjoined the church. (Glaser, 2002, page 2)
+
+Two monumental double-church complexes were built in the early sixth century. They comprised Eucharistic churches, memorial churches, baptisteries, reliquary chambers, burial rooms, cisterns, and buildings probably used to accommodate and provision pilgrims and ecclesiastical personnel. Mosaic floors, martyrs’ relics, and privileged burials underline the high status of the sacred complex. (Glaser, 2002, page 2, 4)
+
+The dimensions of the churches, the veneration of relics, and the probable pilgrims’ hostel support the interpretation of Hemmaberg as a **supraregional pilgrimage centre**. (Glaser, 2002, page 4) The duplication of liturgical facilities has been interpreted as evidence for two Christian communities existing side by side: a Catholic Roman provincial community and an Arian Gothic community during Ostrogothic rule. This remains an important explanatory model rather than an indisputably established fact. (Glaser, 2002, page 5)
+
+Alongside the churches, Hemmaberg contained a fortified settlement with domestic buildings and craft-working areas. Evidence has been found for ironworking, pottery production, textile manufacture, and the working of bronze and glass. The settlement cemetery was used from approximately AD 400 until the end of the sixth century; the finds suggest that the Late Antique settlement ended around AD 600. (Glaser, 2002, page 5)
+
+## St. Stefan
+
+An extensive Roman villa complex lies at **St. Stefan/Šteben**, approximately 1.2 km north of Globasnitz. Earlier remains had initially been interpreted as a Roman bath. Magnetometry and ground-penetrating radar, however, revealed several buildings, enclosure walls, groups of rooms, and a representatively designed complex containing a room with two opposing apses. A hypocaust uncovered in 1930 confirms the high standard of its amenities. (Schwaiger and Reiner, 2022, page 11)
+
+The area investigated in the earlier survey covered approximately 7,700 square metres, although the buildings probably continued southwards and were partly overlain by modern structures. The remains as a whole indicate a large Roman estate and illustrate the agricultural and economic exploitation of the surrounding countryside. (Schwaiger and Reiner, 2022, page 11) The informal label “super-villa” reflects its exceptional size, although the chronology of individual building phases and possible use into Late Antiquity remain subjects for further investigation. (Hagmann and Reiner, 2023, page 3)
+
+## The IUENNA Project
+
+The modern **IUENNA Project** must be distinguished from the ancient place name. Its name is an acronym for *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Developed within the Go!Digital 3.0 programme, the project treats Hemmaberg, Globasnitz/Iuenna, Jaunstein, and St. Stefan as a single archaeological microregion. (Hagmann and Reiner, 2023, page 1)
+
+The participating organisations included kärnten.museum, the Austrian Archaeological Institute, the Austrian Centre for Digital Humanities and Cultural Heritage at the Austrian Academy of Sciences, the Austrian Federal Monuments Authority, and the company ARDIG. (Hagmann and Reiner, 2023, page 2) The project responded to the difficult legacy of more than a century of research: extensive excavation records were dispersed across different locations in analogue and digital forms, were sometimes inadequately structured, and were therefore at long-term risk of information loss. (Hagmann and Reiner, 2023, page 4)
+
+IUENNA consequently pursues two closely connected objectives. First, existing analogue and digital research data are collected, digitised, georeferenced, enriched with standardised metadata, and preserved for the long term. Second, the integrated information is evaluated in a cultural-historical model study of Globasnitz and its surroundings. (Hagmann and Reiner, 2023, page 4)
+
+A geographical information system and geodatabase connect artefacts, archaeological features, spatial units, photographs, plans, texts, tables, geophysical measurements, and 3D models. Wherever possible, artefacts are linked to their archaeological contexts and those contexts to the modern topography. (Hagmann and Reiner, 2023, page 6) The data follow Open Science and FAIR principles, are described using controlled vocabularies, and receive persistent identifiers. Long-term preservation and publication take place in the **ARCHE** repository, while a web-mapping application supports spatial exploration. (Hagmann and Reiner, 2023, page 6, 7)
+
+The IUENNA dataset published in 2025 organises its materials into Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal, and retrodigitised records. It includes excavation documentation, geophysical data, photographs, drawings, databases, georeferenced raster and vector data, conservation records, bioarchaeological information, and 3D data. (Hagmann and Reiner, 2025)
+
+IUENNA is therefore not only a research project devoted to the history of the southern Jauntal. It also provides a model for preserving, integrating, transparently documenting, and reusing heterogeneous records from long-term archaeological investigations in order to address new research questions. (Hagmann and Reiner, 2023, page 5)
+
+## New Results and Topographical Reassessment
+
+The memorial-volume contribution combines survey data collected between 2020 and 2023 with earlier excavation records, archaeological finds, and remote-sensing data. Four campaigns surveyed approximately 21 hectares by magnetometry and a further four hectares using ground-penetrating radar. These investigations permit the first large-scale assessment of the extent, internal organisation, and transport-geographical setting of the Roman settlement landscape around Globasnitz. (Christian Gugl et al.)
+
+Globasnitz now emerges as a non-urban vicus covering approximately 7–9 hectares. Several buildings and a north–south road were identified in the village centre; farther west, additional roads, walled building complexes, and a cemetery road at least 400 metres long, with partly elaborate funerary enclosures, have been documented. The settlement was therefore substantial, but it lay more than three kilometres south of the main Celeia–Virunum road and was connected to it by several secondary or branch roads. (Christian Gugl et al.)
+
+This location challenges the widely accepted interpretation of Globasnitz as the road station Iuenna. **Tscherberg** has been proposed as an alternative: it lay directly on the Roman main road, has produced indications of Roman-period buildings, and corresponds approximately to the distance of 23 Roman miles from Virunum recorded in the *Tabula Peutingeriana*. The identification remains a well-founded hypothesis because the continuation of the road and the archaeological situation have not yet been investigated sufficiently. Under this model, Globasnitz was a vicus whose ancient name is unknown, while the Late Antique fortification on Katharinakogel may represent the successor settlement of the Iuenna tentatively located at Tscherberg. (Christian Gugl et al.)
+
+Other factors must therefore be considered when explaining the development and importance of the vicus. These include the surrounding estates of local and urban elites and the possible cultic attraction of Hemmaberg and the Rosalia Grotto. A Roman-period spring sanctuary and continuity from a pagan cult place to the Late Antique Christian pilgrimage centre are conceivable, but they have not yet been demonstrated archaeologically. (Christian Gugl et al.)
+
+At **St. Stefan**, approximately 1.2 km north of Globasnitz, geophysical investigation identified a multiphase villa complex covering about two hectares. The complex, with at least three building phases, comprised courtyard walls, several groups of rooms, ancillary buildings, and a bath building with hypocausts and a water channel. Typologically, it belongs to the orthogonally planned estates widespread in southern Noricum, characterised by a functional distinction between the representative residential area and the agricultural sectors. The funerary inscription of the former Virunum aedile L. Barbius Vercaius, reused in the parish church, may point to the elevated social status of landowners in this villa landscape. (Christian Gugl et al.)
+
+The significance of the IUENNA Project can now also be defined more precisely. The collection preserved in ARCHE contains more than 20,000 digital resources from over a century of research, including excavation reports, geophysical images, retrodigitised archival records, and 3D models. It is divided into six semantically defined subcollections and employs sustainable file formats. In addition to the FAIR principles, the project explicitly follows the CARE principles, creating a foundation for open, ethically responsible, interdisciplinary, and potentially AI-assisted research. The reuse of Hans Winkler’s retrodigitised sketches in interpreting the bath building at St. Stefan demonstrates the direct scholarly value of this data infrastructure. (Christian Gugl et al.)
+
+---
+
+# Osnovne informacije o Hemmabergu, Iuenni, Globasnitzu, Štebnu in projektu IUENNA
+
+## Arheološka mikroregija v južni Podjuni
+
+Hemmaberg/Gora sv. Heme in najdišča na območju današnje občine Globasnitz/Globasnica niso osamljeni spomeniki, temveč tvorijo povezano **arheološko mikroregijo v južni Podjuni**. Vanjo sodijo višinska naselbina in zgodnjekrščansko romarsko središče na Hemmabergu, rimski vicus v Globasnitzu ter danes sporna lokacija cestne postaje Iuenna, kompleks rimske vile v Štebnu in najdišča pri Jaunsteinu. V tej pokrajini lahko spremljamo več kot dva tisoč let razvoja, od prazgodovine prek rimskega obdobja in pozne antike do zgodnjega srednjega veka. (Hagmann and Reiner, 2023, page 3)
+
+Pomembno vlogo je imela prometnogeografska lega. Po tradicionalni lokalizaciji je Iuenna ležala med noriškima mestoma **Virunum** in **Celeia** ter v bližini prehoda čez Karavanke. Poleg medregionalne cestne povezave bi bil zato lahko za nastanek in pomen naselbine pomemben tudi prelaz Luže južno od Globasnitza. (Glaser, 2002, page 2)
+
+## Iuenna in Globasnitz: tradicionalna enačitev in nova presoja
+
+Starejše raziskave so **Iuenno** enačile z antično naselbino na območju današnjih krajev Globasnitz in Kleindorf. Najnovejša sinteza to identifikacijo postavlja pod vprašaj ter razlikuje med vicusom v Globasnitzu in cestno postajo Iuenna, ki bi lahko ležala pri Tscherbergu. (Christian Gugl et al.) Ime je izpričano na *Tabuli Peutingeriani*, rimskem cestnem zemljevidu, ohranjenem v srednjeveškem prepisu. Povezujejo ga z lokalnim keltskim božanstvom **Iouenat**, znanim po votivnem oltarju s Hemmaberga; isti jezikovni koren se je verjetno ohranil tudi v imenih Jaunberg in Jauntal. (Glaser, 2002, page 2)
+
+Velik del antičnega naselbinskega območja leži pod današnjim Globasnitzem. Zahodno od kraja je bilo grobišče iz zgodnje cesarske dobe, vzhodno od središča pa poznoantično oziroma zgodnjemerovinško grobišče. Po tradicionalni razlagi je pomen Iuenne izviral iz njene vloge cestne postaje v mreži poti in gorskih prehodov ter iz tesne povezanosti z romarskim središčem na Hemmabergu. (Pollak, 2023, page 141)
+
+Novejše geofizikalne raziskave dopolnjujejo sliko, pridobljeno z izkopavanji. V središču Globasnitza je bilo dokumentirano približno 70 × 60 metrov veliko območje z več stavbami in domnevno, okoli tri metre široko cesto. (Schwaiger and Reiner, 2022, page 8) Zahodno od kraja se kažejo dodatne antične ceste, stavbe in morebitne grobne strukture. Najdbe dokazujejo, da je bila naselbina vključena v razvejano cestno omrežje, katerega povezave so med drugim vodile proti zahodu v smeri Jaunsteina. (Schwaiger and Reiner, 2022, page 8)
+
+Posebnega pomena je poznoantično in zgodnjemerovinško grobišče. Po starejših opažanjih in sondiranjih so ga med letoma 1999 in 2008 sistematično raziskali. S približno 425 grobovi in okoli 440 pokopi velja za največje poznoantično-merovinško grobišče v Avstriji ter za doslej edino obsežno raziskano grobišče ob cestni postaji v Noriku. (Pollak, 2023, page 142) Na grobišču so bili tudi ostanki dveh časovno zaporednih cerkva. Starejša je obstajala že v zadnji tretjini 4. stoletja in je tako starejša od najzgodnejših znanih cerkva na Hemmabergu. (Pollak, 2023, page 142)
+
+Približno 70 odstotkov grobov je bilo brez pridatkov. Pokopi s pridatki sodijo predvsem v čas od zadnje tretjine 5. do sredine 6. stoletja. Posamezni deli pasov, fibule, jagode in drugi predmeti pričajo o obsežnih stikih, ki so alpski prostor povezovali z zahodno, vzhodno in južno Evropo. (Pollak, 2023, page 144) Grobišča zato ne smemo razumeti le kot lokalnega pokopališča, temveč kot pričevanje o **stičnem območju**, kjer so se prepletali rimskoprovincialni, ostrogotski, sredozemski in merovinški vplivi.
+
+## Hemmaberg
+
+843 metrov visoki **Hemmaberg** je ena najbolje raziskanih poznoantičnih višinskih naselbin 4.–6. stoletja v Avstriji in nadregionalno pomembno referenčno najdišče za raziskovanje zgodnjega krščanstva v jugovzhodnem alpskem prostoru. Znanih je najmanj pet zgodnjekrščanskih cerkva, številni pokopi in več pripadajočih stavb. Na gori sta tudi poznogotska romarska cerkev sv. Heme in Doroteje ter Rozalijina votlina. (Hagmann and Reiner, 2023, page 2)
+
+Zgodovina poselitve sega precej dlje v preteklost. Najstarejše znane sledi sodijo v srednjo bronasto dobo. Najdbe iz poznega latena in rimske dobe povezujejo s svetiščem božanstva Iouenat. Okoli leta 400 n. št. je nastala utrjena višinska naselbina, velika približno pet hektarov. (Glaser, 2002, page 2)
+
+Najstarejša znana cerkev je bila verjetno okoli leta 400 zgrajena nad starejšo rimsko stavbo. Imela je apsido, klop za duhovščino, dvignjen prezbiterij in prostor za relikvije pod oltarjem. Ob cerkvi so bili grobni prostori za privilegirane osebe, verjetno tudi za člane duhovniških in donatorskih družin. (Glaser, 2002, page 2)
+
+V začetku 6. stoletja sta nastala dva monumentalna kompleksa dvojnih cerkva. Obsegala sta evharistične in spominske cerkve, krstilnice, prostore za relikvije in pokope, cisterne ter stavbe, ki so verjetno služile nastanitvi in oskrbi romarjev ter cerkvenega osebja. Mozaični tlaki, relikvije mučencev in privilegirani pokopi poudarjajo visok položaj sakralnega kompleksa. (Glaser, 2002, page 2, 4)
+
+Velikost cerkvenih prostorov, čaščenje relikvij in domnevno romarsko prenočišče govorijo za razlago Hemmaberga kot **nadregionalnega romarskega središča**. (Glaser, 2002, page 4) Podvojitev liturgične opreme je bila razložena kot dokaz za dve sočasni krščanski skupnosti: katoliško romansko in arijansko gotsko skupnost v času ostrogotske oblasti. Ta razlaga je pomemben znanstveni model, vendar je ne smemo razumeti kot nesporno dokazano dejstvo. (Glaser, 2002, page 5)
+
+Poleg cerkva je bila na Hemmabergu utrjena naselbina s stanovanjskimi stavbami in obrtniškimi območji. Dokazani so predelava železa, lončarstvo in izdelava tekstila, obstajajo pa tudi sledovi obdelave brona in stekla. Grobišče višinske naselbine so uporabljali približno od leta 400 do konca 6. stoletja; najdbe kažejo, da se je poznoantična naselbina končala okoli leta 600. (Glaser, 2002, page 5)
+
+## St. Stefan/Šteben
+
+V **Štebnu**, približno 1,2 km severno od Globasnitza, leži obsežen kompleks rimske vile. Starejše ostanke so sprva razlagali kot rimsko kopališče, vendar so geomagnetne in georadarske meritve pokazale več stavb, obzidja, skupine prostorov ter reprezentativno zasnovan kompleks s prostorom z dvema nasproti ležečima apsidama. Hipokavst, odkrit že leta 1930, potrjuje visoko raven opremljenosti. (Schwaiger and Reiner, 2022, page 11)
+
+Območje, zajeto v starejših raziskavah, je obsegalo približno 7.700 kvadratnih metrov, vendar se je pozidava verjetno nadaljevala proti jugu, kjer jo deloma prekrivajo sodobne stavbe. Celota struktur omogoča razlago najdišča kot velikega rimskega posestva in ponazarja kmetijsko ter gospodarsko izrabo okoliške pokrajine. (Schwaiger and Reiner, 2022, page 11) Občasno uporabljeno poimenovanje »super-vila« izraža njeno izjemno velikost, vendar natančna datacija posameznih gradbenih faz in vprašanje uporabe v pozni antiki ostajata predmet nadaljnjih raziskav. (Hagmann and Reiner, 2023, page 3)
+
+## Projekt IUENNA
+
+Sodobni **projekt IUENNA** je treba razlikovati od antičnega krajevnega imena. Ime projekta je kratica za *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Projekt, razvit v okviru programa Go!Digital 3.0, obravnava Hemmaberg, Globasnitz/Iuenno, Jaunstein in Šteben kot skupno arheološko mikroregijo. (Hagmann and Reiner, 2023, page 1)
+
+Pri projektu so sodelovali kärnten.museum, Avstrijski arheološki inštitut, Austrian Centre for Digital Humanities and Cultural Heritage pri Avstrijski akademiji znanosti, avstrijski Zvezni spomeniški urad in podjetje ARDIG. (Hagmann and Reiner, 2023, page 2) Izhodišče je bila zahtevna dediščina več kot stoletne zgodovine raziskav: obsežna dokumentacija izkopavanj je bila v analogni in digitalni obliki razpršena na različnih lokacijah, deloma neustrezno strukturirana in zato dolgoročno izpostavljena nevarnosti izgube informacij. (Hagmann and Reiner, 2023, page 4)
+
+IUENNA zato zasleduje dva tesno povezana cilja. Prvi je zbiranje, digitalizacija, georeferenciranje, opremljanje s standardiziranimi metapodatki in dolgoročno arhiviranje obstoječih analognih in digitalnih raziskovalnih podatkov. Drugi je vrednotenje združenih informacij v okviru kulturnozgodovinske modelne študije Globasnitza in njegove okolice. (Hagmann and Reiner, 2023, page 4)
+
+Geografski informacijski sistem in geopodatkovna zbirka povežeta predmete, arheološke strukture, prostorske enote, fotografije, načrte, besedila, preglednice, geofizikalne meritve in 3D-modele. Predmeti so, kjer je mogoče, povezani z arheološkimi konteksti, ti pa s sodobno topografijo. (Hagmann and Reiner, 2023, page 6) Podatki sledijo načelom odprte znanosti in FAIR, opisani so z nadzorovanimi slovarji ter opremljeni s trajnimi identifikatorji. Dolgoročno arhiviranje in objava potekata v repozitoriju **ARCHE**, spletna kartografska aplikacija pa omogoča prostorsko raziskovanje. (Hagmann and Reiner, 2023, page 6, 7)
+
+Podatkovna zbirka IUENNA, objavljena leta 2025, gradivo deli na sklope Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal in retrodigitalizirano gradivo. Vključuje dokumentacijo izkopavanj, geofizikalne podatke, fotografije, risbe, podatkovne zbirke, georeferencirane rastrske in vektorske podatke, konservatorsko dokumentacijo, bioarheološke informacije ter 3D-podatke. (Christian Gugl et al.)
+
+IUENNA zato ni le raziskovalni projekt o zgodovini južne Podjune, temveč tudi model za varovanje, povezovanje, pregledno dokumentiranje in ponovno uporabo raznovrstne dokumentacije dolgotrajnih arheoloških raziskav pri oblikovanju novih raziskovalnih vprašanj. (Hagmann and Reiner, 2023, page 5)
+
+## Novi rezultati in topografska presoja
+
+Prispevek v spominskem zborniku združuje prospekcijske podatke, pridobljene med letoma 2020 in 2023, s starejšo dokumentacijo izkopavanj, arheološkimi najdbami in podatki daljinskega zaznavanja. V štirih kampanjah so z geomagnetno metodo raziskali približno 21 hektarov, dodatne štiri hektare pa z georadarjem. Raziskave prvič omogočajo obsežno presojo velikosti, notranje členitve in prometnogeografske umeščenosti rimske naselbinske pokrajine okoli Globasnitza. (Christian Gugl et al.)
+
+Globasnitz se kaže kot neurbani vicus, velik približno 7–9 hektarov. V središču kraja je bilo ugotovljenih več stavb in cesta v smeri sever–jug; zahodneje so dokumentirane dodatne ceste, obzidani stavbni kompleksi in najmanj 400 metrov dolga grobiščna cesta z deloma razkošno urejenimi grobnimi območji. Naselbina je bila torej precej velika, vendar je ležala več kot tri kilometre južno od glavne ceste Celeia–Virunum in je bila z njo povezana prek več stranskih oziroma priključnih cest. (Christian Gugl et al.)
+
+Takšna lega postavlja pod vprašaj razširjeno razlago Globasnitza kot cestne postaje Iuenna. Kot alternativna lokacija je predlagan **Tscherberg**, ki je ležal neposredno ob glavni rimski cesti, kjer obstajajo sledovi rimskodobnih stavb in ki približno ustreza razdalji 23 rimskih milj od Virunuma, zapisani na *Tabuli Peutingeriani*. Identifikacija ostaja utemeljena hipoteza, saj nadaljevanje ceste in arheološke razmere še niso dovolj raziskani. Po tem modelu je bil Globasnitz vicus z neznanim antičnim imenom, poznoantična utrdba na Katharinakoglu pa bi lahko bila naslednica Iuenne, domnevno locirane pri Tscherbergu. (Christian Gugl et al.)
+
+Pri razlagi nastanka in pomena vicusa je zato treba upoštevati druge dejavnike. Mednje sodijo okoliška posestva lokalnih in mestnih elit ter morebitna kultna privlačnost Hemmaberga in Rozalijine votline. Rimsko svetišče ob izviru in kontinuiteta od poganskega kultnega prostora do poznoantičnega krščanskega romarskega središča sta mogoča, vendar arheološko še nista dokazana. (Christian Gugl et al.)
+
+V **Štebnu**, približno 1,2 km severno od Globasnitza, je bil geofizikalno dokazan približno dva hektara velik večfazni kompleks vile. Kompleks z najmanj tremi gradbenimi fazami je obsegal dvoriščne zidove, več skupin prostorov, pomožne stavbe ter kopališko stavbo s hipokavsti in vodnim kanalom. Tipološko sodi med ortogonalno zasnovana posestva, razširjena v južnem Noriku, za katera je značilna funkcionalna ločitev med reprezentativnim stanovanjskim in kmetijskim delom. Nagrobni napis nekdanjega virunumskega edila L. Barbija Vercaia, sekundarno vzidan v župnijsko cerkev, morda kaže na visok družbeni položaj lastnikov zemljišč v tej pokrajini vil. (Christian Gugl et al.)
+
+Tudi pomen projekta IUENNA je zdaj mogoče natančneje opredeliti. Zbirka, arhivirana v repozitoriju ARCHE, vsebuje več kot 20.000 digitalnih virov iz več kot stoletja raziskav, med njimi poročila o izkopavanjih, geofizikalne posnetke, retrodigitalizirano arhivsko gradivo in 3D-modele. Razdeljena je na šest semantično opredeljenih podzbirk in uporablja trajnostne datotečne formate. Poleg načel FAIR projekt izrecno upošteva načela CARE ter tako ustvarja podlago za odprte, etično odgovorne, interdisciplinarne in v prihodnje tudi z umetno inteligenco podprte raziskave. Ponovna uporaba retrodigitaliziranih skic Hansa Winklerja pri razlagi kopališke stavbe v Štebnu nazorno kaže neposredno znanstveno vrednost te podatkovne infrastrukture. (Christian Gugl et al.)
+
+---
+
+## Literatur
 
 - **Glaser, Franz (2002):** „Iuenna – Hemmaberg“. In: *The Autonomous Towns of Noricum and Pannonia: Noricum*, hrsg. von Marjeta Šašel Kos und Peter Scherrer, 129–132. Situla 40. Ljubljana.
+- **Gugl, Christian et al.:** „Archäologische Forschungen zur Siedlungslandschaft im Raum Globasnitz/Iuenna“. In: *Gedenkband* (in Vorbereitung / Druck).
 - **Hagmann, Dominik, und Franziska Reiner (2023):** „IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A ‘para-description’“. *Peer Community Journal* 3, e120. DOI: [10.24072/pcjournal.338](https://doi.org/10.24072/pcjournal.338).
 - **Pollak, Marianne (2023):** „Der merowingerzeitliche Friedhof der Straßenstation Iuenna/Globasnitz: Fundspektrum einer Kontaktregion“. *ArchaeoPlus* 14, 141–148.
 - **Schwaiger, Helmut, und Franziska Reiner (2022):** „Geophysikalische Messungen in und um Globasnitz/Globasnica“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten* 2021, 66–74.

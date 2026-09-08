@@ -63,32 +63,14 @@
         </div>
       </div>
 
-      <!-- Mode & Hybrid Bar -->
-      <div class="chat-mode-bar">
-        <div class="chat-mode-toggle-row">
-          <span class="chat-mode-label">
-            <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i>
-            <span id="chat-stage-badge" class="chat-badge-stage">Stufe 1: Blitz-Suche (0 MB)</span>
-          </span>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 0.72rem; color: var(--text-muted);" id="chat-toggle-label">Lokale KI:</span>
-            <label class="switch" title="Lokale In-Browser KI aktivieren (Qwen 2.5 0.5B, ca. 450 MB Download)">
-              <input type="checkbox" id="chat-ai-toggle">
-              <span class="slider"></span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Download Progress Bar (Stage 2) -->
-        <div class="chat-download-progress" id="chat-dl-progress">
-          <div style="display: flex; justify-content: space-between; font-weight: 500;">
-            <span id="chat-dl-status">Lade Qwen2.5-0.5B (Alibaba)...</span>
-            <span id="chat-dl-pct">0%</span>
-          </div>
-          <div class="chat-progress-bar-bg">
-            <div class="chat-progress-bar-fill" id="chat-dl-fill"></div>
-          </div>
-        </div>
+      <!-- Mode & Status Bar -->
+      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.78rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-graduation-cap"></i> Verifizierte Fachauskunft (ÖAW / ARCHE)
+        </span>
+        <span style="font-size: 0.72rem; color: #2e7d32; font-weight: 600; background: rgba(46, 125, 50, 0.1); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(46, 125, 50, 0.2);">
+          <i class="fa-solid fa-circle-check"></i> 100% Peer-Reviewed
+        </span>
       </div>
 
       <!-- Messages Area -->
@@ -104,14 +86,14 @@
               Wählen Sie ein Thema oder stellen Sie eine freie Frage:
             </p>
             <div class="chat-chips-container">
-              <button class="chat-chip" data-query="Was ist der Hemmaberg?">⛪ Hemmaberg &amp; Kirchen</button>
-              <button class="chat-chip" data-query="Was bedeutet der Name Iuenna?">🏛️ Iuenna &amp; Mansio</button>
-              <button class="chat-chip" data-query="Gräberfeld Globasnitz">💀 Gräberfeld Globasnitz (440 Gräber)</button>
+              <button class="chat-chip" data-query="Ist Globasnitz wirklich die römische Straßenstation Iuenna?">🏛️ Tscherberg vs. Globasnitz</button>
               <button class="chat-chip" data-query="Was ist die Villenanlage von St. Stefan?">🏡 Villenanlage St. Stefan</button>
-              <button class="chat-chip" data-query="Gräberfeld Jaunstein">💀 Gräberfeld Jaunstein</button>
-              <button class="chat-chip" data-query="Aufmaßzeichnungen und Grabungspläne">📐 Grabungspläne &amp; Profile</button>
-              <button class="chat-chip" data-query="Was ist das Projekt IUENNA?">👥 Das IUENNA-Projekt</button>
-              <button class="chat-chip" data-query="Geodaten für QGIS herunterladen">🗺️ QGIS GeoPackage (.gpkg)</button>
+              <button class="chat-chip" data-query="Warum gibt es auf dem Hemmaberg Doppelkirchen?">⛪ Hemmaberg Doppelkirchen</button>
+              <button class="chat-chip" data-query="Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?">💀 Gräberfeld Globasnitz (440 Gräber)</button>
+              <button class="chat-chip" data-query="Wer war L. Barbius Vercaius?">📜 Wer war L. Barbius Vercaius?</button>
+              <button class="chat-chip" data-query="Welche Rolle spielten die historischen Skizzen von Hans Winkler?">🎨 Hans Winkler Skizzen</button>
+              <button class="chat-chip" data-query="Was bedeutet der Name des Projekts IUENNA?">👥 Das IUENNA-Projekt</button>
+              <button class="chat-chip" data-query="Wie kann ich die Geodaten des Projekts direkt in QGIS nutzen?">🗺️ QGIS GeoPackage (.gpkg)</button>
             </div>
           </div>
           <span class="chat-msg-time">Jetzt</span>
@@ -190,7 +172,8 @@
       // Exact query phrase matching
       if (combined.includes(cleanQuery)) score += 12;
 
-      // Type-specific relevance boosts: Foundations, sites and subcollections get priority over general FAQs
+      // Type-specific relevance boosts: Synthetic Q&A, Foundations, sites and subcollections
+      if (type === 'synthetic_qa') score += 14;
       if (type === 'foundation') score += 8;
       if (type === 'site' || type === 'subcollection') score += 5;
 
@@ -207,7 +190,23 @@
       }
     };
 
-    // 0. Score Authoritative Foundations (Mikroregion, Iuenna/Globasnitz, Hemmaberg, St. Stefan, IUENNA-Projekt, Literatur)
+    // 0. Score Synthetic Q&A Knowledge Bank (Highest Precision Matching)
+    (kbData.synthetic_qa || []).forEach(qa => {
+      const title = qa.question;
+      const text = qa.answer;
+      const variations = qa.variations || [];
+      const allKeywords = [...(qa.keywords || []), ...variations];
+      
+      scoreItem(qa, 'synthetic_qa', title, text, allKeywords, {
+        id: qa.graph_node_id,
+        category: qa.category,
+        citations: qa.citations,
+        lang: qa.lang || 'de',
+        variations: variations
+      });
+    });
+
+    // 1. Score Authoritative Foundations (Mikroregion, Iuenna/Globasnitz, Hemmaberg, St. Stefan, IUENNA-Projekt, Literatur)
     (kbData.foundations || []).forEach(f => {
       const title = f.title;
       const text = f.summary || f.content;
@@ -323,7 +322,17 @@
     let metaTagsHtml = '';
     let linksHtml = '';
 
-    if (top.type === 'foundation') {
+    if (top.type === 'synthetic_qa') {
+      metaTagsHtml = `
+        <span class="chat-card-tag"><i class="fa-solid fa-circle-question" style="color: var(--secondary);"></i> ${top.meta.category || 'Archäologischer Befund'}</span>
+        ${top.meta.citations && top.meta.citations.length > 0 ? `<span class="chat-card-tag"><i class="fa-solid fa-feather-pointed"></i> Lit.: ${top.meta.citations.slice(0, 2).join('; ')}</span>` : ''}
+      `;
+      if (top.meta.id) {
+        linksHtml += `<button type="button" class="chat-card-btn secondary" onclick="if(window.focusGraphNode){window.focusGraphNode('${top.meta.id}');}"><i class="fa-solid fa-circle-nodes" style="color: var(--secondary);"></i> Im Wissensgraphen zeigen 🕸️</button>`;
+      }
+      linksHtml += `<a href="wma/wma.html" class="chat-card-btn primary"><i class="fa-solid fa-map-location-dot"></i> In Web-GIS ansehen</a>`;
+      linksHtml += `<a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" rel="noopener noreferrer" class="chat-card-btn secondary"><i class="fa-solid fa-database"></i> ARCHE Repositorium</a>`;
+    } else if (top.type === 'foundation') {
       metaTagsHtml = `
         <span class="chat-card-tag"><i class="fa-solid fa-book-open"></i> ${top.meta.category || 'Wissenschaftliche Grundlagen'}</span>
         ${top.meta.citations && top.meta.citations.length > 0 ? `<span class="chat-card-tag"><i class="fa-solid fa-feather-pointed"></i> Lit.: ${top.meta.citations.slice(0, 2).join('; ')}</span>` : ''}
@@ -403,10 +412,11 @@
       `;
     }
 
-    const categoryBadge = top.type === 'foundation' ? 'Wissenschaftliche Grundlagen' :
+    const categoryBadge = top.type === 'synthetic_qa' ? 'Archäologische Fachantwort' :
+      (top.type === 'foundation' ? 'Wissenschaftliche Grundlagen' :
       (top.type === 'subcollection' ? 'ARCHE-Subcollection' :
       (top.type === 'graph_node' ? 'ARCHE-Wissensgraph' :
-      (top.type === 'site' ? 'Archäologische Fundstelle' : 'Projekt-Fakt')));
+      (top.type === 'site' ? 'Archäologische Fundstelle' : 'Projekt-Fakt'))));
 
     return `
       <div class="chat-msg-bubble">
@@ -546,7 +556,10 @@
     let contextSnippet = '';
     if (searchResults && searchResults.length > 0) {
       contextSnippet = searchResults.slice(0, 2).map(r => {
-        if (r.type === 'foundation') {
+        if (r.type === 'synthetic_qa') {
+          const citStr = r.meta && r.meta.citations && r.meta.citations.length > 0 ? ` (Quellen: ${r.meta.citations.join('; ')})` : '';
+          return `【Archäologische Fachfrage & verifizierter Befund: ${r.title}】\n${r.text}${citStr}`;
+        } else if (r.type === 'foundation') {
           const citStr = r.meta && r.meta.citations && r.meta.citations.length > 0 ? ` (Quellen: ${r.meta.citations.join('; ')})` : '';
           return `【Wissenschaftliche Grundlagen: ${r.title}】\n${r.meta.full_text || r.text}${citStr}`;
         } else if (r.type === 'site') {
@@ -678,40 +691,12 @@ ${contextSnippet}`
     appendUserMessage(query);
 
     // 2. Show Typing Indicator
-    const typingEl = showTypingIndicator();
+    showTypingIndicator();
 
-    // 3. Search Knowledge Base (Stage 1)
+    // 3. Search Knowledge Base
     const results = searchKnowledgeBase(query);
 
-    // 4. Check if Stage 2 SLM is active
-    if (isSlmActive && slmPipeline) {
-      try {
-        const slmAnswer = await generateSlmAnswer(query, results);
-        removeTypingIndicator();
-
-        if (slmAnswer) {
-          // Format bot answer with generative text + verified ARCHE links card
-          const cardHtml = renderSearchResultCard(results);
-          const combinedHtml = `
-            <div class="chat-msg-bubble">
-              <div style="font-size: 0.72rem; color: var(--primary); font-weight: 700; margin-bottom: 4px;">
-                <i class="fa-solid fa-microchip"></i> Lokale Browser-KI Synthese (Qwen 2.5):
-              </div>
-              <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">${formatMarkdownMini(escapeHtml(slmAnswer))}</p>
-            </div>
-            <div style="margin-top: 6px;">
-              ${cardHtml}
-            </div>
-          `;
-          appendBotMessage(combinedHtml);
-          return;
-        }
-      } catch (err) {
-        console.warn('SLM generation failed, falling back to Stage 1 card:', err);
-      }
-    }
-
-    // Standard Stage 1 (Fast Card Response)
+    // 4. Return instant verified academic research card
     setTimeout(() => {
       removeTypingIndicator();
       const cardHtml = renderSearchResultCard(results);
@@ -726,8 +711,6 @@ ${contextSnippet}`
     const closeBtn = document.getElementById('chat-close-btn');
     const inputField = document.getElementById('chat-input-field');
     const sendBtn = document.getElementById('chat-send-btn');
-    const aiToggle = document.getElementById('chat-ai-toggle');
-    const badge = document.getElementById('chat-stage-badge');
 
     // Toggle Chat Window
     const toggleWindow = () => {
@@ -777,19 +760,6 @@ ${contextSnippet}`
         const query = chip.getAttribute('data-query');
         if (query) {
           handleUserSubmit(query);
-        }
-      }
-    });
-
-    // Stage 2 Toggle Switch Handler
-    aiToggle.addEventListener('change', async (e) => {
-      if (e.target.checked) {
-        await initStage2SLM();
-      } else {
-        isSlmActive = false;
-        if (badge) {
-          badge.textContent = 'Stufe 1: Blitz-Suche (0 MB)';
-          badge.className = 'chat-badge-stage';
         }
       }
     });

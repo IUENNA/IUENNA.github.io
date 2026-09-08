@@ -797,6 +797,48 @@ def generate():
             .search-input {{ width: 150px; }}
             .search-input:focus {{ width: 200px; }}
         }}
+
+        /* Toast Notification System */
+        .toast-container {{
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }}
+        .toast-message {{
+            background: #1C2726;
+            color: #FFFFFF;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            font-weight: 500;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: fadeInToast 0.25s ease-out;
+            border: 1px solid rgba(255,255,255,0.15);
+            max-width: 90vw;
+        }}
+        .toast-message.warning {{
+            border-left: 4px solid #C46238;
+        }}
+        .toast-message.info {{
+            border-left: 4px solid #436980;
+        }}
+        .toast-message.success {{
+            border-left: 4px solid #2B6955;
+        }}
+        @keyframes fadeInToast {{
+            from {{ opacity: 0; transform: translateY(12px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
+        }}
     </style>
 </head>
 <body>
@@ -991,6 +1033,7 @@ def generate():
                         <span id="drawerChildFolderCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
                     </div>
                     <ul id="drawerChildFoldersList" class="relations-list" style="max-height: 150px; overflow-y: auto;"></ul>
+                    <button id="btnFocusAllChildren" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-folder-tree"></i> Alle Unterordner fokussieren</button>
                 </div>
 
                 <!-- Resource Expansion Box -->
@@ -999,7 +1042,7 @@ def generate():
                         <span><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> Dateien im Graphen</span>
                         <span id="drawerResCountBadge" style="background: var(--primary); color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.68rem;">0</span>
                     </div>
-                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 8px 0;">Dateien dieses Ordners als Knoten in den Graphen einblenden:</p>
+                    <p id="drawerResHelpText" style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 8px 0;">Dateien dieses Ordners als Knoten in den Graphen einblenden:</p>
                     <div style="display: flex; gap: 6px;">
                         <button id="btnExpandResources" class="tool-btn primary-btn" style="font-size: 0.72rem; flex: 1;"><i class="fa-solid fa-plus"></i> Ressourcen aufklappen</button>
                         <button id="btnCollapseResources" class="tool-btn" style="font-size: 0.72rem; flex: 1; display: none;"><i class="fa-solid fa-minus"></i> Zuklappen</button>
@@ -1161,6 +1204,9 @@ def generate():
             </div>
         </div>
     </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
     <!-- Application Script -->
     <script>
@@ -1470,6 +1516,28 @@ def generate():
             cy.layout(layoutConfigs[this.value] || layoutConfigs.cose).run();
         }});
 
+        // Toast Notification Helper
+        function showNotification(msg, type = "info", duration = 4000) {{
+            let container = document.getElementById("toastContainer");
+            if (!container) {{
+                container = document.createElement("div");
+                container.id = "toastContainer";
+                container.className = "toast-container";
+                document.body.appendChild(container);
+            }}
+            const toast = document.createElement("div");
+            toast.className = `toast-message ${{type}}`;
+            const icon = type === "warning" ? "fa-triangle-exclamation" : (type === "success" ? "fa-circle-check" : "fa-circle-info");
+            toast.innerHTML = `<i class="fa-solid ${{icon}}"></i> <span>${{msg}}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {{
+                toast.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+                toast.style.opacity = "0";
+                toast.style.transform = "translateY(8px)";
+                setTimeout(() => toast.remove(), 300);
+            }}, duration);
+        }}
+
         // Inspector Drawer Logic
         function openInspector(node) {{
             selectedNode = node;
@@ -1576,7 +1644,7 @@ def generate():
             if (childEdges.length > 0) {{
                 childBox.style.display = "block";
                 document.getElementById("drawerChildFolderCount").textContent = childEdges.length;
-                childEdges.slice(0, 20).forEach(edge => {{
+                childEdges.slice(0, 25).forEach(edge => {{
                     const child = edge.source();
                     const li = document.createElement("li");
                     li.className = "relation-item";
@@ -1593,6 +1661,17 @@ def generate():
                     }});
                     childList.appendChild(li);
                 }});
+
+                const btnFocusAll = document.getElementById("btnFocusAllChildren");
+                if (btnFocusAll) {{
+                    btnFocusAll.onclick = () => {{
+                        const childNodes = childEdges.sources();
+                        childNodes.show();
+                        cy.fit(childNodes.union(node), 80);
+                        highlightNeighbors(node);
+                        showNotification(`${{childNodes.length}} Unterordner im Graphen fokussiert.`, "info", 2500);
+                    }};
+                }}
             }} else {{
                 childBox.style.display = "none";
             }}
@@ -1602,11 +1681,42 @@ def generate():
             const btnExpand = document.getElementById("btnExpandResources");
             const btnCollapse = document.getElementById("btnCollapseResources");
             const resCountBadge = document.getElementById("drawerResCountBadge");
+            const resHelpText = document.getElementById("drawerResHelpText");
 
-            const isFolderLike = d.type && (d.type.startsWith("folder") || d.type === "subcollection");
+            const isFolderLike = d.type && (d.type.startsWith("folder") || d.type === "subcollection" || d.type === "collection");
             if (isFolderLike && corpusResources.length > 0) {{
                 resBox.style.display = "block";
-                resCountBadge.textContent = (d.items || 0).toLocaleString();
+                const archeId = String(d.arche_id || (d.id ? d.id.replace("col_", "") : ""));
+                
+                // Count unique local matches
+                const localMatches = corpusResources.filter(r => {{
+                    if (r.col_id === node.id() || r.col === node.id()) return true;
+                    if (archeId && (r.col_id === archeId || r.col_id === `col_${{archeId}}` || r.col === archeId)) return true;
+                    if (r.folder && (r.folder === d.label || (d.title && r.folder === d.title))) return true;
+                    return false;
+                }});
+
+                const seenKeys = new Set();
+                const uniqueLocalCount = localMatches.reduce((acc, r) => {{
+                    const k = r.pid || r.title;
+                    if (!seenKeys.has(k)) {{
+                        seenKeys.add(k);
+                        return acc + 1;
+                    }}
+                    return acc;
+                }}, 0);
+
+                if (uniqueLocalCount > 0) {{
+                    resCountBadge.textContent = uniqueLocalCount.toLocaleString();
+                    if (resHelpText) resHelpText.textContent = "Direkte Dateien dieses Ordners als Knoten in den Graphen einblenden:";
+                }} else if (childEdges.length > 0) {{
+                    resCountBadge.textContent = `${{(d.items || 0).toLocaleString()}} (in Unterordnern)`;
+                    if (resHelpText) resHelpText.textContent = "Überordner: Einzeldateien sind in den Unterordnern organisiert.";
+                }} else {{
+                    resCountBadge.textContent = (d.items || 0).toLocaleString();
+                    if (resHelpText) resHelpText.textContent = "Dateien dieses Ordners von ARCHE abrufen und einblenden:";
+                }}
+
                 if (expandedNodesMap.has(node.id())) {{
                     btnExpand.style.display = "none";
                     btnCollapse.style.display = "inline-flex";
@@ -1674,22 +1784,122 @@ def generate():
         }}
 
         // Dynamic On-Demand Node Expansion for Resources
-        function expandResourcesForNode(nodeId, maxLimit = 60) {{
-            if (!corpusResources || corpusResources.length === 0) return;
+        async function expandResourcesForNode(nodeId, maxLimit = 60) {{
+            if (!corpusResources) return;
             const parentNode = cy.$id(nodeId);
             if (!parentNode || parentNode.length === 0) return;
+            const d = parentNode.data();
+            const archeId = String(d.arche_id || (d.id ? d.id.replace("col_", "") : ""));
+            const btnExpand = document.getElementById("btnExpandResources");
+            const originalBtnHtml = btnExpand ? btnExpand.innerHTML : '<i class="fa-solid fa-plus"></i> Ressourcen aufklappen';
 
-            const isCol = parentNode.data("type") === "subcollection";
-            const matches = corpusResources.filter(r => isCol ? (r.col === nodeId || r.col_id === nodeId) : (r.col_id === nodeId || r.folder === parentNode.data("label")));
+            // 1. Check local matches in corpusResources
+            let matches = corpusResources.filter(r => {{
+                if (r.col_id === nodeId || r.col === nodeId) return true;
+                if (archeId && (r.col_id === archeId || r.col_id === `col_${{archeId}}` || r.col === archeId)) return true;
+                if (r.folder && (r.folder === d.label || (d.title && r.folder === d.title))) return true;
+                return false;
+            }});
 
+            // Deduplicate by PID or title
+            const seenPids = new Set();
+            const seenTitles = new Set();
+            const uniqueMatches = [];
+            for (const r of matches) {{
+                if (r.pid && seenPids.has(r.pid)) continue;
+                if (r.title && seenTitles.has(r.title)) continue;
+                if (r.pid) seenPids.add(r.pid);
+                if (r.title) seenTitles.add(r.title);
+                uniqueMatches.push(r);
+            }}
+            matches = uniqueMatches;
+
+            // 2. If no local matches, query ARCHE live API
+            if (matches.length === 0 && archeId && /^\\d+$/.test(archeId)) {{
+                try {{
+                    if (btnExpand) {{
+                        btnExpand.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Lade von ARCHE...';
+                        btnExpand.disabled = true;
+                    }}
+                    const searchUrl = `https://arche.acdh.oeaw.ac.at/api/search?property%5B0%5D=https%3A%2F%2Fvocabs.acdh.oeaw.ac.at%2Fschema%23isPartOf&value%5B0%5D=https%3A%2F%2Farche.acdh.oeaw.ac.at%2Fapi%2F${{archeId}}`;
+                    const resp = await fetch(searchUrl, {{
+                        headers: {{ "Accept": "application/json" }}
+                    }});
+                    if (resp.ok) {{
+                        const data = await resp.json();
+                        const graph = data["@graph"] || [];
+                        const fetched = [];
+                        for (const item of graph) {{
+                            const typeStr = String(item["@type"] || "");
+                            if (typeStr.includes("Resource")) {{
+                                const rawId = (item["@id"] || "").split("/").pop().replace("n0:", "");
+                                let title = item["n1:hasTitle"] || item["n1:hasFilename"] || rawId;
+                                if (Array.isArray(title)) title = title[0];
+                                if (typeof title === "object" && title !== null) title = title["@value"] || "";
+
+                                let pid = item["n1:hasPid"] || "";
+                                if (typeof pid === "object" && pid !== null) pid = pid["@value"] || pid["@id"] || "";
+
+                                let desc = item["n1:hasDescription"] || "";
+                                if (typeof desc === "object" && desc !== null) desc = desc["@value"] || "";
+
+                                let ext = "";
+                                if (typeof title === "string" && title.includes(".")) {{
+                                    ext = "." + title.split(".").pop().toLowerCase();
+                                }}
+                                let ftype = "other";
+                                if ([".tif", ".tiff", ".jpg", ".jpeg", ".png"].includes(ext)) ftype = "image";
+                                else if ([".shp", ".gpkg", ".dxf", ".dwg", ".geojson"].includes(ext)) ftype = "vector";
+                                else if ([".ply", ".obj", ".stl"].includes(ext)) ftype = "3d";
+                                else if ([".accdb", ".sqlite", ".db", ".xlsx", ".xls", ".csv"].includes(ext)) ftype = "database";
+                                else if ([".pdf", ".doc", ".docx", ".txt"].includes(ext)) ftype = "document";
+
+                                const resObj = {{
+                                    id: `res_arche_${{rawId}}`,
+                                    title: String(title),
+                                    col: nodeId,
+                                    col_id: nodeId,
+                                    folder: d.label,
+                                    path: d.path || ["IUENNA", d.label],
+                                    place: d.spatial || "Jauntal",
+                                    subjs: ["ARCHE"],
+                                    pid: String(pid),
+                                    thumb_url: pid ? `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(pid)}}&width=360` : "",
+                                    date: "n/a",
+                                    type: ftype,
+                                    description: desc || `ARCHE-Ressource: ${{title}}`
+                                }};
+                                fetched.push(resObj);
+                                corpusResources.push(resObj);
+                            }}
+                        }}
+                        if (fetched.length > 0) matches = fetched;
+                    }}
+                }} catch (err) {{
+                    console.warn("ARCHE fetch error:", err);
+                }} finally {{
+                    if (btnExpand) {{
+                        btnExpand.innerHTML = originalBtnHtml;
+                        btnExpand.disabled = false;
+                    }}
+                }}
+            }}
+
+            // 3. If still no matches:
             if (matches.length === 0) {{
-                alert("Keine individuellen Ressourcen für diesen Ordner hinterlegt.");
+                const childEdges = cy.edges(`[target = "${{nodeId}}"][label = 'isPartOf']`);
+                if (childEdges.length > 0) {{
+                    showNotification(`Dieser Überordner enthält ${{childEdges.length}} Unterordner. Einzeldateien befinden sich in den jeweiligen Unterordnern.`, "info", 4500);
+                }} else {{
+                    showNotification("Keine individuellen Ressourcen für diesen Ordner auf ARCHE hinterlegt.", "warning", 3500);
+                }}
                 return;
             }}
 
+            // 4. Render nodes in Cytoscape
             const toAdd = matches.slice(0, maxLimit);
             const parentPos = parentNode.position();
-            const radius = 110 + Math.min(100, toAdd.length * 2.5);
+            const radius = 110 + Math.min(120, toAdd.length * 3);
             const newElements = [];
             const addedIds = new Set();
 
@@ -1713,7 +1923,7 @@ def generate():
                         path: res.path,
                         date: res.date,
                         col: res.col,
-                        description: `ARCHE-Ressource: ${{res.title}} | Fundort: ${{res.place}} | Schlagworte: ${{res.subjs.join(", ")}}`,
+                        description: res.description || `ARCHE-Ressource: ${{res.title}} | Fundort: ${{res.place}}`,
                         color: ftypeColors[res.type] || "#3D7068"
                     }},
                     position: {{ x: px, y: py }}
@@ -1737,6 +1947,7 @@ def generate():
                 expandedNodesMap.set(nodeId, addedIds);
                 updateVisibleNodesCount();
                 openInspector(parentNode);
+                showNotification(`${{addedIds.size}} Ressource(n) im Graphen aufgespannt.`, "success", 3000);
             }}
         }}
 
@@ -1751,6 +1962,7 @@ def generate():
             updateVisibleNodesCount();
             const parentNode = cy.$id(nodeId);
             if (parentNode.length > 0) openInspector(parentNode);
+            showNotification("Ressourcen eingeklappt.", "info", 2000);
         }}
 
         function focusResourceInGraph(resId) {{
@@ -1997,7 +2209,7 @@ def generate():
                 openInspector(node);
                 highlightNeighbors(node);
             }} else {{
-                alert(`Ordner [${{archeId}}] im Graphen nicht gefunden.`);
+                showNotification(`Ordner [${{archeId}}] im Graphen nicht gefunden.`, "warning");
             }}
         }}
 
@@ -2420,6 +2632,14 @@ def generate():
             }}
             if (urlParams.get("col")) {{
                 focusCollectionNodeInGraph(urlParams.get("col"));
+                if (urlParams.get("expand") === "1" || urlParams.get("autoexpand") === "1") {{
+                    setTimeout(() => {{
+                        const targetCol = urlParams.get("col");
+                        const targetId = `col_${{targetCol}}`;
+                        const n = cy.$id(targetId).length > 0 ? cy.$id(targetId) : cy.$id(targetCol);
+                        if (n && n.length > 0) expandResourcesForNode(n.id());
+                    }}, 450);
+                }}
             }}
         }})();
     </script>

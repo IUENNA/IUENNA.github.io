@@ -1,0 +1,3434 @@
+[
+  {
+    "arche_id": "1795453",
+    "title": "glo_geodaten_open.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBEF-4",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf Basis des Gesamtplanes wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:\n* Georadar-Daten (glo20_georadar [EPSG:32633],glo24_georadar_all [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar (2020: Teilergebnisse,2024: Gesamtergebnisse) in Globasnitz.\n* Geomagnetik-Daten (glo24_geomagnetik_all [EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik in Globasnitz mit Stand 2024.\n* Vektorisierte Ausgrabungsdaten (glo_ausgrabung_features [EPSG:31255]; Felder: fid,Id,Grabnummer,Feature,Area_m2,geom): Enthält die vektorisierte Umzeichnung der Grabungsergebnisse der Ausgrabungen im Gräberfeld Globasnitz lt. dem Gesamtplan.\n* Interpretation der geophysikalischen Messungen (glo_geophysik_features [EPSG:32633]; Felder: fid,Shape_Leng,Shape_Area,ID,VisualID,Methode,Typ,Befund): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\n* glo_Glaser_1979_features: Verzeichnis der Fundzonen nach den Grabungen der Jahre 1913,1914,1922,1923,1924,1925,1928,1968 und 1976 in Globasnitz nach der von F. Glaser 1979 angefertigte Fundstellenskizze (EPSG:32622; s. für die aktuellste Ausführung Glaser 2021,54 Abb. 2 und den anschließenden Kommentar zum Metadateneintrag). \n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792190",
+    "col_id": "col_1792190"
+  },
+  {
+    "arche_id": "1795454",
+    "title": "glo_graeber-anthropologie.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF0-1",
+    "description": "Diese GeoPackage-Geodatenbank enthält detaillierte bioarchäologische Informationen zu Gräbern vom Gräberfeld des Fundplatzes Globasnitz. Sie dient dazu,systematisch qualitative und quantitative Informationen über die Gräber räumlich bereitzustellen und analysierbar zu machen: Jede Datensatz im Koordinatensystem EPSG:32633 in der Datenbank repräsentiert ein Grab und enthält die folgenden Attribute:\n\n*fid: Eindeutige Kennung für jeden Datensatz.\n*SHAPE_Length und SHAPE_Area: Geometrische Maße des Grabes,einschließlich Länge und Fläche.\n*Anthropologie: Hinweise auf anthropologische Untersuchungen.\n*Beigaben: Angabe,ob Beigaben im Grab gefunden wurden.\n*beprobt: Information,ob Proben aus dem Grab entnommen wurden.\n*Geschlecht: Geschlecht der bestatteten Person,falls bestimmbar.\n*Grabnummer: Eindeutige Nummer des Grabes.\n*Orientierung des Kopfes: Richtung,in die der Kopf der bestatteten Person zeigt.\n*Sterbealter: Altersangabe der bestatteten Person zum Zeitpunkt des Todes.\n*C14,C_N,SR: Ergebnisse spezifischer Analysen (z.B. Radiokarbon-Datierung,Isotopenanalysen).\n*Anzahl der Bestattungen: Anzahl der in dem Grab bestatteten Personen.\n*Bestattungstyp: Art der Bestattung (z.B. Einzel- oder Doppelbestattung).\n*Grabbau: Beschreibung der Grabkonstruktion (z.B. Grabgrube,Grabgrube mit Steinsetzung).\n*Holzreste erhalten: Angabe,ob Holzreste im Grab erhalten sind.\n*Schädeldeformation: Angabe,ob Schädeldeformationen festgestellt wurden.\n\nEine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792190",
+    "col_id": "col_1792190"
+  },
+  {
+    "arche_id": "1803839",
+    "title": "jau_funddatenbank.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D49-9",
+    "description": "Originäre MS Access-Datenbank zu den während der Ausgrabungen am Fundplatz Jaunstein (JAU) getätigten Funden. Es handelt sich um eine strukturierte archäologische Datenbank,die Funde und assoziierte Literatur dokumentiert. Die Kerntabellen umfassen Fundstücke,die zentrale Informationen wie Fundname,Jahr,Typologie,Erhaltungszustand,Datierung,Dekor und Materialfarbe erfassen,um eine präzise Klassifikation zu ermöglichen. Zudem werden zusätzliche Tabellen wie Literatur und Autor verwendet,um wissenschaftliche Arbeiten und ihre Autoren mit einzelnen Funden zu verknüpfen. Die Datenbank unterstützt eine Analyse der materiellen Kultur,was für eine weiterführende wissenschaftliche Bearbeitung und Veröffentlichung essentiell ist​. Die Tabellen liegen als 173 CSV-Dateien vor,ein ER-Diagramm wie auch eine detaillierte deskriptive Dokumentation der Datenbank ist vorhanden.",
+    "parent_cid": "1792394",
+    "col_id": "col_1792394"
+  },
+  {
+    "arche_id": "1803840",
+    "title": "jau_geodaten_open.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D4B-7",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Ausgrabungen bis 2020 in Jaunstein. Es umfasst folgende Datensätze:\n* Vektordatensatz mit geodätisch erfassten Daten zur archäologischen Fundstelle Jaunstein (jau_ausgrabung_features; [EPSG:32633]; Felder: Fid,id,Name,Area_m2).\n* Georeferenzierte Orthofotos (jau20_20200815-1_ortho_05mm [EPSG:31255]; jau20_20200825-2_ortho_05mm [EPSG:31255]; jau20_20200826-3_ortho_05mm [EPSG:31255]): Diese beinhalten die georeferenzierten,digitalen Orthofotos der Enddokumentation 2020 zur Kirchengrabung in Jaunstein vom 15. August 2020,25. August 2020 und 26. August 2020.\n* TLS-Daten (jau20_TLS_enddokumentation [EPSG:32633]; jau_meterriss_kirchenschiff [EPSG:31255]; jau_meterriss_vorraum [EPSG:31255]): Enthält die prozessierten Endergebnisse der Dokumentation mittels terrestrischem Laserscannings (TLS) in Jaunstein in Form eines georeferenzierten Rasterbildes des digtalen Oberflächenmodells (DOM) und daraus generierten Ableitungen; diese setzen sich wiederum aus dem georeferenzierten Rasterbild des Kirchenschiffs (Meterriss) und dem georeferenzierten Rasterbild des Vorraums (Meterriss) des Kirchengebäudes zusammen.\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten und weiter zu analysieren.",
+    "parent_cid": "1792394",
+    "col_id": "col_1792394"
+  },
+  {
+    "arche_id": "1804065",
+    "title": "ste_geodaten_open.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E37-C",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den geophysikalischen Prospektionen in Steben bis 2024. Es umfasst folgende Datensätze:\n* Vektordatensatz mit den Interpretationen der geophysikalisch erfassten Features zur archäologischen Fundstelle Steben (ste_geophysik_features; [EPSG:32633]; Felder: fid,ID,Shape_Length,Shape_Area,Methode,Typ,Befund,Phase,Magnetisierung): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\n* Georadar-Daten (ste24_georadar_all [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar in Steben.\n* Geomagnetik-Daten (ste24_geomagnetik_all; [EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik in Steben mit Stand 2024.\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten und weiter zu analysieren.",
+    "parent_cid": "1792412",
+    "col_id": "col_1792412"
+  },
+  {
+    "arche_id": "1813207",
+    "title": "iuenna-title-image.png",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-7B5A-A",
+    "description": "",
+    "parent_cid": "1792170",
+    "col_id": "col_1792170"
+  },
+  {
+    "arche_id": "1804080",
+    "title": "tal_anthropologie.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E49-8",
+    "description": "Originäre MS Access-Datenbank mit Informationen zur physischen Anthropologie im Jauntal (TAL). Die Datenbank dokumentiert anthropologische und pathologische Merkmale antiker Individuen und wird durch Datenfelder für Alters- und Geschlechtsbestimmung,Zahnentwicklung,Knochenmaße und Krankheitsmerkmale erweitert. Ergänzend enthält sie spezifische Details zu Nahtverschlüssen und Epiphysenentwicklungen,die eine genaue Altersabschätzung und Klassifikation ermöglichen. Die Datenbank ist in einer detaillierten Tabellenstruktur organisiert,um die komplexen Beziehungen um die und Merkmale der human remains adäquat abzubilden​. Die Tabellen liegen als 440 CSV-Dateien vor,ein ER-Diagramm wie auch eine detaillierte deskriptive Dokumentation der Datenbank ist vorhanden.",
+    "parent_cid": "1792423",
+    "col_id": "col_1792423"
+  },
+  {
+    "arche_id": "1804081",
+    "title": "tal_bda_fsdb_2023.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7",
+    "description": "Der vorliegende Auszug aus der Fundstellendatenbank des Bundesdenkmalamtes (BDA) für die im Jauntal (TAL) vorhandenen Katastralgemeinden (KG) umfasst umfangreiche archäologische Informationen zum Jauntal in Kärnten. Er beinhaltet detaillierte Aufzeichnungen von Siedlungsstrukturen,Landschaftsmerkmalen und Fundstellen aus verschiedenen Epochen (vgl. detailliert zu den Rahmenbedingungen und Weiterverarbeitungsmöglichkeiten Hagmann 2024).\nMit dem Projekt IUENNA war das Bundesland Kärnten noch nicht in die neue HERIS-Datenbank eingearbeitet,weshalb diese Daten nicht zur Verfügung standen. Diese Datenbank stellt eine durch das BDA vorbereitete,systematische Landesaufnahme dar; zum IUENNA-Durchführungszeitraum war dies in den östlichen und westlichen Bundesländern bereits erfolgt bzw. im Laufen. Für Kärnten ist jedoch erst mit 2026 (als letztes österreichisches Bundesland) mit entsprechenden aktualisierten Einträgen zu rechnen.\nDie Daten beinhalten keine exakte Georeferenzierung,doch sind zumindest die Mittelpunktkoordinaten angegeben,die für eine Kartierung genutzt werden können. Ergänzt wird der Datensatz daher durch georeferenzierte Informationen,basierend auf GeoNames (https://geonames.org),die gemeinsam mit den qualitativen und quantitativen archäologischen Attributen eine präzise Verortung und Visualisierung der archäologischen Befunde ermöglichen. Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792423",
+    "col_id": "col_1792423"
+  },
+  {
+    "arche_id": "1804082",
+    "title": "tal_geodaten_open.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4B-6",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf Basis des Gesamtplanes wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:\n* Selektierte Start- und Stopppunkte der Verkehrswege im Jauntal und darüber hinaus (tal_pois_strasse [EPSG:31258]); Felder: fid,Name\n* Interpretation der geophysikalischen Messungen (tal_geophysik_features [EPSG:32633]; Felder: fid,Shape_Length,Shape_Area,ID,Methode,Layer,Typ,Befund): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\n* Geomagnetik-Daten (tal23_tainacherfeld_1_n10p10 [EPSG:32633],tal23_tainacherfeld_2_n10p10,[EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik im Tainacherfeld mit Stand 2023.\n* Remote Sensing-Interpretation von Straßenbefunden (tal24_features_strassen [EPSG:4326]; Felder: fid,Von,Nach,Quelle,Beschreibung,Distanz,Meilen): Anhand von Luftbildern und Geländemodellen interpretierter Verlauf der Straße von Virunum nach Iuenna im Jauntal und weiter Richtung Colatio mit Stand 2024.\n* Interpretierte geografische und georeferenzierte Visualisierungen der Straßenverfläufe in verschiedenen Ausführungen (tal_01_strasse_virunum-iuenna [EPSG:31258],tal_02_strasse_virunum-iuenna [EPSG:31258],tal_03_strasse_virunum-iuenna [EPSG:31258],tal_04_strasse_virunum-iuenna [EPSG:31258],tal_05_strasse_virunum-iuenna [EPSG:31258]).\n* Räumlicher GIS-Datensatz zu den Grenzen des Jauntals als geopgrafische Region (tal_region [EPSG:4326]).\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792423",
+    "col_id": "col_1792423"
+  },
+  {
+    "arche_id": "1804083",
+    "title": "tal_noricum_grenzen_2024.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4E-3",
+    "description": "Räumlicher GIS-Datensatz zu den Grenzen Noricums als politische Entität (Felder: fid,Name-Deutsch,Name-Latein,Startdatum,Stopdatum,Area-km2,Chronologie) in der römischen Kaiserzeit und Spätantike (ca. 15 v. Chr. bis 284 n. Chr. bzw. 284 n. Chr. bis 488 n. Chr.). Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792423",
+    "col_id": "col_1792423"
+  },
+  {
+    "arche_id": "1798918",
+    "title": "hb20_funde.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AF-C",
+    "description": "Originäre MS Access-Datenbank mit Funden vom Hemmaberg aus dem Jahr 2020. Die Datenbank dokumentiert archäologische Fundstücke und assoziierte Literatur. Sie umfasst zentrale Tabellen,darunter Fundstücke,die Informationen wie Fundname,ObjektNr,Typologie,Erhaltungszustand,Datierung und Oberflächeneigenschaften eines Objekts abbilden. Zusätzliche Tabellen wie Literatur,Autor,und Koautor ordnen jedem Fund die entsprechende wissenschaftliche Dokumentation und Autoreninformationen zu. Diese Struktur ermöglicht Klassifikationen der Funde und ihrer Merkmale,etwa durch Angaben zur Farbe,Dekor,Lage,sowie der Beschaffenheit. Die Datenbank unterstützt eine Analyse der materiellen Kultur,was für eine weiterführende wissenschaftliche Bearbeitung und Veröffentlichung essentiell ist​. Die Tabellen liegen als 197 CSV-Dateien vor,ein ER-Diagramm wie auch eine detaillierte deskriptive Dokumentation der Datenbank ist vorhanden.",
+    "parent_cid": "1792273",
+    "col_id": "col_1792273"
+  },
+  {
+    "arche_id": "1798919",
+    "title": "hb_bioarchaeologie_samples.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B0-9",
+    "description": "Originäre MS Access-Datenbank mit Proben zur Bioarchäologie vom Hemmaberg. Die bioarchäologische Datenbank strukturiert detaillierte Informationen antiker Individuen,einschließlich deren Geschlechts- und Altersbestimmung,pathologischer Veränderungen,sowie Knochen- und Zahnmerkmale. Das Modell enthält zentrale Entitäten wie das Individuum selbst,mit Basisdaten zu Fundort,Geschlecht,Körperhöhe und Alter,sowie spezialisierte Felder zur Analyse nicht-metrischer Merkmale,Gelenk- und Knochenzuständen,die krankhafte Veränderungen dokumentieren. Weiterhin erfasst es spezielle Anmerkungen und Bildmaterialien,um Besonderheiten zu dokumentieren. Diese Struktur dient als Grundlage zur Analyse physischer und sozialer Aspekte antiker Populationen und bietet Einblicke in Gesundheit,Lebensweise und Verwandtschaftsverhältnisse. Die Tabellen liegen als 442 CSV-Dateien vor,ein ER-Diagramm wie auch eine detaillierte deskriptive Dokumentation der Datenbank ist vorhanden.",
+    "parent_cid": "1792273",
+    "col_id": "col_1792273"
+  },
+  {
+    "arche_id": "1798920",
+    "title": "hb_geodaten_open.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B1-8",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadarprospektionen 2015 auf dem Hemmaberg. Es umfasst folgende Datensätze:\n* Georadar-Daten (hb15_georadar_mig_030_100 [EPSG:32633],hb15_georadar_mig_030_200 [EPSG:32633],hb15_georadar_mig_100_200 [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar am Hemmaberg in Form von drei kombinierten Tiefenscheiben (30 bis 100 cm,30 bis 200 cm und 100 bis 200 cm Tiefe).\n* Messflächen (hb15_mig_border [EPSG:32633]; Felder: fid,ID,Name,Area): Enthält die Ausmaße der geohysikalischen Messflächen auf dem Hemmaberg.\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792273",
+    "col_id": "col_1792273"
+  },
+  {
+    "arche_id": "1798921",
+    "title": "hb_graeber-anthropologie.gpkg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B2-7",
+    "description": "Diese GeoPackage-Geodatenbank enthält detaillierte bioarchäologische Informationen zu den bis 2017 ergrabenen Gräbern vom Gräberfeld des Fundplatzes Hemmaberg. Sie dient dazu,systematisch qualitative und quantitative Informationen über die Gräber räumlich breitzustellen und analysierbar zu machen. Jeder Datensatz in der Datenbank repräsentiert ein Grab im Koordinatensystem EPSG:31255 und enthält die folgenden Attribute:\n\n*fid: Eindeutige Kennung für jeden Datensatz.\n*OBJECTID: Alternativer Identifier.\n*Grabnummer: Eindeutige Nummer des Grabes.\n*SHAPE_Length und SHAPE_Area: Geometrische Maße des Grabes,einschließlich Länge und Fläche.\n*Orientierung: Richtung,in die der Kopf der bestatteten Person zeigt.\n*Geschlecht: Geschlecht der bestatteten Person,falls bestimmbar.\n*Beigaben: Angabe,ob Beigaben im Grab gefunden wurden.\n*Bestattung: Art der Bestattung (z.B. Einzel- oder Doppelbestattung).\n*Sterbealter: Altersangabe der bestatteten Person zum Zeitpunkt des Todes.\n*beprobt: Information,ob Proben aus dem Grab entnommen wurden.\n*Anthropologie: Hinweise auf anthropologische Untersuchungen.\n*Anzahl der Bestattungen: Anzahl der in dem Grab bestatteten Personen.\n*C14,C_N,SR: Ergebnisse spezifischer Analysen (z.B. Radiokarbon-Datierung,Isotopenanalysen).\n\nEine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_cid": "1792273",
+    "col_id": "col_1792273"
+  },
+  {
+    "arche_id": "1795522",
+    "title": "glo08_katalog-gesamt.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC40-7",
+    "description": "Gesamtkatalog zum Gräberfeld von Globasnitz im DOCX-Format",
+    "parent_cid": "1792210",
+    "col_id": "col_1792210"
+  },
+  {
+    "arche_id": "1795523",
+    "title": "glo08_katalog-gesamt.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC41-6",
+    "description": "Gesamtkatalog zum Gräberfeld von Globasnitz im PDF-Format",
+    "parent_cid": "1792210",
+    "col_id": "col_1792210"
+  },
+  {
+    "arche_id": "1792196",
+    "title": "glo_graeberfeld_2024.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3D-C",
+    "description": "Die DXF-Datei enthält einen vektorbasierten Gesamtplan des Gräberfeldes von Globasnitz,der verschiedene Layer zur detaillierten Darstellung der archäologischen Befunde umfasst. Er dient damit als umfassende Grundlage für die Analyse und Visualisierung der Funerärbefunde und bietet eine strukturierte Darstellung archäologischer und topografischer Zusammenhänge. Zu den zentralen Layern gehören:\n\n1. Topografische und bauliche Elemente:\n   - \"0_FELDWEG\",\"0_STRAßE\" und \"0_TRAFO_STROMMAST_KELAG\" für Infrastruktur.\n   - \"1_GRABUNGSFLÄCHE\" und \"1_SCHNITTE\" für die Grabungsareale und Schnitte.\n\n2. Funerärbefundbezogene Layer:\n   - \"2_GRAB_GRUBE\" und \"2_GRAB_HOLZSARG\" für die Darstellung der Grabstrukturen.\n   - \"2_GRAB_BEIGABEN\" für Funde und Artefakte.\n   - \"2_GRAB_KNOCHEN\" und \"2_GRAB_NICHT_AUSGEGRABEN\" für dokumentierte menschliche Überreste oder nicht untersuchte Gräber.\n\n3. Chronologische Verteilung:\n   - Layer wie \"VERTEILUNG_1_JAHRHUNDERT\" oder \"VERTEILUNG_5-6_JAHRHUNDERT\" markieren dezidiert fassbare,spezifische Zeitperioden.\n   - \"VERTEILUNG_C14GRAEBER\" für Gräber für die C14-Datierungen vorliegen.\n\n4. Weitere Details:\n   - \"2_KERAMIK\",\"2_ORGANISCH\" und \"2_TIERKNOCHEN\" für entsprechend dokumentierte Funde.\n   - \"2_GEBAEUDE_A_-_KONTUR\" und ähnliche Layer für bauliche Strukturen.\n\nDie strukturierte Tabelle (glo_graeberfeld_2024_kommentare.xlsx) enthält ergänzende Kommentare.",
+    "parent_cid": "1792202",
+    "col_id": "col_1792202"
+  },
+  {
+    "arche_id": "1792197",
+    "title": "glo_graeberfeld_2024.svg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3E-B",
+    "description": "Die SVG-Datei bildet einen vektorbasierten Gesamtplan des Gräberfeldes von Globasnitz ab. Sie enthält zahlreiche Layer,die eine detaillierte Darstellung sowohl der archäologischen Befunde als auch der topografischen und infrastrukturellen Gegebenheiten ermöglichen. Die Datei dient als umfassende Grundlage für die Analyse und Visualisierung von Funerärbefunden und zeigt eine strukturierte Übersicht über Grabstrukturen,Funddokumentationen,zeitliche Verteilungen und situative Besonderheiten. Sie unterstützt die Untersuchung sowohl chronologischer als auch räumlicher Zusammenhänge und ermöglicht eine differenzierte Interpretation der archäologischen Befunde.\n\nDie strukturierte Tabelle (glo_graeberfeld_2024_kommentare.xlsx) enthält ergänzende Kommentare.",
+    "parent_cid": "1792202",
+    "col_id": "col_1792202"
+  },
+  {
+    "arche_id": "1795468",
+    "title": "glo18_finds_globasnitz_mappe1.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC02-D",
+    "description": "Funde aus Globasnitz 2018,Mappe 1",
+    "parent_cid": "1792203",
+    "col_id": "col_1792203"
+  },
+  {
+    "arche_id": "1795469",
+    "title": "glo18_finds_globasnitz_mappe2.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC03-C",
+    "description": "Funde aus Globasnitz 2018,Mappe 2",
+    "parent_cid": "1792203",
+    "col_id": "col_1792203"
+  },
+  {
+    "arche_id": "1795470",
+    "title": "glo18_finds_globasnitz_mappe3.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC04-B",
+    "description": "Funde aus Globasnitz 2018,Mappe 3",
+    "parent_cid": "1792203",
+    "col_id": "col_1792203"
+  },
+  {
+    "arche_id": "1792195",
+    "title": "glo_graeberfeld_2024_kommentare.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF5-C",
+    "description": "Die Tabelle (XLSX) enthält ergänzende Kommentare zur Gesamtdarstellung des Gräberfelds von Globasnitz (Ressourcen „glo_graeberfeld_2024.svg“ und „glo_graeberfeld_2024.dxf“). Sie dokumentiert unter anderem die Grabnummern,deren zeitliche Einordnung (Jahre),räumliche Lage und spezifische Charakteristika wie mögliche Grabformen (z. B. Steinkisten oder Holzgräber) sowie besondere Merkmale wie Mehrfachbestattungen oder Störungen. Zusätzlich werden selektiv die wichtigsten Funde aus den Gräbern beschrieben,darunter Trachtbestandteile,Werkzeuge oder organische Reste,ergänzt durch Anmerkungen zur Funddokumentation und situativen Besonderheiten (z. B. Überlagerungen,fehlende Skelette oder Unterschiede zwischen Planangaben und den zugehörigen Zeichnungen). Die Kommentare dienen als weiterführende Informationen zur Interpretation der archäologischen Befunde sowie zur Diskussion der Problematik der Gesamtdarstellung des Gräberfelds.",
+    "parent_cid": "1792194",
+    "col_id": "col_1792194"
+  },
+  {
+    "arche_id": "1792199",
+    "title": "glo_aktivitaeten.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF4-D",
+    "description": "Die Datei „glo_aktivitaeten.xlsx“ dokumentiert archäologische Aktivitäten in Globasnitz und Umgebung und enthält folgende Felder:\n\n*Jahr: Das Jahr,in dem die Aktivität stattfand.\n*Ortsbezeichnung: Der spezifische Ort innerhalb der Region Globasnitz.\n*Gemeinde: Gemeinde,in der der Ort liegt (meist „MG Globasnitz“).\n*Ortsangabe: Genauere Lagebeschreibung der Aktivität.\n*Beschreibung: Art der archäologischen Fundstelle (z.B. Gräberfeld,Gebäudereste).\n*Ausgräber: Name des/der Archäologen,die die Ausgrabung durchgeführt haben.\n*Institution: Institution,die die Grabung leitete (z.B. ÖAI,LMK).\n*Literatur: Verweise auf relevante Literaturquellen.\n*Anmerkungen: Zusätzliche Informationen zur Aktivität (z.B. Bezug auf Abschlussarbeiten).\n\nDie Datei bietet somit eine detaillierte Übersicht über archäologische Fundstellen und Aktivitäten in der Region Globasnitz,strukturiert nach Fundorten,Ausgräbern und relevanter Literatur.",
+    "parent_cid": "1792194",
+    "col_id": "col_1792194"
+  },
+  {
+    "arche_id": "1795455",
+    "title": "glo06_grabungstagebuch.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF2-F",
+    "description": "Grabungstagebuch der Kampagne 2006 von Globasnitz",
+    "parent_cid": "1792194",
+    "col_id": "col_1792194"
+  },
+  {
+    "arche_id": "1795456",
+    "title": "glo08_grabungstagebuch.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF3-E",
+    "description": "Grabungstagebuch der Kampagne 2008 von Globasnitz",
+    "parent_cid": "1792194",
+    "col_id": "col_1792194"
+  },
+  {
+    "arche_id": "1799177",
+    "title": "jau18_grabung-master.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC1-5",
+    "description": "Umfassende DXF-Vektordatei mit geodätisch ermittelten Daten und Informationen zur Ausgrabung Jaunstein (JAU) aus dem Jahr 2018.",
+    "parent_cid": "1792305",
+    "col_id": "col_1792305"
+  },
+  {
+    "arche_id": "1799178",
+    "title": "jau18_kirche-master.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC2-4",
+    "description": "Umfassende DXF-Vektordatei mit geodätisch ermittelten Daten und Informationen zur Kirchengrabung Jaunstein (JAU) aus dem Jahr 2018.",
+    "parent_cid": "1792305",
+    "col_id": "col_1792305"
+  },
+  {
+    "arche_id": "1799179",
+    "title": "jau20_master_1.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC3-3",
+    "description": "Umfassende DXF-Vektordatei mit geodätisch ermittelten Daten und Informationen zum Fundplatz Jaunstein (JAU) aus dem Jahr 2020.",
+    "parent_cid": "1792305",
+    "col_id": "col_1792305"
+  },
+  {
+    "arche_id": "1799180",
+    "title": "jau20_master_2.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC4-2",
+    "description": "Umfassende DXF-Vektordatei mit geodätisch ermittelten Daten und Informationen zum Fundplatz Jaunstein (JAU) aus dem Jahr 2020.",
+    "parent_cid": "1792305",
+    "col_id": "col_1792305"
+  },
+  {
+    "arche_id": "1799181",
+    "title": "jau20_master_3.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC5-1",
+    "description": "Umfassende DXF-Vektordatei mit geodätisch ermittelten Daten und Informationen zum Fundplatz Jaunstein (JAU) aus dem Jahr 2020.",
+    "parent_cid": "1792305",
+    "col_id": "col_1792305"
+  },
+  {
+    "arche_id": "1804066",
+    "title": "ste24_geomagnetik_interpretation_v20240321.png",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3A-9",
+    "description": "Rasterbild mit der Interpretation der geomagnetischen Untersuchungen von St. Stefan (STE24),Version vom 21. März 2024.",
+    "parent_cid": "1792415",
+    "col_id": "col_1792415"
+  },
+  {
+    "arche_id": "1804067",
+    "title": "ste24_georadar_interpretation_phasen_v20240321.png",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E39-A",
+    "description": "Rasterbild mit der Interpretation der Phasen der Georadar-Daten von St. Stefan (STE24),Version vom 21. März 2024.",
+    "parent_cid": "1792415",
+    "col_id": "col_1792415"
+  },
+  {
+    "arche_id": "1804068",
+    "title": "ste24_georadar_interpretation_v20240321.png",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3B-8",
+    "description": "Rasterbild mit der Interpretation der Georadar-Daten von St. Stefan (STE24),Version vom 21. März 2024.",
+    "parent_cid": "1792415",
+    "col_id": "col_1792415"
+  },
+  {
+    "arche_id": "1804069",
+    "title": "ste24_georadar_interpretation_v20240321_ol.png",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3C-7",
+    "description": "Rasterbild mit der Interpretation der Georadar-Daten von St. Stefan (STE24) ohne Legende,Version vom 21. März 2024.",
+    "parent_cid": "1792415",
+    "col_id": "col_1792415"
+  },
+  {
+    "arche_id": "1795457",
+    "title": "glo00_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF7-A",
+    "description": "Fotos der Kampagne 2000 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795458",
+    "title": "glo01_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF8-9",
+    "description": "Fotos der Kampagne 2001 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795459",
+    "title": "glo02_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF9-8",
+    "description": "Fotos der Kampagne 2002 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795460",
+    "title": "glo03_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFA-7",
+    "description": "Fotos der Kampagne 2003 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795461",
+    "title": "glo04_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFB-6",
+    "description": "Fotos der Kampagne 2004 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795462",
+    "title": "glo05_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFC-5",
+    "description": "Fotos der Kampagne 2005 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795463",
+    "title": "glo06_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFD-4",
+    "description": "Fotos der Kampagne 2006 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795464",
+    "title": "glo07_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFE-3",
+    "description": "Fotos der Kampagne 2007 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795465",
+    "title": "glo08_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBFF-2",
+    "description": "Fotos der Kampagne 2008 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795466",
+    "title": "glo99-00_fotos_funde.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC00-F",
+    "description": "Fotos der Funde der Kampagnen 1999-2000 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1795467",
+    "title": "glo99_fotos.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC05-A",
+    "description": "Fotos der Kampagne 1999 von Globasnitz",
+    "parent_cid": "1792201",
+    "col_id": "col_1792201"
+  },
+  {
+    "arche_id": "1804084",
+    "title": "tal24_scurvy_data.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4D-4",
+    "description": "Ergebnisse von bioarchäologischen Analysen ausgewählter Fundplätze (mit Schwerpunkt auf Skorbut-bezogene Parameter) auf Basis funerärarchäologischer Samples aus dem Jauntal (TAL).",
+    "parent_cid": "1792567",
+    "col_id": "col_1792567"
+  },
+  {
+    "arche_id": "1804085",
+    "title": "tal24_stable_isototopes_results_round01.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4F-2",
+    "description": "Excel-Datei mit Ergebnissen der stabilen Isotopenanalyse (1. Durchgang) im Bereich Jauntal (TAL),erstellt 2024.",
+    "parent_cid": "1792567",
+    "col_id": "col_1792567"
+  },
+  {
+    "arche_id": "1804086",
+    "title": "tal24_stable_isototopes_results_round02.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E50-F",
+    "description": "Excel-Datei mit Ergebnissen der stabilen Isotopenanalyse (2. Durchgang) im Bereich Jauntal (TAL),erstellt 2024.",
+    "parent_cid": "1792567",
+    "col_id": "col_1792567"
+  },
+  {
+    "arche_id": "1798917",
+    "title": "hb13_prothesentraeger_rekonstruktion.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AC-F",
+    "description": "3D-Modell des Cranium des sog. Prothesenträgers (Ausgrabung Hemmaberg 2013),angerfertigt 2016",
+    "parent_cid": "1792270",
+    "col_id": "col_1792270"
+  },
+  {
+    "arche_id": "1804070",
+    "title": "tal_st-magarethen-ob-toellerberg_001.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3E-5",
+    "description": "Fotografie eines archäologischen Cippus von St. Margarethen ob Töllerberg  im Jauntal (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804071",
+    "title": "tal_st-magarethen-ob-toellerberg_002.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3F-4",
+    "description": "Fotografie eines archäologischen Cippus von St. Margarethen ob Töllerberg  im Jauntal (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804072",
+    "title": "tal_st-magarethen-ob-toellerberg_003.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E40-1",
+    "description": "Fotografie eines archäologischen Cippus von St. Margarethen ob Töllerberg  im Jauntal (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804073",
+    "title": "tal_st-ruprecht_voelkermarkt_001.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E41-0",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804074",
+    "title": "tal_st-ruprecht_voelkermarkt_002.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E42-F",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804075",
+    "title": "tal_st-ruprecht_voelkermarkt_003.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E43-E",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804076",
+    "title": "tal_st-ruprecht_voelkermarkt_004.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E44-D",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804077",
+    "title": "tal_st-ruprecht_voelkermarkt_005.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E45-C",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804078",
+    "title": "tal_st-ruprecht_voelkermarkt_006.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E46-B",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1804079",
+    "title": "tal_st-ruprecht_voelkermarkt_007.JPG",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E47-A",
+    "description": "Fotografie eines archäologischen Cippus von St. Ruprecht bei Völkermarkt im Jauntal  (TAL).",
+    "parent_cid": "1792421",
+    "col_id": "col_1792421"
+  },
+  {
+    "arche_id": "1803906",
+    "title": "jau18_schnitt1.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D92-5",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 1 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803907",
+    "title": "jau18_schnitt10.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D93-4",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 10 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803908",
+    "title": "jau18_schnitt2.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D94-3",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 2 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803909",
+    "title": "jau18_schnitt3.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D95-2",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 3 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803910",
+    "title": "jau20_hm-schnitt-01.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D96-1",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 01 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in PDF-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803911",
+    "title": "jau20_hm-schnitt-02.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D97-0",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 02 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in PDF-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803912",
+    "title": "jau20_hm-schnitt-03.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D98-F",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 03 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in PDF-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803913",
+    "title": "jau20_schnitt1.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D99-E",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 1 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803914",
+    "title": "jau20_schnitt2.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9A-D",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 2 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803915",
+    "title": "jau20_schnitt3.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9B-C",
+    "description": "Sequentielle Darstellung der Stratifikationseinheiten (Harris-Matrix) für Schnitt 3 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in CSV-Format.",
+    "parent_cid": "1792401",
+    "col_id": "col_1792401"
+  },
+  {
+    "arche_id": "1803893",
+    "title": "jau09_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D84-5",
+    "description": "Word-Dokument aus dem Jahr 2009 mit einer Fotoliste vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803894",
+    "title": "jau18_fotoliste-keramik.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D85-4",
+    "description": "PDF aus dem Jahr 2018 mit einer Fotoliste für Keramik vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803895",
+    "title": "jau18_fotoliste-metall.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D86-3",
+    "description": "Word-Dokument aus dem Jahr 2018 mit einer Fotoliste für Metall vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803896",
+    "title": "jau18_fotoliste2022.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D87-2",
+    "description": "Word-Dokument aus dem Jahr 2018 mit einer Fotoliste für das Jahr 2022 vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803897",
+    "title": "jau18_fotoprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D88-1",
+    "description": "PDF aus dem Jahr 2018 mit einem Fotoprotokoll vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803898",
+    "title": "jau18_fotoprotokoll_drohne.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D89-0",
+    "description": "PDF aus dem Jahr 2018 mit einem Fotoprotokoll für Drohnenfotografie vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803899",
+    "title": "jau20_fotolist-metall.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8A-F",
+    "description": "Word-Dokument aus dem Jahr 2020 mit einer Fotoliste für Metall vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803900",
+    "title": "jau20_fotoliste-keramik.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8B-E",
+    "description": "PDF aus dem Jahr 2020 mit einer Fotoliste für Keramik vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803901",
+    "title": "jau20_fotoliste-wandmalerei-moertel.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8C-D",
+    "description": "PDF aus dem Jahr 2020 mit einer Fotoliste für Wandmalerei und Mörtel vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803902",
+    "title": "jau20_fotoliste_restaurierung.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8D-C",
+    "description": "Excel-Datei aus dem Jahr 2020 mit einer Fotoliste zur Restaurierung vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803903",
+    "title": "jau20_fotoprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8E-B",
+    "description": "PDF aus dem Jahr 2020 mit einem Fotoprotokoll vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803904",
+    "title": "jau20_fotoprotokoll.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D8F-A",
+    "description": "Excel-Datei aus dem Jahr 2020 mit einem Fotoprotokoll vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1803905",
+    "title": "jau21_benennung.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D90-7",
+    "description": "Textdatei aus dem Jahr 2021 mit Benennungen vom Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792400",
+    "col_id": "col_1792400"
+  },
+  {
+    "arche_id": "1792279",
+    "title": "hb_flaechen_2024.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB7-1",
+    "description": "Die DXF-Datei enthält einen vektorbasierten Gesamtplan des Hemmabergs,der alle fassbaren Feldforschungsaktivitäten visualisiert. Die Datei integriert archäologische und topografische Informationen und dient als Grundlage für die umfassende Analyse und Dokumentation des Geländes. Sie bietet eine detaillierte Darstellung der Höhenlinien,Grabungs- und Prospektionsflächen sowie als aktuelles Bauwerke die Gebäudeaußenkanten der rezenten Kirche.\n\nDie enthaltenen Layer decken sowohl historische als auch gegenwärtige Elemente ab,darunter:\n\n1. Topografische Elemente:\n   - 0_HÖHENLINIEN: Darstellung der Höhenlinien.\n   - 0_HÖHENLINIENBESCHRIFTUNG: Beschriftungen zu den Höhenlinien.\n   - 0_STEILABFALL: Markierung steiler Abhänge.\n\n2. Grabungs- und Prospektionsflächen:\n   - GRABUNGSGRENZE: Markierung der Grenzen der Grabungsflächen.\n   - GRABUNGSGRENZEGEMESSEN: Gemessene Grabungsgrenzen.\n   - QUADRANTEN: Darstellung der Grabungsquadranten.\n   - QUADRANTENBESCHRIFTUNG: Beschriftungen zu den Quadranten.\n   - QUADRANTENREKO: Rekonstruktionen der Quadranten.\n\n3. Archäologische und bauliche Befunde:\n   - 0_GROTTE: Darstellung der Grotte.\n   - KIRCHEBAROCKGRUNDRISS und KIRCHEGOTISCHGRUNDRISS: Grundrisse der Kirche aus der barocken und gotischen Bauphase.\n   - KIRCHEBAROCKGEWÖLBE und KIRCHTURMGEWÖLBE: Details zu den Gewölben der Kirche und des Kirchturms.\n   - KIRCHEBAROCKGRUNDRISSDETAI und KIRCHEGOTISCHGRUNDRISSDETA: Detailansichten der Grundrisse.\n\n4. Infrastruktur und Wege:\n   - 0_STRASSENWEGEPFADE: Darstellung von Straßen,Wegen und Pfaden.\n\n5. Weitere Elemente:\n   - 0_MESSPUNKT und 0_MESSPUNKTBESCHRIFTUNG: Markierung und Beschriftung von Messpunkten.\n   - 0_PARZELLENGRENZE: Darstellung der Parzellengrenzen.\n   - BESCHRIFTUNG: Allgemeine Beschriftungen und Annotationen.\n\nDieser Gesamtplan ermöglicht eine differenzierte Visualisierung und Analyse der räumlichen und zeitlichen Beziehungen auf dem Hemmaberg und bildet eine zentrale Grundlage für die weitere wissenschaftliche Interpretation und Diskussion.",
+    "parent_cid": "1792286",
+    "col_id": "col_1792286"
+  },
+  {
+    "arche_id": "1792280",
+    "title": "hb_flaechen_2024.svg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB8-0",
+    "description": "Die SVG-Datei enthält einen vektorbasierten Gesamtplan des Hemmabergs,der alle fassbaren Feldforschungsaktivitäten visualisiert. Die Datei integriert archäologische und topografische Informationen und dient als Grundlage für die umfassende Analyse und Dokumentation des Geländes. Sie bietet eine detaillierte Darstellung der Höhenlinien,Grabungs- und Prospektionsflächen,Parzellengrenzen sowie als aktuelles Bauwerke die Gebäudeaußenkanten der rezenten Kirche.\nDie enthaltenen Layer decken sowohl historische als auch gegenwärtige Elemente ab,darunter Grundrisse verschiedener Bauphasen der Kirche (barock und gotisch),Grabungsgrenzen,Messpunkte und Wege. Zusätzlich werden spezifische Details wie steile Abhänge,Wege und Pfade,sowie Beschriftungen für Höhenlinien und Quadranten integriert.\nDieser Gesamtplan ermöglicht damit eine differenzierte Visualisierung und Analyse der räumlichen und zeitlichen Beziehungen auf dem Hemmaberg und bildet eine zentrale Grundlage für die weitere wissenschaftliche Interpretation und Diskussion.",
+    "parent_cid": "1792286",
+    "col_id": "col_1792286"
+  },
+  {
+    "arche_id": "1799171",
+    "title": "hb_09_11_graeber_gesamtkatalog.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABA-E",
+    "description": "Gesamtkatalog der Gräber vom Hemmaberg aus dem Jahr 2011.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1799172",
+    "title": "hb_graeber_gesamt.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABB-D",
+    "description": "Gesamtkatalog der Gräber vom Hemmaberg aus dem Jahr 2022.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1799173",
+    "title": "hb_teil_iv_02_objektzeichnungen.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABC-C",
+    "description": "Teil IV/02 der Projektmonografie \"Eitler,J.,& Seidel,Y. (2022). Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25). Verlag des Landesmuseums für Kärnten\": PDF-Dokument mit Objektzeichnungen aus dem Jahr 2022.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1799174",
+    "title": "hb_teil_iv_03_1_objektfotos_fn_1-30.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABD-B",
+    "description": "Teil IV/03/01 der Projektmonografie \"Eitler,J.,& Seidel,Y. (2022). Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25). Verlag des Landesmuseums für Kärnten\": PDF-Dokument mit Fotos von archäologischen Objekten (Fundnummern 1-30) aus dem Jahr 2022.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1799175",
+    "title": "hb_teil_iv_03_2_objektfotos_fn_31-60.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABE-A",
+    "description": "Teil IV/03/02 der Projektmonografie \"Eitler,J.,& Seidel,Y. (2022). Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25). Verlag des Landesmuseums für Kärnten\": PDF-Dokument mit Fotos von archäologischen Objekten (Fundnummern 31-60) aus dem Jahr 2022.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1799176",
+    "title": "hb_teil_iv_03_3_objektfotos_fn_61-118.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FABF-9",
+    "description": "Teil IV/03/03 der Projektmonografie \"Eitler,J.,& Seidel,Y. (2022). Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25). Verlag des Landesmuseums für Kärnten\": PDF-Dokument mit Fotos von archäologischen Objekten (Fundnummern 61-118) aus dem Jahr 2022.",
+    "parent_cid": "1792301",
+    "col_id": "col_1792301"
+  },
+  {
+    "arche_id": "1795563",
+    "title": "hb09_1.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6C-7",
+    "description": "TIFF-Bilddatei mit geodätischen Daten des Hemmabergs 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795564",
+    "title": "hb09_100.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC70-1",
+    "description": "TIFF-Bilddatei mit geodätischen Daten des Hemmabergs im Maßstab 1:100,erstellt 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795565",
+    "title": "hb09_2.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6E-5",
+    "description": "TIFF-Bilddatei mit geodätischen Daten des Hemmabergs 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795566",
+    "title": "hb09_lageplanhemmaberg.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6D-6",
+    "description": "PDF-Dokument mit dem Lageplan des Hemmabergs 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795567",
+    "title": "hb09_orientierung.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC71-0",
+    "description": "TIFF-Bilddatei mit geodätischen Orientierungsdaten des Hemmabergs 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795568",
+    "title": "hb09_plan1.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6F-4",
+    "description": "PDF-Dokument mit geodätischen Daten des Hemmabergs 2009",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795569",
+    "title": "hb10_sthemma-grundriss_100.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC72-F",
+    "description": "TIFF-Bilddatei mit dem Grundriss des St. Hemma Kirchengebäudes am Hemmaberg im Maßstab 1:100,erstellt 2010",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795570",
+    "title": "hb11_kabelgraben.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC74-D",
+    "description": "TIFF-Bilddatei mit Vermessungsdaten des Kabelgrabens am Hemmaberg 2011",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795571",
+    "title": "hb11_vermessung.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC76-B",
+    "description": "TIFF-Bilddatei mit allgemeinen Vermessungsdaten am Hemmaberg 2011",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795572",
+    "title": "hb12_vermessung.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC73-E",
+    "description": "TIF-Bilddatei mit allgemeinen Vermessungsdaten am Hemmaberg 2012",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795573",
+    "title": "hb17_felsengraeber_ortho_top.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC75-C",
+    "description": "TIFF-Bilddatei mit orthografischen Daten der Felsengräber am Hemmaberg 2017",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795574",
+    "title": "hb_1_100.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC77-A",
+    "description": "TIFF-Bilddatei mit geodätischen Daten des Hemmabergs im Maßstab 1:100,erstellt 2022",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795575",
+    "title": "hb_2_100.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC78-9",
+    "description": "TIFF-Bilddatei mit geodätischen Daten des Hemmabergs im Maßstab 1:100,erstellt 2022",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795576",
+    "title": "hb_gesamtplan_merged.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC79-8",
+    "description": "Höhenlinienplan des Hemmabergs mit schematischer Darstellung der bekannten Befunde zum Forschungsstand von 1991. Der Plan bildet die Grundlage für zahlreiche Ableitungen.",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1795577",
+    "title": "hb_graeberfeld_plan_glaser.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC7A-7",
+    "description": "Schematischer Plan des Gräberfeldes am Hemmaberg mit zusätzlicher Darstellung der lokalisierten Altgrabungen gemäß dem Forschungsstand von 1986.",
+    "parent_cid": "1792219",
+    "col_id": "col_1792219"
+  },
+  {
+    "arche_id": "1803916",
+    "title": "jau18_find.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9D-A",
+    "description": "Funddokumentation vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803917",
+    "title": "jau18_fund_liste.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA3-2",
+    "description": "Liste der Funde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803918",
+    "title": "jau18_funde_ses.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9E-9",
+    "description": "Funde der SESchichten vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803919",
+    "title": "jau18_fundnummernliste_schnitt1-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9F-8",
+    "description": "Fundnummernliste für Schnitt 1-18 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 im PDF-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803920",
+    "title": "jau18_fundnummernliste_schnitt10-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA0-5",
+    "description": "Fundnummernliste für Schnitt 10-18 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 im PDF-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803921",
+    "title": "jau18_fundnummernliste_schnitt2-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA1-4",
+    "description": "Fundnummernliste für Schnitt 2-18 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 im PDF-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803922",
+    "title": "jau18_fundnummernliste_schnitt3-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA2-3",
+    "description": "Fundnummernliste für Schnitt 3-18 vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 im PDF-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803923",
+    "title": "jau18_jaunstein_2018_fundstatistik.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA4-1",
+    "description": "Fundstatistik vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803924",
+    "title": "jau18_keramik_jaunstein.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA5-0",
+    "description": "Keramikfunde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803925",
+    "title": "jau18_muenzen.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA6-F",
+    "description": "Liste der Münzfunde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803926",
+    "title": "jau18_objekt_liste.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA8-D",
+    "description": "Liste der Objekte vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803927",
+    "title": "jau18_objekte-list.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA7-E",
+    "description": "Liste der Objekte vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803928",
+    "title": "jau18_objektgruppen-list.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DA9-C",
+    "description": "Liste der Objektgruppen vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803929",
+    "title": "jau18_probenliste_fabrics.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAA-B",
+    "description": "Liste der Proben für archäometrische Keramikanalysen (Fabrics) vom Fundplatz Jaunstein (JAU) aus dem Jahr 2018 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803930",
+    "title": "jau20_funde.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAB-A",
+    "description": "Funde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803931",
+    "title": "jau20_funde_ses.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAC-9",
+    "description": "Funde der SE-Schichten vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803932",
+    "title": "jau20_fundliste.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAD-8",
+    "description": "Fundliste vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803933",
+    "title": "jau20_jaunstein_2020_fundstatistik.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAE-7",
+    "description": "Fundstatistik vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803934",
+    "title": "jau20_keramik_jaunstein.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DAF-6",
+    "description": "Keramikfunde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803935",
+    "title": "jau20_muenzen.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DB0-3",
+    "description": "Liste der Münzfunde vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Word-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1803936",
+    "title": "jau20_probenliste_fabrics.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0DB1-2",
+    "description": "Liste der Proben für archäometrische Keramikanalysen (Fabrics) vom Fundplatz Jaunstein (JAU) aus dem Jahr 2020 in Excel-Format.",
+    "parent_cid": "1792403",
+    "col_id": "col_1792403"
+  },
+  {
+    "arche_id": "1799000",
+    "title": "hb11_matrix_1.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA09-6",
+    "description": "TIFF-Bilddatei mit einer Matrix vom Hemmaberg aus dem Jahr 2011.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799001",
+    "title": "hb11_matrix_2.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0A-5",
+    "description": "TIFF-Bilddatei mit einer weiteren Matrix vom Hemmaberg aus dem Jahr 2011.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799002",
+    "title": "hb12_hm_vereinfacht.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA07-8",
+    "description": "TIF-Bilddatei mit einer vereinfachten Matrix vom Hemmaberg aus dem Jahr 2012.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799003",
+    "title": "hb13_matrix.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA08-7",
+    "description": "PDF-Dokument mit einer Matrix vom Hemmaberg aus dem Jahr 2013.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799004",
+    "title": "hb13_matrix.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0B-4",
+    "description": "TIF-Bilddatei mit einer Matrix vom Hemmaberg aus dem Jahr 2013.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799005",
+    "title": "hb13_matrix_red.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0C-3",
+    "description": "PDF-Dokument mit einer reduzierten Matrix vom Hemmaberg aus dem Jahr 2013.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799006",
+    "title": "hb13_matrix_red.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0D-2",
+    "description": "TIF-Bilddatei mit einer reduzierten Matrix vom Hemmaberg aus dem Jahr 2013.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799007",
+    "title": "hb17_harris_matrix_schnitt_1.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0E-1",
+    "description": "CSV-Datei mit der Harris-Matrix Schnitt 1 vom Hemmaberg aus dem Jahr 2017.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799008",
+    "title": "hb17_harris_matrix_schnitt_2.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA0F-0",
+    "description": "CSV-Datei mit der Harris-Matrix Schnitt 2 vom Hemmaberg aus dem Jahr 2017.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799009",
+    "title": "hb17_harris_matrix_schnitt_3.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA10-D",
+    "description": "CSV-Datei mit der Harris-Matrix Schnitt 3 vom Hemmaberg aus dem Jahr 2017.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799010",
+    "title": "hb20_harris_matrix.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA11-C",
+    "description": "CSV-Datei mit der Harris-Matrix vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799011",
+    "title": "hb20_harris_matrix.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA12-B",
+    "description": "PDF-Dokument mit der Harris-Matrix vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799012",
+    "title": "hb21_harris_matrix_v01.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA13-A",
+    "description": "CSV-Datei mit der Harris-Matrix Version 01 vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1799013",
+    "title": "hb21_harris_matrix_v02.csv",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA14-9",
+    "description": "CSV-Datei mit der Harris-Matrix Version 02 vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792284",
+    "col_id": "col_1792284"
+  },
+  {
+    "arche_id": "1798922",
+    "title": "hb17_44317_hemmaber_festpunkte_freierausgleich.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B4-5",
+    "description": "Textdatei mit Festpunkten vom Hemmaberg 2017,freier Ausgleich.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798923",
+    "title": "hb17_felsengraeber_ortho_top-coord.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B5-4",
+    "description": "Textdatei mit orthogonalen und topografischen Koordinaten der Felsengräber am Hemmaberg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798924",
+    "title": "hb17_kt_eberndorf_friedhofskirche.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B6-3",
+    "description": "Textdatei mit geodätischen Daten zur Friedhofskirche in Eberndorf von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798925",
+    "title": "hb17_kt_eberndorf_pfarrkirche.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B7-2",
+    "description": "Textdatei mit geodätischen Daten zur Pfarrkirche in Eberndorf von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798926",
+    "title": "hb17_kt_georgiberg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B8-1",
+    "description": "Textdatei mit geodätischen Daten zum Georgiberg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798927",
+    "title": "hb17_kt_hemmaberg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B9-0",
+    "description": "Textdatei mit geodätischen Daten zum Hemmaberg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798928",
+    "title": "hb17_kt_koecking.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BA-F",
+    "description": "Textdatei mit geodätischen Daten zu Köcking von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798929",
+    "title": "hb17_kt_loibegg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BB-E",
+    "description": "Textdatei mit geodätischen Daten zu Loibegg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798930",
+    "title": "hb17_master.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BC-D",
+    "description": "Master-Textdatei mit gesammelten geodätischen Daten vom Hemmaberg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798931",
+    "title": "hb17_messpunkte.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BD-C",
+    "description": "Textdatei mit Messpunkten vom Hemmaberg 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798932",
+    "title": "hb17_vermessungsprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C1-6",
+    "description": "Vermessungsprotokoll als PDF-Dokument vom Hemmaberg von 2017.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798933",
+    "title": "hb20_20200703_festpunkte_hemmaberg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BE-B",
+    "description": "Textdatei mit Festpunkten vom Hemmaberg vom 03.07.2020.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798934",
+    "title": "hb20_20200703_festpunkte_hemmaberg_kommentare.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9BF-A",
+    "description": "Textdatei mit Kommentaren zu den Festpunkten vom Hemmaberg vom 03.07.2020.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798935",
+    "title": "hb20_master.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C0-7",
+    "description": "Master-Textdatei mit gesammelten geodätischen Daten vom Hemmaberg von 2020.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798936",
+    "title": "hb20_vermessungsprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C2-5",
+    "description": "Vermessungsprotokoll als PDF-Dokument vom Hemmaberg von 2020.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798937",
+    "title": "hb21-vermessungsprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C4-3",
+    "description": "Vermessungsprotokoll als PDF-Dokument vom Hemmaberg von 2021.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798938",
+    "title": "hb21_master.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C3-4",
+    "description": "Master-Textdatei mit gesammelten geodätischen Daten vom Hemmaberg von 2021.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1798939",
+    "title": "hb_tp_35-204.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9C5-2",
+    "description": "PDF-Dokument mit topografischen Daten vom Hemmaberg,Punkt 35-204.",
+    "parent_cid": "1792276",
+    "col_id": "col_1792276"
+  },
+  {
+    "arche_id": "1799182",
+    "title": "jau17_at-oeai-99-00328423.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC7-F",
+    "description": "Blick auf Jaustein und in das Jauntal vom Hemmaberg aus gesehen; Luftlild per Drohne DJI Mavic Pro; Ansicht von Süden",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799183",
+    "title": "jau18_dji_0074.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC8-E",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799184",
+    "title": "jau18_dji_0078.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC9-D",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799185",
+    "title": "jau18_dji_0082.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACA-C",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799186",
+    "title": "jau18_dji_0086.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACB-B",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799187",
+    "title": "jau18_dji_0089.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACC-A",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799188",
+    "title": "jau18_dji_0135.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACE-8",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799189",
+    "title": "jau18_dji_0136.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACD-9",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799190",
+    "title": "jau18_dji_0147.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FACF-7",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1799191",
+    "title": "jau18_dji_0148.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FAD0-4",
+    "description": "Luftbildaufnahme der archäologischen Fundstelle Jaunstein (JAU) aus dem Jahr 2018,aufgenommen mit einer DJI-Drohne",
+    "parent_cid": "1792309",
+    "col_id": "col_1792309"
+  },
+  {
+    "arche_id": "1803836",
+    "title": "jau08_profil_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D46-C",
+    "description": "Profilzeichnung zur Ausgrabung des Jahres 2008 am Fundplatz Jaunstein im Maßstab 1:50.",
+    "parent_cid": "1792393",
+    "col_id": "col_1792393"
+  },
+  {
+    "arche_id": "1803837",
+    "title": "jau09_jp1_20.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D47-B",
+    "description": "Profilzeichnung 1 zur Ausgrabung des Jahres 2009 am Fundplatz Jaunstein im Maßstab 1:20.",
+    "parent_cid": "1792393",
+    "col_id": "col_1792393"
+  },
+  {
+    "arche_id": "1803838",
+    "title": "jau09_jp2.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D4A-8",
+    "description": "Profilzeichnung 2 zur Ausgrabung des Jahres 2009 am Fundplatz Jaunstein.",
+    "parent_cid": "1792393",
+    "col_id": "col_1792393"
+  },
+  {
+    "arche_id": "1798978",
+    "title": "hb09_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F0-1",
+    "description": "Dokument mit der Fotoliste vom Hemmaberg aus dem Jahr 2009.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798979",
+    "title": "hb10_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F1-0",
+    "description": "Dokument mit der Fotoliste vom Hemmaberg aus dem Jahr 2010.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798980",
+    "title": "hb11_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F2-F",
+    "description": "Dokument mit der Fotoliste vom Hemmaberg aus dem Jahr 2011.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798981",
+    "title": "hb12_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F3-E",
+    "description": "Dokument mit der Fotoliste vom Hemmaberg aus dem Jahr 2012.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798982",
+    "title": "hb13_fotoliste.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F4-D",
+    "description": "Dokument mit der Fotoliste vom Hemmaberg aus dem Jahr 2013.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798983",
+    "title": "hb17_fotoliste_atf.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F5-C",
+    "description": "Dokument mit der ATF-Fotoliste vom Hemmaberg aus dem Jahr 2017 (ATF = Abteilung Technik und Fotografie des ÖAI).",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798984",
+    "title": "hb17_fotoprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F8-9",
+    "description": "PDF-Dokument mit dem Fotoprotokoll vom Hemmaberg aus dem Jahr 2017.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798985",
+    "title": "hb17_fotos_atf_kommentar.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F6-B",
+    "description": "Textdatei mit Kommentaren zu den ATF-Fotos vom Hemmaberg aus dem Jahr 2017 (ATF = Abteilung Technik und Fotografie des ÖAI).",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798986",
+    "title": "hb20-fotoprotokoll.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F7-A",
+    "description": "Excel-Datei mit dem Fotoprotokoll vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798987",
+    "title": "hb20-fotoprotokoll_drohne.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9F9-8",
+    "description": "Excel-Datei mit dem Fotoprotokoll der Drohnenaufnahmen vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798988",
+    "title": "hb20_drohne_fotoprotokoll_xl.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FA-7",
+    "description": "PDF-Dokument mit dem Fotoprotokoll der Drohnenaufnahmen vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798989",
+    "title": "hb20_fotoliste_keramik.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FB-6",
+    "description": "PDF-Dokument mit der Fotoliste zur Keramik vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798990",
+    "title": "hb20_fotoliste_kf.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FC-5",
+    "description": "Dokument mit der Fotoliste zu Kleinfunden vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798991",
+    "title": "hb20_fotoliste_restaurierung.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FD-4",
+    "description": "Excel-Datei mit der Fotoliste zur Restaurierung vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798992",
+    "title": "hb20_fotoprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FE-3",
+    "description": "PDF-Dokument mit dem Fotoprotokoll vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798993",
+    "title": "hb20_fotoprotokoll_drohne.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9FF-2",
+    "description": "PDF-Dokument mit dem Fotoprotokoll der Drohnenaufnahmen vom Hemmaberg aus dem Jahr 2020.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798994",
+    "title": "hb20_fotoprotokoll_xl.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA00-F",
+    "description": "PDF-Dokument mit dem Fotoprotokoll vom Hemmaberg aus dem Jahr 2020,ausführliche Version.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798995",
+    "title": "hb21-fotoprotokoll.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA03-C",
+    "description": "PDF-Dokument mit dem Fotoprotokoll vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798996",
+    "title": "hb21-fotoprotokoll_drohne.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA01-E",
+    "description": "Excel-Datei mit dem Fotoprotokoll der Drohnenaufnahmen vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798997",
+    "title": "hb21-fotoprotokoll_dsr.xlsx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA02-D",
+    "description": "Excel-Datei mit dem Fotoprotokoll der DSR-Aufnahmen vom Hemmaberg aus dem Jahr 2021(für Fotos aufgenommen mit Digitaler Spiegelreflex-Kamera [DSR]).",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798998",
+    "title": "hb21_fotoliste_keramik.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA04-B",
+    "description": "Dokument mit der Fotoliste zur Keramik vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1798999",
+    "title": "hb21_fotoliste_kleinfunde.docx",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA05-A",
+    "description": "Dokument mit der Fotoliste zu Kleinfunden vom Hemmaberg aus dem Jahr 2021.",
+    "parent_cid": "1792285",
+    "col_id": "col_1792285"
+  },
+  {
+    "arche_id": "1792864",
+    "title": "glo10_at-oeai-99-00047087.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CA-7",
+    "description": "Pfarrkirche Mariä Himmelfahrt,\ndie Kirche wurde 1265 erstmals erwähnt,als Pfarre 1296.",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792865",
+    "title": "glo10_at-oeai-99-00047088.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1C9-8",
+    "description": "Abbildung des Beinhauses am Friedhof mit als Spolie eingemauertem Grabrelief einer weiblichen Portraitdarstellung.",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792866",
+    "title": "glo10_at-oeai-99-00047089.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CB-6",
+    "description": "Abbildung des Beinhauses am Friedhof mit als Spolie eingemauertem Grabrelief einer weiblichen Portraitdarstellung.",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792867",
+    "title": "glo10_at-oeai-99-00047090.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CF-2",
+    "description": "Installation von Säulenfunden im Ortszentrum von Globasnitz.",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792868",
+    "title": "glo10_at-oeai-99-00047091.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CE-3",
+    "description": "Installation von Säulenfunden im Ortszentrum von Globasnitz.",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792869",
+    "title": "glo20_dji_0904.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CC-5",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792870",
+    "title": "glo20_dji_0906.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1CD-4",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792871",
+    "title": "glo20_dji_0907.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D0-F",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792872",
+    "title": "glo20_dji_0909.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D1-E",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792873",
+    "title": "glo20_dji_0914.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D2-D",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792874",
+    "title": "glo20_dji_0915.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D3-C",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792875",
+    "title": "glo20_dji_0916.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D4-B",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792876",
+    "title": "glo20_dsc02694.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D5-A",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792877",
+    "title": "glo20_dsc02695.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D6-9",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792878",
+    "title": "glo20_dsc02698.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D7-8",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792879",
+    "title": "glo20_dsc02699.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D8-7",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792880",
+    "title": "glo20_dsc02700.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1DC-3",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792881",
+    "title": "glo20_dsc02701.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1D9-6",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792882",
+    "title": "glo20_dsc02702.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1DA-5",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1792883",
+    "title": "glo20_dsc02704.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E1DB-4",
+    "description": "Übersichtsfoto zu Globasnitz aus dem Jahr 2020,aufgenommen mit einer Drohne",
+    "parent_cid": "1792171",
+    "col_id": "col_1792171"
+  },
+  {
+    "arche_id": "1795513",
+    "title": "glo07_graeberfeld-ost_n-profil_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC34-5",
+    "description": "Nord-Profil des Gräberfeldes Ost in Globasnitz,Kampagne 2007,Maßstab 1:50",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795514",
+    "title": "glo09_graeberfeld-ost_n-profil_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC35-4",
+    "description": "Nord-Profil des Gräberfeldes Ost in Globasnitz,Kampagne 2009,Maßstab 1:50",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795515",
+    "title": "glo18_verteilung_14c_2018-06-14.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC33-6",
+    "description": "Visualisierung der Verteilung der C14-Datierungen in Globasnitz,erstellt am 14. Juni 2018",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795516",
+    "title": "glo_demografie_2018-06-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC36-3",
+    "description": "Visualisierung der demografischen Daten der Ausgrabung in Globasnitz,erstellt am 18. Juni 2018",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795517",
+    "title": "glo_ergebnisse_14c_2018-06-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC37-2",
+    "description": "Visualisierung der Ergebnisse der C14-Datierungen von Globasnitz,erstellt am 18. Juni 2018",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795518",
+    "title": "glo_gesamtplan-flaechen_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC38-1",
+    "description": "Gesamtplan der Ausgrabungsflächen in Globasnitz,Maßstab 1:50",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795519",
+    "title": "glo_gesamtplan-graeber_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3A-F",
+    "description": "Gesamtplan der Gräber in Globasnitz,Maßstab 1:50",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795520",
+    "title": "glo_stand_bearbeitung_2018-06-18.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC39-0",
+    "description": "Visualisierung des Bearbeitungssstandes der Ausgrabungsdaten in Globasnitz,erstellt am 18. Juni 2018",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795521",
+    "title": "glo_verteilung_schaedeldeformationen_2018-06-22.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3B-E",
+    "description": "Visualisierung der Verteilung der Schädeldeformationen in Globasnitz,erstellt am 22. Juni 2018",
+    "parent_cid": "1792208",
+    "col_id": "col_1792208"
+  },
+  {
+    "arche_id": "1795506",
+    "title": "glo20_detail_01_geophysik_2020-02.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2B-0",
+    "description": "Geophysikalischer Detailplan 01 von Globasnitz,erstellt im Februar 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795507",
+    "title": "glo20_detail_02_geophysik_2020-02.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2C-F",
+    "description": "Geophysikalischer Detailplan 02 von Globasnitz,erstellt im Februar 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795508",
+    "title": "glo20_uebersicht_geophysik_2020-02.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2D-E",
+    "description": "Geophysikalische Übersicht von Globasnitz,erstellt im Februar 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795509",
+    "title": "glo20_uebersicht_globasnitz_west.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2E-D",
+    "description": "Untersuchungebereich in Globasnitz West,erstellt 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795510",
+    "title": "glo20_uebersicht_jaunstein-globasnitz.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2F-C",
+    "description": "Untersuchungsbereich zwischen Jaunstein und Globasnitz,erstellt 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795511",
+    "title": "glo20_uebersicht_jaunstein-hemmaberg-globasnitz.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC30-9",
+    "description": "Untersuchungeberiech zwischen Jaunstein,Hemmaberg und Globasnitz,erstellt 2020",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1795512",
+    "title": "glo24_interpretation_v20240327.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC31-8",
+    "description": "Interpretation der geophysikalischen Messeungen in Globasnitz,Version vom 27. März 2024",
+    "parent_cid": "1792207",
+    "col_id": "col_1792207"
+  },
+  {
+    "arche_id": "1803798",
+    "title": "jau08_09_gesamtplan_eitler_ez.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D1E-A",
+    "description": "TIFF-Datei des entzerrten Gesamtplan des Fundplatzes Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803799",
+    "title": "jau08_flaeche_1_gesamt_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D1F-9",
+    "description": "TIFF-Datei im Maßstab 1:50 des Plans der Gesamtfläche 1 auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803800",
+    "title": "jau08_flaeche_1_graeber_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D20-6",
+    "description": "TIFF-Datei im Maßstab 1:50 des Plans der Gräber auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803801",
+    "title": "jau08_flaeche_1_mauer_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D21-5",
+    "description": "TIFF-Datei im Maßstab 1:50 des Plans der Mauer auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803802",
+    "title": "jau08_ost_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D22-4",
+    "description": "TIFF-Datei im Maßstab 1:50 des Plans des östlichen Bereichs von Jaunstein (JAU).",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803803",
+    "title": "jau08_st1_20.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D23-3",
+    "description": "TIFF-Datei im Maßstab 1:20 des Plans der Steine auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803804",
+    "title": "jau08_st2_20.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D24-2",
+    "description": "TIFF-Datei im Maßstab 1:20 der Zeichnung der Steine auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803805",
+    "title": "jau08_st3_20.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D27-F",
+    "description": "TIFF-Datei im Maßstab 1:20 des Plans der Steine auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803806",
+    "title": "jau08_st4.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D25-1",
+    "description": "TIFF-Datei der Zeichnung der Steine auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2008.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803807",
+    "title": "jau08_sto.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D26-0",
+    "description": "TIFF-Datei der Steine im östlichen Schnitt der Kirche auf dem Fundplatz Jaunstein (JAU).",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1803808",
+    "title": "jau09_flaeche_2_50.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D28-E",
+    "description": "TIFF-Datei im Maßstab 1:50 des Plans der Fläche 2 auf dem Fundplatz Jaunstein (JAU) aus dem Jahr 2009.",
+    "parent_cid": "1792391",
+    "col_id": "col_1792391"
+  },
+  {
+    "arche_id": "1795524",
+    "title": "hb11_kabelgraben.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC43-4",
+    "description": "DXF-Vektordatei mit Vermessungsdaten des Kabelgrabens am Hemmaberg 2011",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795525",
+    "title": "hb11_vermessung.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC44-3",
+    "description": "DXF-Vektordatei mit allgemeinen Vermessungsdaten am Hemmaberg 2011",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795526",
+    "title": "hb12_vermessung.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC45-2",
+    "description": "DXF-Vektordatei mit allgemeinen Vermessungsdaten am Hemmaberg 2012",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795527",
+    "title": "hb13_polygon_gk.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC46-1",
+    "description": "DXF-Vektordatei mit Polygonen und geodätischen Vermessungsdaten (Gauss-Krüger) am Hemmaberg 2013",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795528",
+    "title": "hb13_referenzierung.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC47-0",
+    "description": "DXF-Vektordatei mit Referenzierungsdaten und geodätischen Vermessungsdaten am Hemmaberg 2013",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795529",
+    "title": "hb17_felsengraeber_laserscan.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC48-F",
+    "description": "DXF-Vektordatei mit Laserscandaten der Felsengräber am Hemmaberg 2017",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795530",
+    "title": "hb17_master.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC4A-D",
+    "description": "DXF-Vektordatei mit dem Gesamtplan am Hemmaberg 2017",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795531",
+    "title": "hb17_schnitt1_sondagengrenzen.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC49-E",
+    "description": "DXF-Vektordatei mit Sondierungsgrenzen und Schnitt 1 am Hemmaberg 2017",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795532",
+    "title": "hb20_master.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC4B-C",
+    "description": "DXF-Vektordatei mit dem Gesamtplan am Hemmaberg 2020",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795533",
+    "title": "hb21_master.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC4C-B",
+    "description": "DXF-Vektordatei mit dem Gesamtplan am Hemmaberg 2021",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1795534",
+    "title": "hb_gesamtplan_gis.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EC4D-A",
+    "description": "DXF-Vektordatei mit dem gesamten geodätischen Plan der bioarchäologischen Ausgrabungen am Hemmaberg; Stand 2018",
+    "parent_cid": "1792213",
+    "col_id": "col_1792213"
+  },
+  {
+    "arche_id": "1798782",
+    "title": "hb20_img_4983.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F922-A",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798783",
+    "title": "hb20_img_4985.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F923-9",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798784",
+    "title": "hb20_img_4986.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F924-8",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798785",
+    "title": "hb20_img_4987.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F925-7",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798786",
+    "title": "hb20_img_4988.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F926-6",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798787",
+    "title": "hb20_img_4989.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F927-5",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798788",
+    "title": "hb20_img_4990.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F928-4",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798789",
+    "title": "hb20_img_4991.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F929-3",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798790",
+    "title": "hb20_p8140088.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92A-2",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798791",
+    "title": "hb20_p8140089.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92B-1",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798792",
+    "title": "hb20_p8140090.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92C-0",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798793",
+    "title": "hb20_p8140091.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92D-F",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798794",
+    "title": "hb20_p8140092.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92E-E",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798795",
+    "title": "hb20_p8140093.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F92F-D",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798796",
+    "title": "hb20_p8140094.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F930-A",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1798797",
+    "title": "hb20_p8140095.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F931-9",
+    "description": "Restaurierung: Dokumentationsfoto (Hemmaberg 2020)",
+    "parent_cid": "1792264",
+    "col_id": "col_1792264"
+  },
+  {
+    "arche_id": "1794762",
+    "title": "glo18_animal_bone_samples_p1020161.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E938-4",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794763",
+    "title": "glo18_animal_bone_samples_p1020162.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E939-3",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794764",
+    "title": "glo18_animal_bone_samples_p1020163.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E93A-2",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794765",
+    "title": "glo18_animal_bone_samples_p1020164.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E93C-0",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794766",
+    "title": "glo18_animal_bone_samples_p1020165.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E93B-1",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794767",
+    "title": "glo18_animal_bone_samples_p1020166.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E93D-F",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1794768",
+    "title": "glo18_animal_bone_samples_p1020167.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-E93E-E",
+    "description": "Bioarchäologische Fotodokumentation eines Tierknochen-Samples für Strontium-Analysen aus dem Jahr 2018",
+    "parent_cid": "1792182",
+    "col_id": "col_1792182"
+  },
+  {
+    "arche_id": "1800696",
+    "title": "jau18_schnitt_2_img_2084.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-00B5-B",
+    "description": "Fotografie von Schnitt 2 am Fundplatz Jaunstein (JAU) von 2018,Bildnummer 2084.",
+    "parent_cid": "1792314",
+    "col_id": "col_1792314"
+  },
+  {
+    "arche_id": "1800697",
+    "title": "jau18_schnitt_3_img_3139.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-00B6-A",
+    "description": "Fotografie von Schnitt 3 am Fundplatz Jaunstein (JAU) von 2018,Bildnummer 3139.",
+    "parent_cid": "1792314",
+    "col_id": "col_1792314"
+  },
+  {
+    "arche_id": "1800698",
+    "title": "jau18_schnitt_3_img_3140.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-00B7-9",
+    "description": "Fotografie von Schnitt 3 am Fundplatz Jaunstein (JAU) von 2018,Bildnummer 3140.",
+    "parent_cid": "1792314",
+    "col_id": "col_1792314"
+  },
+  {
+    "arche_id": "1803023",
+    "title": "jau20_altarii-reliquie_001-020.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-09D1-2",
+    "description": "Foto der Reliquie aus dem Altar von Jaunstein (JAU),erstellt 2020",
+    "parent_cid": "1792321",
+    "col_id": "col_1792321"
+  },
+  {
+    "arche_id": "1803024",
+    "title": "jau20_altarii-reliquie_041-050.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-09D2-1",
+    "description": "Foto der Reliquie aus dem Altar von Jaunstein (JAU),erstellt 2020",
+    "parent_cid": "1792321",
+    "col_id": "col_1792321"
+  },
+  {
+    "arche_id": "1803025",
+    "title": "jau20_altarii-reliquie_061-078.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-09D3-0",
+    "description": "Foto der Reliquie aus dem Altar von Jaunstein (JAU),erstellt 2020",
+    "parent_cid": "1792321",
+    "col_id": "col_1792321"
+  },
+  {
+    "arche_id": "1803026",
+    "title": "jau20_altarii-reliquie_079-098.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-09D4-F",
+    "description": "Foto der Reliquie aus dem Altar von Jaunstein (JAU),erstellt 2020",
+    "parent_cid": "1792321",
+    "col_id": "col_1792321"
+  },
+  {
+    "arche_id": "1797536",
+    "title": "hb17_dsm_coloriert_1mm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F428-9",
+    "description": "Koloriertes,digitales Oberflächenmodell (digital surface model/DSM) der durch Hans Winkler dokumentierten Felsengräber im Bereich der Ausgrabung am Hemmaberg 2017.",
+    "parent_cid": "1792231",
+    "col_id": "col_1792231"
+  },
+  {
+    "arche_id": "1797537",
+    "title": "hb17_20170704_felsgrab1.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F42A-7",
+    "description": "Digitales Orthofoto eines durch Hans Winkler entdeckten Felsgrabes,Hemmaberg 2017",
+    "parent_cid": "1792233",
+    "col_id": "col_1792233"
+  },
+  {
+    "arche_id": "1797538",
+    "title": "hb17_felsgrab_ortho_1mm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F42B-6",
+    "description": "Digitales Orthofoto der durch Hans Winkler entdeckten Felsengräber,Hemmaberg 2017",
+    "parent_cid": "1792233",
+    "col_id": "col_1792233"
+  },
+  {
+    "arche_id": "1797823",
+    "title": "hb17_sattel_alt50m_res2cm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F456-5",
+    "description": "Orthofoto des Sattels,Hemmaberg,2017,aufgenommen aus 50m Höhe mit 2cm Auflösung",
+    "parent_cid": "1792235",
+    "col_id": "col_1792235"
+  },
+  {
+    "arche_id": "1797824",
+    "title": "hb17_sattel_alt50m_res2cm_ex.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F457-4",
+    "description": "Orthofoto des Sattels,Hemmaberg,2017,aufgenommen aus 50m Höhe mit 2cm Auflösung (Ausschnitt)",
+    "parent_cid": "1792235",
+    "col_id": "col_1792235"
+  },
+  {
+    "arche_id": "1797825",
+    "title": "hb17_sattel_orthophoto_alt100m_res35mm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F458-3",
+    "description": "Orthofoto des Sattels,Hemmaberg,2017,aufgenommen aus 100m Höhe mit 3.5cm Auflösung",
+    "parent_cid": "1792235",
+    "col_id": "col_1792235"
+  },
+  {
+    "arche_id": "1797826",
+    "title": "hb17_schnitt1_alt30m_res8mm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F45A-1",
+    "description": "Orthofoto von Schnitt 1,Hemmaberg,2017,aufgenommen aus 30m Höhe mit 8mm Auflösung",
+    "parent_cid": "1792236",
+    "col_id": "col_1792236"
+  },
+  {
+    "arche_id": "1797827",
+    "title": "hb17_schnitt_1_fotoset.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F45B-0",
+    "description": "Foto des Fotosets für digitales Orthofoto der Ausgrabung am Hemmaberg,Schnitt 1,2017",
+    "parent_cid": "1792236",
+    "col_id": "col_1792236"
+  },
+  {
+    "arche_id": "1797828",
+    "title": "hb17_schnitt2_orthophoto_halfresolution.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F45D-E",
+    "description": "Orthofoto von Schnitt 2,Hemmaberg,2017,halbe Auflösung",
+    "parent_cid": "1792237",
+    "col_id": "col_1792237"
+  },
+  {
+    "arche_id": "1797829",
+    "title": "hb17_schnitt_2_fotoset.zip",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F461-8",
+    "description": "Foto des Fotosets für digitales Orthofoto der Ausgrabung am Hemmaberg,Schnitt 2,2017",
+    "parent_cid": "1792237",
+    "col_id": "col_1792237"
+  },
+  {
+    "arche_id": "1797830",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792238",
+    "col_id": "col_1792238"
+  },
+  {
+    "arche_id": "1797831",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792238",
+    "col_id": "col_1792238"
+  },
+  {
+    "arche_id": "1797728",
+    "title": "hb17_img_1617.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FD-9",
+    "description": "Fotodatei von SE3007,Hemmaberg,2017",
+    "parent_cid": "1792244",
+    "col_id": "col_1792244"
+  },
+  {
+    "arche_id": "1797729",
+    "title": "hb17_img_1617_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F500-4",
+    "description": "Orthofoto von SE3007,Hemmaberg,2017",
+    "parent_cid": "1792244",
+    "col_id": "col_1792244"
+  },
+  {
+    "arche_id": "1797730",
+    "title": "hb17_img_1617_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FE-8",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3007,Hemmaberg,2017",
+    "parent_cid": "1792244",
+    "col_id": "col_1792244"
+  },
+  {
+    "arche_id": "1797731",
+    "title": "hb17_img_1617_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FF-7",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3007,Hemmaberg,2017",
+    "parent_cid": "1792244",
+    "col_id": "col_1792244"
+  },
+  {
+    "arche_id": "1797732",
+    "title": "hb17_se3007.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F501-3",
+    "description": "DXF-Vektordatei von SE3007,Hemmaberg 2017",
+    "parent_cid": "1792244",
+    "col_id": "col_1792244"
+  },
+  {
+    "arche_id": "1797723",
+    "title": "hb17_img_1552.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F8-E",
+    "description": "Fotodatei von SE3005,Hemmaberg,2017",
+    "parent_cid": "1792243",
+    "col_id": "col_1792243"
+  },
+  {
+    "arche_id": "1797724",
+    "title": "hb17_img_1552_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FA-C",
+    "description": "Orthofoto von SE3005,Hemmaberg,2017",
+    "parent_cid": "1792243",
+    "col_id": "col_1792243"
+  },
+  {
+    "arche_id": "1797725",
+    "title": "hb17_img_1552_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F7-F",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3005,Hemmaberg,2017",
+    "parent_cid": "1792243",
+    "col_id": "col_1792243"
+  },
+  {
+    "arche_id": "1797726",
+    "title": "hb17_img_1552_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F9-D",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3005,Hemmaberg,2017",
+    "parent_cid": "1792243",
+    "col_id": "col_1792243"
+  },
+  {
+    "arche_id": "1797727",
+    "title": "hb17_se3005.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FB-B",
+    "description": "DXF-Vektordatei von SE3005,Hemmaberg 2017",
+    "parent_cid": "1792243",
+    "col_id": "col_1792243"
+  },
+  {
+    "arche_id": "1797733",
+    "title": "hb17_img_1597.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F503-1",
+    "description": "Fotodatei von SE3009,Hemmaberg,2017",
+    "parent_cid": "1792245",
+    "col_id": "col_1792245"
+  },
+  {
+    "arche_id": "1797734",
+    "title": "hb17_img_1597_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F506-E",
+    "description": "Orthofoto von SE3009,Hemmaberg,2017",
+    "parent_cid": "1792245",
+    "col_id": "col_1792245"
+  },
+  {
+    "arche_id": "1797735",
+    "title": "hb17_img_1597_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F504-0",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3009,Hemmaberg,2017",
+    "parent_cid": "1792245",
+    "col_id": "col_1792245"
+  },
+  {
+    "arche_id": "1797736",
+    "title": "hb17_img_1597_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F505-F",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3009,Hemmaberg,2017",
+    "parent_cid": "1792245",
+    "col_id": "col_1792245"
+  },
+  {
+    "arche_id": "1797737",
+    "title": "hb17_se3009.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F507-D",
+    "description": "DXF-Vektordatei von SE3009,Hemmaberg 2017",
+    "parent_cid": "1792245",
+    "col_id": "col_1792245"
+  },
+  {
+    "arche_id": "1797738",
+    "title": "hb17_img_1696.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50C-8",
+    "description": "Fotodatei von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797739",
+    "title": "hb17_img_1696_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50A-A",
+    "description": "Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797740",
+    "title": "hb17_img_1696_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F509-B",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797741",
+    "title": "hb17_img_1696_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50B-9",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797742",
+    "title": "hb17_img_1754.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50F-5",
+    "description": "Fotodatei von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797743",
+    "title": "hb17_img_1754_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F510-2",
+    "description": "Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797744",
+    "title": "hb17_img_1754_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50D-7",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797745",
+    "title": "hb17_img_1754_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F50E-6",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3015,Hemmaberg,2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797746",
+    "title": "hb17_se3015.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F511-1",
+    "description": "DXF-Vektordatei von SE3015,Hemmaberg 2017",
+    "parent_cid": "1792246",
+    "col_id": "col_1792246"
+  },
+  {
+    "arche_id": "1797747",
+    "title": "hb17_img_1810.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F513-F",
+    "description": "Fotodatei von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797748",
+    "title": "hb17_img_1810_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F516-C",
+    "description": "Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797749",
+    "title": "hb17_img_1810_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F514-E",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797750",
+    "title": "hb17_img_1810_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F515-D",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797751",
+    "title": "hb17_img_1846.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F517-B",
+    "description": "Fotodatei von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797752",
+    "title": "hb17_img_1846_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F51A-8",
+    "description": "Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797753",
+    "title": "hb17_img_1846_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F518-A",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797754",
+    "title": "hb17_img_1846_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F519-9",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3017,Hemmaberg,2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797755",
+    "title": "hb17_se3017.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F51B-7",
+    "description": "DXF-Vektordatei von SE3017,Hemmaberg 2017",
+    "parent_cid": "1792247",
+    "col_id": "col_1792247"
+  },
+  {
+    "arche_id": "1797793",
+    "title": "hb17_img_1720.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F546-6",
+    "description": "Fotodatei von SE3025,Hemmaberg,2017",
+    "parent_cid": "1792250",
+    "col_id": "col_1792250"
+  },
+  {
+    "arche_id": "1797794",
+    "title": "hb17_img_1720_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F547-5",
+    "description": "Orthofoto von SE3025,Hemmaberg,2017",
+    "parent_cid": "1792250",
+    "col_id": "col_1792250"
+  },
+  {
+    "arche_id": "1797795",
+    "title": "hb17_img_1720_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F544-8",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3025,Hemmaberg,2017",
+    "parent_cid": "1792250",
+    "col_id": "col_1792250"
+  },
+  {
+    "arche_id": "1797796",
+    "title": "hb17_img_1720_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F545-7",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3025,Hemmaberg,2017",
+    "parent_cid": "1792250",
+    "col_id": "col_1792250"
+  },
+  {
+    "arche_id": "1797797",
+    "title": "hb17_se3025.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F548-4",
+    "description": "DXF-Vektordatei von SE3025,Hemmaberg 2017",
+    "parent_cid": "1792250",
+    "col_id": "col_1792250"
+  },
+  {
+    "arche_id": "1797691",
+    "title": "hb17_img_1391.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D5-5",
+    "description": "Fotodatei von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797692",
+    "title": "hb17_img_1391_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D6-4",
+    "description": "Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797693",
+    "title": "hb17_img_1391_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D7-3",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797694",
+    "title": "hb17_img_1391_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D8-2",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797695",
+    "title": "hb17_img_1407.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D9-1",
+    "description": "Fotodatei von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797696",
+    "title": "hb17_img_1408.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DA-0",
+    "description": "Fotodatei von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797697",
+    "title": "hb17_img_1408_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DB-F",
+    "description": "Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797698",
+    "title": "hb17_img_1408_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DC-E",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797699",
+    "title": "hb17_img_1408_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DD-D",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797700",
+    "title": "hb17_img_1414.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DF-B",
+    "description": "Fotodatei von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797701",
+    "title": "hb17_img_1414_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E1-7",
+    "description": "Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797702",
+    "title": "hb17_img_1414_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4DE-C",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797703",
+    "title": "hb17_img_1414_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E0-8",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE2002,Hemmaberg,2017,Schnitt OK",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797704",
+    "title": "hb17_se2002_ok.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E2-6",
+    "description": "DXF-Vektordatei von SE2002,Hemmaberg 2017",
+    "parent_cid": "1792241",
+    "col_id": "col_1792241"
+  },
+  {
+    "arche_id": "1797705",
+    "title": "hb17_img_1539.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E4-4",
+    "description": "Fotodatei von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797706",
+    "title": "hb17_img_1539_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E9-F",
+    "description": "Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797707",
+    "title": "hb17_img_1539_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E5-3",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797708",
+    "title": "hb17_img_1539_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E6-2",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797709",
+    "title": "hb17_img_1556.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E7-1",
+    "description": "Fotodatei von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797710",
+    "title": "hb17_img_1556_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E8-0",
+    "description": "Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797711",
+    "title": "hb17_img_1556_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4EA-E",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797712",
+    "title": "hb17_img_1556_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4EB-D",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797713",
+    "title": "hb17_img_1559.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4EC-C",
+    "description": "Fotodatei von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797714",
+    "title": "hb17_img_1574.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4ED-B",
+    "description": "Fotodatei von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797715",
+    "title": "hb17_img_1574_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4EF-9",
+    "description": "Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797716",
+    "title": "hb17_img_1574_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4EE-A",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797717",
+    "title": "hb17_img_1574_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F0-6",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797718",
+    "title": "hb17_img_1609.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F4-2",
+    "description": "Fotodatei von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797719",
+    "title": "hb17_img_1609_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F3-3",
+    "description": "Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797720",
+    "title": "hb17_img_1609_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F1-5",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797721",
+    "title": "hb17_img_1609_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F2-4",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3003,Hemmaberg,2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797722",
+    "title": "hb17_se3003.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F5-1",
+    "description": "DXF-Vektordatei von SE3003,Hemmaberg 2017",
+    "parent_cid": "1792242",
+    "col_id": "col_1792242"
+  },
+  {
+    "arche_id": "1797756",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797757",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797758",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797759",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797760",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797761",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797762",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797763",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797764",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797765",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797766",
+    "title": "",
+    "pid": "",
+    "description": "",
+    "parent_cid": "1792248",
+    "col_id": "col_1792248"
+  },
+  {
+    "arche_id": "1797803",
+    "title": "hb17_img_1837.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F550-A",
+    "description": "Fotodatei von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797804",
+    "title": "hb17_img_1838.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F551-9",
+    "description": "Fotodatei von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797805",
+    "title": "hb17_img_1838_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F554-6",
+    "description": "Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797806",
+    "title": "hb17_img_1838_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F552-8",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797807",
+    "title": "hb17_img_1838_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F553-7",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797808",
+    "title": "hb17_img_1839.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F557-3",
+    "description": "Fotodatei von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797809",
+    "title": "hb17_img_1839_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F558-2",
+    "description": "Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797810",
+    "title": "hb17_img_1839_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F555-5",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797811",
+    "title": "hb17_img_1839_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F556-4",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797812",
+    "title": "hb17_img_1840.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F559-1",
+    "description": "Fotodatei von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797813",
+    "title": "hb17_img_1840_r.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F55C-E",
+    "description": "Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797814",
+    "title": "hb17_img_1840_r_jpg.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F55A-0",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797815",
+    "title": "hb17_img_1840_r_jpg_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F55B-F",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3033,Hemmaberg,2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797816",
+    "title": "hb17_se3033.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F55D-D",
+    "description": "DXF-Vektordatei von SE3033,Hemmaberg 2017",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797817",
+    "title": "hb17_se3033_orthophoto_v2.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F55E-C",
+    "description": "Orthofoto von SE3033,Hemmaberg 2017,Version 2",
+    "parent_cid": "1792252",
+    "col_id": "col_1792252"
+  },
+  {
+    "arche_id": "1797930",
+    "title": "hb20_20200731_hb20_wall_orthophoto_1mm.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CC-F",
+    "description": "Orthofoto des Walls,Hemmaberg 2020,aufgenommen am 31.07.2020 mit 1mm Auflösung",
+    "parent_cid": "1792257",
+    "col_id": "col_1792257"
+  },
+  {
+    "arche_id": "1797931",
+    "title": "hb20_passpunkte.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CA-1",
+    "description": "Passpunktdatei für den Wall,Hemmaberg 2020",
+    "parent_cid": "1792257",
+    "col_id": "col_1792257"
+  },
+  {
+    "arche_id": "1797932",
+    "title": "hb20_wallfotoscan20200731.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CB-0",
+    "description": "DXF-Vektordatei des Walls,Hemmaberg 2020",
+    "parent_cid": "1792257",
+    "col_id": "col_1792257"
+  },
+  {
+    "arche_id": "1797818",
+    "title": "hb17_img_1858.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F562-6",
+    "description": "Fotodatei von SE3035,Hemmaberg,2017",
+    "parent_cid": "1792253",
+    "col_id": "col_1792253"
+  },
+  {
+    "arche_id": "1797819",
+    "title": "hb17_img_1858_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F563-5",
+    "description": "Orthofoto von SE3035,Hemmaberg,2017",
+    "parent_cid": "1792253",
+    "col_id": "col_1792253"
+  },
+  {
+    "arche_id": "1797820",
+    "title": "hb17_img_1858_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F560-8",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3035,Hemmaberg,2017",
+    "parent_cid": "1792253",
+    "col_id": "col_1792253"
+  },
+  {
+    "arche_id": "1797821",
+    "title": "hb17_img_1858_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F561-7",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3035,Hemmaberg,2017",
+    "parent_cid": "1792253",
+    "col_id": "col_1792253"
+  },
+  {
+    "arche_id": "1797822",
+    "title": "hb17_se3035.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F564-4",
+    "description": "DXF-Vektordatei von SE3035,Hemmaberg 2017",
+    "parent_cid": "1792253",
+    "col_id": "col_1792253"
+  },
+  {
+    "arche_id": "1797933",
+    "title": "hb21_img_0287.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CE-D",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797934",
+    "title": "hb21_img_0290.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CF-C",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797935",
+    "title": "hb21_img_0311.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D0-9",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797936",
+    "title": "hb21_img_0328.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D1-8",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797937",
+    "title": "hb21_img_0331.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D2-7",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797938",
+    "title": "hb21_img_0335.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D4-5",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797939",
+    "title": "hb21_img_0360.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D3-6",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797940",
+    "title": "hb21_img_0451.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D8-1",
+    "description": "Fotogrammetrie-Fotoset (Hemmaberg 2021)",
+    "parent_cid": "1792258",
+    "col_id": "col_1792258"
+  },
+  {
+    "arche_id": "1797798",
+    "title": "hb17_img_1914.jpg",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F54A-2",
+    "description": "Fotodatei von SE3031/SE3041/SE3042,Hemmaberg,2017",
+    "parent_cid": "1792251",
+    "col_id": "col_1792251"
+  },
+  {
+    "arche_id": "1797799",
+    "title": "hb17_img_1914_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F54D-F",
+    "description": "Orthofoto von SE3031/SE3041/SE3042,Hemmaberg,2017",
+    "parent_cid": "1792251",
+    "col_id": "col_1792251"
+  },
+  {
+    "arche_id": "1797800",
+    "title": "hb17_img_1914_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F54B-1",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3031/SE3041/SE3042,Hemmaberg,2017",
+    "parent_cid": "1792251",
+    "col_id": "col_1792251"
+  },
+  {
+    "arche_id": "1797801",
+    "title": "hb17_img_1914_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F54C-0",
+    "description": "Textdatei als Auxiliardatei zu Orthofoto von SE3031/SE3041/SE3042,Hemmaberg,2017",
+    "parent_cid": "1792251",
+    "col_id": "col_1792251"
+  },
+  {
+    "arche_id": "1797802",
+    "title": "hb17_se3031_se3041_se3042.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F54E-E",
+    "description": "DXF-Vektordatei von SE3031,SE3041 und SE3042,Hemmaberg 2017",
+    "parent_cid": "1792251",
+    "col_id": "col_1792251"
+  },
+  {
+    "arche_id": "1799131",
+    "title": "hb15_interpretation_ab.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1",
+    "description": "TIFF-Bilddatei mit der Georadarinterpretation vom Hemmaberg,Abschnitt AB,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799132",
+    "title": "hb15_interpretation_abd.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA8E-0",
+    "description": "TIFF-Bilddatei mit der Georadarinterpretation vom Hemmaberg,Abschnitt ABD,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799133",
+    "title": "hb15_interpretation_c.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA8F-F",
+    "description": "TIFF-Bilddatei mit der Georadarinterpretation vom Hemmaberg,Abschnitt C,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799134",
+    "title": "hb15_interpretation_d.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA90-C",
+    "description": "TIFF-Bilddatei mit der Georadarinterpretation vom Hemmaberg,Abschnitt D,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799135",
+    "title": "hb15_interpretation_d_overview.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA91-B",
+    "description": "TIFF-Bilddatei mit der Übersicht der Georadarinterpretation vom Hemmaberg,Abschnitt D,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799136",
+    "title": "hb15_interpretation_mit_plan.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA92-A",
+    "description": "TIFF-Bilddatei mit der Georadarinterpretation vom Hemmaberg inklusive Plan,aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1799137",
+    "title": "hb15_interpretation_overview.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-FA93-9",
+    "description": "TIFF-Bilddatei mit der Übersicht der Georadarinterpretation vom Hemmaberg aus dem Jahr 2015.",
+    "parent_cid": "1792293",
+    "col_id": "col_1792293"
+  },
+  {
+    "arche_id": "1797941",
+    "title": "hb21_o-profil_pp.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D6-3",
+    "description": "Passpunkte der fotogrammetrische Aufnahme des Ost-Profils von Schnitt 1 (Hemmaberg 2021)",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797942",
+    "title": "hb21_schnitt21-01_20210722_pp.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D7-2",
+    "description": "Textdatei mit Passpunktinformationen für Schnitt 21-01,Hemmaberg,vom 22.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797943",
+    "title": "hb21_schnitt21-01_20210726.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D9-0",
+    "description": "Orthofoto von Schnitt 21-01,Hemmaberg,vom 26.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797944",
+    "title": "hb21_schnitt21-01_20210726_2_planar.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DA-F",
+    "description": "Orthofoto von Schnitt 21-01,Hemmaberg,vom 26.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797945",
+    "title": "hb21_schnitt21-01_20210726_2_planar_r.tif",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DD-C",
+    "description": "Orthofoto von Schnitt 21-01,Hemmaberg,vom 26.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797946",
+    "title": "hb21_schnitt21-01_20210726_2_planar_r_tif.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DB-E",
+    "description": "Textdatei mit Informationen zu einem orthogonalen Orthofoto von Schnitt 21-01,Hemmaberg,vom 26.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797947",
+    "title": "hb21_schnitt21-01_20210726_2_planar_r_tif_ppb.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DC-D",
+    "description": "Textdatei mit Informationen zu einem orthogonalen Orthofoto von Schnitt 21-01,Hemmaberg,vom 26.07.2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797948",
+    "title": "hb21_schnitt21-01_w-profil-n.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DE-B",
+    "description": "PDF-Dokument des West-Profils Nord von Schnitt 21-01,Hemmaberg",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797949",
+    "title": "hb21_schnitt21-01_w-profil-s.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5E0-7",
+    "description": "PDF-Dokument des West-Profils Süd von Schnitt 21-01,Hemmaberg",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797950",
+    "title": "hb21_schnitt21-01_w-profil.dxf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5DF-A",
+    "description": "DXF-Vektordatei des West-Profils von Schnitt 21-01,Hemmaberg",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797951",
+    "title": "hb21_se1042.pdf",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5E2-5",
+    "description": "PDF-Dokument von SE1042,Hemmaberg 2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  },
+  {
+    "arche_id": "1797952",
+    "title": "hb21_w-profil_pp.txt",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F5E1-6",
+    "description": "Textdatei mit Passpunktinformationen für das West-Profil,Hemmaberg 2021",
+    "parent_cid": "1792259",
+    "col_id": "col_1792259"
+  }
+]

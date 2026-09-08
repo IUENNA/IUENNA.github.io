@@ -4,17 +4,17 @@
     "arche_uri": "https://id.acdh.oeaw.ac.at/iuenna",
     "top_collection_id": "1792170",
     "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
-    "generated_at": "2026-09-06T22:26:37Z",
+    "generated_at": "2026-09-06T23:03:43Z",
     "total_nodes": 215,
     "total_edges": 218,
     "total_collections": 190,
     "total_items": 20788,
-    "total_resources": 20541,
+    "total_resources": 20555,
     "total_size": "356.68 GB",
     "corpus_file": "data/arche_corpus.json",
     "tree_file": "data/arche_collections_tree.json",
     "thumbnail_service": "https://arche-thumbnails.acdh.oeaw.ac.at/",
-    "duration_seconds": 0.851
+    "duration_seconds": 0.836
   },
   "elements": {
     "nodes": [
@@ -250,16 +250,16 @@
             "01_05_Datenbanken"
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "17.59 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EBEE-5",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792190",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EBEF-4",
+          "sample_title": "glo_geodaten_open.gpkg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EBEF-4&width=360"
         }
       },
       {
@@ -278,16 +278,16 @@
             "01_06_Text_Tabellen"
           ],
           "items": 57,
-          "resource_count": 24,
+          "resource_count": 4,
           "formatted_size": "38.22 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B36-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792193",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EBF2-F",
-          "sample_title": "glo06_grabungstagebuch.docx",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EBF2-F&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC07-8",
+          "sample_title": "glo07_graeber.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC07-8&width=360"
         }
       },
       {
@@ -306,16 +306,16 @@
             "01_07_Output"
           ],
           "items": 24,
-          "resource_count": 2,
+          "resource_count": 0,
           "formatted_size": "488.18 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B37-1",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792206",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC38-1",
-          "sample_title": "glo_gesamtplan-flaechen_50.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC38-1&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC2B-0",
+          "sample_title": "glo20_detail_01_geophysik_2020-02.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC2B-0&width=360"
         }
       },
       {
@@ -333,8 +333,8 @@
             "Jaunstein-Collection (JAU)",
             "03_02_Vektor"
           ],
-          "items": 1067,
-          "resource_count": 1067,
+          "items": 1060,
+          "resource_count": 1060,
           "formatted_size": "20.25 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4A-C",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792302",
@@ -389,17 +389,17 @@
             "Jaunstein-Collection (JAU)",
             "03_05_Datenbanken"
           ],
-          "items": 2,
-          "resource_count": 1,
+          "items": 3,
+          "resource_count": 3,
           "formatted_size": "86.83 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D48-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792394",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D69-5",
-          "sample_title": "jau09_befundblaetter.docx",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D69-5&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D49-9",
+          "sample_title": "jau_funddatenbank.zip",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D49-9&width=360"
         }
       },
       {
@@ -418,7 +418,7 @@
             "03_06_Texte_Tabellen"
           ],
           "items": 205,
-          "resource_count": 114,
+          "resource_count": 101,
           "formatted_size": "380.80 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B51-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792395",
@@ -446,16 +446,16 @@
             "03_07_Output"
           ],
           "items": 29,
-          "resource_count": 16,
+          "resource_count": 15,
           "formatted_size": "174.82 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B52-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792406",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D1E-A",
-          "sample_title": "jau08_09_gesamtplan_eitler_ez.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D1E-A&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E21-4",
+          "sample_title": "jau18_detailplan_schnitt1-18_v1.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E21-4&width=360"
         }
       },
       {
@@ -474,7 +474,7 @@
             "04_05_Datenbanken"
           ],
           "items": 1,
-          "resource_count": 0,
+          "resource_count": 1,
           "formatted_size": "14.14 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0E36-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792412",
@@ -482,8 +482,8 @@
           "color": "#C29243",
           "icon": "fa-folder-open",
           "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_title": "ste_geodaten_open.gpkg",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -502,7 +502,7 @@
             "04_07_Output"
           ],
           "items": 5,
-          "resource_count": 5,
+          "resource_count": 0,
           "formatted_size": "17.92 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B54-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792414",
@@ -529,17 +529,17 @@
             "Jauntal-Collection (TAL)",
             "05_03_Raster"
           ],
-          "items": 37,
-          "resource_count": 37,
+          "items": 11,
+          "resource_count": 1,
           "formatted_size": "30.19 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B55-F",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792416",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E3E-5",
-          "sample_title": "tal_st-magarethen-ob-toellerberg_001.JPG",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E3E-5&width=360"
+          "sample_pid": null,
+          "sample_title": "tal_at-oeai-99-00047099.tif",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -557,17 +557,17 @@
             "Jauntal-Collection (TAL)",
             "05_05_Datenbanken"
           ],
-          "items": 140,
-          "resource_count": 140,
+          "items": 155,
+          "resource_count": 155,
           "formatted_size": "75.25 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0E48-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792423",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7",
-          "sample_title": "tal_bda_fsdb_2023.gpkg",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E4A-7&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E49-8",
+          "sample_title": "tal_anthropologie.zip",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E49-8&width=360"
         }
       },
       {
@@ -641,17 +641,17 @@
             "Hemmaberg-Collection (HB)",
             "02_02_Vektor"
           ],
-          "items": 44,
-          "resource_count": 44,
+          "items": 43,
+          "resource_count": 9,
           "formatted_size": "17.95 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792211",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC43-4",
-          "sample_title": "hb11_kabelgraben.dxf",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC43-4&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC64-F",
+          "sample_title": "hb17_se3021.dxf",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC64-F&width=360"
         }
       },
       {
@@ -725,17 +725,17 @@
             "Hemmaberg-Collection (HB)",
             "02_05_Datenbanken"
           ],
-          "items": 4,
-          "resource_count": 4,
+          "items": 8,
+          "resource_count": 8,
           "formatted_size": "39.55 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AE-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792273",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FA16-7",
-          "sample_title": "hb09_befundblaetter.docx",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FA16-7&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F9AF-C",
+          "sample_title": "hb20_funde.zip",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F9AF-C&width=360"
         }
       },
       {
@@ -754,16 +754,16 @@
             "02_06_Texte_Tabellen"
           ],
           "items": 217,
-          "resource_count": 112,
+          "resource_count": 78,
           "formatted_size": "268.00 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B47-F",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792274",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC6D-6",
-          "sample_title": "hb09_lageplanhemmaberg.pdf",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC6D-6&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F525-B",
+          "sample_title": "hb17_se3021.pdf",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F525-B&width=360"
         }
       },
       {
@@ -782,16 +782,16 @@
             "02_07_Output"
           ],
           "items": 53,
-          "resource_count": 14,
+          "resource_count": 7,
           "formatted_size": "4.32 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B49-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792292",
           "spatial": "",
           "color": "#C29243",
           "icon": "fa-folder-open",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC79-8",
-          "sample_title": "hb_gesamtplan_merged.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC79-8&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F945-3",
+          "sample_title": "hb10_schnitt-sthemma-planum_20.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F945-3&width=360"
         }
       },
       {
@@ -811,16 +811,16 @@
             "01_03_03_Fotos"
           ],
           "items": 1914,
-          "resource_count": 389,
+          "resource_count": 339,
           "formatted_size": "4.01 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B2F-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792167",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-E1C9-8",
-          "sample_title": "glo10_at-oeai-99-00047088.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-E1C9-8&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-E205-4",
+          "sample_title": "glo03_graeberfeld_ansicht_no.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-E205-4&width=360"
         }
       },
       {
@@ -869,7 +869,7 @@
             "01_07_01_Plaene"
           ],
           "items": 20,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "459.49 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3C-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792202",
@@ -877,8 +877,8 @@
           "color": "#3D7068",
           "icon": "fa-folder",
           "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_title": "glo_graeberfeld_2024.dxf",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -898,16 +898,16 @@
             "01_07_02_Kataloge"
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "28.69 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC3F-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792210",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC40-7",
+          "sample_title": "glo08_katalog-gesamt.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC40-7&width=360"
         }
       },
       {
@@ -927,16 +927,16 @@
             "03_02_01_Geodaesie"
           ],
           "items": 5,
-          "resource_count": 0,
+          "resource_count": 5,
           "formatted_size": "20.25 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC0-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792305",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FAC1-5",
+          "sample_title": "jau18_grabung-master.dxf",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FAC1-5&width=360"
         }
       },
       {
@@ -956,16 +956,16 @@
             "03_03_03_Fotos"
           ],
           "items": 4696,
-          "resource_count": 3627,
+          "resource_count": 3570,
           "formatted_size": "51.37 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4C-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792307",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FAC7-F",
-          "sample_title": "jau17_at-oeai-99-00328423.jpg",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FAC7-F&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FAD2-2",
+          "sample_title": "jau08_143_4398.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FAD2-2&width=360"
         }
       },
       {
@@ -992,9 +992,9 @@
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D1E-A",
+          "sample_title": "jau08_09_gesamtplan_eitler_ez.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D1E-A&width=360"
         }
       },
       {
@@ -1014,16 +1014,16 @@
             "01_06_02_Protokolle"
           ],
           "items": 4,
-          "resource_count": 0,
+          "resource_count": 4,
           "formatted_size": "167.39 KB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF1-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792194",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EBF2-F",
+          "sample_title": "glo06_grabungstagebuch.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EBF2-F&width=360"
         }
       },
       {
@@ -1043,16 +1043,16 @@
             "01_06_03_Verzeichnisse"
           ],
           "items": 11,
-          "resource_count": 0,
+          "resource_count": 11,
           "formatted_size": "36.94 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF6-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792201",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EBF7-A",
+          "sample_title": "glo00_fotos.pdf",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EBF7-A&width=360"
         }
       },
       {
@@ -1072,16 +1072,16 @@
             "01_06_05_Funde"
           ],
           "items": 3,
-          "resource_count": 0,
+          "resource_count": 3,
           "formatted_size": "34.37 KB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC01-E",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792203",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC02-D",
+          "sample_title": "glo18_finds_globasnitz_mappe1.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC02-D&width=360"
         }
       },
       {
@@ -1101,16 +1101,16 @@
             "01_06_06_Bioarchaeologie"
           ],
           "items": 35,
-          "resource_count": 0,
+          "resource_count": 9,
           "formatted_size": "1.08 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC06-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792205",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC0A-5",
+          "sample_title": "glo_anthropologie_katalog.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC0A-5&width=360"
         }
       },
       {
@@ -1130,16 +1130,16 @@
             "04_07_01_Plaene"
           ],
           "items": 4,
-          "resource_count": 0,
+          "resource_count": 4,
           "formatted_size": "17.92 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0E38-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792415",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E39-A",
+          "sample_title": "ste24_georadar_interpretation_phasen_v20240321.png",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E39-A&width=360"
         }
       },
       {
@@ -1188,16 +1188,16 @@
             "05_03_03_Fotos"
           ],
           "items": 10,
-          "resource_count": 0,
+          "resource_count": 10,
           "formatted_size": "30.19 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0E3D-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792421",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E3E-5",
+          "sample_title": "tal_st-magarethen-ob-toellerberg_001.JPG",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E3E-5&width=360"
         }
       },
       {
@@ -1275,16 +1275,16 @@
             "03_06_03_Verzeichnisse"
           ],
           "items": 13,
-          "resource_count": 0,
+          "resource_count": 13,
           "formatted_size": "12.41 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D83-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792400",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D84-5",
+          "sample_title": "jau09_fotoliste.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D84-5&width=360"
         }
       },
       {
@@ -1304,16 +1304,16 @@
             "03_06_04_Matrizen"
           ],
           "items": 10,
-          "resource_count": 0,
+          "resource_count": 10,
           "formatted_size": "130.05 KB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D91-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792401",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D92-5",
+          "sample_title": "jau18_schnitt1.csv",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D92-5&width=360"
         }
       },
       {
@@ -1333,16 +1333,16 @@
             "03_06_05_Funde"
           ],
           "items": 21,
-          "resource_count": 0,
+          "resource_count": 21,
           "formatted_size": "5.90 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D9C-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792403",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D9D-A",
+          "sample_title": "jau18_find.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D9D-A&width=360"
         }
       },
       {
@@ -1362,16 +1362,16 @@
             "03_06_06_Bioarchaeologie"
           ],
           "items": 102,
-          "resource_count": 0,
+          "resource_count": 5,
           "formatted_size": "41.62 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0DB2-1",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792404",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0DB3-0",
+          "sample_title": "jau18_biomolekulare_analysen_uebersicht_c14.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0DB3-0&width=360"
         }
       },
       {
@@ -1390,17 +1390,17 @@
             "05_06_Texte_Tabellen",
             "05_06_06_Bioarchaeologie"
           ],
-          "items": 3,
-          "resource_count": 0,
+          "items": 11,
+          "resource_count": 11,
           "formatted_size": "95.18 KB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4C-5",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792567",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0E4D-4",
+          "sample_title": "tal24_scurvy_data.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0E4D-4&width=360"
         }
       },
       {
@@ -1478,16 +1478,16 @@
             "02_04_02_Meshes_Textures"
           ],
           "items": 1,
-          "resource_count": 0,
+          "resource_count": 1,
           "formatted_size": "260.13 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F9AB-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792270",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F9AC-F",
+          "sample_title": "hb13_prothesentraeger_rekonstruktion.zip",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F9AC-F&width=360"
         }
       },
       {
@@ -1507,16 +1507,16 @@
             "02_03_01_Geodaesie"
           ],
           "items": 15,
-          "resource_count": 0,
+          "resource_count": 15,
           "formatted_size": "45.86 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC6B-8",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792219",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC6C-7",
+          "sample_title": "hb09_1.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC6C-7&width=360"
         }
       },
       {
@@ -1536,16 +1536,16 @@
             "02_03_03_Fotos"
           ],
           "items": 3260,
-          "resource_count": 2556,
+          "resource_count": 2386,
           "formatted_size": "23.83 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3E-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792222",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC6C-7",
-          "sample_title": "hb09_1.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC6C-7&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC7C-5",
+          "sample_title": "hb09_ueberblick_jauntal_1.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC7C-5&width=360"
         }
       },
       {
@@ -1594,7 +1594,7 @@
             "02_07_01_Plaene"
           ],
           "items": 45,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "328.60 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB6-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792286",
@@ -1602,8 +1602,8 @@
           "color": "#3D7068",
           "icon": "fa-folder",
           "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_title": "hb_flaechen_2024.dxf",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -1623,16 +1623,16 @@
             "02_07_02_Kataloge"
           ],
           "items": 6,
-          "resource_count": 0,
+          "resource_count": 6,
           "formatted_size": "4.00 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FAB9-F",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792301",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FABA-E",
+          "sample_title": "hb_09_11_graeber_gesamtkatalog.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FABA-E&width=360"
         }
       },
       {
@@ -1652,7 +1652,7 @@
             "02_06_01_Geodaesie"
           ],
           "items": 18,
-          "resource_count": 0,
+          "resource_count": 18,
           "formatted_size": "9.24 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B3-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792276",
@@ -1660,8 +1660,8 @@
           "color": "#3D7068",
           "icon": "fa-folder",
           "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_title": "hb_tp_35-204.pdf",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -1710,16 +1710,16 @@
             "02_06_04_Matrizen"
           ],
           "items": 14,
-          "resource_count": 0,
+          "resource_count": 14,
           "formatted_size": "3.40 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FA06-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792284",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FA07-8",
+          "sample_title": "hb12_hm_vereinfacht.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FA07-8&width=360"
         }
       },
       {
@@ -1739,16 +1739,16 @@
             "02_06_03_Verzeichnisse"
           ],
           "items": 22,
-          "resource_count": 0,
+          "resource_count": 22,
           "formatted_size": "8.68 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F9EF-4",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792285",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F9F0-1",
+          "sample_title": "hb09_fotoliste.docx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F9F0-1&width=360"
         }
       },
       {
@@ -1797,16 +1797,16 @@
             "02_06_06_Bioarchaeologie"
           ],
           "items": 85,
-          "resource_count": 0,
+          "resource_count": 6,
           "formatted_size": "108.99 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FA36-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792290",
           "spatial": "",
           "color": "#3D7068",
           "icon": "fa-folder",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FA38-1",
+          "sample_title": "hb17_a180151_sr_isotopa_hemmaberg.xlsx",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FA38-1&width=360"
         }
       },
       {
@@ -1827,16 +1827,16 @@
             "01_03_03_01_Umfeld"
           ],
           "items": 20,
-          "resource_count": 0,
+          "resource_count": 20,
           "formatted_size": "437.89 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-E1C8-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792171",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-E1C9-8",
+          "sample_title": "glo10_at-oeai-99-00047088.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-E1C9-8&width=360"
         }
       },
       {
@@ -1917,16 +1917,16 @@
             "01_03_03_05_Bioarchaeologie"
           ],
           "items": 458,
-          "resource_count": 4,
+          "resource_count": 0,
           "formatted_size": "1.89 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B32-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792180",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC0E-1",
-          "sample_title": "glo_biomolekulare_analysen_information_c14.xlsx",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC0E-1&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-E938-4",
+          "sample_title": "glo18_animal_bone_samples_p1020161.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-E938-4&width=360"
         }
       },
       {
@@ -2007,16 +2007,16 @@
             "03_03_03_01_Umfeld"
           ],
           "items": 10,
-          "resource_count": 0,
+          "resource_count": 10,
           "formatted_size": "51.50 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FAC6-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792309",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FAC7-F",
+          "sample_title": "jau17_at-oeai-99-00328423.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FAC7-F&width=360"
         }
       },
       {
@@ -2067,16 +2067,16 @@
             "03_03_03_03_Funde"
           ],
           "items": 713,
-          "resource_count": 9,
+          "resource_count": 0,
           "formatted_size": "1.74 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B4F-7",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792316",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D49-9",
-          "sample_title": "jau_funddatenbank.zip",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D49-9&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-09D1-2",
+          "sample_title": "jau20_altarii-reliquie_001-020.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-09D1-2&width=360"
         }
       },
       {
@@ -2157,16 +2157,16 @@
             "01_07_01_01_Prospektion"
           ],
           "items": 7,
-          "resource_count": 0,
+          "resource_count": 7,
           "formatted_size": "335.62 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC2A-1",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792207",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC2B-0",
+          "sample_title": "glo20_detail_01_geophysik_2020-02.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC2B-0&width=360"
         }
       },
       {
@@ -2187,16 +2187,16 @@
             "01_07_01_03_Ausgrabung"
           ],
           "items": 9,
-          "resource_count": 0,
+          "resource_count": 9,
           "formatted_size": "20.61 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC32-7",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792208",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC34-5",
+          "sample_title": "glo07_graeberfeld-ost_n-profil_50.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC34-5&width=360"
         }
       },
       {
@@ -2217,16 +2217,16 @@
             "03_03_04_01_01_Flaechen"
           ],
           "items": 11,
-          "resource_count": 0,
+          "resource_count": 11,
           "formatted_size": "10.58 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D1D-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792391",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D1E-A",
+          "sample_title": "jau08_09_gesamtplan_eitler_ez.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D1E-A&width=360"
         }
       },
       {
@@ -2277,16 +2277,16 @@
             "03_03_04_01_03_Profile"
           ],
           "items": 3,
-          "resource_count": 0,
+          "resource_count": 3,
           "formatted_size": "4.84 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-0D45-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792393",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-0D46-C",
+          "sample_title": "jau08_profil_50.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-0D46-C&width=360"
         }
       },
       {
@@ -2307,16 +2307,16 @@
             "02_02_01_03_Ausgrabung"
           ],
           "items": 11,
-          "resource_count": 0,
+          "resource_count": 11,
           "formatted_size": "6.21 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-EC42-5",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792213",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC43-4",
+          "sample_title": "hb11_kabelgraben.dxf",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC43-4&width=360"
         }
       },
       {
@@ -2397,16 +2397,16 @@
             "02_03_03_02_Befunde"
           ],
           "items": 1203,
-          "resource_count": 857,
+          "resource_count": 854,
           "formatted_size": "8.47 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B3F-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792224",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EC74-D",
-          "sample_title": "hb11_kabelgraben.tif",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EC74-D&width=360"
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-EE07-6",
+          "sample_title": "hb09_a2-grab5_1.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-EE07-6&width=360"
         }
       },
       {
@@ -2427,7 +2427,7 @@
             "02_03_03_03_Funde"
           ],
           "items": 503,
-          "resource_count": 62,
+          "resource_count": 61,
           "formatted_size": "1.15 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B40-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792228",
@@ -2464,9 +2464,9 @@
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F428-9",
+          "sample_title": "hb17_dsm_coloriert_1mm.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F428-9&width=360"
         }
       },
       {
@@ -2487,16 +2487,16 @@
             "02_03_03_05_Bioarchaeologie"
           ],
           "items": 830,
-          "resource_count": 6,
+          "resource_count": 0,
           "formatted_size": "3.03 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-7B43-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792261",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F9B0-9",
-          "sample_title": "hb_bioarchaeologie_samples.zip",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F9B0-9&width=360"
+          "sample_pid": null,
+          "sample_title": null,
+          "sample_thumb_url": null
         }
       },
       {
@@ -2517,16 +2517,16 @@
             "02_03_03_06_Restaurierung"
           ],
           "items": 16,
-          "resource_count": 0,
+          "resource_count": 16,
           "formatted_size": "55.35 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F921-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792264",
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F922-A",
+          "sample_title": "hb20_img_4983.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F922-A&width=360"
         }
       },
       {
@@ -2584,9 +2584,9 @@
           "spatial": "",
           "color": "#5A6B7C",
           "icon": "fa-folder-minus",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1",
+          "sample_title": "hb15_interpretation_ab.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FA8D-1&width=360"
         }
       },
       {
@@ -2855,16 +2855,16 @@
             "01_03_03_05_02_Archaeozoologie"
           ],
           "items": 7,
-          "resource_count": 0,
+          "resource_count": 7,
           "formatted_size": "30.83 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-E937-5",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792182",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-E938-4",
+          "sample_title": "glo18_animal_bone_samples_p1020161.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-E938-4&width=360"
         }
       },
       {
@@ -2948,16 +2948,16 @@
             "03_03_03_02_03_Profile"
           ],
           "items": 3,
-          "resource_count": 0,
+          "resource_count": 3,
           "formatted_size": "32.81 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-00B4-C",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792314",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-00B5-B",
+          "sample_title": "jau18_schnitt_2_img_2084.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-00B5-B&width=360"
         }
       },
       {
@@ -3103,16 +3103,16 @@
             "03_03_03_03_04_Sonstiges"
           ],
           "items": 4,
-          "resource_count": 0,
+          "resource_count": 4,
           "formatted_size": "41.71 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0016-09D0-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792321",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0016-09D1-2",
+          "sample_title": "jau20_altarii-reliquie_001-020.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0016-09D1-2&width=360"
         }
       },
       {
@@ -3413,16 +3413,16 @@
             "Digitale Datensammlung, die digitale Oberflächenmodelldaten enthält."
           ],
           "items": 1,
-          "resource_count": 0,
+          "resource_count": 1,
           "formatted_size": "7.83 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F427-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792231",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F428-9",
+          "sample_title": "hb17_dsm_coloriert_1mm.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F428-9&width=360"
         }
       },
       {
@@ -3444,16 +3444,16 @@
             "Digitale Datensammlung, die Daten zum Felsgrab enthält."
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "155.35 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F429-8",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792233",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F42A-7",
+          "sample_title": "hb17_20170704_felsgrab1.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F42A-7&width=360"
         }
       },
       {
@@ -3506,16 +3506,16 @@
             "Digitale Datensammlung, die Daten zum Sattel enthält."
           ],
           "items": 3,
-          "resource_count": 0,
+          "resource_count": 3,
           "formatted_size": "1.37 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F455-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792235",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F456-5",
+          "sample_title": "hb17_sattel_alt50m_res2cm.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F456-5&width=360"
         }
       },
       {
@@ -3537,16 +3537,16 @@
             "Digitale Datensammlung, die Daten zu Schnitt 1 enthält."
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "575.40 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F459-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792236",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F45A-1",
+          "sample_title": "hb17_schnitt1_alt30m_res8mm.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F45A-1&width=360"
         }
       },
       {
@@ -3568,16 +3568,16 @@
             "Digitale Datensammlung, die Daten zu Schnitt 2 enthält."
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "262.00 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F45C-F",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792237",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F45D-E",
+          "sample_title": "hb17_schnitt2_orthophoto_halfresolution.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F45D-E&width=360"
         }
       },
       {
@@ -3599,16 +3599,16 @@
             "Digitale Datensammlung, die Daten zu Schnitt 3 enthält."
           ],
           "items": 2,
-          "resource_count": 0,
+          "resource_count": 2,
           "formatted_size": "1.27 GB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F45E-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792238",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "",
+          "sample_title": "",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -3692,16 +3692,16 @@
             "Digitale Datensammlung, die Daten zur oberen Schicht (OK) von SE 2002 enthält."
           ],
           "items": 14,
-          "resource_count": 0,
+          "resource_count": 14,
           "formatted_size": "114.50 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F4D4-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792241",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F4D5-5",
+          "sample_title": "hb17_img_1391.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F4D5-5&width=360"
         }
       },
       {
@@ -3722,17 +3722,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3003 enthält."
           ],
-          "items": 18,
-          "resource_count": 0,
+          "items": 19,
+          "resource_count": 19,
           "formatted_size": "188.35 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F4E3-5",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792242",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F4E4-4",
+          "sample_title": "hb17_img_1539.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F4E4-4&width=360"
         }
       },
       {
@@ -3754,16 +3754,16 @@
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3005 enthält."
           ],
           "items": 5,
-          "resource_count": 0,
+          "resource_count": 5,
           "formatted_size": "39.87 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F4F6-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792243",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F4F8-E",
+          "sample_title": "hb17_img_1552.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F4F8-E&width=360"
         }
       },
       {
@@ -3784,17 +3784,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3007 enthält."
           ],
-          "items": 5,
-          "resource_count": 0,
+          "items": 6,
+          "resource_count": 6,
           "formatted_size": "31.89 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F4FC-A",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792244",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F4FD-9",
+          "sample_title": "hb17_img_1617.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F4FD-9&width=360"
         }
       },
       {
@@ -3815,17 +3815,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3009 enthält."
           ],
-          "items": 5,
-          "resource_count": 0,
+          "items": 6,
+          "resource_count": 6,
           "formatted_size": "33.41 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F502-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792245",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F503-1",
+          "sample_title": "hb17_img_1597.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F503-1&width=360"
         }
       },
       {
@@ -3846,17 +3846,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3015 enthält."
           ],
-          "items": 9,
-          "resource_count": 0,
+          "items": 10,
+          "resource_count": 10,
           "formatted_size": "61.96 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F508-C",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792246",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F50A-A",
+          "sample_title": "hb17_img_1696_r.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F50A-A&width=360"
         }
       },
       {
@@ -3877,17 +3877,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3017 enthält."
           ],
-          "items": 9,
-          "resource_count": 0,
+          "items": 10,
+          "resource_count": 10,
           "formatted_size": "58.99 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F512-0",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792247",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F513-F",
+          "sample_title": "hb17_img_1810.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F513-F&width=360"
         }
       },
       {
@@ -3909,16 +3909,16 @@
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3021 enthält."
           ],
           "items": 11,
-          "resource_count": 0,
+          "resource_count": 11,
           "formatted_size": "99.15 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F51C-6",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792248",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "",
+          "sample_title": "",
+          "sample_thumb_url": ""
         }
       },
       {
@@ -3970,17 +3970,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3025 enthält."
           ],
-          "items": 5,
-          "resource_count": 0,
+          "items": 6,
+          "resource_count": 6,
           "formatted_size": "33.01 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F543-9",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792250",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F546-6",
+          "sample_title": "hb17_img_1720.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F546-6&width=360"
         }
       },
       {
@@ -4001,17 +4001,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3031,SE 3041 und SE 3042 enthält."
           ],
-          "items": 5,
-          "resource_count": 0,
+          "items": 6,
+          "resource_count": 6,
           "formatted_size": "74.16 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F549-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792251",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F54A-2",
+          "sample_title": "hb17_img_1914.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F54A-2&width=360"
         }
       },
       {
@@ -4033,16 +4033,16 @@
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3033 enthält."
           ],
           "items": 15,
-          "resource_count": 0,
+          "resource_count": 15,
           "formatted_size": "349.88 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F54F-D",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792252",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F550-A",
+          "sample_title": "hb17_img_1837.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F550-A&width=360"
         }
       },
       {
@@ -4063,17 +4063,17 @@
             "02_03_03_04_Fotogrammetrie",
             "Digitale Datensammlung, die Daten zu den human remains aus SE 3035 enthält."
           ],
-          "items": 5,
-          "resource_count": 0,
+          "items": 6,
+          "resource_count": 6,
           "formatted_size": "81.70 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F55F-B",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792253",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F562-6",
+          "sample_title": "hb17_img_1858.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F562-6&width=360"
         }
       },
       {
@@ -4126,16 +4126,16 @@
             "Digitale Datensammlung, die Daten zu einer Wall-Struktur enthält."
           ],
           "items": 3,
-          "resource_count": 0,
+          "resource_count": 3,
           "formatted_size": "76.73 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F5C9-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792257",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F5CC-F",
+          "sample_title": "hb20_20200731_hb20_wall_orthophoto_1mm.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F5CC-F&width=360"
         }
       },
       {
@@ -4157,16 +4157,16 @@
             "Digitale Datensammlung, die Rohdaten enthält."
           ],
           "items": 8,
-          "resource_count": 0,
+          "resource_count": 8,
           "formatted_size": "69.80 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F5CD-E",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792258",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F5CE-D",
+          "sample_title": "hb21_img_0287.jpg",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F5CE-D&width=360"
         }
       },
       {
@@ -4188,16 +4188,16 @@
             "Digitale Datensammlung, die Daten zu Schnitt 01 enthält."
           ],
           "items": 12,
-          "resource_count": 0,
+          "resource_count": 12,
           "formatted_size": "906.77 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F5D5-4",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792259",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F5D9-0",
+          "sample_title": "hb21_schnitt21-01_20210726.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F5D9-0&width=360"
         }
       },
       {
@@ -4219,16 +4219,16 @@
             "Digitale Datensammlung, die Georadardaten enthält."
           ],
           "items": 7,
-          "resource_count": 0,
+          "resource_count": 7,
           "formatted_size": "88.21 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-FA8C-2",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792293",
           "spatial": "",
           "color": "#7E6B8F",
           "icon": "fa-box-archive",
-          "sample_pid": null,
-          "sample_title": null,
-          "sample_thumb_url": null
+          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1",
+          "sample_title": "hb15_interpretation_ab.tif",
+          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-FA8D-1&width=360"
         }
       },
       {
@@ -4251,16 +4251,16 @@
             "Drohengestützte Ansichtsaufnahme; Hemmaberg 2020"
           ],
           "items": 26,
-          "resource_count": 2,
+          "resource_count": 0,
           "formatted_size": "217.94 MB",
           "pid": "https://hdl.handle.net/21.11115/0000-0015-F565-3",
           "arche_url": "https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/1792255",
           "spatial": "",
           "color": "#9B59B6",
           "icon": "fa-camera",
-          "sample_pid": "https://hdl.handle.net/21.11115/0000-0015-F9F9-8",
-          "sample_title": "hb20-fotoprotokoll_drohne.xlsx",
-          "sample_thumb_url": "https://arche-thumbnails.acdh.oeaw.ac.at/?id=https%3A%2F%2Fhdl.handle.net%2F21.11115%2F0000-0015-F9F9-8&width=360"
+          "sample_pid": null,
+          "sample_title": null,
+          "sample_thumb_url": null
         }
       },
       {

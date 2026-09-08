@@ -23,6 +23,7 @@ STATS_FILE = os.path.join(DATA_DIR, "arche_stats.json")
 GRAPH_FILE = os.path.join(DATA_DIR, "arche_graph.json")
 GEOJSON_FILE = os.path.join(WMA_DIR, "R00_WGS84.geojson")
 FOUNDATIONS_FILE = os.path.join(DATA_DIR, "iuenna_grundlagen.md")
+SYNTHETIC_QA_FILE = os.path.join(DATA_DIR, "iuenna_synthetic_qa.json")
 OUTPUT_FILE = os.path.join(DATA_DIR, "iuenna_kb.json")
 
 def load_json(path):
@@ -39,71 +40,156 @@ def load_foundations(path):
     with open(path, "r", encoding="utf-8") as f:
         content = f.read()
 
+    # Split into language parts by horizontal rule or main H1 headings
+    major_blocks = re.split(r"\n---\n|\n(?=#\s+[A-Z])", content)
+    
     sections = []
-    raw_sections = re.split(r"\n(?=##\s+)", content)
-    for raw in raw_sections:
-        raw = raw.strip()
-        if not raw.startswith("## "):
+    
+    for block in major_blocks:
+        block = block.strip()
+        if not block:
             continue
-        lines = raw.split("\n")
-        title = lines[0].replace("## ", "").strip()
-        body = "\n".join(lines[1:]).strip()
+            
+        # Determine language of the block
+        lang = "de"
+        if "Background Information on Hemmaberg" in block:
+            lang = "en"
+        elif "Osnovne informacije o Hemmabergu" in block:
+            lang = "sl"
+            
+        raw_sections = re.split(r"\n(?=##\s+)", block)
+        for raw in raw_sections:
+            raw = raw.strip()
+            if not raw.startswith("## "):
+                continue
+            lines = raw.split("\n")
+            title = lines[0].replace("## ", "").strip()
+            body = "\n".join(lines[1:]).strip()
 
-        sec_id = "found_" + re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")
-        keywords = []
-        node_id = None
-        category = "Historischer & Archäologischer Kontext"
-
-        if "Mikroregion" in title:
-            sec_id = "found_mikroregion"
-            keywords = ["mikroregion", "jauntal", "podjuna", "karawanken", "luschasattel", "virunum", "celeia", "römerstraße", "kulturlandschaft", "siedlungslandschaft"]
-            node_id = "col_1792417"
-            category = "Archäologische Landschaft"
-        elif "Iuenna und Globasnitz" in title:
-            sec_id = "found_iuenna_globasnitz"
-            keywords = ["iuenna", "globasnitz", "kleindorf", "mansio", "straßenstation", "iouenat", "tabula peutingeriana", "friedhof", "gräberfeld", "bestattungen", "merowinger", "ostgoten", "kontaktregion", "geophysik", "kaiserzeit"]
-            node_id = "col_1792169"
-            category = "Siedlungszentrum & Straßenstation"
-        elif "Hemmaberg" in title:
-            sec_id = "found_hemmaberg"
-            keywords = ["hemmaberg", "pilgerzentrum", "pilger", "höhensiedlung", "kirchen", "doppelkirche", "baptisterium", "reliquien", "mosaik", "mosaikböden", "rosaliengrotte", "hemma", "dorothea", "jouenat", "arianisch", "ostgoten", "spätantike", "wallfahrt"]
-            node_id = "col_1792212"
-            category = "Spätantikes Pilgerzentrum"
-        elif "Stefan" in title:
-            sec_id = "found_st_stefan"
-            keywords = ["st. stefan", "sankt stefan", "šteben", "steben", "villa", "villenanlage", "landgut", "super-villa", "hypokaust", "hypokaustheizung", "apsiden", "georadar", "geomagnetik", "römerzeit"]
-            node_id = "col_1792411"
-            category = "Römische Villenanlage"
-        elif "IUENNA‑Projekt" in title or "IUENNA-Projekt" in title:
-            sec_id = "found_iuenna_projekt"
-            keywords = ["iuenna", "projekt", "iuenna-projekt", "godigital", "öaw", "öai", "kärnten.museum", "acdh-ch", "bda", "ardig", "arche", "fair", "care", "open science", "geopackage", "wma", "web-mapping", "datenrettung", "repositorium"]
-            node_id = "top_iuenna"
-            category = "Digital Humanities Projekt"
-        elif "Literatur" in title:
-            sec_id = "found_literatur"
-            keywords = ["literatur", "quellen", "publikationen", "glaser", "hagmann", "reiner", "pollak", "schwaiger", "peer community journal"]
+            sec_id = f"found_{lang}_" + re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")
+            keywords = []
             node_id = None
-            category = "Fachliteratur & Referenzen"
+            category = "Historischer & Archäologischer Kontext"
 
-        citations = re.findall(r"\(([A-Z][a-zA-Z\s,–-]+,\s*\d{4}[^\)]*)\)", body)
-        if sec_id == "found_literatur":
-            citations = ["Glaser (2002)", "Hagmann & Reiner (2023)", "Pollak (2023)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)"]
+            # German classification
+            if lang == "de":
+                if "Mikroregion" in title:
+                    sec_id = "found_de_mikroregion"
+                    keywords = ["mikroregion", "jauntal", "podjuna", "karawanken", "luschasattel", "virunum", "celeia", "römerstraße", "kulturlandschaft", "siedlungslandschaft"]
+                    node_id = "col_1792417"
+                    category = "Archäologische Landschaft"
+                elif "Iuenna und Globasnitz" in title:
+                    sec_id = "found_de_iuenna_globasnitz"
+                    keywords = ["iuenna", "globasnitz", "kleindorf", "mansio", "straßenstation", "iouenat", "tabula peutingeriana", "friedhof", "gräberfeld", "bestattungen", "merowinger", "ostgoten", "kontaktregion", "geophysik", "kaiserzeit"]
+                    node_id = "col_1792169"
+                    category = "Siedlungszentrum & Straßenstation"
+                elif "Hemmaberg" in title:
+                    sec_id = "found_de_hemmaberg"
+                    keywords = ["hemmaberg", "pilgerzentrum", "pilger", "höhensiedlung", "kirchen", "doppelkirche", "baptisterium", "reliquien", "mosaik", "mosaikböden", "rosaliengrotte", "hemma", "dorothea", "jouenat", "arianisch", "ostgoten", "spätantike", "wallfahrt"]
+                    node_id = "col_1792212"
+                    category = "Spätantikes Pilgerzentrum"
+                elif "Stefan" in title:
+                    sec_id = "found_de_st_stefan"
+                    keywords = ["st. stefan", "sankt stefan", "šteben", "steben", "villa", "villenanlage", "landgut", "super-villa", "hypokaust", "hypokaustheizung", "apsiden", "georadar", "geomagnetik", "römerzeit", "barbius vercaius", "winkler"]
+                    node_id = "col_1792411"
+                    category = "Römische Villenanlage"
+                elif "IUENNA‑Projekt" in title or "IUENNA-Projekt" in title:
+                    sec_id = "found_de_iuenna_projekt"
+                    keywords = ["iuenna", "projekt", "iuenna-projekt", "godigital", "öaw", "öai", "kärnten.museum", "acdh-ch", "bda", "ardig", "arche", "fair", "care", "open science", "geopackage", "wma", "web-mapping", "datenrettung", "repositorium"]
+                    node_id = "top_iuenna"
+                    category = "Digital Humanities Projekt"
+                elif "Neue Ergebnisse" in title or "Neubewertung" in title:
+                    sec_id = "found_de_neubewertung"
+                    keywords = ["neubewertung", "tscherberg", "vicus", "katharinakogel", "straßenstation", "prospektion", "georadar", "geomagnetik", "christian gugl", "gugl", "gräberstraße", "celeia-virunum", "virunum-celeia", "hauptstraße", "barbius vercaius", "winkler"]
+                    node_id = "col_1792169"
+                    category = "Topografische Neubewertung & Prospektion"
+                elif "Literatur" in title:
+                    sec_id = "found_de_literatur"
+                    keywords = ["literatur", "quellen", "publikationen", "glaser", "hagmann", "reiner", "pollak", "schwaiger", "gugl", "peer community journal"]
+                    node_id = None
+                    category = "Fachliteratur & Referenzen"
 
-        paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
-        summary = paragraphs[0] if paragraphs else ""
+            # English classification
+            elif lang == "en":
+                category = "Historical & Archaeological Context"
+                keywords = [w.lower() for w in title.split() if len(w) > 3]
+                if "Microregion" in title:
+                    sec_id = "found_en_microregion"
+                    keywords.extend(["microregion", "jauntal", "podjuna", "landscape", "karawanks"])
+                    node_id = "col_1792417"
+                elif "Iuenna" in title:
+                    sec_id = "found_en_iuenna_globasnitz"
+                    keywords.extend(["iuenna", "globasnitz", "road station", "vicus", "mansio", "cemetery"])
+                    node_id = "col_1792169"
+                elif "Hemmaberg" in title:
+                    sec_id = "found_en_hemmaberg"
+                    keywords.extend(["hemmaberg", "pilgrimage", "double churches", "churches", "late antique"])
+                    node_id = "col_1792212"
+                elif "Stefan" in title:
+                    sec_id = "found_en_st_stefan"
+                    keywords.extend(["st. stefan", "villa", "estate", "hypocaust", "barbius vercaius", "winkler"])
+                    node_id = "col_1792411"
+                elif "Project" in title:
+                    sec_id = "found_en_iuenna_project"
+                    keywords.extend(["iuenna project", "arche", "open science", "fair", "care", "geopackage"])
+                    node_id = "top_iuenna"
+                elif "New Results" in title:
+                    sec_id = "found_en_neubewertung"
+                    keywords.extend(["reassessment", "tscherberg", "vicus", "katharinakogel", "gugl", "geophysics"])
+                    node_id = "col_1792169"
 
-        sections.append({
-            "id": sec_id,
-            "title": title,
-            "category": category,
-            "summary": summary,
-            "content": body,
-            "citations": list(dict.fromkeys(citations)),
-            "keywords": keywords,
-            "graph_node_id": node_id
-        })
+            # Slovenian classification
+            elif lang == "sl":
+                category = "Zgodovinski in arheološki kontekst"
+                keywords = [w.lower() for w in title.split() if len(w) > 3]
+                if "mikroregija" in title.lower():
+                    sec_id = "found_sl_mikroregija"
+                    keywords.extend(["mikroregija", "podjuna", "jauntal", "karavanke", "pokrajina"])
+                    node_id = "col_1792417"
+                elif "iuenna" in title.lower():
+                    sec_id = "found_sl_iuenna_globasnitz"
+                    keywords.extend(["iuenna", "globasnitz", "globasnica", "cestna postaja", "vicus", "grobišče"])
+                    node_id = "col_1792169"
+                elif "hemmaberg" in title.lower():
+                    sec_id = "found_sl_hemmaberg"
+                    keywords.extend(["hemmaberg", "gora sv. heme", "romarsko središče", "dvojne cerkve", "cerkve"])
+                    node_id = "col_1792212"
+                elif "stefan" in title.lower() or "šteben" in title.lower():
+                    sec_id = "found_sl_stefan"
+                    keywords.extend(["šteben", "st. stefan", "rimska vila", "hipokavst", "barbius vercaius"])
+                    node_id = "col_1792411"
+                elif "projekt" in title.lower():
+                    sec_id = "found_sl_projekt"
+                    keywords.extend(["projekt iuenna", "arche", "odprta znanost", "fair", "care"])
+                    node_id = "top_iuenna"
+                elif "novi rezultati" in title.lower():
+                    sec_id = "found_sl_novi_rezultati"
+                    keywords.extend(["nova presoja", "tscherberg", "vicus", "geofizika", "gugl"])
+                    node_id = "col_1792169"
 
-    print(f"[+] Loaded {len(sections)} authoritative foundation chapters from {os.path.basename(path)}")
+            # Citations extraction including (Author et al.) and (Author, Year)
+            citations = re.findall(r"\(([A-Z][a-zA-Z\s,–-]+(?:,\s*\d{4}[^\)]*|\s+et\s+al\.[^\)]*))\)", body)
+            if "Christian Gugl et al." in body and "Christian Gugl et al." not in citations:
+                citations.append("Christian Gugl et al.")
+            if sec_id.endswith("literatur"):
+                citations = ["Glaser (2002)", "Christian Gugl et al.", "Hagmann & Reiner (2023)", "Pollak (2023)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)"]
+
+            paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
+            summary = paragraphs[0] if paragraphs else ""
+
+            sections.append({
+                "id": sec_id,
+                "lang": lang,
+                "title": title,
+                "category": category,
+                "summary": summary,
+                "content": body,
+                "citations": list(dict.fromkeys(citations)),
+                "keywords": keywords,
+                "graph_node_id": node_id
+            })
+
+    print(f"[+] Loaded {len(sections)} authoritative multilingual foundation chapters from {os.path.basename(path)}")
     return sections
 
 def build_knowledge_base():
@@ -416,18 +502,21 @@ def build_knowledge_base():
                 "color": d.get("color", "#B88E3E")
             })
 
+    synthetic_qa = load_json(SYNTHETIC_QA_FILE) or []
+
     kb_payload = {
         "meta": {
             "title": "IUENNA Interactive Knowledge Base",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "generated_at": "2026-09-07",
-            "description": "Comprehensive client-side knowledge corpus combining ARCHE stats, Knowledge Graph (215 nodes), archaeological foundations, and spatial clusters.",
+            "description": "Comprehensive client-side knowledge corpus combining ARCHE stats, Knowledge Graph (215 nodes), archaeological foundations, synthetic Q&A pairs, and spatial clusters.",
             "total_items": total_items,
             "total_storage": total_size,
             "license": "CC BY 4.0"
         },
         "project": project_info,
         "foundations": foundations,
+        "synthetic_qa": synthetic_qa,
         "subcollections": subcollections,
         "sites": sites,
         "doc_types": doc_types,
