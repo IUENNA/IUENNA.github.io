@@ -501,20 +501,33 @@ def parse_arche_ttl(ttl_path):
         for c in collection_creators.get(col["arche_id"], {}).get("creators", []):
             tokens.append(c["name"])
 
+        col_title = col.get("title") or col.get("filename") or col["arche_id"]
+        col_code = col.get("filename") or col.get("alternative_title") or ""
+        code_prefix = f"[{col_code}] " if col_code and col_code != col_title else ""
+
+        tokens = [col_title, col_code, col.get("alternative_title", ""), col.get("arche_id", "")]
+        if col.get("campaign_years"):
+            tokens.append(col["campaign_years"])
+        for c in collection_creators.get(col["arche_id"], {}).get("creators", []):
+            tokens.append(c["name"])
+        for c in collection_creators.get(col["arche_id"], {}).get("contributors", []):
+            tokens.append(c["name"])
+
         search_index.append({
             "id": col["id"],
             "arche_id": col["arche_id"],
             "type": "folder" if lvl > 1 else ("root" if lvl == 0 else "subcollection"),
             "category": "Sammlungen & Ordner",
-            "label": col["filename"] or col["title"],
-            "sublabel": " • ".join(sublabel_parts),
+            "label": col_title,
+            "sublabel": code_prefix + " • ".join(sublabel_parts),
+            "code": col_code,
             "icon": "fa-folder" if lvl > 0 else "fa-sitemap",
             "color": level_colors.get(lvl, "#C85A32"),
-            "tokens": tokens,
+            "tokens": [t for t in tokens if t],
             "meta": {
-                "items": col["items"],
-                "size": col["formatted_size"],
-                "pid": col["pid"],
+                "items": col.get("items", 0),
+                "size": col.get("formatted_size", ""),
+                "pid": col.get("pid", ""),
                 "level": lvl,
                 "years": col.get("campaign_years"),
                 "creators": [c["name"] for c in collection_creators.get(col["arche_id"], {}).get("creators", [])]
@@ -547,7 +560,7 @@ def parse_arche_ttl(ttl_path):
     for pl in places.values():
         coord_str = f"{pl['latitude']:.4f}, {pl['longitude']:.4f}" if pl.get("latitude") and pl.get("longitude") else ""
         search_index.append({
-            "id": pl["id"],
+            "id": f"plc_{pl['arche_id']}",
             "arche_id": pl["arche_id"],
             "type": "place",
             "category": "Fundorte & Orte",
@@ -555,7 +568,7 @@ def parse_arche_ttl(ttl_path):
             "sublabel": f"Fundort {coord_str}".strip(),
             "icon": "fa-location-dot",
             "color": "#2D6A4F",
-            "tokens": [pl["title"]] + pl.get("alternative_titles", []),
+            "tokens": [pl["title"]] + pl.get("alternative_titles", []) + [pl["arche_id"]],
             "meta": {
                 "lat": pl.get("latitude"),
                 "lon": pl.get("longitude"),

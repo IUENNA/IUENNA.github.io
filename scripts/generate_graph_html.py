@@ -1088,11 +1088,13 @@ def generate():
                 <option value="3">Ebene 3 (Fachordner)</option>
             </select>
 
-            <!-- Researcher / Entity Filter Selector -->
-            <label for="researcherSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark); margin-left: 6px;"><i class="fa-solid fa-user-tie" style="color: var(--primary);"></i> Forscher:in:</label>
-            <select id="researcherSelect" class="tool-select" title="Bestände nach Forscher:innen &amp; Institutionen filtern und hervorheben">
-                <option value="all">Alle Forscher:innen &amp; Partner</option>
-            </select>
+            <!-- Selection Bookmark Buttons (Merkliste) -->
+            <button id="btnBookmarkCurrent" class="tool-btn" title="Aktuell ausgewählten Eintrag zur temporären Merkliste hinzufügen">
+                <i class="fa-regular fa-bookmark" style="color: var(--secondary);"></i> <span>Auswahl merken</span>
+            </button>
+            <button id="btnOpenBookmarks" class="tool-btn" title="Gespeicherte Merkliste öffnen">
+                <i class="fa-solid fa-bookmark" style="color: var(--primary);"></i> Merkliste (<span id="bookmarkCountPill">0</span>)
+            </button>
 
             <!-- Ordnerbaum Button -->
             <button id="btnOpenTreeModal" class="tool-btn secondary-btn" title="Vollständigen ARCHE-Archivbaum aller 434 Ordner erkunden">
@@ -1272,24 +1274,49 @@ def generate():
                     <p class="drawer-desc" id="drawerDesc"></p>
                 </div>
 
-                <!-- Live ARCHE Preview Card -->
-                <div id="drawerPreviewBox" class="drawer-preview-box">
-                    <div class="drawer-preview-header">
-                        <span><i class="fa-solid fa-eye" style="color: var(--primary);"></i> ARCHE Dateivorschau</span>
-                        <span id="previewStatusBadge" style="font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; background: #E8F5E9; color: #2E7D32;">Live von ARCHE</span>
+                <!-- Place Profile Box (when Fundort / Place is selected) -->
+                <div id="drawerPlaceBox" class="entity-profile-box" style="display: none; border-left: 4px solid #2D6A4F; background: #F4F8F5;">
+                    <div class="drawer-section-title" style="margin-bottom: 8px;">
+                        <span><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> <span id="drawerPlaceHeading">Fundort-Details</span></span>
                     </div>
-                    <div id="drawerPreviewMedia" class="drawer-preview-media">
-                        <img id="drawerPreviewImg" class="drawer-preview-img" alt="ARCHE Preview" />
-                        <div id="drawerPreviewFallback" class="drawer-preview-fallback">
-                            <i class="fa-solid fa-lock"></i>
-                            <div style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">ARCHE-Zugriffsschutz (InC)</div>
-                            <div style="font-size: 0.72rem; color: #BBB; line-height: 1.35; max-width: 280px; margin-bottom: 10px;">Vollansicht und Download im Repositorium nach Login verfügbar.</div>
-                            <a id="drawerPreviewFallbackLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.72rem; padding: 4px 10px;">Auf ARCHE öffnen ↗</a>
+                    <div class="entity-profile-details">
+                        <div id="drawerPlaceCoordsRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-compass"></i> Koordinaten:</span>
+                            <span id="drawerPlaceCoordsVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPlaceGeonamesRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-earth-americas"></i> Geonames:</span>
+                            <span class="entity-prop-val"><a id="drawerPlaceGeonamesLink" href="#" target="_blank" class="external-id-link" style="color: #2D6A4F;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPlaceGeonamesVal">Geonames URI</span> ↗</a></span>
                         </div>
                     </div>
-                    <div class="drawer-preview-footer">
-                        <span id="drawerPreviewDimensions"><i class="fa-solid fa-image"></i> Vorschau</span>
-                        <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;"><i class="fa-solid fa-expand"></i> Großansicht</button>
+                </div>
+
+                <!-- Live ARCHE Preview Card (Collapsible) -->
+                <div id="drawerPreviewBox" class="drawer-preview-box">
+                    <div class="drawer-preview-header" id="drawerPreviewToggle" style="cursor: pointer; user-select: none;">
+                        <span style="display: flex; align-items: center; gap: 6px;">
+                            <i id="previewCollapseIcon" class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); transition: transform 0.2s ease;"></i>
+                            <i class="fa-solid fa-eye" style="color: var(--primary);"></i> ARCHE Dateivorschau
+                        </span>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span id="previewStatusBadge" style="font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; background: #E8F5E9; color: #2E7D32;">Live von ARCHE</span>
+                            <span id="previewToggleText" style="font-size: 0.68rem; color: var(--text-muted); font-weight: 500;">(Einklappen)</span>
+                        </div>
+                    </div>
+                    <div id="drawerPreviewCollapseBody">
+                        <div id="drawerPreviewMedia" class="drawer-preview-media">
+                            <img id="drawerPreviewImg" class="drawer-preview-img" alt="ARCHE Preview" />
+                            <div id="drawerPreviewFallback" class="drawer-preview-fallback">
+                                <i class="fa-solid fa-lock"></i>
+                                <div style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">ARCHE-Zugriffsschutz (InC)</div>
+                                <div style="font-size: 0.72rem; color: #BBB; line-height: 1.35; max-width: 280px; margin-bottom: 10px;">Vollansicht und Download im Repositorium nach Login verfügbar.</div>
+                                <a id="drawerPreviewFallbackLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.72rem; padding: 4px 10px;">Auf ARCHE öffnen ↗</a>
+                            </div>
+                        </div>
+                        <div class="drawer-preview-footer">
+                            <span id="drawerPreviewDimensions"><i class="fa-solid fa-image"></i> Vorschau</span>
+                            <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;"><i class="fa-solid fa-expand"></i> Großansicht</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1366,12 +1393,38 @@ def generate():
         </aside>
     </main>
 
-    <!-- Archiv-Ordnerbaum Modal (190 Sammlungen & Ordner) -->
+    <!-- Bookmarks (Merkliste) Modal -->
+    <div id="bookmarksModal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 680px; max-height: 80vh; display: flex; flex-direction: column;">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-bookmark" style="color: var(--secondary); font-size: 1.15rem;"></i>
+                    <div>
+                        <h2 style="font-size: 1.1rem; margin: 0;">Gespeicherte Merkliste</h2>
+                        <p style="font-size: 0.76rem; color: var(--text-muted); margin: 2px 0 0 0;">Im Browser gemerkte Sammlungen, Forscher:innen, Fundorte &amp; Ressourcen</p>
+                    </div>
+                </div>
+                <button id="btnCloseBookmarksModal" class="drawer-close-btn">&times;</button>
+            </div>
+            <div style="padding: 10px 20px; background: #FAF8F5; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <span id="bookmarksModalCount" class="stat-pill" style="font-weight: 700; background: #EDE8E0;">0 Einträge</span>
+                <div style="display: flex; gap: 6px;">
+                    <button id="btnCopyBookmarksLink" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-share-nodes"></i> Link kopieren</button>
+                    <button id="btnClearBookmarks" class="tool-btn" style="font-size: 0.74rem; color: #C0392B;"><i class="fa-solid fa-trash-can"></i> Alle leeren</button>
+                </div>
+            </div>
+            <div id="bookmarksListContainer" style="padding: 14px 20px; overflow-y: auto; flex: 1;">
+                <ul id="bookmarksList" class="relations-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archiv-Ordnerbaum Modal (434 Sammlungen & Ordner) -->
     <div id="treeModal" class="modal-backdrop">
         <div class="modal-card" style="max-width: 980px;">
             <div class="modal-header">
                 <div>
-                    <h2><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> ARCHE Archiv-Hierarchie: Alle 190 Sammlungen &amp; Ordner</h2>
+                    <h2><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> ARCHE Archiv-Hierarchie: Alle 434 Sammlungen &amp; Ordner</h2>
                     <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Vollständiger Verzeichnisbaum von IUENNA im ARCHE-Repositorium (Ebenen 0 bis 6)</p>
                 </div>
                 <button id="btnTreeClose" class="drawer-close-btn">&times;</button>
@@ -1390,12 +1443,12 @@ def generate():
         </div>
     </div>
 
-    <!-- Corpus Catalog Modal (20.541 Ressourcen) -->
+    <!-- Corpus Catalog Modal (20.355 Ressourcen) -->
     <div id="corpusModal" class="modal-backdrop">
         <div class="modal-card">
             <div class="modal-header">
                 <div>
-                    <h2><i class="fa-solid fa-database" style="color: var(--primary);"></i> ARCHE Corpus-Katalog: Alle 20.541 Primärressourcen</h2>
+                    <h2><i class="fa-solid fa-database" style="color: var(--primary);"></i> ARCHE Corpus-Katalog: Alle 20.355 Primärressourcen</h2>
                     <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Vollständiger Index aller digitalen Dateien und Grabungsfunde mit Live-Dateivorschau</p>
                 </div>
                 <button id="btnCorpusClose" class="drawer-close-btn">&times;</button>
@@ -1404,16 +1457,10 @@ def generate():
             <div style="padding: 10px 24px; background: #FFFFFF; border-bottom: 1px solid var(--panel-border); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <div style="position: relative; flex: 1; min-width: 220px;">
                     <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-muted);"></i>
-                    <input type="text" id="corpusSearchInput" class="search-input" style="width: 100%;" placeholder="Titel, PID, Dateiname durchsuchen..." />
+                    <input type="text" id="corpusSearchInput" class="search-input" style="width: 100%;" placeholder="Titel, PID, Dateiname, Fundort, Ordner durchsuchen..." />
                 </div>
                 <select id="corpusColSelect" class="tool-select">
-                    <option value="all">Alle Sammlungen (20.541)</option>
-                    <option value="col_ret">Retrodigitalisate (RET: 9.147)</option>
-                    <option value="col_jau">Jaunstein (JAU: 4.891)</option>
-                    <option value="col_hb">Hemmaberg (HB: 3.657)</option>
-                    <option value="col_glo">Globasnitz (GLO: 2.664)</option>
-                    <option value="col_tal">Jauntal (TAL: 177)</option>
-                    <option value="col_ste">Sankt Stefan (STE: 5)</option>
+                    <option value="all">Alle Sammlungen &amp; Bestände</option>
                 </select>
                 <select id="corpusTypeSelect" class="tool-select">
                     <option value="all">Alle Medientypen</option>
@@ -1424,11 +1471,7 @@ def generate():
                     <option value="document">Dokumente &amp; PDFs</option>
                 </select>
                 <select id="corpusPlaceSelect" class="tool-select">
-                    <option value="all">Alle Fundorte</option>
-                    <option value="Hemmaberg">Hemmaberg</option>
-                    <option value="Jaunstein">Jaunstein</option>
-                    <option value="Globasnitz">Globasnitz</option>
-                    <option value="Sankt Stefan">Sankt Stefan</option>
+                    <option value="all">Alle Fundorte (Lade...)</option>
                 </select>
                 <button id="btnResetCorpusFilters" class="tool-btn"><i class="fa-solid fa-rotate-left"></i> Zurücksetzen</button>
             </div>
@@ -1828,20 +1871,23 @@ def generate():
 
             updateVisibleNodesCount();
             setupSearch();
-            populateResearcherSelect();
+            updateBookmarksUI();
         }}
 
         function getNodeByIdFlexible(id) {{
             if (!cy || !id) return null;
             const strId = String(id).trim();
-            const cleanId = strId.replace(/^(col_|per_|org_|pub_|plc_)/, '');
+            const cleanId = strId.replace(/^(col_|per_|person_|org_|pub_|plc_|place_|res_)/, '');
             const candidates = [
                 strId,
+                `plc_${{cleanId}}`,
+                `place_${{cleanId}}`,
                 `col_${{cleanId}}`,
                 `per_${{cleanId}}`,
+                `person_${{cleanId}}`,
                 `org_${{cleanId}}`,
                 `pub_${{cleanId}}`,
-                `plc_${{cleanId}}`,
+                `res_${{cleanId}}`,
                 cleanId,
                 (cleanId === "1792170" ? "iuenna_root" : null)
             ].filter(Boolean);
@@ -1882,68 +1928,195 @@ def generate():
             cy.elements().removeClass("highlighted dimmed");
         }}
 
-        // Populate Researcher / Partner Dropdown
-        function populateResearcherSelect() {{
-            const sel = document.getElementById("researcherSelect");
-            if (!sel) return;
-            sel.innerHTML = '<option value="all">Alle Forscher:innen &amp; Partner</option>';
+        // Bookmarks / Merkliste Logic
+        let bookmarks = [];
+        try {{
+            const saved = localStorage.getItem("iuenna_graph_bookmarks");
+            if (saved) bookmarks = JSON.parse(saved);
+            if (!Array.isArray(bookmarks)) bookmarks = [];
+        }} catch (e) {{
+            bookmarks = [];
+        }}
 
-            const peopleAndOrgs = cy.nodes("[type = 'person'], [type = 'organization']");
-            const entityData = [];
+        function saveBookmarks() {{
+            try {{
+                localStorage.setItem("iuenna_graph_bookmarks", JSON.stringify(bookmarks));
+            }} catch (e) {{
+                console.warn("Could not persist bookmarks:", e);
+            }}
+            updateBookmarksUI();
+        }}
 
-            peopleAndOrgs.forEach(n => {{
-                const d = n.data();
-                const cols = cy.edges(`[target = "${{n.id()}}"][label ^= 'has']`).sources().filter(s => {{
-                    const t = s.data("type");
-                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root");
-                }});
-                entityData.push({{
-                    id: n.id(),
-                    label: d.label,
-                    type: d.type,
-                    count: cols.length,
-                    node: n
-                }});
-            }});
+        function updateBookmarksUI() {{
+            const btnOpen = document.getElementById("btnOpenBookmarks");
+            if (btnOpen) {{
+                btnOpen.innerHTML = '<i class="fa-solid fa-bookmark" style="color: var(--secondary);"></i> Merkliste (' + bookmarks.length + ')';
+            }}
+            const modalCount = document.getElementById("bookmarksModalCount");
+            if (modalCount) {{
+                modalCount.textContent = bookmarks.length + (bookmarks.length === 1 ? ' Eintrag' : ' Einträge');
+            }}
+        }}
 
-            entityData.sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
-
-            const grpPersons = document.createElement("optgroup");
-            grpPersons.label = "Forscher:innen (Personen)";
-            const grpOrgs = document.createElement("optgroup");
-            grpOrgs.label = "Institutionen & Partner";
-
-            entityData.forEach(item => {{
-                const opt = document.createElement("option");
-                opt.value = item.id;
-                opt.textContent = `${{item.label}} (${{item.count}} Sammlungen)`;
-                if (item.type === "person") grpPersons.appendChild(opt);
-                else grpOrgs.appendChild(opt);
-            }});
-
-            sel.appendChild(grpPersons);
-            sel.appendChild(grpOrgs);
-
-            sel.addEventListener("change", function() {{
-                const val = this.value;
-                if (val === "all") {{
-                    resetHighlights();
-                    closeInspector();
-                    cy.fit(null, 40);
+        function addBookmark(nodeOrData) {{
+            if (!nodeOrData) {{
+                if (selectedNode) {{
+                    nodeOrData = selectedNode.data();
                 }} else {{
-                    const targetNode = cy.$id(val);
-                    if (targetNode && targetNode.length > 0) {{
-                        targetNode.show();
-                        const connectedCols = cy.edges(`[target = "${{val}}"][label ^= 'has']`).sources();
-                        connectedCols.show();
-                        cy.fit(connectedCols.union(targetNode), 60);
-                        highlightNeighbors(targetNode);
-                        openInspector(targetNode);
-                        showNotification(`${{targetNode.data("label")}} ausgewählt: ${{connectedCols.length}} verknüpfte Sammlungen hervorgehoben.`, "success", 3000);
-                    }}
+                    showNotification("Bitte zuerst einen Eintrag im Graphen oder Korpus auswählen.", "warning");
+                    return;
                 }}
+            }}
+            const data = (nodeOrData && nodeOrData.data) ? nodeOrData.data() : nodeOrData;
+            const bId = String(data.id || data.arche_id);
+            const exists = bookmarks.find(b => String(b.id) === bId || (data.arche_id && String(b.arche_id) === String(data.arche_id)));
+            if (exists) {{
+                showNotification(`"${{data.label || data.title}}" ist bereits in der Merkliste.`, "info", 2000);
+                return;
+            }}
+            const item = {{
+                id: bId,
+                arche_id: data.arche_id || bId.replace(/^[a-z]+_/, ''),
+                label: data.label || data.title || bId,
+                type: data.type || "folder",
+                type_label: data.type_label || (data.type === "place" ? "Fundort" : (data.type === "person" ? "Forscher:in" : "Ordner")),
+                color: data.color || typeColors[data.type] || "#888",
+                pid: data.pid || "",
+                timestamp: Date.now()
+            }};
+            bookmarks.push(item);
+            saveBookmarks();
+            showNotification(`"${{item.label}}" zur Merkliste hinzugefügt.`, "success", 2500);
+        }}
+
+        function removeBookmark(id) {{
+            bookmarks = bookmarks.filter(b => b.id !== id);
+            saveBookmarks();
+            renderBookmarksList();
+        }}
+
+        function openBookmarksModal() {{
+            renderBookmarksList();
+            document.getElementById("bookmarksModal").classList.add("open");
+        }}
+
+        function closeBookmarksModal() {{
+            document.getElementById("bookmarksModal").classList.remove("open");
+        }}
+
+        function renderBookmarksList() {{
+            const list = document.getElementById("bookmarksList");
+            if (!list) return;
+            list.innerHTML = "";
+            if (bookmarks.length === 0) {{
+                list.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+                        <i class="fa-regular fa-bookmark" style="font-size: 2.2rem; opacity: 0.4; margin-bottom: 12px; display: block;"></i>
+                        <p style="margin: 0; font-size: 0.9rem; font-weight: 500;">Die Merkliste ist aktuell leer.</p>
+                        <p style="margin: 4px 0 0 0; font-size: 0.76rem;">Wählen Sie einen Knoten im Graphen oder eine Ressource aus und klicken Sie auf <strong>"Auswahl merken"</strong>.</p>
+                    </div>
+                `;
+                return;
+            }}
+
+            bookmarks.forEach(b => {{
+                const li = document.createElement("li");
+                li.className = "relation-item";
+                li.style.justifyContent = "space-between";
+                li.style.padding = "8px 12px";
+
+                let iconClass = "fa-folder";
+                if (b.type === "person") iconClass = "fa-user";
+                else if (b.type === "organization") iconClass = "fa-building-columns";
+                else if (b.type === "place") iconClass = "fa-location-dot";
+                else if (b.type === "publication") iconClass = "fa-book-open";
+                else if (b.type === "resource") iconClass = "fa-file";
+
+                li.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
+                        <span style="width: 26px; height: 26px; border-radius: 50%; background: ${{b.color}}; color: #FFF; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0;">
+                            <i class="fa-solid ${{iconClass}}"></i>
+                        </span>
+                        <div style="min-width: 0; flex: 1;">
+                            <div style="font-weight: 600; font-size: 0.82rem; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${{b.label}}</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">${{b.type_label}} &bull; ARCHE #${{b.arche_id}}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; margin-left: 8px;">
+                        <button class="tool-btn btn-bm-focus" title="Im Graphen fokussieren" style="font-size: 0.72rem; padding: 3px 8px;">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                        </button>
+                        ${{b.pid ? `<a href="${{b.pid}}" target="_blank" class="tool-btn" title="Auf ARCHE öffnen" style="font-size: 0.72rem; padding: 3px 8px;"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}}
+                        <button class="tool-btn btn-bm-delete" title="Aus Merkliste entfernen" style="font-size: 0.72rem; padding: 3px 8px; color: #C0392B;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                `;
+
+                li.querySelector(".btn-bm-focus").onclick = (e) => {{
+                    e.stopPropagation();
+                    closeBookmarksModal();
+                    if (b.type === "resource") {{
+                        focusResourceInGraph(b.id);
+                    }} else {{
+                        focusCollectionNodeInGraph(b.arche_id || b.id);
+                    }}
+                }};
+
+                li.querySelector(".btn-bm-delete").onclick = (e) => {{
+                    e.stopPropagation();
+                    removeBookmark(b.id);
+                }};
+
+                li.onclick = () => {{
+                    closeBookmarksModal();
+                    if (b.type === "resource") {{
+                        focusResourceInGraph(b.id);
+                    }} else {{
+                        focusCollectionNodeInGraph(b.arche_id || b.id);
+                    }}
+                }};
+
+                list.appendChild(li);
             }});
         }}
+
+        // Bookmarks UI event wiring
+        const btnBmCurrent = document.getElementById("btnBookmarkCurrent");
+        if (btnBmCurrent) btnBmCurrent.addEventListener("click", () => addBookmark());
+        const btnOpenBm = document.getElementById("btnOpenBookmarks");
+        if (btnOpenBm) btnOpenBm.addEventListener("click", openBookmarksModal);
+        const btnCloseBm = document.getElementById("btnCloseBookmarksModal");
+        if (btnCloseBm) btnCloseBm.addEventListener("click", closeBookmarksModal);
+        const bmModal = document.getElementById("bookmarksModal");
+        if (bmModal) bmModal.addEventListener("click", (e) => {{
+            if (e.target === bmModal) closeBookmarksModal();
+        }});
+        const btnClearBm = document.getElementById("btnClearBookmarks");
+        if (btnClearBm) btnClearBm.addEventListener("click", () => {{
+            if (bookmarks.length === 0) return;
+            if (confirm("Möchten Sie wirklich die gesamte Merkliste leeren?")) {{
+                bookmarks = [];
+                saveBookmarks();
+                renderBookmarksList();
+                showNotification("Merkliste geleert.", "info");
+            }}
+        }});
+        const btnCopyBm = document.getElementById("btnCopyBookmarksLink");
+        if (btnCopyBm) btnCopyBm.addEventListener("click", () => {{
+            if (bookmarks.length === 0) {{
+                showNotification("Die Merkliste ist leer.", "warning");
+                return;
+            }}
+            const ids = bookmarks.map(b => b.id).join(",");
+            const url = new URL(window.location.href);
+            url.searchParams.set("bookmarks", ids);
+            navigator.clipboard.writeText(url.toString()).then(() => {{
+                showNotification("Link zur Merkliste kopiert!", "success");
+            }}).catch(() => {{
+                showNotification("Kopieren nicht möglich.", "warning");
+            }});
+        }});
 
         // Depth Filter (LOD)
         function applyDepthFilter(depth) {{
@@ -2018,7 +2191,8 @@ def generate():
             // Breadcrumb
             const breadcrumbNav = document.getElementById("drawerBreadcrumb");
             breadcrumbNav.innerHTML = "";
-            const path = d.path || [d.label];
+            const rawPath = d.path || [d.label];
+            const path = rawPath.map(p => p === 'col_ret' ? 'Retrodigitalisat-Collection (RET)' : p);
             path.forEach((part, idx) => {{
                 if (idx > 0) {{
                     const sep = document.createElement("span");
@@ -2145,6 +2319,36 @@ def generate():
                 }}
             }} else {{
                 profileBox.style.display = "none";
+            }}
+
+            // Place Profile Box (when Fundort / Place is selected)
+            const placeBox = document.getElementById("drawerPlaceBox");
+            if (d.type === "place") {{
+                if (placeBox) placeBox.style.display = "block";
+                const coordsRow = document.getElementById("drawerPlaceCoordsRow");
+                const coordsVal = document.getElementById("drawerPlaceCoordsVal");
+                if (d.latitude !== undefined && d.longitude !== undefined && d.latitude !== null && d.longitude !== null) {{
+                    coordsRow.style.display = "flex";
+                    const latStr = typeof d.latitude === "number" ? d.latitude.toFixed(5) : d.latitude;
+                    const lonStr = typeof d.longitude === "number" ? d.longitude.toFixed(5) : d.longitude;
+                    coordsVal.textContent = `${{latStr}}°, ${{lonStr}}°`;
+                }} else {{
+                    coordsRow.style.display = "none";
+                }}
+
+                const geoRow = document.getElementById("drawerPlaceGeonamesRow");
+                const geoVal = document.getElementById("drawerPlaceGeonamesVal");
+                const geoLink = document.getElementById("drawerPlaceGeonamesLink");
+                if (d.geonames) {{
+                    geoRow.style.display = "flex";
+                    const gnId = d.geonames.replace("https://sws.geonames.org/", "").replace(/\/$/, "");
+                    geoVal.textContent = `Geonames #${{gnId}}`;
+                    geoLink.href = d.geonames;
+                }} else {{
+                    geoRow.style.display = "none";
+                }}
+            }} else {{
+                if (placeBox) placeBox.style.display = "none";
             }}
 
             // Publication Profile Box
@@ -2318,25 +2522,29 @@ def generate():
                 provBox.style.display = "none";
             }}
 
-            // Associated Collections Box (when Person or Organisation is selected)
+            // Associated Collections Box (when Person, Organisation or Place is selected)
             const entColBox = document.getElementById("drawerEntityCollectionsBox");
             const entColList = document.getElementById("drawerEntityCollectionsList");
             const entColCount = document.getElementById("drawerEntityCollectionsCount");
             const entColHeading = document.getElementById("drawerEntityCollectionsHeading");
             const btnFocusEntCols = document.getElementById("btnFocusEntityCollections");
 
-            if (d.type === "person" || d.type === "organization") {{
+            if (d.type === "person" || d.type === "organization" || d.type === "place") {{
                 entColList.innerHTML = "";
-                const incomingEdges = cy.edges(`[target = "${{node.id()}}"][label ^= 'has']`);
+                const incomingEdges = cy.edges(`[target = "${{node.id()}}"]`);
                 const colNodes = incomingEdges.sources().filter(s => {{
                     const t = s.data("type");
-                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root");
+                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root" || t === "collection");
                 }});
 
                 if (colNodes.length > 0) {{
                     entColBox.style.display = "block";
                     entColCount.textContent = colNodes.length;
-                    entColHeading.textContent = d.type === "person" ? "Beteiligte Sammlungen & Ordner" : "Zugeordnete Sammlungen & Bestände";
+                    if (d.type === "place") {{
+                        entColHeading.textContent = "Verortete Sammlungen & Bestände";
+                    }} else {{
+                        entColHeading.textContent = d.type === "person" ? "Beteiligte Sammlungen & Ordner" : "Zugeordnete Sammlungen & Bestände";
+                    }}
                     colNodes.slice(0, 35).forEach(col => {{
                         const li = document.createElement("li");
                         li.className = "relation-item";
@@ -2528,6 +2736,28 @@ def generate():
             document.getElementById("inspectorDrawer").classList.remove("open");
         }}
 
+        // Collapsible Preview Box
+        let isPreviewCollapsed = false;
+        const previewToggle = document.getElementById("drawerPreviewToggle");
+        const previewCollapseBody = document.getElementById("drawerPreviewCollapseBody");
+        const previewCollapseIcon = document.getElementById("previewCollapseIcon");
+        const previewToggleText = document.getElementById("previewToggleText");
+
+        if (previewToggle && previewCollapseBody) {{
+            previewToggle.addEventListener("click", () => {{
+                isPreviewCollapsed = !isPreviewCollapsed;
+                if (isPreviewCollapsed) {{
+                    previewCollapseBody.style.display = "none";
+                    if (previewCollapseIcon) previewCollapseIcon.style.transform = "rotate(-90deg)";
+                    if (previewToggleText) previewToggleText.textContent = "(Ausklappen)";
+                }} else {{
+                    previewCollapseBody.style.display = "block";
+                    if (previewCollapseIcon) previewCollapseIcon.style.transform = "rotate(0deg)";
+                    if (previewToggleText) previewToggleText.textContent = "(Einklappen)";
+                }}
+            }});
+        }}
+
         // Dynamic On-Demand Node Expansion for Resources
         async function expandResourcesForNode(nodeId, maxLimit = 60) {{
             if (!corpusResources) return;
@@ -2716,8 +2946,8 @@ def generate():
             if (node.length === 0) {{
                 const res = corpusResources.find(r => r.id === resId);
                 if (!res) return;
-                const parentColNode = cy.$id(res.col_id) || cy.$id(res.col) || cy.nodes(`[label = "${{res.col_id}}"]`);
-                const parentPos = parentColNode.length > 0 ? parentColNode.position() : {{ x: 0, y: 0 }};
+                const parentColNode = getNodeByIdFlexible(res.col_id) || getNodeByIdFlexible(res.col) || cy.$id("iuenna_root");
+                const parentPos = (parentColNode && parentColNode.length > 0) ? parentColNode.position() : {{ x: 0, y: 0 }};
 
                 cy.add([
                     {{
@@ -2743,7 +2973,7 @@ def generate():
                         data: {{
                             id: `edge_${{res.id}}_foc`,
                             source: res.id,
-                            target: parentColNode.length > 0 ? parentColNode.id() : "iuenna_root",
+                            target: (parentColNode && parentColNode.length > 0) ? parentColNode.id() : "iuenna_root",
                             label: "isPartOfResource"
                         }}
                     }}
@@ -2771,7 +3001,8 @@ def generate():
             const inGraphBtn = document.getElementById("btnQuickPreviewInGraph");
 
             titleEl.textContent = res.title;
-            breadcrumbEl.textContent = (res.path || ["IUENNA", res.col]).join(" › ");
+            const rawPath = res.path || ["IUENNA", res.col];
+            breadcrumbEl.textContent = rawPath.map(p => p === 'col_ret' ? 'Retrodigitalisat-Collection (RET)' : p).join(" › ");
             metaEl.innerHTML = `<strong>Fundort:</strong> ${{res.place || "–"}} &bull; <strong>Typ:</strong> ${{res.type}} &bull; <strong>PID:</strong> ${{res.pid}}`;
 
             archeLink.href = res.pid;
@@ -2994,8 +3225,68 @@ def generate():
             if (e.target === corpusModal) closeCorpusModal();
         }});
 
+        function populateCorpusFilters() {{
+            if (!corpusResources || corpusResources.length === 0) return;
+
+            // 1. Dynamic Places with counts
+            const placeCounts = {{}};
+            corpusResources.forEach(r => {{
+                const p = (r.place || "").trim();
+                if (p && p !== "–") {{
+                    placeCounts[p] = (placeCounts[p] || 0) + 1;
+                }}
+            }});
+
+            const sortedPlaces = Object.keys(placeCounts).sort((a, b) => {{
+                if (placeCounts[b] !== placeCounts[a]) return placeCounts[b] - placeCounts[a];
+                return a.localeCompare(b);
+            }});
+
+            const currentPlace = corpusPlaceSelect.value;
+            corpusPlaceSelect.innerHTML = '<option value="all">Alle Fundorte (' + Object.keys(placeCounts).length + ' Orte)</option>';
+            sortedPlaces.forEach(p => {{
+                const opt = document.createElement("option");
+                opt.value = p;
+                opt.textContent = `${{p}} (${{placeCounts[p].toLocaleString()}})`;
+                corpusPlaceSelect.appendChild(opt);
+            }});
+            if (sortedPlaces.includes(currentPlace)) {{
+                corpusPlaceSelect.value = currentPlace;
+            }}
+
+            // 2. Dynamic Collections with counts
+            const colCounts = {{}};
+            const colTitles = {{}};
+            corpusResources.forEach(r => {{
+                const cid = r.col_id || r.col || "unassigned";
+                colCounts[cid] = (colCounts[cid] || 0) + 1;
+                const title = r.folder || (r.path && r.path[r.path.length - 1]) || cid;
+                if (!colTitles[cid] || colTitles[cid].length < title.length) {{
+                    colTitles[cid] = title;
+                }}
+            }});
+
+            const sortedCols = Object.keys(colCounts).sort((a, b) => colCounts[b] - colCounts[a]);
+            const currentCol = corpusColSelect.value;
+            corpusColSelect.innerHTML = '<option value="all">Alle Sammlungen &amp; Bestände (' + Object.keys(colCounts).length + ')</option>';
+            sortedCols.forEach(cid => {{
+                const opt = document.createElement("option");
+                opt.value = cid;
+                const name = colTitles[cid] || cid;
+                const shortName = name.length > 52 ? name.substring(0, 50) + "..." : name;
+                opt.textContent = `${{shortName}} (${{colCounts[cid].toLocaleString()}})`;
+                corpusColSelect.appendChild(opt);
+            }});
+            if (sortedCols.includes(currentCol)) {{
+                corpusColSelect.value = currentCol;
+            }}
+        }}
+
         function openCorpusModal() {{
             corpusModal.classList.add("open");
+            if (corpusPlaceSelect.options.length <= 1) {{
+                populateCorpusFilters();
+            }}
             filterCorpus();
         }}
         function closeCorpusModal() {{
@@ -3008,17 +3299,23 @@ def generate():
             const col = corpusColSelect.value;
             const type = corpusTypeSelect.value;
             const place = corpusPlaceSelect.value;
+            const tokens = q ? q.split(/\s+/).filter(Boolean) : [];
 
             filteredCorpusItems = corpusResources.filter(r => {{
                 if (col !== "all" && r.col !== col && r.col_id !== col) return false;
                 if (type !== "all" && r.type !== type) return false;
-                if (place !== "all" && !r.place.toLowerCase().includes(place.toLowerCase())) return false;
-                if (q) {{
-                    const match = r.title.toLowerCase().includes(q) ||
-                                  r.pid.toLowerCase().includes(q) ||
-                                  r.place.toLowerCase().includes(q) ||
-                                  (r.path && r.path.some(p => p.toLowerCase().includes(q))) ||
-                                  r.subjs.some(s => s.toLowerCase().includes(q));
+                if (place !== "all") {{
+                    if (r.place !== place && (!r.place || !r.place.toLowerCase().includes(place.toLowerCase()))) return false;
+                }}
+                if (tokens.length > 0) {{
+                    const match = tokens.every(token => {{
+                        return (r.title && r.title.toLowerCase().includes(token)) ||
+                               (r.pid && r.pid.toLowerCase().includes(token)) ||
+                               (r.place && r.place.toLowerCase().includes(token)) ||
+                               (r.folder && r.folder.toLowerCase().includes(token)) ||
+                               (r.path && r.path.some(p => p.toLowerCase().includes(token))) ||
+                               (r.subjs && r.subjs.some(s => s.toLowerCase().includes(token)));
+                    }});
                     if (!match) return false;
                 }}
                 return true;
@@ -3460,9 +3757,9 @@ def generate():
             }})
             .catch(err => console.log("Using embedded graph data:", err));
 
-        // 2. Fetch Complete ARCHE Resource Corpus (20,541 items)
+        // 2. Fetch Complete ARCHE Resource Corpus (20,355 items)
         const corpusStatusPill = document.getElementById("pillCorpusStatus");
-        corpusStatusPill.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Lade 20.541 Ressourcen...';
+        corpusStatusPill.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Lade 20.355 Ressourcen...';
 
         fetch("../data/arche_corpus.json")
             .then(res => {{
@@ -3472,6 +3769,7 @@ def generate():
             .then(data => {{
                 corpusData = data;
                 corpusResources = data.resources || [];
+                populateCorpusFilters();
                 corpusStatusPill.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${{corpusResources.length.toLocaleString()}} Ressourcen aktiv`;
                 corpusStatusPill.style.background = "#EBF3ED";
                 corpusStatusPill.style.borderColor = "#B5D5BD";
@@ -3499,11 +3797,25 @@ def generate():
                 corpusStatusPill.style.color = "#856404";
             }});
 
-        // Immediate URL Parameter handling for Tree Modal & Collection focus
+        // Immediate URL Parameter handling for Tree Modal, Bookmarks & Collection focus
         (function handleImmediateUrlParams() {{
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get("open") === "tree") {{
                 openTreeModal();
+            }}
+            if (urlParams.get("open") === "bookmarks") {{
+                openBookmarksModal();
+            }}
+            const bmParam = urlParams.get("bookmarks");
+            if (bmParam) {{
+                setTimeout(() => {{
+                    const ids = bmParam.split(",").filter(Boolean);
+                    ids.forEach(id => {{
+                        const n = getNodeByIdFlexible(id);
+                        if (n && n.length > 0) addBookmark(n.data());
+                    }});
+                    openBookmarksModal();
+                }}, 300);
             }}
             const colParam = urlParams.get("col");
             if (colParam) {{

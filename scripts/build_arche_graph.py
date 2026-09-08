@@ -103,15 +103,18 @@ def build_graph():
         parent_id = col.get("parent_id")
 
         ntype = "root" if lvl == 0 else ("subcollection" if lvl == 1 else f"folder_l{lvl}")
-        label = col.get("name") or col.get("title")
+        col_meta = root_tree.get("collections", {}).get(arche_id, col)
+        label = col_meta.get("title") or col.get("title") or col.get("name") or arche_id
+        alt_label = col_meta.get("alternative_title") or col_meta.get("filename") or col.get("alt_title") or col.get("name") or ""
 
         node_data = {
             "id": node_id,
             "arche_id": arche_id,
             "label": label,
-            "title": col.get("title") or label,
-            "full_title": col.get("title") or label,
-            "alt_title": col.get("alt_title") or "",
+            "title": col_meta.get("title") or col.get("title") or label,
+            "full_title": col_meta.get("title") or col.get("title") or label,
+            "alt_title": alt_label,
+            "filename": col_meta.get("filename") or col.get("filename") or "",
             "level": lvl,
             "type": ntype,
             "type_label": LEVEL_LABELS.get(lvl, f"Ebene L{lvl}"),
@@ -143,6 +146,18 @@ def build_graph():
                 "label": "isPartOf",
                 "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
             })
+
+        # Add Spatial Coverage edges
+        for sid in col_meta.get("spatial_ids", []):
+            sid_str = str(sid)
+            if sid_str in places_data:
+                add_edge({
+                    "id": f"edge_spat_{node_id}_plc_{sid_str}",
+                    "source": node_id,
+                    "target": f"plc_{sid_str}",
+                    "label": "hasSpatialCoverage",
+                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
+                })
 
         # Add Creator & Contributor edges
         for cr in col_creators.get(arche_id, {}).get("creators", []):
@@ -282,32 +297,32 @@ def build_graph():
                 "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#documents"
             })
 
-    # 6. Primary Places
-    places = [
-        {"id": "plc_jauntal", "arche_id": "1756730", "label": "Jauntal", "type": "place", "type_label": "Fundlandschaft", "category": "Mikroregion", "items": 20788, "desc": "Archäologische Mikroregion im südlichen Kärnten", "color": "#2D6A4F", "icon": "fa-mountain"},
-        {"id": "plc_hemmaberg", "arche_id": "1756732", "label": "Hemmaberg", "type": "place", "type_label": "Fundort", "category": "Höhensiedlung & Wallfahrtsort", "items": 3657, "desc": "Bedeutendes spätantikes Pilgerheiligtum und Gräberfeld", "color": "#2D6A4F", "icon": "fa-location-dot"},
-        {"id": "plc_jaunstein", "arche_id": "1756733", "label": "Jaunstein", "type": "place", "type_label": "Fundort", "category": "Talsiedlung", "items": 4899, "desc": "Spätantik-frühmittelalterliche Siedlung und Gräber", "color": "#2D6A4F", "icon": "fa-location-dot"},
-        {"id": "plc_globasnitz", "arche_id": "1756736", "label": "Globasnitz / Iuenna", "type": "place", "type_label": "Fundort", "category": "Römische Siedlung", "items": 2775, "desc": "Römische Straßenstation Iuenna an der Virunum-Celeia-Route", "color": "#2D6A4F", "icon": "fa-location-dot"},
-        {"id": "plc_st_stefan", "arche_id": "1756737", "label": "Sankt Stefan / Steben", "type": "place", "type_label": "Fundort", "category": "Fundstelle", "items": 51, "desc": "Archäologische Befunde und Altfunde bei Sankt Stefan", "color": "#2D6A4F", "icon": "fa-location-dot"},
-        {"id": "plc_noricum", "arche_id": "1756731", "label": "Noricum", "type": "place", "type_label": "Historische Region", "category": "Römische Provinz", "items": 0, "desc": "Historischer antiker Kulturraum Noricum", "color": "#2D6A4F", "icon": "fa-globe"},
-        {"id": "plc_kaernten", "arche_id": "138176", "label": "Kärnten / Carinthia", "type": "place", "type_label": "Geographische Region", "category": "Bundesland", "items": 0, "desc": "Geographischer Rahmen im heutigen Österreich", "color": "#2D6A4F", "icon": "fa-earth-europe"}
-    ]
-    for pl in places:
-        nodes.append({"data": pl})
+    # 6. Places (authoritative from arche_places.json)
+    for p_id, pl in places_data.items():
+        node_id = f"plc_{p_id}"
+        node_data = {
+            "id": node_id,
+            "arche_id": str(p_id),
+            "label": pl.get("title") or f"Ort {p_id}",
+            "title": pl.get("title") or f"Ort {p_id}",
+            "type": "place",
+            "type_label": "Fundort / Ort",
+            "category": "Geographischer Fundort",
+            "latitude": pl.get("latitude"),
+            "longitude": pl.get("longitude"),
+            "wkt": pl.get("wkt"),
+            "geonames": pl.get("geonames", ""),
+            "color": "#2D6A4F",
+            "icon": "fa-location-dot",
+            "uri": pl.get("uri", f"https://arche.acdh.oeaw.ac.at/api/{p_id}")
+        }
+        nodes.append({"data": node_data})
 
-    # Spatial edges
-    add_edge({"id": "edge_spat_root", "source": "iuenna_root", "target": "plc_jauntal", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-    add_edge({"id": "edge_spat_hb", "source": "col_1792212", "target": "plc_hemmaberg", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-    add_edge({"id": "edge_spat_jau", "source": "col_1792303", "target": "plc_jaunstein", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-    add_edge({"id": "edge_spat_glo", "source": "col_1792169", "target": "plc_globasnitz", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-    add_edge({"id": "edge_spat_ste", "source": "col_1792411", "target": "plc_st_stefan", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-
-    add_edge({"id": "edge_hb_in_jau", "source": "plc_hemmaberg", "target": "plc_jauntal", "label": "locatedIn", "predicate": "schema:containedInPlace"})
-    add_edge({"id": "edge_jau_in_jau", "source": "plc_jaunstein", "target": "plc_jauntal", "label": "locatedIn", "predicate": "schema:containedInPlace"})
-    add_edge({"id": "edge_glo_in_jau", "source": "plc_globasnitz", "target": "plc_jauntal", "label": "locatedIn", "predicate": "schema:containedInPlace"})
-    add_edge({"id": "edge_ste_in_jau", "source": "plc_st_stefan", "target": "plc_jauntal", "label": "locatedIn", "predicate": "schema:containedInPlace"})
-    add_edge({"id": "edge_jau_in_ktn", "source": "plc_jauntal", "target": "plc_kaernten", "label": "locatedIn", "predicate": "schema:containedInPlace"})
-    add_edge({"id": "edge_jau_in_nor", "source": "plc_jauntal", "target": "plc_noricum", "label": "locatedIn", "predicate": "schema:containedInPlace"})
+    # Spatial edge for root
+    if "1756730" in places_data:
+        add_edge({"id": "edge_spat_root", "source": "iuenna_root", "target": "plc_1756730", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
+    if "1756735" in places_data:
+        add_edge({"id": "edge_spat_root_2", "source": "iuenna_root", "target": "plc_1756735", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
 
     # 7. Epochs
     epochs = [
