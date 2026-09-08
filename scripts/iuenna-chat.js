@@ -64,12 +64,9 @@
       </div>
 
       <!-- Mode & Status Bar -->
-      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center;">
         <span style="font-size: 0.78rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px;">
           <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i> Schnelle Fachauskunft
-        </span>
-        <span style="font-size: 0.70rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
-          <i class="fa-solid fa-triangle-exclamation" style="color: #b88e3e; font-size: 0.72rem;"></i> Automatisiert • System kann Fehler machen
         </span>
       </div>
 
@@ -83,10 +80,10 @@
               Ich helfe Ihnen beim Erkunden der über <strong>20.000 archäologischen Objekte</strong>, Grabungspläne und Fotos aus dem Jauntal in <em>ARCHE</em>.
             </p>
             <p style="margin-top: 6px; font-size: 0.8rem; color: var(--text-muted);">
-              Wählen Sie ein Thema oder stellen Sie eine freie Frage (z. B. nach Fundorten oder Personen wie <em>Franz Glaser</em>):
+              Wählen Sie ein Thema oder stellen Sie eine freie Frage (z. B. nach Fundorten oder Personen wie <em>Hans Winkler</em>):
             </p>
             <div class="chat-chips-container">
-              <button class="chat-chip" data-query="Wer ist Franz Glaser?">👤 Franz Glaser</button>
+              <button class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
               <button class="chat-chip" data-query="Ist Globasnitz wirklich die römische Straßenstation Iuenna?">🏛️ Tscherberg vs. Globasnitz</button>
               <button class="chat-chip" data-query="Was ist die Villenanlage von St. Stefan?">🏡 Villenanlage St. Stefan</button>
               <button class="chat-chip" data-query="Warum gibt es auf dem Hemmaberg Doppelkirchen?">⛪ Hemmaberg Doppelkirchen</button>
@@ -104,7 +101,7 @@
       <!-- Input Area -->
       <div class="chat-input-area">
         <div class="chat-input-row">
-          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Frage stellen (z.B. 'Wer ist Franz Glaser?', 'Pläne Hemmaberg')..." autocomplete="off">
+          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Frage stellen (z.B. 'Wer war Hans Winkler?', 'Pläne Hemmaberg')..." autocomplete="off">
           <button id="chat-send-btn" class="chat-send-btn" aria-label="Senden" title="Senden">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
@@ -478,7 +475,7 @@
       chips.push({ query: 'Was wurde in Jaunstein gefunden?', label: '🏺 Funde in Jaunstein' });
       chips.push({ query: 'Zeige mir die Subcollection JAU in ARCHE', label: '📁 ARCHE Subcollection JAU' });
     } else {
-      chips.push({ query: 'Wer ist Franz Glaser?', label: '👤 Franz Glaser' });
+      chips.push({ query: 'Wer war Hans Winkler?', label: '👤 Hans Winkler' });
       chips.push({ query: 'Ist Globasnitz wirklich die römische Straßenstation Iuenna?', label: '🏛️ Iuenna & Tscherberg' });
       chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Hemmaberg' });
       chips.push({ query: 'Wie kann ich die Geodaten des Projekts direkt in QGIS nutzen?', label: '🗺️ QGIS Geodaten' });
