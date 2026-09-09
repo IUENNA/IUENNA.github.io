@@ -67,6 +67,10 @@ def generate():
     <!-- Cytoscape.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
 
+    <!-- Leaflet.js for Geographical Place Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
         :root {{
             --graph-bg: #FAF8F5;
@@ -1155,17 +1159,133 @@ def generate():
             background: #FAF8F5;
         }}
 
-        /* Quick Preview Modal */
+        /* Quick Preview Modal & Zoom Controls */
         .quick-preview-dialog {{
             background: #FFFFFF;
             border: 1px solid var(--panel-border);
             border-radius: var(--radius-lg);
             width: 100%;
-            max-width: 780px;
+            max-width: 900px;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             display: flex;
             flex-direction: column;
+            transition: max-width 0.2s ease, max-height 0.2s ease;
+        }}
+        .quick-preview-dialog.is-fullscreen {{
+            position: fixed;
+            inset: 16px;
+            max-width: calc(100vw - 32px);
+            max-height: calc(100vh - 32px);
+            height: calc(100vh - 32px);
+            border-radius: 12px;
+            z-index: 1350;
+        }}
+        .quick-preview-stage {{
+            background: #141517;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+            height: 520px;
+            user-select: none;
+        }}
+        .quick-preview-dialog.is-fullscreen .quick-preview-stage {{
+            flex: 1;
+            height: auto;
+            min-height: auto;
+        }}
+        .preview-zoom-toolbar {{
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(26, 28, 32, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            padding: 3px 8px;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        }}
+        .zoom-tool-btn {{
+            background: transparent;
+            border: none;
+            color: #FAF8F5;
+            font-size: 0.80rem;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s, color 0.15s;
+        }}
+        .zoom-tool-btn:hover {{
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+        }}
+        .zoom-level-badge {{
+            color: #E6E2DB;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0 4px;
+            min-width: 44px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }}
+        .preview-canvas-wrapper {{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+        }}
+        .preview-canvas-wrapper.is-dragging {{
+            cursor: grabbing;
+        }}
+        .zoomable-preview-img {{
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transform-origin: center center;
+            transition: transform 0.05s ease-out;
+            will-change: transform;
+            pointer-events: auto;
+        }}
+        .preview-hover-overlay {{
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border-radius: 6px;
+        }}
+        .drawer-preview-media:hover .preview-hover-overlay {{
+            opacity: 1;
+        }}
+        .preview-hover-badge {{
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--text-dark);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }}
 
         @media (max-width: 900px) {{
@@ -1529,6 +1649,24 @@ def generate():
                             <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 600;"><i class="fa-solid fa-database"></i> Erfasst in Forschungsdatensatz:</span>
                             <div id="drawerPlaceDatasetChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
                         </div>
+                        <!-- Interactive Place Map Card -->
+                        <div id="drawerPlaceMapCard" style="display: none; margin-top: 8px; border: 1px solid #C8DDD0; border-radius: 8px; overflow: hidden; background: #FFFFFF;">
+                            <div style="padding: 5px 10px; background: #EBF3ED; border-bottom: 1px solid #D9E8DD; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.72rem; font-weight: 700; color: #2D6A4F; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fa-solid fa-map-location-dot"></i> Fundort-Karte
+                                </span>
+                                <button id="btnEnlargePlaceMap" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px; background: white;" title="Karte im Großformat vergrößern">
+                                    <i class="fa-solid fa-expand"></i> Vergrößern
+                                </button>
+                            </div>
+                            <div id="drawerPlaceMap" style="height: 155px; width: 100%; z-index: 1;"></div>
+                            <div style="padding: 4px 10px; background: #FAF8F5; font-size: 0.68rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
+                                <span id="drawerPlaceMapCoordsText">–</span>
+                                <a id="drawerPlaceWmaLink" href="../wma/wma.html" target="_blank" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">
+                                    Im Web Mapping ↗
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1598,21 +1736,24 @@ def generate():
                     <p class="drawer-desc" id="drawerDesc"></p>
                 </div>
 
-                <!-- Live ARCHE Preview Card (Collapsible) -->
+                <!-- Live ARCHE Preview Card (Collapsible, Default: Eingeklappt) -->
                 <div id="drawerPreviewBox" class="drawer-preview-box">
-                    <div class="drawer-preview-header" id="drawerPreviewToggle" style="cursor: pointer; user-select: none;">
+                    <div class="drawer-preview-header" id="drawerPreviewToggle" style="cursor: pointer; user-select: none;" title="ARCHE Dateivorschau auf- oder einklappen">
                         <span style="display: flex; align-items: center; gap: 6px;">
-                            <i id="previewCollapseIcon" class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); transition: transform 0.2s ease;"></i>
+                            <i id="previewCollapseIcon" class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); transition: transform 0.2s ease; transform: rotate(-90deg);"></i>
                             <i class="fa-solid fa-eye" style="color: var(--primary);"></i> ARCHE Dateivorschau
                         </span>
                         <div style="display: flex; align-items: center; gap: 6px;">
                             <span id="previewStatusBadge" style="font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; background: #E8F5E9; color: #2E7D32;">Live von ARCHE</span>
-                            <span id="previewToggleText" style="font-size: 0.68rem; color: var(--text-muted); font-weight: 500;">(Einklappen)</span>
+                            <span id="previewToggleText" style="font-size: 0.68rem; color: var(--text-muted); font-weight: 500;">(Ausklappen)</span>
                         </div>
                     </div>
-                    <div id="drawerPreviewCollapseBody">
-                        <div id="drawerPreviewMedia" class="drawer-preview-media">
+                    <div id="drawerPreviewCollapseBody" style="display: none;">
+                        <div id="drawerPreviewMedia" class="drawer-preview-media" style="cursor: pointer; position: relative;" title="Klicken für interaktive Vergrößerung &amp; Zoom">
                             <img id="drawerPreviewImg" class="drawer-preview-img" alt="ARCHE Preview" />
+                            <div class="preview-hover-overlay">
+                                <span class="preview-hover-badge"><i class="fa-solid fa-magnifying-glass-plus"></i> Vergrößern</span>
+                            </div>
                             <div id="drawerPreviewFallback" class="drawer-preview-fallback">
                                 <i class="fa-solid fa-lock"></i>
                                 <div style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">ARCHE-Zugriffsschutz (InC)</div>
@@ -1622,7 +1763,7 @@ def generate():
                         </div>
                         <div class="drawer-preview-footer">
                             <span id="drawerPreviewDimensions"><i class="fa-solid fa-image"></i> Vorschau</span>
-                            <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;"><i class="fa-solid fa-expand"></i> Großansicht</button>
+                            <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;" title="Bild im Zoom-Viewer vergrößern"><i class="fa-solid fa-magnifying-glass-plus"></i> Vergrößern</button>
                         </div>
                     </div>
                 </div>
@@ -1812,33 +1953,76 @@ def generate():
         </div>
     </div>
 
-    <!-- Quick Preview Lightbox Modal -->
+    <!-- Quick Preview Lightbox Modal with Zoom & Pan for Maps, Plans and Documents -->
     <div id="quickPreviewModal" class="modal-backdrop" style="z-index: 1300;">
-        <div class="quick-preview-dialog">
-            <div class="modal-header" style="padding: 12px 20px;">
+        <div class="quick-preview-dialog" id="quickPreviewDialog">
+            <div class="modal-header" style="padding: 10px 18px;">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-image" style="color: var(--primary); font-size: 1.1rem;"></i>
+                    <i class="fa-solid fa-map-location-dot" id="quickPreviewTypeIcon" style="color: var(--primary); font-size: 1.1rem;"></i>
                     <div>
                         <h3 id="quickPreviewTitle" style="font-size: 1.05rem; margin: 0; color: var(--text-dark);">Dateiname</h3>
                         <div id="quickPreviewBreadcrumb" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;"></div>
                     </div>
                 </div>
-                <button id="btnQuickPreviewClose" class="drawer-close-btn">&times;</button>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <button id="btnToggleFullscreenPreview" class="tool-btn" style="font-size: 0.75rem; padding: 4px 8px;" title="Vollbild umschalten (Vergrößern)">
+                        <i id="previewFullscreenIcon" class="fa-solid fa-expand"></i> <span id="previewFullscreenText">Vollbild</span>
+                    </button>
+                    <button id="btnQuickPreviewClose" class="drawer-close-btn">&times;</button>
+                </div>
             </div>
-            <div style="background: #111; display: flex; align-items: center; justify-content: center; min-height: 320px; max-height: 520px; padding: 16px; position: relative;">
-                <img id="quickPreviewImg" src="" alt="Live Preview" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 4px; display: none;" />
-                <div id="quickPreviewProtectedMsg" style="display: none; color: #FFF; text-align: center; padding: 30px 20px;">
+            <div class="quick-preview-stage" id="quickPreviewStage">
+                <!-- Floating Zoom Controls -->
+                <div class="preview-zoom-toolbar">
+                    <button id="btnZoomInPreview" class="zoom-tool-btn" title="Vergrößern (oder Mausrad)"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btnZoomOutPreview" class="zoom-tool-btn" title="Verkleinern (oder Mausrad)"><i class="fa-solid fa-minus"></i></button>
+                    <span id="previewZoomLevel" class="zoom-level-badge">100%</span>
+                    <button id="btnZoomResetPreview" class="zoom-tool-btn" title="Ansicht zurücksetzen (1:1)"><i class="fa-solid fa-rotate-left"></i></button>
+                </div>
+
+                <!-- Canvas / Image Wrapper with Pan & Drag -->
+                <div class="preview-canvas-wrapper" id="previewCanvasWrapper" title="Klicken und Ziehen zum Verschieben, Mausrad zum Zoomen">
+                    <img id="quickPreviewImg" src="" alt="Live Preview" class="zoomable-preview-img" style="display: none;" />
+                </div>
+
+                <div id="quickPreviewProtectedMsg" style="display: none; color: #FFF; text-align: center; padding: 30px 20px; z-index: 5;">
                     <i class="fa-solid fa-lock" style="font-size: 2.2rem; color: #E0A96D; margin-bottom: 12px; display: block;"></i>
                     <h4 style="font-size: 1rem; margin-bottom: 6px;">ARCHE-Zugriffsbeschränkung (InC-Lizenz)</h4>
                     <p style="font-size: 0.8rem; color: #BBB; max-width: 440px; margin: 0 auto 16px auto;">Diese historische Primärressource ist urheberrechtlich geschützt. Die Vollauflösung kann nach Login direkt im ARCHE-Repositorium eingesehen werden.</p>
                     <a id="quickPreviewArcheLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.8rem; padding: 7px 16px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Im ARCHE-Repositorium öffnen</a>
                 </div>
             </div>
-            <div style="padding: 12px 20px; background: #FAF8F5; border-top: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <div style="font-size: 0.75rem; color: var(--text-muted);" id="quickPreviewMeta"></div>
+            <div style="padding: 10px 18px; background: #FAF8F5; border-top: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <div style="font-size: 0.74rem; color: var(--text-muted);" id="quickPreviewMeta"></div>
                 <div style="display: flex; gap: 8px;">
                     <button id="btnQuickPreviewInGraph" class="tool-btn secondary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-circle-nodes"></i> Im Graphen fokussieren</button>
-                    <a id="quickPreviewDirectLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> ARCHE Handle</a>
+                    <a id="quickPreviewFullResLink" href="#" target="_blank" class="tool-btn" style="font-size: 0.75rem;" title="ARCHE Bildressource in neuem Tab öffnen"><i class="fa-solid fa-arrow-up-right-from-square"></i> Vollauflösung</a>
+                    <a id="quickPreviewDirectLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-link"></i> ARCHE Handle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Geographical Place Map Modal (Fundort-Karte Großansicht) -->
+    <div id="largePlaceMapModal" class="modal-backdrop" style="z-index: 1350;">
+        <div class="large-map-dialog" style="background: white; border-radius: 12px; width: 92vw; max-width: 1100px; height: 85vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
+            <div class="modal-header" style="padding: 10px 20px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-map-location-dot" style="color: #2D6A4F; font-size: 1.2rem;"></i>
+                    <div>
+                        <h3 id="largePlaceMapTitle" style="font-size: 1.1rem; margin: 0; color: var(--text-dark);">Fundort-Karte</h3>
+                        <div id="largePlaceMapSub" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Archäologische Lokalisierung im Jauntal (Kärnten)</div>
+                    </div>
+                </div>
+                <button id="btnLargePlaceMapClose" class="drawer-close-btn">&times;</button>
+            </div>
+            <div id="largePlaceMapCanvas" style="flex: 1; width: 100%; z-index: 1; min-height: 400px;"></div>
+            <div style="padding: 10px 20px; background: #FAF8F5; border-top: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <div style="font-size: 0.76rem; color: var(--text-muted);" id="largePlaceMapFooterInfo"></div>
+                <div style="display: flex; gap: 8px;">
+                    <a id="largePlaceMapWmaLink" href="../wma/wma.html" target="_blank" class="tool-btn primary-btn" style="font-size: 0.76rem; background: #2D6A4F; border-color: #2D6A4F;">
+                        <i class="fa-solid fa-layer-group"></i> Im Web Mapping Portal (WMA) öffnen ↗
+                    </a>
                 </div>
             </div>
         </div>
@@ -1860,6 +2044,18 @@ def generate():
         let selectedNode = null;
         let currentActivePreviewRes = null;
         let expandedNodesMap = new Map();
+        let isPreviewCollapsed = true;
+        let currentSelectedPlace = null;
+        let drawerMiniMap = null;
+        let drawerMiniMarker = null;
+        let largePlaceMap = null;
+        let largePlaceMarker = null;
+        let previewZoom = 1.0;
+        let previewPanX = 0;
+        let previewPanY = 0;
+        let isPreviewPanning = false;
+        let previewPanStartX = 0;
+        let previewPanStartY = 0;
 
         // Corpus Catalog State
         let filteredCorpusItems = [];
@@ -2695,6 +2891,9 @@ def generate():
             const previewFallback = document.getElementById("drawerPreviewFallback");
             const previewStatusBadge = document.getElementById("previewStatusBadge");
             const previewDimensions = document.getElementById("drawerPreviewDimensions");
+            const previewCollapseBody = document.getElementById("drawerPreviewCollapseBody");
+            const previewCollapseIcon = document.getElementById("previewCollapseIcon");
+            const previewToggleText = document.getElementById("previewToggleText");
 
             // Determine if preview can be requested
             let previewPid = (d.type === "dataset" || d.type === "place" || d.type === "person" || d.type === "organization" || d.type === "publication" || d.type === "period" || d.type === "subject" || d.type === "license") ? null : (d.sample_pid || (d.type === "resource" ? d.pid : null));
@@ -2711,6 +2910,10 @@ def generate():
 
             if (previewPid) {{
                 previewBox.style.display = "block";
+                if (previewCollapseBody) previewCollapseBody.style.display = isPreviewCollapsed ? "none" : "block";
+                if (previewCollapseIcon) previewCollapseIcon.style.transform = isPreviewCollapsed ? "rotate(-90deg)" : "rotate(0deg)";
+                if (previewToggleText) previewToggleText.textContent = isPreviewCollapsed ? "(Ausklappen)" : "(Einklappen)";
+
                 previewImg.style.display = "none";
                 previewFallback.style.display = "none";
                 previewStatusBadge.textContent = "Lade von ARCHE...";
@@ -2891,16 +3094,26 @@ def generate():
             // Place Profile Box (when Fundort / Place is selected)
             const placeBox = document.getElementById("drawerPlaceBox");
             if (d.type === "place") {{
+                currentSelectedPlace = d;
                 if (placeBox) placeBox.style.display = "block";
                 const coordsRow = document.getElementById("drawerPlaceCoordsRow");
                 const coordsVal = document.getElementById("drawerPlaceCoordsVal");
+                const placeMapCard = document.getElementById("drawerPlaceMapCard");
+                const placeMapCoordsText = document.getElementById("drawerPlaceMapCoordsText");
+                const placeWmaLink = document.getElementById("drawerPlaceWmaLink");
+
                 if (d.latitude !== undefined && d.longitude !== undefined && d.latitude !== null && d.longitude !== null) {{
                     coordsRow.style.display = "flex";
                     const latStr = typeof d.latitude === "number" ? d.latitude.toFixed(5) : d.latitude;
                     const lonStr = typeof d.longitude === "number" ? d.longitude.toFixed(5) : d.longitude;
                     coordsVal.textContent = `${{latStr}}°, ${{lonStr}}°`;
+                    if (placeMapCard) placeMapCard.style.display = "block";
+                    if (placeMapCoordsText) placeMapCoordsText.textContent = `${{latStr}}°, ${{lonStr}}°`;
+                    if (placeWmaLink) placeWmaLink.href = `../wma/wma.html?lat=${{d.latitude}}&lng=${{d.longitude}}&zoom=15`;
+                    updateDrawerMiniMap(d.latitude, d.longitude, d.label);
                 }} else {{
                     coordsRow.style.display = "none";
+                    if (placeMapCard) placeMapCard.style.display = "none";
                 }}
 
                 const geoRow = document.getElementById("drawerPlaceGeonamesRow");
@@ -3393,7 +3606,6 @@ def generate():
         }}
 
         // Collapsible Preview Box
-        let isPreviewCollapsed = false;
         const previewToggle = document.getElementById("drawerPreviewToggle");
         const previewCollapseBody = document.getElementById("drawerPreviewCollapseBody");
         const previewCollapseIcon = document.getElementById("previewCollapseIcon");
@@ -3657,6 +3869,31 @@ def generate():
             highlightNeighbors(node);
         }}
 
+        // Quick Preview Zoom & Pan Helper Functions
+        function updatePreviewTransform() {{
+            const imgEl = document.getElementById("quickPreviewImg");
+            const badge = document.getElementById("previewZoomLevel");
+            if (imgEl) {{
+                imgEl.style.transform = `translate(${{previewPanX}}px, ${{previewPanY}}px) scale(${{previewZoom}})`;
+            }}
+            if (badge) {{
+                badge.textContent = `${{Math.round(previewZoom * 100)}}%`;
+            }}
+        }}
+
+        function resetPreviewZoom() {{
+            previewZoom = 1.0;
+            previewPanX = 0;
+            previewPanY = 0;
+            updatePreviewTransform();
+        }}
+
+        function zoomPreview(delta) {{
+            const newZoom = Math.max(0.4, Math.min(8.0, previewZoom + delta));
+            previewZoom = Math.round(newZoom * 100) / 100;
+            updatePreviewTransform();
+        }}
+
         // Quick Preview Lightbox Modal Logic
         function openQuickPreview(res) {{
             if (!res) return;
@@ -3668,15 +3905,19 @@ def generate():
             const metaEl = document.getElementById("quickPreviewMeta");
             const archeLink = document.getElementById("quickPreviewArcheLink");
             const directLink = document.getElementById("quickPreviewDirectLink");
+            const fullResLink = document.getElementById("quickPreviewFullResLink");
             const inGraphBtn = document.getElementById("btnQuickPreviewInGraph");
+
+            resetPreviewZoom();
 
             titleEl.textContent = res.title;
             const rawPath = res.path || ["IUENNA", res.col];
             breadcrumbEl.textContent = rawPath.map(p => p === 'col_ret' ? 'Retrodigitalisat-Collection (RET)' : p).join(" › ");
-            metaEl.innerHTML = `<strong>Fundort:</strong> ${{res.place || "–"}} &bull; <strong>Typ:</strong> ${{res.type}} &bull; <strong>PID:</strong> ${{res.pid}}`;
+            metaEl.innerHTML = `<strong>Fundort:</strong> ${{res.place || "–"}} &bull; <strong>Typ:</strong> ${{res.type || "ARCHE-Resource"}} &bull; <strong>PID:</strong> ${{res.pid}}`;
 
             archeLink.href = res.pid;
             directLink.href = res.pid;
+            if (fullResLink) fullResLink.href = res.pid;
 
             inGraphBtn.onclick = () => {{
                 modal.classList.remove("open");
@@ -3686,7 +3927,8 @@ def generate():
             imgEl.style.display = "none";
             protectedMsg.style.display = "none";
 
-            const thumbUrl = `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(res.pid)}}&width=720`;
+            // Request high-resolution thumbnail (width=1920) for crisp inspection of maps/drawings
+            const thumbUrl = `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(res.pid)}}&width=1920`;
             imgEl.src = thumbUrl;
 
             imgEl.onload = function() {{
@@ -3701,12 +3943,188 @@ def generate():
             modal.classList.add("open");
         }}
 
+        // Quick Preview Zoom & Drag Controls
+        const previewCanvasWrapper = document.getElementById("previewCanvasWrapper");
+        if (previewCanvasWrapper) {{
+            previewCanvasWrapper.addEventListener("wheel", (e) => {{
+                e.preventDefault();
+                const delta = e.deltaY < 0 ? 0.25 : -0.25;
+                zoomPreview(delta);
+            }}, {{ passive: false }});
+
+            previewCanvasWrapper.addEventListener("mousedown", (e) => {{
+                if (e.button !== 0) return;
+                isPreviewPanning = true;
+                previewPanStartX = e.clientX - previewPanX;
+                previewPanStartY = e.clientY - previewPanY;
+                previewCanvasWrapper.classList.add("is-dragging");
+            }});
+
+            window.addEventListener("mousemove", (e) => {{
+                if (!isPreviewPanning) return;
+                previewPanX = e.clientX - previewPanStartX;
+                previewPanY = e.clientY - previewPanStartY;
+                updatePreviewTransform();
+            }});
+
+            window.addEventListener("mouseup", () => {{
+                if (isPreviewPanning) {{
+                    isPreviewPanning = false;
+                    previewCanvasWrapper.classList.remove("is-dragging");
+                }}
+            }});
+        }}
+
+        const btnZoomIn = document.getElementById("btnZoomInPreview");
+        if (btnZoomIn) btnZoomIn.addEventListener("click", () => zoomPreview(0.3));
+        const btnZoomOut = document.getElementById("btnZoomOutPreview");
+        if (btnZoomOut) btnZoomOut.addEventListener("click", () => zoomPreview(-0.3));
+        const btnZoomReset = document.getElementById("btnZoomResetPreview");
+        if (btnZoomReset) btnZoomReset.addEventListener("click", () => resetPreviewZoom());
+
+        const btnToggleFullscreen = document.getElementById("btnToggleFullscreenPreview");
+        const quickPreviewDialog = document.querySelector(".quick-preview-dialog");
+        if (btnToggleFullscreen && quickPreviewDialog) {{
+            btnToggleFullscreen.addEventListener("click", () => {{
+                quickPreviewDialog.classList.toggle("is-fullscreen");
+                const isFull = quickPreviewDialog.classList.contains("is-fullscreen");
+                btnToggleFullscreen.innerHTML = isFull ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+                btnToggleFullscreen.title = isFull ? "Vollbild beenden" : "Vollbildmodus aktivieren";
+            }});
+        }}
+
         document.getElementById("btnQuickPreviewClose").addEventListener("click", () => {{
             document.getElementById("quickPreviewModal").classList.remove("open");
+            if (quickPreviewDialog) quickPreviewDialog.classList.remove("is-fullscreen");
+            if (btnToggleFullscreen) btnToggleFullscreen.innerHTML = '<i class="fa-solid fa-expand"></i>';
         }});
+
+        const drawerPreviewMedia = document.getElementById("drawerPreviewMedia");
+        if (drawerPreviewMedia) {{
+            drawerPreviewMedia.addEventListener("click", (e) => {{
+                if (e.target && e.target.closest("#drawerPreviewFallbackLink")) return;
+                if (currentActivePreviewRes) {{
+                    openQuickPreview(currentActivePreviewRes);
+                }}
+            }});
+        }}
+
         document.getElementById("btnOpenFullPreview").addEventListener("click", () => {{
             if (currentActivePreviewRes) {{
                 openQuickPreview(currentActivePreviewRes);
+            }}
+        }});
+
+        // Mini Map in Drawer & Large Map Modal
+        function updateDrawerMiniMap(lat, lng, label) {{
+            const mapContainer = document.getElementById("drawerPlaceMap");
+            if (!mapContainer || typeof L === "undefined") return;
+            if (!drawerMiniMap) {{
+                drawerMiniMap = L.map('drawerPlaceMap', {{
+                    zoomControl: false,
+                    attributionControl: false
+                }});
+                L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+                    maxZoom: 18
+                }}).addTo(drawerMiniMap);
+            }}
+            if (drawerMiniMarker) {{
+                drawerMiniMap.removeLayer(drawerMiniMarker);
+            }}
+            drawerMiniMap.setView([lat, lng], 13);
+            drawerMiniMarker = L.marker([lat, lng]).addTo(drawerMiniMap);
+            setTimeout(() => {{
+                drawerMiniMap.invalidateSize();
+            }}, 200);
+        }}
+
+        function openLargePlaceMap(placeData) {{
+            if (!placeData || placeData.latitude === undefined || placeData.longitude === undefined || typeof L === "undefined") return;
+            currentSelectedPlace = placeData;
+            const modal = document.getElementById("largePlaceMapModal");
+            const titleEl = document.getElementById("largePlaceMapTitle");
+            const subEl = document.getElementById("largePlaceMapSub");
+            const footerEl = document.getElementById("largePlaceMapFooterInfo");
+            const wmaLink = document.getElementById("largePlaceMapWmaLink");
+
+            titleEl.textContent = `Fundort: ${{placeData.label || 'Fundort'}}`;
+            subEl.textContent = placeData.geonames ? `Geonames: ${{placeData.geonames}}` : 'Archäologische Fundstelle im Jauntal';
+            const latStr = typeof placeData.latitude === 'number' ? placeData.latitude.toFixed(5) : placeData.latitude;
+            const lonStr = typeof placeData.longitude === 'number' ? placeData.longitude.toFixed(5) : placeData.longitude;
+            footerEl.innerHTML = `<strong>Koordinaten:</strong> ${{latStr}}°, ${{lonStr}}° &bull; <strong>Typ:</strong> Fundort (Place)`;
+            wmaLink.href = `../wma/wma.html?lat=${{placeData.latitude}}&lng=${{placeData.longitude}}&zoom=15`;
+
+            modal.classList.add("open");
+
+            setTimeout(() => {{
+                if (!largePlaceMap) {{
+                    largePlaceMap = L.map('largePlaceMapCanvas', {{
+                        attributionControl: true
+                    }});
+                    const osmLayer = L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+                        maxZoom: 19,
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }});
+                    const topoLayer = L.tileLayer('https://{{s}}.tile.opentopomap.org/{{z}}/{{x}}/{{y}}.png', {{
+                        maxZoom: 17,
+                        attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map style: &copy; OpenTopoMap'
+                    }});
+                    osmLayer.addTo(largePlaceMap);
+                    L.control.layers({{
+                        "OpenStreetMap (Standard)": osmLayer,
+                        "OpenTopoMap (Topographie)": topoLayer
+                    }}).addTo(largePlaceMap);
+                }}
+                if (largePlaceMarker) {{
+                    largePlaceMap.removeLayer(largePlaceMarker);
+                }}
+                largePlaceMap.setView([placeData.latitude, placeData.longitude], 14);
+                largePlaceMarker = L.marker([placeData.latitude, placeData.longitude]).addTo(largePlaceMap);
+                largePlaceMarker.bindPopup(`<b>${{placeData.label || 'Fundort'}}</b><br>${{latStr}}°, ${{lonStr}}°`).openPopup();
+                largePlaceMap.invalidateSize();
+            }}, 180);
+        }}
+
+        const btnEnlargePlaceMap = document.getElementById("btnEnlargePlaceMap");
+        if (btnEnlargePlaceMap) {{
+            btnEnlargePlaceMap.addEventListener("click", () => {{
+                if (currentSelectedPlace) {{
+                    openLargePlaceMap(currentSelectedPlace);
+                }}
+            }});
+        }}
+
+        const btnLargePlaceMapClose = document.getElementById("btnLargePlaceMapClose");
+        if (btnLargePlaceMapClose) {{
+            btnLargePlaceMapClose.addEventListener("click", () => {{
+                document.getElementById("largePlaceMapModal").classList.remove("open");
+            }});
+        }}
+
+        const largePlaceMapModal = document.getElementById("largePlaceMapModal");
+        if (largePlaceMapModal) {{
+            largePlaceMapModal.addEventListener("click", (e) => {{
+                if (e.target === largePlaceMapModal) {{
+                    largePlaceMapModal.classList.remove("open");
+                }}
+            }});
+        }}
+
+        window.addEventListener("keydown", (e) => {{
+            if (e.key === "Escape") {{
+                const previewModal = document.getElementById("quickPreviewModal");
+                if (previewModal && previewModal.classList.contains("open")) {{
+                    if (quickPreviewDialog && quickPreviewDialog.classList.contains("is-fullscreen")) {{
+                        quickPreviewDialog.classList.remove("is-fullscreen");
+                        if (btnToggleFullscreen) btnToggleFullscreen.innerHTML = '<i class="fa-solid fa-expand"></i>';
+                    }} else {{
+                        previewModal.classList.remove("open");
+                    }}
+                }}
+                const placeModal = document.getElementById("largePlaceMapModal");
+                if (placeModal && placeModal.classList.contains("open")) {{
+                    placeModal.classList.remove("open");
+                }}
             }}
         }});
 

@@ -23,11 +23,50 @@
     <style>
         /* Specific Leaflet map styling */
         #live-map {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             height: 500px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        #live-map.fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            z-index: 99999 !important;
+        }
+        .map-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .btn-fullscreen-toggle {
+            background: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-color);
+            transition: all 0.2s;
+        }
+        .btn-fullscreen-toggle:hover {
+            background: var(--primary-color);
+            color: #FFFFFF;
+            border-color: var(--primary-color);
         }
     </style>
 </head>
@@ -157,8 +196,13 @@
             </section>
 
             <section class="card" id="live-map-section">
-                <h2>Live Demo WMA</h2>
-                <p>Below is an embedded example of a live web mapping application powered by Leaflet. Use the layers button in the top right to filter details:</p>
+                <div class="map-header-bar">
+                    <h2 style="margin: 0;">Live Demo WMA</h2>
+                    <button id="btnToggleLiveMapFullscreen" class="btn-fullscreen-toggle" title="Karte auf Vollbild vergrößern (oder Esc zum Beenden)">
+                        <i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>
+                    </button>
+                </div>
+                <p>Below is an embedded example of a live web mapping application powered by Leaflet. Use the layers button in the top right to filter details or expand to fullscreen for a detailed view:</p>
                 <div id="live-map"></div>
             </section>
         </div>
@@ -246,6 +290,42 @@
         };
 
         L.control.layers(baseMaps, overlays).addTo(liveMap);
+
+        // Fullscreen toggle logic
+        var btnToggleFullscreen = document.getElementById('btnToggleLiveMapFullscreen');
+        var liveMapEl = document.getElementById('live-map');
+        if (btnToggleFullscreen && liveMapEl) {
+            btnToggleFullscreen.addEventListener('click', function() {
+                liveMapEl.classList.toggle('fullscreen');
+                var isFull = liveMapEl.classList.contains('fullscreen');
+                btnToggleFullscreen.innerHTML = isFull 
+                    ? '<i class="fa-solid fa-compress"></i> <span>Vollbild beenden (Esc)</span>' 
+                    : '<i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>';
+                setTimeout(function() {
+                    liveMap.invalidateSize();
+                }, 120);
+            });
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && liveMapEl.classList.contains('fullscreen')) {
+                    liveMapEl.classList.remove('fullscreen');
+                    btnToggleFullscreen.innerHTML = '<i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>';
+                    setTimeout(function() {
+                        liveMap.invalidateSize();
+                    }, 120);
+                }
+            });
+        }
+
+        // Handle URL coordinates query parameters (e.g. from Graph Explorer: ?lat=46.5647&lng=14.8222&zoom=15)
+        var urlParams = new URLSearchParams(window.location.search);
+        var pLat = parseFloat(urlParams.get('lat'));
+        var pLng = parseFloat(urlParams.get('lng'));
+        var pZoom = parseInt(urlParams.get('zoom')) || 15;
+        if (!isNaN(pLat) && !isNaN(pLng)) {
+            liveMap.setView([pLat, pLng], pZoom);
+            var queryMarker = L.marker([pLat, pLng]).addTo(liveMap);
+            queryMarker.bindPopup("<b>Fokussierter Fundort</b><br>" + pLat.toFixed(5) + "°, " + pLng.toFixed(5) + "°").openPopup();
+        }
     </script>
 </body>
 </html>

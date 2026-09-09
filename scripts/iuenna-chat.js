@@ -18,9 +18,12 @@
   const SLM_MODEL_ID = 'onnx-community/Qwen2.5-0.5B-Instruct';
   
   let kbData = null;
+  let isKbLoading = true;
+  let kbLoadError = false;
   let slmPipeline = null;
   let isSlmLoading = false;
   let isSlmActive = false;
+  let currentRequestId = 0;
 
   // Sound/Vibration feedback helper (optional, subtle)
   function triggerHaptic() {
@@ -64,10 +67,30 @@
       </div>
 
       <!-- Mode & Status Bar -->
-      <div class="chat-mode-bar" style="background-color: var(--bg-card); padding: 8px 16px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center;">
-        <span style="font-size: 0.78rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i> Schnelle Fachauskunft
-        </span>
+      <div class="chat-mode-bar">
+        <div class="chat-mode-toggle-row">
+          <div class="chat-mode-label">
+            <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i>
+            <span>Optionale KI-Zusammenfassung</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span id="chat-stage-badge" class="chat-badge-stage">Katalogmodus</span>
+            <label class="switch" title="Lokale KI-Sprachfassung (Qwen 2.5) aktivieren/deaktivieren">
+              <input type="checkbox" id="chat-ai-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <!-- Progress Bar for Model Download -->
+        <div class="chat-download-progress" id="chat-dl-progress">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span id="chat-dl-status">Lade lokales Modell...</span>
+            <span id="chat-dl-pct">0%</span>
+          </div>
+          <div class="chat-progress-bar-bg">
+            <div class="chat-progress-bar-fill" id="chat-dl-fill"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Messages Area -->
@@ -125,22 +148,30 @@
 
   // 2. Load Knowledge Base
   async function loadKnowledgeBase() {
+    isKbLoading = true;
+    kbLoadError = false;
     try {
       const response = await fetch(KB_URL);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       kbData = await response.json();
+      isKbLoading = false;
       console.log('✓ IUENNA Knowledge Base loaded successfully:', kbData.meta);
     } catch (err) {
-      console.warn('Could not load IUENNA Knowledge Base from file, using fallback data:', err);
+      isKbLoading = false;
+      kbLoadError = true;
+      console.warn('Could not load IUENNA Knowledge Base from file:', err);
     }
   }
 
-  // German Stopwords to prevent generic words like 'was', 'ist', 'der' from skewing results
+  // German Stopwords to prevent generic words from skewing relevance results
   const GERMAN_STOPWORDS = new Set([
-    'was', 'ist', 'sind', 'war', 'waren', 'hat', 'hatte', 'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'einem',
-    'eines', 'einen', 'und', 'oder', 'in', 'im', 'zu', 'zum', 'zur', 'von', 'vom', 'mit', 'auf',
-    'für', 'wo', 'wie', 'wer', 'welche', 'welcher', 'welches', 'gibt', 'es', 'kann', 'man',
-    'finde', 'ich', 'zeig', 'mir', 'bitte', 'über', 'nach', 'an', 'bei'
+    'was', 'ist', 'sind', 'war', 'waren', 'wird', 'werden', 'wurde', 'wurden', 'hat', 'hatte', 'hatten', 'habe', 'haben',
+    'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'einem', 'eines', 'einen',
+    'und', 'oder', 'aber', 'in', 'im', 'ins', 'zu', 'zum', 'zur', 'von', 'vom', 'mit', 'auf', 'aus', 'bei',
+    'für', 'wo', 'wie', 'wer', 'welche', 'welcher', 'welches', 'welchem', 'gibt', 'es', 'kann', 'können', 'konnte', 'konnten', 'man',
+    'soll', 'sollte', 'sollten', 'muss', 'musste', 'müssen', 'finde', 'ich', 'du', 'er', 'sie', 'wir', 'ihr', 'zeig', 'mir', 'uns', 'bitte',
+    'über', 'nach', 'an', 'am', 'als', 'so', 'da', 'dann', 'auch', 'noch', 'nur', 'sehr', 'viel', 'viele', 'mehr', 'hier', 'dort',
+    'wenn', 'dass', 'daß', 'ob', 'um', 'durch', 'vor', 'hinter', 'unter', 'neben', 'zwischen'
   ]);
 
   // 3. Stage 1: Fast Token-based Relevance Matcher
@@ -160,30 +191,54 @@
 
     // Helper to score an item
     const scoreItem = (item, type, title, text, keywords = [], meta = {}) => {
-      let score = 0;
       const combined = `${title} ${text} ${keywords.join(' ')}`.toLowerCase();
+      const titleLower = title.toLowerCase();
+
+      let matchScore = 0;
+      let strongMatch = false;
 
       tokens.forEach(tok => {
-        if (combined.includes(tok)) score += 3;
+        // Whole word or boundary matching gets higher precision
+        const wordRegex = new RegExp(`(^|[^a-z0-9äöüß])${tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^a-z0-9äöüß])`, 'i');
+        if (wordRegex.test(combined)) {
+          matchScore += 4;
+        } else if (combined.includes(tok)) {
+          matchScore += 2;
+        }
+
         // Exact keyword match gets high bonus
-        if (keywords.some(kw => kw.toLowerCase() === tok)) score += 8;
+        if (keywords.some(kw => kw.toLowerCase() === tok)) {
+          matchScore += 10;
+          strongMatch = true;
+        }
         // Title match gets high bonus
-        if (title.toLowerCase().includes(tok)) score += 10;
+        if (titleLower.includes(tok)) {
+          matchScore += 12;
+          strongMatch = true;
+        }
         // Exact token equality in title or keyword
-        if (title.toLowerCase() === tok || keywords.some(kw => kw.toLowerCase() === tok)) score += 15;
+        if (titleLower === tok || keywords.some(kw => kw.toLowerCase() === tok)) {
+          matchScore += 15;
+          strongMatch = true;
+        }
       });
 
       // Exact query phrase matching
-      if (combined.includes(cleanQuery)) score += 12;
+      if (combined.includes(cleanQuery)) {
+        matchScore += 14;
+        strongMatch = true;
+      }
 
-      // Type-specific relevance boosts: Synthetic Q&A, Foundations, sites and subcollections
-      if (type === 'synthetic_qa') score += 14;
-      if (type === 'foundation') score += 8;
-      if (type === 'site' || type === 'subcollection') score += 5;
+      // Relevance threshold: require strong match (title/keyword/phrase) or at least 2 distinct token matches
+      const minThreshold = tokens.length > 1 ? 7 : 6;
+      if (matchScore >= minThreshold || (matchScore > 0 && strongMatch)) {
+        let totalScore = matchScore;
+        if (type === 'synthetic_qa') totalScore += 14;
+        if (type === 'foundation') totalScore += 8;
+        if (type === 'site' || type === 'subcollection') totalScore += 5;
 
-      if (score > 0) {
         scoredResults.push({
-          score,
+          score: totalScore,
           type,
           title,
           text,
@@ -309,14 +364,17 @@
       .replace(/\n/g, '<br>');
   }
 
-  // Format Stage 1 Search Results into HTML
-  function renderSearchResultCard(results) {
+  // Format Stage 1 Search Results into HTML (with optional SLM summary)
+  function renderSearchResultCard(results, slmSummary = null) {
     if (!results || results.length === 0) {
       return `
         <div class="chat-msg-bubble">
-          <p>Dazu konnte ich in der IUENNA-Wissensbasis leider keine direkten Treffer finden.</p>
+          <p><strong>Keine passenden Informationen im Bestand gefunden.</strong></p>
           <p style="margin-top: 6px; font-size: 0.82rem; color: var(--text-muted);">
-            Tipp: Versuchen Sie Begriffe wie <em>Hemmaberg</em>, <em>Jaunstein</em>, <em>Globasnitz</em>, <em>Grabungspläne</em>, <em>QGIS</em> oder <em>Leitung</em>.
+            Zu Ihrer Anfrage konnten keine passenden archäologischen Objekte, Fundstellen oder Grundlagen in der IUENNA-Wissensbasis ermittelt werden.
+          </p>
+          <p style="margin-top: 6px; font-size: 0.82rem; color: var(--text-muted);">
+            Tipp: Versuchen Sie Schlagworte wie <em>Hemmaberg</em>, <em>Jaunstein</em>, <em>Globasnitz</em>, <em>Grabungspläne</em>, <em>Hans Winkler</em> oder <em>QGIS</em>.
           </p>
         </div>
       `;
@@ -425,8 +483,21 @@
       (top.type === 'graph_node' ? 'ARCHE-Wissensgraph' :
       (top.type === 'site' ? 'Archäologische Fundstelle' : 'Projekt-Fakt'))));
 
+    let slmSummaryHtml = '';
+    if (slmSummary) {
+      slmSummaryHtml = `
+        <div class="chat-slm-summary-box" style="margin-bottom: 12px; padding: 10px 14px; background: rgba(184, 142, 62, 0.09); border-left: 3px solid var(--secondary); border-radius: var(--radius-sm, 4px);">
+          <div style="font-size: 0.72rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-brain"></i> Zusammenfassung der gefundenen Einträge (lokales Modell)
+          </div>
+          <p style="margin: 0; font-size: 0.85rem; line-height: 1.55; color: var(--text-dark);">${escapeHtml(slmSummary)}</p>
+        </div>
+      `;
+    }
+
     return `
       <div class="chat-msg-bubble">
+        ${slmSummaryHtml}
         <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
           <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 0.04em;">
             ${categoryBadge}
@@ -582,16 +653,16 @@
       isSlmActive = true;
       if (progressContainer) progressContainer.style.display = 'none';
       if (badge) {
-        badge.textContent = targetDevice === 'webgpu' ? 'Stufe 2: Lokale KI aktiv (WebGPU)' : 'Stufe 2: Lokale KI aktiv (WASM)';
+        badge.textContent = targetDevice === 'webgpu' ? 'Modell aktiv (WebGPU)' : 'Modell aktiv (WASM)';
         badge.className = 'chat-badge-stage stage2';
       }
       console.log(`[+] In-browser SLM initialized successfully on ${targetDevice}.`);
 
       appendBotMessage(`
-        <div class="chat-msg-bubble" style="background: rgba(168, 68, 46, 0.05); border: 1px solid rgba(168, 68, 46, 0.2);">
-          <p><strong>Qwen 2.5 (0.5B) aktiviert!</strong> 🚀 (${targetDevice.toUpperCase()})</p>
-          <p style="font-size: 0.82rem; margin-top: 4px;">
-            Das Modell <em>Qwen2.5-0.5B-Instruct</em> (Alibaba) rechnet nun zu 100 % lokal auf Ihrem Gerät (${targetDevice === 'webgpu' ? 'Grafikkarte / WebGPU' : 'CPU / WebAssembly'}). Es beherrscht Deutsch hervorragend und fasst die ARCHE-Fakten sprachlich flüssig zusammen.
+        <div class="chat-msg-bubble" style="background: rgba(184, 142, 62, 0.08); border-left: 3px solid var(--secondary);">
+          <p><strong>Lokale Sprachfassung aktiviert</strong> 🧠 (${targetDevice.toUpperCase()})</p>
+          <p style="font-size: 0.82rem; margin-top: 4px; line-height: 1.45;">
+            Das Modell <em>Qwen2.5-0.5B-Instruct</em> rechnet nun direkt in Ihrem Browser. Es formuliert kurze Zusammenfassungen der gefundenen Sammlungs- und Forschungseinträge. Unveränderte Primärquellen und Aktionsbuttons bleiben stets erhalten.
           </p>
         </div>
       `);
@@ -601,7 +672,7 @@
       isSlmActive = false;
       if (progressContainer) progressContainer.style.display = 'none';
       if (badge) {
-        badge.textContent = 'Stufe 1: Blitz-Suche (0 MB)';
+        badge.textContent = 'Katalogmodus';
         badge.className = 'chat-badge-stage';
       }
       const toggle = document.getElementById('chat-ai-toggle');
@@ -609,9 +680,9 @@
 
       appendBotMessage(`
         <div class="chat-msg-bubble" style="border-left: 3px solid var(--primary);">
-          <p><strong>Hinweis zum KI-Modus:</strong></p>
+          <p><strong>Hinweis zur Modellinitialisierung:</strong></p>
           <p style="font-size: 0.82rem; margin-top: 4px;">
-            Die lokale WebGPU-Beschleunigung konnte in diesem Browser nicht initialisiert werden (${err.message || 'Nicht unterstützt'}). Die blitzschnelle Stufe 1 (Such- &amp; ARCHE-Katalogmodus) bleibt uneingeschränkt aktiv!
+            Das lokale Modell konnte in diesem Browser nicht geladen werden (${err.message || 'Nicht unterstützt'}). Die reguläre Suche in den geprüften Projekt- und ARCHE-Daten bleibt uneingeschränkt aktiv.
           </p>
         </div>
       `);
@@ -620,78 +691,102 @@
     }
   }
 
-  // Synthesize answer with SLM
+  // Helper to clip text at sentence boundary preserving datings and qualifiers
+  function clipToSentenceBoundary(str, maxLength = 500) {
+    if (!str) return '';
+    const clean = str.replace(/\s+/g, ' ').trim();
+    if (clean.length <= maxLength) return clean;
+    const truncated = clean.substring(0, maxLength);
+    const lastPunct = Math.max(
+      truncated.lastIndexOf('. '),
+      truncated.lastIndexOf('? '),
+      truncated.lastIndexOf('! ')
+    );
+    if (lastPunct > 120) {
+      return truncated.substring(0, lastPunct + 1).trim();
+    }
+    const lastSpace = truncated.lastIndexOf(' ');
+    if (lastSpace > 120) {
+      return truncated.substring(0, lastSpace).trim() + ' ...';
+    }
+    return truncated.trim() + ' ...';
+  }
+
+  // Synthesize answer with SLM (strict summarization only)
   async function generateSlmAnswer(userQuery, searchResults) {
     if (!slmPipeline) return null;
 
     let contextSnippet = '';
     if (searchResults && searchResults.length > 0) {
-      contextSnippet = searchResults.slice(0, 2).map(r => {
-        if (r.type === 'synthetic_qa') {
-          const citStr = r.meta && r.meta.citations && r.meta.citations.length > 0 ? ` (Quellen: ${r.meta.citations.join('; ')})` : '';
-          return `【Archäologische Fachfrage & verifizierter Befund: ${r.title}】\n${r.text}${citStr}`;
-        } else if (r.type === 'foundation') {
-          const citStr = r.meta && r.meta.citations && r.meta.citations.length > 0 ? ` (Quellen: ${r.meta.citations.join('; ')})` : '';
-          return `【Wissenschaftliche Grundlagen: ${r.title}】\n${r.meta.full_text || r.text}${citStr}`;
-        } else if (r.type === 'site') {
-          return `【Archäologische Fundstelle: ${r.title}】\n${r.text}`;
-        } else if (r.type === 'subcollection') {
-          return `【ARCHE-Subcollection: ${r.title}】\n${r.text}`;
-        } else {
-          return `【IUENNA-Fakt: ${r.title}】\n${r.text}`;
-        }
+      contextSnippet = searchResults.slice(0, 2).map((r, idx) => {
+        const rawText = (r.type === 'foundation' && r.meta && r.meta.full_text) ? r.meta.full_text : r.text;
+        const bounded = clipToSentenceBoundary(rawText, 450);
+        return `[Ausschnitt ${idx + 1}: ${r.title}]\n${bounded}`;
       }).join('\n\n');
     } else {
-      contextSnippet = 'Keine spezifischen Sammlungsfakten gefunden.';
+      contextSnippet = 'Keine passenden Textausschnitte vorhanden.';
     }
 
-    const messages = [
-      {
-        role: 'system',
-        content: `Du bist der wissenschaftliche KI-Assistent für das archäologische Forschungsprojekt IUENNA (ÖAW / ÖAI / kärnten.museum).
-Beantworte die Frage des Nutzers auf Deutsch auf Basis des folgenden verifizierten Forschungskontexts.
-Antworte präzise, sachlich und fundiert in 2 bis maximal 4 vollständigen Sätzen. Nenne wenn passend historische Autoren (wie Glaser, Pollak, Hagmann & Reiner). Erfinde keine Fakten.
+    const INFERENCE_TIMEOUT_MS = 10000;
 
-Forschungskontext:
-${contextSnippet}`
-      },
-      {
-        role: 'user',
-        content: userQuery
+    const inferencePromise = (async () => {
+      try {
+        const messages = [
+          {
+            role: 'system',
+            content: 'Formuliere aus den bereitgestellten Textausschnitten eine kurze Antwort auf Deutsch. Verwende ausschließlich die enthaltenen Informationen. Bewahre Namen, Datierungen, Zahlen, Verneinungen und Unsicherheitsangaben. Ergänze keine Personen, Quellen oder Zusammenhänge aus deinem Modellwissen. Wenn die Ausschnitte die Frage nicht beantworten, benenne die Informationslücke. Schreibe höchstens zwei bis vier Sätze. Erzeuge keine Links oder HTML-Auszeichnung.'
+          },
+          {
+            role: 'user',
+            content: `Bereitgestellte Textausschnitte:\n${contextSnippet}\n\nFrage: ${userQuery}`
+          }
+        ];
+
+        const output = await slmPipeline(messages, {
+          max_new_tokens: 140,
+          temperature: 0.1,
+          repetition_penalty: 1.15,
+          do_sample: false
+        });
+
+        if (output && output[0] && output[0].generated_text) {
+          const generated = output[0].generated_text;
+          let rawText = '';
+          if (Array.isArray(generated)) {
+            const lastMsg = generated[generated.length - 1];
+            rawText = (lastMsg && lastMsg.content) ? lastMsg.content : '';
+          } else if (typeof generated === 'string') {
+            rawText = generated;
+          }
+          
+          if (rawText) {
+            // Clean out prompt echoes and repeated loops
+            const sentences = rawText.split(/(?<=[.?!])\s+/);
+            const unique = [];
+            sentences.forEach(s => {
+              const trimmed = s.trim();
+              if (trimmed && !unique.includes(trimmed) && trimmed.toLowerCase() !== userQuery.toLowerCase()) {
+                unique.push(trimmed);
+              }
+            });
+            return unique.join(' ') || rawText;
+          }
+        }
+        return null;
+      } catch (err) {
+        console.warn('SLM generation exception:', err);
+        return null;
       }
-    ];
+    })();
 
-    const output = await slmPipeline(messages, {
-      max_new_tokens: 160,
-      temperature: 0.1,
-      repetition_penalty: 1.15,
-      do_sample: false
+    const timeoutPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        console.warn(`[!] SLM inference exceeded ${INFERENCE_TIMEOUT_MS}ms timeout.`);
+        resolve(null);
+      }, INFERENCE_TIMEOUT_MS);
     });
 
-    if (output && output[0] && output[0].generated_text) {
-      const generated = output[0].generated_text;
-      let rawText = '';
-      if (Array.isArray(generated)) {
-        const lastMsg = generated[generated.length - 1];
-        rawText = (lastMsg && lastMsg.content) ? lastMsg.content : '';
-      } else if (typeof generated === 'string') {
-        rawText = generated;
-      }
-      
-      if (rawText) {
-        // Clean out prompt echoes and repeated loops
-        const sentences = rawText.split(/(?<=[.?!])\s+/);
-        const unique = [];
-        sentences.forEach(s => {
-          const trimmed = s.trim();
-          if (trimmed && !unique.includes(trimmed) && trimmed.toLowerCase() !== userQuery.toLowerCase()) {
-            unique.push(trimmed);
-          }
-        });
-        return unique.join(' ') || rawText;
-      }
-    }
-    return null;
+    return await Promise.race([inferencePromise, timeoutPromise]);
   }
 
   // 5. Chat UI Helpers
@@ -762,6 +857,7 @@ ${contextSnippet}`
   async function handleUserSubmit(userQuery) {
     if (!userQuery || !userQuery.trim()) return;
     const query = userQuery.trim();
+    const thisRequestId = ++currentRequestId;
 
     // 1. Render User Message
     appendUserMessage(query);
@@ -769,11 +865,39 @@ ${contextSnippet}`
     // 2. Show Typing Indicator
     showTypingIndicator();
 
+    // Check if Knowledge Base is still loading
+    if (isKbLoading) {
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p><i class="fa-solid fa-spinner fa-spin" style="color: var(--secondary);"></i> Die Sammlungs-Wissensbasis wird noch geladen. Bitte einen kurzen Moment Geduld...</p>
+          </div>
+        `);
+      }, 100);
+      return;
+    }
+
+    if (kbLoadError || !kbData) {
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p><i class="fa-solid fa-triangle-exclamation" style="color: #b88e3e;"></i> Die Sammlungs-Wissensbasis konnte nicht geladen werden. Bitte prüfen Sie Ihre Netzwerkverbindung oder laden Sie die Seite neu.</p>
+          </div>
+        `);
+      }, 100);
+      return;
+    }
+
     const cleanQ = query.toLowerCase().replace(/[?!.,;:]/g, '').trim();
 
     // Dialog Intent A: Greetings
     if (/^(hallo|hi|guten (tag|morgen|abend)|servus|grüß gott|moin|hey)$/i.test(cleanQ)) {
       setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
         removeTypingIndicator();
         appendBotMessage(`
           <div class="chat-msg-bubble">
@@ -793,13 +917,14 @@ ${contextSnippet}`
             </div>
           </div>
         `);
-      }, 120);
+      }, 100);
       return;
     }
 
     // Dialog Intent B: Thanks / Feedback
     if (/^(danke|vielen dank|dankeschön|super|toll|klasse|prima|danke dir|perfekt|danke schön)$/i.test(cleanQ)) {
       setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
         removeTypingIndicator();
         appendBotMessage(`
           <div class="chat-msg-bubble">
@@ -814,13 +939,14 @@ ${contextSnippet}`
             ` : ''}
           </div>
         `);
-      }, 120);
+      }, 100);
       return;
     }
 
     // Dialog Intent C: Help / Overview
     if (/^(hilfe|help|was kannst du|wer bist du|funktionen)$/i.test(cleanQ)) {
       setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
         removeTypingIndicator();
         appendBotMessage(`
           <div class="chat-msg-bubble">
@@ -832,7 +958,7 @@ ${contextSnippet}`
             </ul>
           </div>
         `);
-      }, 120);
+      }, 100);
       return;
     }
 
@@ -842,26 +968,53 @@ ${contextSnippet}`
       effectiveQuery = `${query} ${dialogueState.lastTopic}`;
     }
 
-    // 3. Search Knowledge Base
+    // 3. Search Knowledge Base (with fixed token matching requirement)
     const results = searchKnowledgeBase(effectiveQuery);
 
-    // Update conversation topic state
-    if (results && results.length > 0) {
-      const top = results[0];
-      const txt = ((top.title || '') + ' ' + (top.text || '')).toLowerCase();
-      if (txt.includes('hemmaberg')) dialogueState.lastTopic = 'Hemmaberg';
-      else if (txt.includes('globasnitz')) dialogueState.lastTopic = 'Globasnitz';
-      else if (txt.includes('st. stefan') || txt.includes('barbius') || txt.includes('winkler')) dialogueState.lastTopic = 'St. Stefan';
-      else if (txt.includes('jaunstein')) dialogueState.lastTopic = 'Jaunstein';
-      else if (txt.includes('qgis') || txt.includes('geodaten')) dialogueState.lastTopic = 'Geodaten';
+    // If no results found in knowledge base
+    if (!results || results.length === 0) {
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        const cardHtml = renderSearchResultCard([]);
+        appendBotMessage(cardHtml);
+      }, 100);
+      return;
     }
 
-    // 4. Return instant verified academic research card
-    setTimeout(() => {
-      removeTypingIndicator();
-      const cardHtml = renderSearchResultCard(results);
-      appendBotMessage(cardHtml);
-    }, 150); // Natural micro-delay for smooth UX
+    // Update conversation topic state from actual top match
+    const top = results[0];
+    const txt = ((top.title || '') + ' ' + (top.text || '')).toLowerCase();
+    if (txt.includes('hemmaberg')) dialogueState.lastTopic = 'Hemmaberg';
+    else if (txt.includes('globasnitz')) dialogueState.lastTopic = 'Globasnitz';
+    else if (txt.includes('st. stefan') || txt.includes('barbius') || txt.includes('winkler')) dialogueState.lastTopic = 'St. Stefan';
+    else if (txt.includes('jaunstein')) dialogueState.lastTopic = 'Jaunstein';
+    else if (txt.includes('qgis') || txt.includes('geodaten')) dialogueState.lastTopic = 'Geodaten';
+
+    // 4. Check if SLM summarization is active
+    if (isSlmActive && slmPipeline) {
+      try {
+        const summary = await generateSlmAnswer(query, results);
+        if (thisRequestId !== currentRequestId) return; // Discard outdated response
+        removeTypingIndicator();
+        const cardHtml = renderSearchResultCard(results, summary);
+        appendBotMessage(cardHtml);
+      } catch (err) {
+        console.warn('SLM generation failed, falling back to direct search results:', err);
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        const cardHtml = renderSearchResultCard(results);
+        appendBotMessage(cardHtml);
+      }
+    } else {
+      // Instant Catalog Output (Stage 1)
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        const cardHtml = renderSearchResultCard(results);
+        appendBotMessage(cardHtml);
+      }, 100);
+    }
   }
 
   // 7. Event Binding
@@ -871,6 +1024,31 @@ ${contextSnippet}`
     const closeBtn = document.getElementById('chat-close-btn');
     const inputField = document.getElementById('chat-input-field');
     const sendBtn = document.getElementById('chat-send-btn');
+    const aiToggle = document.getElementById('chat-ai-toggle');
+
+    // Toggle AI Model Mode
+    if (aiToggle) {
+      aiToggle.addEventListener('change', async (e) => {
+        if (e.target.checked) {
+          await initStage2SLM();
+        } else {
+          isSlmActive = false;
+          const badge = document.getElementById('chat-stage-badge');
+          if (badge) {
+            badge.textContent = 'Katalogmodus';
+            badge.className = 'chat-badge-stage';
+          }
+          appendBotMessage(`
+            <div class="chat-msg-bubble" style="border-left: 3px solid var(--secondary);">
+              <p><strong>Katalogmodus aktiv.</strong></p>
+              <p style="font-size: 0.82rem; margin-top: 4px;">
+                Antworten werden wieder direkt aus der geprüften IUENNA-Wissensbasis ohne lokale Modellzusammenfassung ausgegeben.
+              </p>
+            </div>
+          `);
+        }
+      });
+    }
 
     // Toggle Chat Window
     const toggleWindow = () => {
@@ -884,20 +1062,21 @@ ${contextSnippet}`
       }
     };
 
-    triggerBtn.addEventListener('click', toggleWindow);
-    closeBtn.addEventListener('click', () => {
-      chatWindow.classList.remove('chat-open');
+    if (triggerBtn) triggerBtn.addEventListener('click', toggleWindow);
+    if (closeBtn) closeBtn.addEventListener('click', () => {
+      if (chatWindow) chatWindow.classList.remove('chat-open');
     });
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && chatWindow.classList.contains('chat-open')) {
+      if (e.key === 'Escape' && chatWindow && chatWindow.classList.contains('chat-open')) {
         chatWindow.classList.remove('chat-open');
       }
     });
 
     // Send Message
     const submitInput = () => {
+      if (!inputField) return;
       const val = inputField.value;
       if (val.trim()) {
         inputField.value = '';
@@ -905,13 +1084,15 @@ ${contextSnippet}`
       }
     };
 
-    sendBtn.addEventListener('click', submitInput);
-    inputField.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        submitInput();
-      }
-    });
+    if (sendBtn) sendBtn.addEventListener('click', submitInput);
+    if (inputField) {
+      inputField.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submitInput();
+        }
+      });
+    }
 
     // Suggestion Chips Click
     document.addEventListener('click', (e) => {
@@ -935,5 +1116,13 @@ ${contextSnippet}`
     injectChatUI();
     loadKnowledgeBase();
   }
+
+  // Expose global controller for testing and deep-linking
+  window.iuennaChat = {
+    search: searchKnowledgeBase,
+    submit: handleUserSubmit,
+    getKbData: () => kbData,
+    setKbData: (d) => { kbData = d; }
+  };
 
 })();

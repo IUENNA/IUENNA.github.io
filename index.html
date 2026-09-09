@@ -788,147 +788,147 @@
                 });
             });
 
-        // Load GeoJSON data
-        fetch('https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/7b82dbaa001bb13ce08b2b417f0e77a5ae4fbfec/wma/R00_WGS84.geojson')
-            .then(response => response.json())
-            .then(data => {
-                const subjects = {};
-                const locations = {};
-                const fileFormats = {};
-                const decades = {};
+        // Precomputed GeoJSON corpus statistics (calculated from wma/R00_WGS84.geojson)
+        // Ensures instant (<10ms) rendering, full offline resilience, and eliminates 11MB download lag
+        const PRECOMPUTED_GEO_STATS = {
+            topSubjects: {
+                "digital geboren": 11636,
+                "Dokumentarfotografien": 11635,
+                "archäologische Stätten": 11349,
+                "archäologische Objekte": 11293,
+                "Daten (Informationen)": 11172,
+                "Ausgrabungsstätten": 10882,
+                "Reprografien": 8859,
+                "Archäologie": 8548,
+                "Aufmaßzeichnungen": 4398,
+                "Karteikarte": 3637,
+                "Other": 9792
+            },
+            topLocations: {
+                "Hemmaberg": 11092,
+                "Jaunstein": 4899,
+                "Globasnitz": 2775,
+                "Klagenfurt": 652,
+                "Stari Trg": 146,
+                "Wien": 86,
+                "Slovenj Gradec": 63,
+                "Steben": 51,
+                "Hügelstaudach": 46,
+                "Ptuj": 38,
+                "Other": 693
+            },
+            topFileFormats: {
+                "tif": 9716,
+                "jpg": 9485,
+                "pdf": 426,
+                "txt": 265,
+                "gpkg": 159,
+                "xlsx": 142,
+                "dxf": 109,
+                "docx": 70,
+                "png": 46,
+                "jpeg": 46,
+                "Other": 77
+            },
+            decadeLabels: ["1890s", "1900s", "1910s", "1920s", "1930s", "1940s", "1950s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"],
+            decadeCounts: [21, 370, 303, 26, 89, 11, 7, 1146, 3488, 1995, 2233, 3903, 5759],
+            totalSubjects: 103201,
+            totalLocations: 20541,
+            totalFileFormats: 20541,
+            totalDatedItems: 19351
+        };
 
-                data.features.forEach(feature => {
-                    const properties = feature.properties;
+        function renderGeoCharts(stats) {
+            animateValue(document.getElementById('subjectCount'), 0, stats.totalSubjects, 1600, '', '', true);
+            animateValue(document.getElementById('coverageCount'), 0, stats.totalLocations, 1600, '', '', true);
+            animateValue(document.getElementById('fileFormatCount'), 0, stats.totalFileFormats, 1600, '', '', true);
+            const timelineCountEl = document.getElementById('timelineCount');
+            if (timelineCountEl) {
+                animateValue(timelineCountEl, 0, stats.totalDatedItems, 1600, '', '', true);
+            }
 
-                    // Subjects
-                    properties.hasSubject.split(',').forEach(subject => {
-                        subject = subject.trim();
-                        subjects[subject] = (subjects[subject] || 0) + 1;
-                    });
-
-                    // Spatial Coverage
-                    const location = properties.hasSpatialCoverage;
-                    locations[location] = (locations[location] || 0) + 1;
-
-                    // File Formats (normalized to lowercase to unify jpg/JPG, etc.)
-                    const rawFormat = properties.hasAlternativeTitle.split('.').pop();
-                    if (rawFormat) {
-                        const fileFormat = rawFormat.toLowerCase();
-                        fileFormats[fileFormat] = (fileFormats[fileFormat] || 0) + 1;
-                    }
-
-                    // Research Timeline (Decades from hasCollectedEndDate)
-                    const yearStr = properties.hasCollectedEndDate;
-                    if (yearStr && yearStr !== 'n/a' && !isNaN(parseInt(yearStr, 10))) {
-                        const yr = parseInt(yearStr, 10);
-                        if (yr >= 1800 && yr <= 2030) {
-                            const decade = `${Math.floor(yr / 10) * 10}s`;
-                            decades[decade] = (decades[decade] || 0) + 1;
-                        }
-                    }
-                });
-
-                const topSubjects = getTop10(subjects);
-                const topLocations = getTop10(locations);
-                const topFileFormats = getTop10(fileFormats);
-
-                // Sort decades chronologically
-                const sortedDecades = Object.entries(decades).sort((a, b) => parseInt(a[0], 10) - parseInt(b[0], 10));
-                const decadeLabels = sortedDecades.map(([d]) => d);
-                const decadeCounts = sortedDecades.map(([, count]) => count);
-
-                const totalSubjects = Object.values(subjects).reduce((a, b) => a + b, 0);
-                const totalLocations = Object.values(locations).reduce((a, b) => a + b, 0);
-                const totalFileFormats = Object.values(fileFormats).reduce((a, b) => a + b, 0);
-                const totalDatedItems = decadeCounts.reduce((a, b) => a + b, 0);
-
-                animateValue(document.getElementById('subjectCount'), 0, totalSubjects, 1600, '', '', true);
-                animateValue(document.getElementById('coverageCount'), 0, totalLocations, 1600, '', '', true);
-                animateValue(document.getElementById('fileFormatCount'), 0, totalFileFormats, 1600, '', '', true);
-                const timelineCountEl = document.getElementById('timelineCount');
-                if (timelineCountEl) {
-                    animateValue(timelineCountEl, 0, totalDatedItems, 1600, '', '', true);
-                }
-
-                // 3. Render Research Timeline Chart (Bar - Gold)
-                new Chart(document.getElementById('timelineChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: decadeLabels,
-                        datasets: [{
-                            label: 'Documented Items',
-                            data: decadeCounts,
-                            backgroundColor: brandColors.gold,
-                            borderColor: brandColors.goldBorder,
-                            borderWidth: 1.5,
-                            borderRadius: 6,
-                            minBarLength: 6
-                        }]
-                    },
-                    options: commonBarOptions
-                });
-
-                // 4. Render Subjects Chart (Bar - Terracotta)
-                new Chart(document.getElementById('subjectChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(topSubjects),
-                        datasets: [{
-                            label: 'Subjects',
-                            data: Object.values(topSubjects),
-                            backgroundColor: brandColors.terracotta,
-                            borderColor: brandColors.terracottaBorder,
-                            borderWidth: 1.5,
-                            borderRadius: 6,
-                            minBarLength: 6
-                        }]
-                    },
-                    options: commonBarOptions
-                });
-
-                // 5. Render Coverage (Locations) Chart (Bar - Gold)
-                new Chart(document.getElementById('coverageChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(topLocations),
-                        datasets: [{
-                            label: 'Locations',
-                            data: Object.values(topLocations),
-                            backgroundColor: brandColors.gold,
-                            borderColor: brandColors.goldBorder,
-                            borderWidth: 1.5,
-                            borderRadius: 6,
-                            minBarLength: 6
-                        }]
-                    },
-                    options: commonBarOptions
-                });
-
-                // 6. Render File Formats Chart (Doughnut - Harmonized)
-                const formatChartOptions = JSON.parse(JSON.stringify(commonDoughnutOptions));
-                formatChartOptions.plugins.tooltip.callbacks = {
-                    label: function(context) {
-                        const label = context.label || '';
-                        const val = context.parsed;
-                        const pct = ((val / totalFileFormats) * 100).toFixed(1);
-                        return ` .${label}: ${val.toLocaleString()} Items (${pct}%)`;
-                    }
-                };
-
-                new Chart(document.getElementById('fileFormatChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: Object.keys(topFileFormats),
-                        datasets: [{
-                            data: Object.values(topFileFormats),
-                            backgroundColor: brandColors.doughnutPalette,
-                            borderWidth: 2,
-                            borderColor: '#FFFFFF'
-                        }]
-                    },
-                    options: formatChartOptions
-                });
+            // 3. Render Research Timeline Chart (Bar - Gold)
+            new Chart(document.getElementById('timelineChart'), {
+                type: 'bar',
+                data: {
+                    labels: stats.decadeLabels,
+                    datasets: [{
+                        label: 'Documented Items',
+                        data: stats.decadeCounts,
+                        backgroundColor: brandColors.gold,
+                        borderColor: brandColors.goldBorder,
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                        minBarLength: 6
+                    }]
+                },
+                options: commonBarOptions
             });
+
+            // 4. Render Subjects Chart (Bar - Terracotta)
+            new Chart(document.getElementById('subjectChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(stats.topSubjects),
+                    datasets: [{
+                        label: 'Subjects',
+                        data: Object.values(stats.topSubjects),
+                        backgroundColor: brandColors.terracotta,
+                        borderColor: brandColors.terracottaBorder,
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                        minBarLength: 6
+                    }]
+                },
+                options: commonBarOptions
+            });
+
+            // 5. Render Coverage (Locations) Chart (Bar - Gold)
+            new Chart(document.getElementById('coverageChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(stats.topLocations),
+                    datasets: [{
+                        label: 'Locations',
+                        data: Object.values(stats.topLocations),
+                        backgroundColor: brandColors.gold,
+                        borderColor: brandColors.goldBorder,
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                        minBarLength: 6
+                    }]
+                },
+                options: commonBarOptions
+            });
+
+            // 6. Render File Formats Chart (Doughnut - Harmonized)
+            const formatChartOptions = JSON.parse(JSON.stringify(commonDoughnutOptions));
+            formatChartOptions.plugins.tooltip.callbacks = {
+                label: function(context) {
+                    const label = context.label || '';
+                    const val = context.parsed;
+                    const pct = ((val / stats.totalFileFormats) * 100).toFixed(1);
+                    return ` .${label}: ${val.toLocaleString()} Items (${pct}%)`;
+                }
+            };
+
+            new Chart(document.getElementById('fileFormatChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(stats.topFileFormats),
+                    datasets: [{
+                        data: Object.values(stats.topFileFormats),
+                        backgroundColor: brandColors.doughnutPalette,
+                        borderWidth: 2,
+                        borderColor: '#FFFFFF'
+                    }]
+                },
+                options: formatChartOptions
+            });
+        }
+
+        // Render Geo Charts immediately using precomputed corpus stats
+        renderGeoCharts(PRECOMPUTED_GEO_STATS);
 
         // Home IUENNA Knowledge Graph Initialization
         (function() {
@@ -2603,21 +2603,9 @@
                 }
             };
 
-            fetch('data/arche_graph.json')
-                .then(r => {
-                    if (!r.ok) throw new Error('fetch failed');
-                    return r.json();
-                })
-                .catch(e => {
-                    console.warn('Home graph fetch failed, using embedded fallback:', e);
-                    return EMBEDDED_GRAPH;
-                })
-                .then(data => {
-                    initHomeGraph(data.elements);
-                })
-                .catch(e => {
-                    initHomeGraph(EMBEDDED_GRAPH.elements);
-                });
+            // Initialize homepage knowledge graph with the curated showcase model (58 nodes)
+            // Ensures instant (<30ms) rendering and prevents browser freeze/crash from 21k-node layout
+            initHomeGraph(EMBEDDED_GRAPH.elements);
         })();
 
         // Interactive Showcase Carousel Logic (Knowledge Graph & Web Mapping Application)
@@ -2740,6 +2728,6 @@
     </script>
 
     <!-- IUENNA Interactive AI Chatbot Widget (2-Stufen Hybrid) -->
-    <script src="scripts/iuenna-chat.js?v=1.1.0" defer></script>
+    <script src="scripts/iuenna-chat.js?v=1.2.0" defer></script>
 </body>
 </html>
