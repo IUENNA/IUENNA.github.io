@@ -14,6 +14,21 @@ import os
 import re
 import json
 import time
+import math
+import networkx as nx
+
+def format_size(size_bytes):
+    if not size_bytes:
+        return "0 B"
+    try:
+        size = float(size_bytes)
+    except (ValueError, TypeError):
+        return str(size_bytes)
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if size < 1024.0:
+            return f"{size:.1f} {unit}" if unit in ['MB', 'GB'] else f"{int(size)} {unit}"
+        size /= 1024.0
+    return f"{size:.1f} PB"
 
 LEVEL_COLORS = {
     0: "#8B2616",  # TopCollection (L0): Rich Terracotta
@@ -73,6 +88,9 @@ def build_graph():
         places_data = json.load(f)
     with open(datasets_file, "r", encoding="utf-8") as f:
         datasets_data = json.load(f)
+    with open(corpus_file, "r", encoding="utf-8") as f:
+        corpus_data = json.load(f)
+        corpus = corpus_data.get("resources", [])
 
     # Flatten collection tree
     root_node = root_tree.get("root", root_tree)
@@ -452,6 +470,130 @@ def build_graph():
         nodes.append({"data": lc})
         add_edge({"id": f"edge_lic_{lc['id']}_root", "source": "iuenna_root", "target": lc["id"], "label": "hasLicense", "predicate": "schema:hasLicense"})
 
+    # 8.5 Add all 20,355 ARCHE Resources (arche:Resource)
+    print(f"[*] Integrating {len(corpus)} ARCHE Resources into Knowledge Graph...")
+    RES_TYPE_INFO = {
+        'image': ('ARCHE-Bild', '#2A9D8F', 'fa-image'),
+        'vector': ('ARCHE-Plan/Vektor', '#E76F51', 'fa-draw-polygon'),
+        'document': ('ARCHE-Dokument/PDF', '#457B9D', 'fa-file-lines'),
+        'database': ('ARCHE-Datenbank/Tabelle', '#1D3557', 'fa-table'),
+        'model': ('ARCHE-3D-Modell', '#F4A261', 'fa-cube'),
+        'audio': ('ARCHE-Audio', '#E9C46A', 'fa-volume-high'),
+        'other': ('ARCHE-Datei', '#3D7068', 'fa-file')
+    }
+
+    place_node_ids = set(f"plc_{pid}" for pid in places_data)
+    collection_id_set = set(c["id"] for c in collections)
+    collection_id_set.add("iuenna_root")
+
+    # Group resources by parent collection for radial clustering
+    col_to_resources = {}
+    for r in corpus:
+        col_id = r.get("col_id") or f"col_{r.get('col')}"
+        if col_id == "col_1792170" or col_id not in collection_id_set:
+            col_id = "iuenna_root"
+        if col_id not in col_to_resources:
+            col_to_resources[col_id] = []
+        col_to_resources[col_id].append(r)
+
+    # Compute macro layout positions using NetworkX for structural nodes
+    print("[*] Computing macro graph layout positions with NetworkX...")
+    G_macro = nx.Graph()
+    for n in nodes:
+        G_macro.add_node(n["data"]["id"])
+    for e in edges:
+        G_macro.add_edge(e["data"]["source"], e["data"]["target"])
+
+    pos_macro = nx.spring_layout(G_macro, k=0.18, iterations=60, seed=42)
+    SCALE = 3500.0
+    macro_positions = {}
+    for nid, p in pos_macro.items():
+        macro_positions[nid] = (p[0] * SCALE, p[1] * SCALE)
+
+    # Assign positions to macro nodes
+    for n in nodes:
+        nid = n["data"]["id"]
+        if nid in macro_positions:
+            px, py = macro_positions[nid]
+            n["position"] = {"x": round(px, 1), "y": round(py, 1)}
+
+    # Now add all resources with positions clustered around their parent collection
+    added_res_count = 0
+    added_res_spatial_edges = 0
+
+    for col_id, res_list in col_to_resources.items():
+        cx, cy = macro_positions.get(col_id, (0.0, 0.0))
+
+        for i, r in enumerate(res_list):
+            rid = r["id"]
+            arche_id = r.get("arche_id")
+            ftype = r.get("type", "other")
+            t_lbl, col, icon = RES_TYPE_INFO.get(ftype, ("ARCHE-Datei", "#3D7068", "fa-file"))
+
+            # Golden spiral positioning around parent collection
+            theta = i * 2.3999632
+            radius = 35.0 + 14.0 * math.sqrt(i + 1)
+            rx = cx + radius * math.cos(theta)
+            ry = cy + radius * math.sin(theta)
+
+            size_b = r.get("size_bytes", 0)
+            res_node = {
+                "data": {
+                    "id": rid,
+                    "arche_id": str(arche_id),
+                    "label": r.get("title") or r.get("filename") or rid,
+                    "title": r.get("title") or r.get("filename") or rid,
+                    "filename": r.get("filename", ""),
+                    "type": "resource",
+                    "type_label": t_lbl,
+                    "ftype": ftype,
+                    "parent_col": col_id,
+                    "pid": r.get("pid", ""),
+                    "place": r.get("place", ""),
+                    "spatial_ids": r.get("spatial_ids", []),
+                    "subjs": r.get("subjs", []),
+                    "path": r.get("path", []),
+                    "date": r.get("date", ""),
+                    "size_bytes": size_b,
+                    "formatted_size": format_size(size_b),
+                    "thumb_url": r.get("thumb_url", ""),
+                    "coords": r.get("coords"),
+                    "description": r.get("description", ""),
+                    "color": col,
+                    "icon": icon
+                },
+                "position": {
+                    "x": round(rx, 1),
+                    "y": round(ry, 1)
+                }
+            }
+            nodes.append(res_node)
+            added_res_count += 1
+
+            # 1. isPartOf edge to parent collection
+            add_edge({
+                "id": f"edge_{rid}_partof_{col_id}",
+                "source": rid,
+                "target": col_id,
+                "label": "isPartOf",
+                "predicate": "arche:isPartOf"
+            })
+
+            # 2. hasSpatialCoverage edges to places
+            for sid in r.get("spatial_ids", []):
+                plc_target = f"plc_{sid}"
+                if plc_target in place_node_ids:
+                    add_edge({
+                        "id": f"edge_{rid}_spat_{sid}",
+                        "source": rid,
+                        "target": plc_target,
+                        "label": "hasSpatialCoverage",
+                        "predicate": "arche:hasSpatialCoverage"
+                    })
+                    added_res_spatial_edges += 1
+
+    print(f"[✓] Added {added_res_count} resource nodes and {added_res_spatial_edges} spatial coverage edges.")
+
     # Ensure 100% graph referential integrity: no edge can reference a non-existent node
     node_id_set = set(n["data"]["id"] for n in nodes)
     valid_edges = [e for e in edges if e["data"]["source"] in node_id_set and e["data"]["target"] in node_id_set]
@@ -474,7 +616,7 @@ def build_graph():
             "total_publications": len(publications),
             "total_places": len(places_data),
             "total_items": 20788,
-            "total_resources": 20555,
+            "total_resources": added_res_count,
             "total_size": "356.68 GB",
             "duration_seconds": round(time.time() - start_time, 3)
         },
@@ -486,10 +628,10 @@ def build_graph():
 
     out_file = os.path.join(data_dir, "arche_graph.json")
     with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(graph_payload, f, indent=2, ensure_ascii=False)
+        json.dump(graph_payload, f, ensure_ascii=False)
 
     print(f"[✓] Knowledge Graph successfully generated: {out_file}")
-    print(f"[✓] Summary: {len(nodes)} Nodes, {len(edges)} Edges | Collections: {len(collections)} | Datasets: {len(datasets_data)} | Persons: {len(persons)} | Orgs: {len(organisations)} | Pubs: {len(publications)} | Places: {len(places_data)}")
+    print(f"[✓] Summary: {len(nodes)} Nodes, {len(edges)} Edges | Collections: {len(collections)} | Datasets: {len(datasets_data)} | Resources: {added_res_count} | Persons: {len(persons)} | Orgs: {len(organisations)} | Pubs: {len(publications)} | Places: {len(places_data)}")
     return graph_payload
 
 if __name__ == "__main__":

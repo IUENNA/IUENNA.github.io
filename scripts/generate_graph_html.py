@@ -1051,15 +1051,15 @@ def generate():
             <p>Vollständiges semantisches Netzwerk &amp; Archiv-Korpus des IUENNA-Repositoriums auf ARCHE (ACDH-CH / ÖAW)</p>
         </div>
         <div class="stats-pills">
-            <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">21.070</strong> ARCHE-Einträge</span>
-            <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.555</strong> Primärressourcen</span>
+            <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">21.080</strong> ARCHE-Einträge</span>
+            <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.355</strong> Primärressourcen</span>
             <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">434</strong> Sammlungen &amp; Ordner</span>
             <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">21</strong> Forscher:innen</span>
             <span class="stat-pill"><i class="fa-solid fa-book-open"></i> <strong id="pillPubs">23</strong> Publikationen</span>
             <span class="stat-pill"><i class="fa-solid fa-map-pin"></i> <strong id="pillPlaces">219</strong> Fundorte</span>
             <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">9</strong> Institutionen</span>
             <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
-            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">504</strong> im Graphen</span>
+            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">21.080</strong> im Graphen</span>
             <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
                 <i class="fa-solid fa-circle-check"></i> Korpus bereit
             </span>
@@ -1073,7 +1073,8 @@ def generate():
             <!-- Layout Selector -->
             <label for="layoutSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark);">Layout:</label>
             <select id="layoutSelect" class="tool-select">
-                <option value="cose" selected>Force-Directed (Organisch)</option>
+                <option value="preset" selected>Vorberechnetes Cluster-Layout (Schnell)</option>
+                <option value="cose">Force-Directed (Organisch)</option>
                 <option value="concentric">Konzentrisch (Hierarchie-Ringe)</option>
                 <option value="breadthfirst">Baum-Hierarchie (Tree)</option>
                 <option value="circle">Kreis (Zirkulär)</option>
@@ -1284,6 +1285,31 @@ def generate():
                         <div id="drawerPlaceDatasetRow" class="entity-prop-row" style="display: none; margin-top: 6px; padding: 6px 8px; background: white; border-radius: 4px; border: 1px solid #D9E8DD; flex-direction: column; align-items: flex-start; gap: 4px;">
                             <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 600;"><i class="fa-solid fa-database"></i> Erfasst in Forschungsdatensatz:</span>
                             <div id="drawerPlaceDatasetChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARCHE Resource Profile Box (when arche:Resource is selected) -->
+                <div id="drawerResourceBox" class="entity-profile-box" style="display: none; border-left: 4px solid var(--primary); background: #FAF8F5;">
+                    <div class="drawer-section-title" style="margin-bottom: 8px;">
+                        <span><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> <span>ARCHE-Ressource</span></span>
+                    </div>
+                    <div class="entity-profile-details">
+                        <div id="drawerResTypeRow" class="entity-prop-row">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-shapes"></i> Dateityp:</span>
+                            <span id="drawerResTypeVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerResSizeRow" class="entity-prop-row">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-weight-hanging"></i> Dateigröße:</span>
+                            <span id="drawerResSizeVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerResParentRow" class="entity-prop-row">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Sammlung/Ordner:</span>
+                            <span class="entity-prop-val"><a id="drawerResParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
+                        </div>
+                        <div id="drawerResPlaceRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Fundort:</span>
+                            <span class="entity-prop-val"><a id="drawerResPlaceLink" href="#" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">–</a></span>
                         </div>
                     </div>
                 </div>
@@ -1636,6 +1662,11 @@ def generate():
         }};
 
         const layoutConfigs = {{
+            preset: {{
+                name: "preset",
+                fit: true,
+                padding: 40
+            }},
             cose: {{
                 name: "cose",
                 animate: false,
@@ -1707,6 +1738,10 @@ def generate():
             cy = cytoscape({{
                 container: document.getElementById("cy"),
                 elements: safeElements,
+                boxSelectionEnabled: false,
+                textureOnViewport: true,
+                hideEdgesOnViewport: true,
+                pixelRatio: 'auto',
                 style: [
                     {{
                         selector: "node",
@@ -1777,6 +1812,20 @@ def generate():
                         }}
                     }},
                     {{
+                        selector: "node[type = 'resource']",
+                        style: {{
+                            "shape": "ellipse",
+                            "width": 11,
+                            "height": 11,
+                            "border-width": 0.5,
+                            "border-color": "#FFFFFF",
+                            "min-zoomed-font-size": 13,
+                            "background-color": function(ele) {{
+                                return ele.data("color") || typeColors[ele.data("ftype")] || typeColors.resource || "#3D7068";
+                            }}
+                        }}
+                    }},
+                    {{
                         selector: "edge",
                         style: {{
                             "width": 1.3,
@@ -1786,6 +1835,16 @@ def generate():
                             "curve-style": "bezier",
                             "arrow-scale": 0.75,
                             "opacity": 0.65
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'isPartOf']",
+                        style: {{
+                            "width": 0.8,
+                            "line-color": "#C2D1C8",
+                            "target-arrow-shape": "none",
+                            "curve-style": "straight",
+                            "opacity": 0.35
                         }}
                     }},
                     {{
@@ -1899,7 +1958,7 @@ def generate():
                         }}
                     }}
                 ],
-                layout: layoutConfigs.cose
+                layout: layoutConfigs.preset
             }});
 
             cy.$id = function(id) {{
@@ -2206,7 +2265,17 @@ def generate():
             }}
             updateVisibleNodesCount();
             const currentLayout = document.getElementById("layoutSelect").value;
-            cy.layout(layoutConfigs[currentLayout] || layoutConfigs.cose).run();
+            if (currentLayout === "preset") {{
+                cy.layout(layoutConfigs.preset).run();
+            }} else {{
+                const visNodes = cy.nodes(":visible");
+                if (visNodes.length > 1500) {{
+                    showNotification("Layout auf Makro-Knoten beschränkt (hohe Knotenanzahl)", "info", 3000);
+                    visNodes.filter("[type != 'resource']").layout(layoutConfigs[currentLayout] || layoutConfigs.preset).run();
+                }} else {{
+                    cy.elements(":visible").layout(layoutConfigs[currentLayout] || layoutConfigs.preset).run();
+                }}
+            }}
         }}
 
         document.getElementById("depthSelect").addEventListener("change", function() {{
@@ -2215,7 +2284,18 @@ def generate():
 
         document.getElementById("layoutSelect").addEventListener("change", function() {{
             if (!cy) return;
-            cy.layout(layoutConfigs[this.value] || layoutConfigs.cose).run();
+            const layoutName = this.value;
+            if (layoutName === "preset") {{
+                cy.layout(layoutConfigs.preset).run();
+                return;
+            }}
+            const visNodes = cy.nodes(":visible");
+            if (visNodes.length > 1500) {{
+                showNotification("Layout auf sichtbare Makro-Knoten beschränkt (hohe Knotenanzahl)", "info", 3000);
+                visNodes.filter("[type != 'resource']").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+            }} else {{
+                cy.elements(":visible").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+            }}
         }});
 
         // Toast Notification Helper
@@ -2531,6 +2611,56 @@ def generate():
                 }}
             }} else {{
                 if (placeBox) placeBox.style.display = "none";
+            }}
+
+            // Resource Profile Box (when ARCHE Resource is selected)
+            const resDrawerBox = document.getElementById("drawerResourceBox");
+            if (d.type === "resource") {{
+                if (resDrawerBox) resDrawerBox.style.display = "block";
+                const typeVal = document.getElementById("drawerResTypeVal");
+                if (typeVal) typeVal.textContent = d.type_label || d.ftype || "ARCHE-Datei";
+                const sizeVal = document.getElementById("drawerResSizeVal");
+                if (sizeVal) sizeVal.textContent = d.formatted_size || (d.size_bytes ? `${{(d.size_bytes / 1024).toFixed(1)}} KB` : "–");
+
+                const parentLink = document.getElementById("drawerResParentLink");
+                if (parentLink && (d.parent_col || d.col_id || d.col)) {{
+                    const pColId = d.parent_col || d.col_id || `col_${{d.col}}`;
+                    const parentNode = cy.$id(pColId);
+                    const pTitle = (parentNode && parentNode.length > 0) ? parentNode.data("label") : `Sammlung ${{pColId}}`;
+                    parentLink.textContent = pTitle;
+                    parentLink.onclick = (e) => {{
+                        e.preventDefault();
+                        if (parentNode && parentNode.length > 0) {{
+                            parentNode.show();
+                            cy.center(parentNode);
+                            cy.zoom({{ level: 1.8, position: parentNode.position() }});
+                            openInspector(parentNode);
+                            highlightNeighbors(parentNode);
+                        }}
+                    }};
+                }}
+
+                const placeRow = document.getElementById("drawerResPlaceRow");
+                const placeLink = document.getElementById("drawerResPlaceLink");
+                if (d.place && placeRow && placeLink) {{
+                    placeRow.style.display = "flex";
+                    placeLink.textContent = d.place;
+                    placeLink.onclick = (e) => {{
+                        e.preventDefault();
+                        const plcNode = cy.nodes("[type = 'place']").filter(n => n.data("label") === d.place || (d.spatial_ids && d.spatial_ids.includes(n.data("arche_id"))));
+                        if (plcNode.length > 0) {{
+                            plcNode.show();
+                            cy.center(plcNode);
+                            cy.zoom({{ level: 1.8, position: plcNode.position() }});
+                            openInspector(plcNode);
+                            highlightNeighbors(plcNode);
+                        }}
+                    }};
+                }} else if (placeRow) {{
+                    placeRow.style.display = "none";
+                }}
+            }} else {{
+                if (resDrawerBox) resDrawerBox.style.display = "none";
             }}
 
             // Publication Profile Box
@@ -3132,10 +3262,18 @@ def generate():
 
         function focusResourceInGraph(resId) {{
             closeCorpusModal();
-            let node = cy.$id(resId);
-            if (node.length === 0) {{
-                const res = corpusResources.find(r => r.id === resId);
-                if (!res) return;
+            if (!cy || !resId) return;
+            let node = getNodeByIdFlexible(resId) || cy.$id(resId);
+            if (!node || node.length === 0) {{
+                const cleanId = String(resId).replace(/^res_/, "");
+                node = cy.$id(`res_${{cleanId}}`);
+            }}
+            if (!node || node.length === 0) {{
+                const res = corpusResources.find(r => r.id === resId || r.id === `res_${{resId}}` || r.arche_id === resId);
+                if (!res) {{
+                    showNotification(`Ressource [${{resId}}] nicht im Graphen gefunden.`, "warning", 3000);
+                    return;
+                }}
                 const parentColNode = getNodeByIdFlexible(res.col_id) || getNodeByIdFlexible(res.col) || cy.$id("iuenna_root");
                 const parentPos = (parentColNode && parentColNode.length > 0) ? parentColNode.position() : {{ x: 0, y: 0 }};
 
@@ -3144,6 +3282,7 @@ def generate():
                         group: "nodes",
                         data: {{
                             id: res.id,
+                            arche_id: res.arche_id,
                             label: res.title,
                             type: "resource",
                             type_label: `ARCHE-Datei (${{res.type}})`,
@@ -3164,13 +3303,18 @@ def generate():
                             id: `edge_${{res.id}}_foc`,
                             source: res.id,
                             target: (parentColNode && parentColNode.length > 0) ? parentColNode.id() : "iuenna_root",
-                            label: "isPartOfResource"
+                            label: "isPartOf"
                         }}
                     }}
                 ]);
                 node = cy.$id(res.id);
             }}
             node.show();
+            node.connectedEdges().show();
+
+            const chip = document.querySelector('.filter-chip[data-type="resource"]');
+            if (chip && !chip.classList.contains('active')) chip.classList.add('active');
+
             cy.center(node);
             cy.zoom({{ level: 2.2, position: node.position() }});
             openInspector(node);
@@ -3746,7 +3890,7 @@ def generate():
                     let corpusMatches = [];
                     if (corpusResources && corpusResources.length > 0 && query.length >= 2) {{
                         corpusMatches = corpusResources.filter(r => {{
-                            const searchStr = `${{r.title}} ${{r.pid}} ${{r.place}} ${{r.folder}} ${{(r.subjs || []).join(" ")}}`.toLowerCase();
+                            const searchStr = `${{r.title}} ${{r.pid}} ${{r.place}} ${{r.folder}} ${{(r.path || []).join(" ")}} ${{(r.subjs || []).join(" ")}}`.toLowerCase();
                             return tokens.every(tok => searchStr.includes(tok));
                         }}).slice(0, 15);
                     }}
@@ -3873,13 +4017,15 @@ def generate():
 
                 const selector = type === "folder" ? "[type ^= 'folder']" : `[type = "${{type}}"]`;
                 const matchingNodes = cy.nodes(selector);
-                if (isNowActive) matchingNodes.show();
-                else matchingNodes.hide();
-
-                cy.edges().forEach(edge => {{
-                    if (edge.source().visible() && edge.target().visible()) edge.show();
-                    else edge.hide();
-                }});
+                if (isNowActive) {{
+                    matchingNodes.show();
+                    matchingNodes.connectedEdges().forEach(edge => {{
+                        if (edge.source().visible() && edge.target().visible()) edge.show();
+                    }});
+                }} else {{
+                    matchingNodes.hide();
+                    matchingNodes.connectedEdges().hide();
+                }}
 
                 updateVisibleNodesCount();
             }});
