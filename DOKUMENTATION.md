@@ -103,10 +103,21 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 * **`col_ret`-Bereinigung:** Das interne ARCHE-Kürzel `col_ret` wird in allen Breadcrumbs sauber als **`Retrodigitalisat-Collection (RET)`** dargestellt.
 
 ### 3.6 Benutzeroberfläche & Interaktion
-1. **Ausklappbare Dateivorschau:** Der Vorschaubereich im Inspector Drawer kann per Klick auf den Header flexibel auf- und zugeklappt werden.
-2. **Dynamische Fundorte im Korpus-Katalog:** Das Dropdown im Katalog befüllt sich dynamisch aus allen 219 Fundorten mit exakten Trefferzahlen.
-3. **Mehrwort-Suche:** Die Suche splittet Abfragen in Tokens und wendet eine logische AND-Verknüpfung an.
-4. **Merkliste (Auswahl merken):** Ersatz des unhandlichen Forscher:innen-Dropdowns durch einen Button *»Auswahl merken«* und ein interaktives Merklisten-Modal mit Speicherung in `localStorage` und Permalink-Teilfunktion (`?bookmarks=id1,id2`).
+1. **ARCHE-Dateivorschau (Standardmäßig eingeklappt):** Der Vorschaubereich im Inspector Drawer ist standardmäßig eingeklappt (`(Ausklappen)`), um sofort den Blick auf Kontextmetadaten, Beziehungen und Geodaten freizugeben. Ein Klick klappt die Bildvorschau flüssig auf.
+2. **Interaktiver Zoom- & Pan-Viewer für Karten und Pläne:**
+   - Eigene Zoom-Bühne (`#quickPreviewModal`) mit schwebender Toolbar (`+`, `-`, Zoom-Stufe in Prozent, `1:1`-Reset).
+   - Mausrad-Zoom und Grab-to-Pan (Verschieben mit gedrückter Maustaste).
+   - Vollbild-Umschaltung für detaillierte archäologische Dokumentationspläne.
+   - Hochauflösender Bildabruf über den ARCHE-Thumbnaildienst (`width=1920`).
+3. **Fundort-Karten im Graphen & Großansichts-Modal:**
+   - Im Inspector Drawer wird für jeden Fundort eine interaktive Leaflet-Minikarte gerendert.
+   - Über den Button *»Vergrößern«* öffnet sich ein 92vw-Modal (`#largePlaceMapModal`) mit umschaltbaren Layern (**OpenStreetMap** und **OpenTopoMap** für Höhendaten) sowie Direktverlinkung ins Web-Mapping-Portal.
+4. **Web-Mapping-Portal (WMA) Vollbild & Fundort-Deep-Linking:**
+   - Die Live-Karte in `wma/wma.html` besitzt einen Vollbild-Toggle (*»Karte vergrößern / Vollbild«*).
+   - Fundorte im Graphen verlinken direkt mit Parametern (`?lat=...&lng=...&zoom=...`) auf das WMA-Portal und zentrieren die Karte dort präzise auf den Fundort.
+5. **Dynamische Fundorte im Korpus-Katalog:** Das Dropdown im Katalog befüllt sich dynamisch aus allen 219 Fundorten mit exakten Trefferzahlen.
+6. **Mehrwort-Suche:** Die Suche splittet Abfragen in Tokens und wendet eine logische AND-Verknüpfung an.
+7. **Merkliste (Auswahl merken):** Ersatz des unhandlichen Forscher:innen-Dropdowns durch einen Button *»Auswahl merken«* und ein interaktives Merklisten-Modal mit Speicherung in `localStorage` und Permalink-Teilfunktion (`?bookmarks=id1,id2`).
 
 ---
 
