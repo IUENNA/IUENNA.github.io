@@ -1422,41 +1422,71 @@ input:checked + .slider:before {
 .chat-card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .chat-card-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.76rem;
-  padding: 4px 10px;
-  border-radius: 4px;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
+.chat-card-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
+.chat-card-btn:active {
+  transform: translateY(0);
+}
+
+/* Specific button variants */
+.chat-card-btn.graph-btn {
+  background: #FFFDF7;
+  color: #7A5B1E;
+  border-color: var(--secondary);
+  font-weight: 700;
+}
+
+.chat-card-btn.graph-btn:hover {
+  background-color: var(--secondary);
+  color: #FFFFFF;
+}
+
+.chat-card-btn.gis-btn,
 .chat-card-btn.primary {
   background-color: var(--primary);
   color: #FFFFFF;
 }
 
+.chat-card-btn.gis-btn:hover,
 .chat-card-btn.primary:hover {
   background-color: var(--primary-hover);
+  color: #FFFFFF;
 }
 
+.chat-card-btn.arche-btn,
 .chat-card-btn.secondary {
   background-color: #FFFFFF;
   color: var(--text-dark);
-  border: 1px solid var(--border-color);
+  border-color: var(--border-color);
 }
 
+.chat-card-btn.arche-btn:hover,
 .chat-card-btn.secondary:hover {
   background-color: var(--bg-main);
-  border-color: var(--secondary);
-  color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 /* Quick Suggestion Chips */

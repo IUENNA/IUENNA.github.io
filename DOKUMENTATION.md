@@ -118,6 +118,12 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 5. **Dynamische Fundorte im Korpus-Katalog:** Das Dropdown im Katalog befüllt sich dynamisch aus allen 219 Fundorten mit exakten Trefferzahlen.
 6. **Mehrwort-Suche:** Die Suche splittet Abfragen in Tokens und wendet eine logische AND-Verknüpfung an.
 7. **Merkliste (Auswahl merken):** Ersatz des unhandlichen Forscher:innen-Dropdowns durch einen Button *»Auswahl merken«* und ein interaktives Merklisten-Modal mit Speicherung in `localStorage` und Permalink-Teilfunktion (`?bookmarks=id1,id2`).
+8. **Umschaltbare Knoten- und Kantenbeschriftungen & semantische Kantenrelationen:**
+   - **Knotentexte umschalten:** Schaltfläche `#btnToggleNodeLabels` in der Toolbar (*»Knotentexte verbergen«* / *»Knotentexte einblenden«*) blendet Beschriftungen aller Knoten auf Knopfdruck aus oder ein.
+   - **Kantentexte (Relationen) umschalten:** Schaltfläche `#btnToggleEdgeLabels` (*»Kantentexte verbergen«* / *»Kantentexte einblenden«*) deaktiviert oder aktiviert alle Relationstexte.
+   - **Semantische Kanten-Badges:** Kanten tragen ihre Relation (z. B. `isPartOf`, `hasSpatialCoverage`, `documents`, `hasCreator`, `hasSubject`, etc.) als autorotierte Text-Badges mit dezentem Hintergrund und prädikatspezifischen Farben.
+   - **Performance-Schutz (`min-zoomed-font-size: 8.5`):** Im Weitwinkel-Überblick (35.597 Kanten) werden keine Kantentexte gezeichnet; bei Heranzoomen an ein Cluster blenden sich die Beziehungsbeschriftungen flüssig ein.
+   - **Deep-Linking:** URL-Parameter `?node_labels=0` und `?edge_labels=0` ermöglichen den direkten Start mit ausgeblendeten Texten.
 
 ---
 

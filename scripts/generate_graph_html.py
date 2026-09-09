@@ -1473,6 +1473,12 @@ def generate():
             <button id="btnToggleEdges" class="tool-btn" title="Alle Kanten im Graphen ein- oder ausblenden">
                 <i class="fa-solid fa-bezier-curve"></i> <span id="btnToggleEdgesText">Kanten verbergen</span>
             </button>
+            <button id="btnToggleNodeLabels" class="tool-btn" title="Knotenbeschriftungen ein- oder ausblenden">
+                <i class="fa-solid fa-tag"></i> <span id="btnToggleNodeLabelsText">Knotentexte verbergen</span>
+            </button>
+            <button id="btnToggleEdgeLabels" class="tool-btn" title="Kantenbeschriftungen (Relationen) ein- oder ausblenden">
+                <i class="fa-solid fa-font"></i> <span id="btnToggleEdgeLabelsText">Kantentexte verbergen</span>
+            </button>
             <button id="btnFit" class="tool-btn" title="Ansicht einpassen"><i class="fa-solid fa-expand"></i> Zentrieren</button>
             <button id="btnZoomIn" class="tool-btn" title="Vergrößern"><i class="fa-solid fa-plus"></i></button>
             <button id="btnZoomOut" class="tool-btn" title="Verkleinern"><i class="fa-solid fa-minus"></i></button>
@@ -2273,7 +2279,21 @@ def generate():
                             "target-arrow-shape": "triangle",
                             "curve-style": "bezier",
                             "arrow-scale": 0.75,
-                            "opacity": 0.65
+                            "opacity": 0.65,
+                            "label": "data(label)",
+                            "font-size": "7.5px",
+                            "font-family": "Plus Jakarta Sans, sans-serif",
+                            "font-weight": 600,
+                            "color": "#4A5568",
+                            "text-rotation": "autorotate",
+                            "text-background-color": "#FAF8F5",
+                            "text-background-opacity": 0.85,
+                            "text-background-padding": "2px",
+                            "text-background-shape": "roundrectangle",
+                            "text-border-color": "#D5CEC5",
+                            "text-border-width": 0.5,
+                            "text-border-opacity": 0.8,
+                            "min-zoomed-font-size": 8.5
                         }}
                     }},
                     {{
@@ -2283,7 +2303,9 @@ def generate():
                             "line-color": "#C2D1C8",
                             "target-arrow-shape": "none",
                             "curve-style": "straight",
-                            "opacity": 0.35
+                            "opacity": 0.35,
+                            "color": "#3D7068",
+                            "text-border-color": "#B5C8BF"
                         }}
                     }},
                     {{
@@ -2293,7 +2315,10 @@ def generate():
                             "line-color": "#4A6B53",
                             "target-arrow-color": "#4A6B53",
                             "line-style": "dashed",
-                            "opacity": 0.6
+                            "opacity": 0.6,
+                            "color": "#2D6A4F",
+                            "text-border-color": "#A3C4B0",
+                            "text-background-color": "#F4F8F5"
                         }}
                     }},
                     {{
@@ -2302,7 +2327,8 @@ def generate():
                             "width": 1.0,
                             "line-color": "#B5C8BF",
                             "target-arrow-shape": "none",
-                            "opacity": 0.5
+                            "opacity": 0.5,
+                            "color": "#3D7068"
                         }}
                     }},
                     {{
@@ -2312,7 +2338,10 @@ def generate():
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
                             "line-style": "dashed",
-                            "opacity": 0.65
+                            "opacity": 0.65,
+                            "color": "#A8442E",
+                            "text-border-color": "#E5BDB0",
+                            "text-background-color": "#FAF0EC"
                         }}
                     }},
                     {{
@@ -2322,7 +2351,8 @@ def generate():
                             "line-color": "#888888",
                             "target-arrow-color": "#888888",
                             "line-style": "dotted",
-                            "opacity": 0.55
+                            "opacity": 0.55,
+                            "color": "#6B7280"
                         }}
                     }},
                     {{
@@ -2332,7 +2362,9 @@ def generate():
                             "line-color": "#5A6B7C",
                             "target-arrow-color": "#5A6B7C",
                             "line-style": "dashed",
-                            "opacity": 0.55
+                            "opacity": 0.55,
+                            "color": "#3E5C76",
+                            "text-border-color": "#A4B8C6"
                         }}
                     }},
                     {{
@@ -2341,7 +2373,10 @@ def generate():
                             "width": 2.0,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "opacity": 0.85
+                            "opacity": 0.85,
+                            "color": "#A8442E",
+                            "text-border-color": "#E5BDB0",
+                            "text-background-color": "#FAF0EC"
                         }}
                     }},
                     {{
@@ -2350,7 +2385,8 @@ def generate():
                             "width": 1.8,
                             "line-color": "#202226",
                             "target-arrow-color": "#202226",
-                            "opacity": 0.75
+                            "opacity": 0.75,
+                            "color": "#202226"
                         }}
                     }},
                     {{
@@ -2360,7 +2396,10 @@ def generate():
                             "line-color": "#7B4F36",
                             "target-arrow-color": "#7B4F36",
                             "line-style": "dashed",
-                            "opacity": 0.75
+                            "opacity": 0.75,
+                            "color": "#7B4F36",
+                            "text-border-color": "#D3B7A9",
+                            "text-background-color": "#F7F2EF"
                         }}
                     }},
                     {{
@@ -2369,7 +2408,48 @@ def generate():
                             "width": 1.4,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "opacity": 0.75
+                            "opacity": 0.75,
+                            "color": "#A8442E",
+                            "text-border-color": "#E5BDB0"
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasSubject']",
+                        style: {{
+                            "width": 1.1,
+                            "line-color": "#6C5B7B",
+                            "target-arrow-color": "#6C5B7B",
+                            "line-style": "dotted",
+                            "opacity": 0.65,
+                            "color": "#5C4B75",
+                            "text-border-color": "#C0B7C6",
+                            "text-background-color": "#F8F5F9"
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasTemporalCoverage']",
+                        style: {{
+                            "width": 1.1,
+                            "line-color": "#C08A3E",
+                            "target-arrow-color": "#C08A3E",
+                            "line-style": "dashed",
+                            "opacity": 0.65,
+                            "color": "#8C6A3E",
+                            "text-border-color": "#E2CBB0",
+                            "text-background-color": "#FAF6F0"
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasLicense']",
+                        style: {{
+                            "width": 1.0,
+                            "line-color": "#486573",
+                            "target-arrow-color": "#486573",
+                            "line-style": "dotted",
+                            "opacity": 0.55,
+                            "color": "#37535E",
+                            "text-border-color": "#A8B8BF",
+                            "text-background-color": "#F2F6F8"
                         }}
                     }},
                     {{
@@ -2379,21 +2459,44 @@ def generate():
                         }}
                     }},
                     {{
-                        selector: "node.highlighted",
+                        selector: "node.highlighted, node[type].highlighted",
                         style: {{
+                            "label": "data(label)",
                             "border-width": 3.5,
                             "border-color": "#202226",
-                            "opacity": 1
+                            "opacity": 1,
+                            "min-zoomed-font-size": 0
                         }}
                     }},
                     {{
-                        selector: "edge.highlighted",
+                        selector: "edge.highlighted, edge[label].highlighted",
                         style: {{
+                            "label": "data(label)",
                             "width": 2.5,
                             "line-color": "#A8442E",
                             "target-arrow-color": "#A8442E",
                             "opacity": 1,
-                            "z-index": 999
+                            "z-index": 999,
+                            "font-size": "9.5px",
+                            "font-weight": 700,
+                            "color": "#A8442E",
+                            "text-background-color": "#FFFFFF",
+                            "text-background-opacity": 0.95,
+                            "text-border-color": "#A8442E",
+                            "text-border-width": 1.0,
+                            "min-zoomed-font-size": 0
+                        }}
+                    }},
+                    {{
+                        selector: "node.no-label, node[type].no-label, node.highlighted.no-label",
+                        style: {{
+                            "label": ""
+                        }}
+                    }},
+                    {{
+                        selector: "edge.no-label, edge[label].no-label, edge.highlighted.no-label",
+                        style: {{
+                            "label": ""
                         }}
                     }}
                 ],
@@ -2470,7 +2573,7 @@ def generate():
         function getNodeByIdFlexible(id) {{
             if (!cy || !id) return null;
             const strId = String(id).trim();
-            const cleanId = strId.replace(/^(col_|per_|person_|org_|pub_|plc_|place_|res_|dts_)/, '');
+            const cleanId = strId.replace(/^(arche_col_|arche_res_|arche_|col_|per_|person_|org_|pub_|plc_|place_|res_|dts_)/, '');
             const candidates = [
                 strId,
                 `dts_${{cleanId}}`,
@@ -2712,8 +2815,10 @@ def generate():
             }});
         }});
 
-        // Edge visibility state
+        // Edge and label visibility states
         let edgesVisible = true;
+        let nodeLabelsVisible = true;
+        let edgeLabelsVisible = true;
 
         // Hierarchie-Ebenen Mapping für LOD Slider
         const lodLevels = {{
@@ -2791,6 +2896,56 @@ def generate():
                     this.classList.remove("btn-active");
                     if (btnText) btnText.textContent = "Kanten verbergen";
                     showNotification("Kanten wieder eingeblendet", "info", 1800);
+                }}
+            }});
+        }}
+
+        const btnToggleNodeLabels = document.getElementById("btnToggleNodeLabels");
+        if (btnToggleNodeLabels) {{
+            btnToggleNodeLabels.addEventListener("click", function() {{
+                if (!cy) return;
+                nodeLabelsVisible = !nodeLabelsVisible;
+                const btnText = document.getElementById("btnToggleNodeLabelsText");
+                cy.batch(() => {{
+                    if (!nodeLabelsVisible) {{
+                        cy.nodes().addClass("no-label");
+                    }} else {{
+                        cy.nodes().removeClass("no-label");
+                    }}
+                }});
+                if (!nodeLabelsVisible) {{
+                    this.classList.add("btn-active");
+                    if (btnText) btnText.textContent = "Knotentexte einblenden";
+                    showNotification("Knotenbeschriftungen ausgeblendet", "info", 1800);
+                }} else {{
+                    this.classList.remove("btn-active");
+                    if (btnText) btnText.textContent = "Knotentexte verbergen";
+                    showNotification("Knotenbeschriftungen eingeblendet", "info", 1800);
+                }}
+            }});
+        }}
+
+        const btnToggleEdgeLabels = document.getElementById("btnToggleEdgeLabels");
+        if (btnToggleEdgeLabels) {{
+            btnToggleEdgeLabels.addEventListener("click", function() {{
+                if (!cy) return;
+                edgeLabelsVisible = !edgeLabelsVisible;
+                const btnText = document.getElementById("btnToggleEdgeLabelsText");
+                cy.batch(() => {{
+                    if (!edgeLabelsVisible) {{
+                        cy.edges().addClass("no-label");
+                    }} else {{
+                        cy.edges().removeClass("no-label");
+                    }}
+                }});
+                if (!edgeLabelsVisible) {{
+                    this.classList.add("btn-active");
+                    if (btnText) btnText.textContent = "Kantentexte einblenden";
+                    showNotification("Kantenbeschriftungen ausgeblendet", "info", 1800);
+                }} else {{
+                    this.classList.remove("btn-active");
+                    if (btnText) btnText.textContent = "Kantentexte verbergen";
+                    showNotification("Kantenbeschriftungen eingeblendet", "info", 1800);
                 }}
             }});
         }}
@@ -3786,7 +3941,10 @@ def generate():
             }});
 
             if (newElements.length > 0) {{
-                cy.add(newElements);
+                const added = cy.add(newElements);
+                if (!nodeLabelsVisible) added.nodes().addClass("no-label");
+                if (!edgeLabelsVisible) added.edges().addClass("no-label");
+                if (!edgesVisible) added.edges().hide();
                 expandedNodesMap.set(nodeId, addedIds);
                 updateVisibleNodesCount();
                 openInspector(parentNode);
@@ -3825,7 +3983,7 @@ def generate():
                 const parentColNode = getNodeByIdFlexible(res.col_id) || getNodeByIdFlexible(res.col) || cy.$id("iuenna_root");
                 const parentPos = (parentColNode && parentColNode.length > 0) ? parentColNode.position() : {{ x: 0, y: 0 }};
 
-                cy.add([
+                const added = cy.add([
                     {{
                         group: "nodes",
                         data: {{
@@ -3855,10 +4013,14 @@ def generate():
                         }}
                     }}
                 ]);
+                if (!nodeLabelsVisible) added.nodes().addClass("no-label");
+                if (!edgeLabelsVisible) added.edges().addClass("no-label");
+                if (!edgesVisible) added.edges().hide();
                 node = cy.$id(res.id);
             }}
             node.show();
             if (edgesVisible) node.connectedEdges().show();
+            else node.connectedEdges().hide();
 
             const chip = document.querySelector('.filter-chip[data-type="resource"]');
             if (chip && !chip.classList.contains('active')) chip.classList.add('active');
@@ -4944,6 +5106,18 @@ def generate():
                     const btn = document.getElementById("btnToggleEdges");
                     if (btn && edgesVisible) btn.click();
                 }}, 100);
+            }}
+            if (urlParams.get("node_labels") === "0" || urlParams.get("hide_node_labels") === "1") {{
+                setTimeout(() => {{
+                    const btn = document.getElementById("btnToggleNodeLabels");
+                    if (btn && nodeLabelsVisible) btn.click();
+                }}, 110);
+            }}
+            if (urlParams.get("edge_labels") === "0" || urlParams.get("hide_edge_labels") === "1") {{
+                setTimeout(() => {{
+                    const btn = document.getElementById("btnToggleEdgeLabels");
+                    if (btn && edgeLabelsVisible) btn.click();
+                }}, 110);
             }}
             const lodParam = urlParams.get("lod") || urlParams.get("level");
             if (lodParam) {{
