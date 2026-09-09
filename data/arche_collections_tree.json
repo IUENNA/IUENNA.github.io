@@ -1,5 +1,5 @@
 {
-  "crawl_timestamp": "2026-09-08T17:25:23Z",
+  "crawl_timestamp": "2026-09-09T17:10:26Z",
   "total_collections": 434,
   "collections": {
     "1792167": {
@@ -32,6 +32,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792167",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792168": {
@@ -64,6 +65,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792168",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792169": {
@@ -95,6 +97,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792169",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792170": {
@@ -151,6 +154,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792170",
+      "item_spatial_ids": [],
       "level": 0
     },
     "1792171": {
@@ -182,6 +186,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792171",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 4
     },
     "1792174": {
@@ -216,6 +223,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792174",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792175": {
@@ -250,6 +258,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792175",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792177": {
@@ -284,6 +295,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792177",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792178": {
@@ -316,6 +330,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792178",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792179": {
@@ -348,6 +363,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792179",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792180": {
@@ -379,6 +397,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792180",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792181": {
@@ -410,6 +429,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792181",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792182": {
@@ -441,6 +463,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792182",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792183": {
@@ -473,6 +498,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792183",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792184": {
@@ -503,6 +529,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792184",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792185": {
@@ -535,6 +562,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792185",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792186": {
@@ -567,6 +597,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792186",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792187": {
@@ -599,6 +632,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792187",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792188": {
@@ -631,6 +665,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792188",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792190": {
@@ -664,6 +701,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792190",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 2
     },
     "1792193": {
@@ -699,6 +739,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792193",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792194": {
@@ -733,6 +774,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792194",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792201": {
@@ -763,6 +807,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792201",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792202": {
@@ -798,6 +845,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792202",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792203": {
@@ -827,6 +877,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792203",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792205": {
@@ -856,6 +909,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792205",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792206": {
@@ -891,6 +947,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792206",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792207": {
@@ -922,6 +979,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792207",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 4
     },
     "1792208": {
@@ -956,6 +1016,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792208",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 4
     },
     "1792209": {
@@ -989,6 +1052,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792209",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792210": {
@@ -1019,6 +1083,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792210",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 3
     },
     "1792211": {
@@ -1052,6 +1119,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792211",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792212": {
@@ -1082,6 +1150,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792212",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792213": {
@@ -1117,6 +1186,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792213",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792215": {
@@ -1146,6 +1218,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792215",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792216": {
@@ -1177,6 +1250,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792216",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792217": {
@@ -1214,6 +1290,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792217",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792219": {
@@ -1248,6 +1325,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792219",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792222": {
@@ -1284,6 +1364,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792222",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792223": {
@@ -1319,6 +1400,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792223",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792224": {
@@ -1354,6 +1438,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792224",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792225": {
@@ -1389,6 +1474,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792225",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792226": {
@@ -1424,6 +1512,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792226",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792227": {
@@ -1459,6 +1550,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792227",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792228": {
@@ -1490,6 +1584,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792228",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792229": {
@@ -1521,6 +1616,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792229",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792230": {
@@ -1552,6 +1650,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792230",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792231": {
@@ -1583,6 +1684,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792231",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792232": {
@@ -1614,6 +1718,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792232",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792233": {
@@ -1645,6 +1750,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792233",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792234": {
@@ -1676,6 +1784,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792234",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792235": {
@@ -1707,6 +1818,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792235",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792236": {
@@ -1738,6 +1852,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792236",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792237": {
@@ -1769,6 +1886,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792237",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792238": {
@@ -1800,6 +1920,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792238",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792239": {
@@ -1831,6 +1954,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792239",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792240": {
@@ -1862,6 +1988,9 @@
       ],
       "campaign_years": "2001–2002",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792240",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792241": {
@@ -1893,6 +2022,9 @@
       ],
       "campaign_years": "2002",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792241",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792242": {
@@ -1924,6 +2056,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792242",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792243": {
@@ -1955,6 +2090,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792243",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792244": {
@@ -1986,6 +2124,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792244",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792245": {
@@ -2017,6 +2158,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792245",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792246": {
@@ -2048,6 +2192,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792246",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792247": {
@@ -2079,6 +2226,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792247",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792248": {
@@ -2110,6 +2260,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792248",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792249": {
@@ -2141,6 +2294,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792249",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792250": {
@@ -2172,6 +2328,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792250",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792251": {
@@ -2203,6 +2362,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792251",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792252": {
@@ -2234,6 +2396,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792252",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792253": {
@@ -2265,6 +2430,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792253",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792254": {
@@ -2296,6 +2464,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792254",
+      "item_spatial_ids": [],
       "level": 5
     },
     "1792255": {
@@ -2327,6 +2496,9 @@
       ],
       "campaign_years": "2020",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792255",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 6
     },
     "1792256": {
@@ -2358,6 +2530,9 @@
       ],
       "campaign_years": "2020",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792256",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 6
     },
     "1792257": {
@@ -2389,6 +2564,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792257",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792258": {
@@ -2420,6 +2598,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792258",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792259": {
@@ -2451,6 +2632,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792259",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792260": {
@@ -2485,6 +2669,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792260",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792261": {
@@ -2519,6 +2706,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792261",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792264": {
@@ -2550,6 +2738,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792264",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792265": {
@@ -2585,6 +2776,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792265",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792266": {
@@ -2618,6 +2810,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792266",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792267": {
@@ -2653,6 +2846,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792267",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792268": {
@@ -2688,6 +2884,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792268",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792269": {
@@ -2723,6 +2922,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792269",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792270": {
@@ -2752,6 +2954,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792270",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792271": {
@@ -2781,6 +2986,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792271",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792273": {
@@ -2812,6 +3018,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792273",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 2
     },
     "1792274": {
@@ -2851,6 +3060,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792274",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792276": {
@@ -2880,6 +3090,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792276",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792278": {
@@ -2916,6 +3129,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792278",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792284": {
@@ -2949,6 +3165,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792284",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792285": {
@@ -2982,6 +3201,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792285",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792286": {
@@ -3020,6 +3242,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792286",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792288": {
@@ -3053,6 +3278,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792288",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792289": {
@@ -3085,6 +3313,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792289",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792290": {
@@ -3120,6 +3349,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792290",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792292": {
@@ -3158,6 +3390,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792292",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792293": {
@@ -3190,6 +3423,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792293",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 5
     },
     "1792294": {
@@ -3226,6 +3462,10 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792294",
+      "item_spatial_ids": [
+        "1756734",
+        "3013"
+      ],
       "level": 4
     },
     "1792301": {
@@ -3257,6 +3497,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792301",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792302": {
@@ -3286,6 +3529,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792302",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792303": {
@@ -3316,6 +3560,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792303",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792305": {
@@ -3345,6 +3590,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792305",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792307": {
@@ -3376,6 +3624,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792307",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792308": {
@@ -3407,6 +3656,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792308",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792309": {
@@ -3438,6 +3688,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792309",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792310": {
@@ -3471,6 +3724,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792310",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792311": {
@@ -3504,6 +3758,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792311",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792313": {
@@ -3537,6 +3794,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792313",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792314": {
@@ -3568,6 +3828,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792314",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792315": {
@@ -3599,6 +3862,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792315",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792316": {
@@ -3630,6 +3896,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792316",
+      "item_spatial_ids": [],
       "level": 4
     },
     "1792317": {
@@ -3661,6 +3928,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792317",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792318": {
@@ -3692,6 +3962,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792318",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792319": {
@@ -3723,6 +3996,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792319",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792320": {
@@ -3754,6 +4030,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792320",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792321": {
@@ -3785,6 +4064,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792321",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792322": {
@@ -3816,6 +4098,9 @@
       ],
       "campaign_years": "2018",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792322",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792323": {
@@ -3847,6 +4132,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792323",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792324": {
@@ -3878,6 +4166,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792324",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792325": {
@@ -3909,6 +4200,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792325",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792326": {
@@ -3940,6 +4234,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792326",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792327": {
@@ -3971,6 +4268,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792327",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792328": {
@@ -4002,6 +4302,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792328",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792329": {
@@ -4033,6 +4336,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792329",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792330": {
@@ -4064,6 +4370,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792330",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792331": {
@@ -4095,6 +4404,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792331",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792332": {
@@ -4126,6 +4438,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792332",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792333": {
@@ -4157,6 +4472,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792333",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792334": {
@@ -4188,6 +4506,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792334",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792335": {
@@ -4219,6 +4540,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792335",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792336": {
@@ -4250,6 +4574,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792336",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792337": {
@@ -4281,6 +4608,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792337",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792338": {
@@ -4312,6 +4642,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792338",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792339": {
@@ -4343,6 +4676,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792339",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792340": {
@@ -4374,6 +4710,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792340",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792341": {
@@ -4405,6 +4744,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792341",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792342": {
@@ -4436,6 +4778,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792342",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792343": {
@@ -4467,6 +4812,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792343",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792344": {
@@ -4498,6 +4846,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792344",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792345": {
@@ -4529,6 +4880,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792345",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792346": {
@@ -4560,6 +4914,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792346",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792347": {
@@ -4591,6 +4948,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792347",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792348": {
@@ -4622,6 +4982,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792348",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792349": {
@@ -4653,6 +5016,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792349",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792350": {
@@ -4684,6 +5050,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792350",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792351": {
@@ -4715,6 +5084,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792351",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792352": {
@@ -4746,6 +5118,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792352",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792353": {
@@ -4777,6 +5152,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792353",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792354": {
@@ -4808,6 +5186,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792354",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792355": {
@@ -4839,6 +5220,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792355",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792356": {
@@ -4870,6 +5254,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792356",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792357": {
@@ -4901,6 +5288,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792357",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792358": {
@@ -4932,6 +5322,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792358",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792359": {
@@ -4963,6 +5356,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792359",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792360": {
@@ -4994,6 +5390,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792360",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792361": {
@@ -5025,6 +5424,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792361",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792362": {
@@ -5056,6 +5458,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792362",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792363": {
@@ -5087,6 +5492,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792363",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792364": {
@@ -5118,6 +5526,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792364",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792365": {
@@ -5149,6 +5560,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792365",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792366": {
@@ -5180,6 +5594,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792366",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792367": {
@@ -5211,6 +5628,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792367",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792368": {
@@ -5242,6 +5662,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792368",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792369": {
@@ -5273,6 +5696,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792369",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792370": {
@@ -5304,6 +5730,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792370",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792371": {
@@ -5335,6 +5764,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792371",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792372": {
@@ -5366,6 +5798,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792372",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792373": {
@@ -5397,6 +5832,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792373",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792374": {
@@ -5428,6 +5866,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792374",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792375": {
@@ -5459,6 +5900,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792375",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792376": {
@@ -5490,6 +5934,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792376",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792377": {
@@ -5521,6 +5968,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792377",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792378": {
@@ -5552,6 +6002,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792378",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792379": {
@@ -5583,6 +6036,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792379",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792380": {
@@ -5614,6 +6070,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792380",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792381": {
@@ -5645,6 +6104,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792381",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792382": {
@@ -5676,6 +6138,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792382",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792383": {
@@ -5707,6 +6172,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792383",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792384": {
@@ -5738,6 +6206,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792384",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792385": {
@@ -5769,6 +6240,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792385",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792386": {
@@ -5800,6 +6274,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792386",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792387": {
@@ -5831,6 +6308,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792387",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792388": {
@@ -5862,6 +6342,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792388",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 5
     },
     "1792389": {
@@ -5893,6 +6376,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792389",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792390": {
@@ -5922,6 +6408,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792390",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792391": {
@@ -5953,6 +6440,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792391",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792392": {
@@ -5984,6 +6474,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792392",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792393": {
@@ -6015,6 +6508,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792393",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 4
     },
     "1792394": {
@@ -6045,6 +6541,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792394",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 2
     },
     "1792395": {
@@ -6079,6 +6578,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792395",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792396": {
@@ -6112,6 +6612,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792396",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792397": {
@@ -6143,6 +6646,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792397",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792400": {
@@ -6174,6 +6680,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792400",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792401": {
@@ -6203,6 +6712,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792401",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792402": {
@@ -6237,6 +6749,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792402",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792403": {
@@ -6266,6 +6781,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792403",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792404": {
@@ -6296,6 +6814,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792404",
+      "item_spatial_ids": [
+        "1756733"
+      ],
       "level": 3
     },
     "1792406": {
@@ -6330,6 +6851,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792406",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792411": {
@@ -6359,6 +6881,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792411",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792412": {
@@ -6389,6 +6912,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792412",
+      "item_spatial_ids": [
+        "1756737"
+      ],
       "level": 2
     },
     "1792414": {
@@ -6418,6 +6944,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792414",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792415": {
@@ -6447,6 +6974,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792415",
+      "item_spatial_ids": [
+        "1756737"
+      ],
       "level": 3
     },
     "1792416": {
@@ -6476,6 +7006,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792416",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792417": {
@@ -6508,6 +7039,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792417",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792421": {
@@ -6537,6 +7069,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792421",
+      "item_spatial_ids": [
+        "1757032",
+        "1757033"
+      ],
       "level": 3
     },
     "1792423": {
@@ -6576,6 +7112,157 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792423",
+      "item_spatial_ids": [
+        "138270",
+        "138277",
+        "1756733",
+        "1756734",
+        "1756735",
+        "1756736",
+        "1756737",
+        "1757032",
+        "1757033",
+        "1757036",
+        "1757037",
+        "1757038",
+        "1757039",
+        "1757040",
+        "1757041",
+        "1757042",
+        "1757043",
+        "1757044",
+        "1757045",
+        "1757046",
+        "1757047",
+        "1757048",
+        "1757049",
+        "1757050",
+        "1757051",
+        "1757052",
+        "1757053",
+        "1757054",
+        "1757055",
+        "1757056",
+        "1757057",
+        "1757058",
+        "1757059",
+        "1757060",
+        "1757061",
+        "1757062",
+        "1757063",
+        "1757064",
+        "1757065",
+        "1757066",
+        "1757067",
+        "1757068",
+        "1757069",
+        "1757070",
+        "1757071",
+        "1757073",
+        "1757074",
+        "1757075",
+        "1757076",
+        "1757077",
+        "1757078",
+        "1757079",
+        "1757080",
+        "1757081",
+        "1757082",
+        "1757083",
+        "1757084",
+        "1757085",
+        "1757086",
+        "1757087",
+        "1757088",
+        "1757089",
+        "1757090",
+        "1757091",
+        "1757092",
+        "1757093",
+        "1757094",
+        "1757095",
+        "1757096",
+        "1757097",
+        "1757098",
+        "1757099",
+        "1757100",
+        "1757101",
+        "1757102",
+        "1757103",
+        "1757104",
+        "1757105",
+        "1757106",
+        "1757107",
+        "1757108",
+        "1757109",
+        "1757110",
+        "1757111",
+        "1757112",
+        "1757113",
+        "1757114",
+        "1757115",
+        "1757116",
+        "1757117",
+        "1757118",
+        "1757119",
+        "1757120",
+        "1757121",
+        "1757122",
+        "1757123",
+        "1757124",
+        "1757125",
+        "1757126",
+        "1757127",
+        "1757128",
+        "1757129",
+        "1757130",
+        "1757131",
+        "1757132",
+        "1757133",
+        "1757134",
+        "1757135",
+        "1757136",
+        "1757137",
+        "1757138",
+        "1757139",
+        "1757140",
+        "1757141",
+        "1757142",
+        "1757143",
+        "1757144",
+        "1757145",
+        "1757146",
+        "1757147",
+        "1757148",
+        "1757149",
+        "1757150",
+        "1757151",
+        "1757152",
+        "1757153",
+        "1757154",
+        "1757155",
+        "1757156",
+        "1757157",
+        "1757158",
+        "1757159",
+        "1757160",
+        "1757161",
+        "1757162",
+        "1757163",
+        "1757164",
+        "1757165",
+        "1757166",
+        "1757167",
+        "1757168",
+        "1757170",
+        "1757171",
+        "1757172",
+        "182008",
+        "24299",
+        "3013",
+        "565454",
+        "99940"
+      ],
       "level": 2
     },
     "1792567": {
@@ -6608,6 +7295,13 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792567",
+      "item_spatial_ids": [
+        "1756733",
+        "1756734",
+        "1756736",
+        "1757036",
+        "1757180"
+      ],
       "level": 3
     },
     "1792568": {
@@ -6640,6 +7334,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792568",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792570": {
@@ -6669,6 +7364,7 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792570",
+      "item_spatial_ids": [],
       "level": 2
     },
     "1792571": {
@@ -6698,6 +7394,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792571",
+      "item_spatial_ids": [
+        "1757170"
+      ],
       "level": 3
     },
     "1792572": {
@@ -6728,6 +7427,7 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792572",
+      "item_spatial_ids": [],
       "level": 1
     },
     "1792573": {
@@ -6757,6 +7457,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792573",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 2
     },
     "1792574": {
@@ -6786,6 +7489,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792574",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 2
     },
     "1792575": {
@@ -6816,6 +7522,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792575",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792576": {
@@ -6846,6 +7556,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792576",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792578": {
@@ -6876,6 +7590,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792578",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792579": {
@@ -6906,6 +7624,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792579",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792580": {
@@ -6936,6 +7658,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792580",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792581": {
@@ -6966,6 +7692,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792581",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792582": {
@@ -6996,6 +7726,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792582",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792583": {
@@ -7026,6 +7760,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792583",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792584": {
@@ -7056,6 +7794,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792584",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792585": {
@@ -7086,6 +7828,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792585",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792586": {
@@ -7116,6 +7862,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792586",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792587": {
@@ -7146,6 +7896,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792587",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792588": {
@@ -7176,6 +7930,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792588",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792589": {
@@ -7206,6 +7964,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792589",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792590": {
@@ -7236,6 +7998,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792590",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792591": {
@@ -7266,6 +8032,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792591",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792592": {
@@ -7295,6 +8065,9 @@
       "spatial_ids": [],
       "campaign_years": "1980",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792592",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792593": {
@@ -7324,6 +8097,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792593",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792594": {
@@ -7353,6 +8129,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792594",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792595": {
@@ -7382,6 +8161,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792595",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 3
     },
     "1792596": {
@@ -7412,6 +8194,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792596",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792597": {
@@ -7442,6 +8228,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792597",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792598": {
@@ -7472,6 +8262,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792598",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792599": {
@@ -7502,6 +8296,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792599",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792600": {
@@ -7532,6 +8330,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792600",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792601": {
@@ -7562,6 +8364,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792601",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792602": {
@@ -7592,6 +8398,11 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792602",
+      "item_spatial_ids": [
+        "1756734",
+        "1757228",
+        "180744"
+      ],
       "level": 2
     },
     "1792603": {
@@ -7622,6 +8433,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792603",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792604": {
@@ -7652,6 +8467,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792604",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792605": {
@@ -7682,6 +8501,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792605",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792606": {
@@ -7712,6 +8535,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792606",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792607": {
@@ -7742,6 +8569,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792607",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792608": {
@@ -7772,6 +8603,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792608",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792609": {
@@ -7802,6 +8637,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792609",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792610": {
@@ -7832,6 +8671,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792610",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792611": {
@@ -7862,6 +8705,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792611",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792612": {
@@ -7892,6 +8739,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792612",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792613": {
@@ -7922,6 +8773,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792613",
+      "item_spatial_ids": [
+        "1757225",
+        "180744"
+      ],
       "level": 3
     },
     "1792615": {
@@ -7952,6 +8807,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792615",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792616": {
@@ -7982,6 +8841,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792616",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792618": {
@@ -8012,6 +8875,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792618",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792619": {
@@ -8042,6 +8908,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792619",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792620": {
@@ -8072,6 +8942,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792620",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792621": {
@@ -8102,6 +8976,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792621",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792622": {
@@ -8132,6 +9010,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792622",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792623": {
@@ -8162,6 +9044,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792623",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792625": {
@@ -8192,6 +9078,11 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792625",
+      "item_spatial_ids": [
+        "1756734",
+        "1756735",
+        "180744"
+      ],
       "level": 3
     },
     "1792626": {
@@ -8226,6 +9117,11 @@
       ],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792626",
+      "item_spatial_ids": [
+        "1756734",
+        "180744",
+        "182800"
+      ],
       "level": 4
     },
     "1792627": {
@@ -8256,6 +9152,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792627",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792628": {
@@ -8286,6 +9186,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792628",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792629": {
@@ -8316,6 +9220,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792629",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792630": {
@@ -8346,6 +9254,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792630",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792631": {
@@ -8376,6 +9288,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792631",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792632": {
@@ -8406,6 +9322,10 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792632",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792633": {
@@ -8436,6 +9356,9 @@
       "spatial_ids": [],
       "campaign_years": "1994–1995–1996",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792633",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792634": {
@@ -8466,6 +9389,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792634",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792635": {
@@ -8496,6 +9423,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792635",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792636": {
@@ -8526,6 +9457,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792636",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792637": {
@@ -8556,6 +9491,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792637",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792638": {
@@ -8586,6 +9525,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792638",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792639": {
@@ -8616,6 +9559,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792639",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792640": {
@@ -8646,6 +9593,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792640",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792641": {
@@ -8676,6 +9627,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792641",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792642": {
@@ -8706,6 +9661,10 @@
       "spatial_ids": [],
       "campaign_years": "1997",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792642",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792643": {
@@ -8736,6 +9695,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792643",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792644": {
@@ -8766,6 +9729,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792644",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792645": {
@@ -8796,6 +9763,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792645",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792646": {
@@ -8826,6 +9797,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792646",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792647": {
@@ -8856,6 +9831,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792647",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792648": {
@@ -8886,6 +9865,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792648",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792649": {
@@ -8916,6 +9899,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792649",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792650": {
@@ -8946,6 +9933,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792650",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792651": {
@@ -8976,6 +9967,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792651",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792652": {
@@ -9006,6 +10001,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792652",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792653": {
@@ -9036,6 +10035,10 @@
       "spatial_ids": [],
       "campaign_years": "1997",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792653",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792654": {
@@ -9066,6 +10069,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792654",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792655": {
@@ -9096,6 +10103,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792655",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792656": {
@@ -9127,6 +10138,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792656",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792657": {
@@ -9158,6 +10173,10 @@
       "spatial_ids": [],
       "campaign_years": "1980",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792657",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792658": {
@@ -9189,6 +10208,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792658",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792659": {
@@ -9219,6 +10242,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792659",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792660": {
@@ -9252,6 +10279,10 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792660",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 4
     },
     "1792661": {
@@ -9283,6 +10314,11 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792661",
+      "item_spatial_ids": [
+        "1756734",
+        "180744",
+        "46850"
+      ],
       "level": 2
     },
     "1792662": {
@@ -9313,6 +10349,10 @@
       "spatial_ids": [],
       "campaign_years": "1987–1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792662",
+      "item_spatial_ids": [
+        "1756736",
+        "180744"
+      ],
       "level": 3
     },
     "1792663": {
@@ -9343,6 +10383,10 @@
       "spatial_ids": [],
       "campaign_years": "1987–1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792663",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792664": {
@@ -9373,6 +10417,10 @@
       "spatial_ids": [],
       "campaign_years": "1987–1988–1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792664",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792665": {
@@ -9403,6 +10451,10 @@
       "spatial_ids": [],
       "campaign_years": "1987–1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792665",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792667": {
@@ -9434,6 +10486,11 @@
       "spatial_ids": [],
       "campaign_years": "1978–1980",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792667",
+      "item_spatial_ids": [
+        "1756734",
+        "1756736",
+        "180744"
+      ],
       "level": 2
     },
     "1792668": {
@@ -9465,6 +10522,11 @@
       "spatial_ids": [],
       "campaign_years": "1987–1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792668",
+      "item_spatial_ids": [
+        "1756734",
+        "1757283",
+        "180744"
+      ],
       "level": 2
     },
     "1792669": {
@@ -9496,6 +10558,10 @@
       "spatial_ids": [],
       "campaign_years": "1983",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792669",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792670": {
@@ -9526,6 +10592,10 @@
       "spatial_ids": [],
       "campaign_years": "1983",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792670",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792671": {
@@ -9556,6 +10626,10 @@
       "spatial_ids": [],
       "campaign_years": "1983",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792671",
+      "item_spatial_ids": [
+        "1756737",
+        "180744"
+      ],
       "level": 3
     },
     "1792673": {
@@ -9587,6 +10661,13 @@
       "spatial_ids": [],
       "campaign_years": "1981–1982",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792673",
+      "item_spatial_ids": [
+        "1756734",
+        "1756736",
+        "1756737",
+        "180744",
+        "46850"
+      ],
       "level": 2
     },
     "1792674": {
@@ -9617,6 +10698,10 @@
       "spatial_ids": [],
       "campaign_years": "1985",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792674",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792675": {
@@ -9648,6 +10733,11 @@
       "spatial_ids": [],
       "campaign_years": "1994",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792675",
+      "item_spatial_ids": [
+        "1756734",
+        "1757289",
+        "180744"
+      ],
       "level": 2
     },
     "1792676": {
@@ -9678,6 +10768,10 @@
       "spatial_ids": [],
       "campaign_years": "1985",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792676",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792677": {
@@ -9708,6 +10802,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792677",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792679": {
@@ -9738,6 +10836,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792679",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792680": {
@@ -9768,6 +10870,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792680",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792681": {
@@ -9799,6 +10905,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792681",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792682": {
@@ -9829,6 +10939,7 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792682",
+      "item_spatial_ids": [],
       "level": 3
     },
     "1792683": {
@@ -9859,6 +10970,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792683",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792684": {
@@ -9889,6 +11004,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792684",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792685": {
@@ -9919,6 +11038,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792685",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792686": {
@@ -9949,6 +11072,10 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792686",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792687": {
@@ -9979,6 +11106,11 @@
       "spatial_ids": [],
       "campaign_years": "2010",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792687",
+      "item_spatial_ids": [
+        "1756734",
+        "1756736",
+        "180744"
+      ],
       "level": 2
     },
     "1792688": {
@@ -10009,6 +11141,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792688",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792689": {
@@ -10039,6 +11175,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792689",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792690": {
@@ -10069,6 +11209,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792690",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792691": {
@@ -10099,6 +11243,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792691",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792692": {
@@ -10129,6 +11277,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792692",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792693": {
@@ -10159,6 +11311,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792693",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792694": {
@@ -10189,6 +11345,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792694",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792695": {
@@ -10219,6 +11379,10 @@
       "spatial_ids": [],
       "campaign_years": "2011",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792695",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792696": {
@@ -10250,6 +11414,10 @@
       "spatial_ids": [],
       "campaign_years": "2012",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792696",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792697": {
@@ -10280,6 +11448,10 @@
       "spatial_ids": [],
       "campaign_years": "2012",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792697",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792698": {
@@ -10311,6 +11483,10 @@
       "spatial_ids": [],
       "campaign_years": "2013",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792698",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792699": {
@@ -10341,6 +11517,10 @@
       "spatial_ids": [],
       "campaign_years": "2013",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792699",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792700": {
@@ -10371,6 +11551,10 @@
       "spatial_ids": [],
       "campaign_years": "2013",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792700",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792701": {
@@ -10401,6 +11585,10 @@
       "spatial_ids": [],
       "campaign_years": "2013",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792701",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792702": {
@@ -10431,6 +11619,10 @@
       "spatial_ids": [],
       "campaign_years": "2012",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792702",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792703": {
@@ -10461,6 +11653,10 @@
       "spatial_ids": [],
       "campaign_years": "2017",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792703",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792704": {
@@ -10491,6 +11687,10 @@
       "spatial_ids": [],
       "campaign_years": "2017",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792704",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792705": {
@@ -10521,6 +11721,10 @@
       "spatial_ids": [],
       "campaign_years": "1996–2016",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792705",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792706": {
@@ -10551,6 +11755,10 @@
       "spatial_ids": [],
       "campaign_years": "1996–2016",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792706",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792707": {
@@ -10581,6 +11789,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792707",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792708": {
@@ -10611,6 +11823,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792708",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792709": {
@@ -10641,6 +11857,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792709",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792710": {
@@ -10671,6 +11891,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792710",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792711": {
@@ -10701,6 +11925,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792711",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792712": {
@@ -10731,6 +11959,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792712",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792713": {
@@ -10761,6 +11993,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792713",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792714": {
@@ -10791,6 +12027,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792714",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792715": {
@@ -10821,6 +12061,9 @@
       "spatial_ids": [],
       "campaign_years": "1978–1983",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792715",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792716": {
@@ -10851,6 +12094,10 @@
       "spatial_ids": [],
       "campaign_years": "1997",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792716",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792717": {
@@ -10881,6 +12128,10 @@
       "spatial_ids": [],
       "campaign_years": "1997",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792717",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792718": {
@@ -10911,6 +12162,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792718",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792719": {
@@ -10941,6 +12196,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792719",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792720": {
@@ -10971,6 +12230,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792720",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792721": {
@@ -11001,6 +12264,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792721",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792722": {
@@ -11031,6 +12298,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792722",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792723": {
@@ -11061,6 +12332,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792723",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792724": {
@@ -11091,6 +12366,10 @@
       "spatial_ids": [],
       "campaign_years": "1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792724",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792725": {
@@ -11121,6 +12400,9 @@
       "spatial_ids": [],
       "campaign_years": "1997–1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792725",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 3
     },
     "1792726": {
@@ -11165,6 +12447,22 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792726",
+      "item_spatial_ids": [
+        "101687",
+        "1756734",
+        "1756736",
+        "1757289",
+        "1757339",
+        "1757340",
+        "1757341",
+        "1757342",
+        "1757343",
+        "1757344",
+        "180744",
+        "46850",
+        "561162",
+        "94580"
+      ],
       "level": 4
     },
     "1792727": {
@@ -11194,6 +12492,26 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792727",
+      "item_spatial_ids": [
+        "105016",
+        "1757037",
+        "1757056",
+        "1757167",
+        "1757172",
+        "1757339",
+        "1757361",
+        "1757362",
+        "1757363",
+        "1757364",
+        "1757365",
+        "1757366",
+        "1757367",
+        "1757368",
+        "180744",
+        "46850",
+        "561162",
+        "94580"
+      ],
       "level": 3
     },
     "1792731": {
@@ -11224,6 +12542,20 @@
       "spatial_ids": [],
       "campaign_years": "1991",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792731",
+      "item_spatial_ids": [
+        "1757056",
+        "1757171",
+        "1757172",
+        "1757343",
+        "1757368",
+        "1757390",
+        "1757392",
+        "1757393",
+        "180744",
+        "46850",
+        "94580",
+        "95647"
+      ],
       "level": 2
     },
     "1792739": {
@@ -11255,6 +12587,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792739",
+      "item_spatial_ids": [
+        "1756736"
+      ],
       "level": 5
     },
     "1792741": {
@@ -11288,6 +12623,11 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792741",
+      "item_spatial_ids": [
+        "1757171",
+        "1757357",
+        "180744"
+      ],
       "level": 4
     },
     "1792742": {
@@ -11319,6 +12659,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792742",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 4
     },
     "1792752": {
@@ -11348,6 +12691,30 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792752",
+      "item_spatial_ids": [
+        "103824",
+        "105016",
+        "1056240",
+        "1756734",
+        "1756736",
+        "1757037",
+        "1757171",
+        "1757172",
+        "1757339",
+        "1757363",
+        "1757364",
+        "1757372",
+        "1757373",
+        "1757374",
+        "1757375",
+        "1757376",
+        "1757378",
+        "1757380",
+        "1757381",
+        "180744",
+        "46850",
+        "94580"
+      ],
       "level": 3
     },
     "1792753": {
@@ -11380,6 +12747,10 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792753",
+      "item_spatial_ids": [
+        "1757339",
+        "180744"
+      ],
       "level": 4
     },
     "1792754": {
@@ -11411,6 +12782,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792754",
+      "item_spatial_ids": [
+        "1757339"
+      ],
       "level": 4
     },
     "1792765": {
@@ -11440,6 +12814,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792765",
+      "item_spatial_ids": [
+        "182008"
+      ],
       "level": 3
     },
     "1792766": {
@@ -11469,6 +12846,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792766",
+      "item_spatial_ids": [
+        "1757171"
+      ],
       "level": 3
     },
     "1792767": {
@@ -11500,6 +12880,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792767",
+      "item_spatial_ids": [
+        "1757171"
+      ],
       "level": 4
     },
     "1792768": {
@@ -11529,6 +12912,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792768",
+      "item_spatial_ids": [
+        "1757171",
+        "1757385"
+      ],
       "level": 3
     },
     "1792770": {
@@ -11558,6 +12945,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792770",
+      "item_spatial_ids": [
+        "1757171",
+        "1757388"
+      ],
       "level": 3
     },
     "1792772": {
@@ -11587,6 +12978,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792772",
+      "item_spatial_ids": [
+        "1757171"
+      ],
       "level": 3
     },
     "1792777": {
@@ -11618,6 +13012,10 @@
       "spatial_ids": [],
       "campaign_years": "1983–1984",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792777",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792778": {
@@ -11648,6 +13046,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792778",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792779": {
@@ -11678,6 +13080,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792779",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792780": {
@@ -11708,6 +13114,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792780",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792781": {
@@ -11738,6 +13148,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792781",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792782": {
@@ -11768,6 +13182,10 @@
       "spatial_ids": [],
       "campaign_years": "1985–1986",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792782",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792783": {
@@ -11798,6 +13216,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792783",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792784": {
@@ -11828,6 +13250,10 @@
       "spatial_ids": [],
       "campaign_years": "1997",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792784",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792785": {
@@ -11859,6 +13285,33 @@
       "spatial_ids": [],
       "campaign_years": "1989",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792785",
+      "item_spatial_ids": [
+        "1449105",
+        "1756734",
+        "1757289",
+        "1757407",
+        "1757408",
+        "1757409",
+        "1757410",
+        "1757411",
+        "1757412",
+        "1757413",
+        "1757414",
+        "1757415",
+        "1757416",
+        "1757417",
+        "1757418",
+        "1757419",
+        "1757420",
+        "1757421",
+        "1757422",
+        "1757423",
+        "1757425",
+        "1757427",
+        "180744",
+        "207153",
+        "563528"
+      ],
       "level": 2
     },
     "1792786": {
@@ -11890,6 +13343,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792786",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792787": {
@@ -11921,6 +13378,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792787",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792788": {
@@ -11952,6 +13413,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792788",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792811": {
@@ -11982,6 +13447,10 @@
       "spatial_ids": [],
       "campaign_years": "1997–1998",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792811",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792812": {
@@ -12012,6 +13481,10 @@
       "spatial_ids": [],
       "campaign_years": "1983",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792812",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792813": {
@@ -12042,6 +13515,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792813",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792814": {
@@ -12072,6 +13548,10 @@
       "spatial_ids": [],
       "campaign_years": "1982",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792814",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792815": {
@@ -12102,6 +13582,10 @@
       "spatial_ids": [],
       "campaign_years": "1981",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792815",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792816": {
@@ -12132,6 +13616,10 @@
       "spatial_ids": [],
       "campaign_years": "1980",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792816",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792817": {
@@ -12162,6 +13650,10 @@
       "spatial_ids": [],
       "campaign_years": "1979",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792817",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792818": {
@@ -12192,6 +13684,10 @@
       "spatial_ids": [],
       "campaign_years": "1978",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792818",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792819": {
@@ -12222,6 +13718,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792819",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792820": {
@@ -12253,6 +13753,11 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792820",
+      "item_spatial_ids": [
+        "1756734",
+        "1757418",
+        "180744"
+      ],
       "level": 2
     },
     "1792821": {
@@ -12283,6 +13788,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792821",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792822": {
@@ -12313,6 +13822,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792822",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792823": {
@@ -12343,6 +13856,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792823",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792824": {
@@ -12373,6 +13890,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792824",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792825": {
@@ -12404,6 +13925,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792825",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792826": {
@@ -12434,6 +13959,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792826",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792827": {
@@ -12465,6 +13994,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792827",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792828": {
@@ -12495,6 +14028,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792828",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792829": {
@@ -12525,6 +14062,10 @@
       "spatial_ids": [],
       "campaign_years": "1991",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792829",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792830": {
@@ -12555,6 +14096,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792830",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 2
     },
     "1792831": {
@@ -12586,6 +14131,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792831",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792832": {
@@ -12617,6 +14166,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792832",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792834": {
@@ -12651,6 +14203,10 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792834",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 4
     },
     "1792835": {
@@ -12682,6 +14238,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792835",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792836": {
@@ -12713,6 +14273,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792836",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792837": {
@@ -12744,6 +14308,9 @@
       "spatial_ids": [],
       "campaign_years": "1993",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792837",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 2
     },
     "1792838": {
@@ -12775,6 +14342,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792838",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792839": {
@@ -12806,6 +14377,12 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792839",
+      "item_spatial_ids": [
+        "1756734",
+        "1756735",
+        "1756736",
+        "180744"
+      ],
       "level": 2
     },
     "1792840": {
@@ -12837,6 +14414,11 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792840",
+      "item_spatial_ids": [
+        "1756734",
+        "1756736",
+        "180744"
+      ],
       "level": 3
     },
     "1792841": {
@@ -12868,6 +14450,9 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792841",
+      "item_spatial_ids": [
+        "180744"
+      ],
       "level": 2
     },
     "1792842": {
@@ -12899,6 +14484,11 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792842",
+      "item_spatial_ids": [
+        "1757168",
+        "1757459",
+        "180744"
+      ],
       "level": 3
     },
     "1792844": {
@@ -12930,6 +14520,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792844",
+      "item_spatial_ids": [
+        "1756736",
+        "180744"
+      ],
       "level": 3
     },
     "1792845": {
@@ -12961,6 +14555,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792845",
+      "item_spatial_ids": [
+        "1757462",
+        "180744"
+      ],
       "level": 3
     },
     "1792847": {
@@ -12992,6 +14590,13 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792847",
+      "item_spatial_ids": [
+        "1756733",
+        "1756734",
+        "1756736",
+        "1756737",
+        "180744"
+      ],
       "level": 3
     },
     "1792848": {
@@ -13023,6 +14628,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792848",
+      "item_spatial_ids": [
+        "1756734",
+        "180744"
+      ],
       "level": 3
     },
     "1792849": {
@@ -13054,6 +14663,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792849",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792850": {
@@ -13085,6 +14697,9 @@
       ],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792850",
+      "item_spatial_ids": [
+        "1756734"
+      ],
       "level": 4
     },
     "1792851": {
@@ -13116,6 +14731,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792851",
+      "item_spatial_ids": [
+        "1757073",
+        "180744"
+      ],
       "level": 3
     },
     "1792852": {
@@ -13147,6 +14766,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792852",
+      "item_spatial_ids": [
+        "1757283",
+        "180744"
+      ],
       "level": 3
     },
     "1792853": {
@@ -13178,6 +14801,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792853",
+      "item_spatial_ids": [
+        "1757163",
+        "180744"
+      ],
       "level": 3
     },
     "1792854": {
@@ -13209,6 +14836,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792854",
+      "item_spatial_ids": [
+        "1757120",
+        "180744"
+      ],
       "level": 3
     },
     "1792855": {
@@ -13240,6 +14871,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792855",
+      "item_spatial_ids": [
+        "1757472",
+        "180744"
+      ],
       "level": 3
     },
     "1792857": {
@@ -13271,6 +14906,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792857",
+      "item_spatial_ids": [
+        "1756737",
+        "180744"
+      ],
       "level": 3
     },
     "1792858": {
@@ -13302,6 +14941,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792858",
+      "item_spatial_ids": [
+        "1756737",
+        "180744"
+      ],
       "level": 3
     },
     "1792859": {
@@ -13333,6 +14976,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792859",
+      "item_spatial_ids": [
+        "1757123",
+        "180744"
+      ],
       "level": 3
     },
     "1792860": {
@@ -13364,6 +15011,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792860",
+      "item_spatial_ids": [
+        "1757125",
+        "180744"
+      ],
       "level": 3
     },
     "1792861": {
@@ -13395,6 +15046,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792861",
+      "item_spatial_ids": [
+        "1757088",
+        "180744"
+      ],
       "level": 3
     },
     "1792862": {
@@ -13426,6 +15081,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792862",
+      "item_spatial_ids": [
+        "1757157",
+        "180744"
+      ],
       "level": 3
     },
     "1792863": {
@@ -13457,6 +15116,10 @@
       "spatial_ids": [],
       "campaign_years": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1792863",
+      "item_spatial_ids": [
+        "1757037",
+        "180744"
+      ],
       "level": 3
     }
   },

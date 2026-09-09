@@ -18427,5 +18427,345 @@
       "lon": 14.68333,
       "geonames": "https://sws.geonames.org/2766674/"
     }
+  },
+  {
+    "id": "dts_1795453",
+    "arche_id": "1795453",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "glo_geodaten_open.gpkg",
+    "sublabel": "GeoPackage • 17.1 MB • 1 verortete Fundorte",
+    "code": "glo_geodaten_open.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "glo_geodaten_open.gpkg",
+      "glo_geodaten_open.gpkg",
+      "1795453",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Dominik Hagmann",
+      "kärnten.museum",
+      "Franziska Reiner",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "filename": "glo_geodaten_open.gpkg",
+      "citation": "Hagmann, D., kärnten.museum, Reiner, F., & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). glo_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-EBEF-4",
+      "size": "17.1 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EBEF-4",
+      "parent_id": "1792190",
+      "places_count": 1,
+      "creators": [
+        "Dominik Hagmann",
+        "kärnten.museum",
+        "Franziska Reiner",
+        "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      ]
+    }
+  },
+  {
+    "id": "dts_1795454",
+    "arche_id": "1795454",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "glo_graeber-anthropologie.gpkg",
+    "sublabel": "GeoPackage • 528 KB • 1 verortete Fundorte",
+    "code": "glo_graeber-anthropologie.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "glo_graeber-anthropologie.gpkg",
+      "glo_graeber-anthropologie.gpkg",
+      "1795454",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "filename": "glo_graeber-anthropologie.gpkg",
+      "citation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). glo_graeber-anthropologie.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-EBF0-1",
+      "size": "528 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF0-1",
+      "parent_id": "1792190",
+      "places_count": 1,
+      "creators": [
+        "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      ]
+    }
+  },
+  {
+    "id": "dts_1798920",
+    "arche_id": "1798920",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "hb_geodaten_open.gpkg",
+    "sublabel": "GeoPackage • 3.0 MB • 1 verortete Fundorte",
+    "code": "hb_geodaten_open.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "hb_geodaten_open.gpkg",
+      "hb_geodaten_open.gpkg",
+      "1798920",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "filename": "hb_geodaten_open.gpkg",
+      "citation": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). hb_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-F9B1-8",
+      "size": "3.0 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B1-8",
+      "parent_id": "1792273",
+      "places_count": 1,
+      "creators": [
+        "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+        "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      ]
+    }
+  },
+  {
+    "id": "dts_1798921",
+    "arche_id": "1798921",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "hb_graeber-anthropologie.gpkg",
+    "sublabel": "GeoPackage • 188 KB • 1 verortete Fundorte",
+    "code": "hb_graeber-anthropologie.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "hb_graeber-anthropologie.gpkg",
+      "hb_graeber-anthropologie.gpkg",
+      "1798921",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "filename": "hb_graeber-anthropologie.gpkg",
+      "citation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). hb_graeber-anthropologie.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-F9B2-7",
+      "size": "188 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B2-7",
+      "parent_id": "1792273",
+      "places_count": 1,
+      "creators": [
+        "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      ]
+    }
+  },
+  {
+    "id": "dts_1803840",
+    "arche_id": "1803840",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "jau_geodaten_open.gpkg",
+    "sublabel": "GeoPackage • 76.0 MB • 1 verortete Fundorte",
+    "code": "jau_geodaten_open.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "jau_geodaten_open.gpkg",
+      "jau_geodaten_open.gpkg",
+      "1803840",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "filename": "jau_geodaten_open.gpkg",
+      "citation": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). jau_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0D4B-7",
+      "size": "76.0 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0D4B-7",
+      "parent_id": "1792394",
+      "places_count": 1,
+      "creators": [
+        "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+        "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      ]
+    }
+  },
+  {
+    "id": "dts_1804065",
+    "arche_id": "1804065",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "ste_geodaten_open.gpkg",
+    "sublabel": "GeoPackage • 14.1 MB • 1 verortete Fundorte",
+    "code": "ste_geodaten_open.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "ste_geodaten_open.gpkg",
+      "ste_geodaten_open.gpkg",
+      "1804065",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Dominik Hagmann",
+      "Franziska Reiner"
+    ],
+    "meta": {
+      "filename": "ste_geodaten_open.gpkg",
+      "citation": "Hagmann, D. & Reiner, F. (2025). ste_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E37-C",
+      "size": "14.1 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E37-C",
+      "parent_id": "1792412",
+      "places_count": 1,
+      "creators": [
+        "Dominik Hagmann",
+        "Franziska Reiner"
+      ]
+    }
+  },
+  {
+    "id": "dts_1804081",
+    "arche_id": "1804081",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "tal_bda_fsdb_2023.gpkg",
+    "sublabel": "GeoPackage • 528 KB • 140 verortete Fundorte",
+    "code": "tal_bda_fsdb_2023.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "tal_bda_fsdb_2023.gpkg",
+      "tal_bda_fsdb_2023.gpkg",
+      "1804081",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Dominik Hagmann",
+      "Astrid Steinegger",
+      "Bundesdenkmalamt",
+      "René Ployer",
+      "bda",
+      "bundesdenkmalamt",
+      "ployer",
+      "steinegger",
+      "hagmann",
+      "fundstellendatenbank",
+      "jauntal",
+      "tal"
+    ],
+    "meta": {
+      "filename": "tal_bda_fsdb_2023.gpkg",
+      "citation": "Bundesdenkmalamt, Hagmann, D., Ployer, R., & Steinegger, A. (2025). tal_bda_fsdb_2023.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4A-7",
+      "size": "528 KB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7",
+      "parent_id": "1792423",
+      "places_count": 140,
+      "creators": [
+        "Dominik Hagmann",
+        "Astrid Steinegger",
+        "Bundesdenkmalamt",
+        "René Ployer"
+      ]
+    }
+  },
+  {
+    "id": "dts_1804082",
+    "arche_id": "1804082",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "tal_geodaten_open.gpkg",
+    "sublabel": "GeoPackage • 11.1 MB • 6 verortete Fundorte",
+    "code": "tal_geodaten_open.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "tal_geodaten_open.gpkg",
+      "tal_geodaten_open.gpkg",
+      "1804082",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Christian Gugl",
+      "Dominik Hagmann",
+      "Franziska Reiner",
+      "Elise Baudouin",
+      "Elke Profant"
+    ],
+    "meta": {
+      "filename": "tal_geodaten_open.gpkg",
+      "citation": "Gugl, C., Hagmann, D., Reiner, F., Baudouin, E., & Profant, E. (2025). tal_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4B-6",
+      "size": "11.1 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4B-6",
+      "parent_id": "1792423",
+      "places_count": 6,
+      "creators": [
+        "Christian Gugl",
+        "Dominik Hagmann",
+        "Franziska Reiner",
+        "Elise Baudouin",
+        "Elke Profant"
+      ]
+    }
+  },
+  {
+    "id": "dts_1804083",
+    "arche_id": "1804083",
+    "type": "dataset",
+    "category": "Forschungsdatensätze & Geodaten",
+    "label": "tal_noricum_grenzen_2024.gpkg",
+    "sublabel": "GeoPackage • 1.6 MB • 7 verortete Fundorte",
+    "code": "tal_noricum_grenzen_2024.gpkg",
+    "icon": "fa-database",
+    "color": "#1B4965",
+    "tokens": [
+      "tal_noricum_grenzen_2024.gpkg",
+      "tal_noricum_grenzen_2024.gpkg",
+      "1804083",
+      "geopackage",
+      "gpkg",
+      "fsdb",
+      "geodaten",
+      "gis",
+      "forschungsdaten",
+      "Dominik Hagmann"
+    ],
+    "meta": {
+      "filename": "tal_noricum_grenzen_2024.gpkg",
+      "citation": "Hagmann, D. (2025). tal_noricum_grenzen_2024.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4E-3",
+      "size": "1.6 MB",
+      "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4E-3",
+      "parent_id": "1792423",
+      "places_count": 7,
+      "creators": [
+        "Dominik Hagmann"
+      ]
+    }
   }
 ]

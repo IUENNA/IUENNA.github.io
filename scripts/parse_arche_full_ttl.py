@@ -46,6 +46,9 @@ def parse_arche_ttl(ttl_path):
     places = {}
     collections = {}
     resources_summary = {}
+    GPKG_IDS = {"1804081", "1804082", "1804083", "1795453", "1795454", "1798920", "1798921", "1803840", "1804065"}
+    datasets = {}
+    collection_item_spatial = {}
 
     def extract_literal(pred, block_text):
         m = re.search(r"n2:" + pred + r'\s+"([^"\\]*(?:\\.[^"\\]*)*)"(?:@[a-z]+|\^\^<[^>]+>)?', block_text)
@@ -285,8 +288,46 @@ def parse_arche_ttl(ttl_path):
             parent = is_part_of[0] if is_part_of else "unknown"
             resources_summary[parent] = resources_summary.get(parent, 0) + 1
 
+            spat = extract_uris("hasSpatialCoverage", b)
+            if spat and parent != "unknown":
+                if parent not in collection_item_spatial:
+                    collection_item_spatial[parent] = set()
+                collection_item_spatial[parent].update(spat)
+
+            filename = extract_literal("hasFilename", b) or ""
+            if arche_id in GPKG_IDS or filename.lower().endswith(".gpkg"):
+                title = extract_literal("hasTitle", b) or filename or f"Datensatz {arche_id}"
+                desc = extract_literal("hasDescription", b) or ""
+                size_str = extract_literal("hasBinarySize", b) or "0"
+                pid = extract_literal("hasPid", b) or ""
+                license_summary = extract_literal("hasLicenseSummary", b) or ""
+                access_restriction = extract_literal("hasAccessRestrictionSummary", b) or ""
+                creators = extract_uris("hasCreator", b)
+                contributors = extract_uris("hasContributor", b)
+                documents = extract_uris("documents", b)
+                size_bytes = int(size_str) if size_str.isdigit() else 0
+
+                datasets[arche_id] = {
+                    "id": f"dts_{arche_id}",
+                    "arche_id": arche_id,
+                    "title": title,
+                    "filename": filename,
+                    "description": desc,
+                    "parent_id": parent if parent != "unknown" else None,
+                    "creator_ids": creators,
+                    "contributor_ids": contributors,
+                    "spatial_ids": spat,
+                    "documented_ids": documents,
+                    "size_bytes": size_bytes,
+                    "formatted_size": format_size(size_bytes),
+                    "pid": pid,
+                    "license_summary": license_summary,
+                    "access_restriction": access_restriction,
+                    "uri": f"https://arche.acdh.oeaw.ac.at/api/{arche_id}"
+                }
+
     print(f"[✓] Parsed: {len(collections)} Collections, {len(persons)} Persons, {len(organisations)} Organisations, "
-          f"{len(publications)} Publications, {len(places)} Places")
+          f"{len(publications)} Publications, {len(places)} Places, {len(datasets)} Datasets")
 
     # Resolve person affiliations
     for p in persons.values():
@@ -309,6 +350,58 @@ def parse_arche_ttl(ttl_path):
             else:
                 author_names.append(f"Autor {a_id}")
         pub["authors_formatted"] = ", ".join(author_names) if author_names else "Unbekannt"
+
+    # Resolve dataset creators, citations, and metadata
+    for d_id, d in datasets.items():
+        creators_list = []
+        for c_id in d.get("creator_ids", []):
+            if c_id in persons:
+                p = persons[c_id]
+                creators_list.append({
+                    "id": p["id"],
+                    "arche_id": c_id,
+                    "name": p["name"],
+                    "type": "Person",
+                    "orcid": p.get("orcid"),
+                    "affiliation": p.get("affiliation")
+                })
+            elif c_id in organisations:
+                org = organisations[c_id]
+                creators_list.append({
+                    "id": org["id"],
+                    "arche_id": c_id,
+                    "name": org["name"],
+                    "type": "Organisation"
+                })
+        d["creators"] = creators_list
+
+        fn = d["filename"]
+        pid_url = d["pid"] or f"https://arche.acdh.oeaw.ac.at/api/{d_id}"
+        if d_id == "1804081":
+            d["citation"] = f"Bundesdenkmalamt, Hagmann, D., Ployer, R., & Steinegger, A. (2025). {fn}. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from {pid_url}"
+        else:
+            formatted_authors = []
+            for c in creators_list:
+                if c["type"] == "Person":
+                    parts = c["name"].strip().split(" ")
+                    last = parts[-1]
+                    inits = ". ".join([pt[0] for pt in parts[:-1] if pt]) + "."
+                    formatted_authors.append(f"{last}, {inits}" if inits != "." else last)
+                else:
+                    formatted_authors.append(c["name"])
+            if len(formatted_authors) == 1:
+                auth_str = formatted_authors[0]
+            elif len(formatted_authors) == 2:
+                auth_str = f"{formatted_authors[0]} & {formatted_authors[1]}"
+            elif len(formatted_authors) > 2:
+                auth_str = ", ".join(formatted_authors[:-1]) + f", & {formatted_authors[-1]}"
+            else:
+                auth_str = "IUENNA Project"
+            d["citation"] = f"{auth_str} (2025). {fn}. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from {pid_url}"
+
+    # Attach item_spatial_ids to collections
+    for col_id, col in collections.items():
+        col["item_spatial_ids"] = sorted(list(collection_item_spatial.get(col_id, set())))
 
     # Assign correct tree levels to collections
     root_id = "1792170"
@@ -576,6 +669,35 @@ def parse_arche_ttl(ttl_path):
             }
         })
 
+    # 6. Primary Research Datasets & GeoPackages
+    for d in datasets.values():
+        tokens = [d["filename"], d["title"], d["arche_id"], "geopackage", "gpkg", "fsdb", "geodaten", "gis", "forschungsdaten"]
+        for c in d.get("creators", []):
+            tokens.append(c["name"])
+        if d["arche_id"] == "1804081":
+            tokens.extend(["bda", "bundesdenkmalamt", "ployer", "steinegger", "hagmann", "fundstellendatenbank", "jauntal", "tal"])
+        search_index.append({
+            "id": d["id"],
+            "arche_id": d["arche_id"],
+            "type": "dataset",
+            "category": "Forschungsdatensätze & Geodaten",
+            "label": d["filename"],
+            "sublabel": f"GeoPackage • {d['formatted_size']} • {len(d['spatial_ids'])} verortete Fundorte",
+            "code": d["filename"],
+            "icon": "fa-database",
+            "color": "#1B4965",
+            "tokens": [t for t in tokens if t],
+            "meta": {
+                "filename": d["filename"],
+                "citation": d.get("citation", ""),
+                "size": d["formatted_size"],
+                "pid": d["pid"],
+                "parent_id": d.get("parent_id"),
+                "places_count": len(d["spatial_ids"]),
+                "creators": [c["name"] for c in d.get("creators", [])]
+            }
+        })
+
     print(f"[5/5] Writing output files...")
     out_tree = "data/arche_collections_tree.json"
     tree_payload = {
@@ -616,6 +738,11 @@ def parse_arche_ttl(ttl_path):
     with open(out_places, "w", encoding="utf-8") as f:
         json.dump(places, f, ensure_ascii=False, indent=2)
     print(f" [✓] Wrote {out_places} ({os.path.getsize(out_places) / 1024:.1f} KB)")
+
+    out_datasets = "data/arche_datasets.json"
+    with open(out_datasets, "w", encoding="utf-8") as f:
+        json.dump(datasets, f, ensure_ascii=False, indent=2)
+    print(f" [✓] Wrote {out_datasets} ({os.path.getsize(out_datasets) / 1024:.1f} KB, {len(datasets)} datasets)")
 
     out_search = "data/arche_search_index.json"
     with open(out_search, "w", encoding="utf-8") as f:

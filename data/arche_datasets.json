@@ -1,0 +1,577 @@
+{
+  "1795453": {
+    "id": "dts_1795453",
+    "arche_id": "1795453",
+    "title": "glo_geodaten_open.gpkg",
+    "filename": "glo_geodaten_open.gpkg",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf Basis des Gesamtplanes wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:\\n* Georadar-Daten (glo20_georadar [EPSG:32633],glo24_georadar_all [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar (2020: Teilergebnisse,2024: Gesamtergebnisse) in Globasnitz.\\n* Geomagnetik-Daten (glo24_geomagnetik_all [EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik in Globasnitz mit Stand 2024.\\n* Vektorisierte Ausgrabungsdaten (glo_ausgrabung_features [EPSG:31255]; Felder: fid,Id,Grabnummer,Feature,Area_m2,geom): Enthält die vektorisierte Umzeichnung der Grabungsergebnisse der Ausgrabungen im Gräberfeld Globasnitz lt. dem Gesamtplan.\\n* Interpretation der geophysikalischen Messungen (glo_geophysik_features [EPSG:32633]; Felder: fid,Shape_Leng,Shape_Area,ID,VisualID,Methode,Typ,Befund): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\\n* glo_Glaser_1979_features: Verzeichnis der Fundzonen nach den Grabungen der Jahre 1913,1914,1922,1923,1924,1925,1928,1968 und 1976 in Globasnitz nach der von F. Glaser 1979 angefertigte Fundstellenskizze (EPSG:32622; s. für die aktuellste Ausführung Glaser 2021,54 Abb. 2 und den anschließenden Kommentar zum Metadateneintrag). \\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792190",
+    "creator_ids": [
+      "1756725",
+      "1756728",
+      "1756730",
+      "37483"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756736"
+    ],
+    "documented_ids": [
+      "1756763",
+      "1756764",
+      "1756767",
+      "1756782",
+      "1756783",
+      "1756784"
+    ],
+    "size_bytes": 17907712,
+    "formatted_size": "17.1 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBEF-4",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1795453",
+    "creators": [
+      {
+        "id": "per_1756725",
+        "arche_id": "1756725",
+        "name": "Dominik Hagmann",
+        "type": "Person",
+        "orcid": "0000-0002-4481-6234",
+        "affiliation": "kärnten.museum"
+      },
+      {
+        "id": "org_1756728",
+        "arche_id": "1756728",
+        "name": "kärnten.museum",
+        "type": "Organisation"
+      },
+      {
+        "id": "per_1756730",
+        "arche_id": "1756730",
+        "name": "Franziska Reiner",
+        "type": "Person",
+        "orcid": null,
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      },
+      {
+        "id": "org_37483",
+        "arche_id": "37483",
+        "name": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+        "type": "Organisation"
+      }
+    ],
+    "citation": "Hagmann, D., kärnten.museum, Reiner, F., & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). glo_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-EBEF-4"
+  },
+  "1795454": {
+    "id": "dts_1795454",
+    "arche_id": "1795454",
+    "title": "glo_graeber-anthropologie.gpkg",
+    "filename": "glo_graeber-anthropologie.gpkg",
+    "description": "Diese GeoPackage-Geodatenbank enthält detaillierte bioarchäologische Informationen zu Gräbern vom Gräberfeld des Fundplatzes Globasnitz. Sie dient dazu,systematisch qualitative und quantitative Informationen über die Gräber räumlich bereitzustellen und analysierbar zu machen: Jede Datensatz im Koordinatensystem EPSG:32633 in der Datenbank repräsentiert ein Grab und enthält die folgenden Attribute:\\n\\n*fid: Eindeutige Kennung für jeden Datensatz.\\n*SHAPE_Length und SHAPE_Area: Geometrische Maße des Grabes,einschließlich Länge und Fläche.\\n*Anthropologie: Hinweise auf anthropologische Untersuchungen.\\n*Beigaben: Angabe,ob Beigaben im Grab gefunden wurden.\\n*beprobt: Information,ob Proben aus dem Grab entnommen wurden.\\n*Geschlecht: Geschlecht der bestatteten Person,falls bestimmbar.\\n*Grabnummer: Eindeutige Nummer des Grabes.\\n*Orientierung des Kopfes: Richtung,in die der Kopf der bestatteten Person zeigt.\\n*Sterbealter: Altersangabe der bestatteten Person zum Zeitpunkt des Todes.\\n*C14,C_N,SR: Ergebnisse spezifischer Analysen (z.B. Radiokarbon-Datierung,Isotopenanalysen).\\n*Anzahl der Bestattungen: Anzahl der in dem Grab bestatteten Personen.\\n*Bestattungstyp: Art der Bestattung (z.B. Einzel- oder Doppelbestattung).\\n*Grabbau: Beschreibung der Grabkonstruktion (z.B. Grabgrube,Grabgrube mit Steinsetzung).\\n*Holzreste erhalten: Angabe,ob Holzreste im Grab erhalten sind.\\n*Schädeldeformation: Angabe,ob Schädeldeformationen festgestellt wurden.\\n\\nEine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792190",
+    "creator_ids": [
+      "37483"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756736"
+    ],
+    "documented_ids": [
+      "1756763",
+      "1756764",
+      "1756767"
+    ],
+    "size_bytes": 540672,
+    "formatted_size": "528 KB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-EBF0-1",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1795454",
+    "creators": [
+      {
+        "id": "org_37483",
+        "arche_id": "37483",
+        "name": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+        "type": "Organisation"
+      }
+    ],
+    "citation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). glo_graeber-anthropologie.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-EBF0-1"
+  },
+  "1798920": {
+    "id": "dts_1798920",
+    "arche_id": "1798920",
+    "title": "hb_geodaten_open.gpkg",
+    "filename": "hb_geodaten_open.gpkg",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadarprospektionen 2015 auf dem Hemmaberg. Es umfasst folgende Datensätze:\\n* Georadar-Daten (hb15_georadar_mig_030_100 [EPSG:32633],hb15_georadar_mig_030_200 [EPSG:32633],hb15_georadar_mig_100_200 [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar am Hemmaberg in Form von drei kombinierten Tiefenscheiben (30 bis 100 cm,30 bis 200 cm und 100 bis 200 cm Tiefe).\\n* Messflächen (hb15_mig_border [EPSG:32633]; Felder: fid,ID,Name,Area): Enthält die Ausmaße der geohysikalischen Messflächen auf dem Hemmaberg.\\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792273",
+    "creator_ids": [
+      "255675",
+      "37483"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756734"
+    ],
+    "documented_ids": [
+      "1756764"
+    ],
+    "size_bytes": 3112960,
+    "formatted_size": "3.0 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B1-8",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1798920",
+    "creators": [
+      {
+        "id": "org_255675",
+        "arche_id": "255675",
+        "name": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+        "type": "Organisation"
+      },
+      {
+        "id": "org_37483",
+        "arche_id": "37483",
+        "name": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+        "type": "Organisation"
+      }
+    ],
+    "citation": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). hb_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-F9B1-8"
+  },
+  "1798921": {
+    "id": "dts_1798921",
+    "arche_id": "1798921",
+    "title": "hb_graeber-anthropologie.gpkg",
+    "filename": "hb_graeber-anthropologie.gpkg",
+    "description": "Diese GeoPackage-Geodatenbank enthält detaillierte bioarchäologische Informationen zu den bis 2017 ergrabenen Gräbern vom Gräberfeld des Fundplatzes Hemmaberg. Sie dient dazu,systematisch qualitative und quantitative Informationen über die Gräber räumlich breitzustellen und analysierbar zu machen. Jeder Datensatz in der Datenbank repräsentiert ein Grab im Koordinatensystem EPSG:31255 und enthält die folgenden Attribute:\\n\\n*fid: Eindeutige Kennung für jeden Datensatz.\\n*OBJECTID: Alternativer Identifier.\\n*Grabnummer: Eindeutige Nummer des Grabes.\\n*SHAPE_Length und SHAPE_Area: Geometrische Maße des Grabes,einschließlich Länge und Fläche.\\n*Orientierung: Richtung,in die der Kopf der bestatteten Person zeigt.\\n*Geschlecht: Geschlecht der bestatteten Person,falls bestimmbar.\\n*Beigaben: Angabe,ob Beigaben im Grab gefunden wurden.\\n*Bestattung: Art der Bestattung (z.B. Einzel- oder Doppelbestattung).\\n*Sterbealter: Altersangabe der bestatteten Person zum Zeitpunkt des Todes.\\n*beprobt: Information,ob Proben aus dem Grab entnommen wurden.\\n*Anthropologie: Hinweise auf anthropologische Untersuchungen.\\n*Anzahl der Bestattungen: Anzahl der in dem Grab bestatteten Personen.\\n*C14,C_N,SR: Ergebnisse spezifischer Analysen (z.B. Radiokarbon-Datierung,Isotopenanalysen).\\n\\nEine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792273",
+    "creator_ids": [
+      "37483"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756734"
+    ],
+    "documented_ids": [
+      "1756764",
+      "1756816"
+    ],
+    "size_bytes": 192512,
+    "formatted_size": "188 KB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0015-F9B2-7",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1798921",
+    "creators": [
+      {
+        "id": "org_37483",
+        "arche_id": "37483",
+        "name": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+        "type": "Organisation"
+      }
+    ],
+    "citation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). hb_graeber-anthropologie.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0015-F9B2-7"
+  },
+  "1803840": {
+    "id": "dts_1803840",
+    "arche_id": "1803840",
+    "title": "jau_geodaten_open.gpkg",
+    "filename": "jau_geodaten_open.gpkg",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Ausgrabungen bis 2020 in Jaunstein. Es umfasst folgende Datensätze:\\n* Vektordatensatz mit geodätisch erfassten Daten zur archäologischen Fundstelle Jaunstein (jau_ausgrabung_features; [EPSG:32633]; Felder: Fid,id,Name,Area_m2).\\n* Georeferenzierte Orthofotos (jau20_20200815-1_ortho_05mm [EPSG:31255]; jau20_20200825-2_ortho_05mm [EPSG:31255]; jau20_20200826-3_ortho_05mm [EPSG:31255]): Diese beinhalten die georeferenzierten,digitalen Orthofotos der Enddokumentation 2020 zur Kirchengrabung in Jaunstein vom 15. August 2020,25. August 2020 und 26. August 2020.\\n* TLS-Daten (jau20_TLS_enddokumentation [EPSG:32633]; jau_meterriss_kirchenschiff [EPSG:31255]; jau_meterriss_vorraum [EPSG:31255]): Enthält die prozessierten Endergebnisse der Dokumentation mittels terrestrischem Laserscannings (TLS) in Jaunstein in Form eines georeferenzierten Rasterbildes des digtalen Oberflächenmodells (DOM) und daraus generierten Ableitungen; diese setzen sich wiederum aus dem georeferenzierten Rasterbild des Kirchenschiffs (Meterriss) und dem georeferenzierten Rasterbild des Vorraums (Meterriss) des Kirchengebäudes zusammen.\\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten und weiter zu analysieren.",
+    "parent_id": "1792394",
+    "creator_ids": [
+      "255675",
+      "37483"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756733"
+    ],
+    "documented_ids": [
+      "1756764",
+      "1756918"
+    ],
+    "size_bytes": 79699968,
+    "formatted_size": "76.0 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0D4B-7",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1803840",
+    "creators": [
+      {
+        "id": "org_255675",
+        "arche_id": "255675",
+        "name": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology",
+        "type": "Organisation"
+      },
+      {
+        "id": "org_37483",
+        "arche_id": "37483",
+        "name": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+        "type": "Organisation"
+      }
+    ],
+    "citation": "Ludwig Boltzmann Institute for Archaeological Prospection and Virtual Archaeology & Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften (2025). jau_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0D4B-7"
+  },
+  "1804065": {
+    "id": "dts_1804065",
+    "arche_id": "1804065",
+    "title": "ste_geodaten_open.gpkg",
+    "filename": "ste_geodaten_open.gpkg",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den geophysikalischen Prospektionen in Steben bis 2024. Es umfasst folgende Datensätze:\\n* Vektordatensatz mit den Interpretationen der geophysikalisch erfassten Features zur archäologischen Fundstelle Steben (ste_geophysik_features; [EPSG:32633]; Felder: fid,ID,Shape_Length,Shape_Area,Methode,Typ,Befund,Phase,Magnetisierung): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\\n* Georadar-Daten (ste24_georadar_all [EPSG:32633]): Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar in Steben.\\n* Geomagnetik-Daten (ste24_geomagnetik_all; [EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik in Steben mit Stand 2024.\\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten und weiter zu analysieren.",
+    "parent_id": "1792412",
+    "creator_ids": [
+      "1756725",
+      "1756730"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756737"
+    ],
+    "documented_ids": [
+      "1756763",
+      "1757025"
+    ],
+    "size_bytes": 14831616,
+    "formatted_size": "14.1 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E37-C",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1804065",
+    "creators": [
+      {
+        "id": "per_1756725",
+        "arche_id": "1756725",
+        "name": "Dominik Hagmann",
+        "type": "Person",
+        "orcid": "0000-0002-4481-6234",
+        "affiliation": "kärnten.museum"
+      },
+      {
+        "id": "per_1756730",
+        "arche_id": "1756730",
+        "name": "Franziska Reiner",
+        "type": "Person",
+        "orcid": null,
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      }
+    ],
+    "citation": "Hagmann, D. & Reiner, F. (2025). ste_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E37-C"
+  },
+  "1804081": {
+    "id": "dts_1804081",
+    "arche_id": "1804081",
+    "title": "tal_bda_fsdb_2023.gpkg",
+    "filename": "tal_bda_fsdb_2023.gpkg",
+    "description": "Der vorliegende Auszug aus der Fundstellendatenbank des Bundesdenkmalamtes (BDA) für die im Jauntal (TAL) vorhandenen Katastralgemeinden (KG) umfasst umfangreiche archäologische Informationen zum Jauntal in Kärnten. Er beinhaltet detaillierte Aufzeichnungen von Siedlungsstrukturen,Landschaftsmerkmalen und Fundstellen aus verschiedenen Epochen (vgl. detailliert zu den Rahmenbedingungen und Weiterverarbeitungsmöglichkeiten Hagmann 2024).\\nMit dem Projekt IUENNA war das Bundesland Kärnten noch nicht in die neue HERIS-Datenbank eingearbeitet,weshalb diese Daten nicht zur Verfügung standen. Diese Datenbank stellt eine durch das BDA vorbereitete,systematische Landesaufnahme dar; zum IUENNA-Durchführungszeitraum war dies in den östlichen und westlichen Bundesländern bereits erfolgt bzw. im Laufen. Für Kärnten ist jedoch erst mit 2026 (als letztes österreichisches Bundesland) mit entsprechenden aktualisierten Einträgen zu rechnen.\\nDie Daten beinhalten keine exakte Georeferenzierung,doch sind zumindest die Mittelpunktkoordinaten angegeben,die für eine Kartierung genutzt werden können. Ergänzt wird der Datensatz daher durch georeferenzierte Informationen,basierend auf GeoNames (https://geonames.org),die gemeinsam mit den qualitativen und quantitativen archäologischen Attributen eine präzise Verortung und Visualisierung der archäologischen Befunde ermöglichen. Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792423",
+    "creator_ids": [
+      "1756725",
+      "1756739",
+      "1756743",
+      "1756756"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756733",
+      "1756734",
+      "1756735",
+      "1756736",
+      "1756737",
+      "1757032",
+      "1757033",
+      "1757036",
+      "1757037",
+      "1757038",
+      "1757039",
+      "1757040",
+      "1757041",
+      "1757042",
+      "1757043",
+      "1757044",
+      "1757045",
+      "1757046",
+      "1757047",
+      "1757048",
+      "1757049",
+      "1757050",
+      "1757051",
+      "1757052",
+      "1757053",
+      "1757054",
+      "1757055",
+      "1757056",
+      "1757057",
+      "1757058",
+      "1757059",
+      "1757060",
+      "1757061",
+      "1757062",
+      "1757063",
+      "1757064",
+      "1757065",
+      "1757066",
+      "1757067",
+      "1757068",
+      "1757069",
+      "1757070",
+      "1757071",
+      "1757073",
+      "1757074",
+      "1757075",
+      "1757076",
+      "1757077",
+      "1757078",
+      "1757079",
+      "1757080",
+      "1757081",
+      "1757082",
+      "1757083",
+      "1757084",
+      "1757085",
+      "1757086",
+      "1757087",
+      "1757088",
+      "1757089",
+      "1757090",
+      "1757091",
+      "1757092",
+      "1757093",
+      "1757094",
+      "1757095",
+      "1757096",
+      "1757097",
+      "1757098",
+      "1757099",
+      "1757100",
+      "1757101",
+      "1757102",
+      "1757103",
+      "1757104",
+      "1757105",
+      "1757106",
+      "1757107",
+      "1757108",
+      "1757109",
+      "1757110",
+      "1757111",
+      "1757112",
+      "1757113",
+      "1757114",
+      "1757115",
+      "1757116",
+      "1757117",
+      "1757118",
+      "1757119",
+      "1757120",
+      "1757121",
+      "1757122",
+      "1757123",
+      "1757124",
+      "1757125",
+      "1757126",
+      "1757127",
+      "1757128",
+      "1757129",
+      "1757130",
+      "1757131",
+      "1757132",
+      "1757133",
+      "1757134",
+      "1757135",
+      "1757136",
+      "1757137",
+      "1757138",
+      "1757139",
+      "1757140",
+      "1757141",
+      "1757142",
+      "1757143",
+      "1757144",
+      "1757145",
+      "1757146",
+      "1757147",
+      "1757148",
+      "1757149",
+      "1757150",
+      "1757151",
+      "1757152",
+      "1757153",
+      "1757154",
+      "1757155",
+      "1757156",
+      "1757157",
+      "1757158",
+      "1757159",
+      "1757160",
+      "1757161",
+      "1757162",
+      "1757163",
+      "1757164",
+      "1757165",
+      "1757166",
+      "1757167",
+      "1757168",
+      "565454"
+    ],
+    "documented_ids": [
+      "1756783",
+      "1757035"
+    ],
+    "size_bytes": 540672,
+    "formatted_size": "528 KB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1804081",
+    "creators": [
+      {
+        "id": "per_1756725",
+        "arche_id": "1756725",
+        "name": "Dominik Hagmann",
+        "type": "Person",
+        "orcid": "0000-0002-4481-6234",
+        "affiliation": "kärnten.museum"
+      },
+      {
+        "id": "per_1756739",
+        "arche_id": "1756739",
+        "name": "Astrid Steinegger",
+        "type": "Person",
+        "orcid": null,
+        "affiliation": "Bundesdenkmalamt"
+      },
+      {
+        "id": "org_1756743",
+        "arche_id": "1756743",
+        "name": "Bundesdenkmalamt",
+        "type": "Organisation"
+      },
+      {
+        "id": "per_1756756",
+        "arche_id": "1756756",
+        "name": "René Ployer",
+        "type": "Person",
+        "orcid": "0000-0002-5124-2574",
+        "affiliation": "Bundesdenkmalamt"
+      }
+    ],
+    "citation": "Bundesdenkmalamt, Hagmann, D., Ployer, R., & Steinegger, A. (2025). tal_bda_fsdb_2023.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4A-7"
+  },
+  "1804082": {
+    "id": "dts_1804082",
+    "arche_id": "1804082",
+    "title": "tal_geodaten_open.gpkg",
+    "filename": "tal_geodaten_open.gpkg",
+    "description": "Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf Basis des Gesamtplanes wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:\\n* Selektierte Start- und Stopppunkte der Verkehrswege im Jauntal und darüber hinaus (tal_pois_strasse [EPSG:31258]); Felder: fid,Name\\n* Interpretation der geophysikalischen Messungen (tal_geophysik_features [EPSG:32633]; Felder: fid,Shape_Length,Shape_Area,ID,Methode,Layer,Typ,Befund): Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.\\n* Geomagnetik-Daten (tal23_tainacherfeld_1_n10p10 [EPSG:32633],tal23_tainacherfeld_2_n10p10,[EPSG:32633]): Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik im Tainacherfeld mit Stand 2023.\\n* Remote Sensing-Interpretation von Straßenbefunden (tal24_features_strassen [EPSG:4326]; Felder: fid,Von,Nach,Quelle,Beschreibung,Distanz,Meilen): Anhand von Luftbildern und Geländemodellen interpretierter Verlauf der Straße von Virunum nach Iuenna im Jauntal und weiter Richtung Colatio mit Stand 2024.\\n* Interpretierte geografische und georeferenzierte Visualisierungen der Straßenverfläufe in verschiedenen Ausführungen (tal_01_strasse_virunum-iuenna [EPSG:31258],tal_02_strasse_virunum-iuenna [EPSG:31258],tal_03_strasse_virunum-iuenna [EPSG:31258],tal_04_strasse_virunum-iuenna [EPSG:31258],tal_05_strasse_virunum-iuenna [EPSG:31258]).\\n* Räumlicher GIS-Datensatz zu den Grenzen des Jauntals als geopgrafische Region (tal_region [EPSG:4326]).\\n* Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792423",
+    "creator_ids": [
+      "10238",
+      "1756725",
+      "1756730",
+      "1756741",
+      "1756742"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "1756735",
+      "1756736",
+      "1757125",
+      "1757170",
+      "1757171",
+      "1757172"
+    ],
+    "documented_ids": [
+      "1757169"
+    ],
+    "size_bytes": 11632640,
+    "formatted_size": "11.1 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4B-6",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1804082",
+    "creators": [
+      {
+        "id": "per_10238",
+        "arche_id": "10238",
+        "name": "Christian Gugl",
+        "type": "Person",
+        "orcid": "0000-0001-6607-959X",
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      },
+      {
+        "id": "per_1756725",
+        "arche_id": "1756725",
+        "name": "Dominik Hagmann",
+        "type": "Person",
+        "orcid": "0000-0002-4481-6234",
+        "affiliation": "kärnten.museum"
+      },
+      {
+        "id": "per_1756730",
+        "arche_id": "1756730",
+        "name": "Franziska Reiner",
+        "type": "Person",
+        "orcid": null,
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      },
+      {
+        "id": "per_1756741",
+        "arche_id": "1756741",
+        "name": "Elise Baudouin",
+        "type": "Person",
+        "orcid": null,
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      },
+      {
+        "id": "per_1756742",
+        "arche_id": "1756742",
+        "name": "Elke Profant",
+        "type": "Person",
+        "orcid": "0009-0004-3475-1723",
+        "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+      }
+    ],
+    "citation": "Gugl, C., Hagmann, D., Reiner, F., Baudouin, E., & Profant, E. (2025). tal_geodaten_open.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4B-6"
+  },
+  "1804083": {
+    "id": "dts_1804083",
+    "arche_id": "1804083",
+    "title": "tal_noricum_grenzen_2024.gpkg",
+    "filename": "tal_noricum_grenzen_2024.gpkg",
+    "description": "Räumlicher GIS-Datensatz zu den Grenzen Noricums als politische Entität (Felder: fid,Name-Deutsch,Name-Latein,Startdatum,Stopdatum,Area-km2,Chronologie) in der römischen Kaiserzeit und Spätantike (ca. 15 v. Chr. bis 284 n. Chr. bzw. 284 n. Chr. bis 488 n. Chr.). Eine QGIS-Projektdatei ist integriert,um die Daten visuell aufzubereiten.",
+    "parent_id": "1792423",
+    "creator_ids": [
+      "1756725"
+    ],
+    "contributor_ids": [],
+    "spatial_ids": [
+      "138270",
+      "138277",
+      "1756735",
+      "182008",
+      "24299",
+      "3013",
+      "99940"
+    ],
+    "documented_ids": [
+      "1756764"
+    ],
+    "size_bytes": 1675264,
+    "formatted_size": "1.6 MB",
+    "pid": "https://hdl.handle.net/21.11115/0000-0016-0E4E-3",
+    "license_summary": "",
+    "access_restriction": "",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/1804083",
+    "creators": [
+      {
+        "id": "per_1756725",
+        "arche_id": "1756725",
+        "name": "Dominik Hagmann",
+        "type": "Person",
+        "orcid": "0000-0002-4481-6234",
+        "affiliation": "kärnten.museum"
+      }
+    ],
+    "citation": "Hagmann, D. (2025). tal_noricum_grenzen_2024.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4E-3"
+  }
+}

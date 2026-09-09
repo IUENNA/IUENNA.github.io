@@ -1118,6 +1118,7 @@ def generate():
                 <span class="filter-chip active" data-type="all">Alle</span>
                 <span class="filter-chip active" data-type="subcollection"><span class="chip-dot" style="background: var(--color-l1);"></span>Subcollections</span>
                 <span class="filter-chip active" data-type="folder"><span class="chip-dot" style="background: var(--color-l2);"></span>Ordner</span>
+                <span class="filter-chip active" data-type="dataset"><span class="chip-dot" style="background: #1B4965;"></span>Datensätze</span>
                 <span class="filter-chip active" data-type="publication"><span class="chip-dot" style="background: #7B4F36;"></span>Publikationen</span>
                 <span class="filter-chip active" data-type="resource"><span class="chip-dot" style="background: var(--color-resource);"></span>Ressourcen</span>
                 <span class="filter-chip active" data-type="place"><span class="chip-dot" style="background: var(--color-place);"></span>Fundorte</span>
@@ -1155,6 +1156,7 @@ def generate():
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l3);"></span> Fachordner (L3)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l4);"></span> Teilsammlungen (L4)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-l5);"></span> Befundordner (L5/L6)</li>
+                <li class="legend-item"><span class="legend-icon" style="background: #1B4965;"></span> Forschungsdatensatz / GeoPackage</li>
                 <li class="legend-item"><span class="legend-icon" style="background: #7B4F36;"></span> Fachpublikation (Literaturnachweis)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-resource);"></span> ARCHE-Datei (Ressource)</li>
                 <li class="legend-item"><span class="legend-icon" style="background: var(--color-place);"></span> Geographischer Fundort</li>
@@ -1233,6 +1235,59 @@ def generate():
                     </div>
                 </div>
 
+                <!-- Dataset Profile Box (when Forschungsdatensatz / GeoPackage is selected) -->
+                <div id="drawerDatasetBox" class="entity-profile-box" style="display: none; border-left: 4px solid #1B4965; background: #F0F4F8;">
+                    <div class="drawer-section-title" style="margin-bottom: 8px;">
+                        <span><i class="fa-solid fa-database" style="color: #1B4965;"></i> <span id="drawerDatasetHeading">Forschungsdatensatz / GeoPackage</span></span>
+                    </div>
+                    <div class="entity-profile-details">
+                        <div id="drawerDatasetCitationRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                            <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 700;"><i class="fa-solid fa-quote-left"></i> Zitationsempfehlung (APA):</span>
+                            <div id="drawerDatasetCitationVal" style="font-size: 0.73rem; line-height: 1.45; color: #1E293B; background: white; padding: 7px 9px; border-radius: 4px; border: 1px solid #CBD5E1; width: 100%; box-sizing: border-box; font-family: Georgia, serif;"></div>
+                        </div>
+                        <div id="drawerDatasetCreatorsRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-user-group"></i> Urheber:innen / Beteiligte:</span>
+                            <div id="drawerDatasetCreatorsChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+                        </div>
+                        <div id="drawerDatasetParentRow" class="entity-prop-row" style="margin-top: 4px;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Zugehörige Sammlung:</span>
+                            <span class="entity-prop-val"><a id="drawerDatasetParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
+                        </div>
+                        <div id="drawerDatasetPidRow" class="entity-prop-row">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Handle / PID:</span>
+                            <span class="entity-prop-val"><a id="drawerDatasetPidLink" href="#" target="_blank" class="external-id-link" style="color: #1B4965;"><span id="drawerDatasetPidVal">–</span> ↗</a></span>
+                        </div>
+                        <div id="drawerDatasetPlacesRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
+                            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Erfasste Fundorte:</span>
+                                <span id="drawerDatasetPlacesCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #D9E8DD; color: #2D6A4F; font-weight: 700;">0</span>
+                            </div>
+                            <ul id="drawerDatasetPlacesList" class="relations-list" style="max-height: 150px; overflow-y: auto; width: 100%;"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Profile Box (when Fundort / Place is selected) -->
+                <div id="drawerPlaceBox" class="entity-profile-box" style="display: none; border-left: 4px solid #2D6A4F; background: #F4F8F5;">
+                    <div class="drawer-section-title" style="margin-bottom: 8px;">
+                        <span><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> <span id="drawerPlaceHeading">Fundort-Details</span></span>
+                    </div>
+                    <div class="entity-profile-details">
+                        <div id="drawerPlaceCoordsRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-compass"></i> Koordinaten:</span>
+                            <span id="drawerPlaceCoordsVal" class="entity-prop-val"></span>
+                        </div>
+                        <div id="drawerPlaceGeonamesRow" class="entity-prop-row" style="display: none;">
+                            <span class="entity-prop-lbl"><i class="fa-solid fa-earth-americas"></i> Geonames:</span>
+                            <span class="entity-prop-val"><a id="drawerPlaceGeonamesLink" href="#" target="_blank" class="external-id-link" style="color: #2D6A4F;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPlaceGeonamesVal">Geonames URI</span> ↗</a></span>
+                        </div>
+                        <div id="drawerPlaceDatasetRow" class="entity-prop-row" style="display: none; margin-top: 6px; padding: 6px 8px; background: white; border-radius: 4px; border: 1px solid #D9E8DD; flex-direction: column; align-items: flex-start; gap: 4px;">
+                            <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 600;"><i class="fa-solid fa-database"></i> Erfasst in Forschungsdatensatz:</span>
+                            <div id="drawerPlaceDatasetChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Provenance / Researchers & Contributors Box (for collections/folders) -->
                 <div id="drawerProvenanceBox" class="provenance-box" style="display: none;">
                     <div class="drawer-section-title">
@@ -1272,23 +1327,6 @@ def generate():
                 <div>
                     <div class="drawer-section-title">Beschreibung / Kontext</div>
                     <p class="drawer-desc" id="drawerDesc"></p>
-                </div>
-
-                <!-- Place Profile Box (when Fundort / Place is selected) -->
-                <div id="drawerPlaceBox" class="entity-profile-box" style="display: none; border-left: 4px solid #2D6A4F; background: #F4F8F5;">
-                    <div class="drawer-section-title" style="margin-bottom: 8px;">
-                        <span><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> <span id="drawerPlaceHeading">Fundort-Details</span></span>
-                    </div>
-                    <div class="entity-profile-details">
-                        <div id="drawerPlaceCoordsRow" class="entity-prop-row" style="display: none;">
-                            <span class="entity-prop-lbl"><i class="fa-solid fa-compass"></i> Koordinaten:</span>
-                            <span id="drawerPlaceCoordsVal" class="entity-prop-val"></span>
-                        </div>
-                        <div id="drawerPlaceGeonamesRow" class="entity-prop-row" style="display: none;">
-                            <span class="entity-prop-lbl"><i class="fa-solid fa-earth-americas"></i> Geonames:</span>
-                            <span class="entity-prop-val"><a id="drawerPlaceGeonamesLink" href="#" target="_blank" class="external-id-link" style="color: #2D6A4F;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPlaceGeonamesVal">Geonames URI</span> ↗</a></span>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Live ARCHE Preview Card (Collapsible) -->
@@ -1549,7 +1587,7 @@ def generate():
         let publicationsData = {embedded_pubs_json};
         let corpusData = null;
         let corpusResources = [];
-        let activeFilters = new Set(["all", "root", "subcollection", "folder", "folder_l2", "folder_l3", "folder_l4", "folder_l5", "folder_l6", "resource", "organization", "person", "place", "publication", "period", "subject", "license"]);
+        let activeFilters = new Set(["all", "root", "subcollection", "folder", "folder_l2", "folder_l3", "folder_l4", "folder_l5", "folder_l6", "dataset", "resource", "organization", "person", "place", "publication", "period", "subject", "license"]);
         let selectedNode = null;
         let currentActivePreviewRes = null;
         let expandedNodesMap = new Map();
@@ -1568,6 +1606,7 @@ def generate():
             folder_l4: "#5A6B7C",
             folder_l5: "#7E6B8F",
             folder_l6: "#9B59B6",
+            dataset: "#1B4965",
             resource: "#3D7068",
             organization: "#202226",
             person: "#C85A32",
@@ -1625,7 +1664,7 @@ def generate():
                     const lvl = node.data("level");
                     if (t === "root" || lvl === 0) return 10;
                     if (t === "subcollection" || lvl === 1) return 8;
-                    if (lvl === 2) return 6;
+                    if (lvl === 2 || t === "dataset") return 6;
                     if (lvl === 3) return 4;
                     if (lvl >= 4) return 2;
                     if (t === "organization" || t === "person" || t === "place") return 7;
@@ -1702,6 +1741,7 @@ def generate():
                                 if (lvl === 3) return 22;
                                 if (lvl === 4) return 18;
                                 if (lvl >= 5) return 15;
+                                if (ele.data("type") === "dataset") return 30;
                                 if (ele.data("type") === "resource") return 14;
                                 return 24;
                             }},
@@ -1713,6 +1753,7 @@ def generate():
                                 if (lvl === 3) return 22;
                                 if (lvl === 4) return 18;
                                 if (lvl >= 5) return 15;
+                                if (ele.data("type") === "dataset") return 30;
                                 if (ele.data("type") === "resource") return 14;
                                 return 24;
                             }},
@@ -1725,6 +1766,17 @@ def generate():
                         }}
                     }},
                     {{
+                        selector: "node[type = 'dataset']",
+                        style: {{
+                            "shape": "round-diamond",
+                            "width": 30,
+                            "height": 30,
+                            "background-color": "#1B4965",
+                            "border-color": "#FFFFFF",
+                            "border-width": 2
+                        }}
+                    }},
+                    {{
                         selector: "edge",
                         style: {{
                             "width": 1.3,
@@ -1734,6 +1786,16 @@ def generate():
                             "curve-style": "bezier",
                             "arrow-scale": 0.75,
                             "opacity": 0.65
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasSpatialCoverage']",
+                        style: {{
+                            "width": 1.2,
+                            "line-color": "#4A6B53",
+                            "target-arrow-color": "#4A6B53",
+                            "line-style": "dashed",
+                            "opacity": 0.6
                         }}
                     }},
                     {{
@@ -1877,9 +1939,10 @@ def generate():
         function getNodeByIdFlexible(id) {{
             if (!cy || !id) return null;
             const strId = String(id).trim();
-            const cleanId = strId.replace(/^(col_|per_|person_|org_|pub_|plc_|place_|res_)/, '');
+            const cleanId = strId.replace(/^(col_|per_|person_|org_|pub_|plc_|place_|res_|dts_)/, '');
             const candidates = [
                 strId,
+                `dts_${{cleanId}}`,
                 `plc_${{cleanId}}`,
                 `place_${{cleanId}}`,
                 `col_${{cleanId}}`,
@@ -2218,11 +2281,11 @@ def generate():
             const previewDimensions = document.getElementById("drawerPreviewDimensions");
 
             // Determine if preview can be requested
-            let previewPid = d.sample_pid || (d.type === "resource" ? d.pid : null);
+            let previewPid = (d.type === "dataset" || d.type === "place" || d.type === "person" || d.type === "organization" || d.type === "publication" || d.type === "period" || d.type === "subject" || d.type === "license") ? null : (d.sample_pid || (d.type === "resource" ? d.pid : null));
             let previewTitle = d.sample_title || d.label;
 
             // If folder or if previewPid not set, fallback to finding a sample image inside it
-            if (!previewPid && corpusResources && corpusResources.length > 0) {{
+            if (!previewPid && d.type !== "dataset" && d.type !== "place" && d.type !== "person" && d.type !== "organization" && d.type !== "publication" && corpusResources && corpusResources.length > 0) {{
                 const sample = corpusResources.find(r => r.col_id === d.id || r.col === d.id || (r.path && r.path.includes(d.label)) || (d.arche_id && r.col_id === `col_${{d.arche_id}}`));
                 if (sample) {{
                     previewPid = sample.pid;
@@ -2321,6 +2384,94 @@ def generate():
                 profileBox.style.display = "none";
             }}
 
+            // Dataset Profile Box (when Forschungsdatensatz / GeoPackage is selected)
+            const datasetBox = document.getElementById("drawerDatasetBox");
+            if (d.type === "dataset") {{
+                if (datasetBox) datasetBox.style.display = "block";
+
+                // Citation
+                const citVal = document.getElementById("drawerDatasetCitationVal");
+                if (citVal) citVal.textContent = d.citation || "Keine Zitation verfügbar.";
+
+                // Creators Chips
+                const creatorsChips = document.getElementById("drawerDatasetCreatorsChips");
+                if (creatorsChips) {{
+                    creatorsChips.innerHTML = "";
+                    (d.creators || []).forEach(c => {{
+                        const chip = document.createElement("span");
+                        chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
+                        chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
+                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.addEventListener("click", () => {{
+                            const target = getNodeByIdFlexible(c.id);
+                            if (target && target.length > 0) {{
+                                target.show();
+                                cy.center(target);
+                                cy.zoom({{ level: 1.8, position: target.position() }});
+                                openInspector(target);
+                                highlightNeighbors(target);
+                            }}
+                        }});
+                        creatorsChips.appendChild(chip);
+                    }});
+                }}
+
+                // Parent Collection Link
+                const parentLink = document.getElementById("drawerDatasetParentLink");
+                if (parentLink && d.parent_id) {{
+                    const parentNode = getNodeByIdFlexible(d.parent_id);
+                    const pTitle = parentNode && parentNode.data("label") ? parentNode.data("label") : `Sammlung ${{d.parent_id}}`;
+                    parentLink.textContent = pTitle;
+                    parentLink.onclick = (e) => {{
+                        e.preventDefault();
+                        if (parentNode && parentNode.length > 0) {{
+                            parentNode.show();
+                            cy.center(parentNode);
+                            cy.zoom({{ level: 1.8, position: parentNode.position() }});
+                            openInspector(parentNode);
+                            highlightNeighbors(parentNode);
+                        }}
+                    }};
+                }}
+
+                // PID Link
+                const pidLink = document.getElementById("drawerDatasetPidLink");
+                const pidVal = document.getElementById("drawerDatasetPidVal");
+                if (pidLink && pidVal) {{
+                    const pidUrl = d.pid || `https://arche.acdh.oeaw.ac.at/api/${{d.arche_id}}`;
+                    pidLink.href = pidUrl;
+                    pidVal.textContent = d.pid ? d.pid.replace("https://hdl.handle.net/", "hdl:") : `ARCHE #${{d.arche_id}}`;
+                }}
+
+                // Connected Places list
+                const placesCount = document.getElementById("drawerDatasetPlacesCount");
+                const placesList = document.getElementById("drawerDatasetPlacesList");
+                if (placesList && placesCount) {{
+                    const spatEdges = cy.edges(`[source = "${{node.id()}}"][label = 'hasSpatialCoverage']`);
+                    placesCount.textContent = spatEdges.length;
+                    placesList.innerHTML = "";
+                    spatEdges.forEach(edge => {{
+                        const plcNode = edge.target();
+                        const li = document.createElement("li");
+                        li.className = "relation-item";
+                        li.innerHTML = `
+                            <span class="relation-target"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> ${{plcNode.data("label")}}</span>
+                            <span class="relation-label">Fundort</span>
+                        `;
+                        li.addEventListener("click", () => {{
+                            plcNode.show();
+                            cy.center(plcNode);
+                            cy.zoom({{ level: 2.0, position: plcNode.position() }});
+                            openInspector(plcNode);
+                            highlightNeighbors(plcNode);
+                        }});
+                        placesList.appendChild(li);
+                    }});
+                }}
+            }} else {{
+                if (datasetBox) datasetBox.style.display = "none";
+            }}
+
             // Place Profile Box (when Fundort / Place is selected)
             const placeBox = document.getElementById("drawerPlaceBox");
             if (d.type === "place") {{
@@ -2346,6 +2497,37 @@ def generate():
                     geoLink.href = d.geonames;
                 }} else {{
                     geoRow.style.display = "none";
+                }}
+
+                // Show datasets containing this place
+                const placeDatasetRow = document.getElementById("drawerPlaceDatasetRow");
+                const placeDatasetChips = document.getElementById("drawerPlaceDatasetChips");
+                if (placeDatasetRow && placeDatasetChips) {{
+                    const incEdges = cy.edges(`[target = "${{node.id()}}"][label = 'hasSpatialCoverage']`);
+                    const dtsNodes = incEdges.sources().filter(s => s.data("type") === "dataset");
+                    if (dtsNodes.length > 0) {{
+                        placeDatasetRow.style.display = "flex";
+                        placeDatasetChips.innerHTML = "";
+                        dtsNodes.forEach(dts => {{
+                            const chip = document.createElement("span");
+                            chip.className = "provenance-chip";
+                            chip.style.borderColor = "#1B4965";
+                            chip.style.color = "#1B4965";
+                            chip.style.background = "#F0F4F8";
+                            chip.innerHTML = `<i class="fa-solid fa-database" style="color: #1B4965;"></i> ${{dts.data("label")}}`;
+                            chip.title = `${{dts.data("label")}} im Graphen anzeigen`;
+                            chip.addEventListener("click", () => {{
+                                dts.show();
+                                cy.center(dts);
+                                cy.zoom({{ level: 1.8, position: dts.position() }});
+                                openInspector(dts);
+                                highlightNeighbors(dts);
+                            }});
+                            placeDatasetChips.appendChild(chip);
+                        }});
+                    }} else {{
+                        placeDatasetRow.style.display = "none";
+                    }}
                 }}
             }} else {{
                 if (placeBox) placeBox.style.display = "none";
@@ -2534,23 +2716,27 @@ def generate():
                 const incomingEdges = cy.edges(`[target = "${{node.id()}}"]`);
                 const colNodes = incomingEdges.sources().filter(s => {{
                     const t = s.data("type");
-                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root" || t === "collection");
+                    return t && (t.startsWith("folder") || t === "subcollection" || t === "root" || t === "collection" || t === "dataset");
                 }});
 
                 if (colNodes.length > 0) {{
                     entColBox.style.display = "block";
                     entColCount.textContent = colNodes.length;
                     if (d.type === "place") {{
-                        entColHeading.textContent = "Verortete Sammlungen & Bestände";
+                        entColHeading.textContent = "Verortete Sammlungen & Datensätze";
                     }} else {{
                         entColHeading.textContent = d.type === "person" ? "Beteiligte Sammlungen & Ordner" : "Zugeordnete Sammlungen & Bestände";
                     }}
                     colNodes.slice(0, 35).forEach(col => {{
                         const li = document.createElement("li");
                         li.className = "relation-item";
+                        const isDts = col.data("type") === "dataset";
+                        const colIcon = isDts ? "fa-database" : "fa-folder";
+                        const colColor = isDts ? "#1B4965" : (col.data("color") || "#888");
+                        const colBadge = isDts ? "GeoPackage" : (col.data("items") ? col.data("items").toLocaleString() + " Items" : "Ordner");
                         li.innerHTML = `
-                            <span class="relation-target"><i class="fa-solid fa-folder" style="color: ${{col.data("color") || "#888"}};"></i> ${{col.data("label")}}</span>
-                            <span class="relation-label">${{col.data("items") ? col.data("items").toLocaleString() + " Items" : "Ordner"}}</span>
+                            <span class="relation-target"><i class="fa-solid ${{colIcon}}" style="color: ${{colColor}};"></i> ${{col.data("label")}}</span>
+                            <span class="relation-label">${{colBadge}}</span>
                         `;
                         li.addEventListener("click", () => {{
                             col.show();
@@ -2601,9 +2787,13 @@ def generate():
                     const child = edge.source();
                     const li = document.createElement("li");
                     li.className = "relation-item";
+                    const isDts = child.data("type") === "dataset";
+                    const childIcon = isDts ? "fa-database" : "fa-folder";
+                    const childColor = isDts ? "#1B4965" : (child.data("color") || "#888");
+                    const childBadge = isDts ? "GeoPackage" : (child.data("items") ? child.data("items") + " Items" : "Ordner");
                     li.innerHTML = `
-                        <span class="relation-target"><i class="fa-solid fa-folder" style="color: ${{child.data("color") || "#888"}};"></i> ${{child.data("label")}}</span>
-                        <span class="relation-label">${{child.data("items") ? child.data("items") + " Items" : "Ordner"}}</span>
+                        <span class="relation-target"><i class="fa-solid ${{childIcon}}" style="color: ${{childColor}};"></i> ${{child.data("label")}}</span>
+                        <span class="relation-label">${{childBadge}}</span>
                     `;
                     li.addEventListener("click", () => {{
                         child.show();
