@@ -209,6 +209,99 @@ def generate():
             border-color: var(--secondary);
             color: var(--text-dark);
         }}
+        .tool-btn.btn-active {{
+            background: #FAF0EC;
+            border-color: var(--primary);
+            color: var(--primary);
+        }}
+
+        /* Hierarchie-Ebenen Schieberegler (LOD Slider) */
+        .lod-slider-wrapper {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #FAF8F5;
+            border: 1px solid var(--panel-border);
+            padding: 3px 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }}
+        .lod-slider-header {{
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }}
+        .lod-slider-label {{
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            margin: 0;
+            white-space: nowrap;
+        }}
+        .lod-slider-badge {{
+            font-size: 0.70rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(168, 68, 46, 0.08);
+            border: 1px solid rgba(168, 68, 46, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }}
+        .lod-slider-track-wrap {{
+            display: inline-flex;
+            align-items: center;
+            width: 110px;
+        }}
+        .lod-range-slider {{
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #E5DFD5;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }}
+        .lod-range-slider:hover {{
+            background: #D9D2C6;
+        }}
+        .lod-range-slider::-webkit-slider-thumb {{
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }}
+        .lod-range-slider::-webkit-slider-thumb:hover {{
+            transform: scale(1.2);
+            background: var(--primary-hover);
+        }}
+        .lod-range-slider::-moz-range-thumb {{
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }}
+        .lod-range-slider::-moz-range-thumb:hover {{
+            transform: scale(1.2);
+        }}
 
         /* Search Autocomplete */
         .search-box-wrapper {{
@@ -1174,7 +1267,7 @@ def generate():
             <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
             <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">21.080</strong> im Graphen</span>
             <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
-                <i class="fa-solid fa-circle-check"></i> Korpus bereit
+                <i class="fa-solid fa-database"></i> <strong id="corpusStatusCount">20.355</strong> Korpus-Ressourcen
             </span>
             <span class="stat-pill"><i class="fa-solid fa-link"></i> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" title="Persistent Identifier auf ARCHE">PID: 21.11115/0000-0016-7B39-F</a></span>
         </div>
@@ -1193,14 +1286,26 @@ def generate():
                 <option value="circle">Kreis (Zirkulär)</option>
             </select>
 
-            <!-- Depth Filter (LOD) -->
-            <label for="depthSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark); margin-left: 6px;">Tiefe:</label>
-            <select id="depthSelect" class="tool-select" title="Hierarchie-Tiefe im Graphen filtern">
-                <option value="all" selected>Alle Ebenen (L1–L6, 434 Ordner)</option>
-                <option value="1">Ebene 1 (6 Subcollections)</option>
-                <option value="2">Ebene 2 (Hauptordner &amp; Bestände)</option>
-                <option value="3">Ebene 3 (Fachordner)</option>
-            </select>
+            <!-- Hierarchie-Ebenen Schieberegler (LOD Slider) -->
+            <div class="lod-slider-wrapper" title="Hierarchie-Tiefe (Level of Detail) schrittweise anpassen">
+                <div class="lod-slider-header">
+                    <label for="lodSlider" class="lod-slider-label">
+                        <i class="fa-solid fa-layer-group" style="color: var(--secondary);"></i> <span>Ebene:</span>
+                    </label>
+                    <span class="lod-slider-badge" id="lodLevelBadge">L1–L6 (Alle 434 Ordner)</span>
+                </div>
+                <div class="lod-slider-track-wrap">
+                    <input type="range" id="lodSlider" min="1" max="6" value="6" step="1" class="lod-range-slider" list="lodTickmarks" aria-label="Hierarchie-Ebene">
+                    <datalist id="lodTickmarks">
+                        <option value="1" label="L1"></option>
+                        <option value="2" label="L2"></option>
+                        <option value="3" label="L3"></option>
+                        <option value="4" label="L4"></option>
+                        <option value="5" label="L5"></option>
+                        <option value="6" label="L6"></option>
+                    </datalist>
+                </div>
+            </div>
 
             <!-- Selection Bookmark Buttons (Merkliste) -->
             <button id="btnBookmarkCurrent" class="tool-btn" title="Aktuell ausgewählten Eintrag zur temporären Merkliste hinzufügen">
@@ -1245,6 +1350,9 @@ def generate():
         </div>
 
         <div class="toolbar-right">
+            <button id="btnToggleEdges" class="tool-btn" title="Alle Kanten im Graphen ein- oder ausblenden">
+                <i class="fa-solid fa-bezier-curve"></i> <span id="btnToggleEdgesText">Kanten verbergen</span>
+            </button>
             <button id="btnFit" class="tool-btn" title="Ansicht einpassen"><i class="fa-solid fa-expand"></i> Zentrieren</button>
             <button id="btnZoomIn" class="tool-btn" title="Vergrößern"><i class="fa-solid fa-plus"></i></button>
             <button id="btnZoomOut" class="tool-btn" title="Verkleinern"><i class="fa-solid fa-minus"></i></button>
@@ -2408,28 +2516,40 @@ def generate():
             }});
         }});
 
-        // Depth Filter (LOD)
+        // Edge visibility state
+        let edgesVisible = true;
+
+        // Hierarchie-Ebenen Mapping für LOD Slider
+        const lodLevels = {{
+            1: {{ badge: "L1 (6 Subcollections)", maxLevel: 1 }},
+            2: {{ badge: "L1–L2 (74 Hauptbestände)", maxLevel: 2 }},
+            3: {{ badge: "L1–L3 (274 Fachordner)", maxLevel: 3 }},
+            4: {{ badge: "L1–L4 (312 Teilsammlungen)", maxLevel: 4 }},
+            5: {{ badge: "L1–L5 (432 Befundordner)", maxLevel: 5 }},
+            6: {{ badge: "L1–L6 (Alle 434 Ordner)", maxLevel: 99 }}
+        }};
+
+        // Depth Filter (LOD) via Range Slider
         function applyDepthFilter(depth) {{
             if (!cy) return;
-            if (depth === "all") {{
-                cy.nodes().show();
-                cy.edges().show();
-            }} else {{
-                const maxLevel = parseInt(depth, 10);
-                cy.nodes().forEach(n => {{
-                    const lvl = n.data("level");
-                    if (lvl !== undefined && lvl !== null) {{
-                        if (lvl <= maxLevel) n.show();
-                        else n.hide();
-                    }} else {{
-                        // Context nodes (places, orgs, persons, etc.)
-                        n.show();
-                    }}
-                }});
+            const maxLevel = depth === "all" ? 99 : parseInt(depth, 10);
+            cy.nodes().forEach(n => {{
+                const lvl = n.data("level");
+                if (lvl !== undefined && lvl !== null) {{
+                    if (lvl <= maxLevel) n.show();
+                    else n.hide();
+                }} else {{
+                    // Context nodes (places, orgs, persons, etc.)
+                    n.show();
+                }}
+            }});
+            if (edgesVisible) {{
                 cy.edges().forEach(e => {{
                     if (e.source().visible() && e.target().visible()) e.show();
                     else e.hide();
                 }});
+            }} else {{
+                cy.edges().hide();
             }}
             updateVisibleNodesCount();
             const currentLayout = document.getElementById("layoutSelect").value;
@@ -2446,9 +2566,38 @@ def generate():
             }}
         }}
 
-        document.getElementById("depthSelect").addEventListener("change", function() {{
-            applyDepthFilter(this.value);
-        }});
+        const lodSlider = document.getElementById("lodSlider");
+        if (lodSlider) {{
+            lodSlider.addEventListener("input", function() {{
+                const val = parseInt(this.value, 10);
+                const lvl = lodLevels[val] || lodLevels[6];
+                const badge = document.getElementById("lodLevelBadge");
+                if (badge) badge.textContent = lvl.badge;
+                applyDepthFilter(lvl.maxLevel === 99 ? "all" : String(lvl.maxLevel));
+            }});
+        }}
+
+        const btnToggleEdges = document.getElementById("btnToggleEdges");
+        if (btnToggleEdges) {{
+            btnToggleEdges.addEventListener("click", function() {{
+                if (!cy) return;
+                edgesVisible = !edgesVisible;
+                const btnText = document.getElementById("btnToggleEdgesText");
+                if (!edgesVisible) {{
+                    cy.edges().hide();
+                    this.classList.add("btn-active");
+                    if (btnText) btnText.textContent = "Kanten einblenden";
+                    showNotification("Alle Kanten ausgeblendet", "info", 1800);
+                }} else {{
+                    cy.edges().forEach(e => {{
+                        if (e.source().visible() && e.target().visible()) e.show();
+                    }});
+                    this.classList.remove("btn-active");
+                    if (btnText) btnText.textContent = "Kanten verbergen";
+                    showNotification("Kanten wieder eingeblendet", "info", 1800);
+                }}
+            }});
+        }}
 
         document.getElementById("layoutSelect").addEventListener("change", function() {{
             if (!cy) return;
@@ -3497,7 +3646,7 @@ def generate():
                 node = cy.$id(res.id);
             }}
             node.show();
-            node.connectedEdges().show();
+            if (edgesVisible) node.connectedEdges().show();
 
             const chip = document.querySelector('.filter-chip[data-type="resource"]');
             if (chip && !chip.classList.contains('active')) chip.classList.add('active');
@@ -3692,8 +3841,11 @@ def generate():
             let node = getNodeByIdFlexible(archeId);
 
             if (!node || node.length === 0) {{
-                // If deep level is filtered out, switch depth to all
-                document.getElementById("depthSelect").value = "all";
+                // If deep level is filtered out, switch slider to all (level 6)
+                const slider = document.getElementById("lodSlider");
+                if (slider) slider.value = 6;
+                const badge = document.getElementById("lodLevelBadge");
+                if (badge) badge.textContent = "L1–L6 (Alle 434 Ordner)";
                 applyDepthFilter("all");
                 node = getNodeByIdFlexible(archeId);
             }}
@@ -4193,8 +4345,14 @@ def generate():
                         if (makeActive) c.classList.add("active");
                         else c.classList.remove("active");
                     }});
-                    if (makeActive) {{ cy.nodes().show(); cy.edges().show(); }}
-                    else {{ cy.nodes().hide(); cy.edges().hide(); }}
+                    if (makeActive) {{
+                        cy.nodes().show();
+                        if (edgesVisible) cy.edges().show();
+                        else cy.edges().hide();
+                    }} else {{
+                        cy.nodes().hide();
+                        cy.edges().hide();
+                    }}
                     updateVisibleNodesCount();
                     return;
                 }}
@@ -4206,9 +4364,11 @@ def generate():
                 const matchingNodes = cy.nodes(selector);
                 if (isNowActive) {{
                     matchingNodes.show();
-                    matchingNodes.connectedEdges().forEach(edge => {{
-                        if (edge.source().visible() && edge.target().visible()) edge.show();
-                    }});
+                    if (edgesVisible) {{
+                        matchingNodes.connectedEdges().forEach(edge => {{
+                            if (edge.source().visible() && edge.target().visible()) edge.show();
+                        }});
+                    }}
                 }} else {{
                     matchingNodes.hide();
                     matchingNodes.connectedEdges().hide();
@@ -4281,9 +4441,6 @@ def generate():
             .catch(err => console.log("Using embedded graph data:", err));
 
         // 2. Fetch Complete ARCHE Resource Corpus (20,355 items)
-        const corpusStatusPill = document.getElementById("pillCorpusStatus");
-        corpusStatusPill.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Lade 20.355 Ressourcen...';
-
         fetch("../data/arche_corpus.json")
             .then(res => {{
                 if (!res.ok) throw new Error("Could not fetch arche_corpus.json");
@@ -4293,10 +4450,8 @@ def generate():
                 corpusData = data;
                 corpusResources = data.resources || [];
                 populateCorpusFilters();
-                corpusStatusPill.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${{corpusResources.length.toLocaleString()}} Ressourcen aktiv`;
-                corpusStatusPill.style.background = "#EBF3ED";
-                corpusStatusPill.style.borderColor = "#B5D5BD";
-                corpusStatusPill.style.color = "#2E6038";
+                const countEl = document.getElementById("corpusStatusCount");
+                if (countEl) countEl.textContent = corpusResources.length.toLocaleString();
 
                 // Refresh open inspector with corpus details if a node is selected
                 if (selectedNode) openInspector(selectedNode);
@@ -4315,9 +4470,12 @@ def generate():
             }})
             .catch(err => {{
                 console.warn("Could not load arche_corpus.json in background:", err);
-                corpusStatusPill.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Korpus lokal';
-                corpusStatusPill.style.background = "#FFF3CD";
-                corpusStatusPill.style.color = "#856404";
+                const pill = document.getElementById("pillCorpusStatus");
+                if (pill) {{
+                    pill.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Korpus lokal';
+                    pill.style.background = "#FFF3CD";
+                    pill.style.color = "#856404";
+                }}
             }});
 
         // Immediate URL Parameter handling for Tree Modal, Bookmarks & Collection focus
@@ -4362,6 +4520,23 @@ def generate():
                         sInput.focus();
                     }}
                 }}, 300);
+            }}
+            if (urlParams.get("edges") === "0" || urlParams.get("hide_edges") === "1") {{
+                setTimeout(() => {{
+                    const btn = document.getElementById("btnToggleEdges");
+                    if (btn && edgesVisible) btn.click();
+                }}, 100);
+            }}
+            const lodParam = urlParams.get("lod") || urlParams.get("level");
+            if (lodParam) {{
+                setTimeout(() => {{
+                    const val = Math.min(6, Math.max(1, parseInt(lodParam, 10)));
+                    const slider = document.getElementById("lodSlider");
+                    if (slider && !isNaN(val)) {{
+                        slider.value = val;
+                        slider.dispatchEvent(new Event("input"));
+                    }}
+                }}, 120);
             }}
         }})();
     </script>
