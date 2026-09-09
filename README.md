@@ -13,12 +13,12 @@ The IUENNA project was a collaboration between the [State Museum for Carinthia (
 
 The IUENNA project was coordinated by  
 
-**[Dr. Dominik Hagmann](https://orcid.org/0000-0002-4481-6234)**  
+**[Dominik Hagmann](https://orcid.org/0000-0002-4481-6234)**  
 ([kärnten.museum](https://landesmuseum.ktn.gv.at))
 
 and 
 
-**Dipl.-Ing. Franziska Waldhart**  
+**Franziska Waldhart**  
 ([Austrian Archaeological Institute](https://www.oeaw.ac.at/oeai), Austrian Academy of Sciences).  
 
 Both brought significant expertise in archaeology and digital humanities to the project, ensuring a robust and sustainable implementation.

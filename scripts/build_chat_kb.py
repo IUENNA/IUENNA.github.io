@@ -284,13 +284,13 @@ def build_knowledge_base():
         "time_span": "Über 130 Jahre moderne Forschungsgeschichte; Besiedlungsspuren von der Urgeschichte (Hallstatt) über Römerzeit und Spätantike bis zum Frühmittelalter",
         "leadership": [
             {
-                "name": "Dr. Dominik Hagmann",
+                "name": "Dominik Hagmann",
                 "role": "Projektleitung / Koordination",
                 "institution": "Landesmuseum für Kärnten (kärnten.museum)",
                 "orcid": "https://orcid.org/0000-0002-4481-6234"
             },
             {
-                "name": "Dipl.-Ing. Franziska Waldhart",
+                "name": "Franziska Waldhart",
                 "role": "Projektleitung / Koordination",
                 "institution": "Österreichisches Archäologisches Institut (ÖAI), ÖAW",
                 "url": "https://www.oeaw.ac.at/oeai"
@@ -509,9 +509,9 @@ def build_knowledge_base():
         {
             "id": "faq_leadership",
             "question": "Wer leitet das IUENNA-Projekt?",
-            "answer": "IUENNA wurde gemeinsam von Dr. Dominik Hagmann (Landesmuseum für Kärnten / kärnten.museum) und Dipl.-Ing. Franziska Waldhart (Österreichisches Archäologisches Institut / ÖAI an der ÖAW) geleitet und koordiniert.",
+            "answer": "IUENNA wurde gemeinsam von Dominik Hagmann (Landesmuseum für Kärnten / kärnten.museum) und Franziska Waldhart (Österreichisches Archäologisches Institut / ÖAI an der ÖAW) geleitet und koordiniert.",
             "links": [
-                {"text": "Dr. Dominik Hagmann (ORCID)", "url": "https://orcid.org/0000-0002-4481-6234"},
+                {"text": "Dominik Hagmann (ORCID)", "url": "https://orcid.org/0000-0002-4481-6234"},
                 {"text": "ÖAI Website", "url": "https://www.oeaw.ac.at/oeai"}
             ],
             "keywords": ["wer leitet", "leitung", "koordination", "dominik hagmann", "franziska waldhart", "team", "forscher"]
