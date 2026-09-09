@@ -393,6 +393,119 @@ def generate():
             left: 0;
         }}
 
+        /* Graph Loading Overlay */
+        .graph-loading-overlay {{
+            position: absolute;
+            inset: 0;
+            background: rgba(250, 248, 245, 0.94);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+        }}
+        .graph-loading-overlay.hidden {{
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }}
+        .graph-loading-card {{
+            background: #FFFFFF;
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            box-shadow: 0 20px 48px rgba(32, 34, 38, 0.12), 0 4px 12px rgba(32, 34, 38, 0.06);
+            padding: 34px 40px;
+            text-align: center;
+            max-width: 440px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: cardFloat 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }}
+        @keyframes cardFloat {{
+            from {{ opacity: 0; transform: translateY(16px) scale(0.97); }}
+            to {{ opacity: 1; transform: translateY(0) scale(1); }}
+        }}
+        .graph-loading-spinner-wrap {{
+            position: relative;
+            width: 68px;
+            height: 68px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        .graph-loading-ring {{
+            position: absolute;
+            inset: 0;
+            border: 3.5px solid #EDE8E1;
+            border-top-color: var(--primary);
+            border-right-color: var(--secondary);
+            border-radius: 50%;
+            animation: ringSpin 1.1s linear infinite;
+        }}
+        @keyframes ringSpin {{
+            0% {{ transform: rotate(0deg); }}
+            100% {{ transform: rotate(360deg); }}
+        }}
+        .graph-loading-icon {{
+            font-size: 1.65rem;
+            color: var(--primary);
+            animation: iconPulse 2s ease-in-out infinite;
+        }}
+        @keyframes iconPulse {{
+            0%, 100% {{ transform: scale(1); opacity: 0.85; }}
+            50% {{ transform: scale(1.12); opacity: 1; }}
+        }}
+        .graph-loading-title {{
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 8px 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            letter-spacing: -0.2px;
+        }}
+        .graph-loading-sub {{
+            font-size: 0.80rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0 0 20px 0;
+        }}
+        .graph-loading-progress-track {{
+            width: 100%;
+            height: 6px;
+            background: #EDE8E1;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }}
+        .graph-loading-progress-bar {{
+            height: 100%;
+            width: 50%;
+            background: linear-gradient(90deg, var(--primary) 0%, #D46B4E 50%, var(--secondary) 100%);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }}
+        .graph-loading-meta {{
+            margin-top: 14px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }}
+        .graph-loading-meta span {{
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }}
+
         /* Floating Legend */
         .legend-card {{
             position: absolute;
@@ -1143,6 +1256,28 @@ def generate():
     <!-- Main Graph Canvas Stage -->
     <main class="stage-container" id="stageContainer">
         <div id="cy"></div>
+
+        <!-- Graph Loading Overlay -->
+        <div id="graphLoadingOverlay" class="graph-loading-overlay">
+            <div class="graph-loading-card">
+                <div class="graph-loading-spinner-wrap">
+                    <div class="graph-loading-ring"></div>
+                    <i class="fa-solid fa-circle-nodes graph-loading-icon"></i>
+                </div>
+                <h3 class="graph-loading-title" id="graphLoadingTitle">Lade Knowledge Graph...</h3>
+                <p class="graph-loading-sub" id="graphLoadingStatus">21.080 ARCHE-Knoten &amp; 35.597 Relationen werden initialisiert...</p>
+                <div class="graph-loading-progress-track">
+                    <div class="graph-loading-progress-bar" id="graphLoadingBar" style="width: 55%;"></div>
+                </div>
+                <div class="graph-loading-meta">
+                    <span><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> 21.080 Knoten</span>
+                    <span>&bull;</span>
+                    <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> 434 Sammlungen</span>
+                    <span>&bull;</span>
+                    <span><i class="fa-solid fa-file-lines" style="color: #2A9D8F;"></i> 20.355 Ressourcen</span>
+                </div>
+            </div>
+        </div>
 
         <!-- Floating Legend -->
         <div class="legend-card" id="legendCard">
@@ -1993,6 +2128,39 @@ def generate():
             updateVisibleNodesCount();
             setupSearch();
             updateBookmarksUI();
+
+            // Dismiss Loading Overlay on First Render unless preview requested
+            const urlParamsInit = new URLSearchParams(window.location.search);
+            if (urlParamsInit.get("loading") !== "1") {{
+                cy.one("render", function() {{
+                    const bar = document.getElementById("graphLoadingBar");
+                    if (bar) bar.style.width = "100%";
+                    const status = document.getElementById("graphLoadingStatus");
+                    if (status) status.textContent = "Wissensgraph erfolgreich aufgebaut!";
+                    setTimeout(hideGraphLoading, 250);
+                }});
+                setTimeout(hideGraphLoading, 1200);
+            }}
+        }}
+
+        function showGraphLoading(title, subtext) {{
+            const overlay = document.getElementById("graphLoadingOverlay");
+            if (!overlay) return;
+            if (title) document.getElementById("graphLoadingTitle").textContent = title;
+            if (subtext) document.getElementById("graphLoadingStatus").textContent = subtext;
+            const bar = document.getElementById("graphLoadingBar");
+            if (bar) bar.style.width = "65%";
+            overlay.classList.remove("hidden");
+        }}
+
+        function hideGraphLoading() {{
+            const overlay = document.getElementById("graphLoadingOverlay");
+            if (!overlay) return;
+            const bar = document.getElementById("graphLoadingBar");
+            if (bar) bar.style.width = "100%";
+            setTimeout(() => {{
+                overlay.classList.add("hidden");
+            }}, 200);
         }}
 
         function getNodeByIdFlexible(id) {{
@@ -2286,15 +2454,34 @@ def generate():
             if (!cy) return;
             const layoutName = this.value;
             if (layoutName === "preset") {{
-                cy.layout(layoutConfigs.preset).run();
+                showGraphLoading("Cluster-Layout laden...", "Vorberechnetes Koordinatenmodell wird geladen...");
+                setTimeout(() => {{
+                    cy.layout(layoutConfigs.preset).run();
+                    hideGraphLoading();
+                }}, 40);
                 return;
             }}
             const visNodes = cy.nodes(":visible");
+            const layoutLabels = {{
+                cose: "Force-Directed (Organisch)",
+                concentric: "Konzentrisch",
+                breadthfirst: "Baum-Hierarchie",
+                circle: "Zirkulär"
+            }};
+            const labelStr = layoutLabels[layoutName] || layoutName;
             if (visNodes.length > 1500) {{
                 showNotification("Layout auf sichtbare Makro-Knoten beschränkt (hohe Knotenanzahl)", "info", 3000);
-                visNodes.filter("[type != 'resource']").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+                showGraphLoading(`Layout: ${{labelStr}}`, `Berechne Anordnung für ${{visNodes.filter("[type != 'resource']").length}} Makro-Knoten...`);
+                setTimeout(() => {{
+                    visNodes.filter("[type != 'resource']").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+                    hideGraphLoading();
+                }}, 50);
             }} else {{
-                cy.elements(":visible").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+                showGraphLoading(`Layout: ${{labelStr}}`, `Berechne Anordnung für ${{visNodes.length}} Knoten...`);
+                setTimeout(() => {{
+                    cy.elements(":visible").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
+                    hideGraphLoading();
+                }}, 50);
             }}
         }});
 
