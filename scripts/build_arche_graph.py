@@ -109,11 +109,14 @@ def build_graph():
     nodes = []
     edges = []
     seen_edge_ids = set()
+    seen_edge_triples = set()
 
     def add_edge(edge_data):
         e_id = edge_data["id"]
-        if e_id not in seen_edge_ids:
+        triple = (edge_data["source"], edge_data["target"], edge_data["label"])
+        if e_id not in seen_edge_ids and triple not in seen_edge_triples:
             seen_edge_ids.add(e_id)
+            seen_edge_triples.add(triple)
             edges.append({"data": edge_data})
 
     # 2. Add Collection Nodes & isPartOf Edges
@@ -469,6 +472,64 @@ def build_graph():
     for lc in licenses:
         nodes.append({"data": lc})
         add_edge({"id": f"edge_lic_{lc['id']}_root", "source": "iuenna_root", "target": lc["id"], "label": "hasLicense", "predicate": "schema:hasLicense"})
+
+    # 8.2 Extract comprehensive semantic relations from arche_full_metadata.ttl
+    ttl_file = os.path.join(data_dir, "arche_full_metadata.ttl")
+    if os.path.exists(ttl_file):
+        print("[*] Extracting comprehensive semantic relations from arche_full_metadata.ttl...")
+        node_id_map = {}
+        for c in collections:
+            aid = str(c.get("arche_id"))
+            node_id_map[aid] = "iuenna_root" if aid == "1792170" else c.get("id") or f"col_{aid}"
+        for d_id in datasets_data:
+            node_id_map[str(d_id)] = f"dts_{d_id}"
+        for p_id in persons:
+            node_id_map[str(p_id)] = f"per_{p_id}"
+        for o_id in organisations:
+            node_id_map[str(o_id)] = f"org_{o_id}"
+        for pub_id in publications:
+            node_id_map[str(pub_id)] = f"pub_{pub_id}"
+        for plc_id in places_data:
+            node_id_map[str(plc_id)] = f"plc_{plc_id}"
+
+        ttl_target_preds = {
+            "hasHosting": "hasHosting",
+            "hasOwner": "hasOwner",
+            "hasLicensor": "hasLicensor",
+            "hasRightsHolder": "hasRightsHolder",
+            "hasCurator": "hasCurator",
+            "hasDepositor": "hasDepositor",
+            "hasMetadataCreator": "hasMetadataCreator",
+            "hasCreator": "hasCreator",
+            "hasContributor": "hasContributor",
+            "documents": "documents",
+            "hasDigitisingAgent": "hasDigitisingAgent",
+            "hasSpatialCoverage": "hasSpatialCoverage"
+        }
+
+        ttl_edges_added = 0
+        with open(ttl_file, "r", encoding="utf-8") as f:
+            curr_subj = None
+            for line in f:
+                m_subj = re.match(r"^<https://arche.acdh.oeaw.ac.at/api/(\d+)>", line)
+                if m_subj:
+                    curr_subj = m_subj.group(1)
+                if curr_subj and curr_subj in node_id_map:
+                    source_nid = node_id_map[curr_subj]
+                    for pred, target_aid in re.findall(r"n2:([a-zA-Z0-9_]+)\s+<https://arche.acdh.oeaw.ac.at/api/(\d+)>", line):
+                        if pred in ttl_target_preds and target_aid in node_id_map:
+                            target_nid = node_id_map[target_aid]
+                            if source_nid != target_nid:
+                                edge_lbl = ttl_target_preds[pred]
+                                add_edge({
+                                    "id": f"edge_ttl_{pred}_{source_nid}_{target_nid}",
+                                    "source": source_nid,
+                                    "target": target_nid,
+                                    "label": edge_lbl,
+                                    "predicate": f"https://vocabs.acdh.oeaw.ac.at/schema#{pred}"
+                                })
+                                ttl_edges_added += 1
+        print(f"[✓] Successfully injected {ttl_edges_added} semantic edges from ARCHE TTL.")
 
     # 8.5 Add all 20,355 ARCHE Resources (arche:Resource)
     print(f"[*] Integrating {len(corpus)} ARCHE Resources into Knowledge Graph...")

@@ -123,7 +123,15 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
    - **Kantentexte (Relationen) umschalten:** Schaltfläche `#btnToggleEdgeLabels` (*»Kantentexte verbergen«* / *»Kantentexte einblenden«*) deaktiviert oder aktiviert alle Relationstexte.
    - **Semantische Kanten-Badges:** Kanten tragen ihre Relation (z. B. `isPartOf`, `hasSpatialCoverage`, `documents`, `hasCreator`, `hasSubject`, etc.) als autorotierte Text-Badges mit dezentem Hintergrund und prädikatspezifischen Farben.
    - **Performance-Schutz (`min-zoomed-font-size: 8.5`):** Im Weitwinkel-Überblick (35.597 Kanten) werden keine Kantentexte gezeichnet; bei Heranzoomen an ein Cluster blenden sich die Beziehungsbeschriftungen flüssig ein.
-   - **Deep-Linking:** URL-Parameter `?node_labels=0` und `?edge_labels=0` ermöglichen den direkten Start mit ausgeblendeten Texten.
+9. **Vollständige semantische ARCHE-Relationen & Canvas-Sichtbarkeit bei Selektion:**
+   - **Lückenlose Prädikaten-Extraktion aus ARCHE-TTL:** Neben den hierarchischen und Urheber-Beziehungen werden nun alle autoritativen ARCHE-Prädikate verarbeitet: `hasHosting` (zur ÖAW / ARCHE), `hasOwner`, `hasLicensor` und `hasRightsHolder` (zum Landesmuseum Kärnten / kärnten.museum), `hasCurator` (Kuratierende Forscher:innen) sowie `hasDepositor`, `hasMetadataCreator` und `hasDigitisingAgent`.
+   - **Gesamtzahl:** Anstieg von 35.597 auf **38.696 semantische Kanten** bei 21.080 Knoten (z. B. 16 direkte Beziehungen für die Sammlung `col_1792693`).
+   - **Garantierte Canvas-Sichtbarkeit:** Wenn Kanten global ausgeblendet sind (*»Kanten verbergen«*), erzwingt das Auswählen eines Knotens via `highlightNeighbors` sofort das Einblenden seiner direkten Beziehungen und Nachbarknoten (`node.connectedEdges().show()`).
+10. **Vergrößerbares & stufenlos skalierbares Detail-Popup (Inspector Drawer):**
+    - **Breitbildansicht per Button (`#drawerToggleExpandBtn`):** Ein Klick auf den Expand-Button (`<i class="fa-solid fa-expand"></i>`) im Drawer-Header vergrößert das Popup sofort auf eine 2-Spalten-Breitbildansicht (`min(880px, 92vw)`).
+    - **Zweispaltiges Ergonomie-Layout:** Links stehen Metadaten, Identifikatoren, Beschreibung und ARCHE-Vorschau; rechts oben thronen prominent die **Verknüpften Entitäten** mit farbigen Kategorie-Badges (`HOSTING`, `EIGENTÜMER`, `LIZENZGEBER`, `KURATOR:IN`, `URHEBER:IN`, `FUNDORT`, etc.), Typ-Icons und Pfeil-Richtungen.
+    - **Interaktiver Resize-Handle (`.drawer-resize-handle`):** Der linke Rand des Drawers kann mit der Maus stufenlos von 380px bis fast zur vollen Fensterbreite gezogen werden. Ein Doppelklick toggelt die Breitbildansicht.
+    - **Tastatursteuerung:** `Escape` schließt oder verkleinert das geöffnete Panel.
 
 ---
 
@@ -141,7 +149,11 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 
 ### Kanten (`label`):
 * `isPartOf`: Sammlungshierarchie und Ressourcen-Zugehörigkeit
-* `hasCreator` / `hasContributor`: Beteiligte Personen und Institutionen
+* `hasHosting`: Repositoriumshosting (z. B. zu ÖAW / ARCHE)
+* `hasOwner` / `hasLicensor` / `hasRightsHolder`: Institutionelle Eigentümerschaft und Nutzungsrechte (z. B. Landesmuseum Kärnten)
+* `hasCurator`: Kuration von Sammlungen und Funden
+* `hasCreator` / `hasContributor`: Beteiligte Urheber:innen und Mitwirkende
+* `hasDepositor` / `hasMetadataCreator` / `hasDigitisingAgent`: Datenpflege und Digitalisierung
 * `hasSpatialCoverage`: Raumbezüge zu Fundorten (gestrichelt grün)
 * `documents`: Dokumentationsnachweis von Publikationen zu Sammlungen/Datensätzen
 * `hasAuthor`: Autorschaft bei Publikationen
