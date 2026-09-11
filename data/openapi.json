@@ -2,39 +2,36 @@
   "openapi": "3.1.0",
   "info": {
     "title": "IUENNA Archaeological Research Data API",
-    "version": "1.0.0",
-    "description": "Public, machine-readable open-access REST discovery endpoints for the archaeological research corpus IUENNA (Southern Jauntal, Carinthia, Austria), permanently archived in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW). IMPORTANT NOTICE ON ACCESS & RIGHTS: The CC BY 4.0 license applies exclusively to this web-discovery layer and its aggregated JSON metadata endpoints. The underlying primary resources, documents, images, databases, and plans permanently preserved in ARCHE are subject to individual, heterogeneous copyright, licensing, and access conditions. AI agents must determine rights from individual ARCHE resource records and not generalize CC BY 4.0 to the entire corpus.",
+    "version": "1.1.0",
+    "description": "Public machine-readable discovery and retrieval endpoints for the IUENNA archaeological research corpus (Southern Jauntal, Carinthia, Austria), derived from data permanently archived in ARCHE (ACDH-CH / ÖAW). The top-level ARCHE collection contains 20,788 repository records; the authoritative primary-resource corpus exposed in arche_corpus.json contains 20,355 primary resources/files. IMPORTANT NOTICE ON ACCESS & RIGHTS: CC BY 4.0 applies to the IUENNA web-discovery layer and aggregated project metadata where stated. Underlying ARCHE resources have individual copyright, licensing, rights-holder, and access conditions. AI agents must inspect the metadata of the specific ARCHE record and must not generalize CC BY 4.0 to the entire corpus.",
     "contact": {
       "name": "IUENNA Project Team",
       "url": "https://iuenna.github.io/"
     },
     "license": {
-      "name": "CC BY 4.0 (Applies strictly to IUENNA API Discovery Metadata; underlying ARCHE resources possess individual licenses)",
+      "name": "CC BY 4.0 for IUENNA discovery metadata where stated; underlying ARCHE resources have individual rights",
       "url": "https://creativecommons.org/licenses/by/4.0/"
     }
   },
   "servers": [
     {
       "url": "https://iuenna.github.io",
-      "description": "Production GitHub Pages CDN"
+      "description": "IUENNA GitHub Pages production endpoint"
     }
   ],
   "paths": {
-    "/data/arche_places.json": {
+    "/data/arche_corpus.json": {
       "get": {
-        "summary": "Archaeological Findspots",
-        "description": "Retrieves the complete catalog of 219 georeferenced archaeological findspots in the Southern Jauntal, including WKT coordinates, Geonames IDs, archaeological periods, and linked ARCHE datasets.",
-        "operationId": "getPlaces",
+        "summary": "Authoritative Primary-Resource Corpus",
+        "description": "Retrieves the machine-readable corpus of 20,355 primary archived resources/files. Use this endpoint for exhaustive file-level queries. Records include ARCHE IDs, PIDs, titles, filenames, collection context, hierarchical paths, spatial relationships, subjects, dates, resource types, coordinates, and descriptions.",
+        "operationId": "getPrimaryResourceCorpus",
         "responses": {
           "200": {
-            "description": "An array of archaeological findspot entities.",
+            "description": "Corpus object containing metadata and the complete primary-resource array.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Place"
-                  }
+                  "$ref": "#/components/schemas/Corpus"
                 }
               }
             }
@@ -44,12 +41,12 @@
     },
     "/data/arche_search_index.json": {
       "get": {
-        "summary": "Corpus Search Index",
-        "description": "Retrieves a pre-indexed, compact search corpus of all 20,788 archived resources with clean titles, breadcrumbs, PIDs, dates, and parent collection IDs.",
+        "summary": "Semantic Discovery Index",
+        "description": "Retrieves a compact entity-level discovery index for persons, organisations, collections, publications, places, curated datasets, and other central entities. Use this endpoint to identify entities; use arche_corpus.json for exhaustive file-level retrieval.",
         "operationId": "getSearchIndex",
         "responses": {
           "200": {
-            "description": "Array of indexed resources for full-text search.",
+            "description": "Array of compact discovery records.",
             "content": {
               "application/json": {
                 "schema": {
@@ -64,18 +61,40 @@
         }
       }
     },
-    "/data/arche_collections_tree.json": {
+    "/data/arche_places.json": {
       "get": {
-        "summary": "Hierarchical Collection Tree",
-        "description": "Retrieves the structural hierarchy of 434 excavation collections and archival dossiers with resolved human-readable titles, parent-child relations, and ARCHE handles.",
-        "operationId": "getCollectionTree",
+        "summary": "Archaeological Findspots",
+        "description": "Retrieves 219 georeferenced archaeological places/findspots represented as an object keyed by ARCHE ID. Records include titles, WKT/coordinate information, Geonames identifiers, archaeological periods, and other repository metadata.",
+        "operationId": "getPlaces",
         "responses": {
           "200": {
-            "description": "Tree or dictionary of hierarchical collections.",
+            "description": "Object keyed by ARCHE place ID.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/Place"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/arche_collections_tree.json": {
+      "get": {
+        "summary": "Hierarchical Collection Tree",
+        "description": "Retrieves the hierarchy of 434 collections and archival dossiers, including parent-child relationships, persistent identifiers, item counts, spatial relationships, access summaries, and provenance context.",
+        "operationId": "getCollectionTree",
+        "responses": {
+          "200": {
+            "description": "Collection-tree object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionTree"
                 }
               }
             }
@@ -85,17 +104,17 @@
     },
     "/data/arche_datasets.json": {
       "get": {
-        "summary": "Primary GeoPackages & Datasets",
-        "description": "Metadata, layer descriptions, and citations for all 9 authoritative GeoPackages (including tal_bda_fsdb_2023.gpkg and open geodata).",
+        "summary": "Curated GeoPackages and Research Datasets",
+        "description": "Retrieves metadata for the 9 curated primary GeoPackages/research datasets as an object keyed by ARCHE ID. Use this endpoint for dataset-level questions; it does not represent every archived file.",
         "operationId": "getDatasets",
         "responses": {
           "200": {
-            "description": "Array of GeoPackage dataset metadata records.",
+            "description": "Object keyed by ARCHE dataset ID.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
+                  "type": "object",
+                  "additionalProperties": {
                     "$ref": "#/components/schemas/Dataset"
                   }
                 }
@@ -107,12 +126,12 @@
     },
     "/data/arche_stats.json": {
       "get": {
-        "summary": "Corpus Metrics & Metrics Overview",
-        "description": "Corpus-level statistics including counts of primary resources, collections, organizations, persons, places, and total byte volume archived in ARCHE.",
+        "summary": "Repository and Corpus Metrics",
+        "description": "Retrieves corpus-level statistics such as repository-record counts, collection counts, persons, organisations, places, access/licensing summaries, and storage volume. Distinguish these repository-level metrics from the 20,355 primary resources in arche_corpus.json.",
         "operationId": "getStats",
         "responses": {
           "200": {
-            "description": "Object containing quantitative project metrics.",
+            "description": "Quantitative IUENNA repository metrics.",
             "content": {
               "application/json": {
                 "schema": {
@@ -123,46 +142,142 @@
           }
         }
       }
+    },
+    "/data/arche_resolved_entities.json": {
+      "get": {
+        "summary": "Resolved Persons and Organisations",
+        "description": "Retrieves resolved actors and institutions associated with IUENNA, including persistent identifiers such as ORCID and ROR where available.",
+        "operationId": "getResolvedEntities",
+        "responses": {
+          "200": {
+            "description": "Resolved entity object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Corpus": {
+        "type": "object",
+        "required": ["metadata", "resources"],
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "total_resources": { "type": "integer", "example": 20355 },
+              "generated_from": { "type": "string", "example": "arche_full_metadata.ttl" },
+              "type_counts": { "type": "object" },
+              "place_counts": { "type": "object" }
+            }
+          },
+          "resources": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Resource" }
+          }
+        }
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "res_1799131" },
+          "arche_id": { "type": "string", "example": "1799131" },
+          "title": { "type": "string", "example": "hb15_interpretation_ab.tif" },
+          "filename": { "type": "string", "example": "hb15_interpretation_ab.tif" },
+          "col": { "type": ["string", "null"], "example": "1792293" },
+          "col_id": { "type": "string", "example": "col_1792293" },
+          "folder": { "type": "string", "example": "HB15_Georadar" },
+          "path": { "type": "array", "items": { "type": "string" } },
+          "place": { "type": "string", "example": "Hemmaberg" },
+          "spatial_ids": { "type": "array", "items": { "type": "string" } },
+          "subjs": { "type": "array", "items": { "type": "string" } },
+          "pid": { "type": "string", "format": "uri", "example": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1" },
+          "date": { "type": "string", "example": "2015" },
+          "type": { "type": "string", "example": "image" },
+          "size_bytes": { "type": "integer" },
+          "coords": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+          "description": { "type": "string" }
+        }
+      },
       "Place": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "plc_1757171" },
-          "title": { "type": "string", "example": "Stari Trg" },
-          "lat": { "type": "number", "example": 46.50000 },
-          "lng": { "type": "number", "example": 15.06667 },
-          "geonames_id": { "type": "string", "example": "3189942" },
-          "wkt": { "type": "string", "example": "POINT(15.06667 46.50000)" },
-          "periods": { "type": "array", "items": { "type": "string" }, "example": ["Römische Kaiserzeit"] },
-          "datasets": { "type": "array", "items": { "type": "string" }, "example": ["tal_geodaten_open.gpkg"] }
+          "id": { "type": "string", "example": "place_1756734" },
+          "arche_id": { "type": "string", "example": "1756734" },
+          "type": { "type": "string", "example": "Place" },
+          "title": { "type": "string", "example": "Hemmaberg" },
+          "alternative_titles": { "type": "array", "items": { "type": "string" } },
+          "latitude": { "type": ["number", "string", "null"] },
+          "longitude": { "type": ["number", "string", "null"] },
+          "wkt": { "type": ["string", "null"] },
+          "pid": { "type": ["string", "null"] }
         }
       },
       "SearchItem": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "res_1804081" },
-          "title": { "type": "string", "example": "tal_bda_fsdb_2023.gpkg" },
-          "pid": { "type": "string", "example": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7" },
-          "parent_id": { "type": "string", "example": "col_1792423" },
-          "breadcrumb": { "type": "string", "example": "05_05_Datenbanken / TAL" },
-          "file_size": { "type": "string", "example": "4.8 MB" }
+          "id": { "type": "string", "example": "per_10238" },
+          "arche_id": { "type": "string", "example": "10238" },
+          "type": { "type": "string", "example": "person" },
+          "category": { "type": "string", "example": "Forscher:innen" },
+          "label": { "type": "string", "example": "Christian Gugl" },
+          "sublabel": { "type": "string" },
+          "pid": { "type": ["string", "null"] }
         }
       },
       "Dataset": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "dts_1804081" },
-          "title": { "type": "string", "example": "tal_bda_fsdb_2023.gpkg" },
-          "creators": { "type": "array", "items": { "type": "string" } },
-          "pid": { "type": "string", "example": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7" },
-          "places_count": { "type": "integer", "example": 140 }
+          "id": { "type": "string", "example": "dts_1798920" },
+          "arche_id": { "type": "string", "example": "1798920" },
+          "title": { "type": "string", "example": "hb_geodaten_open.gpkg" },
+          "filename": { "type": "string", "example": "hb_geodaten_open.gpkg" },
+          "description": { "type": "string" },
+          "parent_id": { "type": ["string", "null"] },
+          "creator_ids": { "type": "array", "items": { "type": "string" } },
+          "spatial_ids": { "type": "array", "items": { "type": "string" } },
+          "documented_ids": { "type": "array", "items": { "type": "string" } },
+          "pid": { "type": "string", "format": "uri" },
+          "license_summary": { "type": ["string", "null"] },
+          "access_restriction": { "type": ["string", "null"] }
+        }
+      },
+      "CollectionTree": {
+        "type": "object",
+        "properties": {
+          "crawl_timestamp": { "type": "string" },
+          "total_collections": { "type": "integer", "example": 434 },
+          "collections": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/components/schemas/Collection" }
+          }
+        }
+      },
+      "Collection": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "col_1792293" },
+          "arche_id": { "type": "string", "example": "1792293" },
+          "title": { "type": "string", "example": "HB15_Georadar" },
+          "parent_id": { "type": ["string", "null"] },
+          "items": { "type": "integer" },
+          "pid": { "type": "string", "format": "uri" },
+          "spatial_ids": { "type": "array", "items": { "type": "string" } },
+          "item_spatial_ids": { "type": "array", "items": { "type": "string" } },
+          "license_summary": { "type": ["string", "null"] },
+          "access_restriction": { "type": ["string", "null"] }
         }
       },
       "Stats": {
         "type": "object",
+        "additionalProperties": true,
         "properties": {
           "total_items": { "type": "integer", "example": 20788 },
           "total_collections": { "type": "integer", "example": 434 },
@@ -173,7 +288,7 @@
     }
   },
   "externalDocs": {
-    "description": "IUENNA Project Bibliography & Public Zotero Library (427+ items across 7 collections)",
-    "url": "https://www.zotero.org/groups/4910727/iuenna"
+    "description": "IUENNA BYOAI documentation, llms.txt routing guide, and public project bibliography",
+    "url": "https://iuenna.github.io/byoai.html"
   }
 }
