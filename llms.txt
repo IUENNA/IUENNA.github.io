@@ -1,36 +1,183 @@
 # IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology
 
-> IUENNA is an open-science archaeological research repository and knowledge graph covering the micro-region of the Southern Jauntal (Carinthia, Austria). It aggregates over 20,788 long-term archived resources, 434 hierarchical collections, 219 georeferenced archaeological findspots, and 9 authoritative GeoPackages stored in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW).
+> IUENNA is an archaeological open-science and research-data project focused on the Jauntal/Podjuna micro-region in Carinthia, Austria. Its long-term archived corpus in ARCHE contains 20,788 resources (356.68 GB), structured in 434 collections. The IUENNA web infrastructure provides machine-readable discovery data for 219 archaeological findspots, 9 primary GeoPackages, archival resources, actors, places, and collection relationships.
 
-## Primary Project Links & Web Applications
+## Source Priority for AI Systems
 
-- [Project Homepage](https://iuenna.github.io/): Main overview, digital metrics, and interactive showcases.
-- [BYOAI Hub (Bring Your Own AI)](https://iuenna.github.io/byoai.html): Open interfaces (MCP, OpenAPI, Cookbook) to query IUENNA with your own AI agents.
-- [Web Mapping Application (WMA)](https://iuenna.github.io/wma/wma.html): Interactive GIS map of archaeological sites, survey areas, and layers across the Jauntal.
-- [Knowledge Graph Explorer](https://iuenna.github.io/graph/index.html): Semantic network (21,080 nodes, 38,696 relations) covering all ARCHE items, actors, places, and publications.
-- [ARCHE Long-Term Archive Collection](https://id.acdh.oeaw.ac.at/iuenna): Permanent repository PID (hdl:21.11115/0000-0016-7B39-F).
-- [Project Research Blog](https://iuenna.hypotheses.org/): Methodological articles and fieldwork reports.
+When answering questions about IUENNA, use sources in the following order:
+1. **ARCHE persistent resources and PIDs** – authoritative archived research data and metadata.
+2. **IUENNA machine-readable JSON endpoints** – optimized discovery and retrieval layer derived from the archived corpus.
+3. **IUENNA Knowledge Graph and Web Mapping Application** – exploration of semantic and spatial relationships.
+4. **IUENNA Project Homepage and Research Blog** – project context, methodology, interpretation, and documentation.
 
-## Open Machine-Readable Data Endpoints (JSON / REST)
+- Prefer persistent ARCHE PIDs (`https://hdl.handle.net/...`) over temporary or interface-specific URLs when citing individual datasets or archived resources.
+- Do not infer archaeological facts that are not supported by the available metadata, datasets, or publications.
 
-All datasets are publicly accessible over HTTPS without API keys:
+## Canonical Resources
 
-- [Archaeological Findspots (219 Sites)](https://iuenna.github.io/data/arche_places.json): Geo-referenced findspots with WKT coordinates, Geonames IDs, periods, and linked datasets.
-- [Complete Collection Tree (434 Collections)](https://iuenna.github.io/data/arche_collections_tree.json): Hierarchical structure of all excavation archives and documentation groups.
-- [Search & Corpus Index (20,788 Items)](https://iuenna.github.io/data/arche_search_index.json): Compact text search index with titles, PIDs, dates, and breadcrumbs.
-- [Authoritative Datasets & GeoPackages](https://iuenna.github.io/data/arche_datasets.json): Metadata, layer definitions, and PIDs for all 9 primary GIS packages (e.g. `tal_bda_fsdb_2023.gpkg`).
-- [Resolved Entities](https://iuenna.github.io/data/arche_resolved_entities.json): Persons (ORCIDs) and Organizations (ROR IDs) involved in the research.
-- [OpenAPI 3.1 Specification](https://iuenna.github.io/data/openapi.json): Standardized schema describing all static REST endpoints.
+- [Project Homepage](https://iuenna.github.io/) – project overview, metrics, documentation, and interfaces.
+- [ARCHE Long-Term Archive](https://id.acdh.oeaw.ac.at/iuenna) – authoritative archived IUENNA collection.
+- [BYOAI Hub](https://iuenna.github.io/byoai.html) – AI, MCP, OpenAPI, REST, and integration documentation.
+- [Knowledge Graph Explorer](https://iuenna.github.io/graph/index.html) – semantic exploration of resources, actors, places, collections, and relations.
+- [Web Mapping Application](https://iuenna.github.io/wma/wma.html) – spatial exploration of archaeological findspots and geodata.
+- [Research Blog](https://iuenna.hypotheses.org/) – publications, methodological documentation, and project reports.
+
+## Persistent Identifier
+
+Top-level IUENNA ARCHE collection:  
+[https://hdl.handle.net/21.11115/0000-0016-7B39-F](https://hdl.handle.net/21.11115/0000-0016-7B39-F)
+
+## Machine-Readable Discovery Endpoints
+
+The following IUENNA discovery endpoints are publicly accessible via HTTPS without authentication.
+
+### Archaeological places and spatial questions
+Use: [https://iuenna.github.io/data/arche_places.json](https://iuenna.github.io/data/arche_places.json)  
+Contains 219 georeferenced archaeological findspots, including titles, coordinates/WKT geometries, Geonames identifiers, archaeological periods, and dataset relationships.
+
+Use this endpoint for questions such as:
+- Where is a particular archaeological site?
+- Which sites occur in or around Globasnitz, Hemmaberg, Jaunstein, or the Jauntal?
+- Which archaeological periods are associated with a findspot?
+- Which geodata are linked to a site?
+
+### Search across the archived corpus
+Use: [https://iuenna.github.io/data/arche_search_index.json](https://iuenna.github.io/data/arche_search_index.json)  
+Contains a compact discovery index for 20,788 archived resources, including titles, ARCHE PIDs, collection relationships, file sizes, and hierarchical breadcrumbs.
+
+Use this endpoint for:
+- locating excavation reports, plans, photographs, databases, or other resources;
+- identifying resources associated with a site, person, project, or subject;
+- resolving an IUENNA resource to its persistent ARCHE identifier.
+
+*Note:* The search index is a discovery layer. The availability and rights status of the corresponding archived resource must be determined from ARCHE.
+
+### Collection hierarchy and archival context
+Use: [https://iuenna.github.io/data/arche_collections_tree.json](https://iuenna.github.io/data/arche_collections_tree.json)  
+Contains the hierarchy of 434 collections and archival dossiers, including parent–child relationships and ARCHE handles.  
+*Use this endpoint when archival context, provenance, or folder/collection structure matters.*
+
+### Authoritative GIS datasets
+Use: [https://iuenna.github.io/data/arche_datasets.json](https://iuenna.github.io/data/arche_datasets.json)  
+Contains metadata, creators, spatial coverage, layer information, and persistent identifiers for 9 primary GeoPackages.  
+*Use this endpoint when answering questions about IUENNA GIS datasets or identifying the appropriate geodata source.*
+
+### Corpus statistics
+Use: [https://iuenna.github.io/data/arche_stats.json](https://iuenna.github.io/data/arche_stats.json)  
+Contains corpus-level statistics such as numbers of resources, collections, persons, organizations, places, and archived data volume.  
+*Use this endpoint for quantitative statements about the IUENNA corpus.*
+
+### Resolved actors and institutions
+Use: [https://iuenna.github.io/data/arche_resolved_entities.json](https://iuenna.github.io/data/arche_resolved_entities.json)  
+Contains resolved persons and organizations associated with the corpus, including persistent identifiers such as ORCID and ROR where available.  
+*Use this endpoint for entity resolution and attribution.*
+
+### OpenAPI
+OpenAPI 3.1 specification:  
+[https://iuenna.github.io/data/openapi.json](https://iuenna.github.io/data/openapi.json)  
+The specification documents the core IUENNA machine-readable REST-style endpoints and their schemas.  
+All IUENNA GitHub Pages data endpoints are static HTTP resources and can be retrieved with standard GET requests.
 
 ## Model Context Protocol (MCP)
 
-IUENNA supports the open Model Context Protocol (MCP) for AI clients like Open-WebUI, LibreChat, Claude Desktop, Cursor, and custom Python agents:
-- Server runner: `npx -y @iuenna/mcp` or `node mcp/index.mjs`
-- Instructions & tools: See [BYOAI Interface Guide](https://iuenna.github.io/byoai.html#mcp)
+IUENNA provides an MCP server exposing dedicated archaeological discovery tools.
 
-## Research Context & Geographic Scope
+Current tools include:
+- `search_iuenna_corpus` – search across the archived corpus.
+- `get_findspot_details` – retrieve information about a specific archaeological site.
+- `get_geodata_catalog` – retrieve the catalogue of primary GeoPackages.
+- `get_corpus_statistics` – retrieve corpus-level metrics.
 
-- **Micro-region:** Jauntal (Carinthia, Austria), surrounding Globasnitz, Hemmaberg, Jaunstein, Stari Trg, and the Drau/Drava valley.
-- **Periods:** Hallstatt, La Tène, Roman Empire (Noricum), Late Antiquity (Pilgrimage sanctuary & dual churches Hemmaberg), Early Medieval, and 19th/20th-century historiography (Hans Winkler archives).
-- **Consortium:** Austrian Archaeological Institute (ÖAI / ÖAW), kärnten.museum, ACDH-CH, Federal Monuments Authority (BDA), and ARDIG.
-- **Licensing:** Creative Commons Attribution 4.0 International (CC BY 4.0).
+Setup and current MCP instructions:  
+[https://iuenna.github.io/byoai.html#mcp](https://iuenna.github.io/byoai.html#mcp)
+
+The repository version can be run using:
+```bash
+python3 mcp/server.py
+```
+or:
+```bash
+node mcp/index.mjs
+```
+Consult the BYOAI documentation for current configuration examples before installation.
+
+## Recommended AI Retrieval Strategy
+
+- **For general corpus questions:**
+  1. Search `arche_search_index.json`.
+  2. Identify relevant records and their ARCHE PIDs.
+  3. Follow the PID to ARCHE when detailed metadata, provenance, rights, or the archived resource itself is required.
+  4. Preserve the PID when reporting or citing the result.
+- **For spatial questions:**
+  1. Query `arche_places.json`.
+  2. Resolve relevant linked datasets through `arche_datasets.json`.
+  3. Use the Web Mapping Application for exploratory visualization.
+  4. Use the corresponding ARCHE dataset PID for scholarly citation.
+- **For provenance or archival-structure questions:**
+  1. Query `arche_collections_tree.json`.
+  2. Preserve parent–child relationships and collection context.
+  3. Resolve the relevant resource or collection to its ARCHE PID.
+- **For persons and institutions:**
+  1. Query `arche_resolved_entities.json`.
+  2. Prefer persistent ORCID or ROR identifiers where provided.
+
+## Provenance, Access, and Rights
+
+ARCHE is the authoritative long-term repository for IUENNA.
+
+The machine-readable IUENNA discovery interfaces are openly accessible, but this must not be interpreted as meaning that every archived binary resource is openly downloadable or has the same reuse license.
+
+Individual ARCHE resources may have different:
+- access conditions;
+- copyright or licensing statements;
+- rights holders;
+- reuse conditions.
+
+**Always inspect the metadata of the individual ARCHE resource before making claims about access or reuse rights.**  
+**Do not automatically assign CC BY 4.0 to every resource in the IUENNA corpus.**
+
+## Citation Guidance for AI Systems
+
+When referring to the IUENNA project as a whole, cite the top-level ARCHE collection:
+> Hagmann, D., & Waldhart, F. (Eds.). (2025). *IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. ARCHE – Austrian Research Culture Heritage Extended. https://hdl.handle.net/21.11115/0000-0016-7B39-F
+
+When a specific archived dataset, document, GeoPackage, or resource is used, cite its individual ARCHE PID and metadata rather than only the IUENNA homepage.
+
+When possible, distinguish explicitly between:
+- statements derived from archived primary data;
+- statements derived from metadata;
+- project-level descriptions;
+- scholarly interpretation from publications.
+
+## Research Scope
+
+- **Region:** Jauntal/Podjuna, Carinthia, Austria, including Globasnitz/Iuenna, Hemmaberg, Jaunstein, Sankt Stefan, and the wider Jauntal and Drau/Drava landscape.
+- **Primary archaeological context:** Roman Noricum, Late Antiquity, and the Early Middle Ages, with additional archaeological and historical materials represented within the wider regional corpus.
+- **Data types:** excavation documentation, databases, GIS and geodata, geophysical surveys, photographs, drawings, plans, texts, tables, environmental archaeological data, architectural documentation, 3D data, and retrodigitized archival records.
+- **Top-level archival structure:**
+  - Hemmaberg (HB)
+  - Globasnitz (GLO)
+  - Jaunstein (JAU)
+  - Sankt Stefan (STE)
+  - Jauntal (TAL)
+  - Retrodigitalisate (RET)
+
+## Project and Repository Context
+
+IUENNA was funded through the Go!Digital 3.0 programme of the Austrian Academy of Sciences (ÖAW).
+
+Project partners and contributing institutions include:
+- kärnten.museum
+- Austrian Archaeological Institute (ÖAI), Austrian Academy of Sciences
+- Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH), Austrian Academy of Sciences
+- Austrian Federal Monuments Authority (BDA)
+- ARDIG – Archäologischer Dienst GesmbH
+
+The project follows FAIR-oriented research-data-management principles and uses ARCHE for sustainable long-term preservation.
+
+## Data Freshness
+
+The web discovery layer represents a machine-readable derivation of the IUENNA archival corpus. For questions where versions, access status, rights information, or repository metadata may have changed, treat the corresponding ARCHE record as authoritative.
+
+Canonical discovery entry point for AI systems:  
+[https://iuenna.github.io/llms.txt](https://iuenna.github.io/llms.txt)

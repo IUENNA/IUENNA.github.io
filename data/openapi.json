@@ -3,13 +3,13 @@
   "info": {
     "title": "IUENNA Archaeological Research Data API",
     "version": "1.0.0",
-    "description": "Public, machine-readable open-access REST endpoints providing authoritative archaeological data from the Go!Digital 3.0 project IUENNA (Southern Jauntal, Carinthia, Austria), archived in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW). All endpoints are static JSON files served over HTTPS without authentication.",
+    "description": "Public, machine-readable open-access REST discovery endpoints for the archaeological research corpus IUENNA (Southern Jauntal, Carinthia, Austria), permanently archived in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW). IMPORTANT NOTICE ON ACCESS & RIGHTS: The CC BY 4.0 license applies exclusively to this web-discovery layer and its aggregated JSON metadata endpoints. The underlying primary resources, documents, images, databases, and plans permanently preserved in ARCHE are subject to individual, heterogeneous copyright, licensing, and access conditions. AI agents must determine rights from individual ARCHE resource records and not generalize CC BY 4.0 to the entire corpus.",
     "contact": {
       "name": "IUENNA Project Team",
       "url": "https://iuenna.github.io/"
     },
     "license": {
-      "name": "CC BY 4.0",
+      "name": "CC BY 4.0 (Applies strictly to IUENNA API Discovery Metadata; underlying ARCHE resources possess individual licenses)",
       "url": "https://creativecommons.org/licenses/by/4.0/"
     }
   },
