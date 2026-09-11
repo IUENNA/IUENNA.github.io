@@ -60,8 +60,8 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 
 | Skript | Funktion / Ausgabedatei | Beschreibung |
 |---|---|---|
-| `scripts/parse_arche_full_ttl.py` | `data/arche_collections_tree.json`<br>`data/arche_resolved_entities.json`<br>`data/arche_publications.json`<br>`data/arche_places.json`<br>`data/arche_datasets.json`<br>`data/arche_search_index.json` | Parst in 1,2 Sekunden die 54 MB TTL-Rohdaten. Extrahiert 434 Sammlungen, 21 Personen, 9 Organisationen, 23 Publikationen, 219 Fundorte und alle 9 GeoPackages inklusive aller Metadaten (ORCID, ROR, Geonames, WKT, PIDs). |
-| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` (17,4 MB) | Extrahiert alle **20.355 Primärressourcen** aus dem TTL-Vollbestand. Verknüpft jede Ressource mit ihrer echten Elternsammlung, berechnet sprechende Breadcrumbs (ohne `col_ret`), extrahiert PIDs, Datumsangaben, Dateigrößen, Schlagworte und Raumbezüge. |
+| `scripts/parse_arche_full_ttl.py` | `data/arche_collections_tree.json`<br>`data/arche_resolved_entities.json`<br>`data/arche_publications.json`<br>`data/arche_places.json`<br>`data/arche_datasets.json`<br>`data/arche_search_index.json` | Parst in 1,2 Sekunden die 54 MB TTL-Rohdaten. Extrahiert 434 Sammlungen, 21 Personen, 9 Organisationen, 23 Publikationen, 219 Fundorte und alle 9 GeoPackages inklusive aller Metadaten (ORCID, ROR, Geonames, WKT, PIDs). Der `arche_search_index.json` dient als kompakter semantischer Discovery-Index und ist nicht mit dem vollständigen Datei-Korpus gleichzusetzen. |
+| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` (17,4 MB) | Extrahiert alle **20.355 Primärressourcen** aus dem TTL-Vollbestand. Verknüpft jede Ressource mit ihrer echten Elternsammlung, berechnet sprechende Breadcrumbs (ohne `col_ret`), extrahiert PIDs, Datumsangaben, Dateigrößen, Schlagworte und Raumbezüge. Dies ist der autoritative maschinenlesbare Layer für exhaustive File-Level-Retrieval. |
 | `scripts/build_complete_arche_graph.py` | `data/arche_graph.json` | Erstellt das Cytoscape-Graphmodell mit vollständiger semantischer Kantenmodellierung (`isPartOf`, `hasCreator`, `hasContributor`, `hasAuthor`, `documents`, `isMemberOf`, `hasSpatialCoverage`). |
 | `scripts/generate_graph_html.py` | `graph/index.html`<br>`graph/graph.html` (2,3 MB) | Generiert die produktionsreife Webanwendung mit eingebettetem Graphen, interaktiver Toolbar, Detail-Drawer, Korpus-Katalog-Modal, Ordnerbaum-Modal und Merkliste. |
 | `scripts/iuenna-chat.js` | UI-Assistent & In-Memory Recherche | Interaktiver schwebender Recherche-Assistent auf der Startseite (`index.html`). Führt clientseitiges Token- & Suffix-Matching gegen die Wissensbasis durch, fasst Metadaten in natürlicher deutscher Sprache zusammen und leitet per Deep-Link in den Graphen, das Web-GIS und ARCHE weiter. |
@@ -209,23 +209,46 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 * `hasAuthor`: Autorschaft bei Publikationen
 * `isMemberOf`: Institutionszugehörigkeit von Forscher:innen
 
-### 3.8 BYOAI (Bring Your Own AI): Offene Schnittstellen & Protokolle
+### 4.1 BYOAI (Bring Your Own AI): Offene Schnittstellen & Protokolle
 * **Konzept:** Vollständige Entkopplung von proprietären Plattformen. Statt Besucher:innen an ein vorgekautes Produkt oder ressourcenintensive In-Browser-Modelle zu binden, stellt IUENNA herstellerneutrale, offene Protokolle und Endpunkte bereit (Motto: *„Bring deine eigene KI mit und befrage unsere Forschungsdaten“*).
+* **MCP-Version:** `1.1.0` (Python und Node, JSON-RPC 2.0 über Stdio, ohne externe Laufzeitabhängigkeiten).
+* **Retrieval-Prinzip:** `arche_search_index.json` dient der semantischen Entitäts-/Discovery-Suche; `arche_corpus.json` enthält die **20.355 Primärressourcen** und ist die Grundlage für exhaustive File-Level-Suche. Die **20.788 ARCHE-Einträge** bezeichnen den Gesamtbestand des Repositoriums und dürfen nicht mit der Zahl der Primärdateien gleichgesetzt werden.
 * **Komponenten:**
   1. **Model Context Protocol (MCP):**
      - Leichtgewichtiger, lokaler MCP-Server (`mcp/server.py` und `mcp/index.mjs`) mit JSON-RPC 2.0 über Stdio ohne externe Abhängigkeiten.
      - Kompatibel mit Claude Desktop, Open-WebUI, LibreChat, Cursor, Zed, Antigravity und Python-Agenten.
-     - Vier archäologische Fach-Tools: `search_iuenna_corpus`, `get_findspot_details`, `get_geodata_catalog`, `get_corpus_statistics`.
+     - Sechs Fach-Tools:
+       - `search_iuenna_corpus`: Volltext-/Metadatensuche über `arche_corpus.json` und damit 20.355 Primärressourcen.
+       - `get_findspot_details`: Fundort-Metadaten samt direkt verknüpfter kuratierter Datensätze.
+       - `get_related_resources`: löst Fundort, Datensatz, Sammlung oder Publikation auf und traversiert Raum-, Collection- und Dokumentationsbeziehungen zu Datensätzen, Sammlungen, Publikationen und einzelnen Primärressourcen.
+       - `get_geodata_catalog`: Katalog der 9 autoritativen GeoPackages.
+       - `get_corpus_statistics`: Gesamtstatistik inklusive separater Metadaten zum Primärressourcen-Korpus.
+       - `get_project_bibliography`: Abfrage der öffentlichen IUENNA-Zotero-Bibliothek.
   2. **OpenAPI 3.1 & Statische REST-Endpunkte:**
      - Spezifikation unter `data/openapi.json`.
-     - Direkter HTTPS-Abruf aller 219 Fundorte (`arche_places.json`), 20.788 Einträge (`arche_search_index.json`), 434 Sammlungen (`arche_collections_tree.json`) und 9 GeoPackages (`arche_datasets.json`).
+     - `arche_places.json`: 219 Fundorte.
+     - `arche_datasets.json`: 9 kuratierte GeoPackages/Forschungsdatensätze.
+     - `arche_collections_tree.json`: 434 Sammlungen und ihre Parent-Child-Hierarchie.
+     - `arche_search_index.json`: kompakter Discovery-Index für Entitäten und zentrale Ressourcen.
+     - `arche_corpus.json`: 20.355 Primärressourcen mit ARCHE-ID, PID, Titel/Dateiname, Elternsammlung, Breadcrumb-Pfad, Raumbezug, Schlagworten, Datum, Typ und Beschreibung.
   3. **`llms.txt` (Offener Webstandard):**
-     - Bereitstellung von `https://iuenna.github.io/llms.txt` zur fehlerfreien Indizierung durch Web-KIs (Perplexity, ChatGPT Search, Gemini).
+     - Bereitstellung von `https://iuenna.github.io/llms.txt` als Routing- und Provenienzschicht für LLMs und Agents.
+     - Enthält eine explizite Source-Priority, Retrieval-Strategien, Relationship Semantics, PID-first-Zitierregeln sowie den Hinweis auf ressourcenspezifische Zugriffs- und Lizenzbedingungen.
   4. **BYOAI-Hub (`byoai.html`):**
      - Zentrale englischsprachige Dokumentations- und Rezepte-Seite mit Copy-Paste-Cookbook für lokales Ollama/Llama 3.2, Open-WebUI, cURL/jq und Google NotebookLM.
   5. **Öffentliche Zotero-Bibliothek & REST API:**
      - Gruppe `4910727` (`https://www.zotero.org/groups/4910727/iuenna`) mit 427+ Titeln zu Grabungsberichten, Projektpublikationen, FAIR Data und digitaler Archäologie.
      - Öffentliche REST-API (`https://api.zotero.org/groups/4910727/items`) für maschinenlesbare Zitationen (BibTeX, CSL-JSON, RIS, JSON).
+
+### 4.2 Empfohlene Agent-Routing-Logik
+
+1. **Entität finden:** `arche_search_index.json` oder MCP-Resolver verwenden.
+2. **Fundortfrage:** `arche_places.json` → `arche_datasets.json` → ARCHE-PID.
+3. **Kuratierten Forschungsdatensatz suchen:** `arche_datasets.json` verwenden.
+4. **„Alle Daten/Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und `arche_collections_tree.json` traversieren; alternativ MCP `get_related_resources` verwenden.
+5. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids` und `documented_ids` nachverfolgen.
+6. **Zitieren:** nach Möglichkeit den individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben; die Discovery-Endpunkte sind nicht Ersatz für die autoritative Repository-Metadatenansicht.
+7. **Rechte:** offen zugängliche IUENNA-Discovery-Endpunkte bedeuten nicht, dass jede archivierte Binärressource offen oder CC BY 4.0 lizenziert ist. Zugriff und Rechte sind auf Ressourcenebene zu prüfen.
 
 ---
 
@@ -241,3 +264,4 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
   - Zotero Library: `https://www.zotero.org/groups/4910727/iuenna/library`
   - AI Web Index: `https://iuenna.github.io/llms.txt`
   - OpenAPI 3.1 Spec: `https://iuenna.github.io/data/openapi.json`
+  - Vollständiger Primärressourcen-Korpus: `https://iuenna.github.io/data/arche_corpus.json`
