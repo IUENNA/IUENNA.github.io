@@ -1,0 +1,175 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "IUENNA Archaeological Research Data API",
+    "version": "1.0.0",
+    "description": "Public, machine-readable open-access REST endpoints providing authoritative archaeological data from the Go!Digital 3.0 project IUENNA (Southern Jauntal, Carinthia, Austria), archived in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW). All endpoints are static JSON files served over HTTPS without authentication.",
+    "contact": {
+      "name": "IUENNA Project Team",
+      "url": "https://iuenna.github.io/"
+    },
+    "license": {
+      "name": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://iuenna.github.io",
+      "description": "Production GitHub Pages CDN"
+    }
+  ],
+  "paths": {
+    "/data/arche_places.json": {
+      "get": {
+        "summary": "Archaeological Findspots",
+        "description": "Retrieves the complete catalog of 219 georeferenced archaeological findspots in the Southern Jauntal, including WKT coordinates, Geonames IDs, archaeological periods, and linked ARCHE datasets.",
+        "operationId": "getPlaces",
+        "responses": {
+          "200": {
+            "description": "An array of archaeological findspot entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Place"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/arche_search_index.json": {
+      "get": {
+        "summary": "Corpus Search Index",
+        "description": "Retrieves a pre-indexed, compact search corpus of all 20,788 archived resources with clean titles, breadcrumbs, PIDs, dates, and parent collection IDs.",
+        "operationId": "getSearchIndex",
+        "responses": {
+          "200": {
+            "description": "Array of indexed resources for full-text search.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SearchItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/arche_collections_tree.json": {
+      "get": {
+        "summary": "Hierarchical Collection Tree",
+        "description": "Retrieves the structural hierarchy of 434 excavation collections and archival dossiers with resolved human-readable titles, parent-child relations, and ARCHE handles.",
+        "operationId": "getCollectionTree",
+        "responses": {
+          "200": {
+            "description": "Tree or dictionary of hierarchical collections.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/arche_datasets.json": {
+      "get": {
+        "summary": "Primary GeoPackages & Datasets",
+        "description": "Metadata, layer descriptions, and citations for all 9 authoritative GeoPackages (including tal_bda_fsdb_2023.gpkg and open geodata).",
+        "operationId": "getDatasets",
+        "responses": {
+          "200": {
+            "description": "Array of GeoPackage dataset metadata records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Dataset"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/arche_stats.json": {
+      "get": {
+        "summary": "Corpus Metrics & Metrics Overview",
+        "description": "Corpus-level statistics including counts of primary resources, collections, organizations, persons, places, and total byte volume archived in ARCHE.",
+        "operationId": "getStats",
+        "responses": {
+          "200": {
+            "description": "Object containing quantitative project metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Place": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "plc_1757171" },
+          "title": { "type": "string", "example": "Stari Trg" },
+          "lat": { "type": "number", "example": 46.50000 },
+          "lng": { "type": "number", "example": 15.06667 },
+          "geonames_id": { "type": "string", "example": "3189942" },
+          "wkt": { "type": "string", "example": "POINT(15.06667 46.50000)" },
+          "periods": { "type": "array", "items": { "type": "string" }, "example": ["Römische Kaiserzeit"] },
+          "datasets": { "type": "array", "items": { "type": "string" }, "example": ["tal_geodaten_open.gpkg"] }
+        }
+      },
+      "SearchItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "res_1804081" },
+          "title": { "type": "string", "example": "tal_bda_fsdb_2023.gpkg" },
+          "pid": { "type": "string", "example": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7" },
+          "parent_id": { "type": "string", "example": "col_1792423" },
+          "breadcrumb": { "type": "string", "example": "05_05_Datenbanken / TAL" },
+          "file_size": { "type": "string", "example": "4.8 MB" }
+        }
+      },
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "dts_1804081" },
+          "title": { "type": "string", "example": "tal_bda_fsdb_2023.gpkg" },
+          "creators": { "type": "array", "items": { "type": "string" } },
+          "pid": { "type": "string", "example": "https://hdl.handle.net/21.11115/0000-0016-0E4A-7" },
+          "places_count": { "type": "integer", "example": 140 }
+        }
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "total_items": { "type": "integer", "example": 20788 },
+          "total_collections": { "type": "integer", "example": 434 },
+          "total_places": { "type": "integer", "example": 219 },
+          "total_storage_gb": { "type": "number", "example": 356.68 }
+        }
+      }
+    }
+  }
+}

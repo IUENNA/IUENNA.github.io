@@ -1,0 +1,25 @@
+{
+  "name": "@iuenna/mcp-server",
+  "version": "1.0.0",
+  "description": "Open Model Context Protocol (MCP) server for the IUENNA archaeological research repository",
+  "type": "module",
+  "main": "index.mjs",
+  "bin": {
+    "iuenna-mcp": "./index.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "archaeology",
+    "iuenna",
+    "arche",
+    "digital-humanities",
+    "open-science"
+  ],
+  "author": "IUENNA Project Team",
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IUENNA/IUENNA.github.io.git"
+  }
+}

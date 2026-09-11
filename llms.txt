@@ -1,0 +1,36 @@
+# IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology
+
+> IUENNA is an open-science archaeological research repository and knowledge graph covering the micro-region of the Southern Jauntal (Carinthia, Austria). It aggregates over 20,788 long-term archived resources, 434 hierarchical collections, 219 georeferenced archaeological findspots, and 9 authoritative GeoPackages stored in ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW).
+
+## Primary Project Links & Web Applications
+
+- [Project Homepage](https://iuenna.github.io/): Main overview, digital metrics, and interactive showcases.
+- [BYOAI Hub (Bring Your Own AI)](https://iuenna.github.io/byoai.html): Open interfaces (MCP, OpenAPI, Cookbook) to query IUENNA with your own AI agents.
+- [Web Mapping Application (WMA)](https://iuenna.github.io/wma/wma.html): Interactive GIS map of archaeological sites, survey areas, and layers across the Jauntal.
+- [Knowledge Graph Explorer](https://iuenna.github.io/graph/index.html): Semantic network (21,080 nodes, 38,696 relations) covering all ARCHE items, actors, places, and publications.
+- [ARCHE Long-Term Archive Collection](https://id.acdh.oeaw.ac.at/iuenna): Permanent repository PID (hdl:21.11115/0000-0016-7B39-F).
+- [Project Research Blog](https://iuenna.hypotheses.org/): Methodological articles and fieldwork reports.
+
+## Open Machine-Readable Data Endpoints (JSON / REST)
+
+All datasets are publicly accessible over HTTPS without API keys:
+
+- [Archaeological Findspots (219 Sites)](https://iuenna.github.io/data/arche_places.json): Geo-referenced findspots with WKT coordinates, Geonames IDs, periods, and linked datasets.
+- [Complete Collection Tree (434 Collections)](https://iuenna.github.io/data/arche_collections_tree.json): Hierarchical structure of all excavation archives and documentation groups.
+- [Search & Corpus Index (20,788 Items)](https://iuenna.github.io/data/arche_search_index.json): Compact text search index with titles, PIDs, dates, and breadcrumbs.
+- [Authoritative Datasets & GeoPackages](https://iuenna.github.io/data/arche_datasets.json): Metadata, layer definitions, and PIDs for all 9 primary GIS packages (e.g. `tal_bda_fsdb_2023.gpkg`).
+- [Resolved Entities](https://iuenna.github.io/data/arche_resolved_entities.json): Persons (ORCIDs) and Organizations (ROR IDs) involved in the research.
+- [OpenAPI 3.1 Specification](https://iuenna.github.io/data/openapi.json): Standardized schema describing all static REST endpoints.
+
+## Model Context Protocol (MCP)
+
+IUENNA supports the open Model Context Protocol (MCP) for AI clients like Open-WebUI, LibreChat, Claude Desktop, Cursor, and custom Python agents:
+- Server runner: `npx -y @iuenna/mcp` or `node mcp/index.mjs`
+- Instructions & tools: See [BYOAI Interface Guide](https://iuenna.github.io/byoai.html#mcp)
+
+## Research Context & Geographic Scope
+
+- **Micro-region:** Jauntal (Carinthia, Austria), surrounding Globasnitz, Hemmaberg, Jaunstein, Stari Trg, and the Drau/Drava valley.
+- **Periods:** Hallstatt, La Tène, Roman Empire (Noricum), Late Antiquity (Pilgrimage sanctuary & dual churches Hemmaberg), Early Medieval, and 19th/20th-century historiography (Hans Winkler archives).
+- **Consortium:** Austrian Archaeological Institute (ÖAI / ÖAW), kärnten.museum, ACDH-CH, Federal Monuments Authority (BDA), and ARDIG.
+- **Licensing:** Creative Commons Attribution 4.0 International (CC BY 4.0).
