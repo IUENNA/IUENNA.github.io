@@ -4,358 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYOAI – Bring Your Own AI | IUENNA Archaeological Research</title>
-    
-    <!-- Google Fonts & Font Awesome -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    
-    <!-- Base Stylesheet -->
     <link rel="stylesheet" href="styles.css?v=2.3.0">
-    
-    <!-- Dublin Core Metatags -->
+
     <meta name="DC.title" content="BYOAI – Bring Your Own AI | IUENNA Archaeological Research">
     <meta name="DC.creator" content="Dominik Hagmann">
     <meta name="DC.creator" content="Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, BYOAI, MCP, Model Context Protocol, OpenAPI, Archaeology, Digital Humanities, Open Science">
-    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces (MCP, OpenAPI, llms.txt, and code recipes) to query 20,788 ARCHE records with zero vendor lock-in.">
-    <meta name="DC.date" content="2025-02-01">
+    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces for 20,788 ARCHE records, including an authoritative corpus of 20,355 primary resources, with MCP, OpenAPI-style endpoints, llms.txt, and reproducible code recipes.">
     <meta name="DC.language" content="en">
     <meta name="DC.identifier" content="https://iuenna.github.io/byoai.html">
     <meta name="DC.rights" content="CC BY 4.0">
 
     <style>
-        /* BYOAI Dedicated Component Styles */
         :root {
-            --accent-purple: #6a1b9a;
-            --accent-purple-light: #f3e5f5;
             --code-bg: #1e1e24;
             --code-text: #e0e2ec;
         }
-
-        .byoai-hero {
-            text-align: center;
-            padding: 3.5rem 1.5rem 2.5rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .byoai-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            border-radius: 999px;
-            background: rgba(168, 68, 46, 0.08);
-            border: 1px solid rgba(168, 68, 46, 0.2);
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 1.2rem;
-        }
-
-        .byoai-title {
-            font-size: clamp(2.2rem, 5vw, 3.2rem);
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .byoai-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 780px;
-            margin: 0 auto 1.8rem;
-            line-height: 1.65;
-        }
-
-        .pill-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .pill-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 5px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .pill-tag i {
-            color: var(--secondary);
-        }
-
-        /* Section Cards */
-        .byoai-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 2.2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .byoai-section h2 {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .byoai-section h2::after {
-            display: none;
-        }
-
-        .byoai-section-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .manifesto-box {
-            background: linear-gradient(135deg, rgba(184, 142, 62, 0.08) 0%, rgba(168, 68, 46, 0.06) 100%);
-            border-left: 4px solid var(--secondary);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            padding: 1.4rem 1.8rem;
-            margin: 1.5rem 0 2rem;
-        }
-
-        .manifesto-box p {
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            margin: 0;
-            font-style: italic;
-            font-family: var(--font-header);
-            line-height: 1.6;
-        }
-
-        /* Code Display & Copy Block */
-        .code-block-wrapper {
-            position: relative;
-            background: var(--code-bg);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            margin: 1.2rem 0;
-            border: 1px solid #2d2d38;
-        }
-
-        .code-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 16px;
-            background: #141418;
-            border-bottom: 1px solid #2d2d38;
-            font-size: 0.78rem;
-            color: #9e9ea8;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .copy-btn.copied {
-            background: #2e7d32;
-            border-color: #2e7d32;
-        }
-
-        pre.code-content {
-            padding: 1.2rem;
-            margin: 0;
-            overflow-x: auto;
-            color: var(--code-text);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.87rem;
-            line-height: 1.55;
-        }
-
-        /* Interactive Tool Table */
-        .tool-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            font-size: 0.92rem;
-        }
-
-        .tool-table th, .tool-table td {
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            text-align: left;
-        }
-
-        .tool-table th {
-            background: var(--bg-main);
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .tool-table td code {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg-main);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--primary);
-            border: 1px solid var(--border-color);
-        }
-
-        /* Endpoints Grid */
-        .endpoint-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 16px;
-            margin: 1.5rem 0;
-        }
-
-        .endpoint-card {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-
-        .endpoint-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-            border-color: var(--primary);
-        }
-
-        .endpoint-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .endpoint-badge {
-            background: #2e7d32;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 3px;
-            letter-spacing: 0.05em;
-        }
-
-        .endpoint-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            margin: 0;
-        }
-
-        .endpoint-desc {
-            font-size: 0.84rem;
-            color: var(--text-muted);
-            margin: 6px 0 12px;
-            line-height: 1.45;
-        }
-
-        .endpoint-url {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.76rem;
-            background: #fff;
-            padding: 6px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            word-break: break-all;
-            color: var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Cookbook Tabs */
-        .tab-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 1.2rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: 1px solid transparent;
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .tab-btn:hover {
-            background: var(--bg-main);
-            color: var(--text-dark);
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .nav-link.active {
-            color: var(--primary);
-            font-weight: 700;
-        }
+        .byoai-hero { text-align:center; padding:3.5rem 1.5rem 2.5rem; max-width:920px; margin:0 auto; }
+        .byoai-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(168,68,46,.08); border:1px solid rgba(168,68,46,.2); color:var(--primary); font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:1.2rem; }
+        .byoai-title { font-size:clamp(2.2rem,5vw,3.2rem); margin-bottom:1rem; color:var(--text-dark); }
+        .byoai-subtitle { font-size:1.15rem; color:var(--text-muted); max-width:820px; margin:0 auto 1.8rem; line-height:1.65; }
+        .pill-container { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:2rem; }
+        .pill-tag { display:inline-flex; align-items:center; gap:6px; background:var(--bg-card); border:1px solid var(--border-color); padding:5px 12px; border-radius:var(--radius-sm); font-size:.82rem; font-weight:600; color:var(--text-dark); box-shadow:var(--shadow-sm); }
+        .pill-tag i { color:var(--secondary); }
+        .byoai-section { background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:2.2rem; margin-bottom:2.5rem; box-shadow:var(--shadow-sm); }
+        .byoai-section h2 { display:flex; align-items:center; gap:12px; font-size:1.6rem; margin-bottom:.8rem; }
+        .byoai-section h2::after { display:none; }
+        .byoai-section-icon { width:42px; height:42px; border-radius:10px; background:var(--bg-main); border:1px solid var(--border-color); display:inline-flex; align-items:center; justify-content:center; color:var(--primary); font-size:1.25rem; flex-shrink:0; }
+        .manifesto-box { background:linear-gradient(135deg,rgba(184,142,62,.08) 0%,rgba(168,68,46,.06) 100%); border-left:4px solid var(--secondary); border-radius:0 var(--radius-md) var(--radius-md) 0; padding:1.4rem 1.8rem; margin:1.5rem 0 2rem; }
+        .manifesto-box p { font-size:1.05rem; color:var(--text-dark); margin:0; font-style:italic; font-family:var(--font-header); line-height:1.6; }
+        .code-block-wrapper { position:relative; background:var(--code-bg); border-radius:var(--radius-md); overflow:hidden; margin:1.2rem 0; border:1px solid #2d2d38; }
+        .code-header { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; background:#141418; border-bottom:1px solid #2d2d38; font-size:.78rem; color:#9e9ea8; font-family:'JetBrains Mono',monospace; }
+        .copy-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#fff; padding:4px 10px; border-radius:4px; font-size:.75rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+        .copy-btn:hover { background:rgba(255,255,255,.2); }
+        .copy-btn.copied { background:#2e7d32; border-color:#2e7d32; }
+        pre.code-content { padding:1.2rem; margin:0; overflow-x:auto; color:var(--code-text); font-family:'JetBrains Mono',monospace; font-size:.87rem; line-height:1.55; }
+        .tool-table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:.92rem; }
+        .tool-table th,.tool-table td { padding:12px 16px; border:1px solid var(--border-color); text-align:left; vertical-align:top; }
+        .tool-table th { background:var(--bg-main); color:var(--text-dark); font-weight:600; }
+        .tool-table td code { font-family:'JetBrains Mono',monospace; background:var(--bg-main); padding:2px 6px; border-radius:4px; font-size:.85rem; color:var(--primary); border:1px solid var(--border-color); }
+        .endpoint-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; margin:1.5rem 0; }
+        .endpoint-card { background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; }
+        .endpoint-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+        .endpoint-badge { background:#2e7d32; color:white; font-size:.7rem; font-weight:700; padding:2px 6px; border-radius:3px; letter-spacing:.05em; }
+        .endpoint-title { font-weight:700; font-size:.95rem; color:var(--text-dark); margin:0; }
+        .endpoint-desc { font-size:.84rem; color:var(--text-muted); margin:6px 0 12px; line-height:1.45; }
+        .endpoint-url { font-family:'JetBrains Mono',monospace; font-size:.76rem; background:#fff; padding:6px 10px; border-radius:4px; border:1px solid var(--border-color); word-break:break-all; color:var(--primary); display:flex; justify-content:space-between; align-items:center; }
+        .routing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; margin:1.2rem 0; }
+        .routing-card { border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem 1.1rem; background:var(--bg-main); }
+        .routing-card strong { display:block; margin-bottom:.35rem; color:var(--text-dark); }
+        .routing-card p { margin:0; color:var(--text-muted); font-size:.88rem; line-height:1.5; }
+        .notice { border-left:4px solid var(--primary); background:var(--bg-main); padding:1rem 1.2rem; margin:1.2rem 0; font-size:.92rem; line-height:1.55; }
+        .nav-link.active { color:var(--primary); font-weight:700; }
     </style>
 </head>
 <body>
-
-    <!-- Sticky Navigation Header -->
     <header class="nav-header">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
@@ -369,75 +78,42 @@
                     <li><a href="graph/index.html" class="nav-link">Knowledge Graph</a></li>
                     <li><a href="byoai.html" class="nav-link active"><i class="fa-solid fa-microchip"></i> BYOAI</a></li>
                     <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color:white;padding:6px 16px;">ARCHE Data</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main style="max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem 4rem;">
-        
-        <!-- BYOAI Hero Header -->
+    <main style="max-width:var(--max-width);margin:0 auto;padding:0 1.5rem 4rem;">
         <div class="byoai-hero">
-            <div class="byoai-badge">
-                <i class="fa-solid fa-code-branch"></i> Open Interfaces &amp; Data Sovereignty
-            </div>
+            <div class="byoai-badge"><i class="fa-solid fa-code-branch"></i> Open Interfaces &amp; Data Sovereignty</div>
             <h1 class="byoai-title">BYOAI: Bring Your Own AI</h1>
             <p class="byoai-subtitle">
-                Query <strong>20,788 archaeological resources</strong>, <strong>219 georeferenced findspots</strong>, and <strong>9 GeoPackages</strong> directly inside your own AI chat, local agent, or research script — with zero vendor lock-in and 100% open standards.
+                Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> within <strong>20,788 ARCHE records</strong>, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.
             </p>
-
             <div class="pill-container">
-                <span class="pill-tag"><i class="fa-solid fa-bolt"></i> Model Context Protocol (MCP)</span>
-                <span class="pill-tag"><i class="fa-solid fa-server"></i> OpenAPI 3.1 &amp; REST</span>
-                <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt Standard</span>
-                <span class="pill-tag"><i class="fa-solid fa-laptop-code"></i> Local Ollama &amp; Open-WebUI</span>
-                <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> 100% Open Science (CC BY 4.0)</span>
+                <span class="pill-tag"><i class="fa-solid fa-bolt"></i> MCP v1.1</span>
+                <span class="pill-tag"><i class="fa-solid fa-server"></i> OpenAPI 3.1 &amp; JSON</span>
+                <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
+                <span class="pill-tag"><i class="fa-solid fa-laptop-code"></i> Local AI compatible</span>
+                <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> PID-first provenance</span>
             </div>
         </div>
 
-        <!-- Manifesto / Philosophy -->
         <section class="byoai-section">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                The BYOAI Philosophy
-            </h2>
-            <p>
-                In Digital Humanities and classical archaeology, research data must remain <strong>interoperable, authoritative, and reproducible</strong>. Instead of trapping researchers inside a single commercial chatbot or requiring browser visitors to download heavy in-browser language models, IUENNA embraces <strong>BYOAI (Bring Your Own AI)</strong>:
-            </p>
-
-            <div class="manifesto-box">
-                <p>
-                    „We provide the authoritative archaeological data, open protocols, and machine-readable endpoints. You bring the AI engine of your choice — whether that is a 100% offline local model on your laptop, an open-source research agent, or your preferred desktop workspace.“
-                </p>
-            </div>
-
-            <p style="margin-bottom: 0;">
-                By adhering strictly to FAIR data principles (Findable, Accessible, Interoperable, Reusable), IUENNA ensures that our 356+ GB corpus archived in ARCHE (ACDH-CH / ÖAW) can be explored seamlessly by modern AI assistants without recurring server costs or commercial lock-in.
-            </p>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-compass-drafting"></i></div>The BYOAI Philosophy</h2>
+            <p>IUENNA separates the <strong>research data</strong> from the <strong>AI model</strong>. The project provides authoritative repository metadata, persistent identifiers, explicit relationships, and open machine-readable interfaces. Researchers can then use the AI environment of their choice without depending on a single commercial platform.</p>
+            <div class="manifesto-box"><p>“We provide the archaeological data, provenance, persistent identifiers, and open interfaces. You bring the AI engine.”</p></div>
+            <p style="margin-bottom:0;">ARCHE remains the authoritative long-term repository. The IUENNA web layer is a discovery and retrieval interface derived from ARCHE metadata and is designed to make archaeological research data easier to query reproducibly.</p>
         </section>
 
-        <!-- SECTION 1: MCP -->
         <section class="byoai-section" id="mcp">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-network-wired"></i></div>
-                1. Model Context Protocol (MCP)
-            </h2>
-            <p>
-                The <strong>Model Context Protocol (MCP)</strong> is the open-standard communication protocol connecting AI assistants and agentic IDEs to external data sources. It functions like a universal <em>„USB-C cable for AI models“</em>.
-            </p>
-            <p>
-                The IUENNA MCP server runs locally on your machine with <strong>zero external dependencies</strong> and exposes four specialized archaeological tools to any MCP-compliant client (including <strong>Open-WebUI, LibreChat, Claude Desktop, Cursor, Zed, and Antigravity</strong>).
-            </p>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-network-wired"></i></div>1. Model Context Protocol (MCP) v1.1</h2>
+            <p>The IUENNA MCP server implements JSON-RPC 2.0 over stdio and runs with zero third-party runtime dependencies. Version <strong>1.1.0</strong> exposes six research tools and now distinguishes explicitly between entity discovery and exhaustive primary-resource retrieval.</p>
 
-            <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.6rem;">Setup for Claude Desktop / Cursor / Open-WebUI</h3>
-            <p style="font-size: 0.92rem;">Add the following block to your client's configuration file (e.g. <code>claude_desktop_config.json</code>):</p>
-
+            <h3 style="font-size:1.15rem;margin:1.5rem 0 .6rem;">Setup for Claude Desktop / Cursor / compatible MCP clients</h3>
             <div class="code-block-wrapper">
-                <div class="code-header">
-                    <span>claude_desktop_config.json</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Config</button>
-                </div>
+                <div class="code-header"><span>claude_desktop_config.json</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Config</button></div>
                 <pre class="code-content"><code>{
   "mcpServers": {
     "iuenna": {
@@ -450,377 +126,124 @@
   }
 }</code></pre>
             </div>
+            <p style="font-size:.85rem;color:var(--text-muted);"><em>Alternative:</em> Clone the repository and run <code>python3 mcp/server.py</code> or <code>node mcp/index.mjs</code>.</p>
 
-            <p style="font-size: 0.85rem; color: var(--text-muted);">
-                <em>Alternative:</em> Clone the repository and run <code>python3 mcp/server.py</code> or <code>node mcp/index.mjs</code> directly.
-            </p>
-
-            <h3 style="font-size: 1.15rem; margin: 1.8rem 0 0.6rem;">Available MCP Tools</h3>
-            <div style="overflow-x: auto;">
+            <h3 style="font-size:1.15rem;margin:1.8rem 0 .6rem;">Available MCP Tools</h3>
+            <div style="overflow-x:auto;">
                 <table class="tool-table">
-                    <thead>
-                        <tr>
-                            <th>Tool Name</th>
-                            <th>Description</th>
-                            <th>Key Arguments</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>Tool</th><th>Purpose</th><th>Key arguments</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td><code>search_iuenna_corpus</code></td>
-                            <td>Searches across all 20,788 archived resources, excavation reports, drawings, and plans.</td>
-                            <td><code>query</code> (string), <code>limit</code> (int, max 30)</td>
-                        </tr>
-                        <tr>
-                            <td><code>get_findspot_details</code></td>
-                            <td>Fetches coordinates (WKT/Lat-Lng), period dating, and linked GeoPackages for one of the 219 sites.</td>
-                            <td><code>name_or_id</code> (e.g. "Hemmaberg", "Globasnitz")</td>
-                        </tr>
-                        <tr>
-                            <td><code>get_geodata_catalog</code></td>
-                            <td>Lists all 9 authoritative GeoPackages including <code>tal_bda_fsdb_2023.gpkg</code>.</td>
-                            <td><em>None</em></td>
-                        </tr>
-                        <tr>
-                            <td><code>get_corpus_statistics</code></td>
-                            <td>Returns authoritative volume, item counts, institutions, and archival metrics.</td>
-                            <td><em>None</em></td>
-                        </tr>
+                        <tr><td><code>search_iuenna_corpus</code></td><td>Searches the authoritative <code>arche_corpus.json</code> across 20,355 primary files, including titles, filenames, descriptions, collection paths, places, subjects, and PIDs.</td><td><code>query</code>, <code>limit</code></td></tr>
+                        <tr><td><code>get_findspot_details</code></td><td>Returns findspot metadata and directly associated curated datasets.</td><td><code>name_or_id</code></td></tr>
+                        <tr><td><code>get_related_resources</code></td><td>Resolves a place, dataset, collection, or publication and traverses related datasets, collections, publications, and primary files. Recommended for questions such as “all data about Hemmaberg”.</td><td><code>name_or_id</code>, optional <code>query</code>, <code>limit</code></td></tr>
+                        <tr><td><code>get_geodata_catalog</code></td><td>Lists the 9 curated authoritative archaeological GeoPackages.</td><td><em>None</em></td></tr>
+                        <tr><td><code>get_corpus_statistics</code></td><td>Returns repository-level metrics together with separate metadata for the primary-resource corpus.</td><td><em>None</em></td></tr>
+                        <tr><td><code>get_project_bibliography</code></td><td>Queries the public IUENNA Zotero library for project publications, excavation literature, authors, DOIs, and bibliographic metadata.</td><td>optional <code>query</code>, <code>limit</code></td></tr>
                     </tbody>
                 </table>
             </div>
+
+            <div class="notice"><strong>Why the distinction matters:</strong> the IUENNA top-level ARCHE collection currently contains 20,788 repository records, while <code>arche_corpus.json</code> contains 20,355 primary resources/files. MCP full-text retrieval operates on the latter rather than treating every repository entity as a file.</div>
         </section>
 
-        <!-- SECTION 2: OpenAPI & REST -->
-        <section class="byoai-section" id="openapi">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-server"></i></div>
-                2. OpenAPI 3.1 &amp; Static REST Endpoints
-            </h2>
-            <p>
-                All data is served as static, immutable JSON files over GitHub Pages' global CDN with permissive CORS headers. You can query them with standard HTTP <code>GET</code> requests without API tokens or rate limits.
-            </p>
-
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem;">
-                <a href="data/openapi.json" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem; padding: 6px 14px;">
-                    <i class="fa-solid fa-file-code"></i> View openapi.json Specification
-                </a>
+        <section class="byoai-section" id="routing">
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-route"></i></div>2. Recommended AI Routing</h2>
+            <div class="routing-grid">
+                <div class="routing-card"><strong>Find an entity</strong><p>Use <code>arche_search_index.json</code> for compact discovery of persons, organisations, collections, publications, places, and curated datasets.</p></div>
+                <div class="routing-card"><strong>Find a site</strong><p>Use <code>arche_places.json</code>, then resolve linked curated geodata via <code>arche_datasets.json</code>.</p></div>
+                <div class="routing-card"><strong>Find all files</strong><p>Use <code>arche_corpus.json</code>. This is the exhaustive primary-resource layer containing 20,355 files.</p></div>
+                <div class="routing-card"><strong>Reconstruct provenance</strong><p>Use <code>arche_collections_tree.json</code> and relationships such as <code>parent_id</code>, <code>col</code>, and <code>spatial_ids</code>.</p></div>
+                <div class="routing-card"><strong>Ask “everything about X”</strong><p>Prefer MCP <code>get_related_resources</code>, which combines place, dataset, collection, publication, and file-level relationships.</p></div>
+                <div class="routing-card"><strong>Cite a result</strong><p>Prefer the individual ARCHE Handle PID of the dataset or file actually used, not only the IUENNA web page.</p></div>
             </div>
+        </section>
+
+        <section class="byoai-section" id="openapi">
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-server"></i></div>3. Machine-Readable JSON &amp; OpenAPI</h2>
+            <p>IUENNA publishes static JSON snapshots over HTTPS. They require no project-specific API key. ARCHE remains authoritative for current repository metadata, access conditions, and rights information.</p>
+            <p><a href="data/openapi.json" target="_blank" class="btn btn-secondary" style="font-size:.85rem;padding:6px 14px;"><i class="fa-solid fa-file-code"></i> View openapi.json</a></p>
 
             <div class="endpoint-grid">
-                <div class="endpoint-card">
-                    <div>
-                        <div class="endpoint-header">
-                            <span class="endpoint-badge">GET</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">76 KB</span>
-                        </div>
-                        <h4 class="endpoint-title">Archaeological Findspots</h4>
-                        <p class="endpoint-desc">219 georeferenced sites in the Jauntal with WKT point/polygon geometries, Geonames IDs, and periods.</p>
-                    </div>
-                    <div class="endpoint-url">
-                        <span>/data/arche_places.json</span>
-                        <a href="data/arche_places.json" target="_blank" title="Open JSON"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div>
-                        <div class="endpoint-header">
-                            <span class="endpoint-badge">GET</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">507 KB</span>
-                        </div>
-                        <h4 class="endpoint-title">Search &amp; Corpus Index</h4>
-                        <p class="endpoint-desc">Complete index of 20,788 items with cleaned titles, hierarchical breadcrumbs, file sizes, and ARCHE PIDs.</p>
-                    </div>
-                    <div class="endpoint-url">
-                        <span>/data/arche_search_index.json</span>
-                        <a href="data/arche_search_index.json" target="_blank" title="Open JSON"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div>
-                        <div class="endpoint-header">
-                            <span class="endpoint-badge">GET</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">1.0 MB</span>
-                        </div>
-                        <h4 class="endpoint-title">Hierarchical Collection Tree</h4>
-                        <p class="endpoint-desc">Structural tree of 434 collections and archival dossiers, resolving parent-child containment and handles.</p>
-                    </div>
-                    <div class="endpoint-url">
-                        <span>/data/arche_collections_tree.json</span>
-                        <a href="data/arche_collections_tree.json" target="_blank" title="Open JSON"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div>
-                        <div class="endpoint-header">
-                            <span class="endpoint-badge">GET</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">27 KB</span>
-                        </div>
-                        <h4 class="endpoint-title">Authoritative GeoPackages</h4>
-                        <p class="endpoint-desc">Descriptions, authors, coordinate systems, and handles for all 9 primary GIS datasets (e.g. BDA-FSDB).</p>
-                    </div>
-                    <div class="endpoint-url">
-                        <span>/data/arche_datasets.json</span>
-                        <a href="data/arche_datasets.json" target="_blank" title="Open JSON"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div>
-                        <div class="endpoint-header">
-                            <span class="endpoint-badge" style="background: #c0392b;">ZOTERO API</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">427+ Items</span>
-                        </div>
-                        <h4 class="endpoint-title">Zotero Project Bibliography</h4>
-                        <p class="endpoint-desc">Live bibliographic catalog for IUENNA, excavation reports, and research literature in JSON, BibTeX, or CSL formats.</p>
-                    </div>
-                    <div class="endpoint-url">
-                        <span>api.zotero.org/groups/4910727/items</span>
-                        <a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank" title="Open Zotero Library"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Complete Primary-Resource Corpus</h4><p class="endpoint-desc">20,355 primary archived resources with ARCHE IDs, PIDs, titles, filenames, collection context, hierarchical paths, spatial relationships, subjects, dates, types, coordinates, and descriptions.</p></div><div class="endpoint-url"><span>/data/arche_corpus.json</span><a href="data/arche_corpus.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Semantic Discovery Index</h4><p class="endpoint-desc">Compact entity-level discovery index. Use it to identify persons, institutions, collections, publications, places, and curated datasets — not as the exhaustive file corpus.</p></div><div class="endpoint-url"><span>/data/arche_search_index.json</span><a href="data/arche_search_index.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Archaeological Findspots</h4><p class="endpoint-desc">219 georeferenced sites with titles, coordinates/WKT, Geonames identifiers, periods, and spatial relationships.</p></div><div class="endpoint-url"><span>/data/arche_places.json</span><a href="data/arche_places.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Collection Hierarchy</h4><p class="endpoint-desc">434 collections and archival dossiers with parent-child relationships, PIDs, counts, and provenance context.</p></div><div class="endpoint-url"><span>/data/arche_collections_tree.json</span><a href="data/arche_collections_tree.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Curated GeoPackages</h4><p class="endpoint-desc">Metadata, spatial coverage, creators, layer descriptions, and PIDs for 9 primary GIS datasets.</p></div><div class="endpoint-url"><span>/data/arche_datasets.json</span><a href="data/arche_datasets.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Corpus Statistics</h4><p class="endpoint-desc">Repository-level counts and storage metrics. Use together with <code>arche_corpus.json</code> when distinguishing repository entities from primary files.</p></div><div class="endpoint-url"><span>/data/arche_stats.json</span><a href="data/arche_stats.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge" style="background:#c0392b;">ZOTERO API</span></div><h4 class="endpoint-title">Project Bibliography</h4><p class="endpoint-desc">Live bibliographic catalogue for IUENNA, excavation reports, and research literature in JSON, BibTeX, and CSL-compatible formats.</p></div><div class="endpoint-url"><span>api.zotero.org/groups/4910727/items</span><a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
             </div>
         </section>
 
-        <!-- SECTION 3: llms.txt -->
         <section class="byoai-section" id="llmstxt">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-file-lines"></i></div>
-                3. The llms.txt Web Standard
-            </h2>
-            <p>
-                The <code>llms.txt</code> standard provides structured markdown summaries specifically designed for web-crawling LLMs and conversational search engines (e.g. <strong>Perplexity, ChatGPT Search, Gemini, and Claude</strong>).
-            </p>
-            <p>
-                Whenever you prompt an external AI to research the Jauntal micro-region, simply provide the canonical URL:
-            </p>
-
-            <div class="code-block-wrapper">
-                <div class="code-header">
-                    <span>Canonical llms.txt Link</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy URL</button>
-                </div>
-                <pre class="code-content"><code>https://iuenna.github.io/llms.txt</code></pre>
-            </div>
-
-            <p style="font-size: 0.88rem;">
-                This ensures the model grounds its answers strictly on verified ARCHE archival handles, authoritative excavation reports (Hans Winkler, Franz Glaser, Dominik Hagmann), and exact coordinates rather than hallucinatory speculation.
-            </p>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-file-lines"></i></div>4. llms.txt for LLM &amp; Agent Discovery</h2>
+            <p>The canonical <code>llms.txt</code> acts as a routing and provenance layer. It tells AI systems which endpoint to use for which type of question, establishes ARCHE as the authoritative repository, and specifies PID-first citation and rights handling.</p>
+            <div class="code-block-wrapper"><div class="code-header"><span>Canonical llms.txt</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy URL</button></div><pre class="code-content"><code>https://iuenna.github.io/llms.txt</code></pre></div>
+            <p style="font-size:.9rem;">For exhaustive prompts such as “all files”, “all documentation”, or “all data concerning X”, an agent is explicitly instructed not to stop at the curated dataset catalogue or semantic discovery index, but to use <code>arche_corpus.json</code> and the collection hierarchy as well.</p>
         </section>
 
-        <!-- SECTION 4: Cookbook (Recipes) -->
         <section class="byoai-section" id="cookbook">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-kitchen-set"></i></div>
-                4. The Researcher's Cookbook
-            </h2>
-            <p>
-                Practical code snippets and integration patterns to kickstart your research pipelines. Choose your preferred environment:
-            </p>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-kitchen-set"></i></div>5. Minimal Research Recipes</h2>
+            <h3 style="font-size:1.15rem;">Python: query places</h3>
+            <div class="code-block-wrapper"><div class="code-header"><span>query_places.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
+import urllib.request
 
-            <!-- Tabs -->
-            <div class="tab-nav">
-                <button class="tab-btn active" onclick="switchTab(event, 'tab-ollama')">
-                    <i class="fa-solid fa-laptop-code"></i> Python + Local Ollama
-                </button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-openwebui')">
-                    <i class="fa-solid fa-comments"></i> Open-WebUI / LibreChat
-                </button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-terminal')">
-                    <i class="fa-solid fa-terminal"></i> cURL &amp; jq (Terminal)
-                </button>
-                <button class="tab-btn" onclick="switchTab(event, 'tab-notebooklm')">
-                    <i class="fa-solid fa-database"></i> ARCHE Dumps &amp; NotebookLM
-                </button>
-            </div>
-
-            <!-- Tab 1: Python + Ollama -->
-            <div id="tab-ollama" class="tab-content active">
-                <p style="font-size: 0.92rem;">
-                    Run a 100% private, offline RAG pipeline on your own computer using Python and <a href="https://ollama.ai" target="_blank">Ollama</a> (e.g. with <code>llama3.2</code> or <code>mistral</code>). No API keys or external server calls required:
-                </p>
-
-                <div class="code-block-wrapper">
-                    <div class="code-header">
-                        <span>query_iuenna_local.py</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Script</button>
-                    </div>
-                    <pre class="code-content"><code>import urllib.request
-import json
-import ollama
-
-# 1. Fetch live findspots from IUENNA
 url = "https://iuenna.github.io/data/arche_places.json"
-req = urllib.request.Request(url, headers={"User-Agent": "BYOAI-Researcher/1.0"})
-with urllib.request.urlopen(req) as resp:
-    places = json.loads(resp.read().decode())
+with urllib.request.urlopen(url) as response:
+    places = list(json.loads(response.read().decode("utf-8")).values())
 
-# 2. Filter relevant sites (e.g. related to 'Hemmaberg' or 'Globasnitz')
-context = [p for p in places if "hemmaberg" in p["title"].lower() or "globasnitz" in p["title"].lower()]
+hemmaberg = [p for p in places if "hemmaberg" in p.get("title", "").lower()]
+print(json.dumps(hemmaberg, ensure_ascii=False, indent=2))</code></pre></div>
 
-# 3. Ask your local LLM with exact grounding
-prompt = f"""You are an archaeological research assistant. 
-Based ONLY on the following IUENNA findspot data, summarize the locations and archaeological contexts:
-{json.dumps(context[:5], indent=2)}
+            <h3 style="font-size:1.15rem;">Python: exhaustive file-level search</h3>
+            <div class="code-block-wrapper"><div class="code-header"><span>query_corpus.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
+import urllib.request
 
-Question: What are the primary coordinates and known contexts for the Hemmaberg sites?"""
+url = "https://iuenna.github.io/data/arche_corpus.json"
+with urllib.request.urlopen(url) as response:
+    corpus = json.loads(response.read().decode("utf-8"))["resources"]
 
-response = ollama.chat(model='llama3.2', messages=[{'role': 'user', 'content': prompt}])
-print(response['message']['content'])</code></pre>
-                </div>
-            </div>
+hits = [r for r in corpus if "georadar" in (
+    f"{r.get('title','')} {r.get('filename','')} {r.get('description','')}".lower()
+)]
+print(json.dumps(hits[:20], ensure_ascii=False, indent=2))</code></pre></div>
 
-            <!-- Tab 2: Open-WebUI -->
-            <div id="tab-openwebui" class="tab-content">
-                <p style="font-size: 0.92rem;">
-                    If you host <strong>Open-WebUI</strong> or <strong>LibreChat</strong> for your research institute or personal workspace, connect the IUENNA MCP server as an external tool:
-                </p>
-                <ol style="margin-left: 1.5rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
-                    <li>Navigate to <strong>Settings &rarr; Tools &rarr; Add Tool</strong> (or MCP Servers).</li>
-                    <li>Set <strong>Protocol</strong> to <code>stdio</code>.</li>
-                    <li>Set <strong>Command</strong> to <code>python3</code> and pass the path to <a href="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/main/mcp/server.py" target="_blank"><code>mcp/server.py</code></a>.</li>
-                    <li>Save. Your team can now invoke <code>@iuenna search for Hans Winkler reports</code> directly within your shared chat interface!</li>
-                </ol>
-            </div>
-
-            <!-- Tab 3: cURL & jq -->
-            <div id="tab-terminal" class="tab-content">
-                <p style="font-size: 0.92rem;">
-                    Inspect and extract findspots directly inside your terminal with <code>curl</code> and <code>jq</code>:
-                </p>
-
-                <div class="code-block-wrapper">
-                    <div class="code-header">
-                        <span>bash / zsh</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Command</button>
-                    </div>
-                    <pre class="code-content"><code># Extract all sites mentioning 'Münzen' or 'Globasnitz' with coordinates
-curl -s https://iuenna.github.io/data/arche_places.json | \
-  jq '.[] | select(.title | test("Globasnitz|Hemmaberg"; "i")) | {title, lat, lng, geonames_id}'</code></pre>
-                </div>
-            </div>
-
-            <!-- Tab 4: ARCHE Dumps & NotebookLM -->
-            <div id="tab-notebooklm" class="tab-content">
-                <p style="font-size: 0.92rem;">
-                    To ground your research in <strong>Google NotebookLM</strong>, custom GPTs, or local RAG pipelines, always use the <strong>authoritative repository data directly from ARCHE</strong> (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW):
-                </p>
-                <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
-                    <li>
-                        <strong>ARCHE Permanent Collection (Top-Level PID):</strong> Access the authoritative repository collection holding all 20,788 resources:
-                        <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-database"></i> ARCHE PID: 21.11115/0000-0016-7B39-F
-                        </a>
-                    </li>
-                    <li>
-                        <strong>ARCHE Collection Metadata API Dump:</strong> Ingest or download the complete machine-readable metadata dump directly from the ACDH-CH repository API:
-                        <a href="https://arche.acdh.oeaw.ac.at/api/1792170/metadata" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-file-code"></i> ARCHE Metadata API (JSON / Turtle)
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Primary GeoPackage Database (TAL-FSDB):</strong> Download the foundational GIS database <code>tal_bda_fsdb_2023.gpkg</code> (containing all 140 Jauntal sites):
-                        <a href="https://hdl.handle.net/21.11115/0000-0016-0E4A-7" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-map"></i> ARCHE PID: 21.11115/0000-0016-0E4A-7
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Zotero Group Library (427+ Bibliographic Items):</strong> Access the complete, live project bibliography with excavation literature, publications, and citations:
-                        <a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-book-bookmark" style="color: #c0392b;"></i> Zotero Library (Web) ↗
-                        </a>
-                        <a href="https://api.zotero.org/groups/4910727/items?format=bib" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-file-code"></i> BibTeX Export
-                        </a>
-                        <a href="https://api.zotero.org/groups/4910727/items?format=csljson" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
-                            <i class="fa-solid fa-code"></i> CSL-JSON
-                        </a>
-                    </li>
-                    <li>
-                        <strong>Grounding in NotebookLM:</strong> Upload the ARCHE metadata files or excavation reports as Sources to generate cited research guides, historical timelines, and audio podcasts with 100% academic provenance.
-                    </li>
-                </ul>
-            </div>
+            <h3 style="font-size:1.15rem;">MCP: relational query</h3>
+            <div class="code-block-wrapper"><div class="code-header"><span>Example tool call</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>{
+  "name": "get_related_resources",
+  "arguments": {
+    "name_or_id": "Hemmaberg",
+    "query": "Georadar",
+    "limit": 50
+  }
+}</code></pre></div>
         </section>
 
-        <!-- SECTION 5: Authoritative Citation & Legal Notice -->
         <section class="byoai-section">
-            <h2>
-                <div class="byoai-section-icon"><i class="fa-solid fa-landmark"></i></div>
-                5. Data Provenance &amp; Citation
-            </h2>
-            <p>
-                All resources are permanently archived under the FAIR principles at the <strong>Austrian Academy of Sciences (ÖAW)</strong>:
-            </p>
-            <ul style="list-style: none; margin-left: 0; font-size: 0.92rem; line-height: 1.8;">
-                <li><i class="fa-solid fa-fingerprint" style="color: var(--secondary); margin-right: 8px;"></i> <strong>Permanent Identifier (PID):</strong> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">https://hdl.handle.net/21.11115/0000-0016-7B39-F</a></li>
-                <li><i class="fa-solid fa-scale-balanced" style="color: var(--secondary); margin-right: 8px;"></i> <strong>License:</strong> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a></li>
-                <li><i class="fa-solid fa-book-bookmark" style="color: #c0392b; margin-right: 8px;"></i> <strong>Bibliographic Library:</strong> <a href="https://www.zotero.org/groups/4910727/iuenna" target="_blank" rel="noopener">IUENNA Zotero Library (Group 4910727)</a></li>
-                <li><i class="fa-solid fa-book" style="color: var(--secondary); margin-right: 8px;"></i> <strong>Recommended APA Citation:</strong></li>
-            </ul>
-
-            <div class="code-block-wrapper" style="margin-top: 0.8rem;">
-                <div class="code-header">
-                    <span>APA Citation Format</span>
-                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Citation</button>
-                </div>
-                <pre class="code-content"><code>Hagmann, D., & Waldhart, F. (Eds.). (2025). IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE - Austrian Research Culture Heritage Extended. https://hdl.handle.net/21.11115/0000-0016-7B39-F</code></pre>
-            </div>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-landmark"></i></div>6. Provenance, Citation &amp; Rights</h2>
+            <p>ARCHE is the authoritative long-term repository. The top-level IUENNA collection is persistently identified by <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">21.11115/0000-0016-7B39-F</a>.</p>
+            <div class="notice"><strong>Access and reuse:</strong> the IUENNA web discovery interfaces are openly accessible, but this does <strong>not</strong> mean that every archived binary resource is openly downloadable or licensed under the same terms. Individual ARCHE resources may have different access restrictions, rights holders, and licences. Always inspect the metadata of the specific ARCHE record before reuse.</div>
+            <p><strong>Recommended project-level citation:</strong></p>
+            <div class="code-block-wrapper"><div class="code-header"><span>Project citation</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>Hagmann, D., &amp; Waldhart, F. (Eds.). (2025). IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE – Austrian Research Culture Heritage Extended. https://hdl.handle.net/21.11115/0000-0016-7B39-F</code></pre></div>
+            <p>When using a specific dataset, document, image, GeoPackage, or other archived resource, cite its <strong>individual ARCHE PID and metadata</strong> rather than only the project homepage.</p>
         </section>
-
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>
-            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-            <a href="impressum-datenschutz.html">Legal Notice</a> &amp; 
-            <a href="impressum-datenschutz.html">Privacy Policy</a> | 
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-        </p>
-        <p>
-            IUENNA Research Data Interfaces (BYOAI) | Model Context Protocol &bull; OpenAPI 3.1 &bull; llms.txt
-        </p>
-        <p>
-            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a> and <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>) | Website Version 2.1.7
-        </p>
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="impressum-datenschutz.html">Legal Notice</a> &amp; <a href="impressum-datenschutz.html">Privacy Policy</a></p>
+        <p>IUENNA BYOAI | MCP v1.1 &bull; OpenAPI 3.1 &bull; llms.txt &bull; ARCHE PIDs</p>
     </footer>
 
-    <!-- Interactive Helper Scripts -->
     <script>
-        // Copy Code Functionality
         function copyCode(btn) {
             const wrapper = btn.closest('.code-block-wrapper');
             const codeEl = wrapper.querySelector('code');
             const textToCopy = codeEl ? codeEl.innerText : '';
-
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalHtml = btn.innerHTML;
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
                 btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.innerHTML = originalHtml;
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
-        }
-
-        // Tab Switching Functionality
-        function switchTab(evt, tabId) {
-            const nav = evt.currentTarget.closest('.tab-nav');
-            const section = nav.closest('.byoai-section');
-            
-            section.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            section.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
-            evt.currentTarget.classList.add('active');
-            const targetContent = document.getElementById(tabId);
-            if (targetContent) targetContent.classList.add('active');
+                setTimeout(() => { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2000);
+            }).catch(err => console.error('Failed to copy text: ', err));
         }
     </script>
 </body>
