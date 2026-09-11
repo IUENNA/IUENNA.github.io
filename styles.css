@@ -1489,6 +1489,52 @@ input:checked + .slider:before {
   color: var(--primary);
 }
 
+/* BYOAI Badges & Hints in Chat */
+.chat-header-byoai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.67rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(186, 104, 200, 0.3);
+  color: #f3e5f5;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: var(--transition);
+}
+
+.chat-header-byoai-badge:hover {
+  background: rgba(186, 104, 200, 0.55);
+  color: #ffffff;
+}
+
+.chat-chip-byoai {
+  background: rgba(106, 27, 154, 0.08) !important;
+  border-color: rgba(106, 27, 154, 0.28) !important;
+  color: #6a1b9a !important;
+  font-weight: 600;
+}
+
+.chat-chip-byoai:hover {
+  background: rgba(106, 27, 154, 0.16) !important;
+  border-color: #6a1b9a !important;
+  color: #4a148c !important;
+}
+
+.chat-byoai-answer-hint {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(106, 27, 154, 0.05);
+  border: 1px solid rgba(106, 27, 154, 0.16);
+  border-radius: var(--radius-sm, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.73rem;
+}
+
 /* Quick Suggestion Chips */
 .chat-chips-container {
   display: flex;

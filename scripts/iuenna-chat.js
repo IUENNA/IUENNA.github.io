@@ -65,9 +65,14 @@
           <div>
             <h3 class="chat-header-title">IUENNA Assistent</h3>
             <p class="chat-header-sub">Suche in 20.000+ Objekten &amp; Quellen</p>
-            <span id="chat-model-status" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.67rem; padding: 1px 6px; border-radius: 3px; background: rgba(255,255,255,0.16); margin-top: 3px;">
-              <i class="fa-solid fa-bolt" style="color: #4fc3f7;"></i> Schnellsuche &bull; Metadaten
-            </span>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 3px; flex-wrap: wrap;">
+              <span id="chat-model-status" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.67rem; padding: 1px 6px; border-radius: 3px; background: rgba(255,255,255,0.16);">
+                <i class="fa-solid fa-bolt" style="color: #4fc3f7;"></i> Schnellsuche &bull; Metadaten
+              </span>
+              <a href="byoai.html" target="_blank" rel="noopener noreferrer" class="chat-header-byoai-badge" title="Bring Your Own AI – Eigene KI anbinden">
+                <i class="fa-solid fa-microchip"></i> BYOAI Hub ↗
+              </a>
+            </div>
           </div>
         </div>
         <div class="chat-header-actions">
@@ -84,9 +89,13 @@
           <div class="chat-msg-bubble">
             <p><strong>Willkommen beim IUENNA Sammlungs-Assistenten!</strong> 🏺</p>
             <p style="margin-top: 6px; font-size: 0.84rem; line-height: 1.45;">
-              Stellen Sie eine Frage oder suchen Sie nach Objekten, Fundstellen und Plänen. Die Treffer führen Sie direkt zu den Daten im <strong>Wissensgraphen</strong>, im <strong>Web-GIS</strong> und in <strong>ARCHE</strong>:
+              Stellen Sie eine Frage oder suchen Sie nach Objekten, Fundstellen und Plänen. Die Treffer führen Sie direkt zu den Daten im <strong>Wissensgraphen</strong>, im <strong>Web-GIS</strong> und in <strong>ARCHE</strong>.
             </p>
+            <div class="chat-byoai-welcome-box" style="margin-top: 8px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: 4px; font-size: 0.79rem; line-height: 1.4; color: #4a148c;">
+              <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.
+            </div>
             <div class="chat-chips-container" style="margin-top: 8px;">
+              <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
               <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
               <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
               <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
@@ -110,7 +119,7 @@
         </div>
         <div class="chat-privacy-footer" style="padding: 6px 14px; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; gap: 2px;">
           <span style="font-size: 0.67rem; color: var(--text-muted); line-height: 1.35;">
-            <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i> 100% Client-Side Metadaten-Recherche &bull; Keine Datenübertragung &bull; DSGVO-konform
+            <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i> 100% Client-Side Metadaten-Recherche &bull; DSGVO-konform &bull; <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 600; text-decoration: underline;"><i class="fa-solid fa-microchip"></i> BYOAI: Eigene KI anbinden ↗</a>
           </span>
         </div>
       </div>
@@ -515,6 +524,7 @@
             Versuchen Sie es mit einem anderen Begriff oder wählen Sie eines dieser Themen:
           </p>
           <div class="chat-chips-container">
+            <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
             <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
             <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg</button>
             <button type="button" class="chat-chip" data-query="Gräberfeld Globasnitz">💀 Globasnitz Gräber</button>
@@ -522,6 +532,9 @@
             <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
             <button type="button" class="chat-chip" data-query="Grabungspläne Hemmaberg">🗺️ Grabungspläne</button>
             <button type="button" class="chat-chip" data-query="Inschriften">📜 Inschriften</button>
+          </div>
+          <div style="margin-top: 10px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: var(--radius-sm, 4px); font-size: 0.77rem; color: #4a148c; line-height: 1.4;">
+            <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>BYOAI-Tipp:</strong> Für tiefere Abfragen oder semantische Analysen können Sie Ihre eigene KI über unser <strong>Model Context Protocol (MCP)</strong> oder offene Schnittstellen anbinden: <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Zum BYOAI Hub &rarr;</a>
           </div>
         </div>
       `;
@@ -618,7 +631,17 @@
           ${linksHtml}
         </div>
 
-        <!-- 4. Related Hits & Follow-ups -->
+        <!-- 4. BYOAI Integration Mention in Answers -->
+        <div class="chat-byoai-answer-hint">
+          <span style="color: #512da8; line-height: 1.35;">
+            <i class="fa-solid fa-microchip"></i> <strong>BYOAI:</strong> Diesen Datensatz mit eigener KI (Claude, GPT, Ollama) auswerten?
+          </span>
+          <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #512da8; font-weight: 700; text-decoration: underline; white-space: nowrap;">
+            BYOAI &amp; MCP &rarr;
+          </a>
+        </div>
+
+        <!-- 5. Related Hits & Follow-ups -->
         ${secondaryHtml}
         ${followUpHtml}
       </div>
@@ -758,6 +781,43 @@
             <p style="margin-top: 6px; font-size: 0.85rem; line-height: 1.5;">
               Klicken Sie gerne auf die Buttons in den Treffern, um die Funde direkt im Wissensgraphen, im Web-GIS oder im ARCHE-Repositorium zu erkunden!
             </p>
+          </div>
+        `);
+      }, 150);
+      return;
+    }
+
+    // Dialog Intent C: BYOAI / AI / MCP / Schnittstellen
+    if (/\b(byoai|ki|ai|mcp|ollama|chatgpt|claude|agent|agenten|api|openapi|llm|llms|schnittstelle|schnittstellen|bring your own ai)\b/i.test(cleanQ)) {
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p style="margin: 0 0 6px 0; font-weight: 700; font-size: 0.92rem; color: #4a148c; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-microchip"></i> Bring Your Own AI (BYOAI) in IUENNA
+            </p>
+            <p style="margin: 0 0 8px 0; font-size: 0.84rem; line-height: 1.45; color: var(--text-dark);">
+              IUENNA verfolgt das <strong>BYOAI-Prinzip (Bring Your Own AI)</strong>: Statt Sie an ein vorgegebenes Modell oder eine proprietäre Plattform zu binden, stellen wir offene, standardisierte Schnittstellen bereit. Sie können Ihre <strong>eigene bevorzugte KI</strong> (z.&nbsp;B. Claude Desktop, ChatGPT, Ollama lokal oder Google Antigravity) direkt an die archäologischen Forschungsdaten anbinden!
+            </p>
+            <div style="background: rgba(106, 27, 154, 0.05); border: 1px solid rgba(106, 27, 154, 0.18); border-radius: 4px; padding: 8px 10px; font-size: 0.78rem; line-height: 1.45; color: #4a148c; margin-bottom: 8px;">
+              <ul style="margin: 0; padding-left: 16px;">
+                <li><strong>Model Context Protocol (MCP):</strong> Vorkonfigurierter Server (Python &amp; Node.js) für automatisierte Werkzeug- &amp; Fundstellenabfragen.</li>
+                <li><strong>OpenAPI &amp; llms.txt:</strong> Maschinenlesbare API-Spezifikation und hierarchischer KI-Kontext.</li>
+                <li><strong>ARCHE Langzeitarchiv:</strong> Verlässliche Zitation und Zugriff auf 20.788 Primärressourcen via Persistent Identifiers (PIDs).</li>
+              </ul>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px;">
+              <a href="byoai.html" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: #6a1b9a; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.78rem; padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-microchip"></i> Zum BYOAI Hub (Setup &amp; MCP) ↗
+              </a>
+              <a href="data/openapi.json" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-code"></i> OpenAPI JSON
+              </a>
+              <a href="llms.txt" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-file-lines"></i> llms.txt
+              </a>
+            </div>
           </div>
         `);
       }, 150);
