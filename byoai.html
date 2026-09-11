@@ -618,7 +618,7 @@
                     <i class="fa-solid fa-terminal"></i> cURL &amp; jq (Terminal)
                 </button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-notebooklm')">
-                    <i class="fa-solid fa-book-bookmark"></i> NotebookLM / RAG Pack
+                    <i class="fa-solid fa-database"></i> ARCHE Dumps &amp; NotebookLM
                 </button>
             </div>
 
@@ -688,15 +688,33 @@ curl -s https://iuenna.github.io/data/arche_places.json | \
                 </div>
             </div>
 
-            <!-- Tab 4: NotebookLM -->
+            <!-- Tab 4: ARCHE Dumps & NotebookLM -->
             <div id="tab-notebooklm" class="tab-content">
                 <p style="font-size: 0.92rem;">
-                    For grounded humanistic analysis in <strong>Google NotebookLM</strong>:
+                    To ground your research in <strong>Google NotebookLM</strong>, custom GPTs, or local RAG pipelines, always use the <strong>authoritative repository data directly from ARCHE</strong> (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW):
                 </p>
                 <ul style="margin-left: 1.5rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
-                    <li>Download our comprehensive markdown synthesis: <a href="data/iuenna_grundlagen.md" download class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;"><i class="fa-solid fa-download"></i> iuenna_grundlagen.md</a>.</li>
-                    <li>Create a new notebook in NotebookLM and upload the file as a Source.</li>
-                    <li>Generate grounded study guides, audio overviews, or query historical timelines across the 100+ years of excavation documentation.</li>
+                    <li>
+                        <strong>ARCHE Permanent Collection (Top-Level PID):</strong> Access the authoritative repository collection holding all 20,788 resources:
+                        <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-database"></i> ARCHE PID: 21.11115/0000-0016-7B39-F
+                        </a>
+                    </li>
+                    <li>
+                        <strong>ARCHE Collection Metadata API Dump:</strong> Ingest or download the complete machine-readable metadata dump directly from the ACDH-CH repository API:
+                        <a href="https://arche.acdh.oeaw.ac.at/api/1792170/metadata" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-file-code"></i> ARCHE Metadata API (JSON / Turtle)
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Primary GeoPackage Database (TAL-FSDB):</strong> Download the foundational GIS database <code>tal_bda_fsdb_2023.gpkg</code> (containing all 140 Jauntal sites):
+                        <a href="https://hdl.handle.net/21.11115/0000-0016-0E4A-7" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-map"></i> ARCHE PID: 21.11115/0000-0016-0E4A-7
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Grounding in NotebookLM:</strong> Upload the ARCHE metadata files or excavation reports as Sources to generate cited research guides, historical timelines, and audio podcasts with 100% academic provenance.
+                    </li>
                 </ul>
             </div>
         </section>
