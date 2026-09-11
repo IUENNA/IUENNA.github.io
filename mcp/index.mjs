@@ -101,6 +101,23 @@ const TOOLS = [
       type: 'object',
       properties: {}
     }
+  },
+  {
+    name: 'get_project_bibliography',
+    description: 'Retrieve authoritative bibliographic entries, academic publications, and excavation literature from the official IUENNA Zotero Library (Group 4910727). Supports filtering by author, keyword, or site.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        query: {
+          type: 'string',
+          description: 'Optional search term to filter bibliography (e.g. "Hagmann", "Glaser", "Hemmaberg", "Vibe Coding", "AI").'
+        },
+        limit: {
+          type: 'number',
+          description: 'Maximum number of bibliographic items to return (default: 10, max: 30).'
+        }
+      }
+    }
   }
 ];
 
@@ -171,6 +188,47 @@ async function executeTool(name, args = {}) {
     case 'get_corpus_statistics': {
       const stats = await fetchJson('arche_stats.json');
       return stats;
+    }
+
+    case 'get_project_bibliography': {
+      const q = (args.query || '').trim();
+      const limit = Math.min(Math.max(Number(args.limit) || 10, 1), 30);
+      let url = `https://api.zotero.org/groups/4910727/items?format=json&limit=${limit}`;
+      if (q) {
+        url += `&q=${encodeURIComponent(q)}`;
+      }
+      try {
+        const res = await fetch(url, { headers: { 'User-Agent': 'IUENNA-MCP-Server/1.0' } });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const items = await res.json();
+        const results = items.map(it => {
+          const d = it.data || {};
+          const creators = (d.creators || [])
+            .filter(c => c.lastName)
+            .map(c => `${c.lastName} ${c.firstName || ''}`.trim())
+            .join(', ');
+          return {
+            key: d.key,
+            title: d.title,
+            itemType: d.itemType,
+            creators: creators,
+            date: d.date,
+            publicationTitle: d.publicationTitle || d.bookTitle || null,
+            doi: d.DOI || null,
+            url: d.url || `https://www.zotero.org/groups/4910727/iuenna/items/${d.key}`
+          };
+        });
+        return {
+          zotero_group_url: 'https://www.zotero.org/groups/4910727/iuenna',
+          count: results.length,
+          items: results
+        };
+      } catch (err) {
+        return {
+          error: `Failed to query Zotero API: ${err.message}`,
+          zotero_web: 'https://www.zotero.org/groups/4910727/iuenna'
+        };
+      }
     }
 
     default:

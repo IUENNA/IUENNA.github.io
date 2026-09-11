@@ -96,6 +96,7 @@
             </div>
             <div class="chat-chips-container" style="margin-top: 8px;">
               <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
+              <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
               <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
               <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
               <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
@@ -525,6 +526,7 @@
           </p>
           <div class="chat-chips-container">
             <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
+            <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
             <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
             <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg</button>
             <button type="button" class="chat-chip" data-query="Gräberfeld Globasnitz">💀 Globasnitz Gräber</button>
@@ -816,6 +818,46 @@
               </a>
               <a href="llms.txt" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-file-lines"></i> llms.txt
+              </a>
+            </div>
+          </div>
+        `);
+      }, 150);
+      return;
+    }
+
+    // Dialog Intent D: Literature / Publications / Zotero / Bibliography
+    if (/\b(zotero|literatur|publikation|publikationen|bibliographie|quellen|literaturverzeichnis|aufsatz|aufsätze|artikel|fachliteratur)\b/i.test(cleanQ)) {
+      setTimeout(() => {
+        if (thisRequestId !== currentRequestId) return;
+        removeTypingIndicator();
+        appendBotMessage(`
+          <div class="chat-msg-bubble">
+            <p style="margin: 0 0 6px 0; font-weight: 700; font-size: 0.92rem; color: #b88e3e; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-book-bookmark" style="color: #c0392b;"></i> IUENNA Literatur &amp; Zotero-Bibliothek
+            </p>
+            <p style="margin: 0 0 8px 0; font-size: 0.84rem; line-height: 1.45; color: var(--text-dark);">
+              Die gesamte wissenschaftliche Literatur des IUENNA-Projekts sowie Publikationen zu den Fundstellen im Jauntal (Hemmaberg, Globasnitz, St. Stefan) und zu digitaler Archäologie ist in unserer <strong>öffentlichen Zotero-Gruppe (ID: 4910727)</strong> mit über <strong>420 Titeln</strong> erfasst.
+            </p>
+            <div style="background: rgba(184, 142, 62, 0.06); border: 1px solid rgba(184, 142, 62, 0.2); border-radius: 4px; padding: 8px 10px; font-size: 0.79rem; line-height: 1.45; margin-bottom: 8px;">
+              <p style="margin: 0 0 4px 0; font-weight: 600; color: var(--primary);">Wichtige Referenztitel:</p>
+              <ul style="margin: 0; padding-left: 16px;">
+                <li><strong>Hagmann &amp; Reiner (2025):</strong> <em>Das go!digital-3.0-Projekt IUENNA</em> (Rudolfinum).</li>
+                <li><strong>Hagmann, Reiner &amp; Gugl (2025):</strong> <em>No End of History Yet! Long-Term Archiving in Roman Archaeology</em>.</li>
+                <li><strong>Reiner &amp; Profant (2025):</strong> <em>Iuenna und Umgebung – Geophysikalische Prospektion</em>.</li>
+                <li><strong>Glaser (2002 / 1991):</strong> <em>Die frühchristlichen Kirchen am Hemmaberg</em>.</li>
+                <li><strong>Pollak (2023):</strong> <em>Der merowingerzeitliche Friedhof von Globasnitz</em>.</li>
+              </ul>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;">
+              <a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: #c0392b; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.78rem; padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Zotero-Bibliothek öffnen ↗
+              </a>
+              <a href="https://api.zotero.org/groups/4910727/items?format=json&limit=20" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-code"></i> Zotero API (JSON)
+              </a>
+              <a href="https://api.zotero.org/groups/4910727/items?format=bib" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-file-lines"></i> BibTeX Export
               </a>
             </div>
           </div>

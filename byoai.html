@@ -567,6 +567,21 @@
                         <a href="data/arche_datasets.json" target="_blank" title="Open JSON"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
+
+                <div class="endpoint-card">
+                    <div>
+                        <div class="endpoint-header">
+                            <span class="endpoint-badge" style="background: #c0392b;">ZOTERO API</span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">427+ Items</span>
+                        </div>
+                        <h4 class="endpoint-title">Zotero Project Bibliography</h4>
+                        <p class="endpoint-desc">Live bibliographic catalog for IUENNA, excavation reports, and research literature in JSON, BibTeX, or CSL formats.</p>
+                    </div>
+                    <div class="endpoint-url">
+                        <span>api.zotero.org/groups/4910727/items</span>
+                        <a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank" title="Open Zotero Library"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -713,6 +728,18 @@ curl -s https://iuenna.github.io/data/arche_places.json | \
                         </a>
                     </li>
                     <li>
+                        <strong>Zotero Group Library (427+ Bibliographic Items):</strong> Access the complete, live project bibliography with excavation literature, publications, and citations:
+                        <a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-book-bookmark" style="color: #c0392b;"></i> Zotero Library (Web) ↗
+                        </a>
+                        <a href="https://api.zotero.org/groups/4910727/items?format=bib" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-file-code"></i> BibTeX Export
+                        </a>
+                        <a href="https://api.zotero.org/groups/4910727/items?format=csljson" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; font-size: 0.78rem; margin: 0 4px;">
+                            <i class="fa-solid fa-code"></i> CSL-JSON
+                        </a>
+                    </li>
+                    <li>
                         <strong>Grounding in NotebookLM:</strong> Upload the ARCHE metadata files or excavation reports as Sources to generate cited research guides, historical timelines, and audio podcasts with 100% academic provenance.
                     </li>
                 </ul>
@@ -731,6 +758,7 @@ curl -s https://iuenna.github.io/data/arche_places.json | \
             <ul style="list-style: none; margin-left: 0; font-size: 0.92rem; line-height: 1.8;">
                 <li><i class="fa-solid fa-fingerprint" style="color: var(--secondary); margin-right: 8px;"></i> <strong>Permanent Identifier (PID):</strong> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">https://hdl.handle.net/21.11115/0000-0016-7B39-F</a></li>
                 <li><i class="fa-solid fa-scale-balanced" style="color: var(--secondary); margin-right: 8px;"></i> <strong>License:</strong> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a></li>
+                <li><i class="fa-solid fa-book-bookmark" style="color: #c0392b; margin-right: 8px;"></i> <strong>Bibliographic Library:</strong> <a href="https://www.zotero.org/groups/4910727/iuenna" target="_blank" rel="noopener">IUENNA Zotero Library (Group 4910727)</a></li>
                 <li><i class="fa-solid fa-book" style="color: var(--secondary); margin-right: 8px;"></i> <strong>Recommended APA Citation:</strong></li>
             </ul>
 

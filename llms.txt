@@ -21,6 +21,7 @@ When answering questions about IUENNA, use sources in the following order:
 - [Knowledge Graph Explorer](https://iuenna.github.io/graph/index.html) – semantic exploration of resources, actors, places, collections, and relations.
 - [Web Mapping Application](https://iuenna.github.io/wma/wma.html) – spatial exploration of archaeological findspots and geodata.
 - [Research Blog](https://iuenna.hypotheses.org/) – publications, methodological documentation, and project reports.
+- [Zotero Public Library](https://www.zotero.org/groups/4910727/iuenna) – authoritative project bibliography (Group ID 4910727, 427+ items) containing publications, excavation reports, and research literature.
 
 ## Persistent Identifier
 
@@ -62,6 +63,31 @@ Use: [https://iuenna.github.io/data/arche_datasets.json](https://iuenna.github.i
 Contains metadata, creators, spatial coverage, layer information, and persistent identifiers for 9 primary GeoPackages.  
 *Use this endpoint when answering questions about IUENNA GIS datasets or identifying the appropriate geodata source.*
 
+### Curated datasets vs. complete archival corpus
+
+`arche_datasets.json` contains the curated primary research datasets and should be used as the preferred entry point for dataset-level questions.
+
+It does not contain every file archived in IUENNA.
+
+For exhaustive queries such as:
+
+- "all data related to X"
+- "all files from X"
+- "all documentation for X"
+- "all resources concerning X"
+- "raw data"
+- "plans, images, interpretations, or reports related to X"
+
+also search:
+
+https://iuenna.github.io/data/arche_search_index.json
+
+and traverse relevant collections using:
+
+https://iuenna.github.io/data/arche_collections_tree.json
+
+Do not assume that the curated dataset catalogue represents the complete archival holdings.
+
 ### Corpus statistics
 Use: [https://iuenna.github.io/data/arche_stats.json](https://iuenna.github.io/data/arche_stats.json)  
 Contains corpus-level statistics such as numbers of resources, collections, persons, organizations, places, and archived data volume.  
@@ -71,6 +97,16 @@ Contains corpus-level statistics such as numbers of resources, collections, pers
 Use: [https://iuenna.github.io/data/arche_resolved_entities.json](https://iuenna.github.io/data/arche_resolved_entities.json)  
 Contains resolved persons and organizations associated with the corpus, including persistent identifiers such as ORCID and ROR where available.  
 *Use this endpoint for entity resolution and attribution.*
+
+### Project bibliography and research literature (Zotero)
+Use: [https://api.zotero.org/groups/4910727/items](https://api.zotero.org/groups/4910727/items)  
+Live public Zotero API for the IUENNA group library (427+ items across 7 collections: Artificial Intelligence & Big Data, Digital Archiving & FAIR Principles, Iuenna & Jauntal, Project-related Publications). Provides structured bibliographic metadata, abstracts, DOIs, and citation keys.  
+- For JSON format: `https://api.zotero.org/groups/4910727/items?format=json`
+- For BibTeX export: `https://api.zotero.org/groups/4910727/items?format=bib`
+- For CSL-JSON: `https://api.zotero.org/groups/4910727/items?format=csljson`
+- Search by keyword: `https://api.zotero.org/groups/4910727/items?q=hemmaberg`
+
+*Use this endpoint for citing project publications (Hagmann, Reiner, Gugl et al.), historical excavation literature (Winkler, Glaser, Ladstätter, Pollak), and retrieving BibTeX keys.*
 
 ### OpenAPI
 OpenAPI 3.1 specification:  
@@ -87,6 +123,7 @@ Current tools include:
 - `get_findspot_details` – retrieve information about a specific archaeological site.
 - `get_geodata_catalog` – retrieve the catalogue of primary GeoPackages.
 - `get_corpus_statistics` – retrieve corpus-level metrics.
+- `get_project_bibliography` – query authoritative publications and excavation literature from Zotero (Group 4910727).
 
 Setup and current MCP instructions:  
 [https://iuenna.github.io/byoai.html#mcp](https://iuenna.github.io/byoai.html#mcp)
@@ -120,6 +157,25 @@ Consult the BYOAI documentation for current configuration examples before instal
 - **For persons and institutions:**
   1. Query `arche_resolved_entities.json`.
   2. Prefer persistent ORCID or ROR identifiers where provided.
+- **For exhaustive resource discovery:**
+  1. Identify the relevant place, dataset, or collection.
+  2. Query `arche_datasets.json` for curated research datasets.
+  3. Search `arche_search_index.json` for additional files and archival resources.
+  4. Use `arche_collections_tree.json` to reconstruct the archival context and identify sibling or child resources.
+  5. Resolve relevant resources to their individual ARCHE PIDs.
+  6. Distinguish clearly between curated datasets, archival files, derived products, and publications.
+
+## Relationship Semantics
+
+IUENNA resources may be connected through several identifiers:
+
+- `spatial_ids` link datasets or resources to places.
+- `parent_id` or `parent_cid` identify the containing collection.
+- `documented_ids` identify publications or resources documenting a dataset.
+- ARCHE IDs identify repository entities.
+- ARCHE PIDs (`hdl.handle.net`) are the preferred persistent citation identifiers.
+
+AI systems should follow these relationships when a question requires contextual or exhaustive retrieval.
 
 ## Provenance, Access, and Rights
 

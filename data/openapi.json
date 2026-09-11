@@ -171,5 +171,9 @@
         }
       }
     }
+  },
+  "externalDocs": {
+    "description": "IUENNA Project Bibliography & Public Zotero Library (427+ items across 7 collections)",
+    "url": "https://www.zotero.org/groups/4910727/iuenna"
   }
 }

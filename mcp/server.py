@@ -9,6 +9,7 @@ Works with any MCP client (Claude Desktop, Open-WebUI, Cursor, LibreChat, Python
 import sys
 import json
 import urllib.request
+import urllib.parse
 
 BASE_URL = "https://iuenna.github.io/data"
 
@@ -72,6 +73,23 @@ TOOLS = [
             "type": "object",
             "properties": {}
         }
+    },
+    {
+        "name": "get_project_bibliography",
+        "description": "Retrieve authoritative bibliographic entries, academic publications, and excavation literature from the official IUENNA Zotero Library (Group 4910727). Supports filtering by author, keyword, or site.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Optional search term to filter bibliography (e.g. 'Hagmann', 'Glaser', 'Hemmaberg', 'Vibe Coding', 'AI')."
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of bibliographic items to return (default: 10, max: 30)."
+                }
+            }
+        }
     }
 ]
 
@@ -112,6 +130,39 @@ def execute_tool(name, args):
 
     elif name == "get_corpus_statistics":
         return fetch_json("arche_stats.json")
+
+    elif name == "get_project_bibliography":
+        query = args.get("query", "").strip()
+        limit = min(max(1, int(args.get("limit", 10))), 30)
+        url = f"https://api.zotero.org/groups/4910727/items?format=json&limit={limit}"
+        if query:
+            url += f"&q={urllib.parse.quote(query)}"
+        req = urllib.request.Request(url, headers={"User-Agent": "IUENNA-MCP-Server/1.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                items = json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"Failed to query Zotero API: {str(e)}", "zotero_web": "https://www.zotero.org/groups/4910727/iuenna"}
+
+        results = []
+        for it in items:
+            d = it.get("data", {})
+            creators = ", ".join([f"{c.get('lastName', '')} {c.get('firstName', '')}".strip() for c in d.get("creators", []) if c.get("lastName")])
+            results.append({
+                "key": d.get("key"),
+                "title": d.get("title"),
+                "itemType": d.get("itemType"),
+                "creators": creators,
+                "date": d.get("date"),
+                "publicationTitle": d.get("publicationTitle") or d.get("bookTitle"),
+                "doi": d.get("DOI"),
+                "url": d.get("url") or f"https://www.zotero.org/groups/4910727/iuenna/items/{d.get('key')}"
+            })
+        return {
+            "zotero_group_url": "https://www.zotero.org/groups/4910727/iuenna",
+            "count": len(results),
+            "items": results
+        }
 
     else:
         raise ValueError(f"Unknown tool: {name}")
