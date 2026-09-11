@@ -102,6 +102,25 @@
         }
       }
     },
+    "/data/arche_graph.json": {
+      "get": {
+        "summary": "Semantic Knowledge Graph (Cytoscape / Network Graph)",
+        "description": "Retrieves the complete Cytoscape-format semantic knowledge graph of 21,080 nodes and 38,696 directed edges connecting collections, datasets, findspots, actors, institutions, publications, and primary archived resources across the IUENNA micro-region.",
+        "operationId": "getKnowledgeGraph",
+        "responses": {
+          "200": {
+            "description": "Full Cytoscape graph object containing metadata and elements (nodes and edges).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeGraph"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/data/arche_datasets.json": {
       "get": {
         "summary": "Curated GeoPackages and Research Datasets",
@@ -283,6 +302,35 @@
           "total_collections": { "type": "integer", "example": 434 },
           "total_places": { "type": "integer", "example": 219 },
           "total_storage_gb": { "type": "number", "example": 356.68 }
+        }
+      },
+      "KnowledgeGraph": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string", "example": "IUENNA Complete ARCHE Knowledge Graph" },
+              "arche_uri": { "type": "string", "format": "uri" },
+              "total_nodes": { "type": "integer", "example": 21080 },
+              "total_edges": { "type": "integer", "example": 38696 },
+              "total_collections": { "type": "integer", "example": 434 },
+              "total_resources": { "type": "integer", "example": 20355 }
+            }
+          },
+          "elements": {
+            "type": "object",
+            "properties": {
+              "nodes": {
+                "type": "array",
+                "items": { "type": "object" }
+              },
+              "edges": {
+                "type": "array",
+                "items": { "type": "object" }
+              }
+            }
+          }
         }
       }
     }

@@ -303,8 +303,58 @@ const TOOLS = [
         limit: { type: 'number', description: 'Maximum items (default 10, max 30).' }
       }
     }
+  },
+  {
+    name: 'get_graph_neighborhood',
+    description: 'Query the IUENNA Knowledge Graph (21,080 nodes, 38,696 edges) to traverse semantic relationships. Returns connected nodes, edge predicates (hasCreator, hasAuthor, hasSpatialCoverage, documents, isPartOf, isMemberOf), and neighbor entities.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        node_or_id: { type: 'string', description: "Node label, entity name (e.g. 'Franz Glaser', 'Hemmaberg', 'glo_geodaten_open.gpkg'), or ARCHE ID (e.g. '1756744', 'plc_1756734')." },
+        predicate: { type: 'string', description: "Optional edge predicate filter (e.g. 'hasCreator', 'hasAuthor', 'hasSpatialCoverage', 'documents', 'isPartOf', 'isMemberOf')." },
+        direction: { type: 'string', enum: ['all', 'outgoing', 'incoming'], description: "Edge direction to follow (default: 'all')." },
+        limit: { type: 'number', description: 'Maximum number of connected neighbor nodes to return (default: 25, max: 100).' }
+      },
+      required: ['node_or_id']
+    }
   }
 ];
+
+let graphCache = null;
+
+async function getGraphIndex() {
+  if (graphCache) return graphCache;
+  const rawGraph = await fetchJson('arche_graph.json');
+  const nodesById = new Map();
+  const nodesByArcheId = new Map();
+  const nodesList = [];
+
+  for (const n of (rawGraph?.elements?.nodes || [])) {
+    const d = n.data || {};
+    const nid = String(d.id || '').trim();
+    nodesById.set(nid, d);
+    if (d.arche_id) nodesByArcheId.set(String(d.arche_id), d);
+    nodesList.push(d);
+  }
+
+  const adj = new Map();
+  for (const e of (rawGraph?.elements?.edges || [])) {
+    const ed = e.data || {};
+    const src = String(ed.source || '').trim();
+    const tgt = String(ed.target || '').trim();
+    const lbl = ed.label || '';
+    const pred = ed.predicate || '';
+
+    if (!adj.has(src)) adj.set(src, []);
+    if (!adj.has(tgt)) adj.set(tgt, []);
+
+    adj.get(src).push({ dir: 'outgoing', neighborId: tgt, predicate: lbl, uri: pred });
+    adj.get(tgt).push({ dir: 'incoming', neighborId: src, predicate: lbl, uri: pred });
+  }
+
+  graphCache = { nodesById, nodesByArcheId, nodesList, adj };
+  return graphCache;
+}
 
 async function executeTool(name, args = {}) {
   if (name === 'search_iuenna_corpus') {
@@ -395,6 +445,85 @@ async function executeTool(name, args = {}) {
         zotero_web: 'https://www.zotero.org/groups/4910727/iuenna'
       };
     }
+  }
+
+  if (name === 'get_graph_neighborhood') {
+    const target = String(args.node_or_id || '').trim();
+    const predicate = String(args.predicate || '').trim().toLowerCase() || null;
+    const direction = String(args.direction || 'all').trim().toLowerCase();
+    const limit = Math.min(Math.max(Number(args.limit) || 25, 1), 100);
+
+    const { nodesById, nodesByArcheId, nodesList, adj } = await getGraphIndex();
+    const tLc = target.toLowerCase();
+    const tNorm = normId(tLc);
+
+    let matched = nodesById.get(tLc) || nodesByArcheId.get(tNorm);
+    if (!matched) {
+      for (const n of nodesList) {
+        const lbl = (n.label || n.title || '').toLowerCase();
+        const aid = String(n.arche_id || '').toLowerCase();
+        const nid = String(n.id || '').toLowerCase();
+        if (tLc === lbl || tLc === aid || tLc === nid || tNorm === aid) {
+          matched = n;
+          break;
+        }
+      }
+      if (!matched) {
+        for (const n of nodesList) {
+          const lbl = (n.label || n.title || '').toLowerCase();
+          if (lbl.includes(tLc)) {
+            matched = n;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!matched) {
+      return { message: `Node "${target}" not found in IUENNA Knowledge Graph.` };
+    }
+
+    const nid = matched.id;
+    const edges = adj.get(nid) || [];
+    const predCounts = {};
+    for (const e of edges) {
+      predCounts[e.predicate] = (predCounts[e.predicate] || 0) + 1;
+    }
+
+    const filtered = [];
+    for (const e of edges) {
+      if (predicate && predicate !== e.predicate.toLowerCase()) continue;
+      if ((direction === 'outgoing' || direction === 'incoming') && direction !== e.dir) continue;
+      const nbNode = nodesById.get(e.neighborId) || {};
+      filtered.push({
+        direction: e.dir,
+        predicate: e.predicate,
+        neighbor: {
+          id: nbNode.id,
+          arche_id: nbNode.arche_id,
+          label: nbNode.label || nbNode.title,
+          type: nbNode.type,
+          type_label: nbNode.type_label,
+          pid: nbNode.pid
+        }
+      });
+    }
+
+    return {
+      node: {
+        id: matched.id,
+        arche_id: matched.arche_id,
+        label: matched.label || matched.title,
+        type: matched.type,
+        type_label: matched.type_label,
+        pid: matched.pid
+      },
+      total_connections: edges.length,
+      predicate_counts: predCounts,
+      returned_count: Math.min(filtered.length, limit),
+      neighbors: filtered.slice(0, limit),
+      truncated: filtered.length > limit
+    };
   }
 
   throw new Error(`Unknown tool: ${name}`);

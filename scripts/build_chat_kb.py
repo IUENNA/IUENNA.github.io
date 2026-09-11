@@ -312,7 +312,7 @@ def build_knowledge_base():
             "6. Bereitstellung in Web-Mapping-Layern & Open Science Katalogen"
         ],
         "ai_methods": {
-            "framework": "Google Antigravity, Claude Opus & Gemini Flash",
+            "framework": "Google Antigravity, Claude Opus, Gemini Flash & ChatGPT 5.6",
             "vibe_coding": "Nutzung von Vibe Coding und agentischer KI für konsolidierte Webentwicklung und Datenstrukturen",
             "iuenna_refiner": "Custom GPT 'IUENNA Refiner' für Metadatenbereinigung und GeoJSON-Validierung",
             "transparency": "Vollständige wissenschaftliche Offenlegung und menschliche Validierung aller KI-generierten Strukturen"

@@ -74,6 +74,12 @@ https://iuenna.github.io/data/arche_publications.json
 
 Contains publication entities extracted from ARCHE and relationships to datasets or documentation where represented.
 
+### Semantic Knowledge Graph
+
+https://iuenna.github.io/data/arche_graph.json
+
+Complete semantic graph of the IUENNA collection in Cytoscape-compatible JSON format (21,080 nodes, 38,696 directed edges), encompassing collections, datasets, resources, places, persons, organizations, publications, epochs, and subjects linked by formal ARCHE ontology predicates (`isPartOf`, `hasSpatialCoverage`, `hasCreator`, `hasAuthor`, `documents`, `isMemberOf`, `hasContributor`, etc.).
+
 ### Corpus statistics
 
 https://iuenna.github.io/data/arche_stats.json
@@ -104,6 +110,7 @@ Current tools:
 - `search_iuenna_corpus` – search the complete 20,355-file primary-resource corpus across titles, filenames, descriptions, collection paths, places, subjects, and PIDs.
 - `get_findspot_details` – retrieve a findspot and its associated curated datasets.
 - `get_related_resources` – resolve a place, dataset, collection, or publication and retrieve related datasets, collections, publications, and primary archived files.
+- `get_graph_neighborhood` – explore the semantic knowledge graph (nodes and directed edges) around any entity, place, person, dataset, or publication by 1–2 hop neighborhood with optional predicate filtering.
 - `get_geodata_catalog` – list the 9 curated GeoPackages.
 - `get_corpus_statistics` – retrieve high-level IUENNA collection metrics plus primary-resource-corpus metadata.
 - `get_project_bibliography` – query the official IUENNA Zotero library.
@@ -113,6 +120,8 @@ For questions such as “all documentation related to Hemmaberg”, “all Geora
 ## Recommended routing strategy
 
 For general entity discovery, search `arche_search_index.json`, resolve the relevant entity, and preserve its ARCHE ID and PID.
+
+For network, provenance, or relationship queries (e.g. “which datasets and publications are connected to person X?”, “what is the multi-hop semantic neighborhood of place Y?”), use MCP `get_graph_neighborhood` or traverse `arche_graph.json`.
 
 For exhaustive file-level questions, identify the relevant place, dataset, collection, or publication; use MCP `get_related_resources` when available; otherwise query `arche_corpus.json` and follow `spatial_ids`, `col`, `parent_id`, and `path` relationships. Use `arche_collections_tree.json` to reconstruct archival context and cite individual ARCHE PIDs when reporting specific resources.
 

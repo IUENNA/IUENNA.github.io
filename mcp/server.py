@@ -274,7 +274,59 @@ TOOLS = [
             "limit": {"type": "integer", "description": "Maximum items (default 10, max 30)."},
         }},
     },
+    {
+        "name": "get_graph_neighborhood",
+        "description": "Query the IUENNA Knowledge Graph (21,080 nodes, 38,696 edges) to traverse semantic relationships. Returns connected nodes, edge predicates (hasCreator, hasAuthor, hasSpatialCoverage, documents, isPartOf, isMemberOf), and neighbor entities.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "node_or_id": {"type": "string", "description": "Node label, entity name (e.g. 'Franz Glaser', 'Hemmaberg', 'glo_geodaten_open.gpkg'), or ARCHE ID (e.g. '1756744', 'plc_1756734')."},
+                "predicate": {"type": "string", "description": "Optional edge predicate filter (e.g. 'hasCreator', 'hasAuthor', 'hasSpatialCoverage', 'documents', 'isPartOf', 'isMemberOf')."},
+                "direction": {"type": "string", "enum": ["all", "outgoing", "incoming"], "description": "Edge direction to follow (default: 'all')."},
+                "limit": {"type": "integer", "description": "Maximum number of connected neighbor nodes to return (default: 25, max: 100)."}
+            },
+            "required": ["node_or_id"]
+        }
+    },
 ]
+
+
+GRAPH_CACHE = None
+
+
+def get_graph_index():
+    global GRAPH_CACHE
+    if GRAPH_CACHE is not None:
+        return GRAPH_CACHE
+    raw_graph = fetch_json("arche_graph.json")
+    nodes_by_id = {}
+    nodes_by_arche_id = {}
+    nodes_list = []
+
+    for n in raw_graph.get("elements", {}).get("nodes", []):
+        d = n.get("data", {})
+        nid = str(d.get("id", "")).strip()
+        nodes_by_id[nid] = d
+        if d.get("arche_id"):
+            nodes_by_arche_id[str(d["arche_id"])] = d
+        nodes_list.append(d)
+
+    adj = {}
+    for e in raw_graph.get("elements", {}).get("edges", []):
+        ed = e.get("data", {})
+        src = str(ed.get("source", "")).strip()
+        tgt = str(ed.get("target", "")).strip()
+        lbl = ed.get("label") or ""
+        pred = ed.get("predicate") or ""
+        if src not in adj:
+            adj[src] = []
+        if tgt not in adj:
+            adj[tgt] = []
+        adj[src].append({"dir": "outgoing", "neighbor_id": tgt, "predicate": lbl, "uri": pred})
+        adj[tgt].append({"dir": "incoming", "neighbor_id": src, "predicate": lbl, "uri": pred})
+
+    GRAPH_CACHE = (nodes_by_id, nodes_by_arche_id, nodes_list, adj)
+    return GRAPH_CACHE
 
 
 def execute_tool(name, args):
@@ -338,6 +390,81 @@ def execute_tool(name, args):
                 "url": data.get("url") or f"https://www.zotero.org/groups/4910727/iuenna/items/{data.get('key')}",
             })
         return {"zotero_group_url": "https://www.zotero.org/groups/4910727/iuenna", "count": len(results), "items": results}
+
+    if name == "get_graph_neighborhood":
+        target = str(args.get("node_or_id", "")).strip()
+        predicate = str(args.get("predicate", "")).strip().lower() or None
+        direction = str(args.get("direction", "all")).strip().lower()
+        limit = min(max(int(args.get("limit", 25)), 1), 100)
+
+        nodes_by_id, nodes_by_arche_id, nodes_list, adj = get_graph_index()
+        t_lc = target.lower()
+        t_norm = norm_id(t_lc)
+
+        matched = None
+        if t_lc in nodes_by_id:
+            matched = nodes_by_id[t_lc]
+        elif t_norm in nodes_by_arche_id:
+            matched = nodes_by_arche_id[t_norm]
+        else:
+            for n in nodes_list:
+                lbl = (n.get("label") or n.get("title") or "").lower()
+                aid = str(n.get("arche_id", "")).lower()
+                nid = str(n.get("id", "")).lower()
+                if t_lc == lbl or t_lc == aid or t_lc == nid or t_norm == aid:
+                    matched = n
+                    break
+            if not matched:
+                for n in nodes_list:
+                    lbl = (n.get("label") or n.get("title") or "").lower()
+                    if t_lc in lbl:
+                        matched = n
+                        break
+
+        if not matched:
+            return {"message": f'Node "{target}" not found in IUENNA Knowledge Graph.'}
+
+        nid = matched.get("id")
+        edges = adj.get(nid, [])
+
+        from collections import Counter
+        pred_counts = Counter(e["predicate"] for e in edges)
+
+        filtered = []
+        for e in edges:
+            if predicate and predicate != e["predicate"].lower():
+                continue
+            if direction in ("outgoing", "incoming") and direction != e["dir"]:
+                continue
+            nb_node = nodes_by_id.get(e["neighbor_id"], {})
+            filtered.append({
+                "direction": e["dir"],
+                "predicate": e["predicate"],
+                "neighbor": {
+                    "id": nb_node.get("id"),
+                    "arche_id": nb_node.get("arche_id"),
+                    "label": nb_node.get("label") or nb_node.get("title"),
+                    "type": nb_node.get("type"),
+                    "type_label": nb_node.get("type_label"),
+                    "pid": nb_node.get("pid"),
+                }
+            })
+
+        return {
+            "node": {
+                "id": matched.get("id"),
+                "arche_id": matched.get("arche_id"),
+                "label": matched.get("label") or matched.get("title"),
+                "type": matched.get("type"),
+                "type_label": matched.get("type_label"),
+                "pid": matched.get("pid"),
+            },
+            "total_connections": len(edges),
+            "predicate_counts": dict(pred_counts),
+            "returned_count": min(len(filtered), limit),
+            "neighbors": filtered[:limit],
+            "truncated": len(filtered) > limit,
+        }
 
     raise ValueError(f"Unknown tool: {name}")
 

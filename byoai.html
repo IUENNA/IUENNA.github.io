@@ -92,7 +92,8 @@
                 Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> within <strong>20,788 ARCHE records</strong>, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.
             </p>
             <div class="pill-container">
-                <span class="pill-tag"><i class="fa-solid fa-bolt"></i> MCP v1.1</span>
+                <span class="pill-tag"><i class="fa-solid fa-bolt"></i> MCP v1.2</span>
+                <span class="pill-tag"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</span>
                 <span class="pill-tag"><i class="fa-solid fa-server"></i> OpenAPI 3.1 &amp; JSON</span>
                 <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
                 <span class="pill-tag"><i class="fa-solid fa-laptop-code"></i> Local AI compatible</span>
@@ -108,8 +109,8 @@
         </section>
 
         <section class="byoai-section" id="mcp">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-network-wired"></i></div>1. Model Context Protocol (MCP) v1.1</h2>
-            <p>The IUENNA MCP server implements JSON-RPC 2.0 over stdio and runs with zero third-party runtime dependencies. Version <strong>1.1.0</strong> exposes six research tools and now distinguishes explicitly between entity discovery and exhaustive primary-resource retrieval.</p>
+            <h2><div class="byoai-section-icon"><i class="fa-solid fa-network-wired"></i></div>1. Model Context Protocol (MCP) v1.2</h2>
+            <p>The IUENNA MCP server implements JSON-RPC 2.0 over stdio and runs with zero third-party runtime dependencies. Version <strong>1.2.0</strong> exposes seven research tools and now integrates semantic knowledge graph traversal alongside entity discovery and exhaustive primary-resource retrieval.</p>
 
             <h3 style="font-size:1.15rem;margin:1.5rem 0 .6rem;">Setup for Claude Desktop / Cursor / compatible MCP clients</h3>
             <div class="code-block-wrapper">
@@ -136,6 +137,7 @@
                         <tr><td><code>search_iuenna_corpus</code></td><td>Searches the authoritative <code>arche_corpus.json</code> across 20,355 primary files, including titles, filenames, descriptions, collection paths, places, subjects, and PIDs.</td><td><code>query</code>, <code>limit</code></td></tr>
                         <tr><td><code>get_findspot_details</code></td><td>Returns findspot metadata and directly associated curated datasets.</td><td><code>name_or_id</code></td></tr>
                         <tr><td><code>get_related_resources</code></td><td>Resolves a place, dataset, collection, or publication and traverses related datasets, collections, publications, and primary files. Recommended for questions such as “all data about Hemmaberg”.</td><td><code>name_or_id</code>, optional <code>query</code>, <code>limit</code></td></tr>
+                        <tr><td><code>get_graph_neighborhood</code></td><td>Explores the semantic knowledge graph (21,080 nodes, 38,696 edges) around any entity, place, person, dataset, or publication by 1–2 hop neighborhood with optional predicate filtering.</td><td><code>node_or_id</code>, optional <code>hops</code> (1–2), <code>predicate</code>, <code>limit</code></td></tr>
                         <tr><td><code>get_geodata_catalog</code></td><td>Lists the 9 curated authoritative archaeological GeoPackages.</td><td><em>None</em></td></tr>
                         <tr><td><code>get_corpus_statistics</code></td><td>Returns repository-level metrics together with separate metadata for the primary-resource corpus.</td><td><em>None</em></td></tr>
                         <tr><td><code>get_project_bibliography</code></td><td>Queries the public IUENNA Zotero library for project publications, excavation literature, authors, DOIs, and bibliographic metadata.</td><td>optional <code>query</code>, <code>limit</code></td></tr>
@@ -152,6 +154,7 @@
                 <div class="routing-card"><strong>Find an entity</strong><p>Use <code>arche_search_index.json</code> for compact discovery of persons, organisations, collections, publications, places, and curated datasets.</p></div>
                 <div class="routing-card"><strong>Find a site</strong><p>Use <code>arche_places.json</code>, then resolve linked curated geodata via <code>arche_datasets.json</code>.</p></div>
                 <div class="routing-card"><strong>Find all files</strong><p>Use <code>arche_corpus.json</code>. This is the exhaustive primary-resource layer containing 20,355 files.</p></div>
+                <div class="routing-card"><strong>Explore semantic networks</strong><p>Use <code>arche_graph.json</code> or MCP <code>get_graph_neighborhood</code> to query multi-hop actor-place-publication networks.</p></div>
                 <div class="routing-card"><strong>Reconstruct provenance</strong><p>Use <code>arche_collections_tree.json</code> and relationships such as <code>parent_id</code>, <code>col</code>, and <code>spatial_ids</code>.</p></div>
                 <div class="routing-card"><strong>Ask “everything about X”</strong><p>Prefer MCP <code>get_related_resources</code>, which combines place, dataset, collection, publication, and file-level relationships.</p></div>
                 <div class="routing-card"><strong>Cite a result</strong><p>Prefer the individual ARCHE Handle PID of the dataset or file actually used, not only the IUENNA web page.</p></div>
@@ -169,6 +172,7 @@
                 <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Archaeological Findspots</h4><p class="endpoint-desc">219 georeferenced sites with titles, coordinates/WKT, Geonames identifiers, periods, and spatial relationships.</p></div><div class="endpoint-url"><span>/data/arche_places.json</span><a href="data/arche_places.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
                 <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Collection Hierarchy</h4><p class="endpoint-desc">434 collections and archival dossiers with parent-child relationships, PIDs, counts, and provenance context.</p></div><div class="endpoint-url"><span>/data/arche_collections_tree.json</span><a href="data/arche_collections_tree.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
                 <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Curated GeoPackages</h4><p class="endpoint-desc">Metadata, spatial coverage, creators, layer descriptions, and PIDs for 9 primary GIS datasets.</p></div><div class="endpoint-url"><span>/data/arche_datasets.json</span><a href="data/arche_datasets.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Semantic Knowledge Graph</h4><p class="endpoint-desc">21,080 nodes and 38,696 directed edges connecting collections, resources, places, persons, institutions, and publications via formal ARCHE ontology predicates.</p></div><div class="endpoint-url"><span>/data/arche_graph.json</span><a href="data/arche_graph.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
                 <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Corpus Statistics</h4><p class="endpoint-desc">Repository-level counts and storage metrics. Use together with <code>arche_corpus.json</code> when distinguishing repository entities from primary files.</p></div><div class="endpoint-url"><span>/data/arche_stats.json</span><a href="data/arche_stats.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
                 <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge" style="background:#c0392b;">ZOTERO API</span></div><h4 class="endpoint-title">Project Bibliography</h4><p class="endpoint-desc">Live bibliographic catalogue for IUENNA, excavation reports, and research literature in JSON, BibTeX, and CSL-compatible formats.</p></div><div class="endpoint-url"><span>api.zotero.org/groups/4910727/items</span><a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
             </div>
@@ -193,6 +197,25 @@ with urllib.request.urlopen(url) as response:
 
 hemmaberg = [p for p in places if "hemmaberg" in p.get("title", "").lower()]
 print(json.dumps(hemmaberg, ensure_ascii=False, indent=2))</code></pre></div>
+
+            <h3 style="font-size:1.15rem;">Python: explore semantic knowledge graph</h3>
+            <div class="code-block-wrapper"><div class="code-header"><span>query_graph.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
+import urllib.request
+
+url = "https://iuenna.github.io/data/arche_graph.json"
+with urllib.request.urlopen(url) as response:
+    graph = json.loads(response.read().decode("utf-8"))
+
+nodes = {n["data"]["id"]: n["data"] for n in graph["elements"]["nodes"]}
+edges = graph["elements"]["edges"]
+
+# Find all publications authored by Franz Glaser
+glaser_id = next((nid for nid, d in nodes.items() if "glaser" in d.get("label", "").lower()), None)
+authored = [e["data"]["target"] for e in edges if e["data"]["source"] == glaser_id and e["data"]["predicate"] == "hasAuthor"]
+
+for pub_id in authored:
+    pub = nodes.get(pub_id, {})
+    print(f"- {pub.get('label')} (PID: {pub.get('pid')})")</code></pre></div>
 
             <h3 style="font-size:1.15rem;">Python: exhaustive file-level search</h3>
             <div class="code-block-wrapper"><div class="code-header"><span>query_corpus.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
@@ -230,7 +253,7 @@ print(json.dumps(hits[:20], ensure_ascii=False, indent=2))</code></pre></div>
 
     <footer>
         <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="impressum-datenschutz.html">Legal Notice</a> &amp; <a href="impressum-datenschutz.html">Privacy Policy</a></p>
-        <p>IUENNA BYOAI | MCP v1.1 &bull; OpenAPI 3.1 &bull; llms.txt &bull; ARCHE PIDs</p>
+        <p>IUENNA BYOAI | MCP v1.2 &bull; OpenAPI 3.1 &bull; Knowledge Graph &bull; llms.txt &bull; ARCHE PIDs</p>
     </footer>
 
     <script>

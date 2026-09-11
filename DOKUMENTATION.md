@@ -211,16 +211,17 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 
 ### 4.1 BYOAI (Bring Your Own AI): Offene Schnittstellen & Protokolle
 * **Konzept:** Vollständige Entkopplung von proprietären Plattformen. Statt Besucher:innen an ein vorgekautes Produkt oder ressourcenintensive In-Browser-Modelle zu binden, stellt IUENNA herstellerneutrale, offene Protokolle und Endpunkte bereit (Motto: *„Bring deine eigene KI mit und befrage unsere Forschungsdaten“*).
-* **MCP-Version:** `1.1.0` (Python und Node, JSON-RPC 2.0 über Stdio, ohne externe Laufzeitabhängigkeiten).
+* **MCP-Version:** `1.2.0` (Python und Node, JSON-RPC 2.0 über Stdio, ohne externe Laufzeitabhängigkeiten).
 * **Retrieval-Prinzip:** `arche_search_index.json` dient der semantischen Entitäts-/Discovery-Suche; `arche_corpus.json` enthält die **20.355 Primärressourcen** und ist die Grundlage für exhaustive File-Level-Suche. Die **20.788 ARCHE-Einträge** bezeichnen den Gesamtbestand des Repositoriums und dürfen nicht mit der Zahl der Primärdateien gleichgesetzt werden.
 * **Komponenten:**
   1. **Model Context Protocol (MCP):**
      - Leichtgewichtiger, lokaler MCP-Server (`mcp/server.py` und `mcp/index.mjs`) mit JSON-RPC 2.0 über Stdio ohne externe Abhängigkeiten.
      - Kompatibel mit Claude Desktop, Open-WebUI, LibreChat, Cursor, Zed, Antigravity und Python-Agenten.
-     - Sechs Fach-Tools:
+     - Sieben Fach-Tools:
        - `search_iuenna_corpus`: Volltext-/Metadatensuche über `arche_corpus.json` und damit 20.355 Primärressourcen.
        - `get_findspot_details`: Fundort-Metadaten samt direkt verknüpfter kuratierter Datensätze.
        - `get_related_resources`: löst Fundort, Datensatz, Sammlung oder Publikation auf und traversiert Raum-, Collection- und Dokumentationsbeziehungen zu Datensätzen, Sammlungen, Publikationen und einzelnen Primärressourcen.
+       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.080 Knoten, 38.696 Kanten) im 1–2-Hop-Umfeld um beliebige Entitäten mit optionaler Prädikatsfilterung.
        - `get_geodata_catalog`: Katalog der 9 autoritativen GeoPackages.
        - `get_corpus_statistics`: Gesamtstatistik inklusive separater Metadaten zum Primärressourcen-Korpus.
        - `get_project_bibliography`: Abfrage der öffentlichen IUENNA-Zotero-Bibliothek.
@@ -230,12 +231,13 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
      - `arche_datasets.json`: 9 kuratierte GeoPackages/Forschungsdatensätze.
      - `arche_collections_tree.json`: 434 Sammlungen und ihre Parent-Child-Hierarchie.
      - `arche_search_index.json`: kompakter Discovery-Index für Entitäten und zentrale Ressourcen.
+     - `arche_graph.json`: 21.080 Knoten und 38.696 Kanten als vollständiger semantischer Wissensgraph.
      - `arche_corpus.json`: 20.355 Primärressourcen mit ARCHE-ID, PID, Titel/Dateiname, Elternsammlung, Breadcrumb-Pfad, Raumbezug, Schlagworten, Datum, Typ und Beschreibung.
   3. **`llms.txt` (Offener Webstandard):**
      - Bereitstellung von `https://iuenna.github.io/llms.txt` als Routing- und Provenienzschicht für LLMs und Agents.
      - Enthält eine explizite Source-Priority, Retrieval-Strategien, Relationship Semantics, PID-first-Zitierregeln sowie den Hinweis auf ressourcenspezifische Zugriffs- und Lizenzbedingungen.
   4. **BYOAI-Hub (`byoai.html`):**
-     - Zentrale englischsprachige Dokumentations- und Rezepte-Seite mit Copy-Paste-Cookbook für lokales Ollama/Llama 3.2, Open-WebUI, cURL/jq und Google NotebookLM.
+     - Zentrale englischsprachige Dokumentations- und Rezepte-Seite mit Copy-Paste-Cookbook für lokales Ollama/Llama 3.2, Open-WebUI, cURL/jq, Python/NetworkX und Google NotebookLM.
   5. **Öffentliche Zotero-Bibliothek & REST API:**
      - Gruppe `4910727` (`https://www.zotero.org/groups/4910727/iuenna`) mit 427+ Titeln zu Grabungsberichten, Projektpublikationen, FAIR Data und digitaler Archäologie.
      - Öffentliche REST-API (`https://api.zotero.org/groups/4910727/items`) für maschinenlesbare Zitationen (BibTeX, CSL-JSON, RIS, JSON).
@@ -245,10 +247,11 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 1. **Entität finden:** `arche_search_index.json` oder MCP-Resolver verwenden.
 2. **Fundortfrage:** `arche_places.json` → `arche_datasets.json` → ARCHE-PID.
 3. **Kuratierten Forschungsdatensatz suchen:** `arche_datasets.json` verwenden.
-4. **„Alle Daten/Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und `arche_collections_tree.json` traversieren; alternativ MCP `get_related_resources` verwenden.
-5. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids` und `documented_ids` nachverfolgen.
-6. **Zitieren:** nach Möglichkeit den individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben; die Discovery-Endpunkte sind nicht Ersatz für die autoritative Repository-Metadatenansicht.
-7. **Rechte:** offen zugängliche IUENNA-Discovery-Endpunkte bedeuten nicht, dass jede archivierte Binärressource offen oder CC BY 4.0 lizenziert ist. Zugriff und Rechte sind auf Ressourcenebene zu prüfen.
+4. **Semantische Netzwerke / Multi-Hop-Beziehungen:** `arche_graph.json` oder MCP `get_graph_neighborhood` verwenden.
+5. **„Alle Daten/Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und `arche_collections_tree.json` traversieren; alternativ MCP `get_related_resources` verwenden.
+6. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids` und `documented_ids` nachverfolgen.
+7. **Zitieren:** nach Möglichkeit den individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben; die Discovery-Endpunkte sind nicht Ersatz für die autoritative Repository-Metadatenansicht.
+8. **Rechte:** offen zugängliche IUENNA-Discovery-Endpunkte bedeuten nicht, dass jede archivierte Binärressource offen oder CC BY 4.0 lizenziert ist. Zugriff und Rechte sind auf Ressourcenebene zu prüfen.
 
 ---
 
