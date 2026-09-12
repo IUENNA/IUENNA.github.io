@@ -232,5 +232,8 @@ jobs:
             echo "Authoritative ARCHE graph, LOD projection and AI stack already up to date."
           else
             git commit -m "chore(data): refresh authoritative ARCHE graph, LOD and AI stack"
-            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+            TARGET_BRANCH="${{ github.head_ref || github.ref_name }}"
+            git fetch origin "$TARGET_BRANCH"
+            git rebase "origin/$TARGET_BRANCH"
+            git push origin HEAD:"$TARGET_BRANCH"
           fi
