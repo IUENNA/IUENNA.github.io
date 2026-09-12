@@ -65,28 +65,38 @@ jobs:
           corpus = json.loads(Path('data/arche_corpus.json').read_text(encoding='utf-8'))
           graph = json.loads(Path('data/arche_graph.json').read_text(encoding='utf-8'))
           resource_map = json.loads((root / 'resource_to_collection.json').read_text(encoding='utf-8'))
+          collection_map = json.loads((root / 'collection_to_resources.json').read_text(encoding='utf-8'))
+          spatial_map = json.loads((root / 'spatial_to_resources.json').read_text(encoding='utf-8'))
 
           resources = corpus.get('resources', [])
           nodes = graph.get('elements', {}).get('nodes', [])
           edges = graph.get('elements', {}).get('edges', [])
+          expected_aids = {str(r['arche_id']) for r in resources}
 
+          assert manifest['version'] == 2
           assert manifest['mode'] == 'remote-mcp-query-projection'
           assert manifest['non_authoritative_projection'] is True
           assert manifest['resources'] == len(resources)
           assert manifest['graph_nodes'] == len(nodes)
           assert manifest['graph_edges'] == len(edges)
+          assert len(manifest['resource_fields']) == 15
           assert len(resource_map) == len(resources)
-          assert set(resource_map) == {r['id'] for r in resources}
+          assert set(resource_map) == expected_aids
+          assert collection_map and spatial_map
 
-          for dirname in ('resources', 'search', 'lookup', 'graph', 'relations'):
+          for dirname in ('resources', 'search', 'aliases', 'nodes', 'graph', 'relations'):
               directory = root / dirname
               assert directory.is_dir() and any(directory.glob('*.json')), directory
 
           resource_count = 0
+          resource_aids = set()
           for path in (root / 'resources').glob('*.json'):
               payload = json.loads(path.read_text(encoding='utf-8'))
-              resource_count += len(payload.get('resources', []))
+              rows = payload.get('r', [])
+              resource_count += len(rows)
+              resource_aids.update(str(row[0]) for row in rows)
           assert resource_count == len(resources)
+          assert resource_aids == expected_aids
 
           for token in ('hemmaberg', 'georadar'):
               h = 0x811C9DC5
@@ -95,13 +105,15 @@ jobs:
                   h = (h * 0x01000193) & 0xFFFFFFFF
               bucket = f'{h & 0xFF:02x}'
               payload = json.loads((root / 'search' / f'{bucket}.json').read_text(encoding='utf-8'))
-              assert token in payload.get('terms', {}), token
-              assert payload['terms'][token], token
+              assert token in payload.get('t', {}), token
+              assert payload['t'][token], token
 
-          largest = max((p.stat().st_size, p) for p in root.rglob('*.json'))
+          files = list(root.rglob('*.json'))
+          largest = max((p.stat().st_size, p) for p in files)
           assert largest[0] < 10 * 1024 * 1024, f'Remote MCP shard exceeds 10 MiB: {largest[1]} ({largest[0]})'
-          total = sum(p.stat().st_size for p in root.rglob('*.json'))
-          print(f"Remote MCP projection: {total / 1024 / 1024:.2f} MiB; largest shard {largest[1]} = {largest[0] / 1024 / 1024:.2f} MiB")
+          total = sum(p.stat().st_size for p in files)
+          assert total < 100 * 1024 * 1024, f'Remote MCP projection unexpectedly large: {total / 1024 / 1024:.2f} MiB'
+          print(f"Remote MCP projection v2: {total / 1024 / 1024:.2f} MiB; largest shard {largest[1]} = {largest[0] / 1024 / 1024:.2f} MiB")
           PY
 
       - name: Upload projection artifact
