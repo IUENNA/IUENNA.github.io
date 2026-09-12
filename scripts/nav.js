@@ -208,6 +208,75 @@
     });
   }
 
+  function assistantLabelForAnchor(anchor) {
+    const article = anchor.closest('article');
+    if (article) {
+      const title = article.querySelector(':scope > div');
+      if (title && title.textContent.trim()) return title.textContent.trim();
+    }
+    const bubble = anchor.closest('.chat-msg-bubble');
+    if (bubble) {
+      const strong = bubble.querySelector('p strong');
+      if (strong && strong.textContent.trim()) return strong.textContent.trim();
+    }
+    return '';
+  }
+
+  function fixAssistantActionLinks(root) {
+    const scope = root || document;
+
+    scope.querySelectorAll('a[href*="graph/index.html"]').forEach(function (anchor) {
+      try {
+        const oldUrl = new URL(anchor.getAttribute('href'), window.location.href);
+        const target = new URL('/graph/graph.html', window.location.origin);
+        const search = oldUrl.searchParams.get('search') || oldUrl.searchParams.get('s') || oldUrl.searchParams.get('q');
+        if (search) target.searchParams.set('search', search);
+        anchor.href = target.toString();
+      } catch (_) {}
+    });
+
+    scope.querySelectorAll('#iuenna-chat-window a[href*="wma/wma.html"]').forEach(function (anchor) {
+      try {
+        const oldUrl = new URL(anchor.getAttribute('href'), window.location.href);
+        const target = new URL('/wma/genai-wma-home.html', window.location.origin);
+        const label = assistantLabelForAnchor(anchor);
+        if (label) target.searchParams.set('q', label);
+        ['lat', 'lng', 'zoom'].forEach(function (key) {
+          if (oldUrl.searchParams.has(key)) target.searchParams.set(key, oldUrl.searchParams.get(key));
+        });
+        anchor.href = target.toString();
+      } catch (_) {}
+    });
+  }
+
+  function addAssistantChipDelegation() {
+    const win = document.getElementById('iuenna-chat-window');
+    if (!win || win.dataset.chipDelegation === '1') return;
+    win.dataset.chipDelegation = '1';
+
+    win.addEventListener('click', function (event) {
+      const button = event.target.closest('.chat-chip');
+      if (!button || !win.contains(button)) return;
+      const query = button.dataset.query || '';
+      if (!query) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (query === '__byoai') {
+        const byoaiLink = win.querySelector('.chat-header-byoai-badge');
+        if (byoaiLink && byoaiLink.href) window.location.href = byoaiLink.href;
+        return;
+      }
+
+      const input = document.getElementById('chat-input-field');
+      const send = document.getElementById('chat-send-btn');
+      if (!input || !send) return;
+      input.value = query;
+      send.click();
+    }, true);
+  }
+
   function metadataRows(card) {
     const rows = {};
     if (!card) return rows;
@@ -329,7 +398,9 @@
   function enhanceAssistant(root) {
     ensureAssistantContrastStyles();
     addAssistantMinimizeButton();
+    addAssistantChipDelegation();
     rotateAssistantWelcomeChips(root);
+    fixAssistantActionLinks(root);
     const scope = root || document;
     scope.querySelectorAll('#iuenna-chat-window .chat-msg.bot .chat-msg-bubble').forEach(addGroundedAssistantSummary);
   }
