@@ -47,23 +47,29 @@ jobs:
       - name: Canonicalize generated graph frontend
         run: python scripts/inject_graph_layout_module.py graph/index.html
 
-      - name: Validate LOD frontend architecture
+      - name: Validate progressive LOD frontend architecture
         run: |
           node --check graph/data-source.js
           node --check graph/corpus-data.js
           node --check graph/layouts.js
           grep -q 'IUENNA graph runtime: start' graph/index.html
-          grep -q './data-source.js?v=20260912-3' graph/index.html
+          grep -q './data-source.js?v=20260912-4' graph/index.html
           grep -q './corpus-data.js?v=20260912-2' graph/index.html
-          grep -q './layouts.js?v=20260912-2' graph/index.html
+          grep -q './layouts.js?v=20260912-3' graph/index.html
           grep -q 'source: "arche_graph_macro.json"' graph/index.html
           grep -q 'authoritative_source: "arche_graph.json"' graph/index.html
           grep -q 'let edgeLabelsVisible = false;' graph/index.html
-          grep -q 'Kantentexte einblenden' graph/index.html
+          grep -q 'Show Edge Labels' graph/index.html
           ! grep -q 'Fetch Live Updates if Available' graph/index.html
           ! grep -q 'fetch("../data/arche_corpus.json")' graph/index.html
           grep -q 'arche_graph_macro.json' graph/data-source.js
           grep -q 'arche_graph_lod_manifest.json' graph/data-source.js
+          grep -q 'INITIAL_MACRO_DEPTH = 2' graph/data-source.js
+          grep -q 'setMacroDepth' graph/data-source.js
+          grep -q 'applyHierarchicalEdgeBundling' graph/layouts.js
+          grep -q 'unbundled-bezier' graph/layouts.js
+          grep -q '#FAF8F5' graph/layouts.js
+          grep -q '#A8442E' graph/layouts.js
           grep -q 'arche_corpus_browser_index.json' graph/corpus-data.js
           grep -q 'authoritativeUrl: "../data/arche_corpus.json"' graph/corpus-data.js
           grep -q 'setPill("idle")' graph/corpus-data.js
@@ -81,8 +87,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add graph/index.html graph/layouts.js
           if git diff --cached --quiet; then
-            echo "Graph frontend already uses the graph/corpus LOD runtimes."
+            echo "Graph frontend already uses progressive graph/corpus LOD and edge bundling."
           else
-            git commit -m "fix(graph): activate lazy corpus and label defaults"
+            git commit -m "fix(graph): canonicalize progressive LOD frontend"
             git push origin HEAD:main
           fi
