@@ -240,7 +240,8 @@ Die Projektübersicht auf der Startseite wurde neu gewichtet:
 * eigener Abschnitt **Area of Interest** für das Jauntal/Podjuna;
 * visuell deutlich hervorgehobener **Funding**-Block bei der Projektleitung;
 * explizite Nennung der **Austrian Academy of Sciences (ÖAW)** und direkte Verlinkung des **Go!Digital 3.0 programme**;
-* deutlicherer **BYOAI – Bring Your Own AI**-Teaser mit dem Hinweis, IUENNA über den öffentlichen Remote MCP an externe AI-Clients anzubinden.
+* deutlicherer **BYOAI – Bring Your Own AI**-Teaser mit dem Hinweis, IUENNA über den öffentlichen Remote MCP an externe AI-Clients anzubinden;
+* die Handlungsaufforderung **„Connect IUENNA to your AI via the public Remote MCP“** wird als eigener violetter Chip dargestellt, damit sie visuell klar von der BYOAI-Hauptüberschrift getrennt bleibt.
 
 Diese Darstellung trennt räumlichen Forschungsfokus, Projektleitung, Förderung und technische Nachnutzung klarer voneinander.
 
@@ -385,7 +386,7 @@ Die folgenden Arbeiten sind in dieser Dokumentation nun ausdrücklich berücksic
 * Hervorhebung von Projektleitung und Forschungsteam bei vereinheitlichter Personendarstellung;
 * stärkere Hervorhebung von Jauntal/Podjuna als Area of Interest;
 * deutliche Hervorhebung der ÖAW-/Go!Digital-3.0-Förderung;
-* stärkere BYOAI-Kommunikation auf der Startseite;
+* stärkere BYOAI-Kommunikation auf der Startseite einschließlich separatem **„Connect IUENNA to your AI via the public Remote MCP“**-Chip;
 * direkte GitHub-Repository-Verlinkung in den Site-Footern.
 
 ---
