@@ -7,7 +7,9 @@ on:
     paths:
       - 'graph/index.html'
       - 'graph/layouts.js'
+      - 'graph/data-source.js'
       - 'scripts/inject_graph_layout_module.py'
+      - 'scripts/patch_graph_layout_runtime.py'
       - '.github/workflows/graph_frontend.yml'
   workflow_dispatch:
 
@@ -29,27 +31,43 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Validate layout runtime
+      - name: Validate runtime sources
         run: |
           python -m py_compile scripts/inject_graph_layout_module.py
+          python -m py_compile scripts/patch_graph_layout_runtime.py
+          node --check graph/data-source.js
           node --check graph/layouts.js
 
-      - name: Inject repaired layout runtime
+      - name: Refresh layout preset hook
+        run: python scripts/patch_graph_layout_runtime.py
+
+      - name: Canonicalize generated graph frontend
         run: python scripts/inject_graph_layout_module.py graph/index.html
 
-      - name: Validate generated frontend hook
+      - name: Validate canonical frontend architecture
         run: |
-          grep -q 'IUENNA graph layout runtime: start' graph/index.html
-          grep -q './layouts.js?v=20260912-1' graph/index.html
+          node --check graph/layouts.js
+          grep -q 'IUENNA graph runtime: start' graph/index.html
+          grep -q './data-source.js?v=20260912-1' graph/index.html
+          grep -q './layouts.js?v=20260912-2' graph/index.html
+          grep -q 'source: "arche_graph.json"' graph/index.html
+          ! grep -q 'Fetch Live Updates if Available' graph/index.html
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('graph/index.html')
+          size = p.stat().st_size
+          assert size < 30 * 1024 * 1024, f'graph/index.html still appears to embed the full graph: {size / 1024 / 1024:.2f} MiB'
+          print(f'graph/index.html: {size / 1024 / 1024:.2f} MiB')
+          PY
 
       - name: Commit generated frontend
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add graph/index.html
+          git add graph/index.html graph/layouts.js
           if git diff --cached --quiet; then
-            echo "Graph frontend already contains the repaired layout runtime."
+            echo "Graph frontend already uses the canonical runtime source."
           else
-            git commit -m "fix(graph): activate topology-aware layouts"
+            git commit -m "fix(graph): use canonical graph runtime source"
             git push origin HEAD:main
           fi
