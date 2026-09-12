@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IUENNA GenAI WMA</title>
-    <!-- Favicon / Tab Icons -->
+    <title>IUENNA – AI-assisted Web Mapping</title>
+    <!-- IUENNA favicon / browser-tab icons -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="alternate icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
     <link rel="alternate icon" type="image/png" sizes="16x16" href="../media/favicon-16x16.png">
@@ -13,50 +13,51 @@
     <link rel="manifest" href="../site.webmanifest">
     <meta name="theme-color" content="#A8442E">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=2.1.7">
-    
-    <!-- Dublin Core Metatags -->
-    <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
+    <link rel="stylesheet" href="../styles.css?v=2.5.0">
+
+    <!-- Dublin Core metadata -->
+    <meta name="DC.title" content="IUENNA – AI-assisted Web Mapping">
     <meta name="DC.creator" content="Dominik Hagmann; Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
-    <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
-    <meta name="DC.description" content="Interactive analysis and presentation of the Jauntal Valley, created using GenAI technologies.">
-    <meta name="DC.date" content="2025-01-27">
-    <meta name="DC.language" content="de">
-    <meta name="DC.identifier" content="https://iuenna.github.io/">
-    <meta name="DC.rights" content="CC BY 4.0">
+    <meta name="DC.subject" content="IUENNA, Archaeology, Web Mapping, Generative AI, Jauntal, Digital Humanities">
+    <meta name="DC.description" content="Experimental IUENNA web-mapping interface developed with human-supervised generative-AI coding assistance and based on project geodata.">
+    <meta name="DC.language" content="en">
+    <meta name="DC.identifier" content="https://iuenna.github.io/wma/genai-wma-home.html">
+    <meta name="DC.rights" content="CC BY 4.0 where indicated; archived resources retain record-specific rights and access conditions">
 </head>
 <body>
 
-    <!-- Sticky Navigation Header -->
+    <!-- Shared IUENNA navigation -->
     <header class="nav-header">
         <div class="nav-container">
             <a href="../index.html" class="nav-brand">
                 <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
                 <span class="nav-title">IUENNA</span>
             </a>
-            <nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="../graph/index.html" class="nav-link">Knowledge Graph</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                    <li><a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="wma.html" class="nav-link active"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
+                    <li><a href="../graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
+                    <li><a href="../byoai.html" class="nav-link"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
+                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" rel="noopener" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" rel="noopener" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" rel="noopener" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        
-        <!-- Hero Header -->
         <section class="hero-section">
-            <h1 class="hero-title">IUENNA GenAI WMA</h1>
-            <p class="hero-subtitle">Discover the map and find archaeological resources in the Jauntal Valley, created and enhanced using GenAI technologies.</p>
+            <h1 class="hero-title">AI-assisted Web Mapping</h1>
+            <p class="hero-subtitle">An experimental IUENNA map interface developed with human-supervised generative-AI coding assistance. The archaeological source data remain distinct from the development workflow and should be cited through their project or ARCHE records.</p>
             <div class="btn-group">
-                <a href="https://github.com/IUENNA/IUENNA.github.io/blob/main/wma/IUENNA-WMA.gpkg" class="btn btn-secondary">
-                    <i class="fa-solid fa-file-arrow-down"></i> Download GIS Data as GeoPackage (.gpkg)
+                <a href="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/main/wma/IUENNA-WMA.gpkg" class="btn btn-secondary">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download project GeoPackage
                 </a>
                 <a href="wma.html" class="btn btn-outline">
                     <i class="fa-solid fa-circle-chevron-left"></i> Back to Web Mapping Overview
@@ -64,48 +65,46 @@
             </div>
         </section>
 
-        <!-- Live Map Container -->
         <section class="card" style="padding: 1rem; margin-bottom: 3rem;">
             <div class="wma-map-container" style="height: 800px; border-radius: var(--radius-md);">
-                <iframe src="genai-wma-index.html?v=2.1.5" class="wma-iframe" title="IUENNA GenAI WMA"></iframe>
+                <iframe src="genai-wma-index.html?v=2.1.5" class="wma-iframe" title="IUENNA AI-assisted web map"></iframe>
             </div>
         </section>
 
-        <!-- AI & Vibe Coding Declaration -->
         <div class="grid-container">
             <section class="card" id="ai-declaration" style="grid-column: 1 / -1;">
-                <h2>Collaborative Artificial Intelligence &amp; Web Development</h2>
+                <h2>AI-assisted development: scope and safeguards</h2>
                 <p>
-                    The creation and continuous optimization of this web presence were realized using modern Generative AI (GenAI) tools, specifically Large Language Models (LLMs), and pioneering development paradigms such as <strong>Vibe Coding</strong>. In this approach, humans act as creative directors collaborating with AI systems and LLMs to build complex code architectures efficiently, bypassing manual routine programming.
+                    This interface documents an experimental development workflow in which generative-AI tools were used as programming and editing aids. They supported tasks such as drafting code, refactoring interface components, testing transformations, and reviewing metadata structures. They did <strong>not</strong> generate the underlying archaeological source data and are not treated as an autonomous archaeological interpretation system.
                 </p>
                 <p>
-                    The agentic AI coding assistant framework <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a>, <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>, and <a href="https://chatgpt.com" target="_blank">ChatGPT 5.6</a>) served as the technical backbone. Operating as an autonomous co-pilot, Antigravity analyzed the repository, designed the unified styling system, and carried out the technical consolidation of the web pages. Additionally, the custom GPT <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank"><strong>IUENNA Refiner</strong></a> (powered by the <strong>ChatGPT 5.5 Instant</strong>) was developed as a specialized, domain-specific assistant to clean, format, and validate the underlying archaeological metadata and GeoJSON structures, ensuring consistency across all integrated geodata resources. This synergy between archaeological expertise and agentic AI support showcases new, future-oriented workflows in the Digital Humanities.
+                    General-purpose AI coding assistants, including Google Antigravity and ChatGPT, were used during development. Exact model versions are deliberately not presented here as scientific provenance because commercial model configurations change over time. The reproducible parts of the workflow are the published code, transformation scripts, and machine-readable project data in the IUENNA repository; archived research resources and their record-level rights and access conditions remain documented in ARCHE.
                 </p>
-                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem;">Key Points Regarding Our Use of GenAI:</h3>
+                <p>
+                    The project-specific <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" rel="noopener"><strong>IUENNA Refiner</strong></a> was also tested as an aid for metadata-cleaning and formatting tasks. Its outputs require human review and are not authoritative until checked against the project data and source records.
+                </p>
+                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem;">What GenAI was used for</h3>
                 <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 1rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.4rem;"><strong>Content & Code Generation:</strong> LLMs assisted in drafting textual elements, structuring layouts, and implementing JS filters and exporters.</li>
-                    <li style="margin-bottom: 0.4rem;"><strong>Human Oversight:</strong> All AI-generated structures and suggestions were reviewed and validated by the project team.</li>
-                    <li style="margin-bottom: 0.4rem;"><strong>Transparency:</strong> We are committed to openly disclosing and documenting the use of digital assistants in our workflows.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Code assistance:</strong> drafting, refactoring, and testing JavaScript, HTML, and interface logic.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Interface iteration:</strong> proposing and revising controls, filters, and responsive layouts.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Metadata support:</strong> assisting with formatting and consistency checks without replacing source-level validation.</li>
+                    <li style="margin-bottom: 0.4rem;"><strong>Human review:</strong> published code, data transformations, and archaeological statements remain subject to project-team validation.</li>
                 </ul>
+                <div class="notice"><strong>Interpretive caution:</strong> this page demonstrates a digital workflow. Archaeological claims should be based on the cited IUENNA/ARCHE records and project publications, not on AI-generated text.</div>
             </section>
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>
-            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; 
-            <a href="../impressum-datenschutz.html">Privacy Policy</a> | 
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> |
+            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp;
+            <a href="../impressum-datenschutz.html">Privacy Policy</a> |
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Website/discovery layer: CC BY 4.0 where indicated</a>
         </p>
-        <p>
-            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a>, <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>, and <a href="https://chatgpt.com" target="_blank">ChatGPT 5.6</a>) | Website Version 2.1.7
-        </p>
+        <p>Research data are archived in ARCHE; rights and access conditions must be checked at record level. | Go!Digital 3.0 Project IUENNA</p>
     </footer>
 
-    <!-- Forward URL parameters to map iframe -->
     <script>
         const urlParams = window.location.search;
         if (urlParams) {
@@ -115,5 +114,6 @@
             }
         }
     </script>
+    <script src="../scripts/nav.js?v=2.5.0" defer></script>
 </body>
 </html>
