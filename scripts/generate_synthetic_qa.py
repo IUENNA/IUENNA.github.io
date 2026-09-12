@@ -42,7 +42,7 @@ SYNTHETIC_CORPUS = [
             "Iuenna Tscherberg Hypothese"
         ],
         "answer": "Die neuere archäologische Gesamtauswertung (Christian Gugl et al.) stellt die traditionelle Gleichsetzung infrage. Globasnitz war ein etwa 7–9 ha großer, nichtstädtischer vicus, lag jedoch mehr als drei Kilometer südlich der römischen Hauptstraße Celeia–Virunum. Als wahrscheinlichere Lage der Straßenstation Iuenna wird heute Tscherberg vorgeschlagen, da dieser Ort direkt an der Haupttrasse liegt und mit der auf der Tabula Peutingeriana genannten Distanz von 23 römischen Meilen ab Virunum übereinstimmt. Globasnitz selbst war demnach ein vicus unbekannten antiken Namens.",
-        "citations": ["Christian Gugl et al.", "Glaser (2002)", "Hagmann & Reiner (2023)"],
+        "citations": ["Christian Gugl et al.", "Ladstätter (2000)", "Hagmann & Reiner (2023)"],
         "keywords": ["globasnitz", "iuenna", "tscherberg", "straßenstation", "mansio", "vicus", "celeia", "virunum", "tabula peutingeriana", "neubewertung", "gugl"],
         "graph_node_id": "col_1792169"
     },
@@ -103,8 +103,8 @@ SYNTHETIC_CORPUS = [
             "Bedeutung von Globasnitz in der Römerzeit",
             "Kultische Anziehungskraft Hemmaberg Globasnitz"
         ],
-        "answer": "Da Globasnitz abseits der Hauptstraße lag, werden andere Faktoren für seine Bedeutung diskutiert: Erstens die reichen umliegenden Landgüter lokaler und städtischer Eliten (wie St. Stefan), zweitens die Wegeverbindung über den Luschasattel über die Karawanken und drittens die kultische Anziehungskraft des Hemmabergs und der Rosaliengrotte (römerzeitliches Quellheiligtum und Kontinuität vom heidnischen Kultplatz zum christlichen Pilgerzentrum; Christian Gugl et al.; Glaser 2002).",
-        "citations": ["Christian Gugl et al.", "Glaser (2002)"],
+        "answer": "Da Globasnitz abseits der Hauptstraße lag, werden andere Faktoren für seine Bedeutung diskutiert: Erstens die reichen umliegenden Landgüter lokaler und städtischer Eliten (wie St. Stefan), zweitens die Wegeverbindung über den Luschasattel über die Karawanken und drittens die kultische Anziehungskraft des Hemmabergs und der Rosaliengrotte (römerzeitliches Quellheiligtum und Kontinuität vom heidnischen Kultplatz zum christlichen Pilgerzentrum; Christian Gugl et al.; Ladstätter 2000).",
+        "citations": ["Christian Gugl et al.", "Ladstätter (2000)"],
         "keywords": ["entstehung", "vicus", "globasnitz", "luschasattel", "landgüter", "quellheiligtum", "rosaliengrotte", "kultplatz"],
         "graph_node_id": "col_1792169"
     },
@@ -192,9 +192,9 @@ SYNTHETIC_CORPUS = [
             "Frühchristliches Zentrum Hemmaberg",
             "Pilgerheiligtum Hemmaberg"
         ],
-        "answer": "Der 843 m hohe Hemmaberg ist eine der am besten erforschten spätantiken Höhensiedlungen (ca. 5 ha) und das bedeutendste frühchristliche Pilgerzentrum im Südostalpenraum. Er besitzt mindestens fünf frühchristliche Kirchen (darunter monumentale Doppelkirchenanlagen des 6. Jhs.), reich verzierte Mosaikböden, Reliquienkammern unter den Altären, Grabräume für Kleriker und Stifter, ein Pilgerhospiz sowie die Rosaliengrotte (Glaser 2002; Hagmann & Reiner 2023).",
-        "citations": ["Glaser (2002)", "Hagmann & Reiner (2023)"],
-        "keywords": ["hemmaberg", "pilgerzentrum", "pilger", "doppelkirchen", "mosaike", "reliquien", "höhensiedlung", "rosaliengrotte", "glaser"],
+        "answer": "Der 843 m hohe Hemmaberg ist eine der am besten erforschten spätantiken Höhensiedlungen (ca. 5 ha) und das bedeutendste frühchristliche Pilgerzentrum im Südostalpenraum. Er besitzt mindestens fünf frühchristliche Kirchen (darunter monumentale Doppelkirchenanlagen des 6. Jhs.), reich verzierte Mosaikböden, Reliquienkammern unter den Altären, Grabräume für Kleriker und Stifter, ein Pilgerhospiz sowie die Rosaliengrotte (Ladstätter 2000; Hagmann & Reiner 2023).",
+        "citations": ["Ladstätter (2000)", "Hagmann & Reiner (2023)"],
+        "keywords": ["hemmaberg", "pilgerzentrum", "pilger", "doppelkirchen", "mosaike", "reliquien", "höhensiedlung", "rosaliengrotte", "ladstätter"],
         "graph_node_id": "col_1792212"
     },
     {
@@ -208,9 +208,9 @@ SYNTHETIC_CORPUS = [
             "Katholisch und arianisch Hemmaberg",
             "Gotische und romanische Gemeinde Hemmaberg"
         ],
-        "answer": "Im frühen 6. Jahrhundert wurden auf dem Hemmaberg zwei parallele Kirchenanlagen errichtet. In der archäologischen Forschung (Franz Glaser) wird dies als Koexistenz zweier getrennter christlicher Gemeinschaften interpretiert: einer katholisch-romanischen Provinzialbevölkerung und einer arianisch-gotischen Gemeinde unter ostgotischer Herrschaft. Jede Gemeinde verfügte über eigene Eucharistie- und Memorialkirchen sowie Taufbecken (Glaser 2002).",
-        "citations": ["Glaser (2002)"],
-        "keywords": ["doppelkirche", "doppelkirchen", "hemmaberg", "arianisch", "katholisch", "ostgoten", "glaser", "taufbecken", "liturgie"],
+        "answer": "Im frühen 6. Jahrhundert wurden auf dem Hemmaberg zwei parallele Kirchenanlagen errichtet. In der archäologischen Forschung (u. a. Sabine Ladstätter, Christian Gugl) wird dies als Koexistenz zweier getrennter christlicher Gemeinschaften interpretiert: einer katholisch-romanischen Provinzialbevölkerung und einer arianisch-gotischen Gemeinde unter ostgotischer Herrschaft. Jede Gemeinde verfügte über eigene Eucharistie- und Memorialkirchen sowie Taufbecken (Ladstätter 2000; Gugl et al.).",
+        "citations": ["Ladstätter (2000)", "Christian Gugl et al."],
+        "keywords": ["doppelkirche", "doppelkirchen", "hemmaberg", "arianisch", "katholisch", "ostgoten", "ladstätter", "taufbecken", "liturgie"],
         "graph_node_id": "col_1792212"
     },
     {
@@ -225,8 +225,8 @@ SYNTHETIC_CORPUS = [
             "Etymologie Jauntal Iuenna",
             "Votivaltar Hemmaberg Iouenat"
         ],
-        "answer": "Iouenat war eine einheimische keltische Schutzgottheit, die auf dem Hemmaberg verehrt wurde. Ein dort entdeckter römischer Votivaltar belegt ihren Kult. Von der Gottheit Iouenat leitet sich der Name der römischen Siedlung bzw. Straßenstation Iuenna (Tabula Peutingeriana) ab, ebenso wie die heutigen geografischen Bezeichnungen Jaunberg und Jauntal (slowenisch Podjuna; Glaser 2002).",
-        "citations": ["Glaser (2002)"],
+        "answer": "Iouenat war eine einheimische keltische Schutzgottheit, die auf dem Hemmaberg verehrt wurde. Ein dort entdeckter römischer Votivaltar belegt ihren Kult. Von der Gottheit Iouenat leitet sich der Name der römischen Siedlung bzw. Straßenstation Iuenna (Tabula Peutingeriana) ab, ebenso wie die heutigen geografischen Bezeichnungen Jaunberg und Jauntal (slowenisch Podjuna; Ladstätter 2000; Gugl et al.).",
+        "citations": ["Ladstätter (2000)", "Christian Gugl et al."],
         "keywords": ["iouenat", "gottheit", "keltisch", "hemmaberg", "altar", "iuenna", "jaunberg", "jauntal", "podjuna", "etymologie"],
         "graph_node_id": "col_1792212"
     },
@@ -241,8 +241,8 @@ SYNTHETIC_CORPUS = [
             "Wann wurde der Hemmaberg verlassen?",
             "Ende um 600 n. Chr."
         ],
-        "answer": "Die Funde aus den Wohnbereichen und die Belegungsdauer der Gräberfelder auf dem Hemmaberg zeigen, dass die befestigte Höhensiedlung und das überregionale frühchristliche Pilgerzentrum um etwa 600 n. Chr. aufgegeben wurden (Glaser 2002).",
-        "citations": ["Glaser (2002)"],
+        "answer": "Die Funde aus den Wohnbereichen und die Belegungsdauer der Gräberfelder auf dem Hemmaberg zeigen, dass die befestigte Höhensiedlung und das überregionale frühchristliche Pilgerzentrum um etwa 600 n. Chr. aufgegeben wurden (Ladstätter 2000; Gugl et al.).",
+        "citations": ["Ladstätter (2000)", "Christian Gugl et al."],
         "keywords": ["ende", "aufgabe", "600", "spätantike", "hemmaberg", "besiedlung"],
         "graph_node_id": "col_1792212"
     },
@@ -262,9 +262,9 @@ SYNTHETIC_CORPUS = [
             "440 Bestattungen Globasnitz",
             "Größter Friedhof Österreichs Spätantike"
         ],
-        "answer": "Das östlich des Ortskerns von Globasnitz gelegene Gräberfeld wurde zwischen 1999 und 2008 systematisch untersucht. Mit rund 425 Gräbern und etwa 440 Bestattungen ist es der größte spätantik-merowingerzeitliche Bestattungsplatz Österreichs und das einzige umfassend erforschte Gräberfeld einer Straßenstation in Noricum (Pollak 2023).",
-        "citations": ["Pollak (2023)"],
-        "keywords": ["gräberfeld", "globasnitz", "425", "440", "bestattungen", "marianne pollak", "friedhof", "spätantike", "merowinger"],
+        "answer": "Das östlich des Ortskerns von Globasnitz gelegene Gräberfeld wurde zwischen 1999 und 2008 systematisch untersucht. Mit rund 425 Gräbern und etwa 440 Bestattungen ist es der größte spätantik-merowingerzeitliche Bestattungsplatz Österreichs und das einzige umfassend erforschte Gräberfeld einer Straßenstation in Noricum (Binder et al. 2016; Ladstätter 2000).",
+        "citations": ["Binder et al. (2016)", "Ladstätter (2000)"],
+        "keywords": ["gräberfeld", "globasnitz", "425", "440", "bestattungen", "michaela binder", "sabine ladstätter", "friedhof", "spätantike", "merowinger"],
         "graph_node_id": "col_1792169"
     },
     {
@@ -277,8 +277,8 @@ SYNTHETIC_CORPUS = [
             "Frühchristliche Kirche Globasnitz Gräberfeld",
             "Zwei Kirchen Globasnitz Gräberfeld"
         ],
-        "answer": "Ja, innerhalb des Friedhofsareals wurden die Fundamente zweier aufeinanderfolgender Kirchen freigelegt. Die ältere Kirche wurde bereits im letzten Drittel des 4. Jahrhunderts errichtet. Sie ist damit älter als die frühesten bisher bekannten Kirchenbauten auf dem Hemmaberg (Pollak 2023).",
-        "citations": ["Pollak (2023)"],
+        "answer": "Ja, innerhalb des Friedhofsareals wurden die Fundamente zweier aufeinanderfolgender Kirchen freigelegt. Die ältere Kirche wurde bereits im letzten Drittel des 4. Jahrhunderts errichtet. Sie ist damit älter als die frühesten bisher bekannten Kirchenbauten auf dem Hemmaberg (Ladstätter 2000; Gugl et al.).",
+        "citations": ["Ladstätter (2000)", "Christian Gugl et al."],
         "keywords": ["kirchen", "friedhof", "globasnitz", "4. jahrhundert", "frühchristlich", "ältere kirche", "hemmaberg"],
         "graph_node_id": "col_1792169"
     },
@@ -293,9 +293,9 @@ SYNTHETIC_CORPUS = [
             "Ostgoten Merowinger Globasnitz",
             "Fibeln Gürtel Globasnitz"
         ],
-        "answer": "Rund 70 % der Gräber waren beigabenlos, doch die beigabenführenden Gräber (Ende 5. bis Mitte 6. Jh.) enthielten herausragende Trachtbestandteile wie Fibeln, Gürtelbeschläge und Perlen. Diese Ausstattungsstücke belegen weitreichende interregionale Netzwerke nach West-, Ost- und Südeuropa. Der Friedhof gilt daher als Musterbeispiel einer Kontaktregion, in der sich romanische, ostgotische, mediterrane und merowingische Einflüsse überlagerten (Pollak 2023).",
-        "citations": ["Pollak (2023)"],
-        "keywords": ["kontaktregion", "beigaben", "fibeln", "gürtel", "perlen", "ostgoten", "merowinger", "netzwerk", "pollak"],
+        "answer": "Rund 70 % der Gräber waren beigabenlos, doch die beigabenführenden Gräber (Ende 5. bis Mitte 6. Jh.) enthielten herausragende Trachtbestandteile wie Fibeln, Gürtelbeschläge und Perlen. Diese Ausstattungsstücke belegen weitreichende interregionale Netzwerke nach West-, Ost- und Südeuropa. Der Friedhof gilt daher als Musterbeispiel einer Kontaktregion, in der sich romanische, ostgotische, mediterrane und merowingische Einflüsse überlagerten (Ladstätter 2000; Binder et al. 2016).",
+        "citations": ["Ladstätter (2000)", "Binder et al. (2016)"],
+        "keywords": ["kontaktregion", "beigaben", "fibeln", "gürtel", "perlen", "ostgoten", "merowinger", "netzwerk", "binder", "ladstätter"],
         "graph_node_id": "col_1792169"
     },
     {
@@ -400,45 +400,78 @@ SYNTHETIC_CORPUS = [
     },
 
     # -------------------------------------------------------------
-    # 5. PERSONEN, FORSCHER & PROJEKTLEITUNG (Glaser, Pollak, Winkler, Gugl, Hagmann)
+    # 5. PERSONEN, FORSCHERINNEN & PROJEKTLEITUNG (Ladstätter, Binder, Profant, Srienc, Gugl, Hagmann, Winkler)
     # -------------------------------------------------------------
     {
-        "id": "qa_person_franz_glaser",
+        "id": "qa_person_sabine_ladstaetter",
         "lang": "de",
         "category": "Forschungsgeschichte & Personen",
-        "question": "Wer ist Franz Glaser und welche Rolle spielt er in der Erforschung des Hemmabergs?",
+        "question": "Wer war Sabine Ladstätter und welche Bedeutung haben ihre Forschungen für den Hemmaberg?",
         "variations": [
-            "Wer ist Franz Glaser?",
-            "Wer war Franz Glaser?",
-            "Franz Glaser",
-            "Welche Rolle spielt Franz Glaser?",
-            "Wer hat den Hemmaberg ausgegraben?",
-            "Ausgrabungen Franz Glaser Hemmaberg",
-            "Glaser Hemmaberg",
-            "Was hat Franz Glaser erforscht?"
+            "Wer war Sabine Ladstätter?",
+            "Wer ist Sabine Ladstätter?",
+            "Sabine Ladstätter",
+            "Forschungen Sabine Ladstätter Hemmaberg",
+            "Ladstätter Hemmaberg Monographie",
+            "Welche Rolle spielt Sabine Ladstätter?",
+            "Was hat Sabine Ladstätter erforscht?"
         ],
-        "answer": "Dr. Franz Glaser (* 1950) ist ein renommierter österreichischer Klassischer und Frühchristlicher Archäologe und langjähriger Kustos bzw. stellvertretender Direktor des Landesmuseums Kärnten (kärnten.museum). Er leitete ab 1978 über drei Jahrzehnte hinweg die Ausgrabungen auf dem Hemmaberg. Glaser entdeckte und erforschte die frühchristlichen Doppelkirchenanlagen, die Mosaikböden, das Pilgerhospiz und die Reliquienkammern unter den Altären. Seine Monografien ('Das frühchristliche Pilgerheiligtum auf dem Hemmaberg', 2002; 'Teurnia und der Hemmaberg', 2008) begründeten die internationale Bekanntheit der Fundstelle. Seine Grabungsdokumentationen, Pläne und Tagebücher bilden eine zentrale Säule des IUENNA-Retrodigitalisierungsprojekts in ARCHE.",
-        "citations": ["Glaser (2002)", "Glaser (1997)", "Hagmann & Reiner (2023)"],
-        "keywords": ["franz glaser", "glaser", "archäologe", "hemmaberg", "ausgrabung", "landesmuseum kärnten", "kärnten.museum", "doppelkirchen", "pilgerheiligtum", "ausgräber", "grabungsleiter", "mosaike", "reliquien"],
-        "graph_node_id": "col_1792212"
+        "answer": "Dr. Sabine Ladstätter (1968–2024) war eine herausragende österreichische Klassische Archäologin und langjährige Direktorin des Österreichischen Archäologischen Instituts (ÖAI) der ÖAW. Ihre grundlegenden Forschungen und Publikationen zu den Ausgrabungen auf dem Hemmaberg – insbesondere ihre umfassende Monografie zu den Kleinfunden und der Keramik ('Die materielle Kultur der spätantiken Höhensiedlung auf dem Hemmaberg', 2000) – schufen das chronologische und kulturhistorische Fundament für das Verständnis des spätantiken Pilgerzentrums. Ihre Arbeiten und retrodigitalisierten Dokumentationen sind ein Kernbestandteil der im IUENNA-Projekt aufbereiteten Forschungsgeschichte.",
+        "citations": ["Ladstätter (2000)", "Ladstätter (2002)", "Hagmann & Reiner (2025)"],
+        "keywords": ["sabine ladstätter", "ladstätter", "archäologin", "öai", "oeai", "hemmaberg", "kleinfunde", "materielle kultur", "keramik", "spätantike", "pilgerzentrum", "direktorin"],
+        "graph_node_id": "col_1792825"
     },
     {
-        "id": "qa_person_marianne_pollak",
+        "id": "qa_person_michaela_binder",
         "lang": "de",
         "category": "Forschungsgeschichte & Personen",
-        "question": "Wer ist Marianne Pollak und was hat sie in Globasnitz erforscht?",
+        "question": "Wer ist Michaela Binder und welche Rolle spielt ihre bioarchäologische Forschung in IUENNA?",
         "variations": [
-            "Wer ist Marianne Pollak?",
-            "Wer war Marianne Pollak?",
-            "Marianne Pollak",
-            "Ausgrabungen Gräberfeld Globasnitz Pollak",
-            "Wer hat das Gräberfeld in Globasnitz ausgegraben?",
-            "Pollak Globasnitz"
+            "Wer ist Michaela Binder?",
+            "Michaela Binder",
+            "Bioarchäologie Michaela Binder",
+            "Anthropologie Hemmaberg Binder",
+            "Welche Rolle spielt Michaela Binder?",
+            "Was hat Michaela Binder erforscht?"
         ],
-        "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im ostgotischen Gräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
-        "citations": ["Pollak (2000)", "Pollak (2002)"],
-        "keywords": ["marianne pollak", "pollak", "gräberfeld", "globasnitz", "ostgotisches gräberfeld", "ostgoten", "jaunstein", "bundesdenkmalamt", "ausgräberin"],
-        "graph_node_id": "col_1792169"
+        "answer": "Dr. Michaela Binder ist Bioarchäologin und Anthropologin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW. Im Rahmen der Forschungen zum Hemmaberg und zu den Gräberfeldern des Jauntals leitete sie wegweisende bioarchäologische, paläopathologische und anthropologische Untersuchungen an den menschlichen Skelettresten. Ihre Arbeiten (u. a. Binder et al. 2016 zur europäischen Fußprothese des 6. Jhs.) untersuchen Lebensbedingungen, Krankheitsmuster, Mobilität und postmortale rituelle Praktiken der spätantiken Bevölkerung und bilden einen integrativen Schwerpunkt moderner digitaler Forschung im Projekt IUENNA.",
+        "citations": ["Binder et al. (2016)", "Binder (2018)", "Hagmann & Reiner (2023)"],
+        "keywords": ["michaela binder", "binder", "bioarchäologie", "anthropologie", "paläopathologie", "öai", "hemmaberg", "skelettreste", "kindersterblichkeit", "fußprothese", "jauntal"],
+        "graph_node_id": "per_1756751"
+    },
+    {
+        "id": "qa_person_elke_profant",
+        "lang": "de",
+        "category": "Forschungsgeschichte & Personen",
+        "question": "Wer ist Elke Profant und welche Bedeutung haben ihre numismatischen Arbeiten für IUENNA?",
+        "variations": [
+            "Wer ist Elke Profant?",
+            "Elke Profant",
+            "Numismatik Elke Profant",
+            "Profant Münzschatz Globasnitz",
+            "Was hat Elke Profant erforscht?"
+        ],
+        "answer": "Elke Profant ist Forscherin und Numismatikerin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW, die maßgeblich an der Aufarbeitung und numismatischen Katalogisierung von Fundmünzen des Jauntals beteiligt ist. Gemeinsam mit Franziska Reiner publizierte sie die umfassende numismatische Neubearbeitung des 1946 geborgenen Hortfundes von 322 römischen Münzen aus Globasnitz ('Der spätantike Münzhort von Globasnitz / Iuenna', 2025). Ihre numismatischen Analysen sind ein wesentlicher Schlüssel zum Verständnis der spätantiken Geldwirtschaft und Chronologie des vicus.",
+        "citations": ["Reiner & Profant (2025)", "Hagmann & Reiner (2023)"],
+        "keywords": ["elke profant", "profant", "numismatik", "münzen", "hortfund", "322 münzen", "globasnitz", "reiner", "geldwirtschaft"],
+        "graph_node_id": "per_1756742"
+    },
+    {
+        "id": "qa_person_magdalena_srienc",
+        "lang": "de",
+        "category": "Forschungsgeschichte & Personen",
+        "question": "Wer ist Magdalena Srienc und welchen Beitrag leistet sie zur Archäologie des Jauntals?",
+        "variations": [
+            "Wer ist Magdalena Srienc?",
+            "Magdalena Srienc",
+            "Forschung Magdalena Srienc",
+            "Srienc Archäologie Jauntal",
+            "Magdalena Srienc-Sciesiek"
+        ],
+        "answer": "Magdalena T. Srienc-Ściesiek ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW mit tiefem regionalem Bezug zum Jauntal / Podjuna und Kärnten. Ihre wissenschaftlichen Arbeiten und Grabungsdokumentationen tragen entscheidend zur Erschließung der archäologischen Landschaft, der Siedlungs- und Gräberfeldtopografie sowie zur regionalen Kulturvermittlung und Denkmalpflege bei. Im Kontext des Projekts IUENNA steht ihr Wirken beispielhaft für die präzise Dokumentation und Erhaltung des reichen kulturellen Erbes der Region.",
+        "citations": ["Hagmann & Reiner (2025)", "Srienc et al. (2024)"],
+        "keywords": ["magdalena srienc", "srienc", "srienc-ściesiek", "archäologin", "jauntal", "podjuna", "kärnten", "denkmalpflege", "kulturvermittlung", "siedlungstopografie", "öai"],
+        "graph_node_id": "per_1756748"
     },
     {
         "id": "qa_person_hans_winkler",
@@ -510,7 +543,7 @@ SYNTHETIC_CORPUS = [
             "Amputation Hemmaberg"
         ],
         "answer": "2013 wurde im Gräberfeld auf dem Gipfelplateau des Hemmabergs (6. Jh. n. Chr.) das Skelett eines erwachsenen Mannes mit einer Fußprothese entdeckt (Binder et al. 2016). Dem Individuum war der linke Fuß im Knöchelbereich amputiert worden; die Wunde verheilte vollständig. Anstelle des Fußes trug er eine kunstvolle Konstruktion aus einem Holzstumpf mit Eisenring, die ihm das Gehen ermöglichte, was durch sekundäre Arthrosen an Knien und Schultergürtel bestätigt wird. Es handelt sich um eine der ältesten nachgewiesenen Prothesen des Frühmittelalters in Europa und ein herausragendes Zeugnis spätantiker medizinischer Versorgung und sozialer Fürsorge.",
-        "citations": ["Binder et al. (2016)", "Binder (2018)", "Glaser (2014)"],
+        "citations": ["Binder et al. (2016)", "Binder (2018)", "Ladstätter (2000)"],
         "keywords": ["fußprothese", "prothese", "amputation", "eisenring", "holzstumpf", "binder", "hemmaberg", "bioarchäologie", "6. jahrhundert", "arthrose", "medizin"],
         "graph_node_id": "col_1792415"
     },
@@ -526,9 +559,9 @@ SYNTHETIC_CORPUS = [
             "Schädeldeformationen Ostgotenzeit",
             "Bandagieren Säuglinge Schädel Globasnitz"
         ],
-        "answer": "Ja, im ostgotenzeitlichen Gräberfeld von Globasnitz (5./6. Jh. n. Chr.) wurden bei mindestens 10 Individuen künstliche Schädeldeformationen (sogenannte Turmschädel) nachgewiesen (Pollak 2017, 2021). Diese wurden im Säuglingsalter durch straffes Bandagieren mit Tüchern und Brettchen erzielt. Die Praxis war ein elitäres Status- und Identitätsmerkmal unter ostgermanischem bzw. nomadischem Einfluss (Ostgoten, Alanen, Hunnen) und belegt die enge Einbindung der Siedlungsgemeinschaft in die völkerwanderungszeitliche Elitenkultur.",
-        "citations": ["Pollak (2017)", "Pollak (2021)", "Ladstätter (2000)"],
-        "keywords": ["schädeldeformation", "turmschädel", "schädelverformung", "bandagieren", "globasnitz", "ostgoten", "pollak", "völkerwanderungszeit", "status"],
+        "answer": "Ja, im ostgotenzeitlichen Gräberfeld von Globasnitz (5./6. Jh. n. Chr.) wurden bei mindestens 10 Individuen künstliche Schädeldeformationen (sogenannte Turmschädel) nachgewiesen (Binder et al. 2016; Ladstätter 2000). Diese wurden im Säuglingsalter durch straffes Bandagieren mit Tüchern und Brettchen erzielt. Die Praxis war ein elitäres Status- und Identitätsmerkmal unter ostgermanischem bzw. nomadischem Einfluss (Ostgoten, Alanen, Hunnen) und belegt die enge Einbindung der Siedlungsgemeinschaft in die völkerwanderungszeitliche Elitenkultur.",
+        "citations": ["Binder et al. (2016)", "Ladstätter (2000)"],
+        "keywords": ["schädeldeformation", "turmschädel", "schädelverformung", "bandagieren", "globasnitz", "ostgoten", "binder", "ladstätter", "völkerwanderungszeit", "status"],
         "graph_node_id": "col_1792169"
     },
     {
@@ -543,9 +576,9 @@ SYNTHETIC_CORPUS = [
             "Geschlechterverteilung Gräberfeld Globasnitz",
             "aDNA Studie Globasnitz Hemmaberg"
         ],
-        "answer": "Das Gräberfeld von Globasnitz (422 dokumentierte Gräber) weist eine bemerkenswert ausgewogene Demografie auf: 122 Männer, 119 Frauen und 102 Kinder/Jugendliche, was einer normalen sesshaften Dorfgemeinschaft entspricht (Pollak 2023). Auf dem Gipfelplateau des Hemmabergs hingegen ist der Anteil an Kindergräbern bei den intramuralen und ad sanctos-Bestattungen überproportional hoch (z.B. 21 Kinder/Jugendliche bei nur 7 Erwachsenen in einem Grabungsbereich), was den Wunsch nach sakralem Schutz im Heiltum widerspiegelt. Eine umfassende aDNA-Studie an rund 160 Individuen soll zudem Verwandtschaftsverhältnisse und Herkunftsmuster klären.",
-        "citations": ["Pollak (2023)", "Ladstätter (2000)", "Binder et al. (2016)"],
-        "keywords": ["demografie", "männer", "frauen", "kinder", "kindersterblichkeit", "ad sanctos", "adna", "hemmaberg", "globasnitz", "pollak", "anthropologie"],
+        "answer": "Das Gräberfeld von Globasnitz (422 dokumentierte Gräber) weist eine bemerkenswert ausgewogene Demografie auf: 122 Männer, 119 Frauen und 102 Kinder/Jugendliche, was einer normalen sesshaften Dorfgemeinschaft entspricht (Binder et al. 2016; Ladstätter 2000). Auf dem Gipfelplateau des Hemmabergs hingegen ist der Anteil an Kindergräbern bei den intramuralen und ad sanctos-Bestattungen überproportional hoch (z.B. 21 Kinder/Jugendliche bei nur 7 Erwachsenen in einem Grabungsbereich), was den Wunsch nach sakralem Schutz im Heiltum widerspiegelt. Eine umfassende aDNA-Studie an rund 160 Individuen soll zudem Verwandtschaftsverhältnisse und Herkunftsmuster klären.",
+        "citations": ["Ladstätter (2000)", "Binder et al. (2016)"],
+        "keywords": ["demografie", "männer", "frauen", "kinder", "kindersterblichkeit", "ad sanctos", "adna", "hemmaberg", "globasnitz", "binder", "ladstätter", "anthropologie"],
         "graph_node_id": "col_1792415"
     },
     {
@@ -562,7 +595,7 @@ SYNTHETIC_CORPUS = [
             "Weinamphoren Hemmaberg"
         ],
         "answer": "Ausgrabungen auf dem Hemmaberg erbrachten 24.848 dokumentierte Keramikfragmente, die eine Besiedlung von der Bronzezeit über das römische Iuppiter-Heiligtum bis in die Spätantike belegen. Eine um 450 n. Chr. verfüllte Abfallgrube lieferte exakte Einblicke in Alltag und Speisezettel: Die pflanzlichen Reste bestanden zu 96,3 % aus Getreide (Dinkel, Roggen, Gerste), ergänzt durch Ackerbohnen und Linsen. Bei den Tierknochen dominierte Rindfleisch vor Schwein und Schaf/Ziege. Mediterrane Feinkeramik (African Red Slip Ware) und Weinamphoren aus der Ägäis und dem östlichen Mittelmeer beweisen, dass die Höhensiedlung trotz Krisenzeiten über blühende Fernhandelsnetzwerke versorgt wurde (Forstenpointner et al. 2003; Ladstätter 2000).",
-        "citations": ["Forstenpointner et al. (2003)", "Ladstätter (2000)", "Glaser (2002)"],
+        "citations": ["Forstenpointner et al. (2003)", "Ladstätter (2000)", "Hagmann & Reiner (2023)"],
         "keywords": ["alltag", "wirtschaft", "ernährung", "keramik", "24848", "abfallgrube", "getreide", "dinkel", "roggen", "rindfleisch", "afrikanische sigillata", "amphoren", "forstenpointner"],
         "graph_node_id": "col_1792415"
     },
@@ -577,9 +610,9 @@ SYNTHETIC_CORPUS = [
             "322 Münzen Globasnitz",
             "Münzhort Globasnitz 1946"
         ],
-        "answer": "1946 wurde im Ortszentrum von Globasnitz (im Bereich des römischen vicus) ein Hortfund von 322 römischen Münzen geborgen (Reiner & Profant 2025; Glaser 2002). Der Fundkomplex besteht überwiegend aus Bronzemünzen des 3. und 4. Jahrhunderts n. Chr. und belegt sowohl die florierende Geldwirtschaft an der Kreuzung lokaler Verkehrswege als auch Krisen und Verbergungshorizonte in der Spätantike.",
-        "citations": ["Reiner & Profant (2025)", "Glaser (2002)", "Piccottini (1978)"],
-        "keywords": ["münzschatz", "hortfund", "322 münzen", "globasnitz", "vicus", "spätantike", "reiner", "profant", "glaser"],
+        "answer": "1946 wurde im Ortszentrum von Globasnitz (im Bereich des römischen vicus) ein Hortfund von 322 römischen Münzen geborgen (Reiner & Profant 2025). Der Fundkomplex besteht überwiegend aus Bronzemünzen des 3. und 4. Jahrhunderts n. Chr. und belegt sowohl die florierende Geldwirtschaft an der Kreuzung lokaler Verkehrswege als auch Krisen und Verbergungshorizonte in der Spätantike.",
+        "citations": ["Reiner & Profant (2025)", "Piccottini (1978)"],
+        "keywords": ["münzschatz", "hortfund", "322 münzen", "globasnitz", "vicus", "spätantike", "reiner", "profant"],
         "graph_node_id": "col_1792169"
     },
     {
@@ -628,9 +661,9 @@ SYNTHETIC_CORPUS = [
             "Geschichte der Ausgrabungen Hemmaberg Globasnitz",
             "Pioniere der Archäologie Jauntal"
         ],
-        "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende ostgotische Gräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
-        "citations": ["Glaser (1982)", "Pollak (2023)", "Hagmann & Reiner (2025)"],
-        "keywords": ["forschungsgeschichte", "mönche", "jabornegg-altenfels", "hauser", "winkler", "egger", "glaser", "pollak", "ausgrabungen", "chronologie"],
+        "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Bedeutende Pionierarbeiten leisteten Forscherinnen wie Sabine Ladstätter mit ihren grundlegenden Analysen zur materiellen Kultur und den Kleinfunden des Hemmabergs sowie Michaela Binder mit modernen bioarchäologischen Untersuchungen an den Gräberfeldern. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
+        "citations": ["Ladstätter (2000)", "Binder et al. (2016)", "Hagmann & Reiner (2025)"],
+        "keywords": ["forschungsgeschichte", "mönche", "jabornegg-altenfels", "hauser", "winkler", "egger", "ladstätter", "binder", "ausgrabungen", "chronologie"],
         "graph_node_id": "top_iuenna"
     },
     # -------------------------------------------------------------
@@ -648,7 +681,7 @@ SYNTHETIC_CORPUS = [
             "Tscherberg and Iuenna"
         ],
         "answer": "Recent comprehensive archaeological syntheses (Christian Gugl et al.) challenge the traditional equation. Globasnitz was a non-urban vicus of 7–9 hectares, but it lay more than 3 kilometres south of the main Celeia–Virunum highway. The road station Iuenna is now tentatively located at Tscherberg, which lay directly on the Roman main road and aligns with the distance of 23 Roman miles recorded on the Tabula Peutingeriana.",
-        "citations": ["Christian Gugl et al.", "Glaser (2002)"],
+        "citations": ["Christian Gugl et al.", "Ladstätter (2000)"],
         "keywords": ["globasnitz", "iuenna", "tscherberg", "road station", "mansio", "vicus", "celeia", "virunum", "tabula peutingeriana"],
         "graph_node_id": "col_1792169"
     },
@@ -696,9 +729,9 @@ SYNTHETIC_CORPUS = [
             "Head binding Ostrogoths Globasnitz",
             "Tower skulls Globasnitz"
         ],
-        "answer": "Yes, at least 10 individuals with intentional artificial cranial deformations were identified in the Ostrogothic-period cemetery of Globasnitz (Pollak 2017, 2021). The elongation was achieved during infancy through tight bandage wrapping. This custom was an elite marker influenced by eastern Germanic and Eurasian nomad populations (Ostrogoths, Alans, Huns) during the Migration Period in 5th- and 6th-century Noricum.",
-        "citations": ["Pollak (2017)", "Pollak (2021)"],
-        "keywords": ["cranial deformation", "head binding", "globasnitz", "ostrogoths", "migration period", "pollak", "artificial elongation"],
+        "answer": "Yes, at least 10 individuals with intentional artificial cranial deformations were identified in the Ostrogothic-period cemetery of Globasnitz (Binder et al. 2016; Ladstätter 2000). The elongation was achieved during infancy through tight bandage wrapping. This custom was an elite marker influenced by eastern Germanic and Eurasian nomad populations (Ostrogoths, Alans, Huns) during the Migration Period in 5th- and 6th-century Noricum.",
+        "citations": ["Binder et al. (2016)", "Ladstätter (2000)"],
+        "keywords": ["cranial deformation", "head binding", "globasnitz", "ostrogoths", "migration period", "binder", "ladstätter", "artificial elongation"],
         "graph_node_id": "col_1792169"
     },
     {
@@ -732,7 +765,7 @@ SYNTHETIC_CORPUS = [
             "Tscherberg Iuenna"
         ],
         "answer": "Novejše arheološke raziskave (Christian Gugl et al.) to tradicionalno enačitev postavljajo pod vprašaj. Globasnitz je bil neurbani vicus velikosti 7–9 hektarov, vendar je ležal več kot 3 kilometre južno od glavne rimske ceste Celeia–Virunum. Kot verjetnejša lokacija cestne postaje Iuenna se danes predlaga Tscherberg, ki je ležal neposredno ob glavni trasi in ustreza razdalji 23 rimskih milj na Tabuli Peutingeriani.",
-        "citations": ["Christian Gugl et al.", "Glaser (2002)"],
+        "citations": ["Christian Gugl et al.", "Ladstätter (2000)"],
         "keywords": ["globasnitz", "globasnica", "iuenna", "tscherberg", "cestna postaja", "vicus", "podjuna", "tabula peutingeriana"],
         "graph_node_id": "col_1792169"
     },
@@ -778,9 +811,9 @@ SYNTHETIC_CORPUS = [
             "Deformirane lobanje Globasnitz",
             "Povijanje glav vzhodni goti Globasnica"
         ],
-        "answer": "Da, na grobišču iz časa Vzhodnih Gotov v Globasnici (5. in 6. stoletje n. št.) so bile pri najmanj 10 posameznikih ugotovljene kranijske deformacije (umetno podaljšane lobanje; Pollak 2017, 2021). Deformacijo so dosegli v zgodnjem otroštvu s tesnim povijanjem z obvezami. Šlo je za elitni znak identitete in družbenega statusa pod vplivom vzhodnogermanskih in nomadskih skupin (Vzhodni Goti, Alani, Huni).",
-        "citations": ["Pollak (2017)", "Pollak (2021)"],
-        "keywords": ["deformacije lobanj", "umetna deformacija", "globasnica", "globasnitz", "vzhodni goti", "grobišče", "pollak"],
+        "answer": "Da, na grobišču iz časa Vzhodnih Gotov v Globasnici (5. in 6. stoletje n. št.) so bile pri najmanj 10 posameznikih ugotovljene kranijske deformacije (umetno podaljšane lobanje; Binder et al. 2016; Ladstätter 2000). Deformacijo so dosegli v zgodnjem otroštvu s tesnim povijanjem z obvezami. Šlo je za elitni znak identitete in družbenega statusa pod vplivom vzhodnogermanskih in nomadskih skupin (Vzhodni Goti, Alani, Huni).",
+        "citations": ["Binder et al. (2016)", "Ladstätter (2000)"],
+        "keywords": ["deformacije lobanj", "umetna deformacija", "globasnica", "globasnitz", "vzhodni goti", "grobišče", "binder", "ladstätter"],
         "graph_node_id": "col_1792169"
     },
     {

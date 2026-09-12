@@ -310,7 +310,7 @@ const TOOLS = [
     inputSchema: {
       type: 'object',
       properties: {
-        node_or_id: { type: 'string', description: "Node label, entity name (e.g. 'Franz Glaser', 'Hemmaberg', 'glo_geodaten_open.gpkg'), or ARCHE ID (e.g. '1756744', 'plc_1756734')." },
+        node_or_id: { type: 'string', description: "Node label, entity name (e.g. 'Sabine Ladstätter', 'Michaela Binder', 'Hemmaberg', 'glo_geodaten_open.gpkg'), or ARCHE ID (e.g. '1756744', 'plc_1756734')." },
         predicate: { type: 'string', description: "Optional edge predicate filter (e.g. 'hasCreator', 'hasAuthor', 'hasSpatialCoverage', 'documents', 'isPartOf', 'isMemberOf')." },
         direction: { type: 'string', enum: ['all', 'outgoing', 'incoming'], description: "Edge direction to follow (default: 'all')." },
         limit: { type: 'number', description: 'Maximum number of connected neighbor nodes to return (default: 25, max: 100).' }

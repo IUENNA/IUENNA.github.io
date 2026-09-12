@@ -209,9 +209,9 @@ with urllib.request.urlopen(url) as response:
 nodes = {n["data"]["id"]: n["data"] for n in graph["elements"]["nodes"]}
 edges = graph["elements"]["edges"]
 
-# Find all publications authored by Franz Glaser
-glaser_id = next((nid for nid, d in nodes.items() if "glaser" in d.get("label", "").lower()), None)
-authored = [e["data"]["target"] for e in edges if e["data"]["source"] == glaser_id and e["data"]["predicate"] == "hasAuthor"]
+# Find all publications authored by Sabine Ladstätter
+ladstaetter_id = next((nid for nid, d in nodes.items() if "ladstätter" in d.get("label", "").lower()), None)
+authored = [e["data"]["target"] for e in edges if e["data"]["source"] == ladstaetter_id and e["data"]["predicate"] == "hasAuthor"]
 
 for pub_id in authored:
     pub = nodes.get(pub_id, {})

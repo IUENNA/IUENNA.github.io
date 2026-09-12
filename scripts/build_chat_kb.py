@@ -40,7 +40,25 @@ def load_foundations(path):
                     old_kb = json.load(f)
                     if old_kb.get("foundations"):
                         print(f"[*] Preserving {len(old_kb['foundations'])} foundations from existing {OUTPUT_FILE}")
-                        return old_kb["foundations"]
+                        foundations = old_kb["foundations"]
+                        for item in foundations:
+                            if "keywords" in item and isinstance(item["keywords"], list):
+                                clean_kw = []
+                                for kw in item["keywords"]:
+                                    if kw.lower() in ["glaser", "franz glaser"]:
+                                        if "sabine ladstätter" not in clean_kw:
+                                            clean_kw.append("sabine ladstätter")
+                                        if "michaela binder" not in clean_kw:
+                                            clean_kw.append("michaela binder")
+                                    elif kw.lower() in ["pollak", "marianne pollak"]:
+                                        if "magdalena srienc" not in clean_kw:
+                                            clean_kw.append("magdalena srienc")
+                                        if "elke profant" not in clean_kw:
+                                            clean_kw.append("elke profant")
+                                    else:
+                                        clean_kw.append(kw)
+                                item["keywords"] = clean_kw
+                        return foundations
             except Exception as e:
                 print(f"[!] Warning: Could not read existing foundations: {e}")
         print(f"[!] Warning: Foundations file not found at {path}")
@@ -94,7 +112,7 @@ def load_foundations(path):
             if lang == "de":
                 if "Forschungsgeschichte" in title:
                     sec_id = "found_de_forschungsgeschichte"
-                    keywords = ["forschungsgeschichte", "winkler", "hans winkler", "rudolf egger", "egger", "glaser", "franz glaser", "piccottini", "pollak", "marianne pollak", "ladstätter", "jabornegg-altenfels", "hauser", "grabungen", "ausgrabung", "pioniere"]
+                    keywords = ["forschungsgeschichte", "winkler", "hans winkler", "rudolf egger", "egger", "ladstätter", "sabine ladstätter", "michaela binder", "binder", "magdalena srienc", "elke profant", "piccottini", "jabornegg-altenfels", "hauser", "grabungen", "ausgrabung", "pioniere"]
                     node_id = "top_iuenna"
                     category = "Forschungsgeschichte & Pioniere"
                 elif "Mikroregion" in title:
@@ -119,7 +137,7 @@ def load_foundations(path):
                     category = "Alltag, Ernährung & Wirtschaft"
                 elif "Bioarchäologie" in title:
                     sec_id = "found_de_bioarchaeologie"
-                    keywords = ["bioarchäologie", "bioarchaeologie", "anthropologie", "archäozoologie", "archäobotanik", "skelette", "fußprothese", "fussprothese", "prothese", "amputation", "eisenring", "holzstumpf", "binder", "schädeldeformation", "schädelverformung", "turmschädel", "bandagieren", "ostgoten", "ostgotenzeit", "demografie", "geschlechterverteilung", "kindersterblichkeit", "ad sanctos", "adna", "pollak"]
+                    keywords = ["bioarchäologie", "bioarchaeologie", "anthropologie", "archäozoologie", "archäobotanik", "skelette", "fußprothese", "fussprothese", "prothese", "amputation", "eisenring", "holzstumpf", "binder", "schädeldeformation", "schädelverformung", "turmschädel", "bandagieren", "ostgoten", "ostgotenzeit", "demografie", "geschlechterverteilung", "kindersterblichkeit", "ad sanctos", "adna", "ladstätter"]
                     node_id = "col_1792415"
                     category = "Bioarchäologie & Anthropologie"
                 elif "Stefan" in title:
@@ -144,7 +162,7 @@ def load_foundations(path):
                     category = "Topografische Neubewertung & Prospektion"
                 elif "Literatur" in title:
                     sec_id = "found_de_literatur"
-                    keywords = ["literatur", "quellen", "publikationen", "glaser", "hagmann", "reiner", "pollak", "schwaiger", "gugl", "binder", "forstenpointner", "ladstätter", "peer community journal"]
+                    keywords = ["literatur", "quellen", "publikationen", "hagmann", "reiner", "schwaiger", "gugl", "binder", "forstenpointner", "ladstätter", "profant", "srienc", "peer community journal"]
                     node_id = None
                     category = "Fachliteratur & Referenzen"
 
@@ -154,7 +172,7 @@ def load_foundations(path):
                 keywords = [w.lower() for w in title.split() if len(w) > 3]
                 if "History of Research" in title:
                     sec_id = "found_en_history_of_research"
-                    keywords.extend(["history of research", "excavations", "winkler", "egger", "glaser", "pollak", "ladstätter"])
+                    keywords.extend(["history of research", "excavations", "winkler", "egger", "binder", "ladstätter", "srienc", "profant"])
                     node_id = "top_iuenna"
                     category = "History of Research"
                 elif "Microregion" in title:
@@ -175,7 +193,7 @@ def load_foundations(path):
                     node_id = "col_1792415"
                 elif "Bioarchaeology" in title:
                     sec_id = "found_en_bioarchaeology"
-                    keywords.extend(["bioarchaeology", "anthropology", "prosthesis", "foot prosthesis", "cranial deformation", "demography", "binder", "pollak", "skeletons"])
+                    keywords.extend(["bioarchaeology", "anthropology", "prosthesis", "foot prosthesis", "cranial deformation", "demography", "binder", "ladstätter", "skeletons"])
                     node_id = "col_1792415"
                 elif "Stefan" in title:
                     sec_id = "found_en_st_stefan"
@@ -200,7 +218,7 @@ def load_foundations(path):
                 keywords = [w.lower() for w in title.split() if len(w) > 3]
                 if "zgodovina raziskav" in title.lower():
                     sec_id = "found_sl_zgodovina_raziskav"
-                    keywords.extend(["zgodovina raziskav", "izkopavanja", "winkler", "egger", "glaser", "pollak"])
+                    keywords.extend(["zgodovina raziskav", "izkopavanja", "winkler", "egger", "ladstätter", "binder", "srienc", "profant"])
                     node_id = "top_iuenna"
                 elif "mikroregija" in title.lower():
                     sec_id = "found_sl_mikroregija"
@@ -224,7 +242,7 @@ def load_foundations(path):
                     node_id = "col_1792415"
                 elif "bioarheologija" in title.lower():
                     sec_id = "found_sl_bioarheologija"
-                    keywords.extend(["bioarheologija", "antropologija", "proteza", "nožna proteza", "deformacije lobanj", "grobišče", "binder", "pollak"])
+                    keywords.extend(["bioarheologija", "antropologija", "proteza", "nožna proteza", "deformacije lobanj", "grobišče", "binder", "ladstätter"])
                     node_id = "col_1792415"
                 elif "stefan" in title.lower() or "šteben" in title.lower():
                     sec_id = "found_sl_stefan"
@@ -254,7 +272,7 @@ def load_foundations(path):
             if "Christian Gugl et al." in body and "Christian Gugl et al." not in citations:
                 citations.append("Christian Gugl et al.")
             if sec_id.endswith("literatur"):
-                citations = ["Glaser (2002)", "Christian Gugl et al.", "Hagmann & Reiner (2023)", "Pollak (2023)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)", "Binder et al. (2016)", "Forstenpointner et al. (2003)"]
+                citations = ["Ladstätter (2000)", "Christian Gugl et al.", "Hagmann & Reiner (2023)", "Reiner & Profant (2025)", "Schwaiger & Reiner (2022)", "Hagmann & Reiner (2025)", "Binder et al. (2016)", "Forstenpointner et al. (2003)"]
 
             paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
             summary = paragraphs[0] if paragraphs else ""
@@ -395,7 +413,7 @@ def build_knowledge_base():
             "geonames": "https://www.geonames.org/12719971/hemmaberg.html",
             "items_count": 11092,
             "period": "Mittelbronzezeit, Spätlatène, Römerzeit, Spätantike (4.–6. Jh. n. Chr.), Frühmittelalter",
-            "highlights": "843 m hoher Bergrücken; bedeutendstes spätantikes Pilgerzentrum des Ostalpenraums. Fünf frühchristliche Kirchen, darunter monumentale Doppelkirchenanlagen des frühen 6. Jhs. (Eucharistie-, Memorialkirchen, Baptisterien, Reliquienaltäre für katholische und arianisch-gotische Gemeinden), Rosaliengrotte, Pilgerhospiz, Mosaike und Höhensiedlung (Glaser 2002; Hagmann & Reiner 2023).",
+            "highlights": "843 m hoher Bergrücken; bedeutendstes spätantikes Pilgerzentrum des Ostalpenraums. Fünf frühchristliche Kirchen, darunter monumentale Doppelkirchenanlagen des frühen 6. Jhs. (Eucharistie-, Memorialkirchen, Baptisterien, Reliquienaltäre für katholische und arianisch-gotische Gemeinden), Rosaliengrotte, Pilgerhospiz, Mosaike und Höhensiedlung (Ladstätter 2000; Hagmann & Reiner 2023).",
             "subcollection": "HB / RET",
             "keywords": ["hemmaberg", "pilgerzentrum", "pilgerheiligtum", "doppelkirche", "rosaliengrotte", "mosaik", "mosaikböden", "reliquien", "baptisterium", "bischof", "spätantike", "kirchenanlage", "heiligengrab", "jouenat", "arianisch"]
         },
@@ -413,7 +431,7 @@ def build_knowledge_base():
             "name": "Globasnitz (Iuenna)",
             "items_count": 2775,
             "period": "Römische Kaiserzeit, Spätantike, Merowingerzeit (4.–6. Jh. n. Chr.)",
-            "highlights": "Römische Straßenstation (Mansio Iuenna) an der Reichsstraße Virunum–Celeia, benannt nach keltischer Gottheit Iouenat (Tabula Peutingeriana). Größtes spätantik-merowingerzeitliches Gräberfeld Österreichs mit rund 425 Gräbern / 440 Bestattungen und zwei aufeinanderfolgenden Kirchen (ältere aus späten 4. Jh.); Kontaktregion romanischer, ostgotischer und merowingischer Einflüsse (Pollak 2023; Schwaiger & Reiner 2022).",
+            "highlights": "Römische Straßenstation (Mansio Iuenna) an der Reichsstraße Virunum–Celeia, benannt nach keltischer Gottheit Iouenat (Tabula Peutingeriana). Größtes spätantik-merowingerzeitliches Gräberfeld Österreichs mit rund 425 Gräbern / 440 Bestattungen und zwei aufeinanderfolgenden Kirchen (ältere aus späten 4. Jh.); Kontaktregion romanischer, ostgotischer und merowingischer Einflüsse (Binder et al. 2016; Schwaiger & Reiner 2022).",
             "subcollection": "GLO / RET",
             "keywords": ["globasnitz", "iuenna", "mansio", "straßenstation", "römerstraße", "virunum", "celeia", "pilgermuseum", "kaiserzeit", "inschrift", "gräberfeld", "friedhof", "merowinger", "ostgoten", "iouenat", "tabula peutingeriana"]
         },
@@ -476,7 +494,7 @@ def build_knowledge_base():
         {
             "id": "faq_name_iuenna",
             "question": "Woher stammt der Name Iuenna und was bedeutet er?",
-            "answer": "Der Name 'Iuenna' bezeichnet die antike römische Straßenstation und Siedlung im Bereich von Globasnitz und Kleindorf an der Reichsstraße Virunum–Celeia (belegt auf der Tabula Peutingeriana). Er geht auf die einheimische keltische Gottheit 'Iouenat' zurück, die durch einen Votivaltar vom Hemmaberg belegt ist. Von dieser Wortwurzel leiten sich auch 'Jaunberg' und 'Jauntal' (slowenisch Podjuna) ab (Glaser 2002).",
+            "answer": "Der Name 'Iuenna' bezeichnet die antike römische Straßenstation und Siedlung im Bereich von Globasnitz und Kleindorf an der Reichsstraße Virunum–Celeia (belegt auf der Tabula Peutingeriana). Er geht auf die einheimische keltische Gottheit 'Iouenat' zurück, die durch einen Votivaltar vom Hemmaberg belegt ist. Von dieser Wortwurzel leiten sich auch 'Jaunberg' und 'Jauntal' (slowenisch Podjuna) ab (Ladstätter 2000; Gugl et al.).",
             "links": [
                 {"text": "Subcollection Globasnitz (GLO)", "url": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E"},
                 {"text": "Web-Mapping Globasnitz", "url": "https://iuenna.github.io/wma/wma.html"}
@@ -486,22 +504,22 @@ def build_knowledge_base():
         {
             "id": "faq_graeberfeld_globasnitz",
             "question": "Was zeichnet das spätantike Gräberfeld von Globasnitz aus?",
-            "answer": "Das östlich von Globasnitz gelegene Gräberfeld ist mit rund 425 Gräbern und etwa 440 Bestattungen der größte spätantik-merowingerzeitliche Bestattungsplatz Österreichs und der bisher einzige umfassend erforschte Friedhof einer norischen Straßenstation (Pollak 2023). Innerhalb der Nekropole lagen zudem zwei aufeinanderfolgende Kirchen (die ältere bereits aus dem späten 4. Jh.). Beigaben wie Gürtelbeschläge, Fibeln und Perlen bezeugen weitreichende Kontakte im Alpenraum.",
+            "answer": "Das östlich von Globasnitz gelegene Gräberfeld ist mit rund 425 Gräbern und etwa 440 Bestattungen der größte spätantik-merowingerzeitliche Bestattungsplatz Österreichs und der bisher einzige umfassend erforschte Friedhof einer norischen Straßenstation (Binder et al. 2016; Ladstätter 2000). Innerhalb der Nekropole lagen zudem zwei aufeinanderfolgende Kirchen (die ältere bereits aus dem späten 4. Jh.). Beigaben wie Gürtelbeschläge, Fibeln und Perlen bezeugen weitreichende Kontakte im Alpenraum.",
             "links": [
                 {"text": "Subcollection Globasnitz (GLO)", "url": "https://hdl.handle.net/21.11115/0000-0016-7B3A-E"},
                 {"text": "Web-Mapping Globasnitz", "url": "https://iuenna.github.io/wma/wma.html"}
             ],
-            "keywords": ["gräberfeld globasnitz", "friedhof", "bestattungen", "merowinger", "ostgoten", "425 gräber", "440 bestattungen", "marianne pollak", "fibeln", "gürtel"]
+            "keywords": ["gräberfeld globasnitz", "friedhof", "bestattungen", "merowinger", "ostgoten", "425 gräber", "440 bestattungen", "michaela binder", "sabine ladstätter", "fibeln", "gürtel"]
         },
         {
             "id": "faq_doppelkirchen_hemmaberg",
             "question": "Welche Bedeutung haben die Doppelkirchen auf dem Hemmaberg?",
-            "answer": "Auf dem 843 m hohen Hemmaberg entstanden im frühen 6. Jahrhundert zwei monumentale Doppelkirchenanlagen mit Eucharistie- und Memorialkirchen, Baptisterien, Reliquienkammern und Pilgerhospizen (Glaser 2002). Die doppelte Ausführung gilt in der Forschung als Zeugnis zweier nebeneinander existierender christlicher Gemeinden: einer katholisch-romanischen und einer arianisch-gotischen Gemeinde zur Zeit der ostgotischen Herrschaft.",
+            "answer": "Auf dem 843 m hohen Hemmaberg entstanden im frühen 6. Jahrhundert zwei monumentale Doppelkirchenanlagen mit Eucharistie- und Memorialkirchen, Baptisterien, Reliquienkammern und Pilgerhospizen (Ladstätter 2000; Gugl et al.). Die doppelte Ausführung gilt in der Forschung als Zeugnis zweier nebeneinander existierender christlicher Gemeinden: einer katholisch-romanischen und einer arianisch-gotischen Gemeinde zur Zeit der ostgotischen Herrschaft.",
             "links": [
                 {"text": "Subcollection Hemmaberg (HB)", "url": "https://hdl.handle.net/21.11115/0000-0016-7B3B-D"},
                 {"text": "Web-Mapping Hemmaberg", "url": "https://iuenna.github.io/wma/wma.html"}
             ],
-            "keywords": ["doppelkirche", "doppelkirchen", "kirchen", "arianisch", "katholisch", "ostgoten", "pilgerzentrum", "mosaike", "reliquien", "franz glaser"]
+            "keywords": ["doppelkirche", "doppelkirchen", "kirchen", "arianisch", "katholisch", "ostgoten", "pilgerzentrum", "mosaike", "reliquien", "sabine ladstätter"]
         },
         {
             "id": "faq_villa_st_stefan",
@@ -605,6 +623,25 @@ def build_knowledge_base():
         "faq": faq_entries,
         "graph_entities": graph_entities
     }
+
+    audit_file = os.path.join(DATA_DIR, "arche_graph_audit.json")
+    audit_data = load_json(audit_file)
+    if audit_data:
+        cov = audit_data.get("graph_coverage", {})
+        graph_meta = audit_data.get("graph", {})
+        kb_payload["build_metadata"] = {
+            "canonical_graph": "data/arche_graph.json",
+            "graph_audit": "data/arche_graph_audit.json",
+            "audit_status": audit_data.get("status", "pass"),
+            "audit_generated_at": audit_data.get("generated_at", ""),
+            "graph_nodes": graph_meta.get("nodes", 21071),
+            "graph_edges": graph_meta.get("edges", 281851),
+            "arche_backed_graph_entities": graph_meta.get("arche_backed_nodes", 21061),
+            "primary_resources": audit_data.get("inputs", {}).get("resources", 20355),
+            "configured_arche_triples_preserved": cov.get("configured_arche_triples_preserved", 281159),
+            "configured_arche_triples_resolvable": cov.get("configured_arche_triples_resolvable", 281159),
+            "configured_arche_recall": cov.get("configured_arche_recall", 1.0)
+        }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(kb_payload, f, ensure_ascii=False, indent=2)

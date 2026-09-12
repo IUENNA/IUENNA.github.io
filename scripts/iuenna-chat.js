@@ -126,12 +126,15 @@
           <div class="chat-chips-container" style="margin-top: 8px;">
             <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
             <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
+            <button type="button" class="chat-chip" data-query="Wer war Sabine Ladstätter?">👤 Sabine Ladstätter</button>
+            <button type="button" class="chat-chip" data-query="Wer ist Michaela Binder?">👤 Michaela Binder</button>
+            <button type="button" class="chat-chip" data-query="Wer ist Elke Profant?">👤 Elke Profant</button>
+            <button type="button" class="chat-chip" data-query="Wer ist Magdalena Srienc?">👤 Magdalena Srienc</button>
             <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
             <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
             <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
             <button type="button" class="chat-chip" data-query="Ostgotisches Gräberfeld Globasnitz">💀 Ostgotisches Gräberfeld</button>
             <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
-            <button type="button" class="chat-chip" data-query="Grabungspläne Hemmaberg">🗺️ Grabungspläne</button>
             <button type="button" class="chat-chip" data-query="QGIS Geodaten">🗺️ QGIS GeoPackage</button>
           </div>
         </div>
@@ -194,7 +197,7 @@
       <!-- Input Area -->
       <div class="chat-input-area">
         <div class="chat-input-row">
-          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Suchbegriff eingeben (z.B. 'Münzen', 'Hans Winkler', 'Inschriften')..." autocomplete="off">
+          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Suchbegriff eingeben (z.B. 'Münzen', 'Sabine Ladstätter', 'Michaela Binder', 'Hans Winkler')..." autocomplete="off">
           <button id="chat-send-btn" class="chat-send-btn" aria-label="Senden" title="Senden">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
@@ -440,7 +443,7 @@
         category: 'graves',
         lat: 46.55694,
         lng: 14.70278,
-        keywords: ['ostgotisches gräberfeld', 'ostgoten', 'ostgotisch', 'gräberfeld', 'gräber', 'bestattungen', 'skelette', 'globasnitz', 'ostgräberfeld', 'pollak', 'turmschädel', 'schädeldeformation']
+        keywords: ['ostgotisches gräberfeld', 'ostgoten', 'ostgotisch', 'gräberfeld', 'gräber', 'bestattungen', 'skelette', 'globasnitz', 'ostgräberfeld', 'binder', 'srienc', 'turmschädel', 'schädeldeformation']
       },
       {
         title: 'Doppelkirchenanlage & Pilgerheiligtum Hemmaberg',
@@ -454,7 +457,7 @@
         category: 'architecture',
         lat: 46.55269,
         lng: 14.66768,
-        keywords: ['doppelkirchen', 'doppelkirche', 'hemmaberg', 'kirchen', 'mosaik', 'mosaiken', 'glaser', 'pilgerzentrum', 'pilgerheiligtum', 'baptisterium']
+        keywords: ['doppelkirchen', 'doppelkirche', 'hemmaberg', 'kirchen', 'mosaik', 'mosaiken', 'ladstätter', 'binder', 'pilgerzentrum', 'pilgerheiligtum', 'baptisterium']
       },
       {
         title: 'Römische Großvilla & Badeanlage St. Stefan',
@@ -784,7 +787,7 @@
     if (/\b(münz|muenz|hortfund|numismat|denar|antoninian|follis|nominal|geld|präg)/i.test(combined)) return 'coins';
     if (/\b(grab|gräber|graeber|bestattung|skelett|gräberfeld|graeberfeld|nekropol|ostgot|turmschädel|schädeldeform|anthropolog)/i.test(combined)) return 'graves';
     if (/\b(plan|pläne|plaene|aufmaß|aufmass|zeichnung|profil|schnitt|grundriss|steinplan|bauaufnahme|vektor|cad|dwg|dxf)/i.test(combined)) return 'plans';
-    if (/\b(person|forscher|forscherin|nachlass|winkler|glaser|pollak|hagmann|reiner|waldhart|gugl|ladstätter|ladstaetter|barbius|notar)/i.test(combined)) return 'persons';
+    if (/\b(person|forscher|forscherin|nachlass|winkler|ladstätter|ladstaetter|binder|profant|srienc|reiner|hagmann|waldhart|gugl|barbius|notar)/i.test(combined)) return 'persons';
     if (/\b(kirche|doppelkirche|pilger|villa|therme|badeanlage|hypokaust|mosaik|sakral|baptisterium|basilika|mauer)/i.test(combined)) return 'architecture';
     return 'default';
   }
@@ -882,11 +885,17 @@
       if (comb.includes('winkler')) {
         return 'Dr. Hans Winkler (1882–1964), Notar in Eberndorf, war ein zentraler autodidaktischer Pionier der Jauntaler Archäologie. Sein im IUENNA-Projekt aufbereiteter Nachlass umfasst 475 Archivalien – darunter detailreiche Skizzenbücher, Fundprotokolle und Feldtagebücher zu Ausgrabungen in St. Stefan und am Hemmaberg.';
       }
-      if (comb.includes('glaser')) {
-        return 'Dr. Franz Glaser leitete über viele Jahrzehnte die Ausgrabungen auf dem Hemmaberg und erforschte die frühchristlichen Doppelkirchen sowie das spätantike Pilgerheiligtum. Seine Grabungsdokumentationen und Monographien bilden eine zentrale Grundlage des Projekts.';
+      if (comb.includes('ladstätter') || comb.includes('ladstaetter')) {
+        return 'Dr. Sabine Ladstätter (1967–2024, ÖAI / ÖAW) erforschte grundlegend die materielle Kultur der Spätantike auf dem Hemmaberg und leitete die Ausgrabungen an der Wallanlage. Ihre Monografie bildet das chronologische und funktionale Fundament der Erforschung des Pilgerheiligtums.';
       }
-      if (comb.includes('pollak')) {
-        return 'Dr. Marianne Pollak leitete die Ausgrabungen im ostgotenzeitlichen Gräberfeld von Globasnitz (1999–2008). Ihre Publikationen erschließen die 440 Bestattungen, die Friedhofskirchen und die anthropologischen Befunde wissenschaftlich.';
+      if (comb.includes('binder')) {
+        return 'Dr. Michaela Binder (ÖAI / ÖAW) leitet die bioarchäologischen und anthropologischen Untersuchungen im Gräberfeld auf dem Hemmaberg. Zu ihren international beachteten Entdeckungen zählt der Nachweis einer frühmittelalterlichen Fußprothese aus dem 6. Jahrhundert n. Chr.';
+      }
+      if (comb.includes('profant')) {
+        return 'Elke Profant (ÖAI / ÖAW) führt großflächige geophysikalische Prospektionen und Geomagnetik-Messungen im Jauntal durch, die verborgene römische Straßen, Großbauten und Gräber in Globasnitz und St. Stefan zerstörungsfrei sichtbar machen.';
+      }
+      if (comb.includes('srienc')) {
+        return 'Dr. Magdalena Srienc erforscht als Archäologin die spätantike und frühmittelalterliche Siedlungslandschaft sowie materielle Kulturzeugnisse im südlichen Jauntal.';
       }
       if (comb.includes('hagmann') || comb.includes('reiner')) {
         return 'Dr. Dominik Hagmann (kärnten.museum) und Franziska Reiner (ÖAI / ÖAW) leiten das Projekt IUENNA. Ihre Publikationen und Datenkurationen verbinden archäologische Feldforschung, Langzeitarchivierung in ARCHE und moderne Web-GIS-Infrastrukturen.';
@@ -1034,7 +1043,7 @@
 
     const archeUrl = resolveArcheUrl(meta, cleanTitle, cleanPlace);
 
-    // 1. PERSONEN & FORSCHER: Winkler, Glaser, Pollak, Hagmann/Reiner etc.
+    // 1. PERSONEN & FORSCHERINNEN: Ladstätter, Binder, Profant, Srienc, Winkler, Hagmann/Reiner etc.
     if (cat === 'persons') {
       // Graph link to person / archive node
       linksHtml += `<a href="${graphHref}" class="chat-card-btn graph-btn" data-node-id="${escapeHtml(graphNodeId)}" title="Nachlass im Wissensgraphen fokussieren"><i class="fa-solid fa-circle-nodes"></i> Nachlass im Wissensgraphen 🕸️</a>`;
@@ -1407,7 +1416,7 @@
     }
 
     // Dialog Intent D: Literature / Publications / Zotero / Bibliography (general project queries)
-    if (/\b(zotero|literatur|publikation|publikationen|bibliographie|quellen|literaturverzeichnis|aufsatz|aufsätze|artikel|fachliteratur)\b/i.test(cleanQ) && !/(glaser|pollak)/i.test(cleanQ)) {
+    if (/\b(zotero|literatur|publikation|publikationen|bibliographie|quellen|literaturverzeichnis|aufsatz|aufsätze|artikel|fachliteratur)\b/i.test(cleanQ)) {
       setTimeout(() => {
         if (thisRequestId !== currentRequestId) return;
         removeTypingIndicator();
