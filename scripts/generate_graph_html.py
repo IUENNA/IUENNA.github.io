@@ -5677,6 +5677,8 @@ def generate():
     </script>
     <!-- Responsive Navigation Burger Menu -->
     <script src="../scripts/nav.js?v=2.5.0" defer></script>
+    <!-- Ask IUENNA: ARCHE-derived client-side metadata discovery -->
+    <script src="../scripts/iuenna-chat.js?v=3.0.0" defer></script>
 </body>
 </html>
 '''

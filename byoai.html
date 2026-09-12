@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.3.0">
+    <link rel="stylesheet" href="styles.css?v=2.5.0">
 
     <meta name="DC.title" content="BYOAI – Bring Your Own AI | IUENNA Archaeological Research">
     <meta name="DC.creator" content="Dominik Hagmann">
@@ -135,9 +135,14 @@
 
     <section class="byoai-section">
         <h2><span class="byoai-section-icon"><i class="fa-solid fa-landmark"></i></span>Provenance, citation and rights</h2>
-        <p>ARCHE is the authoritative long-term repository. The top-level IUENNA collection is persistently identified by <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">21.11115/0000-0016-7B39-F</a>.</p>
-        <div class="notice"><strong>Access and reuse:</strong> open discovery metadata does not mean that every archived binary resource is openly downloadable or licensed identically. Inspect the metadata, rights statement and access conditions of the specific ARCHE record before reuse.</div>
-        <p>When using a specific dataset, document, image, GeoPackage, or other archived resource, cite its <strong>individual ARCHE PID and metadata</strong> rather than only the project homepage.</p>
+        <p>ARCHE is the authoritative long-term repository for the archived IUENNA research collection. Cite the top-level collection as:</p>
+        <div class="notice" style="border-left-color:var(--secondary);">
+            <strong>Project-level citation</strong><br>
+            Hagmann, D., &amp; Waldhart, F. (Eds.). (2025). <em>IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</em>. ARCHE – Austrian Research Culture Heritage Extended. <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">https://hdl.handle.net/21.11115/0000-0016-7B39-F</a>
+        </div>
+        <p><strong>Persistent collection identifier:</strong> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">21.11115/0000-0016-7B39-F</a>. The corresponding ARCHE top-level collection is <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" rel="noopener">https://id.acdh.oeaw.ac.at/iuenna</a>.</p>
+        <div class="notice"><strong>Access and reuse:</strong> open discovery metadata does not mean that every archived binary resource is openly downloadable or licensed identically. Inspect the citation, rights statement and access conditions of the specific ARCHE record before reuse.</div>
+        <p>When using a specific dataset, document, image, GeoPackage, or other archived resource, cite its <strong>individual ARCHE record, PID and record-level metadata</strong> in addition to any relevant project-level citation.</p>
     </section>
 </main>
 
@@ -157,5 +162,8 @@ function copyCode(btn) {
 }
 </script>
 <script src="scripts/nav.js?v=2.5.0" defer></script>
+
+    <!-- Ask IUENNA: ARCHE-derived client-side metadata discovery -->
+    <script src="scripts/iuenna-chat.js?v=3.0.0" defer></script>
 </body>
 </html>
