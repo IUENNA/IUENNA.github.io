@@ -241,13 +241,14 @@ Damit ist Ask IUENNA wieder dialogisch bedienbar, bleibt aber eine **Retrieval- 
 #### Ergebnisdarstellung und Interaktion
 
 * ARCHE-basierte Trefferkarten erhalten kurze, ausschließlich aus angezeigten Metadaten abgeleitete Zusammenfassungen.
-* Begrüßungs-Chips rotieren zwischen Personen und Themen; angezeigt werden bewusst nur wenige Vorschläge gleichzeitig.
-* Ein eigener **BYOAI / Remote MCP**-Chip führt zur offenen AI-Schnittstelle.
-* Der Assistant kann minimiert und wieder geöffnet werden.
-* Rote UI-Flächen verwenden kontrastgesicherten weißen Text.
-* Dynamisch erzeugte Vorschlags-Chips werden per delegiertem Click-Handler zuverlässig an das Suchfeld gebunden.
-* Graph-Links werden auf `graph/graph.html` normalisiert und übernehmen den Suchparameter.
-* WMA-Aktionen führen auf den GenAI-WMA-Wrapper und übernehmen – soweit vorhanden – Query, Koordinaten und Zoom.
+* Der Welcome-Bereich zeigt pro Erzeugung **1–2 rotierende Personennamen und 2–3 rotierende Themen**. Die Vorschläge tragen kontextabhängige Font-Awesome-Icons, z. B. Person, Fundort, Foto, Plan, GeoPackage/Datenbank oder Publikation.
+* Ein eigener **BYOAI / Remote MCP**-Chip mit Microchip-Icon bleibt als fixer Zugang zur offenen AI-Schnittstelle erhalten.
+* Der Assistant kann über einen eigenen **Minimieren-Button** eingeklappt und über den weiterhin sichtbaren „Ask IUENNA“-Trigger wieder geöffnet werden; Verlauf und Dialogkontext bleiben dabei erhalten.
+* Rote UI-Flächen – Trigger, Header und User-Bubbles – verwenden kontrastgesicherten weißen bzw. leicht gedämpft weißen Text.
+* Dynamisch erzeugte Vorschlags- und Follow-up-Chips werden über einen zentralen, delegierten Click-Handler am Assistant-Fenster verarbeitet. Dadurch funktionieren auch nach Rotation, Reset oder dynamischem Rendern erzeugte Buttons zuverlässig und lösen die entsprechende Assistant-Suche aus.
+* Kontextaktionen wie **Search archived files**, **Photos**, **Plans**, **Publications**, **People** und **Map** bleiben damit direkt klickbar und verwenden denselben Retrieval-/Navigationskontext.
+* **Knowledge-Graph-Deep-Links:** Assistant-Links werden auf `graph/graph.html?search=…` normalisiert. `graph/corpus-data.js` übernimmt den Suchparameter nach dem Laden, löst die Graphsuche aus und öffnet/fokussiert automatisch den exakten Treffer; falls kein exakter Titel vorhanden ist, wird zunächst ein mit dem Suchstring beginnender und anschließend der bestplatzierte erste Treffer verwendet. Dadurch entfällt ein zusätzlicher Klick in der Graph-Suchbox.
+* **Web-Mapping-Deep-Links:** Assistant-Aktionen führen direkt auf `wma/genai-wma-home.html` statt auf die allgemeine Web-Mapping-Übersicht. Der jeweilige Kontext wird als `q`-Parameter an den WMA-Wrapper und weiter an die eingebettete Karte übergeben; vorhandene `lat`, `lng` und `zoom`-Parameter werden in der Ziel-URL erhalten.
 
 #### Session State und Datenschutz
 
@@ -418,8 +419,11 @@ Die folgenden Arbeiten sind in dieser Dokumentation nun ausdrücklich berücksic
 * Umstellung von Ask IUENNA auf ARCHE-basierte Metadata Discovery;
 * Wiederherstellung deterministischer NLP-, Intent-, Synonym- und Follow-up-Funktionen ohne Rückkehr zu freien archäologischen Synthesen;
 * Grounded Summaries aus angezeigten Metadaten;
-* rotierende Assistant-Prompts/Chips, Minimize-Control, Kontrastkorrekturen und reparierte dynamische Aktionen;
-* Normalisierung der Assistant-Deep-Links zu Knowledge Graph und GenAI-WMA;
+* rotierende Assistant-Prompts mit **1–2 Personen und 2–3 Themen**, kontextabhängigen Icons sowie fixem BYOAI-Chip;
+* Minimize-Control, Kontrastkorrekturen und zentral delegierte Button-/Chip-Aktionen für dynamisch erzeugte Assistant-Elemente;
+* Normalisierung der Assistant-Deep-Links zum Knowledge Graph und direkten GenAI-WMA-Einstieg;
+* automatische Auswahl und Fokussierung des passenden Knowledge-Graph-Treffers bei `?search=…`-Deep-Links;
+* direkte Übergabe des Assistant-Kontexts per `q` an die AI-assisted WMA;
 * Hervorhebung von Projektleitung und Forschungsteam bei vereinheitlichter Personendarstellung;
 * stärkere Hervorhebung von Jauntal/Podjuna als Area of Interest;
 * deutliche Hervorhebung der ÖAW-/Go!Digital-3.0-Förderung;
