@@ -343,7 +343,7 @@
       if (rows.Items) details.push(rows.Items);
       if (rows.Years) details.push(rows.Years);
       const extra = cards.length > 1 ? ` I also found ${cards.length - 1} further ranked match${cards.length > 2 ? 'es' : ''} below.` : '';
-      summary.innerHTML = `The closest ARCHE-derived match is <strong>${title || 'the first record shown below'}</strong>${details.length ? ` (${details.join(' · ')})` : ''}.${extra}`;
+      summary.innerHTML = `ARCHE-derived result: <strong>${title || 'the first record shown below'}</strong>${details.length ? ` (${details.join(' · ')})` : ''}.${extra}`;
     } else {
       const details = [];
       if (rows.Type) details.push(rows.Type);
