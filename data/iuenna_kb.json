@@ -83,7 +83,880 @@
       "gpkg_download": "https://github.com/IUENNA/IUENNA.github.io/blob/main/wma/IUENNA-WMA.gpkg"
     }
   },
-  "foundations": [],
+  "foundations": [
+    {
+      "id": "found_de_mikroregion",
+      "lang": "de",
+      "title": "Die archäologische Mikroregion im südlichen Jauntal",
+      "category": "Archäologische Landschaft",
+      "summary": "Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, der römische vicus von Globasnitz und die inzwischen umstrittene Lokalisierung der Straßenstation Iuenna, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. ([Hagmann and Reiner, 2023, p. 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Der Hemmaberg und die Fundstellen im Gebiet der heutigen Gemeinde Globasnitz bilden keine voneinander isolierten Denkmäler, sondern eine zusammenhängende **archäologische Mikroregion im südlichen Jauntal**. Zu ihr gehören insbesondere die Höhensiedlung und das frühchristliche Pilgerzentrum auf dem Hemmaberg, der römische vicus von Globasnitz und die inzwischen umstrittene Lokalisierung der Straßenstation Iuenna, die Villenanlage von St. Stefan sowie die Fundstellen von Jaunstein. Insgesamt lässt sich in dieser Landschaft eine mehr als zweitausendjährige Entwicklung von der Vorgeschichte über die Römerzeit und Spätantike bis in das Frühmittelalter verfolgen. ([Hagmann and Reiner, 2023, p. 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nEine zentrale Rolle spielte die verkehrsgeografische Lage. Nach der traditionellen Lokalisierung befand sich Iuenna zwischen den norischen Städten **Virunum** und **Celeia** und lag zugleich in der Nähe eines Übergangs über die Karawanken. Neben der überregionalen Straßenverbindung dürfte daher auch der südlich von Globasnitz gelegene Luschasattel für die Entstehung und Bedeutung des Siedlungsplatzes ausschlaggebend gewesen sein. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 3",
+        "Glaser, 2002, p. 2"
+      ],
+      "keywords": [
+        "mikroregion",
+        "jauntal",
+        "podjuna",
+        "karawanken",
+        "luschasattel",
+        "virunum",
+        "celeia",
+        "römerstraße",
+        "kulturlandschaft",
+        "siedlungslandschaft"
+      ],
+      "graph_node_id": "col_1792417"
+    },
+    {
+      "id": "found_de_forschungsgeschichte",
+      "lang": "de",
+      "title": "Forschungsgeschichte",
+      "category": "Forschungsgeschichte & Pioniere",
+      "summary": "Die Beschäftigung mit den Altertümern des Jauntals reicht weit vor die moderne Archäologie zurück. Bereits gegen Ende des 15. Jahrhunderts zeichneten zwei reisende Mönche eine römische Grabinschrift aus dem Raum am Fuß der Petzen auf. 1838 legte M. F. von Jabornegg-Altenfels einen ersten zusammenfassenden Bericht über Iuenna vor und lokalisierte die Siedlung aufgrund von Fundamenten, Gräbern, Straßen und Kleinfunden zwischen Globasnitz und St. Stefan. 1887 erwähnte Baron Karl Hauser erstmals aus historisch-archäologischer Sicht altes Mauerwerk und Funde auf dem Hemmaberg. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))",
+      "content": "Die Beschäftigung mit den Altertümern des Jauntals reicht weit vor die moderne Archäologie zurück. Bereits gegen Ende des 15. Jahrhunderts zeichneten zwei reisende Mönche eine römische Grabinschrift aus dem Raum am Fuß der Petzen auf. 1838 legte M. F. von Jabornegg-Altenfels einen ersten zusammenfassenden Bericht über Iuenna vor und lokalisierte die Siedlung aufgrund von Fundamenten, Gräbern, Straßen und Kleinfunden zwischen Globasnitz und St. Stefan. 1887 erwähnte Baron Karl Hauser erstmals aus historisch-archäologischer Sicht altes Mauerwerk und Funde auf dem Hemmaberg. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))\n\nDie eigentliche Feldforschung begann 1906 mit dem Eberndorfer Notar **Hans Winkler**. Seine Untersuchungen galten besonders der östlichen Doppelkirche und ihren Mosaiken, umfassten aber auch das Gräberfeld, die Befestigung des Hemmabergs und Fundstellen westlich und östlich von Globasnitz. 1914 ließ Rudolf Egger die freiliegenden Befunde neu vermessen und ergänzte sie durch kleinere Freilegungen; 1916 veröffentlichte er die Kirchenbauten. Winklers Skizzenbücher blieben eine zentrale Quelle, da viele Pläne seiner Talgrabungen nicht publiziert wurden. Sie dokumentieren unter anderem Suchschnitte im später systematisch untersuchten Gräberfeld im Jahr 1913 und die teilweise Freilegung einer Badeanlage bei St. Stefan im Jahr 1930. ([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 1982, page 10](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))\n\nEine neue, institutionell getragene Forschungsphase setzte in den 1970er Jahren ein. Auf Initiative des Landesmuseumsdirektors Gernot Piccottini, der Gemeinde, des Pfarrers Franz Posch und des 1976 gegründeten Vereins „Freunde Iuenna-Hemmaberg“ wurde Franz Glaser 1978 vom Landesmuseum für Kärnten mit der Wiederaufnahme der Grabungen betraut. Zunächst standen die Sicherung und Restaurierung der alten Mosaikbefunde sowie Nachuntersuchungen im Vordergrund. Die Arbeiten führten jedoch zur Entdeckung einer Grabkapelle, der sogenannten ersten Kirche und weiterer Gebäude und wurden deshalb kontinuierlich fortgesetzt. ([Glaser, 1982, page 7](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nZu den wichtigsten Ergebnissen der folgenden Jahrzehnte gehörten die Freilegung der vierten und fünften Kirche zwischen 1990 und 1995 sowie die kontextbezogene Bearbeitung der Funde. Sabine Ladstätters monografische Auswertung der materiellen Kultur wurde dabei zu einem wesentlichen Baustein für das Verständnis der Chronologie und baulichen Entwicklung des Hemmabergs. Ab 1999 verlagerte sich der Schwerpunkt zeitweise auf das ostgotenzeitliche Gräberfeld in Globasnitz. Im Jahr 2005 waren dort 327 Gräber untersucht; mit der Abschlusskampagne 2008 erhöhte sich die Zahl auf 422 dokumentierte Bestattungen, während die ursprüngliche Gesamtzahl auf etwa 475 geschätzt wurde. Im Gräberfeld konnten außerdem zwei aufeinanderfolgende frühchristliche Kirchen erkannt werden. ([Eitler and Seidel, 2022, page 30](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))([Eitler, 2009, page 1](https://www.zotero.org/groups/4910727/iuenna/items/V2ZXTYT2))\n\nNach Abschluss der Gräberfeldarbeiten kehrte die Forschung 2009 mit neuen Fragen zum Gipfelplateau zurück. Die Kampagnen 2009–2013 untersuchten Flächen um die gotische Kirche und führten unter anderem zum Nachweis älterer Baustrukturen und weiterer Bestattungen. Aus diesen Arbeiten ging das 2016 begonnene FWF-Projekt *Cult Continuity at the Summit of Hemmaberg* hervor; 2017 folgte eine Lehrgrabung in Kooperation mit der Universität zu Köln. 2020 wurden unter der Leitung Sabine Ladstätters die Untersuchungen an der südlichen Wallanlage wieder aufgenommen. Diese Forschungen wurden von lokalen Akteuren wie dem Geschichtsverein Hemmaberg-Juenna, der Gemeinde und Pfarrer Peter Sticker organisatorisch und praktisch unterstützt. ([Eitler and Seidel, 2022, page 32](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 34](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 31](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Tiefengraber, 2021, page 7](https://www.zotero.org/groups/4910727/iuenna/items/2J84LRGD))\n\nSeit 2020 kennzeichnet ein methodischer Wandel die Forschung: Großflächige Geomagnetik, Georadar, Fernerkundung, GIS und digitale Archivierung ergänzen die Ausgrabungen. Die Prospektionskampagnen 2020–2023 verlagerten den Blick von einzelnen Fundstellen auf die gesamte römische Siedlungs- und Verkehrslandschaft. Mit dem 2023 initiierten IUENNA-Projekt wurde schließlich auch die mehr als hundertjährige Forschungsgeschichte selbst zum Gegenstand: verstreute analoge und digitale Dokumentationen werden zusammengeführt, retrodigitalisiert, standardisiert und langfristig in ARCHE gesichert. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, page 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Glaser, 1982",
+        "Eitler and Seidel, 2022",
+        "Glaser, 2006",
+        "Eitler, 2009",
+        "Tiefengraber, 2021",
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "forschungsgeschichte",
+        "winkler",
+        "hans winkler",
+        "rudolf egger",
+        "egger",
+        "glaser",
+        "franz glaser",
+        "piccottini",
+        "pollak",
+        "marianne pollak",
+        "ladstätter",
+        "jabornegg-altenfels",
+        "hauser",
+        "grabungen",
+        "ausgrabung",
+        "pioniere"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_de_iuenna_globasnitz",
+      "lang": "de",
+      "title": "Iuenna und Globasnitz: traditionelle Gleichsetzung und Neubewertung",
+      "category": "Siedlungszentrum & Straßenstation",
+      "summary": "In der älteren Forschung wurde **Iuenna** mit der antiken Siedlung im Bereich des heutigen Globasnitz und Kleindorf gleichgesetzt. Die jüngste Gesamtauswertung stellt diese Identifikation jedoch infrage und unterscheidet zwischen dem vicus von Globasnitz und der möglicherweise bei Tscherberg zu lokalisierenden Straßenstation Iuenna. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "content": "In der älteren Forschung wurde **Iuenna** mit der antiken Siedlung im Bereich des heutigen Globasnitz und Kleindorf gleichgesetzt. Die jüngste Gesamtauswertung stellt diese Identifikation jedoch infrage und unterscheidet zwischen dem vicus von Globasnitz und der möglicherweise bei Tscherberg zu lokalisierenden Straßenstation Iuenna. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) Der Name ist durch die Tabula Peutingeriana, eine mittelalterlich überlieferte römische Straßenkarte, belegt. Er wird von der lokalen keltischen Gottheit **Iouenat** abgeleitet, die durch einen Votivaltar vom Hemmaberg bekannt ist; dieselbe Wortwurzel lebt wahrscheinlich in den Namen Jaunberg und Jauntal fort. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nDie antike Siedlungszone liegt großteils unter dem heutigen Ortsgebiet von Globasnitz. Westlich des Ortes befand sich ein älterkaiserzeitliches Gräberfeld, während der spätantike beziehungsweise merowingerzeitliche Friedhof östlich des Ortskerns lag. Iuennas Bedeutung beruhte einerseits auf seiner Funktion als Straßenstation an mehreren Verkehrs- und Passverbindungen und andererseits auf seiner engen Beziehung zum Pilgerzentrum auf dem Hemmaberg. ([Pollak, 2023, p. 141](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nNeuere geophysikalische Untersuchungen ergänzen das durch Ausgrabungen gewonnene Bild. Im Zentrum von Globasnitz wurde ein etwa 70 × 60 Meter großes Areal mit mehreren Gebäuden und einem mutmaßlichen, ungefähr drei Meter breiten Straßenkörper erfasst. ([Schwaiger and Reiner, 2022, p. 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) Westlich des Orts zeichnen sich weitere antike Straßenverläufe, Gebäude und mögliche Grabbauten ab. Die Befunde zeigen, dass Iuenna in ein differenziertes Wegenetz eingebunden war, dessen Verbindungen unter anderem nach Westen in Richtung Jaunstein führten. ([Schwaiger and Reiner, 2022, p. 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nVon besonderer Bedeutung ist der spätantike und frühmerowingerzeitliche Friedhof. Er wurde nach älteren Beobachtungen und Sondagen zwischen 1999 und 2008 systematisch untersucht. Mit rund 425 Gräbern und etwa 440 Bestattungen gilt er als größter spätantik-merowingerzeitlicher Bestattungsplatz Österreichs und als bislang einziger umfassend untersuchter Friedhof einer Straßenstation in Noricum. ([Pollak, 2023, p. 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Innerhalb des Friedhofs lagen außerdem die Überreste zweier zeitlich aufeinanderfolgender Kirchen. Die ältere Kirche bestand bereits im letzten Drittel des 4. Jahrhunderts und ist damit älter als die frühesten bekannten Kirchenbauten auf dem Hemmaberg. ([Pollak, 2023, p. 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nEtwa 70 Prozent der Gräber waren beigabenlos. Die beigabenführenden Bestattungen gehören vor allem in die Zeit vom letzten Drittel des 5. bis zur Mitte des 6. Jahrhunderts. Einzelne Gürtelbestandteile, Fibeln, Perlen und andere Ausstattungsstücke bezeugen weitreichende Kontakte, die den Alpenraum mit west-, ost- und südeuropäischen Regionen verbanden. ([Pollak, 2023, p. 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Das Gräberfeld ist deshalb nicht allein als lokaler Bestattungsplatz zu verstehen, sondern als Zeugnis einer **Kontaktregion**, in der sich romanische, ostgotische, mediterrane und merowingerzeitliche Einflüsse überlagerten.",
+      "citations": [
+        "Glaser, 2002, p. 2",
+        "Pollak, 2023, p. 141",
+        "Schwaiger and Reiner, 2022, p. 8",
+        "Pollak, 2023, p. 142",
+        "Pollak, 2023, p. 144"
+      ],
+      "keywords": [
+        "iuenna",
+        "globasnitz",
+        "kleindorf",
+        "mansio",
+        "straßenstation",
+        "iouenat",
+        "tabula peutingeriana",
+        "friedhof",
+        "gräberfeld",
+        "bestattungen",
+        "merowinger",
+        "ostgoten",
+        "kontaktregion",
+        "geophysik",
+        "kaiserzeit"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_de_hemmaberg",
+      "lang": "de",
+      "title": "Der Hemmaberg",
+      "category": "Spätantikes Pilgerzentrum",
+      "summary": "Der 843 Meter hohe **Hemmaberg** ist eine der am besten erforschten spätantiken Höhensiedlungen des 4. bis 6. Jahrhunderts und ein überregional wichtiger Referenzort für die Erforschung des frühen Christentums im Südostalpenraum. Bekannt sind mindestens fünf frühchristliche Kirchen, zahlreiche Bestattungen und mehrere zugehörige Gebäude. Auf dem Berg befinden sich außerdem die spätgotische Wallfahrtskirche der heiligen Hemma und Dorothea sowie die Rosaliengrotte. ([Hagmann and Reiner, 2023, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Der 843 Meter hohe **Hemmaberg** ist eine der am besten erforschten spätantiken Höhensiedlungen des 4. bis 6. Jahrhunderts und ein überregional wichtiger Referenzort für die Erforschung des frühen Christentums im Südostalpenraum. Bekannt sind mindestens fünf frühchristliche Kirchen, zahlreiche Bestattungen und mehrere zugehörige Gebäude. Auf dem Berg befinden sich außerdem die spätgotische Wallfahrtskirche der heiligen Hemma und Dorothea sowie die Rosaliengrotte. ([Hagmann and Reiner, 2023, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nDie Besiedlungsgeschichte reicht jedoch wesentlich weiter zurück. Die ältesten bekannten Spuren gehören der Mittelbronzezeit an. Funde der späten Latène- und der Römerzeit werden mit einem Heiligtum der Gottheit Iouenat in Verbindung gebracht. Um 400 n. Chr. entstand eine befestigte Höhensiedlung von ungefähr fünf Hektar Fläche. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nDie früheste bekannte Kirche wurde wahrscheinlich um 400 über einem älteren römischen Gebäude errichtet. Sie verfügte unter anderem über eine Apsis, eine Klerusbank, ein erhöhtes Presbyterium und eine Reliquienkammer unter dem Altar. An die Kirche schlossen Bestattungsräume für privilegierte Personen und vermutlich für Angehörige von Klerus- und Stifterfamilien an. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nIm frühen 6. Jahrhundert wurden zwei monumentale Doppelkirchenanlagen errichtet. Zu ihnen gehörten Eucharistiekirchen, Memorialkirchen, Baptisterien, Reliquienkammern, Grabräume, Zisternen sowie Gebäude, die wahrscheinlich der Unterbringung und Versorgung von Pilgern und kirchlichem Personal dienten. Die Mosaikböden, Märtyrerreliquien und privilegierten Bestattungen unterstreichen den hohen Rang des Sakralkomplexes. ([Glaser, 2002, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))([Glaser, 2002, p. 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nDie Größe der Kirchenräume, die Reliquienverehrung und das mutmaßliche Pilgerhaus sprechen dafür, den Hemmaberg als **überregionales Pilgerzentrum** anzusprechen. ([Glaser, 2002, p. 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ)) Die doppelte Ausführung der liturgischen Einrichtungen wurde als Hinweis auf zwei nebeneinander bestehende christliche Gemeinden interpretiert – eine katholisch-romanische und eine arianisch-gotische Gemeinde in der Zeit der ostgotischen Herrschaft. Diese Deutung ist ein wichtiges Erklärungsmodell, sollte aber als wissenschaftliche Interpretation und nicht als zweifelsfrei gesicherte Tatsache verstanden werden. ([Glaser, 2002, p. 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nNeben den Kirchen bestand auf dem Hemmaberg eine befestigte Siedlung mit Wohnbauten und handwerklichen Arbeitsplätzen. Nachgewiesen sind unter anderem Eisenverarbeitung, Töpferei, Textilproduktion sowie Hinweise auf Bronze- und Glasverarbeitung. Das Gräberfeld der Höhensiedlung wurde ungefähr von 400 bis zum Ende des 6. Jahrhunderts genutzt; das Fundmaterial deutet darauf hin, dass die spätantike Siedlung um 600 endete. ([Glaser, 2002, p. 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 2",
+        "Glaser, 2002, p. 2",
+        "Glaser, 2002, p. 4",
+        "Glaser, 2002, p. 5"
+      ],
+      "keywords": [
+        "hemmaberg",
+        "pilgerzentrum",
+        "pilger",
+        "höhensiedlung",
+        "kirchen",
+        "doppelkirche",
+        "baptisterium",
+        "reliquien",
+        "mosaik",
+        "mosaikböden",
+        "rosaliengrotte",
+        "hemma",
+        "dorothea",
+        "jouenat",
+        "arianisch",
+        "ostgoten",
+        "spätantike",
+        "wallfahrt"
+      ],
+      "graph_node_id": "col_1792212"
+    },
+    {
+      "id": "found_de_alltag_wirtschaft",
+      "lang": "de",
+      "title": "Vertiefende Aspekte: Langzeitnutzung, Alltag und Wirtschaft",
+      "category": "Alltag, Ernährung & Wirtschaft",
+      "summary": "Die neuere Forschung hat das Bild des Hemmabergs zeitlich erheblich erweitert. Auf dem Gipfelplateau belegen 24.848 neu dokumentierte Keramikobjekte eine größere Siedlung der mittleren und späten Bronzezeit und nicht nur vereinzelte Aktivitäten. Für die folgenden Jahrhunderte ist die Nutzung weniger klar; um die Mitte des 1. Jahrhunderts n. Chr. wurde der zentrale Gipfelbereich jedoch umfassend zu einem römischen Heiligtum umgestaltet. In der Spätantike wich die sakrale Nutzung einer dichten Höhensiedlung. Im 6. Jahrhundert entstand auf dem Gipfel erneut eine Kirche, deren Nutzungstradition bis zur heutigen Wallfahrtskirche weitergeführt wurde. Damit lässt sich eine christliche Kultkontinuität vom 6. Jahrhundert bis in die Gegenwart fassen; eine ungebrochene Kontinuität vom vorrömischen oder römischen Heiligtum zum christlichen Kult ist damit jedoch nicht bewiesen. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))",
+      "content": "Die neuere Forschung hat das Bild des Hemmabergs zeitlich erheblich erweitert. Auf dem Gipfelplateau belegen 24.848 neu dokumentierte Keramikobjekte eine größere Siedlung der mittleren und späten Bronzezeit und nicht nur vereinzelte Aktivitäten. Für die folgenden Jahrhunderte ist die Nutzung weniger klar; um die Mitte des 1. Jahrhunderts n. Chr. wurde der zentrale Gipfelbereich jedoch umfassend zu einem römischen Heiligtum umgestaltet. In der Spätantike wich die sakrale Nutzung einer dichten Höhensiedlung. Im 6. Jahrhundert entstand auf dem Gipfel erneut eine Kirche, deren Nutzungstradition bis zur heutigen Wallfahrtskirche weitergeführt wurde. Damit lässt sich eine christliche Kultkontinuität vom 6. Jahrhundert bis in die Gegenwart fassen; eine ungebrochene Kontinuität vom vorrömischen oder römischen Heiligtum zum christlichen Kult ist damit jedoch nicht bewiesen. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))\n\nInterdisziplinäre Untersuchungen geben zudem Einblick in das Alltagsleben jenseits der Kirchen und Pilger. Eine ursprünglich zur Lehmentnahme angelegte und später mit Siedlungsabfall verfüllte Grube enthielt Keramik, Kleinfunde, Tierknochen und verkohlte Pflanzenreste. Ihre Verfüllung gehört in die Mitte beziehungsweise das dritte Viertel des 5. Jahrhunderts, also in die Zeit vor dem Ausbau der monumentalen Pilgeranlage. ([Forstenpointner et al., 2003, page 5](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 17](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Archäobotanisch dominieren Getreidearten mit 96,3 Prozent der bestimmten Pflanzenreste; die Tierknochen weisen auf die besondere Bedeutung des Rindes für die Fleischversorgung hin. ([Forstenpointner et al., 2003, page 10](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 20](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Rohmaterial und Fehlprodukte belegen außerdem ein kleines Töpfereiareal mit Nutzung lokaler Tone. ([Forstenpointner et al., 2003, page 8](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))\n\nMediterranes Tafelgeschirr und Weinamphoren zeigen, dass die Höhensiedlung trotz ihrer alpinen Lage in überregionale Austauschsysteme eingebunden blieb. Gleichzeitig deutet das Fundspektrum auf eine zunehmende lokale Selbstversorgung und eine Verringerung spezialisierter Produktion und regionalen Handels im Verlauf des 5. und 6. Jahrhunderts. ([Forstenpointner et al., 2003, page 18](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Diese wirtschaftsgeschichtliche Interpretation beruht allerdings wesentlich auf einzelnen geschlossenen Fundkomplexen und sollte nicht ohne Weiteres auf alle Bewohner oder sämtliche Siedlungsphasen übertragen werden. Besonders offen bleiben die genaue Bevölkerungsgröße, das Verhältnis zwischen dauerhafter Bevölkerung und Pilgern, die Versorgung des Sakralzentrums sowie die wirtschaftlichen Beziehungen zwischen Höhensiedlung, vicus und Villenlandschaft.",
+      "citations": [
+        "Eitler, 2019",
+        "Forstenpointner et al., 2003"
+      ],
+      "keywords": [
+        "alltag",
+        "wirtschaft",
+        "langzeitnutzung",
+        "keramik",
+        "24848",
+        "bronzezeit",
+        "heiligtum",
+        "iuppiter",
+        "abfallgrube",
+        "ernährung",
+        "speisezettel",
+        "getreide",
+        "dinkel",
+        "roggen",
+        "rindfleisch",
+        "schwein",
+        "schaf",
+        "ziege",
+        "weinamphoren",
+        "afrikanische sigillata",
+        "forstenpointner",
+        "ladstätter"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_de_bioarchaeologie",
+      "lang": "de",
+      "title": "Bioarchäologie",
+      "category": "Bioarchäologie & Anthropologie",
+      "summary": "Die Bioarchäologie verbindet in der Mikroregion die Untersuchung menschlicher Skelette mit Archäozoologie, Archäobotanik, Taphonomie und naturwissenschaftlichen Verfahren. Sie erweitert die Auswertung von Architektur und Artefakten um Fragen nach Demografie, Gesundheit, Ernährung, körperlicher Belastung, Mobilität und dem Umgang mit den Toten. Die bereits dargestellten Tierknochen und Pflanzenreste gehören daher ebenso zur bioarchäologischen Evidenz wie die menschlichen Bestattungen.",
+      "content": "Die Bioarchäologie verbindet in der Mikroregion die Untersuchung menschlicher Skelette mit Archäozoologie, Archäobotanik, Taphonomie und naturwissenschaftlichen Verfahren. Sie erweitert die Auswertung von Architektur und Artefakten um Fragen nach Demografie, Gesundheit, Ernährung, körperlicher Belastung, Mobilität und dem Umgang mit den Toten. Die bereits dargestellten Tierknochen und Pflanzenreste gehören daher ebenso zur bioarchäologischen Evidenz wie die menschlichen Bestattungen.\n\nFür den Friedhof von Globasnitz ergibt sich, soweit Alter und Geschlecht bestimmbar waren, eine auffallend ausgewogene Verteilung von 122 Männern, 119 Frauen und 102 Kindern. ([Pollak, 2023, page 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Diese Zahlen sprechen für einen regulären Bestattungsplatz einer sozial umfassenden Bevölkerung und nicht für eine ausschließlich militärische oder anderweitig selektierte Gruppe. Die demografische Verteilung darf dennoch nicht unmittelbar als Abbild der lebenden Bevölkerung gelesen werden, da Erhaltungsbedingungen, unbestimmbare Skelette, Belegungsdauer und unterschiedliche Bestattungschancen das Bild beeinflussen.\n\nEin kleineres Gräberfeld auf dem Hemmaberg umfasste drei Frauen, vier Männer, einen vermutlich männlichen Jugendlichen und 21 Kinder. Unter den Kindern befanden sich vier Neugeborene, vier Säuglinge unter einem Jahr und sieben weitere Kinder, die vor dem dritten Lebensjahr starben. ([Eitler and Seidel, 2022, page 251](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 252](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W)) Der hohe Kinderanteil verweist auf erhebliche frühkindliche Sterblichkeit, ist aber auch durch die für Kinderskelette günstigen Erhaltungsbedingungen und die geringe Größe des untersuchten Bestattungsplatzes beeinflusst. Die räumliche und demografische Zusammensetzung wurde als Hinweis auf eine verwandtschaftlich verbundene Gruppe und eine relativ kurze Belegungsdauer interpretiert. ([Eitler and Seidel, 2022, page 262](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nMindestens zehn Bestattungen in Globasnitz weisen künstlich umgeformte Schädel auf, darunter auch Männer. ([Pollak, 2017, page 15](https://www.zotero.org/groups/4910727/iuenna/items/7F5YG5XF)) Die Praxis entstand durch Bandagierung des Kopfes im frühen Kindesalter und führte nach der vorliegenden Einschätzung nicht zwangsläufig zu körperlichen oder geistigen Beeinträchtigungen. ([Pollak, 2021, page 58](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) Schädelmodifikation darf nicht schematisch als eindeutiger ethnischer Marker oder als Beweis „ostgotischer“ Identität verwendet werden: Geschlecht, soziale Stellung, regionale Tradition und individuelle Biografie müssen gemeinsam berücksichtigt werden, und das konkrete Herkunftsgebiet der betroffenen Personen ist derzeit nicht sicher bestimmbar. ([Pollak, 2021, page 60](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) Ein angekündigtes archäogenetisches Teilprojekt mit Proben von rund 160 Individuen soll künftig Herkunft und verwandtschaftliche Beziehungen näher untersuchen; publizierte lokale Ergebnisse dieser Analysen lagen in den ausgewerteten Unterlagen noch nicht vor. ([Pollak, 2023, page 150](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nBesonders außergewöhnlich ist die 2013 entdeckte Bestattung eines mittelalten Mannes aus dem 6. Jahrhundert, dem der linke Fuß oberhalb des Knöchels fehlte. Ein Eisenring und Holzreste anstelle des Fußes werden als Bestandteil einer Prothese interpretiert und zählen zu den ältesten in Europa unmittelbar mit ihrem Träger gefundenen Beispielen. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Makroskopische Untersuchung, Röntgen und Computertomografie zeigten eine verheilte Amputation, möglicherweise nach einer zwischenzeitlichen Osteomyelitis. Die Atrophie des linken Unterschenkels spricht für ein mehrjähriges Überleben; Arthrosen an Knien und Schultergürtel liefern vorsichtige Hinweise darauf, dass die Prothese, vielleicht zusammen mit einer Krücke, funktional genutzt wurde. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Holzreste und die Lage des Eisenrings sprechen für einen hölzernen Zapfen mit metallverstärktem Ende und einer Befestigung aus organischem Material. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Ob die Amputation medizinisch, unfallbedingt, gewaltsam oder als Strafe erfolgte, bleibt offen. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6))\n\nDie Bioarchäologie eröffnet damit einen direkten Zugang zu Lebensbedingungen und individuellen Biografien, besitzt aber noch erhebliche Forschungspotenziale. Besonders wichtig wären eine vollständige populationsbiologische Auswertung der Gräberfelder, systematische paläopathologische Vergleiche, stabile Isotopenanalysen zu Ernährung und Mobilität, alte DNA zur Untersuchung biologischer Verwandtschaft sowie eine gemeinsame räumliche Analyse von Skelettdaten, Grabform, Beigaben und Kirchenbezug. Solche Untersuchungen sollten archäologische und historische Identitätszuschreibungen prüfen, nicht lediglich bestätigen.",
+      "citations": [
+        "Pollak, 2023",
+        "Eitler and Seidel, 2022",
+        "Pollak, 2017",
+        "Pollak, 2021",
+        "Binder et al., 2016"
+      ],
+      "keywords": [
+        "bioarchäologie",
+        "bioarchaeologie",
+        "anthropologie",
+        "archäozoologie",
+        "archäobotanik",
+        "skelette",
+        "fußprothese",
+        "fussprothese",
+        "prothese",
+        "amputation",
+        "eisenring",
+        "holzstumpf",
+        "binder",
+        "schädeldeformation",
+        "schädelverformung",
+        "turmschädel",
+        "bandagieren",
+        "ostgoten",
+        "ostgotenzeit",
+        "demografie",
+        "geschlechterverteilung",
+        "kindersterblichkeit",
+        "ad sanctos",
+        "adna",
+        "pollak"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_de_st_stefan",
+      "lang": "de",
+      "title": "St. Stefan",
+      "category": "Römische Villenanlage",
+      "summary": "In **St. Stefan/Šteben**, rund 1,2 km nördlich von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. ([Schwaiger and Reiner, 2022, p. 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))",
+      "content": "In **St. Stefan/Šteben**, rund 1,2 km nördlich von Globasnitz, liegt eine ausgedehnte römische Villenanlage. Ältere Befunde waren zunächst als römisches Bad angesprochen worden. Geomagnetische und Georadar-Messungen zeigten jedoch mehrere Gebäude, Begrenzungsmauern, Raumgruppen und einen repräsentativ gestalteten Komplex mit einem Raum, der zwei gegenüberliegende Apsiden besaß. Eine bereits 1930 freigelegte Hypokaustheizung bestätigt die gehobene Ausstattung. ([Schwaiger and Reiner, 2022, p. 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nDas bislang prospektierte Areal umfasst etwa 7.700 Quadratmeter, wobei sich die Bebauung wahrscheinlich weiter nach Süden fortsetzt und dort teilweise von modernen Gebäuden überlagert wird. Die Gesamtheit der Strukturen erlaubt eine Interpretation als großes römisches Landgut. Die Anlage veranschaulicht damit die landwirtschaftliche und wirtschaftliche Erschließung des Umlandes von Iuenna. ([Schwaiger and Reiner, 2022, p. 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) Die gelegentlich verwendete Bezeichnung „Super-Villa“ bringt die außergewöhnliche Größe zum Ausdruck; die genaue Datierung einzelner Bauphasen und die Frage einer Nutzung bis in die Spätantike bleiben jedoch Gegenstand weiterer Untersuchungen. ([Hagmann and Reiner, 2023, p. 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Schwaiger and Reiner, 2022, p. 11",
+        "Hagmann and Reiner, 2023, p. 3"
+      ],
+      "keywords": [
+        "st. stefan",
+        "sankt stefan",
+        "šteben",
+        "steben",
+        "villa",
+        "villenanlage",
+        "landgut",
+        "super-villa",
+        "hypokaust",
+        "hypokaustheizung",
+        "apsiden",
+        "georadar",
+        "geomagnetik",
+        "römerzeit",
+        "barbius vercaius",
+        "winkler"
+      ],
+      "graph_node_id": "col_1792411"
+    },
+    {
+      "id": "found_de_iuenna_projekt",
+      "lang": "de",
+      "title": "Das IUENNA‑Projekt",
+      "category": "Digital Humanities Projekt",
+      "summary": "Das moderne **IUENNA‑Projekt** ist von der antiken Ortsbezeichnung zu unterscheiden. Der Projektname ist ein Akronym für *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Das im Rahmen von Go!Digital 3.0 entwickelte Vorhaben betrachtet Hemmaberg, Globasnitz/Iuenna, Jaunstein und St. Stefan gemeinsam als archäologische Mikroregion. ([Hagmann and Reiner, 2023, p. 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Das moderne **IUENNA‑Projekt** ist von der antiken Ortsbezeichnung zu unterscheiden. Der Projektname ist ein Akronym für *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Das im Rahmen von Go!Digital 3.0 entwickelte Vorhaben betrachtet Hemmaberg, Globasnitz/Iuenna, Jaunstein und St. Stefan gemeinsam als archäologische Mikroregion. ([Hagmann and Reiner, 2023, p. 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nBeteiligt waren das kärnten.museum, das Österreichische Archäologische Institut und das Austrian Centre for Digital Humanities and Cultural Heritage der Österreichischen Akademie der Wissenschaften, das Bundesdenkmalamt sowie die Firma ARDIG. ([Hagmann and Reiner, 2023, p. 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) Ausgangspunkt war die problematische Überlieferung einer mehr als hundertjährigen Forschungsgeschichte: Umfangreiche Grabungsunterlagen lagen analog und digital an verschiedenen Orten, waren teilweise unzureichend strukturiert und deshalb langfristig von Informationsverlust bedroht. ([Hagmann and Reiner, 2023, p. 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nIUENNA verfolgt deshalb zwei eng verbundene Ziele. Zum einen sollen die vorhandenen analogen und digitalen Forschungsdaten gesammelt, digitalisiert, georeferenziert, mit standardisierten Metadaten versehen und dauerhaft archiviert werden. Zum anderen sollen die zusammengeführten Informationen für eine kulturhistorische Modellstudie zu Globasnitz und seinem Umland ausgewertet werden. ([Hagmann and Reiner, 2023, p. 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nEin geografisches Informationssystem und eine Geodatenbank verbinden Fundobjekte, Befunde, räumliche Einheiten, Fotografien, Pläne, Texte, Tabellen, geophysikalische Messungen und 3D-Modelle. Fundstücke sollen dabei möglichst mit ihrem archäologischen Kontext und dieser wiederum mit der modernen Topografie verknüpft werden. ([Hagmann and Reiner, 2023, p. 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) Die Daten folgen Open-Science- und FAIR-Grundsätzen, werden mit kontrollierten Vokabularen erschlossen und erhalten dauerhaft zitierbare Identifikatoren. Ihre Langzeitarchivierung und Veröffentlichung erfolgt im Repositorium **ARCHE**; ergänzend dient eine Web-Mapping-Anwendung der räumlichen Vermittlung. ([Hagmann and Reiner, 2023, p. 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, p. 7](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nDie 2025 veröffentlichte IUENNA-Datensammlung gliedert das Material in die Bereiche Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal und Retrodigitalisate. Sie umfasst unter anderem Grabungsdokumentationen, Geophysik, Fotografien, Zeichnungen, Datenbanken, georeferenzierte Raster- und Vektordaten, restauratorische Unterlagen, bioarchäologische Informationen und 3D-Daten. ([Hagmann and Reiner, 2025](https://www.zotero.org/groups/4910727/iuenna/items/JG22D2TX))\n\nDamit ist IUENNA nicht nur ein Forschungsprojekt zur Geschichte des südlichen Jauntals. Es ist zugleich ein Modell dafür, wie heterogene Dokumentationen langjähriger archäologischer Untersuchungen gesichert, zusammengeführt, transparent erschlossen und für neue Fragestellungen wiederverwendbar gemacht werden können. ([Hagmann and Reiner, 2023, p. 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Hagmann and Reiner, 2023, p. 1",
+        "Hagmann and Reiner, 2023, p. 2",
+        "Hagmann and Reiner, 2023, p. 4",
+        "Hagmann and Reiner, 2023, p. 6",
+        "Hagmann and Reiner, 2023, p. 7",
+        "Hagmann and Reiner, 2025",
+        "Hagmann and Reiner, 2023, p. 5"
+      ],
+      "keywords": [
+        "iuenna",
+        "projekt",
+        "iuenna-projekt",
+        "godigital",
+        "öaw",
+        "öai",
+        "kärnten.museum",
+        "acdh-ch",
+        "bda",
+        "ardig",
+        "arche",
+        "fair",
+        "care",
+        "open science",
+        "geopackage",
+        "wma",
+        "web-mapping",
+        "datenrettung",
+        "repositorium"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_de_datenumfang_nachhaltigkeit",
+      "lang": "de",
+      "title": "Datenumfang, Zugänglichkeit und digitale Nachhaltigkeit",
+      "category": "Dateninfrastruktur & Digitale Nachhaltigkeit",
+      "summary": "Das von Dominik Hagmann und Franziska Reiner geleitete und von Nicola Math unterstützte Go!Digital-3.0-Projekt lief vom 1. Januar 2023 bis zum 31. Dezember 2024. Es führte Forschungsergebnisse aus mehr als einem Jahrhundert und von über 200 Fundstellen zusammen. Die abschließend in ARCHE überführte Sammlung umfasst über 20.000 digitale Objekte und mehr als 350 GB, darunter Grabungsberichte, geophysikalische Daten, 3D-Modelle und retrodigitalisierte Archivalien. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "content": "Das von Dominik Hagmann und Franziska Reiner geleitete und von Nicola Math unterstützte Go!Digital-3.0-Projekt lief vom 1. Januar 2023 bis zum 31. Dezember 2024. Es führte Forschungsergebnisse aus mehr als einem Jahrhundert und von über 200 Fundstellen zusammen. Die abschließend in ARCHE überführte Sammlung umfasst über 20.000 digitale Objekte und mehr als 350 GB, darunter Grabungsberichte, geophysikalische Daten, 3D-Modelle und retrodigitalisierte Archivalien. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nDer Weg zum Archiv war selbst ein wesentliches Forschungsergebnis. Eine frühe Bestandsaufnahme ergab etwa 200 GB mit rund 28.000 Dateien in 1.200 Ordnern sowie ungefähr 40 Behälter mit etwa 6.000 analogen Objekten. Deren Digitalisierung erzeugte zunächst etwa 650 GB. Erst durch Bewertung, Entfernung von Dubletten und irrelevanten Dateien sowie datenschutzbedingte Aussonderungen entstand ein reduzierter, forschungsfähiger Langzeitbestand. Eine hierarchische, menschenlesbare Ordnerstruktur verbindet standortbezogene Hauptgruppen mit Untergruppen für Fernerkundung, Geophysik, Grabung, 3D-Photogrammetrie und Fundzeichnungen. ([Hagmann et al., page 8](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 15](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nDie Erschließung verwendet kontrollierte Vokabulare wie Getty AAT und Wikidata sowie persistente Identifikatoren. Die Daten sind über ARCHE und soweit möglich über das europäische ARIADNE-Portal auffindbar; Webanwendungen ermöglichen räumliche und objektbezogene Abfragen. ([Hagmann et al., page 7](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann and Reiner, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3)) Dabei ist zwischen Auffindbarkeit und freiem Dateizugriff zu unterscheiden: Rund 20 Prozent der Dateien stehen unter CC BY 4.0 offen zur Verfügung, etwa 80 Prozent bleiben aus urheberrechtlichen oder anderen rechtlichen Gründen nur auf Anfrage zugänglich. Für sämtliche Objekte sind jedoch öffentliche Metadaten vorhanden, die in ARCHE unter CC0 bereitgestellt werden. ([Hagmann et al., page 12](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) IUENNA verwirklicht somit kein uneingeschränkt offenes Archiv, sondern einen abgestuften, „semi-offenen“ Zugang, der FAIR-Ziele mit CARE, Datenschutz, Fundstellenschutz und Rechteklärung verbindet.\n\nEin Hangrutsch am Simonsberg nach Extremwetter am 6. August 2023 veranschaulichte die Gefährdung von Fundstellen, Museen und Dokumentationsbeständen durch Naturereignisse und Klimawandel. Die Projektpublikationen betonen deshalb, dass statische Sicherung auf lokalen Datenträgern nicht genügt: Langzeitarchivierung verlangt resiliente Infrastruktur, Formatmigration, kontinuierliche Qualitätskontrolle sowie dauerhaftes institutionelles, technisches und finanzielles Engagement. ([Hagmann and Reiner, 2025, page 1](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3))([Hagmann et al., page 13](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) Der Bestand ist dabei als umfangreicher, weitgehend statischer „Large-Data“-Korpus und nicht als echtes „Big Data“ zu verstehen. Sein Wert liegt im Kontextreichtum und in der Wiederverwendbarkeit. Unter „Data Upcycling“ wird die Erzeugung neuer Forschungsprodukte aus älteren Daten verstanden; offene strukturierte Daten können etwa interaktive Karten und mit generativer KI entwickelte Abfragewerkzeuge speisen. Eine solche Nachnutzung setzt jedoch nachvollziehbare Metadaten, geeignete Lizenzen und ethisch kontrollierte Zugriffsmodelle voraus. ([Hagmann et al., page 10](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 11](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "citations": [
+        "Hagmann and Reiner, 2025"
+      ],
+      "keywords": [
+        "datenumfang",
+        "nachhaltigkeit",
+        "digitale nachhaltigkeit",
+        "open access",
+        "lizenzen",
+        "cc by 4.0",
+        "cc0",
+        "350 gb",
+        "650 gb",
+        "200 fundstellen",
+        "20000 objekte",
+        "arche",
+        "fair",
+        "care",
+        "simonsberg",
+        "hangrutsch",
+        "daten-upcycling",
+        "datenrettung",
+        "godigital",
+        "hagmann",
+        "reiner",
+        "math"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_de_neubewertung",
+      "lang": "de",
+      "title": "Neue Ergebnisse und topografische Neubewertung",
+      "category": "Topografische Neubewertung & Prospektion",
+      "summary": "Der Gedenkband-Beitrag führt die zwischen 2020 und 2023 gewonnenen Prospektionsdaten mit älteren Grabungs-, Fund- und Fernerkundungsdaten zusammen. In vier Messkampagnen wurden rund 21 ha geomagnetisch und zusätzlich etwa 4 ha mit Georadar untersucht. Dadurch lassen sich erstmals Umfang, innere Gliederung und verkehrsgeografische Einbindung der römischen Siedlungslandschaft um Globasnitz großräumig beurteilen. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))",
+      "content": "Der Gedenkband-Beitrag führt die zwischen 2020 und 2023 gewonnenen Prospektionsdaten mit älteren Grabungs-, Fund- und Fernerkundungsdaten zusammen. In vier Messkampagnen wurden rund 21 ha geomagnetisch und zusätzlich etwa 4 ha mit Georadar untersucht. Dadurch lassen sich erstmals Umfang, innere Gliederung und verkehrsgeografische Einbindung der römischen Siedlungslandschaft um Globasnitz großräumig beurteilen. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nFür Globasnitz ergibt sich das Bild eines etwa 7–9 ha großen, nichtstädtischen vicus. Im Ortszentrum wurden mehrere Gebäude und eine Nord-Süd-Straße nachgewiesen; westlich davon zeichnen sich weitere Straßen, ummauerte Gebäudekomplexe und eine mindestens 400 m lange Gräberstraße mit teils aufwendig ausgestatteten Grabbezirken ab. Die Siedlung war somit von beachtlicher Größe, lag jedoch mehr als drei Kilometer südlich der Hauptstraße Celeia–Virunum und war über mehrere Neben- beziehungsweise Stichstraßen an diese angebunden. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nMethodisch beruhten die neuen Prospektionen überwiegend auf einem fünfkanaligen Fluxgate-Gradiometer mit 0,5 m Sensorabstand sowie einem 400-MHz-Georadar; RTK-GPS ermöglichte die präzise Georeferenzierung, die Auswertung erfolgte in ArcGIS Pro. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) Im zentralen Messbereich wurden Strukturen bereits ab etwa 0,4 m Tiefe sichtbar. Dort liegen mehrere unterschiedlich orientierte Gebäude beiderseits einer drei Meter breiten Nord-Süd-Straße; einzelne Fundamente reichen bis ungefähr 1,5 m Tiefe. Das Areal ist zugleich durch den 1946 entdeckten Schatz von 322 römischen Münzen archäologisch verankert. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49))([Reiner and Profant, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) Für die Fernverbindungen ist außerdem bedeutsam, dass 2023 am Nordende des Tainacherfelds weitere Abschnitte der Straße in Richtung Virunum geophysikalisch erfasst wurden. ([“Annual Report 2023”, 2024, page 103](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))([“Annual Report 2023”, 2024, page 104](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))\n\nDiese Lage spricht gegen die bisher häufig angenommene Funktion von Globasnitz als Straßenstation Iuenna. Als alternative Lokalisierung wird **Tscherberg** vorgeschlagen: Der Ort lag unmittelbar an der römischen Haupttrasse, weist Hinweise auf römerzeitliche Bebauung auf und stimmt ungefähr mit der auf der *Tabula Peutingeriana* genannten Entfernung von 23 römischen Meilen ab Virunum überein. Die Identifikation bleibt eine begründete Hypothese, da der weitere Straßenverlauf und die archäologische Situation noch nicht hinreichend untersucht sind. Globasnitz wäre demnach ein vicus unbekannten antiken Namens, während die spätantike Befestigung auf dem Katharinakogel als Nachfolgesiedlung des bei Tscherberg vermuteten Iuenna verstanden werden könnte. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nFür die Entstehung und Bedeutung des vicus werden deshalb andere Faktoren diskutiert. Dazu gehören die umliegenden Landgüter lokaler und städtischer Eliten sowie eine mögliche kultische Anziehungskraft des Hemmabergs und der Rosaliengrotte. Ein römerzeitliches Quellheiligtum und eine Kontinuität vom paganen Kultplatz zum spätantiken christlichen Pilgerzentrum sind denkbar, bislang aber nicht archäologisch gesichert. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nIn **St. Stefan**, rund 1,2 km nördlich von Globasnitz, konnte ein etwa 2 ha großer, mehrphasiger Villenkomplex nachgewiesen werden. Die mindestens drei Bauphasen umfassende Anlage besitzt Hofmauern, mehrere Raumgruppen, Nebengebäude sowie ein Badegebäude mit Hypokausten und Wasserkanal. Typologisch gehört sie zu den im südlichen Noricum verbreiteten Orthogonalanlagen mit funktionaler Trennung zwischen repräsentativem Wohnbereich und landwirtschaftlich genutzten Teilen. Die in der Pfarrkirche verbaute Grabinschrift des ehemaligen Virunenser Ädilen L. Barbius Vercaius könnte auf den sozial gehobenen Kreis der Grundbesitzer in dieser Villenlandschaft hinweisen. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nAuch die Bedeutung des IUENNA-Projekts lässt sich nun konkreter fassen. Die in ARCHE archivierte Sammlung umfasst mehr als 20.000 digitale Ressourcen aus über hundert Jahren Forschung, darunter Grabungsberichte, geophysikalische Messbilder, retrodigitalisierte Archivalien und 3D-Modelle. Sie ist in sechs semantisch definierte Untersammlungen gegliedert und verwendet nachhaltige Dateiformate. Neben den FAIR-Prinzipien berücksichtigt das Projekt ausdrücklich die CARE-Prinzipien und schafft damit eine Grundlage für offene, ethisch verantwortungsvolle, interdisziplinäre und künftig auch KI-gestützte Forschung. Die Wiederverwendung von Hans Winklers retrodigitalisierten Skizzen bei der Interpretation des Badegebäudes von St. Stefan zeigt exemplarisch den unmittelbaren wissenschaftlichen Nutzen dieser Dateninfrastruktur. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\n* * *",
+      "citations": [
+        "Reiner and Profant, 2025"
+      ],
+      "keywords": [
+        "neubewertung",
+        "tscherberg",
+        "vicus",
+        "katharinakogel",
+        "straßenstation",
+        "prospektion",
+        "georadar",
+        "geomagnetik",
+        "christian gugl",
+        "gugl",
+        "gräberstraße",
+        "celeia-virunum",
+        "virunum-celeia",
+        "hauptstraße",
+        "barbius vercaius",
+        "winkler",
+        "münzen",
+        "münzschatz",
+        "322",
+        "tainacherfeld",
+        "reiner",
+        "profant"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_en_microregion",
+      "lang": "en",
+      "title": "The Archaeological Microregion in the Southern Jauntal",
+      "category": "Historical & Archaeological Context",
+      "summary": "Hemmaberg and the archaeological sites within the present-day municipality of Globasnitz are not isolated monuments but form an interconnected **archaeological microregion in the southern Jauntal**. It includes the hilltop settlement and Early Christian pilgrimage centre on Hemmaberg, the Roman vicus of Globasnitz and the now disputed location of the road station Iuenna, the villa complex at St. Stefan, and the sites at Jaunstein. Together, they document more than two millennia of development, from prehistory through the Roman and Late Antique periods to the Early Middle Ages. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Hemmaberg and the archaeological sites within the present-day municipality of Globasnitz are not isolated monuments but form an interconnected **archaeological microregion in the southern Jauntal**. It includes the hilltop settlement and Early Christian pilgrimage centre on Hemmaberg, the Roman vicus of Globasnitz and the now disputed location of the road station Iuenna, the villa complex at St. Stefan, and the sites at Jaunstein. Together, they document more than two millennia of development, from prehistory through the Roman and Late Antique periods to the Early Middle Ages. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nTransport geography played a central role. According to the traditional localisation, Iuenna was situated between the Norican cities of **Virunum** and **Celeia** and close to a crossing of the Karawanks. In addition to the interregional road connection, the Luscha Pass south of Globasnitz may therefore have contributed to the emergence and significance of the settlement. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023",
+        "Glaser, 2002"
+      ],
+      "keywords": [
+        "archaeological",
+        "microregion",
+        "southern",
+        "jauntal",
+        "microregion",
+        "jauntal",
+        "podjuna",
+        "landscape",
+        "karawanks"
+      ],
+      "graph_node_id": "col_1792417"
+    },
+    {
+      "id": "found_en_history_of_research",
+      "lang": "en",
+      "title": "History of Research",
+      "category": "History of Research",
+      "summary": "Interest in the antiquities of the Jauntal predates modern archaeology by several centuries. In the late fifteenth century, two travelling monks copied a Roman funerary inscription from the area at the foot of the Petzen. In 1838, M. F. von Jabornegg-Altenfels published the first synthetic account of Iuenna and located the settlement between Globasnitz and St. Stefan on the basis of foundations, graves, roads, and small finds. In 1887, Baron Karl Hauser provided the first historical-archaeological notice of ancient masonry and finds on Hemmaberg. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))",
+      "content": "Interest in the antiquities of the Jauntal predates modern archaeology by several centuries. In the late fifteenth century, two travelling monks copied a Roman funerary inscription from the area at the foot of the Petzen. In 1838, M. F. von Jabornegg-Altenfels published the first synthetic account of Iuenna and located the settlement between Globasnitz and St. Stefan on the basis of foundations, graves, roads, and small finds. In 1887, Baron Karl Hauser provided the first historical-archaeological notice of ancient masonry and finds on Hemmaberg. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))\n\nField research began in 1906 under **Hans Winkler**, a notary based in Eberndorf. His work focused on the eastern double-church complex and its mosaics, but also included the cemetery, the fortifications on Hemmaberg, and sites west and east of Globasnitz. In 1914, Rudolf Egger had the exposed remains resurveyed and carried out limited additional excavations; he published the church buildings in 1916. Winkler’s sketchbooks remain essential because many plans of his excavations in the valley were never published. They document, among other activities, trial trenches in 1913 within the cemetery later investigated systematically and the partial excavation of a bath complex near St. Stefan in 1930. ([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 1982, page 10](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))\n\nA new phase of institutionally supported research began in the 1970s. At the initiative of museum director Gernot Piccottini, the municipality, parish priest Franz Posch, and the association “Freunde Iuenna-Hemmaberg”, founded in 1976, the Regional Museum of Carinthia appointed Franz Glaser to resume excavations in 1978. The initial priorities were to secure and restore the previously exposed mosaics and to conduct supplementary investigations. The discovery of a funerary chapel, the so-called first church, and additional buildings led to the continuation of systematic fieldwork. ([Glaser, 1982, page 7](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nMajor results of the following decades included the excavation of the fourth and fifth churches between 1990 and 1995 and the contextual analysis of the finds. Sabine Ladstätter’s monographic study of the material culture became fundamental to understanding the chronology and architectural development of Hemmaberg. From 1999 onwards, research temporarily shifted towards the Ostrogothic-period cemetery at Globasnitz. By 2005, 327 graves had been investigated; the final campaign in 2008 brought the number of documented burials to 422, while the original total was estimated at approximately 475. Two successive Early Christian churches were also identified within the cemetery. ([Eitler and Seidel, 2022, page 30](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))([Eitler, 2009, page 1](https://www.zotero.org/groups/4910727/iuenna/items/V2ZXTYT2))\n\nAfter completion of the cemetery excavations, research returned to the summit plateau in 2009 with new questions. Campaigns from 2009 to 2013 investigated areas around the Gothic church and revealed older structures and further burials. This work led to the FWF project *Cult Continuity at the Summit of Hemmaberg*, launched in 2016; a training excavation in cooperation with the University of Cologne followed in 2017. In 2020, investigations of the southern fortification were resumed under Sabine Ladstätter. Local actors—including the Hemmaberg-Juenna historical association, the municipality, and parish priest Peter Sticker—provided important organisational and practical support. ([Eitler and Seidel, 2022, page 32](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 34](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 31](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Tiefengraber, 2021, page 7](https://www.zotero.org/groups/4910727/iuenna/items/2J84LRGD))\n\nSince 2020, research has undergone a methodological shift: large-scale magnetometry, ground-penetrating radar, remote sensing, GIS, and digital archiving now complement excavation. The survey campaigns of 2020–2023 redirected attention from individual sites to the entire Roman settlement and transport landscape. With the launch of IUENNA in 2023, the century-long history of research itself became a central concern: dispersed analogue and digital records are being integrated, retrodigitised, standardised, and preserved for the long term in ARCHE. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, page 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Glaser, 1982",
+        "Eitler and Seidel, 2022",
+        "Glaser, 2006",
+        "Eitler, 2009",
+        "Tiefengraber, 2021",
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "history",
+        "research",
+        "history of research",
+        "excavations",
+        "winkler",
+        "egger",
+        "glaser",
+        "pollak",
+        "ladstätter"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_en_iuenna_globasnitz",
+      "lang": "en",
+      "title": "Iuenna and Globasnitz: Traditional Identification and Reassessment",
+      "category": "Historical & Archaeological Context",
+      "summary": "Earlier research identified **Iuenna** with the ancient settlement in the area of present-day Globasnitz and Kleindorf. The latest synthesis questions this identification and distinguishes between the vicus of Globasnitz and the road station Iuenna, which may have been located near Tscherberg. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) The name is recorded in the *Tabula Peutingeriana*, a Roman road map preserved in a medieval copy. It has been associated with the local Celtic deity **Iouenat**, known from a votive altar found on Hemmaberg; the same linguistic root probably survives in the names Jaunberg and Jauntal. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "content": "Earlier research identified **Iuenna** with the ancient settlement in the area of present-day Globasnitz and Kleindorf. The latest synthesis questions this identification and distinguishes between the vicus of Globasnitz and the road station Iuenna, which may have been located near Tscherberg. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) The name is recorded in the *Tabula Peutingeriana*, a Roman road map preserved in a medieval copy. It has been associated with the local Celtic deity **Iouenat**, known from a votive altar found on Hemmaberg; the same linguistic root probably survives in the names Jaunberg and Jauntal. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nMuch of the ancient settlement zone lies beneath the modern village of Globasnitz. An Early Imperial cemetery was situated west of the village, while the Late Antique and early Merovingian cemetery lay east of its centre. In the traditional interpretation, Iuenna owed its importance both to its role as a road station within a network of routes and mountain passes and to its close relationship with the pilgrimage centre on Hemmaberg. ([Pollak, 2023, page 141](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nRecent geophysical investigations complement the evidence obtained through excavation. In the centre of Globasnitz, an area measuring approximately 70 × 60 metres revealed several buildings and a probable road about three metres wide. ([Schwaiger and Reiner, 2022, page 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) Further ancient roads, buildings, and possible funerary structures have been detected west of the village. The evidence demonstrates that the settlement was integrated into a differentiated road network, with connections extending westwards towards Jaunstein. ([Schwaiger and Reiner, 2022, page 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nThe Late Antique and early Merovingian cemetery is of particular importance. Following earlier observations and trial excavations, it was systematically investigated between 1999 and 2008. With approximately 425 graves containing around 440 burials, it is considered Austria’s largest Late Antique–Merovingian burial ground and the only extensively investigated cemetery associated with a road station in Noricum. ([Pollak, 2023, page 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) The cemetery also contained the remains of two successive churches. The earlier church was already in use during the final third of the fourth century and thus predates the earliest known churches on Hemmaberg. ([Pollak, 2023, page 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nApproximately 70 per cent of the graves contained no grave goods. Burials with grave goods date mainly from the final third of the fifth century to the middle of the sixth century. Belt fittings, brooches, beads, and other objects attest to far-reaching contacts linking the Alpine region with western, eastern, and southern Europe. ([Pollak, 2023, page 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) The cemetery should therefore be understood not merely as a local burial ground but as evidence of a **contact region** in which Roman provincial, Ostrogothic, Mediterranean, and Merovingian influences overlapped.",
+      "citations": [
+        "Glaser, 2002",
+        "Pollak, 2023",
+        "Schwaiger and Reiner, 2022"
+      ],
+      "keywords": [
+        "iuenna",
+        "globasnitz:",
+        "traditional",
+        "identification",
+        "reassessment",
+        "iuenna",
+        "globasnitz",
+        "road station",
+        "vicus",
+        "mansio",
+        "cemetery"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_en_hemmaberg",
+      "lang": "en",
+      "title": "Hemmaberg",
+      "category": "Historical & Archaeological Context",
+      "summary": "At an elevation of 843 metres, **Hemmaberg** is one of Austria’s best-researched Late Antique hilltop settlements of the fourth to sixth centuries and an important supraregional reference site for the study of early Christianity in the southeastern Alpine region. At least five Early Christian churches, numerous burials, and several associated buildings are known. The hill also contains the Late Gothic pilgrimage church of Saints Hemma and Dorothea and the Rosalia Grotto. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "At an elevation of 843 metres, **Hemmaberg** is one of Austria’s best-researched Late Antique hilltop settlements of the fourth to sixth centuries and an important supraregional reference site for the study of early Christianity in the southeastern Alpine region. At least five Early Christian churches, numerous burials, and several associated buildings are known. The hill also contains the Late Gothic pilgrimage church of Saints Hemma and Dorothea and the Rosalia Grotto. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nThe history of settlement extends considerably further back. The earliest known traces date to the Middle Bronze Age. Finds from the Late La Tène and Roman periods have been connected with a sanctuary of the deity Iouenat. Around AD 400, a fortified hilltop settlement covering approximately five hectares was established. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nThe earliest known church was probably constructed around AD 400 above an older Roman building. It included an apse, a clergy bench, an elevated presbytery, and a reliquary chamber beneath the altar. Burial rooms for privileged individuals, probably including members of clerical and donor families, adjoined the church. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nTwo monumental double-church complexes were built in the early sixth century. They comprised Eucharistic churches, memorial churches, baptisteries, reliquary chambers, burial rooms, cisterns, and buildings probably used to accommodate and provision pilgrims and ecclesiastical personnel. Mosaic floors, martyrs’ relics, and privileged burials underline the high status of the sacred complex. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))([Glaser, 2002, page 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nThe dimensions of the churches, the veneration of relics, and the probable pilgrims’ hostel support the interpretation of Hemmaberg as a **supraregional pilgrimage centre**. ([Glaser, 2002, page 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ)) The duplication of liturgical facilities has been interpreted as evidence for two Christian communities existing side by side: a Catholic Roman provincial community and an Arian Gothic community during Ostrogothic rule. This remains an important explanatory model rather than an indisputably established fact. ([Glaser, 2002, page 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nAlongside the churches, Hemmaberg contained a fortified settlement with domestic buildings and craft-working areas. Evidence has been found for ironworking, pottery production, textile manufacture, and the working of bronze and glass. The settlement cemetery was used from approximately AD 400 until the end of the sixth century; the finds suggest that the Late Antique settlement ended around AD 600. ([Glaser, 2002, page 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023",
+        "Glaser, 2002"
+      ],
+      "keywords": [
+        "hemmaberg",
+        "hemmaberg",
+        "pilgrimage",
+        "double churches",
+        "churches",
+        "late antique"
+      ],
+      "graph_node_id": "col_1792212"
+    },
+    {
+      "id": "found_en_daily_life_economy",
+      "lang": "en",
+      "title": "Further Perspectives: Long-Term Use, Daily Life, and Economy",
+      "category": "Historical & Archaeological Context",
+      "summary": "Recent research has substantially extended the chronological picture of Hemmaberg. On the summit plateau, 24,848 newly documented pottery objects demonstrate the existence of a sizeable Middle and Late Bronze Age settlement rather than isolated activity. Use during the following centuries is less clear, but around the middle of the first century AD the central summit area was extensively transformed into a Roman sanctuary. In Late Antiquity, sacred use gave way to a densely occupied hilltop settlement. A church was again constructed on the summit in the sixth century, beginning a Christian tradition that continued into the present pilgrimage church. This establishes continuity of Christian worship from the sixth century onwards, but it does not prove an uninterrupted transition from the pre-Roman or Roman sanctuary to Christian worship. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))",
+      "content": "Recent research has substantially extended the chronological picture of Hemmaberg. On the summit plateau, 24,848 newly documented pottery objects demonstrate the existence of a sizeable Middle and Late Bronze Age settlement rather than isolated activity. Use during the following centuries is less clear, but around the middle of the first century AD the central summit area was extensively transformed into a Roman sanctuary. In Late Antiquity, sacred use gave way to a densely occupied hilltop settlement. A church was again constructed on the summit in the sixth century, beginning a Christian tradition that continued into the present pilgrimage church. This establishes continuity of Christian worship from the sixth century onwards, but it does not prove an uninterrupted transition from the pre-Roman or Roman sanctuary to Christian worship. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))\n\nInterdisciplinary studies also illuminate daily life beyond the churches and pilgrims. A pit originally dug to extract clay and later filled with settlement refuse contained pottery, small finds, animal bones, and charred plant remains. The deposit dates to the middle or third quarter of the fifth century, before construction of the monumental pilgrimage complex. ([Forstenpointner et al., 2003, page 5](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 17](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Cereals account for 96.3 per cent of the identified plant remains, while the animal bones indicate that cattle were particularly important for the meat supply. ([Forstenpointner et al., 2003, page 10](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 20](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Raw materials and production waste also attest to a small pottery-working area that used local clays. ([Forstenpointner et al., 2003, page 8](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))\n\nMediterranean tableware and wine amphorae demonstrate that the hilltop settlement remained connected to interregional exchange networks despite its Alpine location. At the same time, the finds suggest increasing local self-sufficiency and a decline in specialised production and regional trade during the fifth and sixth centuries. ([Forstenpointner et al., 2003, page 18](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) This economic interpretation relies substantially on a limited number of closed assemblages and should not automatically be generalised to all inhabitants or settlement phases. Key unresolved questions concern population size, the relationship between permanent residents and pilgrims, provisioning of the sacred centre, and economic links among the hilltop settlement, the vicus, and the surrounding villa landscape.",
+      "citations": [
+        "Eitler, 2019",
+        "Forstenpointner et al., 2003"
+      ],
+      "keywords": [
+        "further",
+        "perspectives:",
+        "long-term",
+        "use,",
+        "daily",
+        "life,",
+        "economy",
+        "daily life",
+        "economy",
+        "diet",
+        "pottery",
+        "ceramics",
+        "refuse pit",
+        "amphorae",
+        "bronze age"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_en_bioarchaeology",
+      "lang": "en",
+      "title": "Bioarchaeology",
+      "category": "Historical & Archaeological Context",
+      "summary": "Bioarchaeology in this microregion combines the study of human skeletal remains with archaeozoology, archaeobotany, taphonomy, and scientific analysis. It complements architecture and artefacts by addressing demography, health, diet, physical stress, mobility, and treatment of the dead. The animal bones and plant remains discussed above therefore form part of the bioarchaeological evidence alongside human burials.",
+      "content": "Bioarchaeology in this microregion combines the study of human skeletal remains with archaeozoology, archaeobotany, taphonomy, and scientific analysis. It complements architecture and artefacts by addressing demography, health, diet, physical stress, mobility, and treatment of the dead. The animal bones and plant remains discussed above therefore form part of the bioarchaeological evidence alongside human burials.\n\nWhere age and sex could be determined, the cemetery at Globasnitz contained a notably balanced distribution of 122 men, 119 women, and 102 children. ([Pollak, 2023, page 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) This pattern is consistent with a regular cemetery serving a broad community rather than an exclusively military or otherwise selected group. It should not, however, be read directly as a demographic profile of the living population, because preservation, indeterminate skeletons, duration of use, and differential access to burial affect the observed distribution.\n\nA smaller cemetery on Hemmaberg contained three women, four men, one probably male adolescent, and 21 children. The children included four neonates, four infants under one year, and seven others who died before reaching three years of age. ([Eitler and Seidel, 2022, page 251](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 252](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W)) The high proportion of children indicates substantial early childhood mortality, although favourable preservation of immature skeletons and the small size of the cemetery also influenced the sample. Its spatial and demographic composition has been interpreted as evidence of a related group buried over a comparatively short period. ([Eitler and Seidel, 2022, page 262](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nAt least ten individuals from Globasnitz had artificially modified crania, including males. ([Pollak, 2017, page 15](https://www.zotero.org/groups/4910727/iuenna/items/7F5YG5XF)) The modification was produced by binding the head during early childhood and, according to the available assessment, did not necessarily cause physical or cognitive impairment. ([Pollak, 2021, page 58](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) Cranial modification should not be treated as an unambiguous ethnic marker or automatic evidence of “Ostrogothic” identity: sex, social position, regional practice, and individual biography must be considered together, and the precise origins of these people remain uncertain. ([Pollak, 2021, page 60](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) An announced archaeogenetic study involving approximately 160 individuals is intended to investigate origins and biological relationships; no published local results from these analyses were present in the materials reviewed here. ([Pollak, 2023, page 150](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nAn exceptional case is the burial, discovered in 2013, of a middle-aged sixth-century man whose left foot was absent above the ankle. An iron ring and wooden remains in place of the foot have been interpreted as parts of a prosthesis and represent one of Europe’s earliest examples found directly with its wearer. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Macroscopic examination, radiography, and CT scanning showed a healed amputation, possibly following an episode of osteomyelitis. Atrophy of the lower left leg indicates survival for several years, while osteoarthritis of the knees and shoulder girdle offers cautious evidence that the prosthesis may have been functional, perhaps with the assistance of a crutch. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Wooden remains and the position of the iron ring suggest a wooden peg with a metal-reinforced end and an attachment made from organic material. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Whether the amputation resulted from medical treatment, accident, violence, or punishment remains unresolved. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6))\n\nBioarchaeology thus provides direct evidence for living conditions and individual life histories, but its potential is far from exhausted. Priorities include complete population-level analysis of the cemeteries, systematic palaeopathological comparison, stable-isotope research on diet and mobility, ancient DNA for biological kinship, and integrated spatial analysis of skeletal data, grave construction, artefacts, and relationships to churches. Such methods should test archaeological and historical models of identity rather than simply confirm them.",
+      "citations": [
+        "Pollak, 2023",
+        "Eitler and Seidel, 2022",
+        "Pollak, 2017",
+        "Pollak, 2021",
+        "Binder et al., 2016"
+      ],
+      "keywords": [
+        "bioarchaeology",
+        "bioarchaeology",
+        "anthropology",
+        "prosthesis",
+        "foot prosthesis",
+        "cranial deformation",
+        "demography",
+        "binder",
+        "pollak",
+        "skeletons"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_en_st_stefan",
+      "lang": "en",
+      "title": "St. Stefan",
+      "category": "Historical & Archaeological Context",
+      "summary": "An extensive Roman villa complex lies at **St. Stefan/Šteben**, approximately 1.2 km north of Globasnitz. Earlier remains had initially been interpreted as a Roman bath. Magnetometry and ground-penetrating radar, however, revealed several buildings, enclosure walls, groups of rooms, and a representatively designed complex containing a room with two opposing apses. A hypocaust uncovered in 1930 confirms the high standard of its amenities. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))",
+      "content": "An extensive Roman villa complex lies at **St. Stefan/Šteben**, approximately 1.2 km north of Globasnitz. Earlier remains had initially been interpreted as a Roman bath. Magnetometry and ground-penetrating radar, however, revealed several buildings, enclosure walls, groups of rooms, and a representatively designed complex containing a room with two opposing apses. A hypocaust uncovered in 1930 confirms the high standard of its amenities. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nThe area investigated in the earlier survey covered approximately 7,700 square metres, although the buildings probably continued southwards and were partly overlain by modern structures. The remains as a whole indicate a large Roman estate and illustrate the agricultural and economic exploitation of the surrounding countryside. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) The informal label “super-villa” reflects its exceptional size, although the chronology of individual building phases and possible use into Late Antiquity remain subjects for further investigation. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Schwaiger and Reiner, 2022",
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "stefan",
+        "st. stefan",
+        "villa",
+        "estate",
+        "hypocaust",
+        "barbius vercaius",
+        "winkler"
+      ],
+      "graph_node_id": "col_1792411"
+    },
+    {
+      "id": "found_en_iuenna_project",
+      "lang": "en",
+      "title": "The IUENNA Project",
+      "category": "Historical & Archaeological Context",
+      "summary": "The modern **IUENNA Project** must be distinguished from the ancient place name. Its name is an acronym for *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Developed within the Go!Digital 3.0 programme, the project treats Hemmaberg, Globasnitz/Iuenna, Jaunstein, and St. Stefan as a single archaeological microregion. ([Hagmann and Reiner, 2023, page 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "The modern **IUENNA Project** must be distinguished from the ancient place name. Its name is an acronym for *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Developed within the Go!Digital 3.0 programme, the project treats Hemmaberg, Globasnitz/Iuenna, Jaunstein, and St. Stefan as a single archaeological microregion. ([Hagmann and Reiner, 2023, page 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nThe participating organisations included kärnten.museum, the Austrian Archaeological Institute, the Austrian Centre for Digital Humanities and Cultural Heritage at the Austrian Academy of Sciences, the Austrian Federal Monuments Authority, and the company ARDIG. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) The project responded to the difficult legacy of more than a century of research: extensive excavation records were dispersed across different locations in analogue and digital forms, were sometimes inadequately structured, and were therefore at long-term risk of information loss. ([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nIUENNA consequently pursues two closely connected objectives. First, existing analogue and digital research data are collected, digitised, georeferenced, enriched with standardised metadata, and preserved for the long term. Second, the integrated information is evaluated in a cultural-historical model study of Globasnitz and its surroundings. ([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nA geographical information system and geodatabase connect artefacts, archaeological features, spatial units, photographs, plans, texts, tables, geophysical measurements, and 3D models. Wherever possible, artefacts are linked to their archaeological contexts and those contexts to the modern topography. ([Hagmann and Reiner, 2023, page 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) The data follow Open Science and FAIR principles, are described using controlled vocabularies, and receive persistent identifiers. Long-term preservation and publication take place in the **ARCHE** repository, while a web-mapping application supports spatial exploration. ([Hagmann and Reiner, 2023, page 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, page 7](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nThe IUENNA dataset published in 2025 organises its materials into Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal, and retrodigitised records. It includes excavation documentation, geophysical data, photographs, drawings, databases, georeferenced raster and vector data, conservation records, bioarchaeological information, and 3D data. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nIUENNA is therefore not only a research project devoted to the history of the southern Jauntal. It also provides a model for preserving, integrating, transparently documenting, and reusing heterogeneous records from long-term archaeological investigations in order to address new research questions. ([Hagmann and Reiner, 2023, page 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "iuenna",
+        "project",
+        "iuenna project",
+        "arche",
+        "open science",
+        "fair",
+        "care",
+        "geopackage"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_en_data_volume",
+      "lang": "en",
+      "title": "Data Volume, Accessibility, and Digital Sustainability",
+      "category": "Historical & Archaeological Context",
+      "summary": "The Go!Digital 3.0 project, led by Dominik Hagmann and Franziska Reiner with Nicola Math, ran from 1 January 2023 to 31 December 2024. It integrated more than a century of research from over 200 sites. The final collection transferred to ARCHE contains more than 20,000 digital objects and over 350 GB of data, including excavation reports, geophysical datasets, 3D models, and retrodigitised archives. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "content": "The Go!Digital 3.0 project, led by Dominik Hagmann and Franziska Reiner with Nicola Math, ran from 1 January 2023 to 31 December 2024. It integrated more than a century of research from over 200 sites. The final collection transferred to ARCHE contains more than 20,000 digital objects and over 350 GB of data, including excavation reports, geophysical datasets, 3D models, and retrodigitised archives. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nThe path to the archive was itself a major research result. An early inventory comprised approximately 200 GB, around 28,000 files in 1,200 folders, and about 40 containers holding roughly 6,000 analogue objects. Digitisation initially generated approximately 650 GB. Evaluation, removal of duplicates and irrelevant files, and privacy-related exclusions produced a reduced, research-ready preservation dataset. A hierarchical, human-readable folder structure links site-based primary groups with subdivisions for remote sensing, geophysics, excavation, 3D photogrammetry, and artefact drawings. ([Hagmann et al., page 8](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 15](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nDocumentation uses controlled vocabularies such as Getty AAT and Wikidata as well as persistent identifiers. Data can be discovered through ARCHE and, where possible, the European ARIADNE portal; web applications support spatial and object-based queries. ([Hagmann et al., page 7](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann and Reiner, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3)) Discoverability must be distinguished from unrestricted file access: approximately 20 per cent of the files are openly available under CC BY 4.0, while about 80 per cent remain accessible only on request because of copyright or other legal constraints. Public metadata nevertheless exist for every object and are provided through ARCHE under CC0. ([Hagmann et al., page 12](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) IUENNA is therefore not a completely open archive but a tiered, “semi-open” system balancing FAIR aims with CARE, privacy, site protection, and rights management.\n\nA landslide on Simonsberg following extreme weather on 6 August 2023 illustrated the vulnerability of sites, museums, and documentation to natural hazards and climate change. The project publications consequently argue that static storage on local media is insufficient: long-term preservation requires resilient infrastructure, format migration, continuous quality assessment, and sustained institutional, technical, and financial support. ([Hagmann and Reiner, 2025, page 1](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3))([Hagmann et al., page 13](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) The collection is best described as a substantial, comparatively static “large-data” corpus rather than genuine “Big Data”. Its value lies in contextual richness and reusability. “Data upcycling” denotes the creation of new research products from legacy datasets; structured data can support interactive maps and query tools developed with generative AI. Such reuse nevertheless depends on transparent metadata, appropriate licensing, and ethically controlled access. ([Hagmann et al., page 10](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 11](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "citations": [
+        "Hagmann and Reiner, 2025"
+      ],
+      "keywords": [
+        "data",
+        "volume,",
+        "accessibility,",
+        "digital",
+        "sustainability",
+        "data volume",
+        "accessibility",
+        "sustainability",
+        "simonsberg",
+        "landslide",
+        "cc by 4.0",
+        "arche"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_en_neubewertung",
+      "lang": "en",
+      "title": "New Results and Topographical Reassessment",
+      "category": "Historical & Archaeological Context",
+      "summary": "The memorial-volume contribution combines survey data collected between 2020 and 2023 with earlier excavation records, archaeological finds, and remote-sensing data. Four campaigns surveyed approximately 21 hectares by magnetometry and a further four hectares using ground-penetrating radar. These investigations permit the first large-scale assessment of the extent, internal organisation, and transport-geographical setting of the Roman settlement landscape around Globasnitz. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))",
+      "content": "The memorial-volume contribution combines survey data collected between 2020 and 2023 with earlier excavation records, archaeological finds, and remote-sensing data. Four campaigns surveyed approximately 21 hectares by magnetometry and a further four hectares using ground-penetrating radar. These investigations permit the first large-scale assessment of the extent, internal organisation, and transport-geographical setting of the Roman settlement landscape around Globasnitz. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nGlobasnitz now emerges as a non-urban vicus covering approximately 7–9 hectares. Several buildings and a north–south road were identified in the village centre; farther west, additional roads, walled building complexes, and a cemetery road at least 400 metres long, with partly elaborate funerary enclosures, have been documented. The settlement was therefore substantial, but it lay more than three kilometres south of the main Celeia–Virunum road and was connected to it by several secondary or branch roads. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nMethodologically, the new surveys primarily used a five-channel fluxgate gradiometer with sensors spaced at 0.5 metres and a 400 MHz ground-penetrating radar system. RTK-GPS provided precise georeferencing, and results were analysed in ArcGIS Pro. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) In the central survey area, structures became visible from approximately 0.4 metres below the surface. Several differently oriented buildings lie on either side of a three-metre-wide north–south road, and some foundations extend to a depth of around 1.5 metres. The area is independently anchored archaeologically by the hoard of 322 Roman coins discovered in 1946. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49))([Reiner and Profant, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) For long-distance connections, the identification in 2023 of further road sections towards Virunum at the northern end of the Tainach field is also important. ([“Annual Report 2023”, 2024, page 103](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))([“Annual Report 2023”, 2024, page 104](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))\n\nThis location challenges the widely accepted interpretation of Globasnitz as the road station Iuenna. **Tscherberg** has been proposed as an alternative: it lay directly on the Roman main road, has produced indications of Roman-period buildings, and corresponds approximately to the distance of 23 Roman miles from Virunum recorded in the *Tabula Peutingeriana*. The identification remains a well-founded hypothesis because the continuation of the road and the archaeological situation have not yet been investigated sufficiently. Under this model, Globasnitz was a vicus whose ancient name is unknown, while the Late Antique fortification on Katharinakogel may represent the successor settlement of the Iuenna tentatively located at Tscherberg. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nOther factors must therefore be considered when explaining the development and importance of the vicus. These include the surrounding estates of local and urban elites and the possible cultic attraction of Hemmaberg and the Rosalia Grotto. A Roman-period spring sanctuary and continuity from a pagan cult place to the Late Antique Christian pilgrimage centre are conceivable, but they have not yet been demonstrated archaeologically. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nAt **St. Stefan**, approximately 1.2 km north of Globasnitz, geophysical investigation identified a multiphase villa complex covering about two hectares. The complex, with at least three building phases, comprised courtyard walls, several groups of rooms, ancillary buildings, and a bath building with hypocausts and a water channel. Typologically, it belongs to the orthogonally planned estates widespread in southern Noricum, characterised by a functional distinction between the representative residential area and the agricultural sectors. The funerary inscription of the former Virunum aedile L. Barbius Vercaius, reused in the parish church, may point to the elevated social status of landowners in this villa landscape. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nThe significance of the IUENNA Project can now also be defined more precisely. The collection preserved in ARCHE contains more than 20,000 digital resources from over a century of research, including excavation reports, geophysical images, retrodigitised archival records, and 3D models. It is divided into six semantically defined subcollections and employs sustainable file formats. In addition to the FAIR principles, the project explicitly follows the CARE principles, creating a foundation for open, ethically responsible, interdisciplinary, and potentially AI-assisted research. The reuse of Hans Winkler’s retrodigitised sketches in interpreting the bath building at St. Stefan demonstrates the direct scholarly value of this data infrastructure. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\n* * *",
+      "citations": [
+        "Reiner and Profant, 2025"
+      ],
+      "keywords": [
+        "results",
+        "topographical",
+        "reassessment",
+        "reassessment",
+        "tscherberg",
+        "vicus",
+        "katharinakogel",
+        "gugl",
+        "geophysics",
+        "coin hoard",
+        "322 coins"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_sl_mikroregija",
+      "lang": "sl",
+      "title": "Arheološka mikroregija v južni Podjuni",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Hemmaberg/Gora sv. Heme in najdišča na območju današnje občine Globasnitz/Globasnica niso osamljeni spomeniki, temveč tvorijo povezano **arheološko mikroregijo v južni Podjuni**. Vanjo sodijo višinska naselbina in zgodnjekrščansko romarsko središče na Hemmabergu, rimski vicus v Globasnitzu ter danes sporna lokacija cestne postaje Iuenna, kompleks rimske vile v Štebnu in najdišča pri Jaunsteinu. V tej pokrajini lahko spremljamo več kot dva tisoč let razvoja, od prazgodovine prek rimskega obdobja in pozne antike do zgodnjega srednjega veka. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Hemmaberg/Gora sv. Heme in najdišča na območju današnje občine Globasnitz/Globasnica niso osamljeni spomeniki, temveč tvorijo povezano **arheološko mikroregijo v južni Podjuni**. Vanjo sodijo višinska naselbina in zgodnjekrščansko romarsko središče na Hemmabergu, rimski vicus v Globasnitzu ter danes sporna lokacija cestne postaje Iuenna, kompleks rimske vile v Štebnu in najdišča pri Jaunsteinu. V tej pokrajini lahko spremljamo več kot dva tisoč let razvoja, od prazgodovine prek rimskega obdobja in pozne antike do zgodnjega srednjega veka. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nPomembno vlogo je imela prometnogeografska lega. Po tradicionalni lokalizaciji je Iuenna ležala med noriškima mestoma **Virunum** in **Celeia** ter v bližini prehoda čez Karavanke. Poleg medregionalne cestne povezave bi bil zato lahko za nastanek in pomen naselbine pomemben tudi prelaz Luže južno od Globasnitza. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023",
+        "Glaser, 2002"
+      ],
+      "keywords": [
+        "arheološka",
+        "mikroregija",
+        "južni",
+        "podjuni",
+        "mikroregija",
+        "podjuna",
+        "jauntal",
+        "karavanke",
+        "pokrajina"
+      ],
+      "graph_node_id": "col_1792417"
+    },
+    {
+      "id": "found_sl_zgodovina_raziskav",
+      "lang": "sl",
+      "title": "Zgodovina raziskav",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Zanimanje za antične ostaline v Podjuni sega več stoletij pred začetek sodobne arheologije. Že ob koncu 15. stoletja sta potujoča meniha prepisala rimski nagrobni napis z območja ob vznožju Pece. Leta 1838 je M. F. von Jabornegg-Altenfels objavil prvi celovitejši pregled Iuenne ter naselbino na podlagi temeljev, grobov, cest in drobnih najdb umestil med Globasnitz in Šteben. Baron Karl Hauser je leta 1887 prvič s historično-arheološkega vidika omenil staro zidovje in najdbe na Hemmabergu. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))",
+      "content": "Zanimanje za antične ostaline v Podjuni sega več stoletij pred začetek sodobne arheologije. Že ob koncu 15. stoletja sta potujoča meniha prepisala rimski nagrobni napis z območja ob vznožju Pece. Leta 1838 je M. F. von Jabornegg-Altenfels objavil prvi celovitejši pregled Iuenne ter naselbino na podlagi temeljev, grobov, cest in drobnih najdb umestil med Globasnitz in Šteben. Baron Karl Hauser je leta 1887 prvič s historično-arheološkega vidika omenil staro zidovje in najdbe na Hemmabergu. ([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 1982, page 9](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))\n\nTerenske raziskave je leta 1906 začel v Dobrli vasi živeči notar **Hans Winkler**. Osredotočil se je zlasti na vzhodni kompleks dvojnih cerkva in njegove mozaike, raziskoval pa je tudi grobišče, utrdbe na Hemmabergu ter najdišča zahodno in vzhodno od Globasnitza. Rudolf Egger je leta 1914 poskrbel za novo izmero odkritih ostalin in izvedel dodatna manjša izkopavanja, leta 1916 pa je cerkvene stavbe objavil. Winklerjeve skicirke ostajajo ključni vir, saj številni načrti njegovih izkopavanj v dolini niso bili objavljeni. Med drugim dokumentirajo sondiranja leta 1913 na pozneje sistematično raziskanem grobišču in delno odkritje kopališkega kompleksa pri Štebnu leta 1930. ([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 1982, page 10](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))\n\nNova, institucionalno podprta faza raziskav se je začela v sedemdesetih letih 20. stoletja. Na pobudo direktorja deželnega muzeja Gernota Piccottinija, občine, župnika Franza Poscha in leta 1976 ustanovljenega društva »Freunde Iuenna-Hemmaberg« je Deželni muzej za Koroško leta 1978 Franzu Glaserju zaupal obnovitev izkopavanj. Sprva so bili v ospredju zavarovanje in restavriranje prej odkritih mozaikov ter dopolnilne raziskave. Odkritje grobne kapele, tako imenovane prve cerkve in dodatnih stavb je spodbudilo nadaljevanje sistematičnega terenskega dela. ([Glaser, 1982, page 7](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))([Eitler and Seidel, 2022, page 29](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nMed najpomembnejše rezultate naslednjih desetletij sodijo odkritje četrte in pete cerkve med letoma 1990 in 1995 ter kontekstualna obdelava najdb. Monografska študija materialne kulture Sabine Ladstätter je postala temeljna za razumevanje kronologije in stavbnega razvoja Hemmaberga. Od leta 1999 se je težišče raziskav začasno preneslo na grobišče ostrogotskega obdobja v Globasnitzu. Do leta 2005 je bilo raziskanih 327 grobov; zaključna kampanja leta 2008 je število dokumentiranih pokopov povečala na 422, prvotno skupno število pa je bilo ocenjeno na približno 475. Na območju grobišča sta bili prepoznani tudi dve zaporedni zgodnjekrščanski cerkvi. ([Eitler and Seidel, 2022, page 30](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Glaser, 2006, page 3](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))([Eitler, 2009, page 1](https://www.zotero.org/groups/4910727/iuenna/items/V2ZXTYT2))\n\nPo zaključku raziskav grobišča se je arheološko delo leta 2009 z novimi vprašanji vrnilo na vršno planoto. Kampanje med letoma 2009 in 2013 so raziskale območja okoli gotske cerkve ter odkrile starejše stavbne ostaline in dodatne pokope. Iz teh raziskav je izšel projekt FWF *Cult Continuity at the Summit of Hemmaberg*, ki se je začel leta 2016; leta 2017 je sledilo študijsko izkopavanje v sodelovanju z Univerzo v Kölnu. Leta 2020 so se pod vodstvom Sabine Ladstätter ponovno začele raziskave južnega obrambnega obzidja. Pomembno organizacijsko in praktično podporo so zagotavljali lokalni akterji, med njimi zgodovinsko društvo Hemmaberg-Juenna, občina in župnik Peter Sticker. ([Eitler and Seidel, 2022, page 32](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 34](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 31](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Tiefengraber, 2021, page 7](https://www.zotero.org/groups/4910727/iuenna/items/2J84LRGD))\n\nOd leta 2020 raziskave zaznamuje metodološki premik: izkopavanja dopolnjujejo obsežne geomagnetne in georadarske meritve, daljinsko zaznavanje, GIS in digitalno arhiviranje. Prospekcijske kampanje 2020–2023 so pozornost preusmerile s posameznih najdišč na celotno rimsko naselbinsko in prometno pokrajino. Z začetkom projekta IUENNA leta 2023 je več kot stoletna zgodovina raziskav sama postala osrednja tema: razpršena analogna in digitalna dokumentacija se povezuje, retrodigitalizira, standardizira in dolgoročno hrani v repozitoriju ARCHE. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, page 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Glaser, 1982",
+        "Eitler and Seidel, 2022",
+        "Glaser, 2006",
+        "Eitler, 2009",
+        "Tiefengraber, 2021",
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "zgodovina",
+        "raziskav",
+        "zgodovina raziskav",
+        "izkopavanja",
+        "winkler",
+        "egger",
+        "glaser",
+        "pollak"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_sl_iuenna_globasnitz",
+      "lang": "sl",
+      "title": "Iuenna in Globasnitz: tradicionalna enačitev in nova presoja",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Starejše raziskave so **Iuenno** enačile z antično naselbino na območju današnjih krajev Globasnitz in Kleindorf. Najnovejša sinteza to identifikacijo postavlja pod vprašaj ter razlikuje med vicusom v Globasnitzu in cestno postajo Iuenna, ki bi lahko ležala pri Tscherbergu. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) Ime je izpričano na *Tabuli Peutingeriani*, rimskem cestnem zemljevidu, ohranjenem v srednjeveškem prepisu. Povezujejo ga z lokalnim keltskim božanstvom **Iouenat**, znanim po votivnem oltarju s Hemmaberga; isti jezikovni koren se je verjetno ohranil tudi v imenih Jaunberg in Jauntal. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "content": "Starejše raziskave so **Iuenno** enačile z antično naselbino na območju današnjih krajev Globasnitz in Kleindorf. Najnovejša sinteza to identifikacijo postavlja pod vprašaj ter razlikuje med vicusom v Globasnitzu in cestno postajo Iuenna, ki bi lahko ležala pri Tscherbergu. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT)) Ime je izpričano na *Tabuli Peutingeriani*, rimskem cestnem zemljevidu, ohranjenem v srednjeveškem prepisu. Povezujejo ga z lokalnim keltskim božanstvom **Iouenat**, znanim po votivnem oltarju s Hemmaberga; isti jezikovni koren se je verjetno ohranil tudi v imenih Jaunberg in Jauntal. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nVelik del antičnega naselbinskega območja leži pod današnjim Globasnitzem. Zahodno od kraja je bilo grobišče iz zgodnje cesarske dobe, vzhodno od središča pa poznoantično oziroma zgodnjemerovinško grobišče. Po tradicionalni razlagi je pomen Iuenne izviral iz njene vloge cestne postaje v mreži poti in gorskih prehodov ter iz tesne povezanosti z romarskim središčem na Hemmabergu. ([Pollak, 2023, page 141](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nNovejše geofizikalne raziskave dopolnjujejo sliko, pridobljeno z izkopavanji. V središču Globasnitza je bilo dokumentirano približno 70 × 60 metrov veliko območje z več stavbami in domnevno, okoli tri metre široko cesto. ([Schwaiger and Reiner, 2022, page 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) Zahodno od kraja se kažejo dodatne antične ceste, stavbe in morebitne grobne strukture. Najdbe dokazujejo, da je bila naselbina vključena v razvejano cestno omrežje, katerega povezave so med drugim vodile proti zahodu v smeri Jaunsteina. ([Schwaiger and Reiner, 2022, page 8](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nPosebnega pomena je poznoantično in zgodnjemerovinško grobišče. Po starejših opažanjih in sondiranjih so ga med letoma 1999 in 2008 sistematično raziskali. S približno 425 grobovi in okoli 440 pokopi velja za največje poznoantično-merovinško grobišče v Avstriji ter za doslej edino obsežno raziskano grobišče ob cestni postaji v Noriku. ([Pollak, 2023, page 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Na grobišču so bili tudi ostanki dveh časovno zaporednih cerkva. Starejša je obstajala že v zadnji tretjini 4. stoletja in je tako starejša od najzgodnejših znanih cerkva na Hemmabergu. ([Pollak, 2023, page 142](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nPribližno 70 odstotkov grobov je bilo brez pridatkov. Pokopi s pridatki sodijo predvsem v čas od zadnje tretjine 5. do sredine 6. stoletja. Posamezni deli pasov, fibule, jagode in drugi predmeti pričajo o obsežnih stikih, ki so alpski prostor povezovali z zahodno, vzhodno in južno Evropo. ([Pollak, 2023, page 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Grobišča zato ne smemo razumeti le kot lokalnega pokopališča, temveč kot pričevanje o **stičnem območju**, kjer so se prepletali rimskoprovincialni, ostrogotski, sredozemski in merovinški vplivi.",
+      "citations": [
+        "Glaser, 2002",
+        "Pollak, 2023",
+        "Schwaiger and Reiner, 2022"
+      ],
+      "keywords": [
+        "iuenna",
+        "globasnitz:",
+        "tradicionalna",
+        "enačitev",
+        "nova",
+        "presoja",
+        "iuenna",
+        "globasnitz",
+        "globasnica",
+        "cestna postaja",
+        "vicus",
+        "grobišče"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_sl_hemmaberg",
+      "lang": "sl",
+      "title": "Hemmaberg",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "843 metrov visoki **Hemmaberg** je ena najbolje raziskanih poznoantičnih višinskih naselbin 4.–6. stoletja v Avstriji in nadregionalno pomembno referenčno najdišče za raziskovanje zgodnjega krščanstva v jugovzhodnem alpskem prostoru. Znanih je najmanj pet zgodnjekrščanskih cerkva, številni pokopi in več pripadajočih stavb. Na gori sta tudi poznogotska romarska cerkev sv. Heme in Doroteje ter Rozalijina votlina. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "843 metrov visoki **Hemmaberg** je ena najbolje raziskanih poznoantičnih višinskih naselbin 4.–6. stoletja v Avstriji in nadregionalno pomembno referenčno najdišče za raziskovanje zgodnjega krščanstva v jugovzhodnem alpskem prostoru. Znanih je najmanj pet zgodnjekrščanskih cerkva, številni pokopi in več pripadajočih stavb. Na gori sta tudi poznogotska romarska cerkev sv. Heme in Doroteje ter Rozalijina votlina. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nZgodovina poselitve sega precej dlje v preteklost. Najstarejše znane sledi sodijo v srednjo bronasto dobo. Najdbe iz poznega latena in rimske dobe povezujejo s svetiščem božanstva Iouenat. Okoli leta 400 n. št. je nastala utrjena višinska naselbina, velika približno pet hektarov. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nNajstarejša znana cerkev je bila verjetno okoli leta 400 zgrajena nad starejšo rimsko stavbo. Imela je apsido, klop za duhovščino, dvignjen prezbiterij in prostor za relikvije pod oltarjem. Ob cerkvi so bili grobni prostori za privilegirane osebe, verjetno tudi za člane duhovniških in donatorskih družin. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nV začetku 6. stoletja sta nastala dva monumentalna kompleksa dvojnih cerkva. Obsegala sta evharistične in spominske cerkve, krstilnice, prostore za relikvije in pokope, cisterne ter stavbe, ki so verjetno služile nastanitvi in oskrbi romarjev ter cerkvenega osebja. Mozaični tlaki, relikvije mučencev in privilegirani pokopi poudarjajo visok položaj sakralnega kompleksa. ([Glaser, 2002, page 2](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))([Glaser, 2002, page 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nVelikost cerkvenih prostorov, čaščenje relikvij in domnevno romarsko prenočišče govorijo za razlago Hemmaberga kot **nadregionalnega romarskega središča**. ([Glaser, 2002, page 4](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ)) Podvojitev liturgične opreme je bila razložena kot dokaz za dve sočasni krščanski skupnosti: katoliško romansko in arijansko gotsko skupnost v času ostrogotske oblasti. Ta razlaga je pomemben znanstveni model, vendar je ne smemo razumeti kot nesporno dokazano dejstvo. ([Glaser, 2002, page 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nPoleg cerkva je bila na Hemmabergu utrjena naselbina s stanovanjskimi stavbami in obrtniškimi območji. Dokazani so predelava železa, lončarstvo in izdelava tekstila, obstajajo pa tudi sledovi obdelave brona in stekla. Grobišče višinske naselbine so uporabljali približno od leta 400 do konca 6. stoletja; najdbe kažejo, da se je poznoantična naselbina končala okoli leta 600. ([Glaser, 2002, page 5](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))",
+      "citations": [
+        "Hagmann and Reiner, 2023",
+        "Glaser, 2002"
+      ],
+      "keywords": [
+        "hemmaberg",
+        "hemmaberg",
+        "gora sv. heme",
+        "romarsko središče",
+        "dvojne cerkve",
+        "cerkve"
+      ],
+      "graph_node_id": "col_1792212"
+    },
+    {
+      "id": "found_sl_vsakdanje_zivljenje",
+      "lang": "sl",
+      "title": "Poglobljeni vidiki: dolgotrajna raba, vsakdanje življenje in gospodarstvo",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Novejše raziskave so časovno podobo Hemmaberga bistveno razširile. Na vršni planoti 24.848 na novo dokumentiranih keramičnih predmetov dokazuje večjo naselbino srednje in pozne bronaste dobe, ne le posameznih dejavnosti. Raba v naslednjih stoletjih je manj jasna, vendar je bilo osrednje območje vrha okoli sredine 1. stoletja n. št. temeljito preoblikovano v rimsko svetišče. V pozni antiki je sakralno rabo nadomestila gosto pozidana višinska naselbina. V 6. stoletju je bila na vrhu ponovno zgrajena cerkev, s katero se je začela krščanska tradicija, nadaljevana v današnji romarski cerkvi. Tako lahko govorimo o kontinuiteti krščanskega kulta od 6. stoletja do danes, ne pa tudi o dokazani neprekinjeni kontinuiteti od predrimskega ali rimskega svetišča do krščanskega kulta. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))",
+      "content": "Novejše raziskave so časovno podobo Hemmaberga bistveno razširile. Na vršni planoti 24.848 na novo dokumentiranih keramičnih predmetov dokazuje večjo naselbino srednje in pozne bronaste dobe, ne le posameznih dejavnosti. Raba v naslednjih stoletjih je manj jasna, vendar je bilo osrednje območje vrha okoli sredine 1. stoletja n. št. temeljito preoblikovano v rimsko svetišče. V pozni antiki je sakralno rabo nadomestila gosto pozidana višinska naselbina. V 6. stoletju je bila na vrhu ponovno zgrajena cerkev, s katero se je začela krščanska tradicija, nadaljevana v današnji romarski cerkvi. Tako lahko govorimo o kontinuiteti krščanskega kulta od 6. stoletja do danes, ne pa tudi o dokazani neprekinjeni kontinuiteti od predrimskega ali rimskega svetišča do krščanskega kulta. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))\n\nInterdisciplinarne raziskave osvetljujejo tudi vsakdanje življenje zunaj cerkvenih in romarskih dejavnosti. Jama, ki je bila prvotno izkopana za pridobivanje ilovice in pozneje zapolnjena z naselbinskimi odpadki, je vsebovala keramiko, drobne najdbe, živalske kosti in zoglenele rastlinske ostanke. Polnilo sodi v sredino oziroma tretjo četrtino 5. stoletja, torej v čas pred izgradnjo monumentalnega romarskega kompleksa. ([Forstenpointner et al., 2003, page 5](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 17](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Žita predstavljajo 96,3 odstotka določenih rastlinskih ostankov, živalske kosti pa kažejo na poseben pomen goveda pri oskrbi z mesom. ([Forstenpointner et al., 2003, page 10](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))([Forstenpointner et al., 2003, page 20](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Surovine in proizvodni odpadki dokazujejo tudi manjše lončarsko območje, kjer so uporabljali lokalno glino. ([Forstenpointner et al., 2003, page 8](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))\n\nSredozemsko namizno posodje in vinske amfore kažejo, da je bila višinska naselbina kljub alpski legi vključena v nadregionalne izmenjalne mreže. Hkrati najdbe nakazujejo naraščajočo lokalno samooskrbo ter upad specializirane proizvodnje in regionalne trgovine v 5. in 6. stoletju. ([Forstenpointner et al., 2003, page 18](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7)) Takšna gospodarskozgodovinska razlaga temelji predvsem na omejenem številu zaprtih najdiščnih celot in je ne smemo samodejno posplošiti na vse prebivalce ali vse faze naselbine. Odprta ostajajo predvsem vprašanja o številu prebivalcev, razmerju med stalnim prebivalstvom in romarji, oskrbi sakralnega središča ter gospodarskih povezavah med višinsko naselbino, vicusom in okoliško pokrajino vil.",
+      "citations": [
+        "Eitler, 2019",
+        "Forstenpointner et al., 2003"
+      ],
+      "keywords": [
+        "poglobljeni",
+        "vidiki:",
+        "dolgotrajna",
+        "raba,",
+        "vsakdanje",
+        "življenje",
+        "gospodarstvo",
+        "vsakdanje življenje",
+        "gospodarstvo",
+        "keramika",
+        "prehrana",
+        "amfore",
+        "odpadna jama"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_sl_bioarheologija",
+      "lang": "sl",
+      "title": "Bioarheologija",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Bioarheologija v tej mikroregiji povezuje raziskovanje človeških skeletnih ostankov z arheozoologijo, arheobotaniko, tafonomijo in naravoslovnimi analizami. Raziskave arhitekture in predmetov dopolnjuje z vprašanji o demografiji, zdravju, prehrani, telesnih obremenitvah, mobilnosti in ravnanju z mrtvimi. Zgoraj obravnavane živalske kosti in rastlinski ostanki so zato poleg človeških pokopov prav tako del bioarheoloških virov.",
+      "content": "Bioarheologija v tej mikroregiji povezuje raziskovanje človeških skeletnih ostankov z arheozoologijo, arheobotaniko, tafonomijo in naravoslovnimi analizami. Raziskave arhitekture in predmetov dopolnjuje z vprašanji o demografiji, zdravju, prehrani, telesnih obremenitvah, mobilnosti in ravnanju z mrtvimi. Zgoraj obravnavane živalske kosti in rastlinski ostanki so zato poleg človeških pokopov prav tako del bioarheoloških virov.\n\nNa grobišču v Globasnitzu je bila pri okostjih, pri katerih je bilo mogoče določiti starost in spol, ugotovljena izrazito uravnotežena razporeditev 122 moških, 119 žensk in 102 otrok. ([Pollak, 2023, page 144](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW)) Takšen vzorec ustreza običajnemu pokopališču širše skupnosti in ne izključno vojaški ali drugače izbrani skupini. Kljub temu ga ne smemo neposredno enačiti z demografsko strukturo živečega prebivalstva, saj na razmerja vplivajo ohranjenost, nedoločljiva okostja, trajanje uporabe grobišča in različen dostop do pokopa.\n\nManjše grobišče na Hemmabergu je obsegalo tri ženske, štiri moške, verjetno moškega mladostnika in 21 otrok. Med otroki so bili štirje novorojenčki, štirje dojenčki, mlajši od enega leta, in sedem otrok, ki so umrli pred tretjim letom starosti. ([Eitler and Seidel, 2022, page 251](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))([Eitler and Seidel, 2022, page 252](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W)) Visok delež otrok kaže na veliko zgodnjo otroško umrljivost, vendar sta na vzorec vplivala tudi ugodna ohranjenost otroških okostij in majhnost raziskanega grobišča. Prostorska in demografska sestava je bila razložena kot možen dokaz sorodstveno povezane skupine, pokopane v razmeroma kratkem obdobju. ([Eitler and Seidel, 2022, page 262](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nNajmanj deset oseb iz Globasnitza je imelo umetno preoblikovane lobanje; med njimi so bili tudi moški. ([Pollak, 2017, page 15](https://www.zotero.org/groups/4910727/iuenna/items/7F5YG5XF)) Preoblikovanje je bilo izvedeno z obvezovanjem glave v zgodnjem otroštvu in po dosedanji presoji ni nujno povzročalo telesnih ali duševnih motenj. ([Pollak, 2021, page 58](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) Preoblikovane lobanje ne smemo samodejno razlagati kot jasnega etničnega označevalca ali neposrednega dokaza »ostrogotske« identitete. Skupaj je treba upoštevati spol, družbeni položaj, regionalne prakse in individualno biografijo; natančnega izvora teh oseb za zdaj ni mogoče določiti. ([Pollak, 2021, page 60](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8)) Napovedana arheogenetska raziskava približno 160 posameznikov naj bi osvetlila izvor in biološka sorodstva, vendar med pregledanim gradivom še ni bilo objavljenih lokalnih rezultatov teh analiz. ([Pollak, 2023, page 150](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nIzjemen primer je leta 2013 odkrit pokop srednje starega moškega iz 6. stoletja, ki mu je manjkalo levo stopalo nad gležnjem. Železni obroč in ostanki lesa na mestu stopala so bili razloženi kot deli proteze; gre za enega najstarejših evropskih primerov proteze, najdene neposredno ob njenem uporabniku. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Makroskopski pregled, rentgensko slikanje in računalniška tomografija so pokazali zaceljeno amputacijo, ki jo je morda začasno spremljal osteomielitis. Atrofija levega spodnjega dela noge kaže, da je moški preživel več let, artroza kolen in ramenskega obroča pa previdno nakazuje funkcionalno uporabo proteze, morda skupaj z berglo. ([Binder et al., 2016, page 1](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Ostanki lesa in položaj železnega obroča kažejo na lesen čep s kovinsko ojačanim koncem in pritrditvijo iz organskega materiala. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6)) Ni jasno, ali je bila amputacija posledica zdravljenja, nesreče, nasilja ali kazni. ([Binder et al., 2016, page 10](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6))\n\nBioarheologija tako omogoča neposreden vpogled v življenjske razmere in individualne biografije, vendar njen potencial še zdaleč ni izčrpan. Prednostne naloge so celovita populacijska analiza grobišč, sistematične paleopatološke primerjave, stabilnoizotopske raziskave prehrane in mobilnosti, analiza stare DNK za ugotavljanje biološkega sorodstva ter skupna prostorska analiza skeletnih podatkov, oblike grobov, pridatkov in odnosa do cerkva. Takšne metode naj preverjajo arheološke in zgodovinske modele identitete, ne pa jih zgolj potrjujejo.",
+      "citations": [
+        "Pollak, 2023",
+        "Eitler and Seidel, 2022",
+        "Pollak, 2017",
+        "Pollak, 2021",
+        "Binder et al., 2016"
+      ],
+      "keywords": [
+        "bioarheologija",
+        "bioarheologija",
+        "antropologija",
+        "proteza",
+        "nožna proteza",
+        "deformacije lobanj",
+        "grobišče",
+        "binder",
+        "pollak"
+      ],
+      "graph_node_id": "col_1792415"
+    },
+    {
+      "id": "found_sl_stefan",
+      "lang": "sl",
+      "title": "St. Stefan/Šteben",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "V **Štebnu**, približno 1,2 km severno od Globasnitza, leži obsežen kompleks rimske vile. Starejše ostanke so sprva razlagali kot rimsko kopališče, vendar so geomagnetne in georadarske meritve pokazale več stavb, obzidja, skupine prostorov ter reprezentativno zasnovan kompleks s prostorom z dvema nasproti ležečima apsidama. Hipokavst, odkrit že leta 1930, potrjuje visoko raven opremljenosti. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))",
+      "content": "V **Štebnu**, približno 1,2 km severno od Globasnitza, leži obsežen kompleks rimske vile. Starejše ostanke so sprva razlagali kot rimsko kopališče, vendar so geomagnetne in georadarske meritve pokazale več stavb, obzidja, skupine prostorov ter reprezentativno zasnovan kompleks s prostorom z dvema nasproti ležečima apsidama. Hipokavst, odkrit že leta 1930, potrjuje visoko raven opremljenosti. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\nObmočje, zajeto v starejših raziskavah, je obsegalo približno 7.700 kvadratnih metrov, vendar se je pozidava verjetno nadaljevala proti jugu, kjer jo deloma prekrivajo sodobne stavbe. Celota struktur omogoča razlago najdišča kot velikega rimskega posestva in ponazarja kmetijsko ter gospodarsko izrabo okoliške pokrajine. ([Schwaiger and Reiner, 2022, page 11](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC)) Občasno uporabljeno poimenovanje »super-vila« izraža njeno izjemno velikost, vendar natančna datacija posameznih gradbenih faz in vprašanje uporabe v pozni antiki ostajata predmet nadaljnjih raziskav. ([Hagmann and Reiner, 2023, page 3](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Schwaiger and Reiner, 2022",
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "stefan/šteben",
+        "šteben",
+        "st. stefan",
+        "rimska vila",
+        "hipokavst",
+        "barbius vercaius"
+      ],
+      "graph_node_id": "col_1792411"
+    },
+    {
+      "id": "found_sl_projekt",
+      "lang": "sl",
+      "title": "Projekt IUENNA",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Sodobni **projekt IUENNA** je treba razlikovati od antičnega krajevnega imena. Ime projekta je kratica za *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Projekt, razvit v okviru programa Go!Digital 3.0, obravnava Hemmaberg, Globasnitz/Iuenno, Jaunstein in Šteben kot skupno arheološko mikroregijo. ([Hagmann and Reiner, 2023, page 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "content": "Sodobni **projekt IUENNA** je treba razlikovati od antičnega krajevnega imena. Ime projekta je kratica za *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Projekt, razvit v okviru programa Go!Digital 3.0, obravnava Hemmaberg, Globasnitz/Iuenno, Jaunstein in Šteben kot skupno arheološko mikroregijo. ([Hagmann and Reiner, 2023, page 1](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nPri projektu so sodelovali kärnten.museum, Avstrijski arheološki inštitut, Austrian Centre for Digital Humanities and Cultural Heritage pri Avstrijski akademiji znanosti, avstrijski Zvezni spomeniški urad in podjetje ARDIG. ([Hagmann and Reiner, 2023, page 2](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) Izhodišče je bila zahtevna dediščina več kot stoletne zgodovine raziskav: obsežna dokumentacija izkopavanj je bila v analogni in digitalni obliki razpršena na različnih lokacijah, deloma neustrezno strukturirana in zato dolgoročno izpostavljena nevarnosti izgube informacij. ([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nIUENNA zato zasleduje dva tesno povezana cilja. Prvi je zbiranje, digitalizacija, georeferenciranje, opremljanje s standardiziranimi metapodatki in dolgoročno arhiviranje obstoječih analognih in digitalnih raziskovalnih podatkov. Drugi je vrednotenje združenih informacij v okviru kulturnozgodovinske modelne študije Globasnitza in njegove okolice. ([Hagmann and Reiner, 2023, page 4](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nGeografski informacijski sistem in geopodatkovna zbirka povežeta predmete, arheološke strukture, prostorske enote, fotografije, načrte, besedila, preglednice, geofizikalne meritve in 3D-modele. Predmeti so, kjer je mogoče, povezani z arheološkimi konteksti, ti pa s sodobno topografijo. ([Hagmann and Reiner, 2023, page 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII)) Podatki sledijo načelom odprte znanosti in FAIR, opisani so z nadzorovanimi slovarji ter opremljeni s trajnimi identifikatorji. Dolgoročno arhiviranje in objava potekata v repozitoriju **ARCHE**, spletna kartografska aplikacija pa omogoča prostorsko raziskovanje. ([Hagmann and Reiner, 2023, page 6](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))([Hagmann and Reiner, 2023, page 7](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nPodatkovna zbirka IUENNA, objavljena leta 2025, gradivo deli na sklope Hemmaberg, Globasnitz, Jaunstein, St. Stefan, Jauntal in retrodigitalizirano gradivo. Vključuje dokumentacijo izkopavanj, geofizikalne podatke, fotografije, risbe, podatkovne zbirke, georeferencirane rastrske in vektorske podatke, konservatorsko dokumentacijo, bioarheološke informacije ter 3D-podatke. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nIUENNA zato ni le raziskovalni projekt o zgodovini južne Podjune, temveč tudi model za varovanje, povezovanje, pregledno dokumentiranje in ponovno uporabo raznovrstne dokumentacije dolgotrajnih arheoloških raziskav pri oblikovanju novih raziskovalnih vprašanj. ([Hagmann and Reiner, 2023, page 5](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))",
+      "citations": [
+        "Hagmann and Reiner, 2023"
+      ],
+      "keywords": [
+        "projekt",
+        "iuenna",
+        "projekt iuenna",
+        "arche",
+        "odprta znanost",
+        "fair",
+        "care"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_sl_obseg_podatkov",
+      "lang": "sl",
+      "title": "Obseg podatkov, dostopnost in digitalna trajnost",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Projekt Go!Digital 3.0, ki sta ga vodila Dominik Hagmann in Franziska Reiner ob sodelovanju Nicole Math, je potekal od 1. januarja 2023 do 31. decembra 2024. Združil je več kot stoletje raziskav z več kot 200 najdišč. Končna zbirka, prenesena v ARCHE, vsebuje več kot 20.000 digitalnih objektov in več kot 350 GB podatkov, med njimi poročila o izkopavanjih, geofizikalne podatke, 3D-modele in retrodigitalizirane arhive. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "content": "Projekt Go!Digital 3.0, ki sta ga vodila Dominik Hagmann in Franziska Reiner ob sodelovanju Nicole Math, je potekal od 1. januarja 2023 do 31. decembra 2024. Združil je več kot stoletje raziskav z več kot 200 najdišč. Končna zbirka, prenesena v ARCHE, vsebuje več kot 20.000 digitalnih objektov in več kot 350 GB podatkov, med njimi poročila o izkopavanjih, geofizikalne podatke, 3D-modele in retrodigitalizirane arhive. ([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann and Reiner, 2025, page 4](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))([Hagmann et al., page 2](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nPot do arhiva je bila sama po sebi pomemben raziskovalni rezultat. Zgodnji popis je obsegal približno 200 GB oziroma okoli 28.000 datotek v 1.200 mapah ter približno 40 zabojnikov s približno 6.000 analognimi objekti. Digitalizacija je sprva ustvarila približno 650 GB podatkov. Z vrednotenjem, odstranjevanjem dvojnikov in nepomembnih datotek ter izločanjem zaradi varstva osebnih podatkov je nastal zmanjšan, za raziskave pripravljen dolgoročni arhiv. Hierarhična in človeku berljiva struktura map povezuje glavne skupine po najdiščih s podskupinami za daljinsko zaznavanje, geofiziko, izkopavanja, 3D-fotogrametrijo in risbe najdb. ([Hagmann et al., page 8](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 15](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nOpis uporablja nadzorovane slovarje, kot sta Getty AAT in Wikidata, ter trajne identifikatorje. Podatke je mogoče najti prek repozitorija ARCHE in, kjer je mogoče, evropskega portala ARIADNE; spletne aplikacije omogočajo prostorske poizvedbe in iskanje po objektih. ([Hagmann et al., page 7](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann and Reiner, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3)) Razlikovati je treba med najdljivostjo in neomejenim dostopom do datotek: približno 20 odstotkov datotek je odprto dostopnih pod licenco CC BY 4.0, okoli 80 odstotkov pa je zaradi avtorskih ali drugih pravnih omejitev na voljo le na zahtevo. Za vse objekte so kljub temu javno dostopni metapodatki, ki jih ARCHE ponuja pod licenco CC0. ([Hagmann et al., page 12](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) IUENNA torej ni popolnoma odprt arhiv, ampak stopenjski, »polodprti« sistem, ki usklajuje cilje FAIR z načeli CARE, varstvom zasebnosti, zaščito najdišč in upravljanjem pravic.\n\nZemeljski plaz na Simonsbergu po ekstremnem vremenu 6. avgusta 2023 je pokazal ranljivost najdišč, muzejev in dokumentacije zaradi naravnih nevarnosti in podnebnih sprememb. Projektne objave zato poudarjajo, da statično shranjevanje na lokalnih nosilcih ni dovolj: dolgoročno ohranjanje zahteva odporno infrastrukturo, migracijo formatov, stalno preverjanje kakovosti ter trajno institucionalno, tehnično in finančno podporo. ([Hagmann and Reiner, 2025, page 1](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3))([Hagmann et al., page 13](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ)) Zbirko je primerneje opisati kot obsežen in razmeroma statičen korpus »large data« kot pa kot pravi »Big Data«. Njena vrednost je v bogatem kontekstu in ponovni uporabnosti. »Nadgradnja podatkov« oziroma *data upcycling* pomeni ustvarjanje novih raziskovalnih proizvodov iz starejših podatkov; strukturirani podatki lahko podpirajo interaktivne zemljevide in poizvedovalna orodja, razvita z generativno umetno inteligenco. Takšna ponovna uporaba pa zahteva pregledne metapodatke, ustrezne licence in etično nadzorovan dostop. ([Hagmann et al., page 10](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))([Hagmann et al., page 11](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))",
+      "citations": [
+        "Hagmann and Reiner, 2025"
+      ],
+      "keywords": [
+        "obseg",
+        "podatkov,",
+        "dostopnost",
+        "digitalna",
+        "trajnost",
+        "obseg podatkov",
+        "dostopnost",
+        "digitalna trajnost",
+        "arche",
+        "plaz",
+        "simonsberg"
+      ],
+      "graph_node_id": "top_iuenna"
+    },
+    {
+      "id": "found_sl_novi_rezultati",
+      "lang": "sl",
+      "title": "Novi rezultati in topografska presoja",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Prispevek v spominskem zborniku združuje prospekcijske podatke, pridobljene med letoma 2020 in 2023, s starejšo dokumentacijo izkopavanj, arheološkimi najdbami in podatki daljinskega zaznavanja. V štirih kampanjah so z geomagnetno metodo raziskali približno 21 hektarov, dodatne štiri hektare pa z georadarjem. Raziskave prvič omogočajo obsežno presojo velikosti, notranje členitve in prometnogeografske umeščenosti rimske naselbinske pokrajine okoli Globasnitza. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))",
+      "content": "Prispevek v spominskem zborniku združuje prospekcijske podatke, pridobljene med letoma 2020 in 2023, s starejšo dokumentacijo izkopavanj, arheološkimi najdbami in podatki daljinskega zaznavanja. V štirih kampanjah so z geomagnetno metodo raziskali približno 21 hektarov, dodatne štiri hektare pa z georadarjem. Raziskave prvič omogočajo obsežno presojo velikosti, notranje členitve in prometnogeografske umeščenosti rimske naselbinske pokrajine okoli Globasnitza. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nGlobasnitz se kaže kot neurbani vicus, velik približno 7–9 hektarov. V središču kraja je bilo ugotovljenih več stavb in cesta v smeri sever–jug; zahodneje so dokumentirane dodatne ceste, obzidani stavbni kompleksi in najmanj 400 metrov dolga grobiščna cesta z deloma razkošno urejenimi grobnimi območji. Naselbina je bila torej precej velika, vendar je ležala več kot tri kilometre južno od glavne ceste Celeia–Virunum in je bila z njo povezana prek več stranskih oziroma priključnih cest. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nMetodološko so nove prospekcije večinoma uporabljale petkanalni fluxgate gradiometer z razmikom tipal 0,5 metra in georadar s frekvenco 400 MHz. RTK-GPS je omogočil natančno georeferenciranje, rezultati pa so bili analizirani v programu ArcGIS Pro. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) Na osrednjem merilnem območju so bile strukture vidne že približno 0,4 metra pod površino. Več različno usmerjenih stavb leži ob treh metrov široki cesti v smeri sever–jug, posamezni temelji pa segajo do globine približno 1,5 metra. Arheološki pomen območja dodatno potrjuje zaklad 322 rimskih novcev, odkrit leta 1946. ([Reiner and Profant, 2025, page 2](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49))([Reiner and Profant, 2025, page 3](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49)) Za daljinske povezave je pomembno tudi geofizikalno odkritje dodatnih odsekov ceste proti Virunumu na severnem robu Tainacherfelda leta 2023. ([“Annual Report 2023”, 2024, page 103](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))([“Annual Report 2023”, 2024, page 104](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))\n\nTakšna lega postavlja pod vprašaj razširjeno razlago Globasnitza kot cestne postaje Iuenna. Kot alternativna lokacija je predlagan **Tscherberg**, ki je ležal neposredno ob glavni rimski cesti, kjer obstajajo sledovi rimskodobnih stavb in ki približno ustreza razdalji 23 rimskih milj od Virunuma, zapisani na *Tabuli Peutingeriani*. Identifikacija ostaja utemeljena hipoteza, saj nadaljevanje ceste in arheološke razmere še niso dovolj raziskani. Po tem modelu je bil Globasnitz vicus z neznanim antičnim imenom, poznoantična utrdba na Katharinakoglu pa bi lahko bila naslednica Iuenne, domnevno locirane pri Tscherbergu. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nPri razlagi nastanka in pomena vicusa je zato treba upoštevati druge dejavnike. Mednje sodijo okoliška posestva lokalnih in mestnih elit ter morebitna kultna privlačnost Hemmaberga in Rozalijine votline. Rimsko svetišče ob izviru in kontinuiteta od poganskega kultnega prostora do poznoantičnega krščanskega romarskega središča sta mogoča, vendar arheološko še nista dokazana. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nV **Štebnu**, približno 1,2 km severno od Globasnitza, je bil geofizikalno dokazan približno dva hektara velik večfazni kompleks vile. Kompleks z najmanj tremi gradbenimi fazami je obsegal dvoriščne zidove, več skupin prostorov, pomožne stavbe ter kopališko stavbo s hipokavsti in vodnim kanalom. Tipološko sodi med ortogonalno zasnovana posestva, razširjena v južnem Noriku, za katera je značilna funkcionalna ločitev med reprezentativnim stanovanjskim in kmetijskim delom. Nagrobni napis nekdanjega virunumskega edila L. Barbija Vercaia, sekundarno vzidan v župnijsko cerkev, morda kaže na visok družbeni položaj lastnikov zemljišč v tej pokrajini vil. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\nTudi pomen projekta IUENNA je zdaj mogoče natančneje opredeliti. Zbirka, arhivirana v repozitoriju ARCHE, vsebuje več kot 20.000 digitalnih virov iz več kot stoletja raziskav, med njimi poročila o izkopavanjih, geofizikalne posnetke, retrodigitalizirano arhivsko gradivo in 3D-modele. Razdeljena je na šest semantično opredeljenih podzbirk in uporablja trajnostne datotečne formate. Poleg načel FAIR projekt izrecno upošteva načela CARE ter tako ustvarja podlago za odprte, etično odgovorne, interdisciplinarne in v prihodnje tudi z umetno inteligenco podprte raziskave. Ponovna uporaba retrodigitaliziranih skic Hansa Winklerja pri razlagi kopališke stavbe v Štebnu nazorno kaže neposredno znanstveno vrednost te podatkovne infrastrukture. ([Gugl et al.](https://www.zotero.org/groups/4910727/iuenna/items/BY3XK4UT))\n\n* * *",
+      "citations": [
+        "Reiner and Profant, 2025"
+      ],
+      "keywords": [
+        "novi",
+        "rezultati",
+        "topografska",
+        "presoja",
+        "nova presoja",
+        "tscherberg",
+        "vicus",
+        "geofizika",
+        "gugl",
+        "zaklad novcev",
+        "322 novcev"
+      ],
+      "graph_node_id": "col_1792169"
+    },
+    {
+      "id": "found_sl_literatur",
+      "lang": "sl",
+      "title": "Literatur",
+      "category": "Zgodovinski in arheološki kontekst",
+      "summary": "Hagmann, Dominik, und Franziska Reiner. 2025. „Das go!digital-3.0-Projekt IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten*. ([Hagmann and Reiner, 2025](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))",
+      "content": "Hagmann, Dominik, und Franziska Reiner. 2025. „Das go!digital-3.0-Projekt IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten*. ([Hagmann and Reiner, 2025](https://www.zotero.org/groups/4910727/iuenna/items/ABRSMSM9))\n\nHagmann, Dominik, Franziska Reiner und Christian Gugl. Im Druck. „No End of History Yet! Encompassing the Challenges of Long-Term Archiving a Large (Hence Not Big) Dataset in Austrian Digital Roman Archaeology in the Course of the IUENNA Project“. In *Open Access Databases in Archaeology and Anthropology from Italy and the Old World*. https://doi.org/10.1007/978-3-032-38890-2_4. ([Hagmann et al.](https://www.zotero.org/groups/4910727/iuenna/items/AEW3EZFZ))\n\nHagmann, Dominik, und Franziska Reiner. 2025. „Today Is Tomorrow’s Yesterday: Langzeitarchivierung im Go!Digital 3.0 Projekt IUENNA“. In *Akten des 19. Österreichischen Archäologietages in Innsbruck*. https://doi.org/10.15203/99106-185-4-37. ([Hagmann and Reiner, 2025](https://www.zotero.org/groups/4910727/iuenna/items/QCRP4HH3))\n\nReiner, Franziska, und Elke Profant. 2025. „Iuenna und Umgebung – Geophysikalische Prospektion im Jauntal“. In *Akten des 19. Österreichischen Archäologietages in Innsbruck*. https://doi.org/10.15203/99106-185-4-25. ([Reiner and Profant, 2025](https://www.zotero.org/groups/4910727/iuenna/items/GV5PEY49))\n\nÖsterreichisches Archäologisches Institut. 2024. *Annual Report 2023*. https://doi.org/10.1553/oeai.report2023. ([“Annual Report 2023”, 2024](https://www.zotero.org/groups/4910727/iuenna/items/YTMQ8SMG))\n\nLandesmuseum für Kärnten. 2024. *Museumsbericht 2023*. ([“Museumsbericht 2023”, 2024](https://www.zotero.org/groups/4910727/iuenna/items/EN5KSAPB))\n\nBinder, Michaela. 2018. „Das Gräberfeld auf dem Hemmaberg. Ergebnisse der neuen Grabungen“. *Jahreshefte des Österreichischen Archäologischen Institutes in Wien* 87. ([Binder, 2018](https://www.zotero.org/groups/4910727/iuenna/items/VJL8LNWQ))\n\nBinder, Michaela, Josef Eitler, J. Deutschmann, Sabine Ladstätter, Franz Glaser und D. Fiedler. 2016. „Prosthetics in Antiquity—An Early Medieval Wearer of a Foot Prosthesis (6th Century AD) from Hemmaberg/Austria“. *International Journal of Paleopathology*. https://doi.org/10.1016/j.ijpp.2015.11.003. ([Binder et al., 2016](https://www.zotero.org/groups/4910727/iuenna/items/YTU2JMR6))\n\nPollak, Marianne. 2017. „Spätantike und Merowingerzeit in den beiden norischen Provinzen. Ein erster Blick auf den ostgotenzeitlichen Friedhof von Globasnitz“. In *Ad amussim: Festschrift zum 65. Geburtstag von Franz Glaser*. ([Pollak, 2017](https://www.zotero.org/groups/4910727/iuenna/items/7F5YG5XF))\n\nPollak, Marianne. 2021. „Überregionale Beziehungen im Friedhof von Globasnitz“. *Carinthia I* 211. ([Pollak, 2021](https://www.zotero.org/groups/4910727/iuenna/items/CRBGERT8))\n\nEitler, Josef. 2019. „Kultkontinuität am Gipfel des Hemmabergs. FWF-Projekt P29452-G25. Eine kurze Zusammenfassung der Ergebnisse“. *Rudolfinum*. ([Eitler, 2019](https://www.zotero.org/groups/4910727/iuenna/items/FTECD8YG))\n\nEitler, Josef, und Yvonne Seidel. 2022. *Das Gipfelplateau des Hemmabergs: Bruch – Wandel – Kontinuität. Ergebnisse des FWF-Projekts Cult Continuity at the Summit of Hemmaberg (P29452-G25)*. ([Eitler and Seidel, 2022](https://www.zotero.org/groups/4910727/iuenna/items/VAC6Q67W))\n\nForstenpointner, Gerhard, Sabine Ladstätter, Roman Sauer und Ursula Thanheiser. 2003. „Fernab der Pilger. Zum Alltagsleben in der spätantiken Siedlung auf dem Hemmaberg“. *Jahreshefte des Österreichischen Archäologischen Institutes in Wien*. https://doi.org/10.1553/oejh71s39. ([Forstenpointner et al., 2003](https://www.zotero.org/groups/4910727/iuenna/items/67K9MYR7))\n\nGlaser, Franz. 1982. *Die römische Siedlung Iuenna und die frühchristlichen Kirchen am Hemmaberg: Ein Führer durch die Ausgrabungen und durch das Museum in der Gemeinde Globasnitz mit einem Anhang zu den antiken Denkmälern des Jauntales*. ([Glaser, 1982](https://www.zotero.org/groups/4910727/iuenna/items/8F5SGIIK))\n\nGlaser, Franz. 1991. *Das frühchristliche Pilgerheiligtum auf dem Hemmaberg*. ([Glaser, 1991](https://www.zotero.org/groups/4910727/iuenna/items/H4489JP7))\n\nGlaser, Franz. 2006. „Die frühchristliche Kirche in der antiken Straßenstation Iuenna“. *Mitteilungen zur Christlichen Archäologie* 12, 9–17. https://doi.org/10.1553/micha12s7. ([Glaser, 2006](https://www.zotero.org/groups/4910727/iuenna/items/IZVM728Z))\n\nLadstätter, Sabine. 2000. *Die materielle Kultur der Spätantike in den Ostalpen: Eine Fallstudie am Beispiel der westlichen Doppelkirchenanlage auf dem Hemmaberg*. ([Ladstätter, 2000](https://www.zotero.org/groups/4910727/iuenna/items/3ZR6GZET))\n\nGlaser, Franz. 2002. „Iuenna – Hemmaberg“. In *The Autonomous Towns of Noricum and Pannonia: Noricum*, herausgegeben von Marjeta Šašel Kos und Peter Scherrer, 129–132. Situla 40. Ljubljana. ([Glaser, 2002](https://www.zotero.org/groups/4910727/iuenna/items/4I2W4CRQ))\n\nHagmann, Dominik, und Franziska Reiner. 2023. „IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology: A ‘para-description’“. *Peer Community Journal* 3. https://doi.org/10.24072/pcjournal.338. ([Hagmann and Reiner, 2023](https://www.zotero.org/groups/4910727/iuenna/items/RLEI4SII))\n\nPollak, Marianne. 2023. „Der merowingerzeitliche Friedhof der Straßenstation Iuenna/Globasnitz: Fundspektrum einer Kontaktregion“. *ArchaeoPlus* 14. ([Pollak, 2023](https://www.zotero.org/groups/4910727/iuenna/items/2LSBWDJW))\n\nSchwaiger, Helmut, und Franziska Reiner. 2022. „Geophysikalische Messungen in und um Globasnitz/Globasnica“. *Rudolfinum – Jahrbuch des Landesmuseums für Kärnten* 2021, 66–74. ([Schwaiger and Reiner, 2022](https://www.zotero.org/groups/4910727/iuenna/items/9F7FVRBC))\n\n### Datenpublikation\n\nHagmann, Dominik, und Franziska Reiner. 2025. *IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*. Digitale archäologische Datensammlung im Repositorium ARCHE. ([Hagmann and Reiner, 2025](https://www.zotero.org/groups/4910727/iuenna/items/JG22D2TX))\n\n**Created by Beaver** ·\n\nEdited by Beaver · ·",
+      "citations": [
+        "Glaser (2002)",
+        "Christian Gugl et al.",
+        "Hagmann & Reiner (2023)",
+        "Pollak (2023)",
+        "Schwaiger & Reiner (2022)",
+        "Hagmann & Reiner (2025)",
+        "Binder et al. (2016)",
+        "Forstenpointner et al. (2003)"
+      ],
+      "keywords": [
+        "literatur"
+      ],
+      "graph_node_id": null
+    }
+  ],
   "synthetic_qa": [
     {
       "id": "qa_tscherberg_neubewertung",
@@ -758,7 +1631,7 @@
         "Wer hat das Gräberfeld in Globasnitz ausgegraben?",
         "Pollak Globasnitz"
       ],
-      "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im spätantiken Ostgräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
+      "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im ostgotischen Gräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
       "citations": [
         "Pollak (2000)",
         "Pollak (2002)"
@@ -768,7 +1641,8 @@
         "pollak",
         "gräberfeld",
         "globasnitz",
-        "ostgräberfeld",
+        "ostgotisches gräberfeld",
+        "ostgoten",
         "jaunstein",
         "bundesdenkmalamt",
         "ausgräberin"
@@ -1103,7 +1977,7 @@
         "Geschichte der Ausgrabungen Hemmaberg Globasnitz",
         "Pioniere der Archäologie Jauntal"
       ],
-      "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende Ostgräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
+      "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende ostgotische Gräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
       "citations": [
         "Glaser (1982)",
         "Pollak (2023)",

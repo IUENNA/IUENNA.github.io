@@ -2396,13 +2396,14 @@ def generate():
                     {{
                         selector: "edge",
                         style: {{
-                            "width": 1.3,
-                            "line-color": "#D0C9BF",
-                            "target-arrow-color": "#D0C9BF",
-                            "target-arrow-shape": "triangle",
+                            "width": 0.8,
+                            "line-color": "#C4BCB1",
+                            "target-arrow-color": "#C4BCB1",
+                            "target-arrow-shape": "none",
                             "curve-style": "bezier",
-                            "arrow-scale": 0.75,
-                            "opacity": 0.65,
+                            "control-point-step-size": 14,
+                            "arrow-scale": 0.7,
+                            "opacity": 0.26,
                             "label": "data(label)",
                             "font-size": "7.5px",
                             "font-family": "Plus Jakarta Sans, sans-serif",
@@ -2416,17 +2417,18 @@ def generate():
                             "text-border-color": "#D5CEC5",
                             "text-border-width": 0.5,
                             "text-border-opacity": 0.8,
-                            "min-zoomed-font-size": 8.5
+                            "min-zoomed-font-size": 11
                         }}
                     }},
                     {{
                         selector: "edge[label = 'isPartOf']",
                         style: {{
-                            "width": 0.8,
-                            "line-color": "#C2D1C8",
+                            "width": 0.65,
+                            "line-color": "#B4C5BD",
                             "target-arrow-shape": "none",
-                            "curve-style": "straight",
-                            "opacity": 0.35,
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "opacity": 0.22,
                             "color": "#3D7068",
                             "text-border-color": "#B5C8BF"
                         }}
@@ -2434,11 +2436,14 @@ def generate():
                     {{
                         selector: "edge[label = 'hasSpatialCoverage']",
                         style: {{
-                            "width": 1.2,
+                            "width": 0.75,
                             "line-color": "#4A6B53",
                             "target-arrow-color": "#4A6B53",
-                            "line-style": "dashed",
-                            "opacity": 0.6,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.20,
                             "color": "#2D6A4F",
                             "text-border-color": "#A3C4B0",
                             "text-background-color": "#F4F8F5"
@@ -2447,21 +2452,26 @@ def generate():
                     {{
                         selector: "edge[label = 'isPartOfResource']",
                         style: {{
-                            "width": 1.0,
+                            "width": 0.7,
                             "line-color": "#B5C8BF",
                             "target-arrow-shape": "none",
-                            "opacity": 0.5,
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "opacity": 0.28,
                             "color": "#3D7068"
                         }}
                     }},
                     {{
                         selector: "edge[label = 'hasCreator']",
                         style: {{
-                            "width": 1.3,
+                            "width": 0.95,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "line-style": "dashed",
-                            "opacity": 0.65,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.35,
                             "color": "#A8442E",
                             "text-border-color": "#E5BDB0",
                             "text-background-color": "#FAF0EC"
@@ -2470,22 +2480,28 @@ def generate():
                     {{
                         selector: "edge[label = 'hasContributor']",
                         style: {{
-                            "width": 1.1,
+                            "width": 0.85,
                             "line-color": "#888888",
                             "target-arrow-color": "#888888",
-                            "line-style": "dotted",
-                            "opacity": 0.55,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.28,
                             "color": "#6B7280"
                         }}
                     }},
                     {{
                         selector: "edge[label = 'isMemberOf']",
                         style: {{
-                            "width": 1.2,
+                            "width": 0.9,
                             "line-color": "#5A6B7C",
                             "target-arrow-color": "#5A6B7C",
-                            "line-style": "dashed",
-                            "opacity": 0.55,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.35,
                             "color": "#3E5C76",
                             "text-border-color": "#A4B8C6"
                         }}
@@ -2493,10 +2509,13 @@ def generate():
                     {{
                         selector: "edge[label = 'hasPrincipalInvestigator']",
                         style: {{
-                            "width": 2.0,
+                            "width": 1.5,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "opacity": 0.85,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "opacity": 0.60,
                             "color": "#A8442E",
                             "text-border-color": "#E5BDB0",
                             "text-background-color": "#FAF0EC"
@@ -2505,21 +2524,27 @@ def generate():
                     {{
                         selector: "edge[label = 'hasHostInstitution'], edge[label = 'hasFunder']",
                         style: {{
-                            "width": 1.8,
+                            "width": 1.0,
                             "line-color": "#202226",
                             "target-arrow-color": "#202226",
-                            "opacity": 0.75,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "opacity": 0.32,
                             "color": "#202226"
                         }}
                     }},
                     {{
                         selector: "edge[label = 'documents']",
                         style: {{
-                            "width": 1.5,
+                            "width": 1.0,
                             "line-color": "#7B4F36",
                             "target-arrow-color": "#7B4F36",
-                            "line-style": "dashed",
-                            "opacity": 0.75,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.40,
                             "color": "#7B4F36",
                             "text-border-color": "#D3B7A9",
                             "text-background-color": "#F7F2EF"
@@ -2528,10 +2553,13 @@ def generate():
                     {{
                         selector: "edge[label = 'hasAuthor']",
                         style: {{
-                            "width": 1.4,
+                            "width": 0.95,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "opacity": 0.75,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "opacity": 0.40,
                             "color": "#A8442E",
                             "text-border-color": "#E5BDB0"
                         }}
@@ -2539,11 +2567,14 @@ def generate():
                     {{
                         selector: "edge[label = 'hasSubject']",
                         style: {{
-                            "width": 1.1,
+                            "width": 0.85,
                             "line-color": "#6C5B7B",
                             "target-arrow-color": "#6C5B7B",
-                            "line-style": "dotted",
-                            "opacity": 0.65,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.35,
                             "color": "#5C4B75",
                             "text-border-color": "#C0B7C6",
                             "text-background-color": "#F8F5F9"
@@ -2552,11 +2583,14 @@ def generate():
                     {{
                         selector: "edge[label = 'hasTemporalCoverage']",
                         style: {{
-                            "width": 1.1,
+                            "width": 0.85,
                             "line-color": "#C08A3E",
                             "target-arrow-color": "#C08A3E",
-                            "line-style": "dashed",
-                            "opacity": 0.65,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.35,
                             "color": "#8C6A3E",
                             "text-border-color": "#E2CBB0",
                             "text-background-color": "#FAF6F0"
@@ -2565,11 +2599,14 @@ def generate():
                     {{
                         selector: "edge[label = 'hasLicense']",
                         style: {{
-                            "width": 1.0,
+                            "width": 0.8,
                             "line-color": "#486573",
                             "target-arrow-color": "#486573",
-                            "line-style": "dotted",
-                            "opacity": 0.55,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "solid",
+                            "opacity": 0.30,
                             "color": "#37535E",
                             "text-border-color": "#A8B8BF",
                             "text-background-color": "#F2F6F8"
@@ -2578,10 +2615,13 @@ def generate():
                     {{
                         selector: "edge[label = 'hasHosting']",
                         style: {{
-                            "width": 1.8,
+                            "width": 1.0,
                             "line-color": "#202226",
                             "target-arrow-color": "#202226",
-                            "opacity": 0.8,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "opacity": 0.30,
                             "color": "#202226",
                             "text-border-color": "#C4C0B8",
                             "text-background-color": "#FAF8F5"
@@ -2590,10 +2630,13 @@ def generate():
                     {{
                         selector: "edge[label = 'hasOwner'], edge[label = 'hasLicensor'], edge[label = 'hasRightsHolder']",
                         style: {{
-                            "width": 1.5,
+                            "width": 0.9,
                             "line-color": "#2E5B88",
                             "target-arrow-color": "#2E5B88",
-                            "opacity": 0.75,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "opacity": 0.30,
                             "color": "#2E5B88",
                             "text-border-color": "#A4B8C6",
                             "text-background-color": "#F0F5FA"
@@ -2602,11 +2645,14 @@ def generate():
                     {{
                         selector: "edge[label = 'hasCurator'], edge[label = 'hasDepositor'], edge[label = 'hasMetadataCreator'], edge[label = 'hasDigitisingAgent']",
                         style: {{
-                            "width": 1.3,
+                            "width": 0.85,
                             "line-color": "#C85A32",
                             "target-arrow-color": "#C85A32",
-                            "line-style": "dashed",
-                            "opacity": 0.65,
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 12,
+                            "line-style": "solid",
+                            "opacity": 0.28,
                             "color": "#A8442E",
                             "text-border-color": "#E5BDB0",
                             "text-background-color": "#FAF0EC"
@@ -2615,7 +2661,7 @@ def generate():
                     {{
                         selector: ".dimmed",
                         style: {{
-                            "opacity": 0.1
+                            "opacity": 0.05
                         }}
                     }},
                     {{
@@ -2632,11 +2678,14 @@ def generate():
                         selector: "edge.highlighted, edge[label].highlighted",
                         style: {{
                             "label": "data(label)",
-                            "width": 2.5,
+                            "width": 2.6,
                             "line-color": "#A8442E",
                             "target-arrow-color": "#A8442E",
+                            "target-arrow-shape": "triangle",
+                            "arrow-scale": 0.85,
+                            "curve-style": "bezier",
                             "opacity": 1,
-                            "z-index": 999,
+                            "z-index": 9999,
                             "font-size": "9.5px",
                             "font-weight": 700,
                             "color": "#A8442E",

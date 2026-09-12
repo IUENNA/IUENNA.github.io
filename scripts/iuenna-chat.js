@@ -20,8 +20,33 @@
 
   const root = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : global);
 
+  // Dynamic base path resolution (supports root level pages and subfolder pages like graph/ or wma/)
+  let basePath = '';
+  const currentScript = document.currentScript || document.querySelector('script[src*="iuenna-chat.js"]');
+  if (currentScript && currentScript.getAttribute('src')) {
+    const srcAttr = currentScript.getAttribute('src');
+    if (srcAttr.startsWith('../')) {
+      basePath = '../';
+    } else if (srcAttr.startsWith('/')) {
+      basePath = '/';
+    }
+  }
+  if (!basePath) {
+    const p = window.location.pathname.toLowerCase();
+    if (p.includes('/graph/') || p.endsWith('/graph') || p.endsWith('/graph.html') || p.includes('/wma/')) {
+      basePath = '../';
+    }
+  }
+
+  const isGraphPage = window.location.pathname.includes('/graph/') || 
+                      window.location.pathname.endsWith('/graph') ||
+                      window.location.pathname.endsWith('graph.html') ||
+                      (document.getElementById('cy') !== null && document.getElementById('lodSlider') !== null);
+
   // Configuration
-  const KB_URL = 'data/iuenna_kb.json';
+  const KB_URL = basePath + 'data/iuenna_kb.json';
+  const STORAGE_KEY_OPEN = 'iuenna_chat_open';
+  const STORAGE_KEY_HISTORY = 'iuenna_chat_history';
   
   let kbData = null;
   let isKbLoading = true;
@@ -37,6 +62,82 @@
   // Sound/Vibration feedback helper (subtle)
   function triggerHaptic() {
     if (navigator.vibrate) navigator.vibrate(10);
+  }
+
+  // Session Storage Helpers for Cross-Page State Persistence
+  function saveChatState() {
+    try {
+      const chatWin = document.getElementById('iuenna-chat-window');
+      const isOpen = chatWin && chatWin.classList.contains('chat-open');
+      sessionStorage.setItem(STORAGE_KEY_OPEN, isOpen ? 'true' : 'false');
+
+      const messagesContainer = document.getElementById('chat-messages');
+      if (messagesContainer) {
+        const clone = messagesContainer.cloneNode(true);
+        const typingEl = clone.querySelector('#chat-typing-indicator-el');
+        if (typingEl) typingEl.remove();
+        sessionStorage.setItem(STORAGE_KEY_HISTORY, clone.innerHTML);
+      }
+    } catch (e) {}
+  }
+
+  function restoreChatState() {
+    try {
+      const savedHistory = sessionStorage.getItem(STORAGE_KEY_HISTORY);
+      const messagesContainer = document.getElementById('chat-messages');
+      if (savedHistory && messagesContainer && savedHistory.trim().length > 0) {
+        messagesContainer.innerHTML = savedHistory;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      const wasOpen = sessionStorage.getItem(STORAGE_KEY_OPEN) === 'true';
+      if (wasOpen) {
+        const chatWin = document.getElementById('iuenna-chat-window');
+        if (chatWin) {
+          chatWin.classList.add('chat-open');
+        }
+      }
+    } catch (e) {}
+  }
+
+  function showChatToast(msg) {
+    const msgArea = document.getElementById('chat-messages');
+    if (!msgArea) return;
+    const toast = document.createElement('div');
+    toast.style.cssText = 'align-self: center; margin: 6px 0; font-size: 0.74rem; background: rgba(30, 58, 138, 0.08); color: #1e3a8a; border: 1px solid rgba(30, 58, 138, 0.2); border-radius: 12px; padding: 4px 12px; animation: fadeIn 0.2s ease; display: flex; align-items: center; gap: 6px;';
+    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #1e3a8a;"></i> <em>${msg}</em>`;
+    msgArea.appendChild(toast);
+    msgArea.scrollTop = msgArea.scrollHeight;
+    setTimeout(() => { toast.remove(); }, 3500);
+  }
+
+  function getWelcomeMessageHtml() {
+    return `
+      <!-- Welcome Message -->
+      <div class="chat-msg bot">
+        <div class="chat-msg-bubble">
+          <p><strong>Willkommen beim IUENNA Sammlungs-Assistenten!</strong> 🏺</p>
+          <p style="margin-top: 6px; font-size: 0.84rem; line-height: 1.45;">
+            Stellen Sie eine Frage oder suchen Sie nach Objekten, Fundstellen und Plänen. Die Treffer führen Sie direkt zu den Daten im <strong>Wissensgraphen</strong>, im <strong>Web-GIS</strong> und in <strong>ARCHE</strong>.
+          </p>
+          <div class="chat-byoai-welcome-box" style="margin-top: 8px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: 4px; font-size: 0.79rem; line-height: 1.4; color: #4a148c;">
+            <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.
+          </div>
+          <div class="chat-chips-container" style="margin-top: 8px;">
+            <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
+            <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
+            <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
+            <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
+            <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
+            <button type="button" class="chat-chip" data-query="Ostgotisches Gräberfeld Globasnitz">💀 Ostgotisches Gräberfeld</button>
+            <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
+            <button type="button" class="chat-chip" data-query="Grabungspläne Hemmaberg">🗺️ Grabungspläne</button>
+            <button type="button" class="chat-chip" data-query="QGIS Geodaten">🗺️ QGIS GeoPackage</button>
+          </div>
+        </div>
+        <span class="chat-msg-time">Jetzt</span>
+      </div>
+    `;
   }
 
   // 1. Build and Inject DOM elements
@@ -69,13 +170,16 @@
               <span id="chat-model-status" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.67rem; padding: 1px 6px; border-radius: 3px; background: rgba(255,255,255,0.16);">
                 <i class="fa-solid fa-bolt" style="color: #4fc3f7;"></i> Schnellsuche &bull; Metadaten
               </span>
-              <a href="byoai.html" target="_blank" rel="noopener noreferrer" class="chat-header-byoai-badge" title="Bring Your Own AI – Eigene KI anbinden">
+              <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" class="chat-header-byoai-badge" title="Bring Your Own AI – Eigene KI anbinden">
                 <i class="fa-solid fa-microchip"></i> BYOAI Hub ↗
               </a>
             </div>
           </div>
         </div>
-        <div class="chat-header-actions">
+        <div class="chat-header-actions" style="display: flex; align-items: center; gap: 6px;">
+          <button class="chat-header-action-btn" id="chat-reset-btn" aria-label="Chat zurücksetzen" title="Verlauf leeren &amp; neu starten" style="background: none; border: none; color: rgba(255,255,255,0.75); cursor: pointer; padding: 4px 6px; font-size: 0.85rem; border-radius: 4px; transition: color 0.15s ease;">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
           <button class="chat-close-btn" id="chat-close-btn" aria-label="Schließen" title="Schließen (ESC)">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -84,30 +188,7 @@
 
       <!-- Messages Area -->
       <div class="chat-messages" id="chat-messages">
-        <!-- Welcome Message -->
-        <div class="chat-msg bot">
-          <div class="chat-msg-bubble">
-            <p><strong>Willkommen beim IUENNA Sammlungs-Assistenten!</strong> 🏺</p>
-            <p style="margin-top: 6px; font-size: 0.84rem; line-height: 1.45;">
-              Stellen Sie eine Frage oder suchen Sie nach Objekten, Fundstellen und Plänen. Die Treffer führen Sie direkt zu den Daten im <strong>Wissensgraphen</strong>, im <strong>Web-GIS</strong> und in <strong>ARCHE</strong>.
-            </p>
-            <div class="chat-byoai-welcome-box" style="margin-top: 8px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: 4px; font-size: 0.79rem; line-height: 1.4; color: #4a148c;">
-              <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.
-            </div>
-            <div class="chat-chips-container" style="margin-top: 8px;">
-              <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
-              <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
-              <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
-              <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
-              <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
-              <button type="button" class="chat-chip" data-query="Gräberfeld Globasnitz">💀 Gräberfeld Globasnitz</button>
-              <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
-              <button type="button" class="chat-chip" data-query="Grabungspläne Hemmaberg">🗺️ Grabungspläne</button>
-              <button type="button" class="chat-chip" data-query="QGIS Geodaten">🗺️ QGIS GeoPackage</button>
-            </div>
-          </div>
-          <span class="chat-msg-time">Jetzt</span>
-        </div>
+        ${getWelcomeMessageHtml()}
       </div>
 
       <!-- Input Area -->
@@ -120,13 +201,14 @@
         </div>
         <div class="chat-privacy-footer" style="padding: 6px 14px; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; gap: 2px;">
           <span style="font-size: 0.67rem; color: var(--text-muted); line-height: 1.35;">
-            <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i> 100% Client-Side Metadaten-Recherche &bull; DSGVO-konform &bull; <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 600; text-decoration: underline;"><i class="fa-solid fa-microchip"></i> BYOAI: Eigene KI anbinden ↗</a>
+            <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i> 100% Client-Side Metadaten-Recherche &bull; DSGVO-konform &bull; <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 600; text-decoration: underline;"><i class="fa-solid fa-microchip"></i> BYOAI: Eigene KI anbinden ↗</a>
           </span>
         </div>
       </div>
     `;
     document.body.appendChild(chatWindow);
 
+    restoreChatState();
     bindEvents();
   }
 
@@ -200,42 +282,87 @@
 
       let matchScore = 0;
       let strongMatch = false;
+      let matchedTokensCount = 0;
 
       tokens.forEach(tok => {
         const stem = getGermanStem(tok);
         const wordRegex = new RegExp(`(^|[^a-z0-9äöüß])${escapeRegExp(tok)}($|[^a-z0-9äöüß])`, 'i');
         const stemRegex = new RegExp(`(^|[^a-z0-9äöüß])${escapeRegExp(stem)}[a-z0-9äöüß]*($|[^a-z0-9äöüß])`, 'i');
 
-        if (wordRegex.test(combined)) matchScore += 6;
-        else if (stemRegex.test(combined)) matchScore += 4;
-        else if (stem && stem.length >= 4 && combined.includes(stem)) matchScore += 2;
+        let tokenScore = 0;
+        let tokenMatched = false;
 
-        if (wordRegex.test(titleLower)) {
-          matchScore += 16;
-          strongMatch = true;
-        } else if (stem && (titleLower.includes(stem) || stemRegex.test(titleLower))) {
-          matchScore += 12;
-          strongMatch = true;
+        // Combined text match
+        if (wordRegex.test(combined)) {
+          tokenScore += 6;
+          tokenMatched = true;
+        } else if (stemRegex.test(combined)) {
+          tokenScore += 4;
+          tokenMatched = true;
+        } else if (stem && stem.length >= 4 && combined.includes(stem)) {
+          tokenScore += 2;
+          tokenMatched = true;
         }
 
+        // Title match (high value)
+        if (wordRegex.test(titleLower)) {
+          tokenScore += 18;
+          strongMatch = true;
+          tokenMatched = true;
+        } else if (stem && (titleLower.includes(stem) || stemRegex.test(titleLower))) {
+          tokenScore += 12;
+          strongMatch = true;
+          tokenMatched = true;
+        }
+
+        // Keyword match - CAP score per token so repeating the same keyword doesn't inflate!
+        let bestKwScore = 0;
         for (let i = 0; i < keywords.length; i++) {
           const kwLower = (keywords[i] || '').toLowerCase();
           if (kwLower === tok) {
-            matchScore += 16;
+            bestKwScore = Math.max(bestKwScore, 18);
             strongMatch = true;
+            tokenMatched = true;
           } else if (wordRegex.test(kwLower)) {
-            matchScore += 14;
+            bestKwScore = Math.max(bestKwScore, 15);
             strongMatch = true;
+            tokenMatched = true;
           } else if (stem && (kwLower.includes(stem) || stemRegex.test(kwLower))) {
-            matchScore += 10;
+            bestKwScore = Math.max(bestKwScore, 10);
             strongMatch = true;
+            tokenMatched = true;
           }
+        }
+        tokenScore += bestKwScore;
+
+        if (tokenMatched) {
+          matchedTokensCount++;
+          matchScore += tokenScore;
         }
       });
 
-      if (combined.includes(cleanQuery)) {
-        matchScore += 15;
+      // Multi-token query bonus & penalty: strongly favor items matching ALL query terms
+      if (tokens.length > 1) {
+        const coverageRatio = matchedTokensCount / tokens.length;
+        if (coverageRatio === 1.0) {
+          // 100% token coverage bonus
+          matchScore += 60;
+        } else if (matchedTokensCount > 1) {
+          matchScore += matchedTokensCount * 20;
+        } else if (coverageRatio < 0.6) {
+          // If user queried multiple distinct terms and this item only matched 1 of them
+          matchScore = Math.floor(matchScore * 0.45);
+        }
+      }
+
+      if (titleLower === cleanQuery) {
+        matchScore += 40;
         strongMatch = true;
+      } else if (titleLower.includes(cleanQuery)) {
+        matchScore += 25;
+        strongMatch = true;
+      } else if (combined.includes(cleanQuery)) {
+        matchScore += 15;
       }
 
       // Overlap guard (strictly requires token or stem boundary match in title or keywords)
@@ -257,14 +384,20 @@
 
       if (!tokenOverlap || matchScore < 10) return;
 
-      if (type === 'find_complex') matchScore += 16;
-      if (type === 'subcollection') matchScore += 14;
-      if (type === 'site') matchScore += 10;
+      if (type === 'find_complex') matchScore += 35;
+      if (type === 'synthetic_qa' || type === 'faq') matchScore += 25;
+      if (type === 'doc_type') matchScore += 20;
+      if (type === 'subcollection') matchScore += 16;
+      if (type === 'site') matchScore += 14;
       if (type === 'folder') {
-        matchScore += 8;
-        if (rawItem && rawItem.type === 'folder_l2') matchScore += 6;
-        else if (rawItem && rawItem.type === 'folder_l3') matchScore += 3;
-        if (rawItem && rawItem.items && rawItem.items > 100) matchScore += 4;
+        matchScore += 4;
+        if (rawItem && rawItem.type === 'folder_l2') matchScore += 4;
+        else if (rawItem && rawItem.type === 'folder_l3') matchScore += 2;
+        if (rawItem && rawItem.items && rawItem.items > 100) matchScore += 3;
+        // Demote raw secondary container titles
+        if (/^(klarsichthülle|hülle|ordner|mischordner|kopie|scan|cd)\b/i.test(title)) {
+          matchScore -= 12;
+        }
       }
 
       if (matchScore > 8) {
@@ -272,8 +405,9 @@
           rawItem,
           type,
           title,
+          meta,
           score: matchScore,
-          meta
+          strongMatch
         });
       }
     };
@@ -281,30 +415,32 @@
     // 1. Authoritative Archaeological Find Complexes
     const findComplexes = [
       {
-        title: 'Münzschatzfund von Globasnitz (322 römische Münzen)',
+        title: 'Münzschatzfund von Globasnitz',
         type_label: 'Archäologischer Fundkomplex',
-        place: 'Globasnitz (vicus)',
+        place: 'Globasnitz',
         period: 'Spätantike (4. Jh. n. Chr.)',
         items: '322 römische Münzen',
-        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
-        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
-        id: 'col_1792694',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B30-8',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B30-8',
+        id: 'col_1792169',
+        category: 'coins',
         lat: 46.55694,
         lng: 14.70278,
-        keywords: ['münzen', 'münzschatz', 'hortfund', 'globasnitz', '322', 'bronzemünzen', 'geld']
+        keywords: ['münzen', 'münzschatz', 'hortfund', 'globasnitz', '322', 'bronzemünzen', 'geld', 'numismatik', 'münzfund']
       },
       {
-        title: 'Ostgräberfeld Globasnitz (440 spätantike Gräber)',
+        title: 'Ostgotisches Gräberfeld Globasnitz',
         type_label: 'Archäologischer Befund',
         place: 'Globasnitz',
-        period: 'Spätantike (5.–6. Jh. n. Chr.)',
+        period: 'Spätantike / Ostgotenzeit (5.–6. Jh. n. Chr.)',
         items: '440 dokumentierte Gräber',
-        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
-        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
-        id: 'col_1792694',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B30-8',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B30-8',
+        id: 'col_1792186',
+        category: 'graves',
         lat: 46.55694,
         lng: 14.70278,
-        keywords: ['gräberfeld', 'gräber', 'bestattungen', 'skelette', 'globasnitz', 'ostgräberfeld', 'pollak']
+        keywords: ['ostgotisches gräberfeld', 'ostgoten', 'ostgotisch', 'gräberfeld', 'gräber', 'bestattungen', 'skelette', 'globasnitz', 'ostgräberfeld', 'pollak', 'turmschädel', 'schädeldeformation']
       },
       {
         title: 'Doppelkirchenanlage & Pilgerheiligtum Hemmaberg',
@@ -312,12 +448,13 @@
         place: 'Hemmaberg',
         period: 'Spätantike (5.–6. Jh. n. Chr.)',
         items: '5 Kirchenbauten & Mosaiken',
-        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3A-E',
-        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B3A-E',
-        id: 'col_1792693',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D',
+        id: 'col_1792212',
+        category: 'architecture',
         lat: 46.55269,
         lng: 14.66768,
-        keywords: ['doppelkirchen', 'doppelkirche', 'hemmaberg', 'kirchen', 'mosaik', 'mosaiken', 'glaser', 'pilgerzentrum']
+        keywords: ['doppelkirchen', 'doppelkirche', 'hemmaberg', 'kirchen', 'mosaik', 'mosaiken', 'glaser', 'pilgerzentrum', 'pilgerheiligtum', 'baptisterium']
       },
       {
         title: 'Römische Großvilla & Badeanlage St. Stefan',
@@ -325,12 +462,41 @@
         place: 'Sankt Stefan im Jauntal',
         period: 'Römische Kaiserzeit (1.–4. Jh. n. Chr.)',
         items: '2 ha Villenkomplex & Therme',
-        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3E-A',
-        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B3E-A',
-        id: 'col_1792697',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B53-1',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B53-1',
+        id: 'col_1792411',
+        category: 'architecture',
         lat: 46.59100,
         lng: 14.77300,
-        keywords: ['villa', 'villenanlage', 'st. stefan', 'stefan', 'badeanlage', 'hypokaust', 'therme', 'šteben']
+        keywords: ['villa', 'villenanlage', 'st. stefan', 'stefan', 'badeanlage', 'hypokaust', 'therme', 'šteben', 'großvilla', 'barbius']
+      },
+      {
+        title: 'Frühmittelalterliches Reihengräberfeld Jaunstein',
+        type_label: 'Archäologischer Befund',
+        place: 'Jaunstein',
+        period: 'Frühmittelalter (8.–10. Jh. n. Chr.)',
+        items: 'Reihengräber mit Korbgehängen & Schmuck',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B',
+        id: 'col_1792303',
+        category: 'graves',
+        lat: 46.55936,
+        lng: 14.67102,
+        keywords: ['jaunstein', 'gräberfeld', 'reihengräber', 'köttlach', 'korbgehänge', 'frühmittelalter', 'karantanen', 'trachtschmuck']
+      },
+      {
+        title: 'Archivalien & Nachlass Dr. Hans Winkler',
+        type_label: 'Historischer Forschungsnachlass',
+        place: 'St. Stefan / Jauntal',
+        period: 'Forschungsgeschichte (frühes 20. Jh.)',
+        items: '475 Archivalien, Skizzen & Tagebücher',
+        pid: 'https://hdl.handle.net/21.11115/0000-0016-7B59-B',
+        arche_url: 'https://hdl.handle.net/21.11115/0000-0016-7B59-B',
+        id: 'col_1792752',
+        category: 'persons',
+        lat: 46.59100,
+        lng: 14.77300,
+        keywords: ['winkler', 'hans winkler', 'notar', 'eberndorf', 'skizzen', 'tagebuch', 'tagebücher', 'nachlass', 'skizzenbuch', 'pionier']
       }
     ];
 
@@ -368,12 +534,12 @@
       }, kw);
     });
 
-    // 3. Score Archaeological Sites (with precise coordinates)
+    // 3. Score Archaeological Sites (with precise coordinates and ARCHE collection nodes)
     const siteGeoDetails = {
-      'site_hemmaberg': { lat: 46.55269, lng: 14.66768, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3A-E' },
-      'site_globasnitz': { lat: 46.55694, lng: 14.70278, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D' },
-      'site_sankt_stefan': { lat: 46.59100, lng: 14.77300, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3E-A' },
-      'site_jaunstein': { lat: 46.55936, lng: 14.67102, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3C-C' }
+      'site_hemmaberg': { node_id: 'col_1792212', lat: 46.55269, lng: 14.66768, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D' },
+      'site_globasnitz': { node_id: 'col_1792169', lat: 46.55694, lng: 14.70278, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B30-8' },
+      'site_sankt_stefan': { node_id: 'col_1792411', lat: 46.59100, lng: 14.77300, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B53-1' },
+      'site_jaunstein': { node_id: 'col_1792303', lat: 46.55936, lng: 14.67102, pid: 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B' }
     };
 
     (kbData.sites || []).forEach(st => {
@@ -386,7 +552,7 @@
         lng: geo.lng,
         period: st.period || '',
         items: st.items_count ? `${st.items_count} Ressourcen` : null,
-        id: st.id,
+        id: geo.node_id || st.id || 'iuenna_root',
         pid: geo.pid || 'https://id.acdh.oeaw.ac.at/iuenna',
         arche_url: geo.pid || 'https://id.acdh.oeaw.ac.at/iuenna',
         geonames: st.geonames
@@ -432,14 +598,111 @@
 
     // 5. Score Document Types (Pläne, Fotos, GeoPackages etc.)
     (kbData.doc_types || []).forEach(d => {
+      const extraKw = ['hemmaberg', 'jaunstein', 'globasnitz', 'st. stefan', 'jauntal'];
+      let dNodeId = 'iuenna_root';
+      let dPid = 'https://hdl.handle.net/21.11115/0000-0016-7B39-F';
+      if (d.id === 'doc_plans') {
+        extraKw.push('grabungsplan', 'grabungspläne', 'grabungsdokumentation', 'profilschnitt', 'steinpläne', 'aufmaßplan');
+        dNodeId = 'col_1792211';
+        dPid = 'https://hdl.handle.net/21.11115/0000-0016-7B3A-E';
+      } else if (d.id === 'doc_photos') {
+        extraKw.push('foto', 'fotos', 'fotografien', 'aufnahme');
+        dNodeId = 'col_1792167';
+        dPid = 'https://hdl.handle.net/21.11115/0000-0016-7B2F-B';
+      } else if (d.id === 'doc_geodata') {
+        extraKw.push('qgis', 'arcgis', 'vektordaten', 'layer');
+        dNodeId = 'col_1792211';
+        dPid = 'https://hdl.handle.net/21.11115/0000-0016-7B3A-E';
+      }
       scoreItem(d, 'doc_type', d.name, {
         title: d.name,
         type_label: 'Materialgruppe',
         items: d.count ? `${d.count} Dokumente` : null,
         size: d.formats ? `Formate: ${d.formats}` : null,
-        pid: 'https://id.acdh.oeaw.ac.at/iuenna',
-        arche_url: 'https://id.acdh.oeaw.ac.at/iuenna'
-      }, d.keywords || []);
+        id: dNodeId,
+        pid: dPid,
+        arche_url: dPid
+      }, [...(d.keywords || []), ...extraKw]);
+    });
+
+    // 6. Score Synthetic Q&A pairs (curated expert scientific syntheses)
+    (kbData.synthetic_qa || []).forEach(qa => {
+      const qText = qa.question || '';
+      const variations = qa.variations || [];
+      const keywords = qa.keywords || [];
+      const citations = qa.citations || [];
+      const ans = qa.answer || '';
+      const allKeywords = [...keywords, ...variations, ...(citations || [])];
+
+      let place = 'Jauntal';
+      let lat = 46.55694;
+      let lng = 14.70278;
+      const qLower = (qText + ' ' + allKeywords.join(' ')).toLowerCase();
+      if (qLower.includes('hemmaberg')) { place = 'Hemmaberg'; lat = 46.55269; lng = 14.66768; }
+      else if (qLower.includes('globasnitz')) { place = 'Globasnitz'; lat = 46.55694; lng = 14.70278; }
+      else if (qLower.includes('st. stefan') || qLower.includes('stefan')) { place = 'Sankt Stefan im Jauntal'; lat = 46.59100; lng = 14.77300; }
+      else if (qLower.includes('jaunstein')) { place = 'Jaunstein'; lat = 46.55936; lng = 14.67102; }
+      else if (qLower.includes('tscherberg') || qLower.includes('katharinakogel')) { place = 'Tscherberg / St. Stefan'; lat = 46.59100; lng = 14.77300; }
+
+      let archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B39-F';
+      if (qa.graph_node_id === 'col_1792169') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B30-8';
+      else if (qa.graph_node_id === 'col_1792186') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B30-8';
+      else if (qa.graph_node_id === 'col_1792212') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D';
+      else if (qa.graph_node_id === 'col_1792303') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B';
+      else if (qa.graph_node_id === 'col_1792411') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B53-1';
+      else if (qa.graph_node_id === 'col_1792572' || qa.graph_node_id === 'col_1792752') archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B59-B';
+
+      scoreItem(qa, 'synthetic_qa', qText, {
+        title: qText,
+        type_label: 'Forschungssynthese',
+        place: place,
+        lat: lat,
+        lng: lng,
+        qa_answer: ans,
+        citations: citations,
+        id: qa.graph_node_id || 'iuenna_root',
+        pid: archePid,
+        arche_url: archePid
+      }, allKeywords);
+    });
+
+    // 7. Score FAQs (official project & research answers)
+    (kbData.faq || []).forEach(f => {
+      const qText = f.question || '';
+      const keywords = f.keywords || [];
+      const ans = f.answer || '';
+      const allKeywords = [...keywords];
+
+      let place = 'Jauntal';
+      let lat = 46.55694;
+      let lng = 14.70278;
+      const qLower = (qText + ' ' + allKeywords.join(' ')).toLowerCase();
+      if (qLower.includes('hemmaberg')) { place = 'Hemmaberg'; lat = 46.55269; lng = 14.66768; }
+      else if (qLower.includes('globasnitz')) { place = 'Globasnitz'; lat = 46.55694; lng = 14.70278; }
+      else if (qLower.includes('st. stefan') || qLower.includes('stefan')) { place = 'Sankt Stefan im Jauntal'; lat = 46.59100; lng = 14.77300; }
+      else if (qLower.includes('jaunstein')) { place = 'Jaunstein'; lat = 46.55936; lng = 14.67102; }
+
+      let archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B39-F';
+      let nodeId = 'iuenna_root';
+      if (qLower.includes('hemmaberg')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D'; nodeId = 'col_1792212'; }
+      else if (qLower.includes('gräber') || qLower.includes('graeber') || qLower.includes('ostgot')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B30-8'; nodeId = 'col_1792186'; }
+      else if (qLower.includes('globasnitz') || qLower.includes('münz')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B30-8'; nodeId = 'col_1792169'; }
+      else if (qLower.includes('stefan')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B53-1'; nodeId = 'col_1792411'; }
+      else if (qLower.includes('jaunstein')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B'; nodeId = 'col_1792303'; }
+      else if (qLower.includes('winkler')) { archePid = 'https://hdl.handle.net/21.11115/0000-0016-7B59-B'; nodeId = 'col_1792752'; }
+
+      scoreItem(f, 'synthetic_qa', qText, {
+        title: qText,
+        type_label: 'FAQ & Projektwissen',
+        place: place,
+        lat: lat,
+        lng: lng,
+        qa_answer: ans,
+        links: f.links || [],
+        id: nodeId,
+        pid: archePid,
+        arche_url: archePid
+      }, allKeywords);
     });
 
     scoredResults.sort((a, b) => b.score - a.score);
@@ -448,21 +711,226 @@
     return finalResults;
   }
 
-  // Deterministic metadata sentence generator (100% factual, 0ms latency, zero-overhead)
-  function formatMetadataSummary(meta) {
+  // Clean technical prefixes, duplicate count parentheses, and raw metadata noise
+  function cleanArchaeologicalText(str) {
+    if (!str && str !== 0) return '';
+    return String(str)
+      // Strip file extensions
+      .replace(/\.(pdf|tif|tiff|jpg|jpeg|png|dwg|dxf|gpkg|geojson|shp|csv|xlsx|zip)$/gi, '')
+      // Strip technical collection / numbering prefixes
+      .replace(/^(\d{2}_)+/g, '')
+      .replace(/^(HB|GLO|JAU|STEF|RET|BIO)[-_]/gi, '')
+      // Strip raw folder/container designations at the beginning
+      .replace(/^(Klarsichthülle|Mischordner|Ordner|Kopie|Scan|CD)\s*\d*[:\-_\s]*/gi, '')
+      // Strip duplicate count parentheses (e.g. "(322 römische Münzen)", "(440 Gräber)")
+      .replace(/\s*\(\d+\s*(?:römische\s*)?(?:münzen|gräber|bestattungen|objekte|items|ressourcen|dokumente|aufnahmen|funde)[^)]*\)/gi, '')
+      // Strip hierarchy level indicators (L1) - (L6)
+      .replace(/\s*\(L[1-6]\)/g, '')
+      // Normalise vicus annotation
+      .replace(/\s*\(vicus\)/gi, ' (Bereich des antiken vicus)')
+      // Strip empty parentheses
+      .replace(/\(\s*\)/g, '')
+      // Strip markdown link syntax, keeping text: [Some Label](url) -> Some Label
+      .replace(/\[([^\]]+)\]\((?:https?|zotero):\/\/[^\)]+\)/g, '$1')
+      // Strip raw desktop zotero or beaver protocol tokens
+      .replace(/zotero:\/\/[^\s\)\"\']+/gi, '')
+      // Strip dangling double commas or periods
+      .replace(/,\s*,/g, ',')
+      .replace(/\.\s*\./g, '.')
+      // Replace underscores with spaces
+      .replace(/_/g, ' ')
+      // Clean multiple spaces
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  }
+
+  // Resolve exact Graph Node ID with intelligent subcollection mapping
+  function resolveGraphNodeId(meta, title, cleanPlace) {
+    if (meta && meta.id && meta.id !== 'none' && meta.id !== 'iuenna_root') return meta.id;
+    if (meta && meta.graph_node_id && meta.graph_node_id !== 'none' && meta.graph_node_id !== 'iuenna_root') return meta.graph_node_id;
+
+    const text = `${title || ''} ${cleanPlace || ''} ${(meta && meta.place) || ''}`.toLowerCase();
+    if (text.includes('hemmaberg')) return 'col_1792212';
+    if (text.includes('gräber') || text.includes('graeber') || text.includes('ostgot')) return 'col_1792186';
+    if (text.includes('münz') || text.includes('hortfund')) return 'col_1792169';
+    if (text.includes('winkler')) return 'col_1792752';
+    if (text.includes('st. stefan') || text.includes('sankt stefan') || text.includes('stefan') || text.includes('villa') || text.includes('šteben')) return 'col_1792411';
+    if (text.includes('jaunstein')) return 'col_1792303';
+    if (text.includes('globasnitz')) return 'col_1792169';
+
+    return 'iuenna_root';
+  }
+
+  // Resolve authoritative ARCHE Handle URL mapped to specific subcollections
+  function resolveArcheUrl(meta, title, cleanPlace) {
+    if (meta && meta.pid && !meta.pid.includes('0000-0016-7B39-F')) return meta.pid;
+    if (meta && meta.arche_url && !meta.arche_url.includes('0000-0016-7B39-F')) return meta.arche_url;
+
+    const text = `${title || ''} ${cleanPlace || ''} ${(meta && meta.place) || ''} ${((meta && meta.keywords) || []).join(' ')}`.toLowerCase();
+    if (text.includes('hemmaberg')) return 'https://hdl.handle.net/21.11115/0000-0016-7B3B-D';
+    if (text.includes('jaunstein')) return 'https://hdl.handle.net/21.11115/0000-0016-7B4B-B';
+    if (text.includes('st. stefan') || text.includes('sankt stefan') || text.includes('stefan') || text.includes('šteben')) return 'https://hdl.handle.net/21.11115/0000-0016-7B53-1';
+    if (text.includes('winkler') || text.includes('retro') || text.includes('skizzenbuch') || text.includes('tagebuch')) return 'https://hdl.handle.net/21.11115/0000-0016-7B59-B';
+    if (text.includes('globasnitz') || text.includes('münz') || text.includes('ostgot')) return 'https://hdl.handle.net/21.11115/0000-0016-7B30-8';
+
+    return (meta && (meta.pid || meta.arche_url)) || 'https://hdl.handle.net/21.11115/0000-0016-7B39-F';
+  }
+
+  // Detect entity category for specialized archaeological phrasing and contextual actions
+  function detectEntityCategory(meta, title, query) {
+    if (meta && meta.category) return meta.category;
+    const combined = `${title || ''} ${(meta && meta.type_label) || ''} ${(meta && meta.items) || ''} ${query || ''}`.toLowerCase();
+    if (/\b(zotero|literatur|publikation|publikationen|aufsatz|artikel|buch|monographie|bibliographie)\b/i.test(combined) || (meta && (meta.type === 'Publication' || meta.type === 'publication'))) return 'publications';
+    if (/\b(münz|muenz|hortfund|numismat|denar|antoninian|follis|nominal|geld|präg)/i.test(combined)) return 'coins';
+    if (/\b(grab|gräber|graeber|bestattung|skelett|gräberfeld|graeberfeld|nekropol|ostgot|turmschädel|schädeldeform|anthropolog)/i.test(combined)) return 'graves';
+    if (/\b(plan|pläne|plaene|aufmaß|aufmass|zeichnung|profil|schnitt|grundriss|steinplan|bauaufnahme|vektor|cad|dwg|dxf)/i.test(combined)) return 'plans';
+    if (/\b(person|forscher|forscherin|nachlass|winkler|glaser|pollak|hagmann|reiner|waldhart|gugl|ladstätter|ladstaetter|barbius|notar)/i.test(combined)) return 'persons';
+    if (/\b(kirche|doppelkirche|pilger|villa|therme|badeanlage|hypokaust|mosaik|sakral|baptisterium|basilika|mauer)/i.test(combined)) return 'architecture';
+    return 'default';
+  }
+
+  // Fluent, natural, scholarly German summary generator
+  function formatArchaeologicalSummary(meta, topTitle, query) {
     if (!meta) return '';
-    const parts = [];
-    if (meta.title) parts.push(`Zu **${meta.title}**`);
-    if (meta.place) parts.push(`in ${meta.place}`);
-    if (meta.items) {
-      parts.push(`sind ${meta.items}`);
-      if (meta.type_label) parts.push(`(${meta.type_label})`);
-    } else if (meta.type_label) {
-      parts.push(`(${meta.type_label})`);
+
+    // Direct match with curated Q&A research synthesis
+    if (meta.qa_answer) {
+      return cleanArchaeologicalText(meta.qa_answer.trim());
     }
-    if (meta.period) parts.push(`aus der Epoche *${meta.period}*`);
-    parts.push(`in den IUENNA-Beständen dokumentiert.`);
-    return parts.join(' ');
+
+    const title = topTitle || meta.title || '';
+    const cleanTitle = cleanArchaeologicalText(title);
+    const cleanPlace = cleanArchaeologicalText(meta.place || '');
+    const cleanPeriod = cleanArchaeologicalText(meta.period || '');
+    const cleanItems = cleanArchaeologicalText(meta.items || '');
+
+    // Avoid repeating place if already part of title or referring to identical locality
+    let placeClause = '';
+    if (cleanPlace) {
+      const pLower = cleanPlace.toLowerCase();
+      const tLower = cleanTitle.toLowerCase();
+      const samePlace = (
+        (pLower.includes('globasnitz') && tLower.includes('globasnitz')) ||
+        (pLower.includes('hemmaberg') && tLower.includes('hemmaberg')) ||
+        (pLower.includes('stefan') && tLower.includes('stefan')) ||
+        (pLower.includes('jaunstein') && tLower.includes('jaunstein')) ||
+        tLower.includes(pLower)
+      );
+      if (!samePlace) {
+        placeClause = ` in ${cleanPlace}`;
+      }
+    }
+
+    // Format period naturally
+    let periodClause = '';
+    if (cleanPeriod) {
+      if (/^(aus|der|in|spätantike|römerzeit|frühmittelalter)/i.test(cleanPeriod)) {
+        periodClause = ` (${cleanPeriod})`;
+      } else {
+        periodClause = ` aus der Epoche ${cleanPeriod}`;
+      }
+    }
+
+    const itemsClause = cleanItems ? cleanItems : 'archäologische Primärdaten';
+    const cat = detectEntityCategory(meta, title, query);
+    const comb = `${cleanTitle} ${(meta.type_label || '')} ${(meta.items || '')}`.toLowerCase();
+
+    // Deterministic selection based on title/query hash
+    const seed = (title.length + (query ? query.length : 0)) % 3;
+
+    // 1. Gräber / Bestattungen (Graves & Burials)
+    if (cat === 'graves') {
+      if (comb.includes('globasnitz')) {
+        return 'Das ostgotische Gräberfeld von Globasnitz (5.–6. Jh. n. Chr.) zählt mit rund 425 Gräbern und circa 440 Bestattungen zu den bedeutendsten Bestattungsplätzen des Ostalpenraums. Neben herausragenden Trachtbeigaben und zwei Friedhofskirchen wurden bei mindestens zehn Individuen künstliche Schädeldeformationen (Turmschädel) nachgewiesen.';
+      }
+      if (comb.includes('jaunstein')) {
+        return 'Das frühmittelalterliche Reihengräberfeld von Jaunstein (8.–10. Jh. n. Chr.) gehört zur slawisch-karantanischen Köttlach-Kultur. Die Gräber zeichnen sich durch reichen Trachtschmuck aus, insbesondere die charakteristischen mehrgliedrigen Korbgehänge und Emailfibeln.';
+      }
+      const graveTemplates = [
+        `Zum Bestattungskomplex **${cleanTitle}**${placeClause}: Die Forschungsdaten umfassen ${itemsClause}${periodClause}. Die Dokumentation erschließt detaillierte Grabungsberichte, Gräberfeldpläne und anthropologische Befunde.`,
+        `Der Bestattungsplatz **${cleanTitle}**${placeClause} umfasst ${itemsClause}${periodClause}. Der Befund liefert grundlegende Erkenntnisse zu Bestattungsbräuchen, Grabausstattungen und der spätantik-frühmittelalterlichen Bevölkerung des Jauntals.`,
+        `Im Gräberfeldareal von **${cleanTitle}**${placeClause} wurden ${itemsClause}${periodClause} freigelegt und wissenschaftlich inventarisiert.`
+      ];
+      return graveTemplates[seed % graveTemplates.length];
+    }
+
+    // 2. Münzen / Hortfunde (Coins & Hoards)
+    if (cat === 'coins') {
+      if (comb.includes('globasnitz')) {
+        return '1946 wurde im Ortszentrum von Globasnitz ein bedeutender Hortfund von 322 römischen Bronzemünzen (3.–4. Jh. n. Chr.) geborgen. Der Fundkomplex belegt den regen Geldumlauf und die florierende spätantike Wirtschaft im Bereich der Straßensiedlung an der norischen Fernstraße.';
+      }
+      const coinTemplates = [
+        `Der numismatische Fundbestand zu **${cleanTitle}**${placeClause} umfasst ${itemsClause}${periodClause}. Die Fundmünzen dokumentieren Geldumlauf, Handelsnetzwerke und Verbergungshorizonte in der Mikroregion.`,
+        `Zu den Münzfunden aus **${cleanTitle}**${placeClause} verzeichnet die Sammlung ${itemsClause}${periodClause}. Die Stücke sind mit genauer Fundlage und numismatischer Bestimmung katalogisiert.`,
+        `In den IUENNA-Beständen ist der Münzbestand **${cleanTitle}**${placeClause} mit einem Umfang von ${itemsClause}${periodClause} erschlossen und digital zugänglich.`
+      ];
+      return coinTemplates[seed % coinTemplates.length];
+    }
+
+    // 3. Pläne / Aufmaßzeichnungen (Plans & Architectural Drawings)
+    if (cat === 'plans') {
+      const planTemplates = [
+        `Die planimetrische Dokumentation zu **${cleanTitle}**${placeClause} umfasst ${itemsClause}. Die Bestände enthalten hochauflösende Bauaufnahmen, Profilschnitte, Steinpläne und georeferenzierte Vektorgeodaten.`,
+        `Für **${cleanTitle}**${placeClause} verzeichnet das Repositorium ${itemsClause}. Die Pläne dokumentieren Grabungsschnitte, Mauerzüge und Schichtbefunde aus über einem Jahrhundert Forschungsgeschichte.`,
+        `Zu **${cleanTitle}**${placeClause} liegen ${itemsClause}${periodClause} vor. Die Vermessungs- und CAD-Zeichnungen bilden die Befundstrukturen präzise ab und stehen als Rasterscans sowie Vektordaten bereit.`
+      ];
+      return planTemplates[seed % planTemplates.length];
+    }
+
+    // 4. Personen & Nachlässe (Persons & Researchers)
+    if (cat === 'persons') {
+      if (comb.includes('winkler')) {
+        return 'Dr. Hans Winkler (1882–1964), Notar in Eberndorf, war ein zentraler autodidaktischer Pionier der Jauntaler Archäologie. Sein im IUENNA-Projekt aufbereiteter Nachlass umfasst 475 Archivalien – darunter detailreiche Skizzenbücher, Fundprotokolle und Feldtagebücher zu Ausgrabungen in St. Stefan und am Hemmaberg.';
+      }
+      if (comb.includes('glaser')) {
+        return 'Dr. Franz Glaser leitete über viele Jahrzehnte die Ausgrabungen auf dem Hemmaberg und erforschte die frühchristlichen Doppelkirchen sowie das spätantike Pilgerheiligtum. Seine Grabungsdokumentationen und Monographien bilden eine zentrale Grundlage des Projekts.';
+      }
+      if (comb.includes('pollak')) {
+        return 'Dr. Marianne Pollak leitete die Ausgrabungen im ostgotenzeitlichen Gräberfeld von Globasnitz (1999–2008). Ihre Publikationen erschließen die 440 Bestattungen, die Friedhofskirchen und die anthropologischen Befunde wissenschaftlich.';
+      }
+      if (comb.includes('hagmann') || comb.includes('reiner')) {
+        return 'Dr. Dominik Hagmann (kärnten.museum) und Franziska Reiner (ÖAI / ÖAW) leiten das Projekt IUENNA. Ihre Publikationen und Datenkurationen verbinden archäologische Feldforschung, Langzeitarchivierung in ARCHE und moderne Web-GIS-Infrastrukturen.';
+      }
+      const personTemplates = [
+        `**${cleanTitle}** ist als zentrale Persönlichkeit der archäologischen Erforschung des Jauntals verzeichnet. Das Archiv bewahrt zugehörige Dokumente, Forschungsberichte und Nachlassakten.`,
+        `Im Rahmen der Forschungsgeschichte zu ${cleanPlace || 'Jauntal'} dokumentieren die IUENNA-Bestände das Wirken von **${cleanTitle}** mit archivalischen Zeugnissen und Fundberichten.`
+      ];
+      return personTemplates[seed % personTemplates.length];
+    }
+
+    // 5. Bauten / Villen / Kirchen (Architecture)
+    if (cat === 'architecture') {
+      if (comb.includes('hemmaberg')) {
+        return 'Die frühchristliche Doppelkirchenanlage auf dem Hemmaberg bildete im 5. und 6. Jahrhundert n. Chr. ein weithin berühmtes spätantikes Pilgerheiligtum. Das Areal umfasst fünf Sakralbauten, Baptisterien und aufwendige Mosaikböden samt umfassender archäologischer Dokumentation.';
+      }
+      if (comb.includes('stefan') || comb.includes('šteben')) {
+        return 'Die römische Großvilla von St. Stefan im Jauntal erstreckt sich über rund zwei Hektar aus der Kaiserzeit (1.–4. Jh. n. Chr.). Die Erfassung dokumentiert herrschaftliche Wohnbereiche mit Fußbodenheizung (Hypokaust) und eine monumentale Badeanlage (Therme).';
+      }
+      const archTemplates = [
+        `Der architektonische Befund **${cleanTitle}**${placeClause} umfasst ${itemsClause}${periodClause}. Die baulichen Strukturen sind durch Mauerwerksanalysen, Profilschnitte und Fotodokumentationen erschlossen.`,
+        `Zu **${cleanTitle}**${placeClause} dokumentieren die Bestände ${itemsClause}. Die Anlage${periodClause} stellt ein herausragendes Denkmal der Siedlungs- und Baugeschichte des Jauntals dar.`
+      ];
+      return archTemplates[seed % archTemplates.length];
+    }
+
+    // 6. Publikationen & Literatur
+    if (cat === 'publications') {
+      const pubTemplates = [
+        `Die Fachpublikation **${cleanTitle}**${placeClause} dokumentiert wissenschaftliche Ergebnisse zu den archäologischen Befunden im Jauntal. Der Titel ist in der Zotero-Projektbibliothek (ID: 4910727) erfasst.`,
+        `Zu **${cleanTitle}** liegt ein wissenschaftlicher Forschungsbeitrag vor${periodClause}. Die Publikation erschließt die Grabungsergebnisse und Fundkomplexe für die internationale Forschung.`
+      ];
+      return pubTemplates[seed % pubTemplates.length];
+    }
+
+    // 7. Default Fallback for General Collections / Documents
+    if (meta.description && meta.description.length > 20) {
+      return `Zu **${cleanTitle}**${placeClause}: ${cleanArchaeologicalText(meta.description)}`;
+    }
+    const defaultTemplates = [
+      `Der Sammlungsbestand **${cleanTitle}**${placeClause} umfasst ${itemsClause}${periodClause}. Alle zugehörigen Ressourcen sind im Repositorium ARCHE sowie im IUENNA-Wissensgraphen erschlossen.`,
+      `In den IUENNA-Beständen ist **${cleanTitle}**${placeClause} mit ${itemsClause}${periodClause} verzeichnet und digital zugänglich.`
+    ];
+    return defaultTemplates[seed % defaultTemplates.length];
   }
 
   // Dynamic contextual follow-up suggestions
@@ -483,10 +951,14 @@
       chips.push({ query: 'Warum gibt es auf dem Hemmaberg Doppelkirchen?', label: '⛪ Doppelkirchen' });
       chips.push({ query: 'Gibt es Grabungspläne zum Hemmaberg?', label: '🗺️ Grabungspläne' });
       chips.push({ query: 'Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?', label: '🦴 Fußprothese (6. Jh.)' });
-    } else if (text.includes('globasnitz')) {
-      chips.push({ query: 'Wie viele Gräber wurden im Gräberfeld von Globasnitz ausgegraben?', label: '⚰️ 425 Gräber' });
-      chips.push({ query: 'Wurden im Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?', label: '💀 Schädeldeformationen' });
-      chips.push({ query: 'Was ist die Villenanlage von St. Stefan?', label: '🏡 Villa St. Stefan' });
+    } else if (text.includes('globasnitz') || text.includes('ostgot') || text.includes('grab') || text.includes('gräber')) {
+      chips.push({ query: 'Wie viele Gräber wurden im ostgotischen Gräberfeld von Globasnitz ausgegraben?', label: '⚰️ 425 Gräber' });
+      chips.push({ query: 'Wurden im ostgotischen Gräberfeld von Globasnitz künstliche Schädeldeformationen nachgewiesen?', label: '💀 Schädeldeformationen' });
+      chips.push({ query: 'Gab es frühchristliche Kirchen im Gräberfeld von Globasnitz?', label: '⛪ Kirchen im Gräberfeld' });
+      chips.push({ query: 'Was zeichnet das frühmittelalterliche Gräberfeld von Jaunstein aus?', label: '🦴 Jaunstein Reihengräber' });
+    } else if (text.includes('jaunstein')) {
+      chips.push({ query: 'Was zeichnet das frühmittelalterliche Gräberfeld von Jaunstein aus?', label: '🦴 Köttlach-Kultur' });
+      chips.push({ query: 'Grabungspläne Jaunstein', label: '🗺️ Pläne Jaunstein' });
     } else {
       chips.push({ query: 'Wer war Hans Winkler?', label: '👤 Hans Winkler' });
       chips.push({ query: 'Welche Münzen gibt es?', label: '🪙 Münzschatz Globasnitz' });
@@ -505,7 +977,7 @@
   }
 
   // Format Search Results into Clean, Clickable Cards
-  function renderSearchResultCard(results, summaryText) {
+  function renderSearchResultCard(results, summaryText, query = '') {
     // Case A: 0 Results Found (Pure notice with varying friendly phrasing - no lectures, no fake info)
     if (!results || results.length === 0) {
       const zeroVariations = [
@@ -529,7 +1001,7 @@
             <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
             <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
             <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg</button>
-            <button type="button" class="chat-chip" data-query="Gräberfeld Globasnitz">💀 Globasnitz Gräber</button>
+            <button type="button" class="chat-chip" data-query="Ostgotisches Gräberfeld Globasnitz">💀 Ostgotisches Gräberfeld</button>
             <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
             <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
             <button type="button" class="chat-chip" data-query="Grabungspläne Hemmaberg">🗺️ Grabungspläne</button>
@@ -545,34 +1017,88 @@
     // Case B: Results Found (Structured metadata summary + Action Buttons)
     const top = results[0];
     const meta = top.meta || {};
+    const cleanTitle = cleanArchaeologicalText(top.title || '');
+    const cleanPlace = cleanArchaeologicalText(meta.place || '');
+    const cleanPeriod = cleanArchaeologicalText(meta.period || '');
+    const cleanItems = cleanArchaeologicalText(meta.items || '');
 
-    // Action Buttons
+    // Action Buttons - Smart, Context-Sensitive Generation
     let linksHtml = '';
-    
-    // 1. Graph Link: Real anchor tag that opens the full Knowledge Graph Explorer at graph/index.html (with in-page canvas focus fallback)
-    const graphNodeId = meta.id || '';
-    const graphHref = `graph/index.html?col=${encodeURIComponent(graphNodeId)}&search=${encodeURIComponent(top.title || '')}`;
-    linksHtml += `<a href="${graphHref}" target="_blank" rel="noopener noreferrer" class="chat-card-btn graph-btn" onclick="if(window.focusGraphNode && window.focusGraphNode('${graphNodeId}')){event.preventDefault();}"><i class="fa-solid fa-circle-nodes"></i> Im Wissensgraphen zeigen 🕸️</a>`;
+    const cat = detectEntityCategory(meta, cleanTitle, query);
 
-    // 2. Web-GIS Link: Passes precise coordinates if available
-    let gisUrl = 'wma/wma.html';
-    const siteKey = ((meta.place || '') + ' ' + (top.title || '')).toLowerCase();
-    if (meta.lat && meta.lng) {
-      gisUrl += `?lat=${meta.lat}&lng=${meta.lng}&zoom=16`;
-    } else if (siteKey.includes('hemmaberg')) {
-      gisUrl += `?lat=46.55269&lng=14.66768&zoom=16`;
-    } else if (siteKey.includes('globasnitz')) {
-      gisUrl += `?lat=46.55694&lng=14.70278&zoom=16`;
-    } else if (siteKey.includes('stefan') || siteKey.includes('winkler')) {
-      gisUrl += `?lat=46.59100&lng=14.77300&zoom=16`;
-    } else if (siteKey.includes('jaunstein')) {
-      gisUrl += `?lat=46.55936&lng=14.67102&zoom=16`;
+    // Resolve exact Graph Node ID and ARCHE URL
+    const graphNodeId = resolveGraphNodeId(meta, cleanTitle, cleanPlace);
+    const graphHref = isGraphPage
+      ? `?col=${encodeURIComponent(graphNodeId)}`
+      : `${basePath}graph/index.html?col=${encodeURIComponent(graphNodeId)}`;
+
+    const archeUrl = resolveArcheUrl(meta, cleanTitle, cleanPlace);
+
+    // 1. PERSONEN & FORSCHER: Winkler, Glaser, Pollak, Hagmann/Reiner etc.
+    if (cat === 'persons') {
+      // Graph link to person / archive node
+      linksHtml += `<a href="${graphHref}" class="chat-card-btn graph-btn" data-node-id="${escapeHtml(graphNodeId)}" title="Nachlass im Wissensgraphen fokussieren"><i class="fa-solid fa-circle-nodes"></i> Nachlass im Wissensgraphen 🕸️</a>`;
+
+      // ARCHE link directly to personal archive collection
+      linksHtml += `<a href="${archeUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn arche-btn"><i class="fa-solid fa-box-archive"></i> Archivalien in ARCHE ↗</a>`;
+
+      // Zotero bibliography search for this researcher
+      const authorLastName = cleanTitle.replace(/^(Dr\.|Mag\.|Prof\.)\s*/i, '').split(' ').pop() || 'Winkler';
+      const zoteroPersonUrl = `https://www.zotero.org/groups/4910727/iuenna/library?q=${encodeURIComponent(authorLastName)}`;
+      linksHtml += `<a href="${zoteroPersonUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn zotero-btn"><i class="fa-solid fa-book-bookmark"></i> Publikationen (Zotero) 📚</a>`;
+
+      // Secondary: if Winkler, add clear context-specific excavation map link
+      if (cleanTitle.toLowerCase().includes('winkler')) {
+        const winklerGisUrl = `${basePath}wma/wma.html?lat=46.59100&lng=14.77300&zoom=16`;
+        linksHtml += `<a href="${winklerGisUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn gis-btn" title="Grabungsort von Winkler in St. Stefan im Web-GIS ansehen"><i class="fa-solid fa-map-location-dot"></i> Grabungsort St. Stefan (GIS) 🗺️</a>`;
+      }
     }
-    linksHtml += `<a href="${gisUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn gis-btn"><i class="fa-solid fa-map-location-dot"></i> In Web-GIS ansehen 🗺️</a>`;
-    
-    // 3. ARCHE Link: Real persistent identifier
-    let archeUrl = meta.pid || meta.arche_url || 'https://hdl.handle.net/21.11115/0000-0016-7B39-F';
-    linksHtml += `<a href="${archeUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn arche-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> In ARCHE öffnen ↗</a>`;
+    // 2. PUBLIKATIONEN & LITERATUR
+    else if (cat === 'publications') {
+      // Direct Zotero link or DOI
+      let pubUrl = meta.url || meta.uri;
+      if (!pubUrl || pubUrl.includes('arche.acdh.oeaw.ac.at')) {
+        pubUrl = `https://www.zotero.org/groups/4910727/iuenna/library?q=${encodeURIComponent(cleanTitle.slice(0, 35))}`;
+      }
+      linksHtml += `<a href="${pubUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn zotero-btn"><i class="fa-solid fa-book-bookmark"></i> In Zotero öffnen 📚</a>`;
+
+      // If direct PDF available
+      if (meta.url && meta.url.toLowerCase().endsWith('.pdf')) {
+        linksHtml += `<a href="${meta.url}" target="_blank" rel="noopener noreferrer" class="chat-card-btn pdf-btn"><i class="fa-solid fa-file-pdf"></i> Volltext (PDF) 📄</a>`;
+      }
+
+      // Graph link to publication node
+      linksHtml += `<a href="${graphHref}" class="chat-card-btn graph-btn" data-node-id="${escapeHtml(graphNodeId)}" title="Publikation im Wissensgraphen zeigen"><i class="fa-solid fa-circle-nodes"></i> Im Wissensgraphen zeigen 🕸️</a>`;
+
+      // ARCHE link if available
+      if (archeUrl) {
+        linksHtml += `<a href="${archeUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn arche-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> In ARCHE öffnen ↗</a>`;
+      }
+    }
+    // 3. ARCHÄOLOGISCHE BEFUNDE, FUNDKOMPLEXE, GEODATEN, PLÄNE
+    else {
+      // Graph Link
+      linksHtml += `<a href="${graphHref}" class="chat-card-btn graph-btn" data-node-id="${escapeHtml(graphNodeId)}" title="Im Wissensgraphen fokussieren"><i class="fa-solid fa-circle-nodes"></i> Im Wissensgraphen zeigen 🕸️</a>`;
+
+      // Web-GIS Link: Only show if coordinates exist or can be resolved
+      let gisLat = meta.lat;
+      let gisLng = meta.lng;
+      if (!gisLat || !gisLng) {
+        const siteKey = `${cleanTitle} ${cleanPlace} ${(meta.place || '')}`.toLowerCase();
+        if (siteKey.includes('hemmaberg')) { gisLat = 46.55269; gisLng = 14.66768; }
+        else if (siteKey.includes('globasnitz')) { gisLat = 46.55694; gisLng = 14.70278; }
+        else if (siteKey.includes('stefan') || siteKey.includes('šteben')) { gisLat = 46.59100; gisLng = 14.77300; }
+        else if (siteKey.includes('jaunstein')) { gisLat = 46.55936; gisLng = 14.67102; }
+      }
+
+      if (gisLat && gisLng) {
+        const gisUrl = `${basePath}wma/wma.html?lat=${gisLat}&lng=${gisLng}&zoom=16`;
+        linksHtml += `<a href="${gisUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn gis-btn"><i class="fa-solid fa-map-location-dot"></i> In Web-GIS ansehen 🗺️</a>`;
+      }
+
+      // ARCHE Link: Real persistent identifier
+      linksHtml += `<a href="${archeUrl}" target="_blank" rel="noopener noreferrer" class="chat-card-btn arche-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> In ARCHE öffnen ↗</a>`;
+    }
 
     // Weitere relevante Treffer im Wissensgraphen
     let secondaryHtml = '';
@@ -582,12 +1108,16 @@
           <span style="color: var(--text-muted); font-weight: 600;">Weitere relevante Treffer im Wissensgraphen:</span>
           <ul style="margin: 4px 0 0 16px; padding: 0; color: var(--text-dark);">
             ${results.slice(1, 4).map(r => {
-              const rId = (r.meta && r.meta.id) || '';
-              const rGraphHref = `graph/index.html?col=${encodeURIComponent(rId)}&search=${encodeURIComponent(r.title || '')}`;
+              const rTitle = cleanArchaeologicalText(r.title || '');
+              const rPlace = cleanArchaeologicalText(r.meta ? r.meta.place : '');
+              const rId = resolveGraphNodeId(r.meta || {}, rTitle, rPlace);
+              let rGraphHref = isGraphPage
+                ? `?col=${encodeURIComponent(rId)}`
+                : `${basePath}graph/index.html?col=${encodeURIComponent(rId)}`;
               return `
                 <li style="margin-bottom: 3px;">
-                  <strong>${escapeHtml(r.title)}</strong>
-                  <a href="${rGraphHref}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: underline; margin-left: 4px; font-weight: 600;" onclick="if(window.focusGraphNode && window.focusGraphNode('${rId}')){event.preventDefault();}">[Im Graph 🕸️]</a>
+                  <strong>${escapeHtml(rTitle)}</strong>
+                  <a href="${rGraphHref}" class="chat-secondary-graph-link" data-node-id="${escapeHtml(rId)}" style="color: var(--secondary); text-decoration: underline; margin-left: 4px; font-weight: 600;">[Im Wissensgraphen 🕸️]</a>
                 </li>
               `;
             }).join('')}
@@ -599,33 +1129,81 @@
     // Dynamic contextual follow-up suggestions
     const followUpHtml = generateFollowUpChips(top);
 
+    // Natural varied lead-in phrase
+    const introVariations = [
+      "Zu Ihrer Recherche in den Sammlungsbeständen:",
+      "In der archäologischen Dokumentation liegt dazu Folgendes vor:",
+      "Die Sammlungsdatenbank verzeichnet dazu folgenden Befund:",
+      "Zu diesem Thema finden sich in den Beständen folgende Nachweise:",
+      "Aus den archäologischen Erfassungen im Jauntal:",
+      "Die Dokumentation liefert zu dieser Anfrage folgenden Eintrag:"
+    ];
+    const introText = introVariations[Math.floor(Math.random() * introVariations.length)];
+
+    const cardBadge = top.type === 'synthetic_qa'
+      ? 'Archäologische Forschungssynthese'
+      : cleanArchaeologicalText(meta.type_label || 'Sammlungsbestand');
+
     return `
       <div class="chat-msg-bubble">
         <!-- 1. Conversational Intro -->
         <p class="chat-intro-line" style="margin: 0 0 8px 0; font-size: 0.88rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 6px;">
           <i class="fa-solid fa-magnifying-glass" style="color: var(--secondary); font-size: 0.85rem;"></i>
-          <span>Ich habe dazu Folgendes gefunden:</span>
+          <span>${escapeHtml(introText)}</span>
         </p>
 
-        <!-- 2. Crisp, short result card based purely on metadata -->
+        <!-- 2. Crisp result card based on verified archaeological metadata & research -->
         <div class="chat-result-card" style="background: rgba(184, 142, 62, 0.05); border-left: 3px solid var(--secondary); padding: 9px 12px; border-radius: var(--radius-sm, 4px); margin-bottom: 8px;">
           <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--secondary); letter-spacing: 0.04em; margin-bottom: 2px;">
-            ${escapeHtml(meta.type_label || 'Sammlungsbestand')}
+            ${escapeHtml(cardBadge)}
           </div>
           <h4 style="margin: 0 0 4px 0; font-size: 0.93rem; font-family: var(--font-header); color: var(--primary);">
-            ${escapeHtml(top.title)}
+            ${escapeHtml(cleanTitle)}
           </h4>
-          <p style="margin: 0; font-size: 0.84rem; line-height: 1.45; color: var(--text-dark);">
+          <p style="margin: 0; font-size: 0.84rem; line-height: 1.48; color: var(--text-dark);">
             ${summaryText}
           </p>
 
           <!-- Metadata Tags -->
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;">
-            ${meta.place ? `<span class="chat-card-tag"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(meta.place)}</span>` : ''}
-            ${meta.period ? `<span class="chat-card-tag"><i class="fa-solid fa-clock"></i> ${escapeHtml(meta.period)}</span>` : ''}
-            ${meta.items ? `<span class="chat-card-tag"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(meta.items)}</span>` : ''}
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+            ${cleanPlace ? `<span class="chat-card-tag"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(cleanPlace)}</span>` : ''}
+            ${cleanPeriod ? `<span class="chat-card-tag"><i class="fa-solid fa-clock"></i> ${escapeHtml(cleanPeriod)}</span>` : ''}
+            ${cleanItems ? `<span class="chat-card-tag"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(cleanItems)}</span>` : ''}
             ${meta.size ? `<span class="chat-card-tag"><i class="fa-solid fa-hard-drive"></i> ${escapeHtml(meta.size)}</span>` : ''}
           </div>
+
+          <!-- Citation Reference if available (with clickable links to Zotero / DOI) -->
+          ${(() => {
+            const qStr = (query || '').toLowerCase();
+            const allowGlaser = qStr.includes('glaser');
+            const allowPollak = qStr.includes('pollak');
+            const safeCits = (meta.citations || []).filter(c => {
+              const lower = c.toLowerCase();
+              if (lower.includes('glaser') && !allowGlaser) return false;
+              if (lower.includes('pollak') && !allowPollak) return false;
+              return true;
+            });
+            if (safeCits.length === 0) return '';
+
+            const citLinks = safeCits.map(cit => {
+              const cleanCit = cit.replace(/\[|\]/g, '').trim();
+              const doiMatch = cleanCit.match(/10\.\d{4,9}\/[-._;()/:A-Z0-9]+/i);
+              let citHref = '';
+              if (doiMatch) {
+                citHref = `https://doi.org/${doiMatch[0]}`;
+              } else {
+                const searchQ = cleanCit.replace(/p\.\s*\d+/g, '').replace(/[()]/g, '').trim();
+                citHref = `https://www.zotero.org/groups/4910727/iuenna/library?q=${encodeURIComponent(searchQ)}`;
+              }
+              return `<a href="${citHref}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: underline; font-weight: 500;" title="Zotero / DOI Referenz öffnen">${escapeHtml(cleanCit)}</a>`;
+            });
+
+            return `
+            <div style="margin-top: 6px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">
+              <i class="fa-solid fa-book-bookmark" style="color: #c0392b; margin-right: 3px;"></i> <strong>Referenz:</strong> ${citLinks.join(' • ')}
+            </div>
+          `;
+          })()}
         </div>
 
         <!-- 3. Prominent Action Buttons -->
@@ -638,7 +1216,7 @@
           <span style="color: #512da8; line-height: 1.35;">
             <i class="fa-solid fa-microchip"></i> <strong>BYOAI:</strong> Diesen Datensatz mit eigener KI (Claude, GPT, Ollama) auswerten?
           </span>
-          <a href="byoai.html" target="_blank" rel="noopener noreferrer" style="color: #512da8; font-weight: 700; text-decoration: underline; white-space: nowrap;">
+          <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #512da8; font-weight: 700; text-decoration: underline; white-space: nowrap;">
             BYOAI &amp; MCP &rarr;
           </a>
         </div>
@@ -663,6 +1241,7 @@
     `;
     messagesContainer.appendChild(msgDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    saveChatState();
   }
 
   function appendBotMessage(htmlContent) {
@@ -677,6 +1256,7 @@
     `;
     messagesContainer.appendChild(msgDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    saveChatState();
   }
 
   function showTypingIndicator() {
@@ -810,13 +1390,13 @@
               </ul>
             </div>
             <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px;">
-              <a href="byoai.html" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: #6a1b9a; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.78rem; padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+              <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: #6a1b9a; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.78rem; padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-microchip"></i> Zum BYOAI Hub (Setup &amp; MCP) ↗
               </a>
-              <a href="data/openapi.json" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+              <a href="${basePath}data/openapi.json" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-code"></i> OpenAPI JSON
               </a>
-              <a href="llms.txt" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+              <a href="${basePath}llms.txt" target="_blank" rel="noopener noreferrer" class="chat-card-btn" style="background: var(--bg-card); color: var(--text-dark); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.78rem; padding: 6px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-file-lines"></i> llms.txt
               </a>
             </div>
@@ -826,8 +1406,8 @@
       return;
     }
 
-    // Dialog Intent D: Literature / Publications / Zotero / Bibliography
-    if (/\b(zotero|literatur|publikation|publikationen|bibliographie|quellen|literaturverzeichnis|aufsatz|aufsätze|artikel|fachliteratur)\b/i.test(cleanQ)) {
+    // Dialog Intent D: Literature / Publications / Zotero / Bibliography (general project queries)
+    if (/\b(zotero|literatur|publikation|publikationen|bibliographie|quellen|literaturverzeichnis|aufsatz|aufsätze|artikel|fachliteratur)\b/i.test(cleanQ) && !/(glaser|pollak)/i.test(cleanQ)) {
       setTimeout(() => {
         if (thisRequestId !== currentRequestId) return;
         removeTypingIndicator();
@@ -842,11 +1422,11 @@
             <div style="background: rgba(184, 142, 62, 0.06); border: 1px solid rgba(184, 142, 62, 0.2); border-radius: 4px; padding: 8px 10px; font-size: 0.79rem; line-height: 1.45; margin-bottom: 8px;">
               <p style="margin: 0 0 4px 0; font-weight: 600; color: var(--primary);">Wichtige Referenztitel:</p>
               <ul style="margin: 0; padding-left: 16px;">
-                <li><strong>Hagmann &amp; Reiner (2025):</strong> <em>Das go!digital-3.0-Projekt IUENNA</em> (Rudolfinum).</li>
+                <li><strong>Hagmann &amp; Reiner (geb. Waldhart) (2025):</strong> <em>Das go!digital-3.0-Projekt IUENNA</em> (Rudolfinum).</li>
                 <li><strong>Hagmann, Reiner &amp; Gugl (2025):</strong> <em>No End of History Yet! Long-Term Archiving in Roman Archaeology</em>.</li>
                 <li><strong>Reiner &amp; Profant (2025):</strong> <em>Iuenna und Umgebung – Geophysikalische Prospektion</em>.</li>
-                <li><strong>Glaser (2002 / 1991):</strong> <em>Die frühchristlichen Kirchen am Hemmaberg</em>.</li>
-                <li><strong>Pollak (2023):</strong> <em>Der merowingerzeitliche Friedhof von Globasnitz</em>.</li>
+                <li><strong>Hagmann &amp; Reiner (2023):</strong> <em>IUENNA – A ‘para-description’</em> (Peer Community Journal).</li>
+                <li><strong>Hagmann &amp; Waldhart (Hrsg.) (2025):</strong> <em>IUENNA</em> (ARCHE-Forschungsdateninfrastruktur).</li>
               </ul>
             </div>
             <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;">
@@ -898,8 +1478,8 @@
     setTimeout(() => {
       if (thisRequestId !== currentRequestId) return;
       removeTypingIndicator();
-      const summaryText = formatMetadataSummary(top.meta);
-      const cardHtml = renderSearchResultCard(results, summaryText);
+      const summaryText = formatArchaeologicalSummary(top.meta, top.title, effectiveQuery);
+      const cardHtml = renderSearchResultCard(results, summaryText, effectiveQuery);
       appendBotMessage(cardHtml);
     }, 180);
   }
@@ -920,19 +1500,47 @@
         chatWindow.classList.remove('chat-open');
       } else {
         chatWindow.classList.add('chat-open');
-        setTimeout(() => inputField.focus(), 200);
+        setTimeout(() => inputField && inputField.focus(), 200);
+      }
+      saveChatState();
+    };
+
+    const openChat = () => {
+      if (chatWindow && !chatWindow.classList.contains('chat-open')) {
+        chatWindow.classList.add('chat-open');
+        saveChatState();
+        setTimeout(() => inputField && inputField.focus(), 200);
+      }
+    };
+
+    const closeChat = () => {
+      if (chatWindow && chatWindow.classList.contains('chat-open')) {
+        chatWindow.classList.remove('chat-open');
+        saveChatState();
       }
     };
 
     if (triggerBtn) triggerBtn.addEventListener('click', toggleWindow);
-    if (closeBtn) closeBtn.addEventListener('click', () => {
-      if (chatWindow) chatWindow.classList.remove('chat-open');
-    });
+    if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+    const resetBtn = document.getElementById('chat-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        try {
+          sessionStorage.removeItem(STORAGE_KEY_HISTORY);
+        } catch (e) {}
+        const messagesContainer = document.getElementById('chat-messages');
+        if (messagesContainer) {
+          messagesContainer.innerHTML = getWelcomeMessageHtml();
+          messagesContainer.scrollTop = 0;
+        }
+      });
+    }
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && chatWindow && chatWindow.classList.contains('chat-open')) {
-        chatWindow.classList.remove('chat-open');
+        closeChat();
       }
     });
 
@@ -964,8 +1572,50 @@
         if (query) {
           handleUserSubmit(query);
         }
+        return;
+      }
+
+      // Graph Button & Inline Link Click (delegated)
+      const graphBtn = e.target.closest('.graph-btn, .chat-secondary-graph-link');
+      if (graphBtn) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+        const nodeId = graphBtn.getAttribute('data-node-id');
+        if (!nodeId) return;
+
+        if (isGraphPage) {
+          // On the dedicated Knowledge Graph page: focus in-canvas without page reload!
+          if (typeof window.focusGraphNode === 'function') {
+            const focused = window.focusGraphNode(nodeId);
+            if (focused !== false) {
+              e.preventDefault();
+              if (window.history && window.history.replaceState) {
+                const newUrl = new URL(window.location.href);
+                newUrl.searchParams.set('col', nodeId);
+                window.history.replaceState({}, '', newUrl.toString());
+              }
+              showChatToast('Fundkomplex im Wissensgraphen fokussiert! 🕸️');
+            }
+          }
+        } else {
+          // Not on the graph page (e.g. index.html):
+          // Save chat state so the assistant opens on the graph page with the conversation intact!
+          saveChatState();
+          // Allow normal link navigation to graphHref (graph/index.html?col=...)
+        }
       }
     });
+
+    // Check if on graph page with col/node deep-link parameter and active session
+    if (isGraphPage) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const colParam = urlParams.get('col') || urlParams.get('node');
+      if (colParam && sessionStorage.getItem(STORAGE_KEY_OPEN) === 'true') {
+        setTimeout(() => {
+          showChatToast('Fundkomplex im Wissensgraphen fokussiert! 🕸️');
+        }, 600);
+      }
+    }
   }
 
   // 8. Initialization on DOM ready
@@ -984,7 +1634,25 @@
     search: searchKnowledgeBase,
     submit: handleUserSubmit,
     renderCard: renderSearchResultCard,
-    formatSummary: formatMetadataSummary,
+    formatSummary: formatArchaeologicalSummary,
+    cleanText: cleanArchaeologicalText,
+    detectCategory: detectEntityCategory,
+    toggle: () => {
+      const trigger = document.getElementById('iuenna-chat-trigger');
+      if (trigger) trigger.click();
+    },
+    open: () => {
+      const chatWin = document.getElementById('iuenna-chat-window');
+      if (chatWin && !chatWin.classList.contains('chat-open')) {
+        const trigger = document.getElementById('iuenna-chat-trigger');
+        if (trigger) trigger.click();
+      }
+    },
+    close: () => {
+      const closeBtn = document.getElementById('chat-close-btn');
+      if (closeBtn) closeBtn.click();
+    },
+    showToast: showChatToast,
     getKbData: () => kbData,
     setKbData: (d) => { kbData = d; }
   };

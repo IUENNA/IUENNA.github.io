@@ -157,14 +157,19 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 * **Zero-Hit Guard (Gegen Falschinformationen):**
   * Liefert die Suche 0 Treffer (z. B. bei Abfragen wie *„Gibt es Meilensteine?“*, *„Gab es hier Awaren?“*, *„Erzähle mir von den Langobarden“*), wird **kein KI-Text generiert**.
   * Stattdessen erfolgt eine sofortige, variierende Höflichkeitsrückmeldung (z. B. *„Die Anfrage lieferte leider keine Ergebnisse in den Beständen.“* / *„Dazu konnte ich in den IUENNA-Beständen leider keinen passenden Eintrag finden.“*) mitsamt thematischen Schnellwahl-Chips (*Hemmaberg*, *Globasnitz*, *Hans Winkler*).
-* **Deterministische Metadaten-Synthese (`formatMetadataSummary`):**
-  * Aus autoritativen Datenattributen (*Titel, Fundstelle, Typ, Epoche/Datierung, Stückzahl, Signatur*) generiert die Engine in **0 Millisekunden** einen grammatikalisch perfekten deutschen Satz (z. B.: *„Zu **Münzschatz Globasnitz** in Globasnitz sind 1.488 Funde (Fundkomplex) aus der Epoche Spätantike in den IUENNA-Beständen dokumentiert.“*).
-  * **100 % faktentreu:** Frei von jeglichen Halluzinationen.
-* **Interaktive Aktionskarten (One-Click-Navigation):**
-  * Jede Antwortkarte bietet direkte Sprungmarken:
-    * `Im Wissensgraphen zeigen 🕸️` $\rightarrow$ Öffnet den interaktiven Wissensgraphen und selektiert die Entität.
-    * `In Web-GIS ansehen 🗺️` $\rightarrow$ Öffnet die Web-Mapping-Application (`wma/wma.html`) und zoomt präzise auf die Koordinaten.
-    * `In ARCHE öffnen ↗` $\rightarrow$ Direkter Link zum persistenten Langzeitarchiv (Handle-PID).
+* **Erweiterte Textglättung & Metadaten-Synthese (`cleanArchaeologicalText` & `formatArchaeologicalSummary`):**
+  * **Metadaten-Rauschfilter:** Automatische Bereinigung von technischen Dateiendungen (`.pdf`, `.tif`, `.gpkg`), Ordner-Präfixen (`01_02_`, `HB_`, `GLO_`, `RET_`), Zählklammern, Hierarchie-Tags (`(L1)` bis `(L6)`) und Unterstrichen.
+  * **Tautologie- & Dopplungsvermeidung:** Erkennt redundante Ortsnennungen (verhindert *„Münzschatzfund von Globasnitz in Globasnitz“*).
+  * **Grammatische Präzision:** Satzmuster verwenden sauber gebeugte Mengenangaben und akkusative Prädikate (*„umfasst 322 römische Münzen“*, *„erschließt 440 Gräber“*).
+  * **Kategorienspezifische Synthese:** Maßgeschneiderte Formulierungen für *Münzen/Hortfunde, Bestattungen, Architektur/Befunde, Pläne/Zeichnungen, Personen/Nachlässe und Publikationen*.
+
+* **Kontextsensitive Aktions-Buttons (Smart Action Links):**
+  * Statt starrer Dreier-Buttons erzeugt die Engine zielgenaue Aktionen nach Entitätstyp:
+    * **Archäologische Befunde & Fundstellen:** `Im Wissensgraphen zeigen 🕸️` + `In Web-GIS ansehen 🗺️` (nur mit gültigen Koordinaten) + `In ARCHE öffnen ↗` (mit Subcollection-PID statt Root-Handle).
+    * **Personen & Forscher:innen (z. B. Dr. Hans Winkler):** `Nachlass im Wissensgraphen 🕸️` + `Archivalien in ARCHE ↗` + `Publikationen (Zotero) 📚` + optional gezielter GIS-Link zu konkreten Grabungsorten.
+    * **Publikationen & Fachliteratur:** `In Zotero öffnen 📚` (Web-URL zur Zotero-Gruppe 4910727) + `Volltext (PDF) 📄` (falls Direkt-PDF vorhanden) + `Im Wissensgraphen zeigen 🕸️`.
+  * **Klickbare Zitations-Referenzen:** Zitate im Ergebniskärtchen (*Referenz: ...*) sind nun anklickbare Links, die direkt den entsprechenden Zotero-Titel oder DOI öffnen.
+  * **Resistenz gegen Root-Fallbacks:** Mappt Fundstellen und Ressourcen auf die zuständigen Sammlungs-PIDs (HB, GLO, JAU, STEF, RET, BIO).
 
 #### 3. Datenschutz & DSGVO (Zero-Data-Footprint):
 * **100 % Client-Side:** Die gesamte Abfrage und Aufbereitung geschieht ausschließlich im Arbeitsspeicher des Browsers.

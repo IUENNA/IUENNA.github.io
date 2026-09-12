@@ -34,11 +34,28 @@ def load_json(path):
 
 def load_foundations(path):
     if not os.path.exists(path):
+        if os.path.exists(OUTPUT_FILE):
+            try:
+                with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+                    old_kb = json.load(f)
+                    if old_kb.get("foundations"):
+                        print(f"[*] Preserving {len(old_kb['foundations'])} foundations from existing {OUTPUT_FILE}")
+                        return old_kb["foundations"]
+            except Exception as e:
+                print(f"[!] Warning: Could not read existing foundations: {e}")
         print(f"[!] Warning: Foundations file not found at {path}")
         return []
 
     with open(path, "r", encoding="utf-8") as f:
         content = f.read()
+
+    # Normalize internal zotero:// links to public HTTPS URLs
+    content = re.sub(
+        r"zotero://select/(?:library|groups/\d+)/items/([A-Za-z0-9]+)",
+        r"https://www.zotero.org/groups/4910727/iuenna/items/\1",
+        content
+    )
+    content = re.sub(r"\s*\[(?:Open Message|Chat \d+)\]\(zotero://beaver/[^\)]+\)", "", content)
 
     # Split into language parts by horizontal rule or main H1 headings
     major_blocks = re.split(r"\n---\n|\n(?=#\s+[A-Z])", content)

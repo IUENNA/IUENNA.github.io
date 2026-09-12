@@ -672,7 +672,7 @@
       "Wer hat das Gräberfeld in Globasnitz ausgegraben?",
       "Pollak Globasnitz"
     ],
-    "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im spätantiken Ostgräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
+    "answer": "Dr. Marianne Pollak ist eine österreichische Archäologin (Bundesdenkmalamt / ÖAW), die maßgeblich die spätantiken und frühmittelalterlichen Gräberfelder im Jauntal erforschte. Sie leitete von 1978 bis 1989 die systematischen Ausgrabungen im ostgotischen Gräberfeld von Globasnitz (über 440 Gräber) sowie Untersuchungen im Gräberfeld Jaunstein. Ihre Monografie 'Die spätantiken Gräberfelder von Globasnitz' (2000) ist das Standardwerk zur Bevölkerungszusammensetzung (romanische Provinzialbevölkerung und Ostgoten) im 5. und 6. Jahrhundert.",
     "citations": [
       "Pollak (2000)",
       "Pollak (2002)"
@@ -682,7 +682,8 @@
       "pollak",
       "gräberfeld",
       "globasnitz",
-      "ostgräberfeld",
+      "ostgotisches gräberfeld",
+      "ostgoten",
       "jaunstein",
       "bundesdenkmalamt",
       "ausgräberin"
@@ -1017,7 +1018,7 @@
       "Geschichte der Ausgrabungen Hemmaberg Globasnitz",
       "Pioniere der Archäologie Jauntal"
     ],
-    "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende Ostgräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
+    "answer": "Die Dokumentation begann im späten 15. Jahrhundert, als reisende Mönche eine römische Inschrift aufzeichneten. 1838 fasste M. F. von Jabornegg-Altenfels erste Funde zu Iuenna zusammen; 1887 beschrieb Baron Karl Hauser antikes Mauerwerk auf dem Hemmaberg. Die systematische Feldforschung leitete 1906 Notar Hans Winkler ein, gefolgt von Rudolf Eggers Grabungen 1914. Ab 1978 legte Franz Glaser die frühchristlichen Doppelkirchen und das Pilgerzentrum auf dem Hemmaberg frei, während Marianne Pollak 1978–1989 und 1999–2008 das 425 Gräber zählende ostgotische Gräberfeld von Globasnitz erforschte. Seit 2020 verbinden großflächige Geophysik-Kampagnen und das Go!Digital-Projekt IUENNA (2023–2024) historische Dokumente mit modernster digitaler Prospektion.",
     "citations": [
       "Glaser (1982)",
       "Pollak (2023)",

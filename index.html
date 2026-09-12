@@ -2462,18 +2462,19 @@
                         {
                             selector: 'edge',
                             style: {
-                                'width': 1.5,
-                                'line-color': '#D0C9BF',
-                                'target-arrow-color': '#D0C9BF',
-                                'target-arrow-shape': 'triangle',
+                                'width': 1.0,
+                                'line-color': '#C4BCB1',
+                                'target-arrow-color': '#C4BCB1',
+                                'target-arrow-shape': 'none',
                                 'curve-style': 'bezier',
-                                'arrow-scale': 0.8,
-                                'opacity': 0.65
+                                'control-point-step-size': 14,
+                                'arrow-scale': 0.75,
+                                'opacity': 0.30
                             }
                         },
                         {
                             selector: '.dimmed',
-                            style: { 'opacity': 0.15 }
+                            style: { 'opacity': 0.08 }
                         },
                         {
                             selector: 'node.highlighted',
@@ -2486,10 +2487,12 @@
                         {
                             selector: 'edge.highlighted',
                             style: {
-                                'width': 2.5,
+                                'width': 2.6,
                                 'line-color': '#A8442E',
                                 'target-arrow-color': '#A8442E',
-                                'opacity': 1
+                                'target-arrow-shape': 'triangle',
+                                'opacity': 1,
+                                'z-index': 9999
                             }
                         }
                     ],
@@ -2600,19 +2603,119 @@
             }
 
             window.focusGraphNode = function(nodeId) {
-                if (!nodeId) return false;
-                if (typeof switchShowcaseSlide === 'function' && currentShowcaseSlide !== 0) {
-                    switchShowcaseSlide(0);
+                if (!nodeId || !window.homeCy) return false;
+
+                const strId = String(nodeId).trim();
+                const cleanId = strId.replace(/^(arche_col_|arche_res_|arche_|col_|per_|person_|org_|pub_|plc_|place_|res_|dts_)/i, '').toLowerCase();
+
+                // Semantic & Short-Code Aliases to map any IUENNA subcollection or theme to homepage showcase nodes
+                const showcaseAliases = {
+                    // Globasnitz
+                    'col_1792169': 'col_glo',
+                    '1792169': 'col_glo',
+                    'col_1792186': 'col_glo',
+                    '1792186': 'col_glo',
+                    'glo': 'col_glo',
+                    'globasnitz': 'col_glo',
+                    'site_globasnitz': 'col_glo',
+                    'graeber': 'col_glo',
+                    'graeberfeld': 'col_glo',
+                    'ostgoten': 'col_glo',
+                    'ostgotisch': 'col_glo',
+                    'ostgotisches_graeberfeld': 'col_glo',
+                    'muenzen': 'col_glo',
+                    'münzen': 'col_glo',
+                    'münzschatz': 'col_glo',
+                    'pollak': 'col_glo',
+
+                    // Hemmaberg
+                    'col_1792212': 'col_hb',
+                    '1792212': 'col_hb',
+                    'col_1792415': 'col_hb',
+                    '1792415': 'col_hb',
+                    'hb': 'col_hb',
+                    'hemmaberg': 'col_hb',
+                    'site_hemmaberg': 'col_hb',
+                    'doppelkirchen': 'col_hb',
+                    'kirchen': 'col_hb',
+                    'glaser': 'col_hb',
+                    'fuss': 'col_hb',
+                    'prothese': 'col_hb',
+
+                    // Jaunstein
+                    'col_1792303': 'col_jau',
+                    '1792303': 'col_jau',
+                    'jau': 'col_jau',
+                    'jaunstein': 'col_jau',
+                    'site_jaunstein': 'col_jau',
+                    'reihengraeber': 'col_jau',
+                    'koettlach': 'col_jau',
+
+                    // St. Stefan
+                    'col_1792411': 'col_ste',
+                    '1792411': 'col_ste',
+                    'ste': 'col_ste',
+                    'stefan': 'col_ste',
+                    'st_stefan': 'col_ste',
+                    'sankt_stefan': 'col_ste',
+                    'site_sankt_stefan': 'col_ste',
+                    'villa': 'col_ste',
+                    'barbius': 'col_ste',
+
+                    // Retrodigitalisate & Winkler
+                    'col_1792572': 'col_ret',
+                    '1792572': 'col_ret',
+                    'col_1792752': 'col_ret',
+                    '1792752': 'col_ret',
+                    'ret': 'col_ret',
+                    'winkler': 'col_ret',
+                    'hans_winkler': 'col_ret',
+                    'skizzen': 'col_ret',
+
+                    // Plans, Geodata & Photos
+                    'col_1792211': 'hb_vektor',
+                    '1792211': 'hb_vektor',
+                    'doc_plans': 'hb_vektor',
+                    'plans': 'hb_vektor',
+                    'doc_geodata': 'hb_vektor',
+                    'col_1792167': 'ret_fotos',
+                    '1792167': 'ret_fotos',
+                    'doc_photos': 'ret_fotos',
+                    'photos': 'ret_fotos',
+
+                    // Root
+                    'iuenna': 'iuenna_root',
+                    'iuenna_top': 'iuenna_root',
+                    'top_iuenna': 'iuenna_root',
+                    'col_1792170': 'iuenna_root',
+                    '1792170': 'iuenna_root'
+                };
+
+                const mappedId = showcaseAliases[strId] || showcaseAliases[strId.toLowerCase()] || showcaseAliases[cleanId];
+                const searchKeys = [mappedId, strId, cleanId, `col_${cleanId}`].filter(Boolean);
+
+                let target = null;
+                for (const k of searchKeys) {
+                    const found = window.homeCy.getElementById(k);
+                    if (found && found.length > 0) {
+                        target = found;
+                        break;
+                    }
                 }
-                if (!window.homeCy) return false;
-                let target = window.homeCy.getElementById(nodeId);
+
                 if (!target || target.length === 0) {
                     target = window.homeCy.nodes().filter(n => {
                         const d = n.data();
-                        return d.arche_id === nodeId || d.id.includes(nodeId) || (d.label && d.label.toLowerCase().includes(nodeId.toLowerCase()));
+                        const aId = String(d.arche_id || '').toLowerCase();
+                        const lbl = String(d.label || '').toLowerCase();
+                        return aId === cleanId || aId === strId.toLowerCase() || d.id === cleanId || lbl.includes(cleanId);
                     });
                 }
+
                 if (target && target.length > 0) {
+                    if (typeof switchShowcaseSlide === 'function' && currentShowcaseSlide !== 0) {
+                        switchShowcaseSlide(0);
+                    }
                     const node = target.first();
                     const graphCanvas = document.getElementById('homeCy');
                     if (graphCanvas) {
@@ -2626,7 +2729,7 @@
                     node.show();
                     window.homeCy.animate({
                         center: { eles: node },
-                        zoom: 1.4,
+                        zoom: 1.5,
                         duration: 600
                     });
                     node.emit('tap');

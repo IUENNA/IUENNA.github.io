@@ -1151,6 +1151,18 @@ footer a:hover * {
   transform: translateY(0) scale(1);
 }
 
+/* Graceful avoidance when Knowledge Graph inspector drawer is open */
+@media (min-width: 901px) {
+  #iuenna-chat-trigger,
+  #iuenna-chat-window {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1), right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  body:has(#inspectorDrawer.open) #iuenna-chat-trigger,
+  body:has(#inspectorDrawer.open) #iuenna-chat-window {
+    right: 450px;
+  }
+}
+
 /* Chat Header */
 .chat-header {
   background: linear-gradient(135deg, var(--primary) 0%, #7d2c1b 100%);
@@ -1487,6 +1499,26 @@ input:checked + .slider:before {
   background-color: var(--bg-main);
   border-color: var(--primary);
   color: var(--primary);
+}
+
+.chat-card-btn.zotero-btn {
+  background-color: #C0392B;
+  color: #FFFFFF;
+}
+
+.chat-card-btn.zotero-btn:hover {
+  background-color: #962D22;
+  color: #FFFFFF;
+}
+
+.chat-card-btn.pdf-btn {
+  background-color: #1B4965;
+  color: #FFFFFF;
+}
+
+.chat-card-btn.pdf-btn:hover {
+  background-color: #133347;
+  color: #FFFFFF;
 }
 
 /* BYOAI Badges & Hints in Chat */
