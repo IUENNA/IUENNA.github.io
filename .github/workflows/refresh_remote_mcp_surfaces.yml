@@ -1,0 +1,211 @@
+name: Refresh Remote MCP Public Surfaces
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh_remote_mcp_surfaces.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Synchronize public Remote MCP wording and guards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          ROOT = Path('.')
+          ENDPOINT = 'https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp'
+
+          def write(path, text):
+              Path(path).write_text(text, encoding='utf-8')
+
+          def replace_required(text, old, new, label):
+              if old not in text:
+                  raise SystemExit(f'Missing expected text for {label}')
+              return text.replace(old, new, 1)
+
+          # Homepage: make Remote MCP visible directly and remove obsolete local-client wording.
+          path = ROOT / 'index.html'
+          text = path.read_text(encoding='utf-8')
+          text = re.sub(
+              r'(<h3[^>]*><i class="fa-solid fa-microchip"></i>)\s*Bring Your Own AI \(BYOAI\)(</h3>)',
+              r'\1 Connect IUENNA to your AI – Remote MCP\2',
+              text,
+              count=1,
+          )
+          old = "Want to explore IUENNA's 20,788 archaeological records using your own AI models, local agents (Ollama), or development environments (Cursor, Claude Desktop, Open-WebUI)?"
+          new = "Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP. It provides agent-oriented access to the canonical corpus of 20,355 primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication."
+          text = replace_required(text, old, new, 'homepage BYOAI description')
+          text = replace_required(text, 'Explore BYOAI Interfaces &amp; MCP Guide &rarr;', 'Open Remote MCP &amp; BYOAI Guide &rarr;', 'homepage BYOAI button')
+          marker = '<a href="byoai.html" class="btn btn-primary"'
+          if ENDPOINT not in text:
+              if marker not in text:
+                  raise SystemExit('Homepage BYOAI button marker not found')
+              endpoint_html = (
+                  f'<p style="margin: 0 0 0.8rem 0; font-size: 0.82rem; color: var(--text-muted); word-break: break-all;">'
+                  f'<strong>Remote MCP:</strong> <code>{ENDPOINT}</code></p>\n                    '
+              )
+              text = text.replace(marker, endpoint_html + marker, 1)
+          write(path, text)
+
+          # Built-in collection assistant: describe the deterministic current implementation and Remote MCP accurately.
+          path = ROOT / 'scripts/iuenna-chat.js'
+          text = path.read_text(encoding='utf-8')
+          text = replace_required(
+              text,
+              ' * - Bei Treffern: Ein kleines In-Browser-Sprachmodell (Qwen 2.5 0.5B via WebGPU/WASM)\n *   formuliert aus den konkreten Metadaten eine kurze 1-2 Satz-Zusammenfassung.',
+              ' * - Bei Treffern: Eine deterministische, clientseitige Metadaten-Synthese bereitet\n *   ausschließlich die gefundenen IUENNA-Metadaten kompakt und nachvollziehbar auf.',
+              'chat implementation header',
+          )
+          old = 'Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.'
+          new = 'Sie möchten IUENNA mit einer eigenen KI nutzen? Verbinden Sie einen kompatiblen AI-Client direkt mit unserem öffentlichen <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Remote MCP &amp; BYOAI Hub</a>; die offenen JSON-/OpenAPI-Endpunkte bleiben zusätzlich verfügbar.'
+          text = replace_required(text, old, new, 'chat welcome BYOAI box')
+          text = text.replace(
+              'Ihre <strong>eigene bevorzugte KI</strong> (z.&nbsp;B. Claude Desktop, ChatGPT, Ollama lokal oder Google Antigravity)',
+              'einen <strong>MCP-kompatiblen AI-Client</strong>',
+          )
+          # Keep a canonical endpoint literal in the assistant source for maintainability/discovery.
+          if 'const REMOTE_MCP_URL' not in text:
+              text = text.replace(
+                  "  const KB_URL = basePath + 'data/iuenna_kb.json';",
+                  "  const KB_URL = basePath + 'data/iuenna_kb.json';\n  const REMOTE_MCP_URL = '" + ENDPOINT + "';",
+                  1,
+              )
+          write(path, text)
+
+          # Clarify browser-vs-Remote-MCP projections in source documentation/comments.
+          replacements = {
+              'graph/corpus-data.js': (
+                  ' * functionality is first used. BYOAI/MCP continue to use the complete corpus.',
+                  ' * functionality is first used. The complete corpus remains canonical; the public\n * Remote MCP queries a separate reproducible projection derived from that corpus.'
+              ),
+              'graph/data-source.js': (
+                  ' * data/arche_graph.json remains the complete authoritative graph for BYOAI,\n * MCP and reproducibility. The browser renders a performance projection:',
+                  ' * data/arche_graph.json remains the complete authoritative graph for BYOAI and\n * reproducibility. The public Remote MCP uses its own reproducible query projection;\n * the browser renders a separate performance projection:'
+              ),
+              'scripts/build_corpus_browser_index.py': (
+                  '``data/arche_corpus.json`` remains the complete authoritative primary-resource\ncorpus used by BYOAI/MCP and reproducible downstream processing. The graph\nexplorer only needs a small discovery projection for its corpus catalogue,',
+                  '``data/arche_corpus.json`` remains the complete authoritative primary-resource\ncorpus for BYOAI and reproducible downstream processing. The public Remote MCP\nuses a separate reproducible query projection; the graph explorer only needs a\nsmall discovery projection for its corpus catalogue,'
+              ),
+              'scripts/build_graph_lod.py': (
+                  'subgraphs only when a collection is expanded, while BYOAI/MCP continue to use\nthe complete authoritative graph.',
+                  'subgraphs only when a collection is expanded. The complete graph remains the\ncanonical BYOAI/reproducibility layer, while the public Remote MCP uses a separate\nreproducible query projection derived from it.'
+              ),
+              'scripts/inject_graph_layout_module.py': (
+                  'The complete ``data/arche_graph.json`` and ``data/arche_corpus.json`` remain the\nauthoritative products for BYOAI/MCP and reproducibility. The browser shell is',
+                  'The complete ``data/arche_graph.json`` and ``data/arche_corpus.json`` remain the\nauthoritative products for BYOAI and reproducibility. The public Remote MCP uses\nseparate reproducible query projections derived from them. The browser shell is'
+              ),
+          }
+          for rel, (old, new) in replacements.items():
+              p = ROOT / rel
+              s = p.read_text(encoding='utf-8')
+              s = replace_required(s, old, new, rel)
+              write(p, s)
+
+          # Documentation: sessionStorage is used only for ephemeral in-tab UI continuity.
+          path = ROOT / 'DOKUMENTATION.md'
+          text = path.read_text(encoding='utf-8')
+          text = replace_required(
+              text,
+              '* **Keine Speicherung:** Weder `localStorage` noch `sessionStorage` oder Cookies werden für die Chattexte verwendet. Nach einem Neuladen der Seite ist der Chatverlauf restlos gelöscht.',
+              '* **Nur ephemerer Sitzungszustand:** Chatfenster-Status und Chatverlauf werden ausschließlich im `sessionStorage` des aktuellen Browser-Tabs gehalten, um die Navigation innerhalb der IUENNA-Seiten zu überstehen. Es gibt keine serverseitige Chat-Historie; mit dem Ende der Browser-Sitzung wird dieser Zustand verworfen.',
+              'documentation session storage',
+          )
+          text = text.replace(
+              '* **Keine externe Datenübertragung:** Weder Suchbegriffe noch IP-Adressen werden an externe Server, LLM-Anbieter oder Tracking-Dienste übermittelt.',
+              '* **Keine Übermittlung von Chatfragen an LLM-Anbieter:** Die Recherche und Metadaten-Synthese läuft clientseitig; Suchtexte werden nicht an einen externen LLM-Dienst gesendet. Normale Webserver-/Hosting-Zugriffe auf IUENNA-Daten bleiben davon unberührt.'
+          )
+          write(path, text)
+
+          # Future-proof quantitative and MCP validation.
+          path = ROOT / 'scripts/build_ai_stack.py'
+          text = path.read_text(encoding='utf-8')
+          text = replace_required(
+              text,
+              '        "byoai.html": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],\n        "llms.txt": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],',
+              '        "index.html": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{resources:,}", "Remote MCP"],\n        "byoai.html": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],\n        "llms.txt": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],\n        "scripts/iuenna-chat.js": ["Remote MCP", "byoai.html"],',
+              'build_ai_stack public checks',
+          )
+          text = text.replace(
+              '        "MCP stdio",\n',
+              '        "MCP stdio",\n        "20,788 archaeological records",\n        "Claude Desktop, ChatGPT, Ollama lokal",\n'
+          )
+          write(path, text)
+
+          path = ROOT / 'scripts/sync_graph_metadata.py'
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('    "byoai.html",\n', '    "byoai.html",\n    "index.html",\n', 1)
+          text = text.replace(
+              '        "JSON-RPC 2.0 over stdio",\n',
+              '        "JSON-RPC 2.0 over stdio",\n        "20,788 archaeological records",\n        "Claude Desktop, ChatGPT, Ollama lokal",\n'
+          )
+          text = text.replace(
+              'for rel in ("byoai.html", "llms.txt", "DOKUMENTATION.md", "data/openapi.json", "mcp-remote/README.md"):',
+              'for rel in ("index.html", "byoai.html", "llms.txt", "DOKUMENTATION.md", "scripts/iuenna-chat.js", "data/openapi.json", "mcp-remote/README.md"):',
+              1,
+          )
+          # Ensure future corpus-count rebuilds update the homepage sentence as well.
+          anchor = '    path = ROOT / "byoai.html"\n'
+          if 'Homepage Remote MCP teaser' not in text:
+              block = f'''    # Homepage Remote MCP teaser: keep corpus count and canonical endpoint synchronized.\n    path = ROOT / "index.html"\n    text = path.read_text(encoding="utf-8")\n    original = text\n    text = re.sub(\n        r"Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP\\. It provides agent-oriented access to the canonical corpus of [\\d,]+ primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication\\.",\n        f"Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP. It provides agent-oriented access to the canonical corpus of {{en_resources}} primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication.",\n        text, count=1,\n    )\n    if "{ENDPOINT}" not in text:\n        raise SystemExit("Homepage Remote MCP endpoint missing")\n    write_if_changed(path, original, text, changed)\n\n'''
+              if anchor not in text:
+                  raise SystemExit('sync_graph_metadata homepage insertion anchor missing')
+              text = text.replace(anchor, block + anchor, 1)
+          write(path, text)
+
+          # Hard validation before committing.
+          required = {
+              'index.html': [ENDPOINT, 'Remote MCP', '20,355 primary resources'],
+              'byoai.html': [ENDPOINT, 'Remote MCP'],
+              'llms.txt': [ENDPOINT, 'Remote MCP'],
+              'DOKUMENTATION.md': [ENDPOINT, 'Remote MCP'],
+              'mcp-remote/README.md': [ENDPOINT, 'Remote MCP'],
+              'scripts/iuenna-chat.js': ['Remote MCP', ENDPOINT],
+          }
+          stale = [
+              '20,788 archaeological records',
+              'mcp/server.py',
+              'mcp/index.mjs',
+              'JSON-RPC 2.0 over stdio',
+          ]
+          for rel, tokens in required.items():
+              value = (ROOT / rel).read_text(encoding='utf-8')
+              missing = [t for t in tokens if t not in value]
+              if missing:
+                  raise SystemExit(f'{rel}: missing current Remote MCP tokens: {missing}')
+              bad = [t for t in stale if t in value]
+              if bad:
+                  raise SystemExit(f'{rel}: stale MCP tokens remain: {bad}')
+
+          if 'Qwen 2.5 0.5B via WebGPU/WASM' in (ROOT / 'scripts/iuenna-chat.js').read_text(encoding='utf-8'):
+              raise SystemExit('Stale Qwen runtime claim remains in live chat source')
+          if 'BYOAI/MCP continue to use' in (ROOT / 'graph/corpus-data.js').read_text(encoding='utf-8'):
+              raise SystemExit('Stale direct-MCP corpus claim remains')
+          PY
+
+      - name: Syntax checks
+        run: |
+          python -m py_compile scripts/build_ai_stack.py scripts/sync_graph_metadata.py scripts/build_corpus_browser_index.py scripts/build_graph_lod.py scripts/inject_graph_layout_module.py
+          node --check scripts/iuenna-chat.js
+
+      - name: Commit synchronized surfaces and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/refresh_remote_mcp_surfaces.yml
+          git add index.html scripts/iuenna-chat.js graph/corpus-data.js graph/data-source.js \
+            scripts/build_corpus_browser_index.py scripts/build_graph_lod.py scripts/inject_graph_layout_module.py \
+            DOKUMENTATION.md scripts/build_ai_stack.py scripts/sync_graph_metadata.py
+          git commit -m "docs(mcp): synchronize Remote MCP across IUENNA"
+          git pull --rebase origin main
+          git push origin HEAD:main
