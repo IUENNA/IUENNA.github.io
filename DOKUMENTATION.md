@@ -1,255 +1,423 @@
 # IUENNA – Knowledge Graph & Corpus Explorer
 ## Umfassende Gesamtdokumentation aller Entwicklungen, Datenpipelines & Features
 
-Diese Dokumentation bietet eine lückenlose Übersicht über die Architektur, Datenquellen, Transformationsskripte, semantischen Modelle und Benutzeroberflächen des **IUENNA Knowledge Graph & Corpus Explorers**.
+Diese Dokumentation beschreibt den aktuellen technischen und funktionalen Stand des **IUENNA Knowledge Graph & Corpus Explorers** einschließlich Datenquellen, Transformationspipelines, semantischem Modell, Weboberflächen, Ask IUENNA, Web Mapping und BYOAI-Schnittstellen. Maßgeblich für archäologische Forschungsdaten und ressourcenspezifische Metadaten bleibt ARCHE; die IUENNA-Webanwendungen bilden darauf aufbauende Discovery-, Visualisierungs- und Retrieval-Schichten.
+
+**Dokumentationsstand:** 12.09.2026. Eingearbeitet sind die am 11.–12.09.2026 vorgenommenen Änderungen an Knowledge Graph, LOD-Runtime, Ask IUENNA/NLP, Remote MCP, BYOAI, `llms.txt`, Zotero-Integration, WMA, Navigation, Datenschutzdarstellung, Startseite und Repository-Verlinkung.
 
 ---
 
 ## 1. Projekt- & Systemübersicht
 
 * **Projekt:** IUENNA – *openIng the soUthErn jauNtal as a micro-regioN for future Archaeology*
+* **Räumlicher Schwerpunkt:** archäologische Mikroregion Jauntal/Podjuna, Kärnten, Österreich
 * **Förderung:** Österreichische Akademie der Wissenschaften (ÖAW), Go!Digital 3.0
 * **Primärrepositorium:** ARCHE (Austrian Research Culture Heritage Extended, ACDH-CH / ÖAW)
 * **Basis-PID:** [https://hdl.handle.net/21.11115/0000-0016-7B39-F](https://hdl.handle.net/21.11115/0000-0016-7B39-F)
-* **Gesamtumfang in ARCHE:** 20.788 ARCHE-Einträge (434 Sammlungen, 20.355 Primärressourcen, 356,68 GB Datenvolumen)
-* **Technologie-Stack:** Cytoscape.js, Font Awesome 6, Google Fonts (Plus Jakarta Sans & Lora), Python 3 (Streaming-TTL-Parser, Graph-Builder, HTML-Compiler), Vanilla JS / CSS3 (ohne externe Framework-Abhängigkeiten).
+* **Gesamtumfang in ARCHE:** 20.788 ARCHE-Einträge, darunter 434 Sammlungen und 20.355 Primärressourcen; Datenvolumen 356,68 GB
+* **Knowledge Graph:** 21.071 Knoten und 281.851 Kanten
+* **Graph-Audit:** 281.159/281.159 auflösbare konfigurierte ARCHE-Tripel als asserted Beziehungen erhalten; keine doppelten ARCHE-IDs und keine dangling edges
+* **Technologie-Stack:** Cytoscape.js, Leaflet/qgis2web, Font Awesome 6, Google Fonts, Python 3, Vanilla JavaScript/CSS, GitHub Pages/GitHub Actions, Cloudflare Workers für den Remote MCP
+
+Die öffentliche Website verbindet mehrere klar getrennte Ebenen:
+
+1. **ARCHE als Source of Record** für archivierte Forschungsdaten, Metadaten, Rechte und persistente Identifikatoren.
+2. **Autoritative maschinenlesbare IUENNA-Projektionen** wie `arche_corpus.json`, `arche_graph.json` und die ARCHE-abgeleiteten Entitätsdateien.
+3. **Performante Browserprojektionen** für Knowledge Graph und Ask IUENNA, die aus den autoritativen Daten reproduzierbar erzeugt werden.
+4. **Web-Mapping-Anwendungen** für die räumliche Exploration.
+5. **BYOAI/Remote MCP, OpenAPI und `llms.txt`** für externe LLMs und Agents.
 
 ---
 
 ## 2. Datenarchitektur & ETL-Pipelines
 
-Die Datenverarbeitung erfolgt streng autoritativ und reproduzierbar über eine Kette spezialisierter Python-Skripte im Verzeichnis `scripts/`:
+Die Datenverarbeitung folgt einer reproduzierbaren Kette. Der vollständige ARCHE-RDF/TTL-Bestand wird als maßgebliche Metadatenquelle verarbeitet; daraus werden Korpus, Entitätsindizes, Knowledge Graph, Audits sowie performante Browser- und Remote-Projektionen erzeugt.
 
+```text
+ARCHE Top Collection
+        │
+        ▼
+scripts/fetch_arche_full_metadata.py
+        │
+        ▼
+data/arche_full_metadata.ttl
+        │
+        ▼
+scripts/parse_arche_full_ttl.py
+        │
+        ├── data/arche_collections_tree.json
+        ├── data/arche_resolved_entities.json
+        ├── data/arche_publications.json
+        ├── data/arche_places.json
+        ├── data/arche_datasets.json
+        └── data/arche_search_index.json
+        │
+        ├──────────────────────────────────────────────┐
+        ▼                                              ▼
+scripts/build_authoritative_corpus.py       scripts/build_complete_arche_graph.py
+        │                                              │
+        ▼                                              ├── data/arche_graph.json
+ data/arche_corpus.json                               └── data/arche_graph_audit.json
+        │                                              │
+        ├── compact browser index                      ▼
+        │                                    scripts/build_graph_lod.py
+        │                                              │
+        ▼                                              ├── data/arche_graph_macro.json
+Ask IUENNA / Corpus Browser                            ├── data/arche_graph_lod_manifest.json
+                                                       └── data/graph_shards/
+                                                              │
+                                                              ▼
+                                                     graph/data-source.js
+                                                              │
+                                                              ▼
+                                                    Progressive Graph Runtime
 ```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                          ARCHE Repositorium (ACDH-CH)                           │
-│                 Vollständiger TTL-Metadatendump (54,12 MB)                      │
-└────────────────────────────────────────┬────────────────────────────────────────┘
-                                         │
-                                         ▼
-                     scripts/parse_arche_full_ttl.py
-                                         │
-       ┌──────────────────┬──────────────┼────────────────┬──────────────────┐
-       ▼                  ▼              ▼                ▼                  ▼
-arche_collections_  arche_resolved_ arche_publica_  arche_places.   arche_datasets.
-tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG)
-       │                  │              │                │                  │
-       └──────────────────┴──────────────┼────────────────┴──────────────────┘
-                                         ▼
-                     scripts/build_authoritative_corpus.py
-                                         │
-                                         ▼
-                             data/arche_corpus.json
-                             (20.355 Primärressourcen)
-                                         │
-                                         ▼
-                     scripts/build_complete_arche_graph.py
-                                         │
-                                         ▼
-                             data/arche_graph.json
-                             (Semantisches Netzwerk)
-                                         │
-                                         ▼
-                     scripts/generate_graph_html.py
-                                         │
-                                         ▼
-                             graph/index.html & graph.html
-```
 
-### 2.1 Eingesetzte Skripte & Datenartefakte
+### 2.1 Zentrale Skripte und Datenartefakte
 
-| Skript | Funktion / Ausgabedatei | Beschreibung |
+| Komponente | Ausgabe / Funktion | Beschreibung |
 |---|---|---|
-| `scripts/fetch_arche_full_metadata.py` | `data/arche_full_metadata.ttl` | Bezieht den autoritativen IUENNA-Metadatengraphen reproduzierbar aus der ARCHE-Top-Collection `1792170` über `readMode=relatives` im Turtle-Format. |
-| `scripts/parse_arche_full_ttl.py` | `data/arche_collections_tree.json`<br>`data/arche_resolved_entities.json`<br>`data/arche_publications.json`<br>`data/arche_places.json`<br>`data/arche_datasets.json`<br>`data/arche_search_index.json` | Parst den reproduzierbar aus ARCHE bezogenen TTL-Vollbestand (ca. 54,12 MB). Extrahiert 434 Sammlungen, 21 Personen, 9 Organisationen, 23 Publikationen, 219 Fundorte und alle 9 GeoPackages inklusive aller Metadaten (ORCID, ROR, Geonames, WKT, PIDs). Der `arche_search_index.json` dient als kompakter semantischer Discovery-Index und ist nicht mit dem vollständigen Datei-Korpus gleichzusetzen. |
-| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` (ca. 29,66 MB im validierten Rebuild vom 12.09.2026) | Extrahiert alle **20.355 Primärressourcen** aus dem TTL-Vollbestand. Verknüpft jede Ressource mit ihrer echten Elternsammlung, berechnet sprechende Breadcrumbs (ohne `col_ret`), extrahiert PIDs, Datumsangaben, Dateigrößen, Schlagworte und Raumbezüge. Dies ist der autoritative maschinenlesbare Layer für exhaustive File-Level-Retrieval. |
-| `scripts/build_complete_arche_graph.py` | `data/arche_graph.json` | Erstellt eine provenance-erhaltende Cytoscape-Graphprojektion. Die konfigurierten ARCHE-Objektprädikate werden nach dem Aufbau aller kanonischen Knoten in einem zweiten Pass aufgelöst; direkte, geerbte, aggregierte, kuratierte und synthetische Relationen bleiben unterscheidbar. Der Build erzeugt zusätzlich `data/arche_graph_audit.json`. |
-| `data/arche_graph_audit.json` | Build-Audit | Validiert kanonische ARCHE-Identitäten, dangling edges, auflösbare ARCHE-Tripel und prädikatsweisen Recall. Aktueller Stand: 281,159/281,159 auflösbare Tripel erhalten. |
-| `scripts/generate_graph_html.py` | `graph/index.html`<br>`graph/graph.html` (2,3 MB) | Generiert die produktionsreife Webanwendung mit eingebettetem Graphen, interaktiver Toolbar, Detail-Drawer, Korpus-Katalog-Modal, Ordnerbaum-Modal und Merkliste. |
-| `scripts/iuenna-chat.js` | UI-Assistent & In-Memory Recherche | Interaktiver schwebender Recherche-Assistent auf der Startseite (`index.html`). Führt clientseitiges Token- & Suffix-Matching gegen die Wissensbasis durch, fasst Metadaten in natürlicher deutscher Sprache zusammen und leitet per Deep-Link in den Graphen, das Web-GIS und ARCHE weiter. |
-| `data/iuenna_kb.json` | Wissensbasis des Assistenten | Kompakte JSON-Datenbasis mit 20.000+ Objekten, Fundstellen, Sammlungen, Publikationen und Akteuren inklusive PIDs und Geokoordinaten. |
+| `scripts/fetch_arche_full_metadata.py` | `data/arche_full_metadata.ttl` | Bezieht den autoritativen IUENNA-Metadatengraphen aus der ARCHE-Top-Collection `1792170` über `readMode=relatives`. |
+| `scripts/parse_arche_full_ttl.py` | Entitäts-, Orts-, Publikations-, Dataset-, Collection- und Suchindizes | Parst den vollständigen TTL-Bestand. Der kompakte `arche_search_index.json` dient der Discovery und ist nicht mit dem vollständigen Datei-Korpus gleichzusetzen. |
+| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` | Extrahiert alle **20.355 Primärressourcen** mit ARCHE-ID, PID, Elternsammlung, Breadcrumb, Datierung, Dateityp, Beschreibungen, Schlagworten und Raumbezügen. Dies ist der autoritative IUENNA-Layer für exhaustive File-Level-Retrieval. |
+| `scripts/build_complete_arche_graph.py` | `data/arche_graph.json`, `data/arche_graph_audit.json` | Erzeugt die provenance-erhaltende vollständige Graphprojektion und validiert Identitäten, dangling edges, auflösbare Tripel und Predicate Recall. |
+| `scripts/build_graph_lod.py` | `arche_graph_macro.json`, `arche_graph_lod_manifest.json`, `graph_shards/` | Erzeugt aus dem vollständigen Graphen die performante Level-of-Detail-Projektion: Struktur-/Kontextgraph beim Start, Primärressourcen collectionweise als Shards. |
+| `graph/data-source.js` | progressive Graphdaten-Laufzeit | Lädt initial nur den Makrographen und materialisiert Hierarchieebenen sowie Ressourcen bei Bedarf. Der vollständige Graph bleibt die autoritative semantische Projektion. |
+| `graph/layouts.js` | Layout- und Edge-Bundling-Runtime | Steuert progressive Hierarchietiefe, Layouts, Homepage-Palette und hierarchieorientiertes Kanten-Bundling. |
+| `scripts/generate_graph_html.py` | `graph/index.html`, `graph/graph.html` | Generiert die produktionsreife Graphoberfläche mit Toolbar, Inspector, Korpus-Katalog, Ordnerbaum und Merkliste. |
+| `data/arche_corpus_browser_index.json` | Browserprojektion des Korpus | Kompakter, nicht-autoritativer Index für clientseitige Dateisuche; wird lazy geladen. |
+| `scripts/iuenna-chat.js` | Ask IUENNA | Siteweiter clientseitiger Discovery-Assistent mit deterministischem NLP, Dialogkontext und ARCHE-basiertem Retrieval; kein eingebettetes Sprachmodell. |
+| `data/mcp_remote/` | Remote-Query-Projektionen | Reproduzierbare, nicht-autoritative Shards/Indizes für den öffentlichen Remote MCP. |
+
+### 2.2 Autoritative Daten und abgeleitete Projektionen
+
+Die Implementierung unterscheidet strikt zwischen Source of Record, autoritativer Projektprojektion und Browser-/Remote-Projektion:
+
+* **ARCHE** bleibt für einzelne Forschungsressourcen, Metadaten, Zugriffsrechte und PIDs maßgeblich.
+* `data/arche_corpus.json` ist der vollständige autoritative IUENNA-Primärressourcen-Korpus.
+* `data/arche_graph.json` ist die vollständige provenance-erhaltende semantische Graphprojektion.
+* `arche_graph_macro.json`, `graph_shards/`, `arche_corpus_browser_index.json` und `data/mcp_remote/` sind Performance-/Query-Projektionen. Sie ersetzen die autoritativen Quellen nicht.
+* `arche_search_index.json` ist ein Discovery-Index für Entitäten und zentrale Ressourcen, kein vollständiger Dateiindex.
 
 ---
 
 ## 3. Durchgeführte Arbeiten & gelöste Herausforderungen
 
 ### 3.1 Behebung von Datenfragmentierungen & Fundort-Isolation
-* **Problem:** Zuvor waren viele Fundorte (`plc_...`) isoliert im Graphen dargestellt, da Raumbezüge in ARCHE teilweise auf Ressourcen und GeoPackages anstatt auf übergeordneten Ordnern lagen.
-* **Lösung:**
-  - Aggregation aller Raumbezüge aus den Primärressourcen und Forschungsdatensätzen.
-  - Integration aller **9 primären GeoPackages** (u. a. `tal_bda_fsdb_2023.gpkg`, `tal_geodaten_open.gpkg`, Bioarchäologie) als Rauten-Knoten (`dataset`).
-  - **Ergebnis:** Alle **219 Fundorte** sind als eigenständige Graphknoten vertreten. Direkte ARCHE-Raumbezüge werden von aggregierten bzw. synthetischen Navigationsbeziehungen provenance-seitig unterschieden; synthetische Navigation wird nicht als `hasSpatialCoverage` ausgegeben.
+
+Zahlreiche Fundorte waren in früheren Graphständen isoliert, weil Raumbezüge in ARCHE teilweise auf Primärressourcen oder GeoPackages und nicht auf übergeordneten Sammlungen lagen. Die aktuelle Graphpipeline aggregiert diese Bezüge kontrolliert und unterscheidet dabei direkte, geerbte, aggregierte, kuratierte und synthetische Relationen provenance-seitig.
+
+* Alle **219 Fundorte** sind eigenständige Graphknoten.
+* Die **9 primären GeoPackages** sind als Forschungsdatensätze integriert.
+* Synthetische Navigationsbeziehungen werden nicht fälschlich als asserted `hasSpatialCoverage` ausgegeben.
 
 ### 3.2 Vollständige Einbindung des Haupt-GeoPackages `tal_bda_fsdb_2023.gpkg`
-* **Kanonische Graph-Knoten-ID:** `res_1804081` (Rollen: `resource`, `dataset`; die kuratierte Dataset-Quelle führt weiterhin `dts_1804081` als Quell-ID).
-* **Übergeordneter Ordner:** `05_05_Datenbanken` (TAL, `col_1792423`)
-* **Urheber:innen:** Bundesdenkmalamt (`org_1756743`), Dominik Hagmann (`per_1756725`), René Ployer (`per_1756756`), Astrid Steinegger (`per_1756739`)
-* **Verknüpfte Fachpublikationen:** Tiefengraber 2021 (`pub_1756783`), Hagmann 2024 (`pub_1757035`)
-* **Raumbezug:** Verknüpft mit allen **140 Fundorten des Jauntals** (von Jaunstein über Hemmaberg bis Stari Trg).
-* **Exakte APA-Zitationsempfehlung:**
-  > *Bundesdenkmalamt, Hagmann, D., Ployer, R., & Steinegger, A. (2025). tal_bda_fsdb_2023.gpkg. In D. Hagmann & F. Reiner (Eds.), IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE. Retrieved from https://hdl.handle.net/21.11115/0000-0016-0E4A-7*
 
-### 3.3 Fundort »Stari Trg« (#1757171) & Fehlerbehebung
-* **Problem:** Auswahl von Stari Trg (#1757171) führte zu `Eintrag [1757171] im Graphen nicht gefunden`.
-* **Lösung:**
-  - Fundorte wurden von reinen Metadatenattributen zu vollwertigen Graph-Knoten (`plc_1757171`).
-  - `getNodeByIdFlexible` normalisiert alle Präfixe (`plc_`, `place_`, Roh-IDs).
-  - Beim Klick öffnet sich der Inspector Drawer mit Koordinaten (`46.50000°, 15.06667°`), Geonames-Link (`#3189942`), dem erfassten Datensatz `tal_geodaten_open.gpkg` sowie allen verorteten Sammlungen (u. a. *Umschlag von Hans Winkler*).
+* **Kanonische Graph-Knoten-ID:** `res_1804081` mit Rollen `resource` und `dataset`
+* **Übergeordneter Ordner:** `05_05_Datenbanken` (`col_1792423`)
+* **Urheber:innen:** Bundesdenkmalamt, Dominik Hagmann, René Ployer, Astrid Steinegger
+* **Verknüpfte Fachpublikationen:** Tiefengraber 2021 und Hagmann 2024
+* **Raumbezug:** 140 Fundorte des Jauntals
+* **PID:** `https://hdl.handle.net/21.11115/0000-0016-0E4A-7`
 
-### 3.4 Korrekte Zuordnung & Anzeige von `6582.tif`
-* **Problem:** Die Datei `6582.tif` war in einem Altzustand fälschlich unter `06_14` abgelegt.
-* **Lösung:**
-  - Autoritativer Rebuild aus ARCHE TTL: `6582.tif` ist exakt der Sammlung **`Umschlag von Hans Winkler`** (ARCHE-ID `1792741`, Handle https://hdl.handle.net/21.11115/0000-0016-2AE1-B) zugeordnet.
-  - Vorschau über den ARCHE-Thumbnail-Dienst integriert.
+### 3.3 Fundort „Stari Trg“ und flexible ARCHE-ID-Auflösung
 
-### 3.5 Auflösung kryptischer Ordnernamen & `col_ret`
-* **Sprechende Titel:** In Suchindex, Breadcrumbs und Graph-Labels werden interne Zifferncodes (z. B. `06_46_157_21`) automatisch durch die vollständigen Titel ersetzt (z. B. **`Skizzenbuch Hans Winkler (II) mit Dokumentationsinformationen`**).
-* **`col_ret`-Bereinigung:** Das interne ARCHE-Kürzel `col_ret` wird in allen Breadcrumbs sauber als **`Retrodigitalisat-Collection (RET)`** dargestellt.
+Der frühere Fehler `Eintrag [1757171] im Graphen nicht gefunden` wurde beseitigt. Fundorte werden als vollwertige `place`-Knoten geführt; `getNodeByIdFlexible` normalisiert Präfixvarianten und Roh-IDs. Der Inspector kann dadurch ARCHE-ID, Geokoordinaten, GeoNames, Forschungsdatensätze, Sammlungen und räumliche Beziehungen konsistent auflösen.
 
-### 3.6 Benutzeroberfläche & Interaktion
-1. **ARCHE-Dateivorschau (Standardmäßig eingeklappt):** Der Vorschaubereich im Inspector Drawer ist standardmäßig eingeklappt (`(Ausklappen)`), um sofort den Blick auf Kontextmetadaten, Beziehungen und Geodaten freizugeben. Ein Klick klappt die Bildvorschau flüssig auf.
-2. **Interaktiver Zoom- & Pan-Viewer für Karten und Pläne:**
-   - Eigene Zoom-Bühne (`#quickPreviewModal`) mit schwebender Toolbar (`+`, `-`, Zoom-Stufe in Prozent, `1:1`-Reset).
-   - Mausrad-Zoom und Grab-to-Pan (Verschieben mit gedrückter Maustaste).
-   - Vollbild-Umschaltung für detaillierte archäologische Dokumentationspläne.
-   - Hochauflösender Bildabruf über den ARCHE-Thumbnaildienst (`width=1920`).
-3. **Fundort-Karten im Graphen & Großansichts-Modal:**
-   - Im Inspector Drawer wird für jeden Fundort eine interaktive Leaflet-Minikarte gerendert.
-   - Über den Button *»Vergrößern«* öffnet sich ein 92vw-Modal (`#largePlaceMapModal`) mit umschaltbaren Layern (**OpenStreetMap** und **OpenTopoMap** für Höhendaten) sowie Direktverlinkung ins Web-Mapping-Portal.
-4. **Web-Mapping-Portal (WMA) Vollbild & Fundort-Deep-Linking:**
-   - Die Live-Karte in `wma/wma.html` besitzt einen Vollbild-Toggle (*»Karte vergrößern / Vollbild«*).
-   - Fundorte im Graphen verlinken direkt mit Parametern (`?lat=...&lng=...&zoom=...`) auf das WMA-Portal und zentrieren die Karte dort präzise auf den Fundort.
-5. **Dynamische Fundorte im Korpus-Katalog:** Das Dropdown im Katalog befüllt sich dynamisch aus allen 219 Fundorten mit exakten Trefferzahlen.
-6. **Mehrwort-Suche:** Die Suche splittet Abfragen in Tokens und wendet eine logische AND-Verknüpfung an.
-7. **Merkliste (Auswahl merken):** Ersatz des unhandlichen Forscher:innen-Dropdowns durch einen Button *»Auswahl merken«* und ein interaktives Merklisten-Modal mit Speicherung in `localStorage` und Permalink-Teilfunktion (`?bookmarks=id1,id2`).
-8. **Umschaltbare Knoten- und Kantenbeschriftungen & semantische Kantenrelationen:**
-   - **Knotentexte umschalten:** Schaltfläche `#btnToggleNodeLabels` in der Toolbar (*»Knotentexte verbergen«* / *»Knotentexte einblenden«*) blendet Beschriftungen aller Knoten auf Knopfdruck aus oder ein.
-   - **Kantentexte (Relationen) umschalten:** Schaltfläche `#btnToggleEdgeLabels` (*»Kantentexte verbergen«* / *»Kantentexte einblenden«*) deaktiviert oder aktiviert alle Relationstexte.
-   - **Semantische Kanten-Badges:** Kanten tragen ihre Relation (z. B. `isPartOf`, `hasSpatialCoverage`, `documents`, `hasCreator`, `hasSubject`, etc.) als autorotierte Text-Badges mit dezentem Hintergrund und prädikatspezifischen Farben.
-   - **Performance-Schutz (`min-zoomed-font-size: 8.5`):** Im Weitwinkel-Überblick (281.851 Kanten) werden keine Kantentexte gezeichnet; bei Heranzoomen an ein Cluster blenden sich die Beziehungsbeschriftungen flüssig ein.
-9. **Auditierte ARCHE-Relationen, Provenienz & Canvas-Sichtbarkeit bei Selektion:**
-   - **Auditierte Prädikaten-Extraktion aus ARCHE-TTL:** Neben den hierarchischen und Urheber-Beziehungen werden die für IUENNA konfigurierten ARCHE-Objektprädikate verarbeitet: `hasHosting` (zur ÖAW / ARCHE), `hasOwner`, `hasLicensor` und `hasRightsHolder` (zum Landesmuseum Kärnten / kärnten.museum), `hasCurator` (Kuratierende Forscher:innen) sowie `hasDepositor`, `hasMetadataCreator` und `hasDigitisingAgent`.
-   - **Validierter Stand:** **21.071 Knoten** und **281.851 Kanten**. Der Audit weist **281.159/281.159** auflösbare konfigurierte ARCHE-Tripel als asserted Kanten nach (Recall 1,0); doppelte ARCHE-IDs und dangling edges: 0.
-   - **Garantierte Canvas-Sichtbarkeit:** Wenn Kanten global ausgeblendet sind (*»Kanten verbergen«*), erzwingt das Auswählen eines Knotens via `highlightNeighbors` sofort das Einblenden seiner direkten Beziehungen und Nachbarknoten (`node.connectedEdges().show()`).
-10. **Vergrößerbares & stufenlos skalierbares Detail-Popup (Inspector Drawer):**
-    - **Breitbildansicht per Button (`#drawerToggleExpandBtn`):** Ein Klick auf den Expand-Button (`<i class="fa-solid fa-expand"></i>`) im Drawer-Header vergrößert das Popup sofort auf eine 2-Spalten-Breitbildansicht (`min(880px, 92vw)`).
-    - **Zweispaltiges Ergonomie-Layout:** Links stehen Metadaten, Identifikatoren, Beschreibung und ARCHE-Vorschau; rechts oben thronen prominent die **Verknüpften Entitäten** mit farbigen Kategorie-Badges (`HOSTING`, `EIGENTÜMER`, `LIZENZGEBER`, `KURATOR:IN`, `URHEBER:IN`, `FUNDORT`, etc.), Typ-Icons und Pfeil-Richtungen.
-    - **Interaktiver Resize-Handle (`.drawer-resize-handle`):** Der linke Rand des Drawers kann mit der Maus stufenlos von 380px bis fast zur vollen Fensterbreite gezogen werden. Ein Doppelklick toggelt die Breitbildansicht.
-    - **Tastatursteuerung:** `Escape` schließt oder verkleinert das geöffnete Panel.
+### 3.4 Korrekte Zuordnung von `6582.tif`
 
-### 3.7 Ask IUENNA – siteweite ARCHE-Metadatensuche
+Ein früherer Altzustand ordnete `6582.tif` fälschlich `06_14` zu. Der autoritative Rebuild aus dem ARCHE-TTL weist die Ressource korrekt der Sammlung **„Umschlag von Hans Winkler“** (`1792741`) zu. Die ARCHE-Vorschau wird über den Thumbnail-Dienst eingebunden.
 
-**Ask IUENNA** (`scripts/iuenna-chat.js`) ist die englischsprachige, clientseitige Discovery-Oberfläche der Website. Sie ist auf allen öffentlichen IUENNA-Hauptseiten eingebunden: Startseite, Web-Mapping-Übersicht, beide WMA-Wrapper, Knowledge Graph (`graph/index.html` und `graph/graph.html`), BYOAI sowie Legal/Privacy. Die eingebetteten Karten-Dokumente innerhalb der WMA werden bewusst nicht mit einer zweiten Instanz versehen, damit der Assistent in `iframe`-Ansichten nicht doppelt erscheint.
+### 3.5 Sprechende Collection-Titel und `col_ret`
+
+Interne numerische Codes werden in Suchindex, Breadcrumbs und Graphlabels durch sprechende ARCHE-Titel ergänzt bzw. ersetzt. Das interne Kürzel `col_ret` wird in der Benutzeroberfläche als **Retrodigitalisat-Collection (RET)** aufgelöst.
+
+### 3.6 Knowledge-Graph-Oberfläche und Inspector
+
+Die Graphoberfläche umfasst:
+
+* einklappbare ARCHE-Dateivorschau;
+* hochauflösenden Zoom-/Pan-Viewer für Karten, Pläne und Bildressourcen;
+* Fundort-Minikarten und vergrößerbare Leaflet-Karten mit OSM/OpenTopoMap;
+* Fundort-Deep-Links in das WMA mit `lat`, `lng` und `zoom`;
+* Korpus-Katalog mit dynamischen Fundortfiltern und Trefferzahlen;
+* Mehrwortsuche;
+* Merkliste mit `localStorage` und Permalink-Unterstützung;
+* umschaltbare Knoten-, Kanten- und Relationstexte;
+* semantische Kantenlabels;
+* Inspector Drawer mit Breitbildmodus, zweispaltigem Layout, Resize-Handle und Tastatursteuerung;
+* kontextbezogene Hervorhebung direkter Nachbarknoten und Kanten.
+
+### 3.7 Progressive LOD-Runtime & hierarchieorientiertes Edge Bundling
+
+Am 12.09.2026 wurde die Graphdarstellung grundlegend auf eine progressive **Level-of-Detail-Runtime** umgestellt. Ziel ist, die vollständige Semantik zu erhalten, ohne beim ersten Seitenaufruf alle mehr als 20.000 Primärressourcen und sämtliche Kanten gleichzeitig im Browser zu materialisieren.
+
+#### Progressive Hierarchietiefe
+
+* Beim Start wird `arche_graph_macro.json` geladen.
+* Die initiale Makrotiefe beträgt **2**; weitere Collection-Ebenen werden progressiv materialisiert.
+* Fundorte werden erst ab einer tieferen Übersichtsebene in den Makrograph aufgenommen, um den First Paint nicht zu überladen.
+* Primärressourcen verbleiben in collection-spezifischen Shards unter `data/graph_shards/` und werden bei Bedarf nachgeladen.
+* Wird eine Hierarchieebene wieder ausgeblendet, werden zugehörige Resource-Shards aus Cytoscape und aus dem Loader-Zustand entfernt, damit ein späteres erneutes Öffnen korrekt funktioniert.
+* `arche_graph_lod_manifest.json` dokumentiert vollständige und lazy geladene Mengen.
+
+#### Layout und Edge Bundling
+
+`graph/layouts.js` bündelt nicht-hierarchische Beziehungen entlang gemeinsamer Collection-Hubs und – bei Beziehungen zwischen verschiedenen Top-Level-Bereichen – entlang des IUENNA-Wurzelknotens. Dadurch bleibt ein dichtes semantisches Netzwerk lesbarer, ohne Beziehungen zu entfernen.
+
+* `isPartOf` bleibt als Hierarchiekante separat behandelt.
+* Andere Relationen können als `unbundled-bezier` mit berechneten Kontrollpunkten gerendert werden.
+* Nach Layoutwechseln oder Wiederherstellung der Preset-Positionen wird das Bundling erneut berechnet.
+* Die Kantenkrümmung wurde nach der Einführung nochmals bewusst abgeschwächt, um überzeichnete Bogenführungen zu vermeiden.
+* Die visuelle Grundpalette wurde an die IUENNA-Startseite angeglichen; selektierte bzw. hervorgehobene Beziehungen erhalten deutlich höhere Sichtbarkeit.
+
+Damit existieren zwei ausdrücklich getrennte Graphschichten: `arche_graph.json` als vollständige semantische Projektion und die LOD-Dateien als Browserdarstellung.
+
+### 3.8 Ask IUENNA – siteweite ARCHE-Discovery mit deterministischem NLP
+
+**Ask IUENNA** (`scripts/iuenna-chat.js`) ist die englischsprachige, clientseitige Discovery-Oberfläche der Website. Sie ist auf den öffentlichen IUENNA-Hauptseiten eingebunden – Startseite, Web-Mapping-Übersicht, WMA-Wrapper, Knowledge Graph, BYOAI und Legal/Privacy. Eingebettete Karten-Iframes erhalten bewusst keine zweite Assistant-Instanz.
 
 #### Datenbasis und Provenienz
-* **Entitätssuche:** `data/arche_search_index.json` (ca. 0,5 MB), reproduzierbar direkt aus dem vollständigen ARCHE-RDF/TTL-Metadatenexport erzeugt. Der Index enthält Personen, Organisationen, Sammlungen/Ordner, Publikationen, Fundorte und kuratierte Forschungsdatensätze.
-* **Dateisuche:** `data/arche_corpus_browser_index.json`, eine kompakte, ausdrücklich nicht-autoritative Browserprojektion des autoritativen `data/arche_corpus.json` mit aktuell 20.355 Primärressourcen. Sie wird erst bei einer Dateisuche bzw. bei ausbleibenden Entitätstreffern nachgeladen.
-* **Source of record:** Ergebnislisten verlinken zurück nach ARCHE sowie – je nach Entität – in den Knowledge Graph und das Web Mapping. Für Zitation, Rechte und Zugriffsbedingungen bleibt der jeweilige ARCHE-Datensatz maßgeblich.
 
-#### Keine generative Fachauskunft
-Ask IUENNA führt **kein Sprachmodell** aus und formuliert **keine eigenständigen archäologischen Synthesen**. Frühere experimentelle hart codierte bzw. synthetisch erzeugte Fachtexte sind nicht mehr Teil der Antwortlogik. Die Oberfläche zeigt ausschließlich indexierte Metadatenfelder (z. B. Titel, Typ, ARCHE-ID, PID, Bestandsumfang, Datierung, Urheber:innen, Dateiformat, Fundort) und kennzeichnet die Ergebnisse als Metadata Discovery.
+* **Entitätssuche:** `data/arche_search_index.json`, direkt aus dem ARCHE-RDF/TTL-Export erzeugt.
+* **Dateisuche:** `data/arche_corpus_browser_index.json`, kompakte Browserprojektion der 20.355 Primärressourcen.
+* **Source of Record:** Treffer verlinken zurück nach ARCHE und – soweit sinnvoll – in Knowledge Graph und Web Mapping.
+* Ask IUENNA erzeugt **keine neuen archäologischen Fakten** aus einer separaten Wissensbasis und verwendet die früheren experimentellen freien Synthesen nicht mehr als Fachauskunft.
 
-#### Suche und Performance
-* Der kleine ARCHE-Discovery-Index wird beim Laden von Ask IUENNA vorbereitet.
-* Die Suche normalisiert Schreibweisen und gewichtet exakte Titel-/Code-/ARCHE-ID-Treffer höher als Teiltreffer.
-* Der größere Primärressourcen-Index wird lazy geladen, um die normale Seitennutzung nicht mit einem ca. 12,8-MB-Download zu belasten.
-* Ergebnisse sind limitiert und dienen der Discovery; exhaustive Retrieval-Aufgaben können über den öffentlichen Remote MCP oder den vollständigen autoritativen Korpus erfolgen.
+#### Deterministische NLP-Schicht
 
-#### Datenschutz
-* Die Suche läuft clientseitig; Suchtexte werden von Ask IUENNA nicht an einen externen LLM-Anbieter gesendet.
-* Öffnungszustand und dargestellter Suchverlauf werden zur Navigation innerhalb derselben Browser-Sitzung in `sessionStorage` unter `iuenna_chat_open` und `iuenna_chat_history` gehalten.
-* Es gibt keine projektseitige serverseitige Chat-Historie und kein Modelltraining mit den Suchanfragen.
-* Normale Netzwerkzugriffe auf GitHub Pages/ARCHE sowie die gesondert dokumentierten externen Karten-, CDN- und MCP-Dienste bleiben davon unberührt.
+Nach der Umstellung auf strikt ARCHE-basierte Metadaten-Discovery wurde die frühere Interaktionsfähigkeit gezielt wiederhergestellt, ohne ein Sprachmodell einzubetten. Die NLP-Schicht arbeitet vollständig deterministisch und clientseitig:
 
-#### BYOAI-Abgrenzung
-Ask IUENNA ist die leichte Website-Discovery. Wer IUENNA mit einem eigenen LLM oder Agenten abfragen möchte, nutzt den öffentlichen, read-only Remote MCP unter `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`; die Dokumentation befindet sich auf `byoai.html`.
+* deutsch- und englischsprachige Stopwords;
+* Unicode-/Umlautnormalisierung;
+* leichtes regelbasiertes Stemming;
+* Synonymgruppen für zentrale Retrieval-Konzepte wie Fotografien/Bilder, Pläne/Zeichnungen, Gräber/Bestattungen, Publikationen, Personen, Orte und Geodaten;
+* Intent-Erkennung für u. a. Dateisuche, Publikationen, Personen, Urheber:innen, Kartenansicht, Beziehungen und Zählfragen;
+* Erkennung kontextabhängiger Follow-up-Fragen;
+* Dialogzustand mit zuletzt aufgelöster Entität, Fundort, Kategorie, Intent, Ergebnisart, ARCHE-Link, Koordinaten und Urheber:innen;
+* Kontextfortschreibung bei kurzen Folgefragen;
+* zeitliche Filterung, darunter Jahrzehnt-Erkennung;
+* gewichtetes Ranking mit höherer Priorität für exakte Titel-, Code- und ARCHE-ID-Treffer sowie Intent-spezifische Kategorien.
 
+Damit ist Ask IUENNA wieder dialogisch bedienbar, bleibt aber eine **Retrieval- und Metadata-Discovery-Oberfläche**, kein generatives archäologisches Frage-Antwort-System.
+
+#### Ergebnisdarstellung und Interaktion
+
+* ARCHE-basierte Trefferkarten erhalten kurze, ausschließlich aus angezeigten Metadaten abgeleitete Zusammenfassungen.
+* Begrüßungs-Chips rotieren zwischen Personen und Themen; angezeigt werden bewusst nur wenige Vorschläge gleichzeitig.
+* Ein eigener **BYOAI / Remote MCP**-Chip führt zur offenen AI-Schnittstelle.
+* Der Assistant kann minimiert und wieder geöffnet werden.
+* Rote UI-Flächen verwenden kontrastgesicherten weißen Text.
+* Dynamisch erzeugte Vorschlags-Chips werden per delegiertem Click-Handler zuverlässig an das Suchfeld gebunden.
+* Graph-Links werden auf `graph/graph.html` normalisiert und übernehmen den Suchparameter.
+* WMA-Aktionen führen auf den GenAI-WMA-Wrapper und übernehmen – soweit vorhanden – Query, Koordinaten und Zoom.
+
+#### Session State und Datenschutz
+
+Ask IUENNA läuft clientseitig und sendet Suchtexte nicht an einen externen LLM-Anbieter. Für die Navigation innerhalb derselben Browser-Sitzung werden lokale Zustände in `sessionStorage` geführt, darunter:
+
+* `iuenna_chat_open` – Öffnungszustand;
+* `iuenna_chat_history` – dargestellter Sitzungsverlauf;
+* `iuenna_chat_dialogue_v31` – deterministischer Dialog-/Follow-up-Kontext.
+
+Es existiert keine projektseitige serverseitige Chat-Historie und kein Modelltraining mit diesen Suchanfragen. Normale Netzwerkzugriffe auf GitHub Pages, ARCHE sowie separat dokumentierte Karten-, CDN- und MCP-Dienste bleiben davon unberührt.
+
+### 3.9 Siteweite Navigation, Web Mapping und UI-Konsolidierung
+
+Die öffentlichen IUENNA-Seiten wurden am 12.09.2026 sprachlich und funktional vereinheitlicht.
+
+* **Navigation:** siteweit kompakte Burger-Navigation auch auf großen Viewports; responsive Darstellung auf kleineren Geräten.
+* **WMA:** qgis2web- und AI-assisted-WMA-Wrapper wurden modernisiert und auf konsistente englische UI-Texte umgestellt.
+* **Provenienz:** Die AI-assisted WMA beschreibt generative AI korrekt als Entwicklungsunterstützung; die archäologischen Quelldaten selbst werden nicht als KI-generiert dargestellt.
+* **Datenschutz:** Angaben zu clientseitigem Assistant, lokal gespeicherten WMA-Filtern, Remote MCP/Cloudflare und lokalen Browser-Speichern wurden präzisiert.
+* **Personendarstellung:** akademische Titel wurden in den vereinheitlichten Personenansichten und zugehörigen UI-/Assistant-Texten entfernt; Projektleitung und Forschungsteam werden strukturell getrennt dargestellt.
+* **Footer:** direkte Verlinkung des eigentlichen GitHub-Repositories wurde siteweit ergänzt und anschließend bereinigt, damit GitHub Pages und Quellrepository nicht verwechselt werden.
+
+### 3.10 Startseite: Projektfokus, Förderung und BYOAI
+
+Die Projektübersicht auf der Startseite wurde neu gewichtet:
+
+* eigener Abschnitt **Area of Interest** für das Jauntal/Podjuna;
+* visuell deutlich hervorgehobener **Funding**-Block bei der Projektleitung;
+* explizite Nennung der **Austrian Academy of Sciences (ÖAW)** und direkte Verlinkung des **Go!Digital 3.0 programme**;
+* deutlicherer **BYOAI – Bring Your Own AI**-Teaser mit dem Hinweis, IUENNA über den öffentlichen Remote MCP an externe AI-Clients anzubinden.
+
+Diese Darstellung trennt räumlichen Forschungsfokus, Projektleitung, Förderung und technische Nachnutzung klarer voneinander.
 
 ---
 
 ## 4. Semantisches Datenmodell im Graphen
 
-### Knotentypen (`type`):
-* `root` (Top-Collection / IUENNA Repositorium) – `#8B2616`
-* `subcollection` / `folder_l1` bis `folder_l6` – Farbabstufungen von Rostrot bis Umbra
-* `dataset` (Forschungsdatensätze / GeoPackages) – Rautenform, `#1B4965`
-* `place` (Geographische Fundorte) – Ellipse, `#4A6B53`
-* `person` (Forscher:innen / PIs) – Ellipse, `#C85A32`
-* `organization` (Institutionen / Partner) – Rechteck, `#202226`
-* `publication` (Fachpublikationen / Literaturnachweise) – Rechteck, `#7B4F36`
-* `resource` (ARCHE-Primärdateien) – Rechteck mit Formatfarben (Bild, Vektor, Tabelle etc.)
+### 4.1 Knotentypen (`type`)
 
-### Kanten (`label`):
-* `isPartOf`: Sammlungshierarchie und Ressourcen-Zugehörigkeit
-* `hasHosting`: Repositoriumshosting (z. B. zu ÖAW / ARCHE)
-* `hasOwner` / `hasLicensor` / `hasRightsHolder`: Institutionelle Eigentümerschaft und Nutzungsrechte (z. B. Landesmuseum Kärnten)
-* `hasCurator`: Kuration von Sammlungen und Funden
-* `hasCreator` / `hasContributor`: Beteiligte Urheber:innen und Mitwirkende
-* `hasDepositor` / `hasMetadataCreator` / `hasDigitisingAgent`: Datenpflege und Digitalisierung
-* `hasSpatialCoverage`: Raumbezüge zu Fundorten (gestrichelt grün)
-* `documents`: Dokumentationsnachweis von Publikationen zu Sammlungen/Datensätzen
-* `hasAuthor`: Autorschaft bei Publikationen
-* `isMemberOf`: Institutionszugehörigkeit von Forscher:innen
+* `root` – Top-Collection / IUENNA-Repositorium
+* `subcollection`, `folder_l1` bis `folder_l6` – Collection-Hierarchie
+* `dataset` – Forschungsdatensätze / GeoPackages
+* `place` – Fundorte und geographische Entitäten
+* `person` – Personen
+* `organization` – Institutionen und Partner
+* `publication` – Fachpublikationen / Literaturnachweise
+* `resource` – ARCHE-Primärressourcen
 
-### 4.1 BYOAI (Bring Your Own AI): Offene Schnittstellen & Protokolle
-* **Konzept:** Vollständige Entkopplung von proprietären Plattformen. Statt Besucher:innen an ein vorgekautes Produkt oder ressourcenintensive In-Browser-Modelle zu binden, stellt IUENNA herstellerneutrale, offene Protokolle und Endpunkte bereit (Motto: *„Bring deine eigene KI mit und befrage unsere Forschungsdaten“*).
-* **MCP-Version:** `2.0.0` als öffentlicher, read-only Remote MCP über Streamable HTTP: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`.
-* **Retrieval-Prinzip:** `arche_search_index.json` dient der semantischen Entitäts-/Discovery-Suche; `arche_corpus.json` enthält die **20.355 Primärressourcen** und ist die Grundlage für exhaustive File-Level-Suche. Die **20.788 ARCHE-Einträge** bezeichnen den Gesamtbestand des Repositoriums und dürfen nicht mit der Zahl der Primärdateien gleichgesetzt werden.
-* **Komponenten:**
-  1. **Model Context Protocol (MCP):**
-     - Öffentlicher, zustandsloser Remote MCP unter `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp` mit Streamable HTTP.
-     - Kein lokaler Server, keine Python-/Node-Installation und kein projektspezifischer API-Key erforderlich; kompatible AI-Clients verbinden sich direkt mit der HTTPS-URL.
-     - Laufzeit über Cloudflare Workers Free; kanonische Forschungsdaten verbleiben auf IUENNA/ARCHE, die Remote-Query-Projektionen unter `data/mcp_remote/` sind nicht-autoritativ und reproduzierbar.
-     - Sieben Fach-Tools:
-       - `search_iuenna_corpus`: Volltext-/Metadatensuche über `arche_corpus.json` und damit 20.355 Primärressourcen.
-       - `get_findspot_details`: Fundort-Metadaten samt direkt verknüpfter kuratierter Datensätze.
-       - `get_related_resources`: löst Fundort, Datensatz, Sammlung oder Publikation auf und traversiert Raum-, Collection- und Dokumentationsbeziehungen zu Datensätzen, Sammlungen, Publikationen und einzelnen Primärressourcen.
-       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.071 Knoten, 281.851 Kanten) um beliebige indexierte Entitäten mit optionaler Prädikats- und Richtungsfilterung (`all`, `outgoing`, `incoming`).
-       - `get_geodata_catalog`: Katalog der 9 autoritativen GeoPackages.
-       - `get_corpus_statistics`: Gesamtstatistik mit expliziter Trennung zwischen dem ARCHE-weiten `total_items`-Wert und dem kanonischen Primärressourcen-Korpus von 20.355 Dateien.
-       - `get_project_bibliography`: Abfrage der öffentlichen IUENNA-Zotero-Bibliothek.
-  2. **OpenAPI 3.1 & Statische REST-Endpunkte:**
-     - Spezifikation unter `data/openapi.json`.
-     - `arche_places.json`: 219 Fundorte.
-     - `arche_datasets.json`: 9 kuratierte GeoPackages/Forschungsdatensätze.
-     - `arche_collections_tree.json`: 434 Sammlungen und ihre Parent-Child-Hierarchie.
-     - `arche_search_index.json`: kompakter Discovery-Index für Entitäten und zentrale Ressourcen.
-     - `arche_graph.json`: 21.071 Knoten und 281.851 Kanten als provenance-erhaltende Graphprojektion; Details und Invarianten stehen in `arche_graph_audit.json`.
-     - `arche_corpus.json`: 20.355 Primärressourcen mit ARCHE-ID, PID, Titel/Dateiname, Elternsammlung, Breadcrumb-Pfad, Raumbezug, Schlagworten, Datum, Typ und Beschreibung.
-  3. **`llms.txt` (Offener Webstandard):**
-     - Bereitstellung von `https://iuenna.github.io/llms.txt` als Routing- und Provenienzschicht für LLMs und Agents.
-     - Enthält eine explizite Source-Priority, Retrieval-Strategien, Relationship Semantics, PID-first-Zitierregeln sowie den Hinweis auf ressourcenspezifische Zugriffs- und Lizenzbedingungen.
-  4. **BYOAI-Hub (`byoai.html`):**
-     - Zentrale englischsprachige Dokumentationsseite mit einer einzigen Copy-Paste-URL für den öffentlichen Remote MCP sowie direkten Verweisen auf die offenen JSON-, OpenAPI- und `llms.txt`-Schnittstellen.
-  5. **Öffentliche Zotero-Bibliothek & REST API:**
-     - Gruppe `4910727` (`https://www.zotero.org/groups/4910727/iuenna`) mit 427+ Titeln zu Grabungsberichten, Projektpublikationen, FAIR Data und digitaler Archäologie.
-     - Öffentliche REST-API (`https://api.zotero.org/groups/4910727/items`) für maschinenlesbare Zitationen (BibTeX, CSL-JSON, RIS, JSON).
+### 4.2 Zentrale Kantenrelationen
 
-### 4.2 Empfohlene Agent-Routing-Logik
+* `isPartOf` – Sammlungshierarchie und Ressourcenzugehörigkeit
+* `hasHosting` – Repositoriums-/Hostingbeziehung
+* `hasOwner`, `hasLicensor`, `hasRightsHolder` – Eigentum und Rechte
+* `hasCurator` – Kuration
+* `hasCreator`, `hasContributor` – Urheber:innen und Mitwirkende
+* `hasDepositor`, `hasMetadataCreator`, `hasDigitisingAgent` – Depositing, Metadatenpflege und Digitalisierung
+* `hasSpatialCoverage` – asserted Raumbezüge
+* `documents` – Dokumentationsbeziehungen
+* `hasAuthor` – Publikationsautorschaft
+* `isMemberOf` – institutionelle Zugehörigkeit
 
-1. **Entität finden:** `arche_search_index.json` oder MCP-Resolver verwenden.
-2. **Fundortfrage:** `arche_places.json` → `arche_datasets.json` → ARCHE-PID.
-3. **Kuratierten Forschungsdatensatz suchen:** `arche_datasets.json` verwenden.
-4. **Semantische Netzwerke / Multi-Hop-Beziehungen:** `arche_graph.json` oder MCP `get_graph_neighborhood` verwenden.
-5. **„Alle Daten/Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und `arche_collections_tree.json` traversieren; alternativ MCP `get_related_resources` verwenden.
-6. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids_direct`, `spatial_ids_inherited`, `spatial_relation_status` sowie Kanten-`provenance`/`relation_status` nachverfolgen.
-7. **Zitieren:** nach Möglichkeit den individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben; die Discovery-Endpunkte sind nicht Ersatz für die autoritative Repository-Metadatenansicht.
-8. **Rechte:** offen zugängliche IUENNA-Discovery-Endpunkte bedeuten nicht, dass jede archivierte Binärressource offen oder CC BY 4.0 lizenziert ist. Zugriff und Rechte sind auf Ressourcenebene zu prüfen.
+### 4.3 Provenienzregeln
+
+Graphkanten tragen nicht nur ein semantisches Label, sondern werden nach ihrem Entstehungsstatus unterschieden. Entscheidend ist insbesondere die Trennung zwischen:
+
+* direkt in ARCHE asserted Beziehungen;
+* geerbten Beziehungen;
+* aggregierten Beziehungen;
+* kuratierten Zuordnungen;
+* synthetischen Navigationsbeziehungen.
+
+Die LOD-Darstellung verändert diese semantische Provenienz nicht. Sie entscheidet ausschließlich, welche Teile des vollständigen Graphen im Browser aktuell materialisiert werden.
 
 ---
 
-## 5. Deployment & Versionskontrolle
+## 5. BYOAI – offene Schnittstellen & Agentenzugriff
 
-* **Repository:** [https://github.com/iuenna/iuenna.github.io](https://github.com/iuenna/iuenna.github.io)
+### 5.1 Konzept
+
+BYOAI (**Bring Your Own AI**) trennt die Forschungsdaten von einem einzelnen proprietären AI-Frontend. IUENNA stellt offene, lesende und dokumentierte Schnittstellen bereit, die von kompatiblen externen LLMs und Agents genutzt werden können.
+
+### 5.2 Remote MCP
+
+Der öffentliche, read-only Remote MCP ist der kanonische MCP-Zugangsweg:
+
+`https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
+
+* zustandsloser Streamable-HTTP-MCP;
+* Cloudflare Workers Free;
+* kein projektspezifischer API-Key;
+* kein lokaler Python-/Node-Server erforderlich;
+* kanonische Forschungsdaten verbleiben in IUENNA/ARCHE;
+* Remote-Projektionen unter `data/mcp_remote/` sind reproduzierbar und nicht autoritativ.
+
+Der frühere lokale/stdio-MCP wurde als offiziell unterstützter Zugangsweg zurückgezogen, nachdem der Remote MCP produktiv verifiziert worden war.
+
+### 5.3 MCP-Fachtools
+
+1. `search_iuenna_corpus` – Volltext-/Metadatensuche über den Primärressourcen-Korpus.
+2. `get_findspot_details` – Fundort-Metadaten und verknüpfte kuratierte Datensätze.
+3. `get_related_resources` – Auflösung und Traversierung von Fundort, Datensatz, Sammlung oder Publikation zu verbundenen Ressourcen.
+4. `get_graph_neighborhood` – Multi-Hop-/Nachbarschaftsabfrage im Knowledge Graph mit Prädikats- und Richtungsfilterung.
+5. `get_geodata_catalog` – Katalog der neun GeoPackages.
+6. `get_corpus_statistics` – Bestandsstatistik mit expliziter Trennung von ARCHE-Gesamtbestand und 20.355 Primärressourcen.
+7. `get_project_bibliography` – Abfrage der öffentlichen IUENNA-Zotero-Bibliothek.
+
+### 5.4 OpenAPI und statische Endpunkte
+
+* `data/openapi.json` – OpenAPI 3.1
+* `data/arche_places.json` – 219 Fundorte
+* `data/arche_datasets.json` – 9 kuratierte GeoPackages/Forschungsdatensätze
+* `data/arche_collections_tree.json` – 434 Sammlungen
+* `data/arche_search_index.json` – kompakter Discovery-Index
+* `data/arche_graph.json` – vollständige Graphprojektion
+* `data/arche_graph_audit.json` – Graph-Audit
+* `data/arche_corpus.json` – 20.355 Primärressourcen
+
+### 5.5 `llms.txt`
+
+`https://iuenna.github.io/llms.txt` dient als Routing- und Provenienzschicht für LLMs und Agents. Die Datei dokumentiert:
+
+* Source Priority;
+* Retrieval-Strategien;
+* Relationship Semantics;
+* PID-first-Zitierregeln;
+* Trennung zwischen Discovery- und autoritativen Quellen;
+* ressourcenspezifische Rechte und Zugriffsbedingungen;
+* Remote MCP und Knowledge-Graph-Routing.
+
+### 5.6 Zotero-Bibliothek
+
+Die öffentliche IUENNA-Zotero-Gruppe `4910727` ist in BYOAI, MCP, `llms.txt`, Assistant und Referenzlogik eingebunden. Sie enthält 427+ Titel zu Grabungen, Projektpublikationen, Digital Archaeology, FAIR Data und angrenzenden Themen. Die öffentliche Zotero REST API ermöglicht maschinenlesbare Zitationen u. a. als BibTeX, CSL-JSON, RIS und JSON.
+
+---
+
+## 6. Empfohlene Agent-Routing-Logik
+
+1. **Entität finden:** `arche_search_index.json` oder MCP-Resolver.
+2. **Fundortfrage:** `arche_places.json` → `arche_datasets.json` → individueller ARCHE-PID.
+3. **Kuratierten Forschungsdatensatz suchen:** `arche_datasets.json`.
+4. **Semantische Netzwerke / Multi-Hop-Beziehungen:** `arche_graph.json` oder MCP `get_graph_neighborhood`.
+5. **„Alle Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und Collection-Hierarchie berücksichtigen; alternativ MCP `get_related_resources`.
+6. **Provenienz:** `parent_id`, `col`/`col_id`, direkte und geerbte Raum-IDs sowie Kanten-`provenance`/`relation_status` beachten.
+7. **Zitieren:** nach Möglichkeit individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben.
+8. **Rechte:** öffentlich erreichbare Discovery-Endpunkte implizieren nicht automatisch offene Binärressourcen oder CC BY 4.0; Rechte und Zugriff sind ressourcenspezifisch zu prüfen.
+
+---
+
+## 7. Konsolidierter Änderungsstand 11.–12.09.2026
+
+Die folgenden Arbeiten sind in dieser Dokumentation nun ausdrücklich berücksichtigt:
+
+* Aufbau und Integration des BYOAI-Hubs, OpenAPI und `llms.txt`;
+* Integration der Zotero-Gruppe und Bibliographie-Abfrage;
+* Erweiterung des MCP um Knowledge-Graph- und Korpus-Routing;
+* Umstellung auf den **öffentlichen Remote MCP als einzigen offiziell unterstützten MCP-Zugangsweg**;
+* Aktualisierung und Validierung der autoritativen ARCHE-Daten-, Graph- und AI-Stacks;
+* Aufbau von `arche_graph_macro.json`, LOD-Manifest und collectionweisen Resource-Shards;
+* Lazy Loading des Korpus-Browserindex und der Graphressourcen;
+* progressive Hierarchieebenen im Graphen;
+* hierarchieorientiertes Edge Bundling und nachträgliche Abschwächung der Kantenkrümmung;
+* Vereinheitlichung von Graphlayout, Palette, Sprache und Performanceverhalten;
+* Überarbeitung von WMA-Wrappern, englischer UI und Provenienztexten;
+* siteweite Burger-Navigation und konsolidierte Icons/Navigation;
+* präzisierte Datenschutzdarstellung für Assistant, Browser-Speicher, WMA und Remote MCP;
+* Entfernung bzw. Korrektur unbelegter oder unzutreffender Assistant-Inhalte;
+* Umstellung von Ask IUENNA auf ARCHE-basierte Metadata Discovery;
+* Wiederherstellung deterministischer NLP-, Intent-, Synonym- und Follow-up-Funktionen ohne Rückkehr zu freien archäologischen Synthesen;
+* Grounded Summaries aus angezeigten Metadaten;
+* rotierende Assistant-Prompts/Chips, Minimize-Control, Kontrastkorrekturen und reparierte dynamische Aktionen;
+* Normalisierung der Assistant-Deep-Links zu Knowledge Graph und GenAI-WMA;
+* Hervorhebung von Projektleitung und Forschungsteam bei vereinheitlichter Personendarstellung;
+* stärkere Hervorhebung von Jauntal/Podjuna als Area of Interest;
+* deutliche Hervorhebung der ÖAW-/Go!Digital-3.0-Förderung;
+* stärkere BYOAI-Kommunikation auf der Startseite;
+* direkte GitHub-Repository-Verlinkung in den Site-Footern.
+
+---
+
+## 8. Deployment & Versionskontrolle
+
+* **Repository:** [https://github.com/IUENNA/IUENNA.github.io](https://github.com/IUENNA/IUENNA.github.io)
 * **Branch:** `main`
-* **Live-URLs:**
-  - Startseite / Katalog: `https://iuenna.github.io/`
-  - BYOAI Hub: `https://iuenna.github.io/byoai.html`
-  - Remote MCP: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
-  - Knowledge Graph: `https://iuenna.github.io/graph/index.html` (sowie `graph.html`)
-  - Web Mapping: `https://iuenna.github.io/wma/wma.html`
-  - Zotero Library: `https://www.zotero.org/groups/4910727/iuenna/library`
-  - AI Web Index: `https://iuenna.github.io/llms.txt`
-  - OpenAPI 3.1 Spec: `https://iuenna.github.io/data/openapi.json`
-  - Vollständiger Primärressourcen-Korpus: `https://iuenna.github.io/data/arche_corpus.json`
-  - Graph-Audit: `https://iuenna.github.io/data/arche_graph_audit.json`
+* **Hosting:** GitHub Pages
+* **Automatisierung:** GitHub Actions für Rebuilds, Validierung, Graph-/LOD-Generierung und Daten-Synchronisierung
+
+### Live-URLs
+
+* Startseite: `https://iuenna.github.io/`
+* BYOAI Hub: `https://iuenna.github.io/byoai.html`
+* Remote MCP: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
+* Knowledge Graph: `https://iuenna.github.io/graph/graph.html`
+* alternativer Graph-Einstieg: `https://iuenna.github.io/graph/index.html`
+* Web-Mapping-Übersicht: `https://iuenna.github.io/wma/wma.html`
+* AI-assisted WMA: `https://iuenna.github.io/wma/genai-wma-home.html`
+* qgis2web WMA: `https://iuenna.github.io/wma/qgis2web-home.html`
+* Zotero Library: `https://www.zotero.org/groups/4910727/iuenna/library`
+* `llms.txt`: `https://iuenna.github.io/llms.txt`
+* OpenAPI 3.1: `https://iuenna.github.io/data/openapi.json`
+* vollständiger Primärressourcen-Korpus: `https://iuenna.github.io/data/arche_corpus.json`
+* vollständiger Knowledge Graph: `https://iuenna.github.io/data/arche_graph.json`
+* Graph-Audit: `https://iuenna.github.io/data/arche_graph_audit.json`
+* LOD-Makrograph: `https://iuenna.github.io/data/arche_graph_macro.json`
+* LOD-Manifest: `https://iuenna.github.io/data/arche_graph_lod_manifest.json`
+
+---
+
+## 9. Wartungsprinzip
+
+Bei künftigen Änderungen sollen Dokumentation und Runtime nicht mehr getrennt fortgeschrieben werden. Änderungen an Datenpipeline, Graphsemantik, Assistant-Retrieval, MCP/API, WMA oder Datenschutz müssen gemeinsam mit den zugehörigen reproduzierbaren Skripten und öffentlichen Beschreibungen aktualisiert werden. Insbesondere dürfen abgeleitete Browser-/Remote-Indizes nicht als neue autoritative Datenquellen beschrieben werden; die Provenienzkette zurück zu ARCHE bzw. den autoritativen IUENNA-Projektionen muss erhalten bleiben.
