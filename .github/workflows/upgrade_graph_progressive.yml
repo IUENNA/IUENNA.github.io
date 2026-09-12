@@ -1,0 +1,50 @@
+name: Upgrade Graph Progressive LOD
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/upgrade_graph_progressive.py'
+      - '.github/workflows/upgrade_graph_progressive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Apply progressive graph upgrade
+        run: |
+          python scripts/upgrade_graph_progressive.py
+          python scripts/inject_graph_layout_module.py graph/index.html
+          if [ -f graph/graph.html ]; then python scripts/inject_graph_layout_module.py graph/graph.html; fi
+      - name: Validate runtime
+        run: |
+          python -m py_compile scripts/upgrade_graph_progressive.py scripts/inject_graph_layout_module.py
+          node --check graph/data-source.js
+          node --check graph/layouts.js
+          grep -q 'INITIAL_MACRO_DEPTH = 2' graph/data-source.js
+          grep -q 'setMacroDepth' graph/data-source.js
+          grep -q 'applyHierarchicalEdgeBundling' graph/layouts.js
+          grep -q 'unbundled-bezier' graph/layouts.js
+          grep -q './data-source.js?v=20260912-4' graph/index.html
+          grep -q './layouts.js?v=20260912-3' graph/index.html
+      - name: Commit upgraded graph and remove migration workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/upgrade_graph_progressive.yml
+          git add graph/data-source.js graph/layouts.js graph/index.html scripts/inject_graph_layout_module.py .github/workflows/graph_frontend.yml scripts/upgrade_graph_progressive.py
+          if [ -f graph/graph.html ]; then git add graph/graph.html; fi
+          git commit -m "feat(graph): restore progressive LOD and hierarchy-aware edge bundling"
+          git pull --rebase origin main
+          git push origin HEAD:main
