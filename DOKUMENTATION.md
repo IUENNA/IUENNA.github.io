@@ -245,7 +245,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
      - Bereitstellung von `https://iuenna.github.io/llms.txt` als Routing- und Provenienzschicht für LLMs und Agents.
      - Enthält eine explizite Source-Priority, Retrieval-Strategien, Relationship Semantics, PID-first-Zitierregeln sowie den Hinweis auf ressourcenspezifische Zugriffs- und Lizenzbedingungen.
   4. **BYOAI-Hub (`byoai.html`):**
-     - Zentrale englischsprachige Dokumentations- und Rezepte-Seite mit Copy-Paste-Cookbook für lokales Ollama/Llama 3.2, Open-WebUI, cURL/jq, Python/NetworkX und Google NotebookLM.
+     - Zentrale englischsprachige Dokumentationsseite mit einer einzigen Copy-Paste-URL für den öffentlichen Remote MCP sowie direkten Verweisen auf die offenen JSON-, OpenAPI- und `llms.txt`-Schnittstellen.
   5. **Öffentliche Zotero-Bibliothek & REST API:**
      - Gruppe `4910727` (`https://www.zotero.org/groups/4910727/iuenna`) mit 427+ Titeln zu Grabungsberichten, Projektpublikationen, FAIR Data und digitaler Archäologie.
      - Öffentliche REST-API (`https://api.zotero.org/groups/4910727/items`) für maschinenlesbare Zitationen (BibTeX, CSL-JSON, RIS, JSON).
@@ -270,6 +270,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 * **Live-URLs:**
   - Startseite / Katalog: `https://iuenna.github.io/`
   - BYOAI Hub: `https://iuenna.github.io/byoai.html`
+  - Remote MCP: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
   - Knowledge Graph: `https://iuenna.github.io/graph/index.html` (sowie `graph.html`)
   - Web Mapping: `https://iuenna.github.io/wma/wma.html`
   - Zotero Library: `https://www.zotero.org/groups/4910727/iuenna/library`
