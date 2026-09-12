@@ -111,6 +111,45 @@
     setTimeout(() => { toast.remove(); }, 3500);
   }
 
+  // Rotating Suggestion Chips (Fixed: BYOAI + Literatur, plus 3-4 randomly chosen topics)
+  function renderRotatingChipsHtml(randomCount) {
+    const fixedChips = [
+      `<button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>`,
+      `<button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>`
+    ];
+
+    const rotatingPool = [
+      { query: 'Welche Münzen gibt es?', label: '🪙 Münzschatz Globasnitz' },
+      { query: 'Doppelkirchen Hemmaberg', label: '⛪ Hemmaberg Doppelkirchen' },
+      { query: 'Ostgotisches Gräberfeld Globasnitz', label: '💀 Ostgotisches Gräberfeld' },
+      { query: 'Villenanlage St. Stefan', label: '🏡 Villa St. Stefan' },
+      { query: 'QGIS Geodaten', label: '🗺️ QGIS GeoPackage' },
+      { query: 'Grabungspläne Hemmaberg', label: '📐 Grabungspläne' },
+      { query: 'Inschriften', label: '📜 Römische Inschriften' },
+      { query: 'Wer war Hans Winkler?', label: '👤 Hans Winkler' },
+      { query: 'Wer ist Franziska Reiner?', label: '👤 Franziska Reiner' },
+      { query: 'Wer ist Dominik Hagmann?', label: '👤 Dominik Hagmann' },
+      { query: 'Wer war Sabine Ladstätter?', label: '👤 Sabine Ladstätter' },
+      { query: 'Wer ist Michaela Binder?', label: '👤 Michaela Binder' },
+      { query: 'Wer ist Magdalena Srienc?', label: '👤 Magdalena Srienc' }
+    ];
+
+    const count = typeof randomCount === 'number' ? randomCount : (Math.random() < 0.5 ? 3 : 4);
+    const shuffled = [...rotatingPool].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, count);
+
+    const rotatingChips = selected.map(c =>
+      `<button type="button" class="chat-chip" data-query="${escapeHtml(c.query)}">${c.label}</button>`
+    );
+
+    return `
+      <div class="chat-chips-container" style="margin-top: 8px;">
+        ${fixedChips.join('')}
+        ${rotatingChips.join('')}
+      </div>
+    `;
+  }
+
   function getWelcomeMessageHtml() {
     return `
       <!-- Welcome Message -->
@@ -123,22 +162,7 @@
           <div class="chat-byoai-welcome-box" style="margin-top: 8px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: 4px; font-size: 0.79rem; line-height: 1.4; color: #4a148c;">
             <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.
           </div>
-          <div class="chat-chips-container" style="margin-top: 8px;">
-            <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
-            <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
-            <button type="button" class="chat-chip" data-query="Wer ist Franziska Reiner?">👤 Franziska Reiner</button>
-            <button type="button" class="chat-chip" data-query="Wer ist Dominik Hagmann?">👤 Dominik Hagmann</button>
-            <button type="button" class="chat-chip" data-query="Wer war Sabine Ladstätter?">👤 Sabine Ladstätter</button>
-            <button type="button" class="chat-chip" data-query="Wer ist Michaela Binder?">👤 Michaela Binder</button>
-            <button type="button" class="chat-chip" data-query="Wer ist Elke Profant?">👤 Elke Profant</button>
-            <button type="button" class="chat-chip" data-query="Wer ist Magdalena Srienc?">👤 Magdalena Srienc</button>
-            <button type="button" class="chat-chip" data-query="Welche Münzen gibt es?">🪙 Münzschatz Globasnitz</button>
-            <button type="button" class="chat-chip" data-query="Wer war Hans Winkler?">👤 Hans Winkler</button>
-            <button type="button" class="chat-chip" data-query="Doppelkirchen Hemmaberg">⛪ Hemmaberg Doppelkirchen</button>
-            <button type="button" class="chat-chip" data-query="Ostgotisches Gräberfeld Globasnitz">💀 Ostgotisches Gräberfeld</button>
-            <button type="button" class="chat-chip" data-query="Villenanlage St. Stefan">🏡 Villa St. Stefan</button>
-            <button type="button" class="chat-chip" data-query="QGIS Geodaten">🗺️ QGIS GeoPackage</button>
-          </div>
+          ${renderRotatingChipsHtml()}
         </div>
         <span class="chat-msg-time">Jetzt</span>
       </div>
