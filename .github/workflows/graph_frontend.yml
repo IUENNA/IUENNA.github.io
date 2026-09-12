@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - 'graph/index.html'
+      - 'graph/graph.html'
       - 'graph/layouts.js'
       - 'graph/data-source.js'
       - 'graph/corpus-data.js'
       - 'graph/runtime-version.json'
       - 'scripts/inject_graph_layout_module.py'
+      - 'DOKUMENTATION.md'
       - '.github/workflows/graph_frontend.yml'
   workflow_dispatch:
 
@@ -40,9 +42,11 @@ jobs:
           node --check graph/layouts.js
 
       - name: Canonicalize generated graph frontend
-        run: python scripts/inject_graph_layout_module.py graph/index.html
+        run: |
+          python scripts/inject_graph_layout_module.py graph/index.html
+          if [ -f graph/graph.html ]; then python scripts/inject_graph_layout_module.py graph/graph.html; fi
 
-      - name: Validate progressive LOD frontend architecture
+      - name: Validate progressive LOD and tuned layout architecture
         run: |
           node --check graph/data-source.js
           node --check graph/corpus-data.js
@@ -50,7 +54,8 @@ jobs:
           grep -q 'IUENNA graph runtime: start' graph/index.html
           grep -q './data-source.js?v=20260912-4' graph/index.html
           grep -q './corpus-data.js?v=20260912-2' graph/index.html
-          grep -q './layouts.js?v=20260912-4' graph/index.html
+          grep -q './layouts.js?v=20260912-5' graph/index.html
+          if [ -f graph/graph.html ]; then grep -q './layouts.js?v=20260912-5' graph/graph.html; fi
           grep -q 'source: "arche_graph_macro.json"' graph/index.html
           grep -q 'authoritative_source: "arche_graph.json"' graph/index.html
           grep -q 'let edgeLabelsVisible = false;' graph/index.html
@@ -63,13 +68,23 @@ jobs:
           grep -q 'setMacroDepth' graph/data-source.js
           grep -q 'applyHierarchicalEdgeBundling' graph/layouts.js
           grep -q 'unbundled-bezier' graph/layouts.js
-          grep -q 'rawDistance \* 0.42' graph/layouts.js
-          grep -q 'Math.min(120, len \* 0.20)' graph/layouts.js
+          grep -q 'edge.style("curve-style", "straight")' graph/layouts.js
+          grep -q 'EDGE_BUNDLE_DISTANCE_SCALE = 0.36' graph/layouts.js
+          grep -q 'EDGE_BUNDLE_MAX_RATIO = 0.16' graph/layouts.js
+          grep -q 'EDGE_BUNDLE_MAX_PX = 90' graph/layouts.js
+          grep -q 'ROOT_CORRIDOR_PULL = 0.22' graph/layouts.js
+          grep -q 'componentSpacing: 170' graph/layouts.js
+          grep -q 'gravity: 0.22' graph/layouts.js
+          grep -q 'nestingFactor: 1.30' graph/layouts.js
+          grep -q 'numIter: 1600' graph/layouts.js
           grep -q '#FAF8F5' graph/layouts.js
           grep -q '#A8442E' graph/layouts.js
           grep -q 'arche_corpus_browser_index.json' graph/corpus-data.js
           grep -q 'authoritativeUrl: "../data/arche_corpus.json"' graph/corpus-data.js
           grep -q 'setPill("idle")' graph/corpus-data.js
+          grep -q '"layout_runtime": "layouts.js?v=20260912-5"' graph/runtime-version.json
+          grep -q '"data_runtime": "data-source.js?v=20260912-4"' graph/runtime-version.json
+          grep -q 'Layout-Fine-Tuning vom 12.09.2026' DOKUMENTATION.md
           python - <<'PY'
           from pathlib import Path
           p = Path('graph/index.html')
@@ -83,9 +98,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add graph/index.html graph/layouts.js
+          if [ -f graph/graph.html ]; then git add graph/graph.html; fi
           if git diff --cached --quiet; then
-            echo "Graph frontend already uses progressive graph/corpus LOD and edge bundling."
+            echo "Graph frontend already uses the tuned progressive LOD runtime."
           else
-            git commit -m "fix(graph): canonicalize progressive LOD frontend"
+            git commit -m "fix(graph): canonicalize tuned progressive frontend"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
