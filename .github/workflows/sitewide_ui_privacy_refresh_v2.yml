@@ -1,0 +1,37 @@
+name: Run IUENNA UI and Privacy Refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sitewide_ui_privacy_refresh_v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Apply refresh
+        run: python scripts/refresh_site_ui.py
+      - name: Validate syntax
+        run: |
+          python -m py_compile scripts/refresh_site_ui.py scripts/generate_graph_html.py
+          node --check scripts/nav.js
+          grep -q 'IUENNA sitewide compact burger navigation' styles.css
+          grep -q 'sessionStorage' impressum-datenschutz.html
+          grep -q 'localStorage' impressum-datenschutz.html
+          grep -q '<html lang="en">' wma/genai-wma-index.html
+      - name: Commit generated changes and remove one-shot workflows
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/sitewide_ui_privacy_refresh.yml .github/workflows/sitewide_ui_privacy_refresh_v2.yml
+          git add styles.css index.html byoai.html impressum-datenschutz.html impressum-datenschutz.md scripts/nav.js scripts/refresh_site_ui.py scripts/generate_graph_html.py wma/
+          git commit -m "refactor(site): unify navigation, WMA language and privacy disclosure"
+          git pull --rebase origin main
+          git push origin HEAD:main
