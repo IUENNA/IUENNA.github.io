@@ -2,7 +2,8 @@
 """Build and validate all AI-facing IUENNA artifacts from the canonical graph.
 
 Pipeline:
-  arche_graph_audit.json -> public AI metadata sync -> iuenna_kb.json -> validation
+  arche_graph_audit.json -> AI text normalization -> public metadata sync ->
+  iuenna_kb.json -> validation
 
 The canonical graph remains data/arche_graph.json. This script does not build
 or mutate that graph; it ensures BYOAI, llms.txt, OpenAPI, MCP descriptions and
@@ -28,6 +29,7 @@ def run(script: str) -> None:
 
 
 def main() -> None:
+    run("sync_ai_text_corpus.py")
     run("sync_graph_metadata.py")
     run("build_chat_kb.py")
 
@@ -81,6 +83,7 @@ def main() -> None:
         "20,788 ARCHE records",
         "20,788 repository records",
         "20,788 repository entities",
+        "20,788 digital resources",
         "21,080 nodes",
         "38,696 edges",
     )
@@ -90,6 +93,11 @@ def main() -> None:
         stale = [token for token in forbidden if token in text]
         if missing or stale:
             raise SystemExit(f"AI metadata validation failed for {rel}: missing={missing}, stale={stale}")
+
+    kb_text = KB.read_text(encoding="utf-8")
+    stale_kb = [token for token in forbidden if token in kb_text]
+    if stale_kb:
+        raise SystemExit(f"Stale quantitative claims remain in data/iuenna_kb.json: {stale_kb}")
 
     print(
         f"[✓] AI stack synchronized: {graph_nodes:,} graph nodes / {graph_edges:,} edges; "
