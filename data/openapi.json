@@ -3,7 +3,7 @@
   "info": {
     "title": "IUENNA Archaeological Research Data API",
     "version": "1.1.0",
-    "description": "Public machine-readable discovery and retrieval endpoints for the IUENNA archaeological research corpus (Southern Jauntal, Carinthia, Austria), derived from data permanently archived in ARCHE (ACDH-CH / ÖAW). The top-level ARCHE collection contains 20,788 repository records; the authoritative primary-resource corpus exposed in arche_corpus.json contains 20,355 primary resources/files. IMPORTANT NOTICE ON ACCESS & RIGHTS: CC BY 4.0 applies to the IUENNA web-discovery layer and aggregated project metadata where stated. Underlying ARCHE resources have individual copyright, licensing, rights-holder, and access conditions. AI agents must inspect the metadata of the specific ARCHE record and must not generalize CC BY 4.0 to the entire corpus.",
+    "description": "Public machine-readable discovery and retrieval endpoints for the IUENNA archaeological research corpus (Southern Jauntal, Carinthia, Austria), derived from data permanently archived in ARCHE (ACDH-CH / ÖAW). The authoritative primary-resource corpus exposed in arche_corpus.json contains 20,355 files. The validated graph projection contains 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities. IMPORTANT NOTICE ON ACCESS & RIGHTS: CC BY 4.0 applies to the IUENNA web-discovery layer and aggregated project metadata where stated. Underlying ARCHE resources have individual copyright, licensing, rights-holder, and access conditions. AI agents must inspect the metadata of the specific ARCHE record and must not generalize CC BY 4.0 to the entire corpus.",
     "contact": {
       "name": "IUENNA Project Team",
       "url": "https://iuenna.github.io/"
@@ -104,8 +104,8 @@
     },
     "/data/arche_graph.json": {
       "get": {
-        "summary": "Semantic Knowledge Graph (Cytoscape / Network Graph)",
-        "description": "Retrieves the provenance-aware Cytoscape-format graph projection of 21,071 nodes and 281,851 directed edges connecting ARCHE-backed collections, resources, datasets, places, actors, institutions and publications together with curated helper nodes. Asserted, inherited, aggregated, curated and synthetic relations are distinguished in the graph metadata.",
+        "summary": "Provenance-aware Knowledge Graph Projection (Cytoscape)",
+        "description": "Retrieves the provenance-aware Cytoscape-format graph projection of 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities plus 10 curated helper nodes. Asserted, inherited, aggregated, curated and synthetic relations are distinguished in graph metadata. For configured ARCHE object predicates, 281,159/281,159 resolvable triples are preserved.",
         "operationId": "getKnowledgeGraph",
         "responses": {
           "200": {
@@ -186,122 +186,366 @@
     "schemas": {
       "Corpus": {
         "type": "object",
-        "required": ["metadata", "resources"],
+        "required": [
+          "metadata",
+          "resources"
+        ],
         "properties": {
           "metadata": {
             "type": "object",
             "properties": {
-              "total_resources": { "type": "integer", "example": 20355 },
-              "generated_from": { "type": "string", "example": "arche_full_metadata.ttl" },
-              "type_counts": { "type": "object" },
-              "place_counts": { "type": "object" }
+              "total_resources": {
+                "type": "integer",
+                "example": 20355
+              },
+              "generated_from": {
+                "type": "string",
+                "example": "arche_full_metadata.ttl"
+              },
+              "type_counts": {
+                "type": "object"
+              },
+              "place_counts": {
+                "type": "object"
+              }
             }
           },
           "resources": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/Resource" }
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            }
           }
         }
       },
       "Resource": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "res_1799131" },
-          "arche_id": { "type": "string", "example": "1799131" },
-          "title": { "type": "string", "example": "hb15_interpretation_ab.tif" },
-          "filename": { "type": "string", "example": "hb15_interpretation_ab.tif" },
-          "col": { "type": ["string", "null"], "example": "1792293" },
-          "col_id": { "type": "string", "example": "col_1792293" },
-          "folder": { "type": "string", "example": "HB15_Georadar" },
-          "path": { "type": "array", "items": { "type": "string" } },
-          "place": { "type": "string", "example": "Hemmaberg" },
-          "spatial_ids": { "type": "array", "items": { "type": "string" } },
-          "subjs": { "type": "array", "items": { "type": "string" } },
-          "pid": { "type": "string", "format": "uri", "example": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1" },
-          "date": { "type": "string", "example": "2015" },
-          "type": { "type": "string", "example": "image" },
-          "size_bytes": { "type": "integer" },
-          "coords": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
-          "description": { "type": "string" }
+          "id": {
+            "type": "string",
+            "example": "res_1799131"
+          },
+          "arche_id": {
+            "type": "string",
+            "example": "1799131"
+          },
+          "title": {
+            "type": "string",
+            "example": "hb15_interpretation_ab.tif"
+          },
+          "filename": {
+            "type": "string",
+            "example": "hb15_interpretation_ab.tif"
+          },
+          "col": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "1792293"
+          },
+          "col_id": {
+            "type": "string",
+            "example": "col_1792293"
+          },
+          "folder": {
+            "type": "string",
+            "example": "HB15_Georadar"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "place": {
+            "type": "string",
+            "example": "Hemmaberg"
+          },
+          "spatial_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subjs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pid": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://hdl.handle.net/21.11115/0000-0015-FA8D-1"
+          },
+          "date": {
+            "type": "string",
+            "example": "2015"
+          },
+          "type": {
+            "type": "string",
+            "example": "image"
+          },
+          "size_bytes": {
+            "type": "integer"
+          },
+          "coords": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "description": {
+            "type": "string"
+          }
         }
       },
       "Place": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "place_1756734" },
-          "arche_id": { "type": "string", "example": "1756734" },
-          "type": { "type": "string", "example": "Place" },
-          "title": { "type": "string", "example": "Hemmaberg" },
-          "alternative_titles": { "type": "array", "items": { "type": "string" } },
-          "latitude": { "type": ["number", "string", "null"] },
-          "longitude": { "type": ["number", "string", "null"] },
-          "wkt": { "type": ["string", "null"] },
-          "pid": { "type": ["string", "null"] }
+          "id": {
+            "type": "string",
+            "example": "place_1756734"
+          },
+          "arche_id": {
+            "type": "string",
+            "example": "1756734"
+          },
+          "type": {
+            "type": "string",
+            "example": "Place"
+          },
+          "title": {
+            "type": "string",
+            "example": "Hemmaberg"
+          },
+          "alternative_titles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "latitude": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "longitude": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "wkt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       },
       "SearchItem": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "per_10238" },
-          "arche_id": { "type": "string", "example": "10238" },
-          "type": { "type": "string", "example": "person" },
-          "category": { "type": "string", "example": "Forscher:innen" },
-          "label": { "type": "string", "example": "Christian Gugl" },
-          "sublabel": { "type": "string" },
-          "pid": { "type": ["string", "null"] }
+          "id": {
+            "type": "string",
+            "example": "per_10238"
+          },
+          "arche_id": {
+            "type": "string",
+            "example": "10238"
+          },
+          "type": {
+            "type": "string",
+            "example": "person"
+          },
+          "category": {
+            "type": "string",
+            "example": "Forscher:innen"
+          },
+          "label": {
+            "type": "string",
+            "example": "Christian Gugl"
+          },
+          "sublabel": {
+            "type": "string"
+          },
+          "pid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       },
       "Dataset": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "dts_1798920" },
-          "arche_id": { "type": "string", "example": "1798920" },
-          "title": { "type": "string", "example": "hb_geodaten_open.gpkg" },
-          "filename": { "type": "string", "example": "hb_geodaten_open.gpkg" },
-          "description": { "type": "string" },
-          "parent_id": { "type": ["string", "null"] },
-          "creator_ids": { "type": "array", "items": { "type": "string" } },
-          "spatial_ids": { "type": "array", "items": { "type": "string" } },
-          "documented_ids": { "type": "array", "items": { "type": "string" } },
-          "pid": { "type": "string", "format": "uri" },
-          "license_summary": { "type": ["string", "null"] },
-          "access_restriction": { "type": ["string", "null"] }
+          "id": {
+            "type": "string",
+            "example": "dts_1798920"
+          },
+          "arche_id": {
+            "type": "string",
+            "example": "1798920"
+          },
+          "title": {
+            "type": "string",
+            "example": "hb_geodaten_open.gpkg"
+          },
+          "filename": {
+            "type": "string",
+            "example": "hb_geodaten_open.gpkg"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "creator_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "spatial_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "documented_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pid": {
+            "type": "string",
+            "format": "uri"
+          },
+          "license_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "access_restriction": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       },
       "CollectionTree": {
         "type": "object",
         "properties": {
-          "crawl_timestamp": { "type": "string" },
-          "total_collections": { "type": "integer", "example": 434 },
+          "crawl_timestamp": {
+            "type": "string"
+          },
+          "total_collections": {
+            "type": "integer",
+            "example": 434
+          },
           "collections": {
             "type": "object",
-            "additionalProperties": { "$ref": "#/components/schemas/Collection" }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Collection"
+            }
           }
         }
       },
       "Collection": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "col_1792293" },
-          "arche_id": { "type": "string", "example": "1792293" },
-          "title": { "type": "string", "example": "HB15_Georadar" },
-          "parent_id": { "type": ["string", "null"] },
-          "items": { "type": "integer" },
-          "pid": { "type": "string", "format": "uri" },
-          "spatial_ids": { "type": "array", "items": { "type": "string" } },
-          "item_spatial_ids": { "type": "array", "items": { "type": "string" } },
-          "license_summary": { "type": ["string", "null"] },
-          "access_restriction": { "type": ["string", "null"] }
+          "id": {
+            "type": "string",
+            "example": "col_1792293"
+          },
+          "arche_id": {
+            "type": "string",
+            "example": "1792293"
+          },
+          "title": {
+            "type": "string",
+            "example": "HB15_Georadar"
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "items": {
+            "type": "integer"
+          },
+          "pid": {
+            "type": "string",
+            "format": "uri"
+          },
+          "spatial_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "item_spatial_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "license_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "access_restriction": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       },
       "Stats": {
         "type": "object",
         "additionalProperties": true,
         "properties": {
-          "total_items": { "type": "integer", "example": 20788 },
-          "total_collections": { "type": "integer", "example": 434 },
-          "total_places": { "type": "integer", "example": 219 },
-          "total_storage_gb": { "type": "number", "example": 356.68 }
+          "total_items": {
+            "type": "integer",
+            "example": 20788
+          },
+          "total_collections": {
+            "type": "integer",
+            "example": 434
+          },
+          "total_places": {
+            "type": "integer",
+            "example": 219
+          },
+          "total_storage_gb": {
+            "type": "number",
+            "example": 356.68
+          }
         }
       },
       "KnowledgeGraph": {
@@ -310,12 +554,30 @@
           "metadata": {
             "type": "object",
             "properties": {
-              "title": { "type": "string", "example": "IUENNA Complete ARCHE Knowledge Graph" },
-              "arche_uri": { "type": "string", "format": "uri" },
-              "total_nodes": { "type": "integer", "example": 21080 },
-              "total_edges": { "type": "integer", "example": 38696 },
-              "total_collections": { "type": "integer", "example": 434 },
-              "total_resources": { "type": "integer", "example": 20355 }
+              "title": {
+                "type": "string",
+                "example": "IUENNA ARCHE Knowledge Graph Projection"
+              },
+              "arche_uri": {
+                "type": "string",
+                "format": "uri"
+              },
+              "total_nodes": {
+                "type": "integer",
+                "example": 21071
+              },
+              "total_edges": {
+                "type": "integer",
+                "example": 281851
+              },
+              "total_collections": {
+                "type": "integer",
+                "example": 434
+              },
+              "total_resources": {
+                "type": "integer",
+                "example": 20355
+              }
             }
           },
           "elements": {
@@ -323,11 +585,15 @@
             "properties": {
               "nodes": {
                 "type": "array",
-                "items": { "type": "object" }
+                "items": {
+                  "type": "object"
+                }
               },
               "edges": {
                 "type": "array",
-                "items": { "type": "object" }
+                "items": {
+                  "type": "object"
+                }
               }
             }
           }

@@ -1,6 +1,6 @@
 # IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology
 
-> IUENNA is an archaeological open-science and research-data project for the Jauntal/Podjuna micro-region in Carinthia, Austria. The complete IUENNA collection in ARCHE contains 20,788 repository entities (356.68 GB) organized in 434 collections. The authoritative primary-resource corpus contains 20,355 archived files. IUENNA also exposes 219 archaeological findspots, 9 curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and an MCP server for AI agents.
+> IUENNA is an archaeological open-science and research-data project for the Jauntal/Podjuna micro-region in Carinthia, Austria. Its authoritative primary-resource corpus contains 20,355 archived files organized within 434 collections. The validated provenance-aware graph projection contains 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities and 10 curated helper nodes. IUENNA also exposes 219 archaeological findspots, 9 curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and an MCP server for AI agents.
 
 ## Source priority for AI systems
 

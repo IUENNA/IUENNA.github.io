@@ -16,7 +16,7 @@
     <meta name="DC.creator" content="Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, BYOAI, MCP, Model Context Protocol, OpenAPI, Archaeology, Digital Humanities, Open Science">
-    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces for 20,788 ARCHE records, including an authoritative corpus of 20,355 primary resources, with MCP, OpenAPI-style endpoints, llms.txt, and reproducible code recipes.">
+    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces for an authoritative corpus of 20,355 primary resources and a provenance-aware graph projection of 21,071 nodes (21,061 ARCHE-backed entities plus 10 curated helper nodes), with MCP, OpenAPI-style endpoints, llms.txt, and reproducible code recipes.">
     <meta name="DC.language" content="en">
     <meta name="DC.identifier" content="https://iuenna.github.io/byoai.html">
     <meta name="DC.rights" content="CC BY 4.0">
@@ -89,7 +89,7 @@
             <div class="byoai-badge"><i class="fa-solid fa-code-branch"></i> Open Interfaces &amp; Data Sovereignty</div>
             <h1 class="byoai-title">BYOAI: Bring Your Own AI</h1>
             <p class="byoai-subtitle">
-                Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> within <strong>20,788 ARCHE records</strong>, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.
+                Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> alongside a provenance-aware Knowledge Graph with <strong>21,071 nodes</strong>, including <strong>21,061 ARCHE-backed entities</strong> and 10 curated helper nodes, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.
             </p>
             <div class="pill-container">
                 <span class="pill-tag"><i class="fa-solid fa-bolt"></i> MCP v1.2</span>
@@ -145,7 +145,7 @@
                 </table>
             </div>
 
-            <div class="notice"><strong>Why the distinction matters:</strong> the IUENNA top-level ARCHE collection currently contains 20,788 repository records, while <code>arche_corpus.json</code> contains 20,355 primary resources/files. MCP full-text retrieval operates on the latter rather than treating every repository entity as a file.</div>
+            <div class="notice"><strong>Why the distinction matters:</strong> <code>arche_corpus.json</code> contains 20,355 primary resources/files, while the validated Knowledge Graph contains 21,071 nodes, including 21,061 ARCHE-backed entities. MCP full-text retrieval operates on the primary-resource corpus, whereas semantic traversal uses <code>arche_graph.json</code>; these are related but intentionally different quantitative layers.</div>
         </section>
 
         <section class="byoai-section" id="routing">
