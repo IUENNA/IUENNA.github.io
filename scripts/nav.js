@@ -136,10 +136,173 @@
     originalFocusParagraph.replaceWith(callout);
   }
 
+  function shuffled(items) {
+    const copy = items.slice();
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = copy[i];
+      copy[i] = copy[j];
+      copy[j] = tmp;
+    }
+    return copy;
+  }
+
+  function rotatingAssistantChipsHtml() {
+    const people = [
+      { query: 'Dominik Hagmann', label: 'Dominik Hagmann' },
+      { query: 'Franziska Reiner', label: 'Franziska Reiner' },
+      { query: 'Sabine Ladstätter', label: 'Sabine Ladstätter' },
+      { query: 'Michaela Binder', label: 'Michaela Binder' },
+      { query: 'Magdalena Srienc', label: 'Magdalena Srienc' },
+      { query: 'Hans Winkler', label: 'Hans Winkler' }
+    ];
+
+    const topics = [
+      { query: 'Hemmaberg', label: 'Hemmaberg', icon: 'fa-location-dot' },
+      { query: 'Globasnitz', label: 'Globasnitz', icon: 'fa-location-dot' },
+      { query: 'Jaunstein', label: 'Jaunstein', icon: 'fa-location-dot' },
+      { query: 'Sankt Stefan', label: 'Sankt Stefan', icon: 'fa-location-dot' },
+      { query: 'photos Hemmaberg', label: 'Photographs', icon: 'fa-image' },
+      { query: 'plans Hemmaberg', label: 'Excavation plans', icon: 'fa-map' },
+      { query: 'GeoPackage', label: 'GeoPackages', icon: 'fa-database' },
+      { query: 'publications Hemmaberg', label: 'Publications', icon: 'fa-book' }
+    ];
+
+    const peopleCount = Math.random() < 0.5 ? 1 : 2;
+    const topicCount = Math.random() < 0.5 ? 1 : 2;
+    const personChips = shuffled(people).slice(0, peopleCount).map(function (item) {
+      return `<button type="button" class="chat-chip" data-query="${item.query}"><i class="fa-solid fa-user"></i> ${item.label}</button>`;
+    });
+    const topicChips = shuffled(topics).slice(0, topicCount).map(function (item) {
+      return `<button type="button" class="chat-chip" data-query="${item.query}"><i class="fa-solid ${item.icon}"></i> ${item.label}</button>`;
+    });
+
+    return personChips.concat(topicChips).join('') +
+      '<button type="button" class="chat-chip chat-chip-byoai" data-query="__byoai"><i class="fa-solid fa-microchip"></i> BYOAI / Remote MCP</button>';
+  }
+
+  function rotateAssistantWelcomeChips(root) {
+    const scope = root || document;
+    scope.querySelectorAll('#iuenna-chat-window .chat-msg.bot .chat-msg-bubble').forEach(function (bubble) {
+      if (bubble.dataset.rotatingSuggestions === '1') return;
+      const firstStrong = bubble.querySelector('p strong');
+      if (!firstStrong || firstStrong.textContent.trim() !== 'Ask IUENNA') return;
+      const container = bubble.querySelector('.chat-chips-container');
+      if (!container) return;
+      container.innerHTML = rotatingAssistantChipsHtml();
+      bubble.dataset.rotatingSuggestions = '1';
+    });
+  }
+
+  function metadataRows(card) {
+    const rows = {};
+    if (!card) return rows;
+    card.querySelectorAll('div > strong').forEach(function (strong) {
+      const label = strong.textContent.replace(/:$/, '').trim();
+      const parent = strong.parentElement;
+      if (!label || !parent) return;
+      const clone = parent.cloneNode(true);
+      const clonedStrong = clone.querySelector('strong');
+      if (clonedStrong) clonedStrong.remove();
+      rows[label] = clone.textContent.trim();
+    });
+    return rows;
+  }
+
+  function addGroundedAssistantSummary(bubble) {
+    if (!bubble || bubble.dataset.groundedSummary === '1') return;
+    const heading = bubble.querySelector('p strong');
+    if (!heading) return;
+    const headingText = heading.textContent.trim();
+    if (headingText !== 'Metadata matches' && headingText !== 'Archived-file matches') return;
+
+    const cards = Array.from(bubble.querySelectorAll('article'));
+    if (!cards.length) return;
+    const firstCard = cards[0];
+    const titleEl = firstCard.querySelector(':scope > div');
+    const title = titleEl ? titleEl.textContent.trim() : '';
+    const rows = metadataRows(firstCard);
+    const summary = document.createElement('p');
+    summary.className = 'chat-grounded-summary';
+    summary.style.cssText = 'margin:0 0 9px 0;font-size:.84rem;line-height:1.5;';
+
+    if (headingText === 'Metadata matches') {
+      const details = [];
+      if (rows.Type) details.push(rows.Type);
+      if (rows.Items) details.push(rows.Items);
+      if (rows.Years) details.push(rows.Years);
+      const extra = cards.length > 1 ? ` I also found ${cards.length - 1} further ranked match${cards.length > 2 ? 'es' : ''} below.` : '';
+      summary.innerHTML = `The closest ARCHE-derived match is <strong>${title || 'the first record shown below'}</strong>${details.length ? ` (${details.join(' · ')})` : ''}.${extra}`;
+    } else {
+      const details = [];
+      if (rows.Type) details.push(rows.Type);
+      if (rows.Place) details.push(rows.Place);
+      if (rows.Date) details.push(rows.Date);
+      const extra = cards.length > 1 ? ` ${cards.length} top matching archived resources are shown below.` : ' The matching archived resource is shown below.';
+      summary.innerHTML = `The archived-file search points first to <strong>${title || 'the first resource shown below'}</strong>${details.length ? ` (${details.join(' · ')})` : ''}.${extra}`;
+    }
+
+    const firstParagraph = bubble.querySelector('p');
+    if (firstParagraph) bubble.insertBefore(summary, firstParagraph);
+    else bubble.prepend(summary);
+    bubble.dataset.groundedSummary = '1';
+  }
+
+  function addAssistantMinimizeButton() {
+    const win = document.getElementById('iuenna-chat-window');
+    if (!win) return;
+    const actions = win.querySelector('.chat-header-actions');
+    if (!actions || actions.querySelector('#chat-minimize-btn')) return;
+
+    const button = document.createElement('button');
+    button.id = 'chat-minimize-btn';
+    button.type = 'button';
+    button.className = 'chat-header-action-btn';
+    button.setAttribute('aria-label', 'Minimize Ask IUENNA');
+    button.title = 'Minimize';
+    button.style.cssText = 'background:none;border:none;color:rgba(255,255,255,.78);cursor:pointer;padding:4px 6px;font-size:.85rem;';
+    button.innerHTML = '<i class="fa-solid fa-minus"></i>';
+    button.addEventListener('click', function () {
+      win.classList.remove('chat-open');
+      try { sessionStorage.setItem('iuenna_chat_open', 'false'); } catch (_) {}
+      const trigger = document.getElementById('iuenna-chat-trigger');
+      if (trigger) trigger.focus();
+    });
+
+    const close = actions.querySelector('#chat-close-btn');
+    if (close) actions.insertBefore(button, close);
+    else actions.appendChild(button);
+  }
+
+  function enhanceAssistant(root) {
+    addAssistantMinimizeButton();
+    rotateAssistantWelcomeChips(root);
+    const scope = root || document;
+    scope.querySelectorAll('#iuenna-chat-window .chat-msg.bot .chat-msg-bubble').forEach(addGroundedAssistantSummary);
+  }
+
+  function initAssistantEnhancements() {
+    enhanceAssistant(document);
+    const observer = new MutationObserver(function (mutations) {
+      let assistantTouched = false;
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+          if (!(node instanceof Element)) return;
+          if (node.id === 'iuenna-chat-window' || node.closest('#iuenna-chat-window') || node.querySelector('#iuenna-chat-window')) {
+            assistantTouched = true;
+          }
+        });
+      });
+      if (assistantTouched) enhanceAssistant(document);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
   function init() {
     initNav();
     ensureRepositoryFooterLink();
     enhanceProjectOverview();
+    initAssistantEnhancements();
   }
 
   if (document.readyState === 'loading') {
