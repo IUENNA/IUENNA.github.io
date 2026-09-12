@@ -490,7 +490,7 @@
         keywords: ['jaunstein', 'gräberfeld', 'reihengräber', 'köttlach', 'korbgehänge', 'frühmittelalter', 'karantanen', 'trachtschmuck']
       },
       {
-        title: 'Archivalien & Nachlass Dr. Hans Winkler',
+        title: 'Archivalien & Nachlass Hans Winkler',
         type_label: 'Historischer Forschungsnachlass',
         place: 'St. Stefan / Jauntal',
         period: 'Forschungsgeschichte (frühes 20. Jh.)',
@@ -885,25 +885,25 @@
     // 4. Personen & Nachlässe (Persons & Researchers)
     if (cat === 'persons') {
       if (comb.includes('winkler')) {
-        return 'Dr. Hans Winkler (1882–1964), Notar in Eberndorf, war ein zentraler autodidaktischer Pionier der Jauntaler Archäologie. Sein im IUENNA-Projekt aufbereiteter Nachlass umfasst 475 Archivalien – darunter detailreiche Skizzenbücher, Fundprotokolle und Feldtagebücher zu Ausgrabungen in St. Stefan und am Hemmaberg.';
+        return 'Hans Winkler (1882–1964), Notar in Eberndorf, war ein zentraler autodidaktischer Pionier der Jauntaler Archäologie. Sein im IUENNA-Projekt aufbereiteter Nachlass umfasst 475 Archivalien – darunter detailreiche Skizzenbücher, Fundprotokolle und Feldtagebücher zu Ausgrabungen in St. Stefan und am Hemmaberg.';
       }
       if (comb.includes('ladstätter') || comb.includes('ladstaetter')) {
-        return 'Dr. Sabine Ladstätter (1967–2024, ÖAI / ÖAW) erforschte grundlegend die materielle Kultur der Spätantike auf dem Hemmaberg und leitete die Ausgrabungen an der Wallanlage. Ihre Monografie bildet das chronologische und funktionale Fundament der Erforschung des Pilgerheiligtums.';
+        return 'Sabine Ladstätter (1967–2024, ÖAI / ÖAW) erforschte grundlegend die materielle Kultur der Spätantike auf dem Hemmaberg und leitete die Ausgrabungen an der Wallanlage. Ihre Monografie bildet das chronologische und funktionale Fundament der Erforschung des Pilgerheiligtums.';
       }
       if (comb.includes('binder')) {
-        return 'Dr. Michaela Binder (ÖAI / ÖAW) leitet die bioarchäologischen und anthropologischen Untersuchungen im Gräberfeld auf dem Hemmaberg. Zu ihren international beachteten Entdeckungen zählt der Nachweis einer frühmittelalterlichen Fußprothese aus dem 6. Jahrhundert n. Chr.';
+        return 'Michaela Binder (ÖAI / ÖAW) leitet die bioarchäologischen und anthropologischen Untersuchungen im Gräberfeld auf dem Hemmaberg. Zu ihren international beachteten Entdeckungen zählt der Nachweis einer frühmittelalterlichen Fußprothese aus dem 6. Jahrhundert n. Chr.';
       }
       if (comb.includes('profant')) {
         return 'Elke Profant (ÖAI / ÖAW) führt großflächige geophysikalische Prospektionen und Geomagnetik-Messungen im Jauntal durch, die verborgene römische Straßen, Großbauten und Gräber in Globasnitz und St. Stefan zerstörungsfrei sichtbar machen.';
       }
       if (comb.includes('srienc')) {
-        return 'Dr. Magdalena Srienc erforscht als Archäologin die spätantike und frühmittelalterliche Siedlungslandschaft sowie materielle Kulturzeugnisse im südlichen Jauntal.';
+        return 'Magdalena Srienc erforscht als Archäologin die spätantike und frühmittelalterliche Siedlungslandschaft sowie materielle Kulturzeugnisse im südlichen Jauntal.';
       }
       if (comb.includes('reiner') || comb.includes('waldhart')) {
-        return 'Franziska Reiner (geb. Waldhart, MA, ÖAI / ÖAW) ist Archäologin und Co-Projektleiterin von IUENNA. Sie leitet die geophysikalischen Prospektionen, die numismatische Auswertung der spätantiken Münzfunde (u. a. des 322 Münzen zählenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung und Langzeitarchivierung in ARCHE.';
+        return 'Franziska Reiner (geb. Waldhart, ÖAI / ÖAW) ist Archäologin und Co-Projektleiterin von IUENNA. Sie leitet die geophysikalischen Prospektionen, die numismatische Auswertung der spätantiken Münzfunde (u. a. des 322 Münzen zählenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung und Langzeitarchivierung in ARCHE.';
       }
       if (comb.includes('hagmann')) {
-        return 'Dr. Dominik Hagmann (kärnten.museum / ÖAI) ist Archäologe, Digital-Humanities-Spezialist und Gesamtleiter des Projekts IUENNA. Er konzipierte die Langzeitarchivierung nach FAIR- und CARE-Prinzipien für ARCHE, die Web-GIS-Infrastruktur sowie die forschungsgeschichtliche Gesamterschließung der über 200 Fundstellen des südlichen Jauntals.';
+        return 'Dominik Hagmann (kärnten.museum / ÖAI) ist Archäologe, Digital-Humanities-Spezialist und Gesamtleiter des Projekts IUENNA. Er konzipierte die Langzeitarchivierung nach FAIR- und CARE-Prinzipien für ARCHE, die Web-GIS-Infrastruktur sowie die forschungsgeschichtliche Gesamterschließung der über 200 Fundstellen des südlichen Jauntals.';
       }
       const personTemplates = [
         `**${cleanTitle}** ist als zentrale Persönlichkeit der archäologischen Erforschung des Jauntals verzeichnet. Das Archiv bewahrt zugehörige Dokumente, Forschungsberichte und Nachlassakten.`,

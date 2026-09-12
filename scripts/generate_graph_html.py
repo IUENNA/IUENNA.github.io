@@ -48,6 +48,9 @@ def generate():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA – Knowledge Graph &amp; Corpus Explorer</title>
+    <!-- Favicon / Tab Icon -->
+    <link rel="icon" type="image/jpeg" href="../media/LOGO_IUENNA.jpg">
+    <link rel="apple-touch-icon" href="../media/LOGO_IUENNA.jpg">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA – Knowledge Graph &amp; Corpus Explorer">
@@ -1468,13 +1471,18 @@ def generate():
                 <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
                 <span class="nav-title">IUENNA</span>
             </a>
-            <nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="../wma/wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="index.html" class="nav-link active" style="color: var(--primary); font-weight: 600;">Knowledge Graph</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                    <li><a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="../wma/wma.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
+                    <li><a href="index.html" class="nav-link active" style="color: var(--primary); font-weight: 600;"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
+                    <li><a href="../byoai.html" class="nav-link"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
+                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
                 </ul>
             </nav>
         </div>
@@ -5497,6 +5505,8 @@ def generate():
             }}
         }})();
     </script>
+    <!-- Responsive Navigation Burger Menu -->
+    <script src="../scripts/nav.js?v=2.4.0" defer></script>
 </body>
 </html>
 '''

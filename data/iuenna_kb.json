@@ -1492,7 +1492,7 @@
         "Beteiligte Institutionen IUENNA",
         "Wer hat bei IUENNA mitgearbeitet?"
       ],
-      "answer": "IUENNA wurde gemeinsam von Dr. Dominik Hagmann (Landesmuseum für Kärnten / kärnten.museum) und Dipl.-Ing. Franziska Waldhart (ÖAI an der ÖAW) geleitet. Beteiligte Projektpartner sind das kärnten.museum, das Österreichische Archäologische Institut (ÖAI), das Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH), das Bundesdenkmalamt (BDA) und die ARDIG – Archäologischer Dienst GesmbH (Hagmann & Reiner 2023).",
+      "answer": "IUENNA wurde gemeinsam von Dominik Hagmann (Landesmuseum für Kärnten / kärnten.museum) und Franziska Reiner (geb. Waldhart, ÖAI an der ÖAW) geleitet. Beteiligte Projektpartner sind das kärnten.museum, das Österreichische Archäologische Institut (ÖAI), das Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH), das Bundesdenkmalamt (BDA) und die ARDIG – Archäologischer Dienst GesmbH (Hagmann & Reiner 2023).",
       "citations": [
         "Hagmann & Reiner (2023)"
       ],
@@ -1609,7 +1609,7 @@
         "Welche Rolle spielt Sabine Ladstätter?",
         "Was hat Sabine Ladstätter erforscht?"
       ],
-      "answer": "Dr. Sabine Ladstätter (1968–2024) war eine herausragende österreichische Klassische Archäologin und langjährige Direktorin des Österreichischen Archäologischen Instituts (ÖAI) der ÖAW. Ihre grundlegenden Forschungen und Publikationen zu den Ausgrabungen auf dem Hemmaberg – insbesondere ihre umfassende Monografie zu den Kleinfunden und der Keramik ('Die materielle Kultur der spätantiken Höhensiedlung auf dem Hemmaberg', 2000) – schufen das chronologische und kulturhistorische Fundament für das Verständnis des spätantiken Pilgerzentrums. Ihre Arbeiten und retrodigitalisierten Dokumentationen sind ein Kernbestandteil der im IUENNA-Projekt aufbereiteten Forschungsgeschichte.",
+      "answer": "Sabine Ladstätter (1968–2024) war eine herausragende österreichische Klassische Archäologin und langjährige Direktorin des Österreichischen Archäologischen Instituts (ÖAI) der ÖAW. Ihre grundlegenden Forschungen und Publikationen zu den Ausgrabungen auf dem Hemmaberg – insbesondere ihre umfassende Monografie zu den Kleinfunden und der Keramik ('Die materielle Kultur der spätantiken Höhensiedlung auf dem Hemmaberg', 2000) – schufen das chronologische und kulturhistorische Fundament für das Verständnis des spätantiken Pilgerzentrums. Ihre Arbeiten und retrodigitalisierten Dokumentationen sind ein Kernbestandteil der im IUENNA-Projekt aufbereiteten Forschungsgeschichte.",
       "citations": [
         "Ladstätter (2000)",
         "Ladstätter (2002)",
@@ -1644,7 +1644,7 @@
         "Welche Rolle spielt Michaela Binder?",
         "Was hat Michaela Binder erforscht?"
       ],
-      "answer": "Dr. Michaela Binder ist Bioarchäologin und Anthropologin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW. Im Rahmen der Forschungen zum Hemmaberg und zu den Gräberfeldern des Jauntals leitete sie wegweisende bioarchäologische, paläopathologische und anthropologische Untersuchungen an den menschlichen Skelettresten. Ihre Arbeiten (u. a. Binder et al. 2016 zur europäischen Fußprothese des 6. Jhs.) untersuchen Lebensbedingungen, Krankheitsmuster, Mobilität und postmortale rituelle Praktiken der spätantiken Bevölkerung und bilden einen integrativen Schwerpunkt moderner digitaler Forschung im Projekt IUENNA.",
+      "answer": "Michaela Binder ist Bioarchäologin und Anthropologin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW. Im Rahmen der Forschungen zum Hemmaberg und zu den Gräberfeldern des Jauntals leitete sie wegweisende bioarchäologische, paläopathologische und anthropologische Untersuchungen an den menschlichen Skelettresten. Ihre Arbeiten (u. a. Binder et al. 2016 zur europäischen Fußprothese des 6. Jhs.) untersuchen Lebensbedingungen, Krankheitsmuster, Mobilität und postmortale rituelle Praktiken der spätantiken Bevölkerung und bilden einen integrativen Schwerpunkt moderner digitaler Forschung im Projekt IUENNA.",
       "citations": [
         "Binder et al. (2016)",
         "Binder (2018)",
@@ -1768,7 +1768,7 @@
         "Gugl Tscherberg",
         "Was erforscht Christian Gugl?"
       ],
-      "answer": "Priv.-Doz. Dr. Christian Gugl ist leitender Wissenschaftler am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Experte für römische Provinzialarchäologie und Siedlungstopografie. Er leitet die jüngste archäologische Neubewertung der Mikroregion Globasnitz. Gugl begründete die These, dass Globasnitz ein 7–9 ha großer vicus war, während die Straßenstation Iuenna der Tabula Peutingeriana beim Tscherberg lag, und analysierte die Großvilla St. Stefan.",
+      "answer": "Christian Gugl ist leitender Wissenschaftler am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Experte für römische Provinzialarchäologie und Siedlungstopografie. Er leitet die jüngste archäologische Neubewertung der Mikroregion Globasnitz. Gugl begründete die These, dass Globasnitz ein 7–9 ha großer vicus war, während die Straßenstation Iuenna der Tabula Peutingeriana beim Tscherberg lag, und analysierte die Großvilla St. Stefan.",
       "citations": [
         "Christian Gugl et al. (2024)"
       ],
@@ -1796,7 +1796,7 @@
         "Wer leitet das Projekt IUENNA?",
         "Hagmann IUENNA"
       ],
-      "answer": "Dr. Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Franziska Reiner (geb. Waldhart) und Nicola Math leitete und konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
+      "answer": "Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Franziska Reiner (geb. Waldhart) und Nicola Math leitete und konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
       "citations": [
         "Hagmann & Reiner (2023)",
         "Hagmann & Reiner (2025)",
@@ -1827,7 +1827,7 @@
         "Reiner IUENNA",
         "Was forscht Franziska Reiner?"
       ],
-      "answer": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE.",
+      "answer": "Franziska Reiner (geb. Waldhart) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE.",
       "citations": [
         "Hagmann & Reiner (2023)",
         "Reiner & Profant (2025)",
