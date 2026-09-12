@@ -78,7 +78,7 @@ Contains publication entities extracted from ARCHE and relationships to datasets
 
 https://iuenna.github.io/data/arche_graph.json
 
-Complete semantic graph of the IUENNA collection in Cytoscape-compatible JSON format (21,080 nodes, 38,696 directed edges), encompassing collections, datasets, resources, places, persons, organizations, publications, epochs, and subjects linked by formal ARCHE ontology predicates (`isPartOf`, `hasSpatialCoverage`, `hasCreator`, `hasAuthor`, `documents`, `isMemberOf`, `hasContributor`, etc.).
+Provenance-aware graph projection of the IUENNA ARCHE metadata in Cytoscape-compatible JSON format (21,071 nodes, 281,851 directed edges). It integrates ARCHE-backed entities plus curated helper nodes and distinguishes asserted, inherited, aggregated, curated, and synthetic relations. For the configured ARCHE object predicates, 281,159/281,159 resolvable triples are preserved in the validated build (recall 1.0).
 
 ### Corpus statistics
 

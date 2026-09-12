@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 export_arche_graph_ttl.py
-Serializes data/arche_graph.json (21,080 nodes, 38,696 edges) into canonical W3C RDF Turtle format.
+Serializes the current data/arche_graph.json into W3C RDF Turtle format; graph counts are read at runtime.
 Zero external dependencies.
 """
 

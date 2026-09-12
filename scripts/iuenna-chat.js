@@ -3,7 +3,7 @@
  * --------------
  * Intuitiver Sammlungs- & Recherche-Assistent für das IUENNA-Projekt.
  * 
- * Sucht in Echtzeit in der Graphendatenbank (21.080 Knoten), im Web-GIS
+ * Sucht in Echtzeit in der Graphendatenbank (21.071 Knoten), im Web-GIS
  * und in den ARCHE-Sammlungen nach Metadaten.
  * 
  * - Bei Treffern: Ein kleines In-Browser-Sprachmodell (Qwen 2.5 0.5B via WebGPU/WASM)
@@ -393,7 +393,7 @@
       }, st.keywords || []);
     });
 
-    // 4. Score Graph Entities (All 21,080 nodes, prioritizing collections & primary archival folders)
+    // 4. Score Graph Entities (All 21,071 nodes, prioritizing collections & primary archival folders)
     (kbData.graph_entities || []).forEach(g => {
       const label = g.label || g.name || g.id;
       if (!label) return;

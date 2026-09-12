@@ -276,7 +276,7 @@ TOOLS = [
     },
     {
         "name": "get_graph_neighborhood",
-        "description": "Query the IUENNA Knowledge Graph (21,080 nodes, 38,696 edges) to traverse semantic relationships. Returns connected nodes, edge predicates (hasCreator, hasAuthor, hasSpatialCoverage, documents, isPartOf, isMemberOf), and neighbor entities.",
+        "description": "Query the IUENNA Knowledge Graph (21,071 nodes, 281,851 edges) to traverse semantic relationships. Returns connected nodes, edge predicates (hasCreator, hasAuthor, hasSpatialCoverage, documents, isPartOf, isMemberOf), and neighbor entities.",
         "inputSchema": {
             "type": "object",
             "properties": {

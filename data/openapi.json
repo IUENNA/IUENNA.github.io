@@ -105,7 +105,7 @@
     "/data/arche_graph.json": {
       "get": {
         "summary": "Semantic Knowledge Graph (Cytoscape / Network Graph)",
-        "description": "Retrieves the complete Cytoscape-format semantic knowledge graph of 21,080 nodes and 38,696 directed edges connecting collections, datasets, findspots, actors, institutions, publications, and primary archived resources across the IUENNA micro-region.",
+        "description": "Retrieves the provenance-aware Cytoscape-format graph projection of 21,071 nodes and 281,851 directed edges connecting ARCHE-backed collections, resources, datasets, places, actors, institutions and publications together with curated helper nodes. Asserted, inherited, aggregated, curated and synthetic relations are distinguished in the graph metadata.",
         "operationId": "getKnowledgeGraph",
         "responses": {
           "200": {

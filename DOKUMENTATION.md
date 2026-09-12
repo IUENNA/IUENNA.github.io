@@ -60,9 +60,11 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 
 | Skript | Funktion / Ausgabedatei | Beschreibung |
 |---|---|---|
-| `scripts/parse_arche_full_ttl.py` | `data/arche_collections_tree.json`<br>`data/arche_resolved_entities.json`<br>`data/arche_publications.json`<br>`data/arche_places.json`<br>`data/arche_datasets.json`<br>`data/arche_search_index.json` | Parst in 1,2 Sekunden die 54 MB TTL-Rohdaten. Extrahiert 434 Sammlungen, 21 Personen, 9 Organisationen, 23 Publikationen, 219 Fundorte und alle 9 GeoPackages inklusive aller Metadaten (ORCID, ROR, Geonames, WKT, PIDs). Der `arche_search_index.json` dient als kompakter semantischer Discovery-Index und ist nicht mit dem vollständigen Datei-Korpus gleichzusetzen. |
-| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` (17,4 MB) | Extrahiert alle **20.355 Primärressourcen** aus dem TTL-Vollbestand. Verknüpft jede Ressource mit ihrer echten Elternsammlung, berechnet sprechende Breadcrumbs (ohne `col_ret`), extrahiert PIDs, Datumsangaben, Dateigrößen, Schlagworte und Raumbezüge. Dies ist der autoritative maschinenlesbare Layer für exhaustive File-Level-Retrieval. |
-| `scripts/build_complete_arche_graph.py` | `data/arche_graph.json` | Erstellt das Cytoscape-Graphmodell mit vollständiger semantischer Kantenmodellierung (`isPartOf`, `hasCreator`, `hasContributor`, `hasAuthor`, `documents`, `isMemberOf`, `hasSpatialCoverage`). |
+| `scripts/fetch_arche_full_metadata.py` | `data/arche_full_metadata.ttl` | Bezieht den autoritativen IUENNA-Metadatengraphen reproduzierbar aus der ARCHE-Top-Collection `1792170` über `readMode=relatives` im Turtle-Format. |
+| `scripts/parse_arche_full_ttl.py` | `data/arche_collections_tree.json`<br>`data/arche_resolved_entities.json`<br>`data/arche_publications.json`<br>`data/arche_places.json`<br>`data/arche_datasets.json`<br>`data/arche_search_index.json` | Parst den reproduzierbar aus ARCHE bezogenen TTL-Vollbestand (ca. 54,12 MB). Extrahiert 434 Sammlungen, 21 Personen, 9 Organisationen, 23 Publikationen, 219 Fundorte und alle 9 GeoPackages inklusive aller Metadaten (ORCID, ROR, Geonames, WKT, PIDs). Der `arche_search_index.json` dient als kompakter semantischer Discovery-Index und ist nicht mit dem vollständigen Datei-Korpus gleichzusetzen. |
+| `scripts/build_authoritative_corpus.py` | `data/arche_corpus.json` (ca. 29,66 MB im validierten Rebuild vom 12.09.2026) | Extrahiert alle **20.355 Primärressourcen** aus dem TTL-Vollbestand. Verknüpft jede Ressource mit ihrer echten Elternsammlung, berechnet sprechende Breadcrumbs (ohne `col_ret`), extrahiert PIDs, Datumsangaben, Dateigrößen, Schlagworte und Raumbezüge. Dies ist der autoritative maschinenlesbare Layer für exhaustive File-Level-Retrieval. |
+| `scripts/build_complete_arche_graph.py` | `data/arche_graph.json` | Erstellt eine provenance-erhaltende Cytoscape-Graphprojektion. Die konfigurierten ARCHE-Objektprädikate werden nach dem Aufbau aller kanonischen Knoten in einem zweiten Pass aufgelöst; direkte, geerbte, aggregierte, kuratierte und synthetische Relationen bleiben unterscheidbar. Der Build erzeugt zusätzlich `data/arche_graph_audit.json`. |
+| `data/arche_graph_audit.json` | Build-Audit | Validiert kanonische ARCHE-Identitäten, dangling edges, auflösbare ARCHE-Tripel und prädikatsweisen Recall. Aktueller Stand: 281,159/281,159 auflösbare Tripel erhalten. |
 | `scripts/generate_graph_html.py` | `graph/index.html`<br>`graph/graph.html` (2,3 MB) | Generiert die produktionsreife Webanwendung mit eingebettetem Graphen, interaktiver Toolbar, Detail-Drawer, Korpus-Katalog-Modal, Ordnerbaum-Modal und Merkliste. |
 | `scripts/iuenna-chat.js` | UI-Assistent & In-Memory Recherche | Interaktiver schwebender Recherche-Assistent auf der Startseite (`index.html`). Führt clientseitiges Token- & Suffix-Matching gegen die Wissensbasis durch, fasst Metadaten in natürlicher deutscher Sprache zusammen und leitet per Deep-Link in den Graphen, das Web-GIS und ARCHE weiter. |
 | `data/iuenna_kb.json` | Wissensbasis des Assistenten | Kompakte JSON-Datenbasis mit 20.000+ Objekten, Fundstellen, Sammlungen, Publikationen und Akteuren inklusive PIDs und Geokoordinaten. |
@@ -76,10 +78,10 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
 * **Lösung:**
   - Aggregation aller Raumbezüge aus den Primärressourcen und Forschungsdatensätzen.
   - Integration aller **9 primären GeoPackages** (u. a. `tal_bda_fsdb_2023.gpkg`, `tal_geodaten_open.gpkg`, Bioarchäologie) als Rauten-Knoten (`dataset`).
-  - **Ergebnis:** **219 von 219 Fundorten vollständig vernetzt (0 isolierte Orte)**.
+  - **Ergebnis:** Alle **219 Fundorte** sind als eigenständige Graphknoten vertreten. Direkte ARCHE-Raumbezüge werden von aggregierten bzw. synthetischen Navigationsbeziehungen provenance-seitig unterschieden; synthetische Navigation wird nicht als `hasSpatialCoverage` ausgegeben.
 
 ### 3.2 Vollständige Einbindung des Haupt-GeoPackages `tal_bda_fsdb_2023.gpkg`
-* **Knoten-ID:** `dts_1804081`
+* **Kanonische Graph-Knoten-ID:** `res_1804081` (Rollen: `resource`, `dataset`; die kuratierte Dataset-Quelle führt weiterhin `dts_1804081` als Quell-ID).
 * **Übergeordneter Ordner:** `05_05_Datenbanken` (TAL, `col_1792423`)
 * **Urheber:innen:** Bundesdenkmalamt (`org_1756743`), Dominik Hagmann (`per_1756725`), René Ployer (`per_1756756`), Astrid Steinegger (`per_1756739`)
 * **Verknüpfte Fachpublikationen:** Tiefengraber 2021 (`pub_1756783`), Hagmann 2024 (`pub_1757035`)
@@ -124,10 +126,10 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
    - **Knotentexte umschalten:** Schaltfläche `#btnToggleNodeLabels` in der Toolbar (*»Knotentexte verbergen«* / *»Knotentexte einblenden«*) blendet Beschriftungen aller Knoten auf Knopfdruck aus oder ein.
    - **Kantentexte (Relationen) umschalten:** Schaltfläche `#btnToggleEdgeLabels` (*»Kantentexte verbergen«* / *»Kantentexte einblenden«*) deaktiviert oder aktiviert alle Relationstexte.
    - **Semantische Kanten-Badges:** Kanten tragen ihre Relation (z. B. `isPartOf`, `hasSpatialCoverage`, `documents`, `hasCreator`, `hasSubject`, etc.) als autorotierte Text-Badges mit dezentem Hintergrund und prädikatspezifischen Farben.
-   - **Performance-Schutz (`min-zoomed-font-size: 8.5`):** Im Weitwinkel-Überblick (35.597 Kanten) werden keine Kantentexte gezeichnet; bei Heranzoomen an ein Cluster blenden sich die Beziehungsbeschriftungen flüssig ein.
-9. **Vollständige semantische ARCHE-Relationen & Canvas-Sichtbarkeit bei Selektion:**
-   - **Lückenlose Prädikaten-Extraktion aus ARCHE-TTL:** Neben den hierarchischen und Urheber-Beziehungen werden nun alle autoritativen ARCHE-Prädikate verarbeitet: `hasHosting` (zur ÖAW / ARCHE), `hasOwner`, `hasLicensor` und `hasRightsHolder` (zum Landesmuseum Kärnten / kärnten.museum), `hasCurator` (Kuratierende Forscher:innen) sowie `hasDepositor`, `hasMetadataCreator` und `hasDigitisingAgent`.
-   - **Gesamtzahl:** Anstieg von 35.597 auf **38.696 semantische Kanten** bei 21.080 Knoten (z. B. 16 direkte Beziehungen für die Sammlung `col_1792693`).
+   - **Performance-Schutz (`min-zoomed-font-size: 8.5`):** Im Weitwinkel-Überblick (281.851 Kanten) werden keine Kantentexte gezeichnet; bei Heranzoomen an ein Cluster blenden sich die Beziehungsbeschriftungen flüssig ein.
+9. **Auditierte ARCHE-Relationen, Provenienz & Canvas-Sichtbarkeit bei Selektion:**
+   - **Auditierte Prädikaten-Extraktion aus ARCHE-TTL:** Neben den hierarchischen und Urheber-Beziehungen werden die für IUENNA konfigurierten ARCHE-Objektprädikate verarbeitet: `hasHosting` (zur ÖAW / ARCHE), `hasOwner`, `hasLicensor` und `hasRightsHolder` (zum Landesmuseum Kärnten / kärnten.museum), `hasCurator` (Kuratierende Forscher:innen) sowie `hasDepositor`, `hasMetadataCreator` und `hasDigitisingAgent`.
+   - **Validierter Stand:** **21.071 Knoten** und **281.851 Kanten**. Der Audit weist **281.159/281.159** auflösbare konfigurierte ARCHE-Tripel als asserted Kanten nach (Recall 1,0); doppelte ARCHE-IDs und dangling edges: 0.
    - **Garantierte Canvas-Sichtbarkeit:** Wenn Kanten global ausgeblendet sind (*»Kanten verbergen«*), erzwingt das Auswählen eines Knotens via `highlightNeighbors` sofort das Einblenden seiner direkten Beziehungen und Nachbarknoten (`node.connectedEdges().show()`).
 10. **Vergrößerbares & stufenlos skalierbares Detail-Popup (Inspector Drawer):**
     - **Breitbildansicht per Button (`#drawerToggleExpandBtn`):** Ein Klick auf den Expand-Button (`<i class="fa-solid fa-expand"></i>`) im Drawer-Header vergrößert das Popup sofort auf eine 2-Spalten-Breitbildansicht (`min(880px, 92vw)`).
@@ -177,7 +179,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 * **Wissensgraph-Navigation mit Dual-Modus:**
   * Klicks auf `Im Wissensgraphen zeigen 🕸️` und `[Im Graph 🕸️]` prüfen zunächst, ob der Knoten im Showcase-Graphen der Startseite (`homeCy`, 58 kuratierte Knoten) vorhanden ist.
   * Falls ja, wird die Kamera dort flüssig zentriert.
-  * Falls nein (oder bei Rechtsklick / Neuem Tab), öffnet das Element als valides HTML-`<a>`-Tag mit `target="_blank"` direkt den vollständigen Knowledge Graph Explorer (`graph/index.html?col=${id}&search=${title}`), wo alle 21.080 Knoten des IUENNA-Gesamtbestands instant fokussiert werden.
+  * Falls nein (oder bei Rechtsklick / Neuem Tab), öffnet das Element als valides HTML-`<a>`-Tag mit `target="_blank"` direkt den vollständigen Knowledge Graph Explorer (`graph/index.html?col=${id}&search=${title}`), wo alle 21.071 Knoten des IUENNA-Gesamtbestands instant fokussiert werden.
 * **Web-GIS mit Zielkoordinaten:**
   * Der Button `In Web-GIS ansehen 🗺️` übergibt die exakten WGS84-Koordinaten des Fundorts (`wma/wma.html?lat=${lat}&lng=${lng}&zoom=16`), z. B. für Hemmaberg, Globasnitz oder St. Stefan.
 * **Echte Handle-PIDs:**
@@ -221,7 +223,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
        - `search_iuenna_corpus`: Volltext-/Metadatensuche über `arche_corpus.json` und damit 20.355 Primärressourcen.
        - `get_findspot_details`: Fundort-Metadaten samt direkt verknüpfter kuratierter Datensätze.
        - `get_related_resources`: löst Fundort, Datensatz, Sammlung oder Publikation auf und traversiert Raum-, Collection- und Dokumentationsbeziehungen zu Datensätzen, Sammlungen, Publikationen und einzelnen Primärressourcen.
-       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.080 Knoten, 38.696 Kanten) im 1–2-Hop-Umfeld um beliebige Entitäten mit optionaler Prädikatsfilterung.
+       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.071 Knoten, 281.851 Kanten) im 1–2-Hop-Umfeld um beliebige Entitäten mit optionaler Prädikatsfilterung.
        - `get_geodata_catalog`: Katalog der 9 autoritativen GeoPackages.
        - `get_corpus_statistics`: Gesamtstatistik inklusive separater Metadaten zum Primärressourcen-Korpus.
        - `get_project_bibliography`: Abfrage der öffentlichen IUENNA-Zotero-Bibliothek.
@@ -231,7 +233,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
      - `arche_datasets.json`: 9 kuratierte GeoPackages/Forschungsdatensätze.
      - `arche_collections_tree.json`: 434 Sammlungen und ihre Parent-Child-Hierarchie.
      - `arche_search_index.json`: kompakter Discovery-Index für Entitäten und zentrale Ressourcen.
-     - `arche_graph.json`: 21.080 Knoten und 38.696 Kanten als vollständiger semantischer Wissensgraph.
+     - `arche_graph.json`: 21.071 Knoten und 281.851 Kanten als provenance-erhaltende Graphprojektion; Details und Invarianten stehen in `arche_graph_audit.json`.
      - `arche_corpus.json`: 20.355 Primärressourcen mit ARCHE-ID, PID, Titel/Dateiname, Elternsammlung, Breadcrumb-Pfad, Raumbezug, Schlagworten, Datum, Typ und Beschreibung.
   3. **`llms.txt` (Offener Webstandard):**
      - Bereitstellung von `https://iuenna.github.io/llms.txt` als Routing- und Provenienzschicht für LLMs und Agents.
@@ -249,7 +251,7 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 3. **Kuratierten Forschungsdatensatz suchen:** `arche_datasets.json` verwenden.
 4. **Semantische Netzwerke / Multi-Hop-Beziehungen:** `arche_graph.json` oder MCP `get_graph_neighborhood` verwenden.
 5. **„Alle Daten/Dateien/Dokumentationen zu X“:** zusätzlich zwingend `arche_corpus.json` durchsuchen und `arche_collections_tree.json` traversieren; alternativ MCP `get_related_resources` verwenden.
-6. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids` und `documented_ids` nachverfolgen.
+6. **Provenienz und Archivstruktur:** `parent_id`, `col`/`col_id`, `spatial_ids_direct`, `spatial_ids_inherited`, `spatial_relation_status` sowie Kanten-`provenance`/`relation_status` nachverfolgen.
 7. **Zitieren:** nach Möglichkeit den individuellen Handle-PID der tatsächlich verwendeten ARCHE-Ressource angeben; die Discovery-Endpunkte sind nicht Ersatz für die autoritative Repository-Metadatenansicht.
 8. **Rechte:** offen zugängliche IUENNA-Discovery-Endpunkte bedeuten nicht, dass jede archivierte Binärressource offen oder CC BY 4.0 lizenziert ist. Zugriff und Rechte sind auf Ressourcenebene zu prüfen.
 
@@ -268,3 +270,4 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
   - AI Web Index: `https://iuenna.github.io/llms.txt`
   - OpenAPI 3.1 Spec: `https://iuenna.github.io/data/openapi.json`
   - Vollständiger Primärressourcen-Korpus: `https://iuenna.github.io/data/arche_corpus.json`
+  - Graph-Audit: `https://iuenna.github.io/data/arche_graph_audit.json`
