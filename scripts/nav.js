@@ -150,7 +150,7 @@
       { query: 'publications Hemmaberg', label: 'Publications', icon: 'fa-book' }
     ];
     const peopleCount = Math.random() < 0.5 ? 1 : 2;
-    const topicCount = Math.random() < 0.5 ? 1 : 2;
+    const topicCount = Math.random() < 0.5 ? 2 : 3;
     const personChips = shuffled(people).slice(0, peopleCount).map(function (item) {
       return `<button type="button" class="chat-chip" data-query="${item.query}"><i class="fa-solid fa-user"></i> ${item.label}</button>`;
     });
