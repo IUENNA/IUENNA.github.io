@@ -1542,8 +1542,8 @@
             <button id="btnToggleNodeLabels" class="tool-btn" title="Knotenbeschriftungen ein- oder ausblenden">
                 <i class="fa-solid fa-tag"></i> <span id="btnToggleNodeLabelsText">Knotentexte verbergen</span>
             </button>
-            <button id="btnToggleEdgeLabels" class="tool-btn" title="Kantenbeschriftungen (Relationen) ein- oder ausblenden">
-                <i class="fa-solid fa-font"></i> <span id="btnToggleEdgeLabelsText">Kantentexte verbergen</span>
+            <button id="btnToggleEdgeLabels" class="tool-btn btn-active" title="Kantenbeschriftungen (Relationen) ein- oder ausblenden">
+                <i class="fa-solid fa-font"></i> <span id="btnToggleEdgeLabelsText">Kantentexte einblenden</span>
             </button>
             <button id="btnFit" class="tool-btn" title="Ansicht einpassen"><i class="fa-solid fa-expand"></i> Zentrieren</button>
             <button id="btnZoomIn" class="tool-btn" title="Vergrößern"><i class="fa-solid fa-plus"></i></button>
@@ -2940,7 +2940,7 @@
         // Edge and label visibility states
         let edgesVisible = true;
         let nodeLabelsVisible = true;
-        let edgeLabelsVisible = true;
+        let edgeLabelsVisible = false;
 
         // Hierarchie-Ebenen Mapping für LOD Slider
         const lodLevels = {
@@ -5274,43 +5274,8 @@
         // Canonical graph payload is loaded and applied by ./data-source.js.
         // This avoids the historical second download that updated graphData but not Cytoscape.
 
-        // 2. Fetch Complete ARCHE Resource Corpus (20,355 items)
-        fetch("../data/arche_corpus.json")
-            .then(res => {
-                if (!res.ok) throw new Error("Could not fetch arche_corpus.json");
-                return res.json();
-            })
-            .then(data => {
-                corpusData = data;
-                corpusResources = data.resources || [];
-                populateCorpusFilters();
-                const countEl = document.getElementById("corpusStatusCount");
-                if (countEl) countEl.textContent = corpusResources.length.toLocaleString();
-
-                // Refresh open inspector with corpus details if a node is selected
-                if (selectedNode) openInspector(selectedNode);
-
-                // URL Parameters for Deep Linking (Corpus & Resource specific)
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get("q")) {
-                    document.getElementById("corpusSearchInput").value = urlParams.get("q");
-                }
-                if (urlParams.get("open") === "corpus") {
-                    openCorpusModal();
-                } else if (urlParams.get("q")) {
-                    filterCorpus();
-                }
-                if (urlParams.get("res")) focusResourceInGraph(urlParams.get("res"));
-            })
-            .catch(err => {
-                console.warn("Could not load arche_corpus.json in background:", err);
-                const pill = document.getElementById("pillCorpusStatus");
-                if (pill) {
-                    pill.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Korpus lokal';
-                    pill.style.background = "#FFF3CD";
-                    pill.style.color = "#856404";
-                }
-            });
+        // Corpus discovery is loaded lazily by ./corpus-data.js.
+        // data/arche_corpus.json remains authoritative and is not fetched at startup.
 
         // Immediate URL Parameter handling for Tree Modal, Bookmarks & Collection focus
         (function handleImmediateUrlParams() {
@@ -5396,6 +5361,7 @@
 
 <!-- IUENNA graph runtime: start -->
 <script src="./data-source.js?v=20260912-3"></script>
+<script src="./corpus-data.js?v=20260912-1"></script>
 <script src="./layouts.js?v=20260912-2"></script>
 <!-- IUENNA graph runtime: end -->
 </body>
