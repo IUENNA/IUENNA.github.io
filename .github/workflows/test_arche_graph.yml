@@ -9,9 +9,16 @@ on:
       - 'scripts/compact_arche_graph.py'
       - 'scripts/build_authoritative_corpus.py'
       - 'scripts/build_arche_graph.py'
+      - 'scripts/sync_graph_metadata.py'
       - 'tests/**'
       - '.gitignore'
       - '.gitattributes'
+      - '.github/workflows/test_arche_graph.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/sync_graph_metadata.py'
       - '.github/workflows/test_arche_graph.yml'
   workflow_dispatch:
 
@@ -45,6 +52,7 @@ jobs:
           python -m py_compile scripts/compact_arche_graph.py
           python -m py_compile scripts/build_authoritative_corpus.py
           python -m py_compile scripts/build_arche_graph.py
+          python -m py_compile scripts/sync_graph_metadata.py
 
       - name: Run semantic regression tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
@@ -63,6 +71,9 @@ jobs:
 
       - name: Compact published graph representation
         run: python scripts/compact_arche_graph.py data/arche_graph.json
+
+      - name: Synchronize public graph metadata
+        run: python scripts/sync_graph_metadata.py
 
       - name: Validate generated outputs
         run: |
@@ -105,8 +116,8 @@ jobs:
             data/arche_datasets.json
             data/arche_search_index.json
 
-      - name: Commit refreshed authoritative data to PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Commit refreshed authoritative data and public metadata
+        if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -121,10 +132,18 @@ jobs:
             data/arche_publications.json \
             data/arche_places.json \
             data/arche_datasets.json \
-            data/arche_search_index.json
+            data/arche_search_index.json \
+            DOKUMENTATION.md \
+            llms.txt \
+            byoai.html \
+            data/openapi.json \
+            mcp/index.mjs \
+            mcp/server.py \
+            scripts/export_arche_graph_ttl.py \
+            scripts/iuenna-chat.js
           if git diff --cached --quiet; then
-            echo "Authoritative ARCHE data already up to date."
+            echo "Authoritative ARCHE data and public metadata already up to date."
           else
-            git commit -m "chore(data): refresh authoritative ARCHE graph"
-            git push origin HEAD:${{ github.head_ref }}
+            git commit -m "chore(data): refresh authoritative ARCHE graph and metadata"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
           fi
