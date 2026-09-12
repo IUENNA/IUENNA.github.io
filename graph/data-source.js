@@ -1,7 +1,8 @@
 /* IUENNA Knowledge Graph LOD data loader
  *
- * data/arche_graph.json remains the complete authoritative graph for BYOAI,
- * MCP and reproducibility. The browser renders a performance projection:
+ * data/arche_graph.json remains the complete authoritative graph for BYOAI and
+ * reproducibility. The public Remote MCP uses its own reproducible query projection;
+ * the browser renders a separate performance projection:
  * arche_graph_macro.json at startup plus collection-scoped resource shards on
  * demand. graph/index.html therefore never materializes all >20k resources and
  * >280k relations in Cytoscape at once.

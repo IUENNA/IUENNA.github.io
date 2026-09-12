@@ -2,8 +2,9 @@
 """Build a compact browser-only index from the authoritative ARCHE corpus.
 
 ``data/arche_corpus.json`` remains the complete authoritative primary-resource
-corpus used by BYOAI/MCP and reproducible downstream processing. The graph
-explorer only needs a small discovery projection for its corpus catalogue,
+corpus for BYOAI and reproducible downstream processing. The public Remote MCP
+uses a separate reproducible query projection; the graph explorer only needs a
+small discovery projection for its corpus catalogue,
 autocomplete, filters and previews. This script emits that projection as
 ``data/arche_corpus_browser_index.json``.
 

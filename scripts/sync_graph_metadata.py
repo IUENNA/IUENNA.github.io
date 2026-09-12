@@ -20,6 +20,7 @@ TEXT_TARGETS = [
     "DOKUMENTATION.md",
     "llms.txt",
     "byoai.html",
+    "index.html",
     "mcp-remote/src/server.js",
     "scripts/export_arche_graph_ttl.py",
     "scripts/iuenna-chat.js",
@@ -83,6 +84,19 @@ def main() -> None:
         ):
             text = text.replace(old, new)
         write_if_changed(path, original, text, changed)
+
+    # Homepage Remote MCP teaser: keep corpus count and canonical endpoint synchronized.
+    path = ROOT / "index.html"
+    text = path.read_text(encoding="utf-8")
+    original = text
+    text = re.sub(
+        r"Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP\. It provides agent-oriented access to the canonical corpus of [\d,]+ primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication\.",
+        f"Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP. It provides agent-oriented access to the canonical corpus of {en_resources} primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication.",
+        text, count=1,
+    )
+    if "https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp" not in text:
+        raise SystemExit("Homepage Remote MCP endpoint missing")
+    write_if_changed(path, original, text, changed)
 
     path = ROOT / "byoai.html"
     text = path.read_text(encoding="utf-8")
@@ -192,8 +206,10 @@ def main() -> None:
         "mcp/index.mjs",
         "MCP stdio",
         "JSON-RPC 2.0 over stdio",
+        "20,788 archaeological records",
+        "Claude Desktop, ChatGPT, Ollama lokal",
     )
-    for rel in ("byoai.html", "llms.txt", "DOKUMENTATION.md", "data/openapi.json", "mcp-remote/README.md"):
+    for rel in ("index.html", "byoai.html", "llms.txt", "DOKUMENTATION.md", "scripts/iuenna-chat.js", "data/openapi.json", "mcp-remote/README.md"):
         value = (ROOT / rel).read_text(encoding="utf-8")
         hits = [token for token in forbidden if token in value]
         if hits:

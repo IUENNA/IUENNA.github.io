@@ -74,8 +74,10 @@ def main() -> None:
     KB.write_text(json.dumps(kb, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     public_checks = {
-        "byoai.html": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
-        "llms.txt": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
+        "index.html": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{resources:,}", "Remote MCP"],
+        "byoai.html": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
+        "llms.txt": ["https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp", f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
+        "scripts/iuenna-chat.js": ["Remote MCP", "byoai.html"],
         "data/openapi.json": [f"{graph_nodes:,}", f"{graph_edges:,}"],
         "mcp-remote/src/server.js": ["IUENNA Remote MCP", "search_iuenna_corpus", "get_graph_neighborhood"],
     }
@@ -89,6 +91,8 @@ def main() -> None:
         "mcp/server.py",
         "mcp/index.mjs",
         "MCP stdio",
+        "20,788 archaeological records",
+        "Claude Desktop, ChatGPT, Ollama lokal",
     )
     for rel, required in public_checks.items():
         text = (ROOT / rel).read_text(encoding="utf-8")

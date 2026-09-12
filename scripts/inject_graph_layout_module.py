@@ -2,7 +2,8 @@
 """Prepare the generated IUENNA graph explorer for the LOD runtimes.
 
 The complete ``data/arche_graph.json`` and ``data/arche_corpus.json`` remain the
-authoritative products for BYOAI/MCP and reproducibility. The browser shell is
+authoritative products for BYOAI and reproducibility. The public Remote MCP uses
+separate reproducible query projections derived from them. The browser shell is
 populated from the graph macro projection plus collection-scoped graph shards;
 its corpus catalogue uses a compact discovery index loaded only on demand.
 

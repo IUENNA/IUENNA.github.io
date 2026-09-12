@@ -2,7 +2,8 @@
  *
  * The authoritative data/arche_corpus.json is intentionally NOT fetched by the
  * browser. The explorer loads a compact discovery projection only when corpus
- * functionality is first used. BYOAI/MCP continue to use the complete corpus.
+ * functionality is first used. The complete corpus remains canonical; the public
+ * Remote MCP queries a separate reproducible projection derived from that corpus.
  */
 (function () {
     "use strict";

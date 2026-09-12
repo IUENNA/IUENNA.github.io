@@ -6,8 +6,8 @@
  * Sucht in Echtzeit in der Graphendatenbank (21.071 Knoten), im Web-GIS
  * und in den ARCHE-Sammlungen nach Metadaten.
  * 
- * - Bei Treffern: Ein kleines In-Browser-Sprachmodell (Qwen 2.5 0.5B via WebGPU/WASM)
- *   formuliert aus den konkreten Metadaten eine kurze 1-2 Satz-Zusammenfassung.
+ * - Bei Treffern: Eine deterministische, clientseitige Metadaten-Synthese bereitet
+ *   ausschließlich die gefundenen IUENNA-Metadaten kompakt und nachvollziehbar auf.
  * - Bei 0 Treffern: Keine Spekulation oder Fachauskunft, sondern direkte Rückmeldung
  *   ("Die Anfrage lieferte leider keine Ergebnisse in den Beständen").
  * - Klare Aktions-Buttons: Direkte Verlinkung in den Wissensgraphen, ins Web-GIS & nach ARCHE.
@@ -45,6 +45,7 @@
 
   // Configuration
   const KB_URL = basePath + 'data/iuenna_kb.json';
+  const REMOTE_MCP_URL = 'https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp';
   const STORAGE_KEY_OPEN = 'iuenna_chat_open';
   const STORAGE_KEY_HISTORY = 'iuenna_chat_history';
   
@@ -160,7 +161,7 @@
             Stellen Sie eine Frage oder suchen Sie nach Objekten, Fundstellen und Plänen. Die Treffer führen Sie direkt zu den Daten im <strong>Wissensgraphen</strong>, im <strong>Web-GIS</strong> und in <strong>ARCHE</strong>.
           </p>
           <div class="chat-byoai-welcome-box" style="margin-top: 8px; padding: 7px 10px; background: rgba(106, 27, 154, 0.06); border: 1px solid rgba(106, 27, 154, 0.2); border-radius: 4px; font-size: 0.79rem; line-height: 1.4; color: #4a148c;">
-            <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten lieber Ihre eigene KI (Claude, ChatGPT, Ollama etc.) nutzen? Alle Bestände stehen offen über unser <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Model Context Protocol (MCP) &amp; OpenAPI</a> bereit.
+            <i class="fa-solid fa-microchip" style="color: #6a1b9a;"></i> <strong>Bring Your Own AI (BYOAI):</strong> Sie möchten IUENNA mit einer eigenen KI nutzen? Verbinden Sie einen kompatiblen AI-Client direkt mit unserem öffentlichen <a href="${basePath}byoai.html" target="_blank" rel="noopener noreferrer" style="color: #6a1b9a; font-weight: 700; text-decoration: underline;">Remote MCP &amp; BYOAI Hub</a>; die offenen JSON-/OpenAPI-Endpunkte bleiben zusätzlich verfügbar.
           </div>
           ${renderRotatingChipsHtml()}
         </div>
@@ -1418,7 +1419,7 @@
               <i class="fa-solid fa-microchip"></i> Bring Your Own AI (BYOAI) in IUENNA
             </p>
             <p style="margin: 0 0 8px 0; font-size: 0.84rem; line-height: 1.45; color: var(--text-dark);">
-              IUENNA verfolgt das <strong>BYOAI-Prinzip (Bring Your Own AI)</strong>: Statt Sie an ein vorgegebenes Modell oder eine proprietäre Plattform zu binden, stellen wir offene, standardisierte Schnittstellen bereit. Sie können Ihre <strong>eigene bevorzugte KI</strong> (z.&nbsp;B. Claude Desktop, ChatGPT, Ollama lokal oder Google Antigravity) direkt an die archäologischen Forschungsdaten anbinden!
+              IUENNA verfolgt das <strong>BYOAI-Prinzip (Bring Your Own AI)</strong>: Statt Sie an ein vorgegebenes Modell oder eine proprietäre Plattform zu binden, stellen wir offene, standardisierte Schnittstellen bereit. Sie können einen <strong>MCP-kompatiblen AI-Client</strong> direkt an die archäologischen Forschungsdaten anbinden!
             </p>
             <div style="background: rgba(106, 27, 154, 0.05); border: 1px solid rgba(106, 27, 154, 0.18); border-radius: 4px; padding: 8px 10px; font-size: 0.78rem; line-height: 1.45; color: #4a148c; margin-bottom: 8px;">
               <ul style="margin: 0; padding-left: 16px;">

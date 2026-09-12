@@ -12,8 +12,9 @@ For the interactive explorer this script creates:
   ARCHE collection together with all incident semantic edges.
 
 This lets the browser start with the macro network and materialize resource
-subgraphs only when a collection is expanded, while BYOAI/MCP continue to use
-the complete authoritative graph.
+subgraphs only when a collection is expanded. The complete graph remains the
+canonical BYOAI/reproducibility layer, while the public Remote MCP uses a separate
+reproducible query projection derived from it.
 """
 from __future__ import annotations
 

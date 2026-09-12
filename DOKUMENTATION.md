@@ -173,8 +173,8 @@ Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUEN
 
 #### 3. Datenschutz & DSGVO (Zero-Data-Footprint):
 * **100 % Client-Side:** Die gesamte Abfrage und Aufbereitung geschieht ausschließlich im Arbeitsspeicher des Browsers.
-* **Keine Speicherung:** Weder `localStorage` noch `sessionStorage` oder Cookies werden für die Chattexte verwendet. Nach einem Neuladen der Seite ist der Chatverlauf restlos gelöscht.
-* **Keine externe Datenübertragung:** Weder Suchbegriffe noch IP-Adressen werden an externe Server, LLM-Anbieter oder Tracking-Dienste übermittelt.
+* **Nur ephemerer Sitzungszustand:** Chatfenster-Status und Chatverlauf werden ausschließlich im `sessionStorage` des aktuellen Browser-Tabs gehalten, um die Navigation innerhalb der IUENNA-Seiten zu überstehen. Es gibt keine serverseitige Chat-Historie; mit dem Ende der Browser-Sitzung wird dieser Zustand verworfen.
+* **Keine Übermittlung von Chatfragen an LLM-Anbieter:** Die Recherche und Metadaten-Synthese läuft clientseitig; Suchtexte werden nicht an einen externen LLM-Dienst gesendet. Normale Webserver-/Hosting-Zugriffe auf IUENNA-Daten bleiben davon unberührt.
 
 #### 4. Vollständige Eliminierung synthetischer KI-Texte (Historische Faktentreue):
 * **Ursache historischer Fehlangaben:** In einem frühen Zwischenschritt wurden über ein externes Vorbereitungsskript synthetische Frage-Antwort-Paare (`synthetic_qa`) erzeugt. Dabei generierte ein Sprachmodell fälschlicherweise die Aussage, Notar Hans Winkler sei erst in den *„1920er und 1930er Jahren“* im Jauntal tätig gewesen. Historisch begann Winklers archäologische Feldforschung jedoch bereits **1906** auf dem Hemmaberg (1913 Globasnitz Friedhof, 1930 Badeanlage St. Stefan).
