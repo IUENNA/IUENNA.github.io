@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-12-lod-corpus-runtime-1",
+  "version": "2026-09-12-progressive-layout-tuning-2",
   "authoritative_graph": "../data/arche_graph.json",
   "visualization_graph": "../data/arche_graph_macro.json",
   "lod_manifest": "../data/arche_graph_lod_manifest.json",
@@ -10,9 +10,9 @@
   "eager_full_corpus": false,
   "node_labels_default": true,
   "edge_labels_default": false,
-  "layout_runtime": "layouts.js?v=20260912-4",
-  "data_runtime": "data-source.js?v=20260912-3",
+  "layout_runtime": "layouts.js?v=20260912-5",
+  "data_runtime": "data-source.js?v=20260912-4",
   "corpus_runtime": "corpus-data.js?v=20260912-2",
-  "mode": "macro-plus-resource-shards-and-lazy-corpus-index",
+  "mode": "progressive-macro-plus-resource-shards-with-hierarchy-aware-layout",
   "status": "release-marker"
 }

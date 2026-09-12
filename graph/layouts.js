@@ -14,6 +14,10 @@
     const LARGE_GRAPH_THRESHOLD = 1500;
     const RESOURCE_THRESHOLD = 500;
     const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+    const EDGE_BUNDLE_DISTANCE_SCALE = 0.36;
+    const EDGE_BUNDLE_MAX_RATIO = 0.16;
+    const EDGE_BUNDLE_MAX_PX = 90;
+    const ROOT_CORRIDOR_PULL = 0.22;
 
     let presetPositions = null;
     let activeLayout = null;
@@ -112,6 +116,58 @@
         return 30;
     }
 
+    function nodeLevel(node) {
+        const value = Number(node && node.data ? node.data("level") : NaN);
+        return Number.isFinite(value) ? value : null;
+    }
+
+    function coseNodeRepulsion(node) {
+        const type = node.data("type");
+        const level = nodeLevel(node);
+        if (type === "root" || level === 0 || node.id() === "iuenna_root") return 2600000;
+        if (type === "subcollection" || level === 1) return 1700000;
+        if (level === 2) return 900000;
+        if (["dataset", "person", "organization", "place", "publication"].includes(type)) return 650000;
+        return 420000;
+    }
+
+    function coseIdealEdgeLength(edge) {
+        if (edge.data("label") !== "isPartOf") return 165;
+        const source = edge.source();
+        const target = edge.target();
+        if (target.id() === "iuenna_root" || target.data("type") === "root") return 235;
+        const level = nodeLevel(source);
+        if (level === null) return 105;
+        if (level <= 1) return 205;
+        if (level === 2) return 130;
+        if (level === 3) return 102;
+        if (level === 4) return 86;
+        return 74;
+    }
+
+    function coseEdgeElasticity(edge) {
+        if (edge.data("label") !== "isPartOf") return 58;
+        const source = edge.source();
+        const target = edge.target();
+        if (target.id() === "iuenna_root" || target.data("type") === "root") return 85;
+        const level = nodeLevel(source);
+        if (level === null || level <= 1) return 110;
+        if (level === 2) return 145;
+        return 185;
+    }
+
+    function routingCorridor(sourceHub, targetHub, rootPos) {
+        const mid = {
+            x: (sourceHub.x + targetHub.x) / 2,
+            y: (sourceHub.y + targetHub.y) / 2
+        };
+        if (!rootPos) return mid;
+        return {
+            x: mid.x * (1 - ROOT_CORRIDOR_PULL) + rootPos.x * ROOT_CORRIDOR_PULL,
+            y: mid.y * (1 - ROOT_CORRIDOR_PULL) + rootPos.y * ROOT_CORRIDOR_PULL
+        };
+    }
+
     function installHomepagePalette() {
         const c = graph();
         if (!c) return;
@@ -184,10 +240,10 @@
         const px = point.x - source.x;
         const py = point.y - source.y;
         const rawDistance = (px * (-dy) + py * dx) / len;
-        const maxOffset = Math.min(120, len * 0.20);
+        const maxOffset = Math.min(EDGE_BUNDLE_MAX_PX, len * EDGE_BUNDLE_MAX_RATIO);
         return {
             weight: Math.max(0.15, Math.min(0.85, (px * dx + py * dy) / len2)),
-            distance: Math.max(-maxOffset, Math.min(maxOffset, rawDistance * 0.42))
+            distance: Math.max(-maxOffset, Math.min(maxOffset, rawDistance * EDGE_BUNDLE_DISTANCE_SCALE))
         };
     }
 
@@ -202,16 +258,28 @@
         c.edges().forEach(edge => {
             if (edge.data("label") === "isPartOf") {
                 edge.removeStyle("control-point-weights control-point-distances");
-                edge.style("curve-style", "bezier");
+                edge.style("curve-style", "straight");
                 return;
             }
             const sHubId = topHub(edge.source().id(), parents);
             const tHubId = topHub(edge.target().id(), parents);
             const sHub = c.$id(sHubId);
             const tHub = c.$id(tHubId);
+
+            // Relations inside the same top-level collection remain nearly direct.
+            // Bundling is reserved for cross-collection relations where it improves
+            // readability instead of artificially bending local links.
+            if (sHubId === tHubId) {
+                edge.removeStyle("control-point-weights control-point-distances");
+                edge.style("curve-style", "bezier");
+                return;
+            }
+
             const points = [];
             if (sHub.length && sHubId !== edge.source().id()) points.push(sHub.position());
-            if (sHubId !== tHubId && rootPos) points.push(rootPos);
+            if (sHub.length && tHub.length) {
+                points.push(routingCorridor(sHub.position(), tHub.position(), rootPos));
+            }
             if (tHub.length && tHubId !== edge.target().id()) points.push(tHub.position());
 
             const controls = points.map(point => controlPoint(edge, point)).filter(Boolean);
@@ -242,16 +310,13 @@
                 fit: false,
                 padding: 60,
                 randomize: true,
-                componentSpacing: 120,
-                nodeRepulsion: node => {
-                    const hierarchyEdges = node.connectedEdges("[label = 'isPartOf']").length;
-                    return 350000 + Math.min(3200000, hierarchyEdges * 450);
-                },
-                idealEdgeLength: edge => edge.data("label") === "isPartOf" ? 115 : 175,
-                edgeElasticity: edge => edge.data("label") === "isPartOf" ? 140 : 70,
-                nestingFactor: 1.15,
-                gravity: 0.35,
-                numIter: 1400,
+                componentSpacing: 170,
+                nodeRepulsion: coseNodeRepulsion,
+                idealEdgeLength: coseIdealEdgeLength,
+                edgeElasticity: coseEdgeElasticity,
+                nestingFactor: 1.30,
+                gravity: 0.22,
+                numIter: 1600,
                 initialTemp: 1000,
                 coolingFactor: 0.98,
                 minTemp: 1.0
@@ -267,10 +332,10 @@
                 startAngle: 1.5 * Math.PI,
                 clockwise: true,
                 equidistant: false,
-                minNodeSpacing: 45,
+                minNodeSpacing: 52,
                 avoidOverlap: true,
                 concentric: hierarchyValue,
-                levelWidth: () => 5
+                levelWidth: () => 4
             };
         }
 
@@ -283,7 +348,7 @@
                 directed: false,
                 circle: false,
                 grid: false,
-                spacingFactor: 1.45,
+                spacingFactor: 1.35,
                 maximal: false,
                 roots: root && root.length ? root : undefined
             };
@@ -296,7 +361,7 @@
                 padding: 60,
                 animate: false,
                 avoidOverlap: true,
-                spacingFactor: 1.25,
+                spacingFactor: 1.18,
                 sort: (a, b) => {
                     const av = hierarchyValue(a);
                     const bv = hierarchyValue(b);
@@ -354,7 +419,7 @@
         capturePresetPositions();
 
         if (!name || name === "preset") {
-            showLoading("Cluster-Layout laden...", "Vorberechnete Koordinaten werden wiederhergestellt...");
+            showLoading("Loading cluster layout...", "Restoring precomputed coordinates...");
             window.setTimeout(restorePreset, 20);
             return;
         }
@@ -376,13 +441,13 @@
 
         const labels = {
             cose: "Force-Directed (COSE)",
-            concentric: "Konzentrisch",
-            breadthfirst: "Baum-Hierarchie",
-            circle: "Zirkulär"
+            concentric: "Concentric",
+            breadthfirst: "Hierarchy",
+            circle: "Circular"
         };
         const label = labels[name] || name;
         const edgeCount = elements.edges().length;
-        showLoading(`Layout: ${label}`, `Berechne ${workingNodes.length.toLocaleString()} Knoten mit ${edgeCount.toLocaleString()} Relationen...`);
+        showLoading(`Layout: ${label}`, `Computing ${workingNodes.length.toLocaleString()} nodes with ${edgeCount.toLocaleString()} relations...`);
 
         // Let the loading overlay paint before the synchronous layout starts.
         window.setTimeout(() => {
@@ -396,7 +461,7 @@
                     activeLayout = null;
                     hideLoading();
                     if (macroMode && options.notify !== false) {
-                        notify(`${label}: Topologie auf ${workingNodes.length.toLocaleString()} Strukturknoten berechnet; Ressourcen an Elternsammlungen verankert.`, "success", 3500);
+                        notify(`${label}: topology computed for ${workingNodes.length.toLocaleString()} structural nodes; resources anchored to parent collections.`, "success", 3500);
                     }
                 });
                 activeLayout.run();
@@ -404,7 +469,7 @@
                 console.error("IUENNA layout error:", error);
                 activeLayout = null;
                 hideLoading();
-                notify(`Layout konnte nicht berechnet werden: ${error.message || error}`, "warning", 5000);
+                notify(`Layout could not be computed: ${error.message || error}`, "warning", 5000);
             }
         }, 30);
     }

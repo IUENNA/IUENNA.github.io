@@ -163,13 +163,50 @@ Am 12.09.2026 wurde die Graphdarstellung grundlegend auf eine progressive **Leve
 
 #### Layout und Edge Bundling
 
-`graph/layouts.js` bündelt nicht-hierarchische Beziehungen entlang gemeinsamer Collection-Hubs und – bei Beziehungen zwischen verschiedenen Top-Level-Bereichen – entlang des IUENNA-Wurzelknotens. Dadurch bleibt ein dichtes semantisches Netzwerk lesbarer, ohne Beziehungen zu entfernen.
+`graph/layouts.js` behandelt Hierarchie- und semantische Beziehungen bewusst unterschiedlich. Beziehungen innerhalb desselben Top-Level-Collection-Bereichs bleiben weitgehend direkt; nur Beziehungen zwischen unterschiedlichen Top-Level-Bereichen werden hierarchieorientiert gebündelt. Dafür wird ein Routing-Korridor zwischen den beiden Collection-Hubs berechnet, der nur schwach zum IUENNA-Wurzelknoten gewichtet wird. Dadurch bleibt ein dichtes semantisches Netzwerk lesbarer, ohne Beziehungen zu entfernen oder lokale Verbindungen künstlich stark zu krümmen.
 
 * `isPartOf` bleibt als Hierarchiekante separat behandelt.
 * Andere Relationen können als `unbundled-bezier` mit berechneten Kontrollpunkten gerendert werden.
 * Nach Layoutwechseln oder Wiederherstellung der Preset-Positionen wird das Bundling erneut berechnet.
 * Die Kantenkrümmung wurde nach der Einführung nochmals bewusst abgeschwächt, um überzeichnete Bogenführungen zu vermeiden.
 * Die visuelle Grundpalette wurde an die IUENNA-Startseite angeglichen; selektierte bzw. hervorgehobene Beziehungen erhalten deutlich höhere Sichtbarkeit.
+
+#### Layout-Fine-Tuning vom 12.09.2026
+
+Der zweite Layout-Tuning-Pass verfolgt das Prinzip **intern kompakter, zwischen Hauptclustern großzügiger, semantische Cross-Links sanft gebündelt**. Er verändert ausschließlich die Browservisualisierung; Knoten, Kanten, Provenienz und der autoritative Graph bleiben unverändert.
+
+| Parameter / Regel | Aktueller Wert | Zweck |
+|---|---:|---|
+| Initiale Makrotiefe | `2` | Schneller, klarer First Paint; tiefere Hierarchien werden progressiv materialisiert. |
+| `isPartOf`-Kanten | `straight` | Hierarchiestruktur bleibt unmittelbar lesbar und wird nicht künstlich gebogen. |
+| Lokale semantische Kanten | normales `bezier` | Beziehungen innerhalb desselben Top-Level-Clusters bleiben nahezu direkt. |
+| Cross-Collection-Kanten | `unbundled-bezier` | Nur clusterübergreifende Beziehungen werden gebündelt. |
+| Root-Einfluss auf Routing-Korridor | `0.22` | Der Wurzelknoten dient nur schwach als Orientierung; ein Radnaben-Effekt wird vermieden. |
+| Bundling-Distanzfaktor | `0.36` | Reduziert die seitliche Ablenkung der Kontrollpunkte. |
+| Max. Bundling-Abweichung | `min(90 px, 16 % der Kantenlänge)` | Verhindert überzeichnete Bögen bei langen Verbindungen. |
+| COSE `componentSpacing` | `170` | Größere visuelle Trennung übergeordneter Bereiche. |
+| COSE `gravity` | `0.22` | Schwächerer Zug zum globalen Zentrum. |
+| COSE `nestingFactor` | `1.30` | Stärkere hierarchische Gliederung. |
+| COSE Iterationen | `1600` | Stabilere Konvergenz des Strukturgraphen. |
+| Root-Repulsion | `2,600,000` | Verhindert Verdichtung am Projektwurzelknoten. |
+| L1-Repulsion | `1,700,000` | Hält die sechs Hauptsammlungen deutlicher auseinander. |
+| L2-Repulsion | `900,000` | Erhält Abstand in der Übersichtsebene. |
+| Kontextknoten-Repulsion | `650,000` | Gibt Datasets, Personen, Organisationen, Orte und Publikationen ausreichend Raum. |
+| Sonstige Strukturknoten | `420,000` | Tiefere Teilstrukturen bleiben kompakter. |
+| `isPartOf`-Ideallänge Root | `235` | Hauptsammlungen liegen deutlich vom Root entfernt. |
+| `isPartOf`-Ideallänge L1 | `205` | Top-Level-Cluster erhalten Raum. |
+| `isPartOf`-Ideallänge L2 | `130` | Unterstrukturen rücken näher zusammen. |
+| `isPartOf`-Ideallänge L3 | `102` | Hierarchie wird mit Tiefe kompakter. |
+| `isPartOf`-Ideallänge L4 | `86` | Feinere Folder bleiben lokal gebündelt. |
+| `isPartOf`-Ideallänge L5+ | `74` | Tiefste Struktur wird bewusst kompakt gehalten. |
+| Sonstige COSE-Kantenlänge | `165` | Semantische Beziehungen bleiben lesbar, ohne Cluster unnötig auseinanderzuziehen. |
+| Concentric `minNodeSpacing` | `52` | Weniger Überlagerung bei Ringdarstellung. |
+| Breadth-first `spacingFactor` | `1.35` | Hierarchische Ansicht bleibt kompakt, aber lesbar. |
+| Circle `spacingFactor` | `1.18` | Vermeidet unnötig weit auseinandergezogene Kreislayouts. |
+
+Die COSE-Kantenelastizität ist ebenfalls hierarchiesensitiv: Root-Verbindungen werden relativ locker (`85`), L1-Verbindungen mit `110`, L2 mit `145` und tiefere `isPartOf`-Verbindungen mit `185` geführt. Nicht-hierarchische Beziehungen verwenden `58`. Damit bleiben tiefe Teilbäume kompakt, während die sechs Hauptbereiche nicht zu stark an den Root gezogen werden.
+
+Das **Preset-Layout bleibt die stabile Referenzansicht**. COSE, Concentric, Hierarchy und Circular sind alternative Explorationslayouts; nach jeder Neuberechnung wird das Edge-Routing erneut aus den aktuellen Knotenpositionen bestimmt.
 
 Damit existieren zwei ausdrücklich getrennte Graphschichten: `arche_graph.json` als vollständige semantische Projektion und die LOD-Dateien als Browserdarstellung.
 
