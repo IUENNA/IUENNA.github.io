@@ -2,6 +2,14 @@
 
 Public, read-only, stateless Model Context Protocol endpoint for IUENNA.
 
+## Production endpoint
+
+`https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
+
+The root URL exposes a small health response:
+
+`https://iuenna-mcp.dominik-hagmann13.workers.dev/`
+
 ## Architecture
 
 - **Runtime:** Cloudflare Workers Free
@@ -12,30 +20,28 @@ Public, read-only, stateless Model Context Protocol endpoint for IUENNA.
 - **Canonical data:** `https://iuenna.github.io/data/`
 - **Runtime query projection:** `https://iuenna.github.io/data/mcp_remote/`
 
-The query projection is generated from the authoritative IUENNA corpus and knowledge graph. It is disposable and non-authoritative; the canonical research data remain the full IUENNA/ARCHE-derived files in `data/`.
+The query projection is generated reproducibly from the authoritative IUENNA corpus and knowledge graph. It is disposable and non-authoritative; the canonical research data remain the full IUENNA/ARCHE-derived files in `data/`.
+
+IUENNA deliberately exposes **one MCP access path only**: this public Remote MCP. The former local Python/Node stdio implementations have been retired to minimise installation effort and long-term maintenance.
 
 ## Cloudflare deployment
 
-The intended production setup uses **Cloudflare Workers Builds** connected directly to the GitHub repository. No Cloudflare API token needs to be stored in this repository.
+Production uses **Cloudflare Workers Builds** connected directly to the GitHub repository. No Cloudflare API token is stored in this repository.
 
-Recommended settings:
+Current settings:
 
 - Worker name: `iuenna-mcp`
 - Production branch: `main`
 - Root directory: `mcp-remote`
-- Build command: leave empty
+- Build command: empty
 - Deploy command: `npx wrangler deploy`
 
-Cloudflare then provides a free `*.workers.dev` URL. The MCP endpoint is the resulting URL plus `/mcp`.
+## Local validation for development
 
-## Local validation
+This is only for maintaining the Worker source; it is not a second MCP distribution mode.
 
 ```bash
 npm install
 npm run check
 npm run dry-run
 ```
-
-## Migration note
-
-The existing stdio MCP remains available only until this Remote MCP is deployed and verified. After successful production verification, the old Python/Node stdio implementations and their setup instructions can be removed so IUENNA exposes one public MCP access path.
