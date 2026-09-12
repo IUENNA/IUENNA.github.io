@@ -1,0 +1,44 @@
+name: Apply Ask IUENNA sitewide refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/enable_ask_iuenna_sitewide.py'
+      - '.github/workflows/ask_iuenna_sitewide.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Apply Ask IUENNA refresh
+        run: python scripts/enable_ask_iuenna_sitewide.py
+      - name: Validate JavaScript and public pages
+        run: |
+          node --check scripts/iuenna-chat.js
+          python -m py_compile scripts/enable_ask_iuenna_sitewide.py scripts/generate_graph_html.py
+          grep -q 'Ask IUENNA' index.html
+          grep -q 'Ask IUENNA' byoai.html
+          grep -q 'Ask IUENNA' impressum-datenschutz.html
+          grep -q 'Ask IUENNA' wma/wma.html
+          grep -q 'Ask IUENNA' wma/genai-wma-home.html
+          grep -q 'Ask IUENNA' wma/qgis2web-home.html
+          grep -q 'Hagmann, D., &amp; Waldhart, F. (Eds.). (2025).' byoai.html
+          ! grep -q 'Frag IUENNA' scripts/iuenna-chat.js
+          ! grep -q 'formatArchaeologicalSummary' scripts/iuenna-chat.js
+      - name: Commit generated site updates and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/ask_iuenna_sitewide.yml
+          git add index.html byoai.html impressum-datenschutz.html impressum-datenschutz.md styles.css scripts/generate_graph_html.py scripts/enable_ask_iuenna_sitewide.py wma/wma.html wma/genai-wma-home.html wma/qgis2web-home.html
+          if [ -f graph/index.html ]; then git add graph/index.html; fi
+          git commit -m "refactor(site): make Ask IUENNA English and sitewide"
+          git pull --rebase origin main
+          git push origin HEAD:main
