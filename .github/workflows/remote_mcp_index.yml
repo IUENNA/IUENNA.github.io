@@ -1,0 +1,128 @@
+name: Build Remote MCP Query Projection
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_remote_mcp_index.py'
+      - 'data/arche_corpus.json'
+      - 'data/arche_graph.json'
+      - 'data/arche_places.json'
+      - 'data/arche_datasets.json'
+      - 'data/arche_collections_tree.json'
+      - 'data/arche_publications.json'
+      - '.github/workflows/remote_mcp_index.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/build_remote_mcp_index.py'
+      - 'data/arche_corpus.json'
+      - 'data/arche_graph.json'
+      - 'data/arche_places.json'
+      - 'data/arche_datasets.json'
+      - 'data/arche_collections_tree.json'
+      - 'data/arche_publications.json'
+      - '.github/workflows/remote_mcp_index.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remote-mcp-index-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile projection builder
+        run: python -m py_compile scripts/build_remote_mcp_index.py
+
+      - name: Build Remote MCP query projection
+        run: python scripts/build_remote_mcp_index.py
+
+      - name: Validate projection against authoritative sources
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('data/mcp_remote')
+          manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+          corpus = json.loads(Path('data/arche_corpus.json').read_text(encoding='utf-8'))
+          graph = json.loads(Path('data/arche_graph.json').read_text(encoding='utf-8'))
+          resource_map = json.loads((root / 'resource_to_collection.json').read_text(encoding='utf-8'))
+
+          resources = corpus.get('resources', [])
+          nodes = graph.get('elements', {}).get('nodes', [])
+          edges = graph.get('elements', {}).get('edges', [])
+
+          assert manifest['mode'] == 'remote-mcp-query-projection'
+          assert manifest['non_authoritative_projection'] is True
+          assert manifest['resources'] == len(resources)
+          assert manifest['graph_nodes'] == len(nodes)
+          assert manifest['graph_edges'] == len(edges)
+          assert len(resource_map) == len(resources)
+          assert set(resource_map) == {r['id'] for r in resources}
+
+          for dirname in ('resources', 'search', 'lookup', 'graph', 'relations'):
+              directory = root / dirname
+              assert directory.is_dir() and any(directory.glob('*.json')), directory
+
+          resource_count = 0
+          for path in (root / 'resources').glob('*.json'):
+              payload = json.loads(path.read_text(encoding='utf-8'))
+              resource_count += len(payload.get('resources', []))
+          assert resource_count == len(resources)
+
+          for token in ('hemmaberg', 'georadar'):
+              h = 0x811C9DC5
+              for byte in token[:2].encode('utf-8'):
+                  h ^= byte
+                  h = (h * 0x01000193) & 0xFFFFFFFF
+              bucket = f'{h & 0xFF:02x}'
+              payload = json.loads((root / 'search' / f'{bucket}.json').read_text(encoding='utf-8'))
+              assert token in payload.get('terms', {}), token
+              assert payload['terms'][token], token
+
+          largest = max((p.stat().st_size, p) for p in root.rglob('*.json'))
+          assert largest[0] < 10 * 1024 * 1024, f'Remote MCP shard exceeds 10 MiB: {largest[1]} ({largest[0]})'
+          total = sum(p.stat().st_size for p in root.rglob('*.json'))
+          print(f"Remote MCP projection: {total / 1024 / 1024:.2f} MiB; largest shard {largest[1]} = {largest[0] / 1024 / 1024:.2f} MiB")
+          PY
+
+      - name: Upload projection artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iuenna-remote-mcp-query-projection-${{ github.event.pull_request.head.sha || github.sha }}
+          retention-days: 14
+          compression-level: 6
+          path: data/mcp_remote/
+
+      - name: Commit refreshed projection
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mcp_remote
+          if git diff --cached --quiet; then
+            echo "Remote MCP query projection already up to date."
+          else
+            git commit -m "chore(data): refresh remote MCP query projection"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
