@@ -97,10 +97,10 @@
         const originalFocusParagraph = paragraphs[1];
         const areaBlock = document.createElement('div');
         areaBlock.className = 'area-of-interest-block';
-        areaBlock.style.cssText = 'margin-top:1.55rem;';
+        areaBlock.style.cssText = 'margin-top:2.35rem;padding-bottom:1.35rem;';
         areaBlock.innerHTML = `
-          <h3 style="font-size:1.15rem;margin:0 0 0.55rem;color:var(--text-dark);">Area of Interest</h3>
-          <p style="margin:0;color:var(--text-muted);line-height:1.7;">
+          <h2>Area of Interest</h2>
+          <p style="margin:0;color:var(--text-muted);line-height:1.75;">
             At the heart of IUENNA was the archaeological micro-region of the <strong>Jauntal/Podjuna Valley</strong> in Carinthia, Austria.
           </p>`;
         originalFocusParagraph.replaceWith(areaBlock);
@@ -133,6 +133,22 @@
         </a>`;
       leadershipCard.appendChild(fundingCard);
     }
+  }
+
+  function enhanceByoaiTeaser() {
+    const heading = Array.from(document.querySelectorAll('h2, h3, h4')).find(function (element) {
+      return element.textContent.replace(/\s+/g, ' ').trim().includes('Connect IUENNA to your AI');
+    });
+    if (!heading || heading.dataset.byoaiEnhanced === '1') return;
+
+    heading.dataset.byoaiEnhanced = '1';
+    heading.innerHTML = '<i class="fa-solid fa-microchip" aria-hidden="true" style="margin-right:0.45rem;"></i>BYOAI <span style="font-weight:600;">– Bring Your Own AI</span>';
+
+    const connectLine = document.createElement('p');
+    connectLine.className = 'byoai-connect-line';
+    connectLine.style.cssText = 'margin:-0.2rem 0 0.85rem;color:#6a1b9a;font-size:1.12rem;font-weight:800;line-height:1.45;';
+    connectLine.textContent = 'Connect IUENNA to your AI via the public Remote MCP';
+    heading.insertAdjacentElement('afterend', connectLine);
   }
 
   function shuffled(items) {
@@ -424,6 +440,7 @@
     initNav();
     ensureRepositoryFooterLink();
     enhanceProjectOverview();
+    enhanceByoaiTeaser();
     initAssistantEnhancements();
   }
 
