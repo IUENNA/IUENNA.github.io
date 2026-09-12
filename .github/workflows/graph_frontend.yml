@@ -11,7 +11,6 @@ on:
       - 'graph/corpus-data.js'
       - 'graph/runtime-version.json'
       - 'scripts/inject_graph_layout_module.py'
-      - 'scripts/patch_graph_layout_runtime.py'
       - '.github/workflows/graph_frontend.yml'
   workflow_dispatch:
 
@@ -36,13 +35,9 @@ jobs:
       - name: Validate runtime sources
         run: |
           python -m py_compile scripts/inject_graph_layout_module.py
-          python -m py_compile scripts/patch_graph_layout_runtime.py
           node --check graph/data-source.js
           node --check graph/corpus-data.js
           node --check graph/layouts.js
-
-      - name: Refresh layout preset hook
-        run: python scripts/patch_graph_layout_runtime.py
 
       - name: Canonicalize generated graph frontend
         run: python scripts/inject_graph_layout_module.py graph/index.html
