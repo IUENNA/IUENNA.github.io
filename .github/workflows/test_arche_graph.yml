@@ -30,7 +30,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install graph dependencies
-        run: python -m pip install networkx numpy
+        run: python -m pip install networkx numpy scipy
 
       - name: Compile graph pipeline
         run: |
