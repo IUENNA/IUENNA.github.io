@@ -9,8 +9,8 @@
  * - File-level discovery uses data/arche_corpus_browser_index.json, a compact
  *   non-authoritative browser projection of the authoritative arche_corpus.json.
  * - Natural-language processing is deterministic and client-side: bilingual
- *   stopwords, light stemming, intent detection, synonym expansion and a small
- *   dialogue state are used only to improve retrieval.
+ *   stopwords, light stemming, intent detection, synonym expansion, explicit
+ *   entity resolution and a small dialogue state are used only to improve retrieval.
  * - The assistant does not generate archaeological interpretations or factual
  *   syntheses. It presents indexed metadata and links back to ARCHE, the IUENNA
  *   Knowledge Graph, Web Mapping, and BYOAI/Remote MCP.
@@ -42,7 +42,7 @@
   const ARCHE_BROWSER = 'https://arche.acdh.oeaw.ac.at/browser/oeaw_detail/';
   const STORAGE_KEY_OPEN = 'iuenna_chat_open';
   const STORAGE_KEY_HISTORY = 'iuenna_chat_history';
-  const STORAGE_KEY_DIALOGUE = 'iuenna_chat_dialogue_v31';
+  const STORAGE_KEY_DIALOGUE = 'iuenna_chat_dialogue_v32';
 
   let searchIndex = null;
   let searchIndexPromise = null;
@@ -87,6 +87,17 @@
     ['karte','karten','map','maps','mapping','webgis','wma']
   ];
 
+  const PLACE_ALIAS_GROUPS = [
+    { canonical: 'Hemmaberg', aliases: ['Hemmaberg', 'gora svete Heme'] },
+    { canonical: 'Globasnitz', aliases: ['Globasnitz', 'Globasnica', 'Iuenna'] },
+    { canonical: 'Jaunstein', aliases: ['Jaunstein'] },
+    { canonical: 'Sankt Stefan', aliases: ['Sankt Stefan', 'St. Stefan', 'St Stefan', 'Šteben', 'Steben'] },
+    { canonical: 'Jauntal', aliases: ['Jauntal', 'Podjuna'] }
+  ].map(group => ({
+    canonical: group.canonical,
+    aliases: group.aliases.map(normalize)
+  }));
+
   const SYNONYM_MAP = (() => {
     const map = new Map();
     SYNONYM_GROUPS.forEach(group => {
@@ -113,6 +124,29 @@
       .replace(/ß/g, 'ss')
       .replace(/[^a-z0-9]+/g, ' ')
       .trim();
+  }
+
+  function findPlaceAliasGroup(query) {
+    const nq = normalize(query);
+    if (!nq) return null;
+    const padded = ` ${nq} `;
+    return PLACE_ALIAS_GROUPS.find(group => group.aliases.some(alias => padded.includes(` ${alias} `))) || null;
+  }
+
+  function queryMentionsIndexedEntity(query) {
+    if (!Array.isArray(searchIndex) || !searchIndex.length) return false;
+    const nq = normalize(query);
+    if (!nq) return false;
+    const words = new Set(nq.split(/\s+/).filter(Boolean));
+    return searchIndex.some(item => {
+      const label = normalize(item.label || '');
+      const code = normalize(item.code || '');
+      const archeId = normalize(item.arche_id || '');
+      if (archeId && words.has(archeId)) return true;
+      if (label.length >= 4 && (nq === label || nq.includes(label))) return true;
+      if (code.length >= 2 && nq === code) return true;
+      return false;
+    });
   }
 
   function lightStem(token) {
@@ -170,9 +204,9 @@
     const nq = normalize(query);
     const tokens = nq.split(/\s+/).filter(Boolean);
     if (!tokens.length) return false;
+    if (findPlaceAliasGroup(query) || queryMentionsIndexedEntity(query)) return false;
     if (tokens.length <= 4 && tokens.some(token => FOLLOWUP_WORDS.has(token))) return true;
     if (/^(and|also|what about|und|auch|dazu|davon|dort|mehr|weitere|other|more)\b/.test(nq)) return true;
-    if (tokens.length <= 3 && dialogueState.lastEntityLabel && !containsKnownContext(nq)) return true;
     return false;
   }
 
@@ -187,6 +221,7 @@
     if (dialogueState.lastPlace) context = dialogueState.lastPlace;
     else if (dialogueState.lastEntityLabel) context = dialogueState.lastEntityLabel;
     if (!context || containsKnownContext(nq)) return query;
+    if (findPlaceAliasGroup(query) || queryMentionsIndexedEntity(query)) return query;
     const explicitContextualIntent = ['find_files','find_publications','find_people','creator','show_map','related','count'].includes(intent);
     if (looksLikeFollowUp(query) || explicitContextualIntent) return `${query} ${context}`.trim();
     return query;
@@ -260,6 +295,31 @@
     return 0;
   }
 
+  function entityResolutionPriority(item, rawQuery, intent) {
+    const label = normalize(item.label || '');
+    const code = normalize(item.code || '');
+    const archeId = normalize(item.arche_id || '');
+    const nq = normalize(rawQuery);
+    if (!nq) return 0;
+
+    if (label === nq || code === nq || archeId === nq) return 1000;
+
+    const placeGroup = findPlaceAliasGroup(rawQuery);
+    if (placeGroup && ['discover','show_map','related'].includes(intent)) {
+      const type = normalize([item.type, item.category, item.sublabel].filter(Boolean).join(' '));
+      const labelMatchesAlias = placeGroup.aliases.some(alias => label === alias || label.includes(alias));
+      if (labelMatchesAlias && /place|site|ort|fundort|location/.test(type)) return 900;
+      if (labelMatchesAlias && /collection|subcollection|sammlung/.test(type)) return 800;
+      if (labelMatchesAlias) return 700;
+    }
+
+    if (label.includes(nq)) return 500;
+
+    const primary = baseQueryTokens(rawQuery).filter(token => token.length > 1);
+    if (primary.length > 1 && primary.every(token => label.includes(token))) return 350;
+    return 0;
+  }
+
   function scoreEntity(item, tokens, rawQuery, intent) {
     const label = normalize(item.label || '');
     const sublabel = normalize(item.sublabel || '');
@@ -293,9 +353,13 @@
     const tokens = expandedTokens(query);
     if (!tokens.length || !searchIndex) return [];
     return searchIndex
-      .map(item => ({ item, score: scoreEntity(item, tokens, query, intent) }))
-      .filter(entry => entry.score > 0)
-      .sort((a, b) => b.score - a.score || String(a.item.label || '').localeCompare(String(b.item.label || '')))
+      .map(item => ({
+        item,
+        priority: entityResolutionPriority(item, query, intent),
+        score: scoreEntity(item, tokens, query, intent)
+      }))
+      .filter(entry => entry.priority > 0 || entry.score > 0)
+      .sort((a, b) => b.priority - a.priority || b.score - a.score || String(a.item.label || '').localeCompare(String(b.item.label || '')))
       .slice(0, limit)
       .map(entry => entry.item);
   }
@@ -410,10 +474,9 @@
   function inferPlaceFromEntity(item) {
     const meta = item && item.meta || {};
     const candidates = [meta.place, meta.location, item && item.sublabel, item && item.label].filter(Boolean);
-    const knownPlaces = ['Hemmaberg','Globasnitz','Iuenna','Jaunstein','Sankt Stefan','St. Stefan','Jauntal','Podjuna'];
     const joined = candidates.join(' ');
-    const found = knownPlaces.find(place => normalize(joined).includes(normalize(place)));
-    return found || meta.place || '';
+    const placeGroup = findPlaceAliasGroup(joined);
+    return placeGroup ? placeGroup.canonical : (meta.place || '');
   }
 
   function updateStateFromEntity(item, query, resolvedQuery, intent) {
