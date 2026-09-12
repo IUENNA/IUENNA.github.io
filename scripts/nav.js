@@ -144,11 +144,25 @@
     heading.dataset.byoaiEnhanced = '1';
     heading.innerHTML = '<i class="fa-solid fa-microchip" aria-hidden="true" style="margin-right:0.45rem;"></i>BYOAI <span style="font-weight:600;">– Bring Your Own AI</span>';
 
-    const connectLine = document.createElement('p');
-    connectLine.className = 'byoai-connect-line';
-    connectLine.style.cssText = 'margin:-0.2rem 0 0.85rem;color:#6a1b9a;font-size:1.12rem;font-weight:800;line-height:1.45;';
-    connectLine.textContent = 'Connect IUENNA to your AI via the public Remote MCP';
-    heading.insertAdjacentElement('afterend', connectLine);
+    const connectChip = document.createElement('div');
+    connectChip.className = 'byoai-connect-chip';
+    connectChip.style.cssText = [
+      'display:inline-flex',
+      'align-items:center',
+      'gap:0.5rem',
+      'max-width:100%',
+      'margin:0.35rem 0 1rem',
+      'padding:0.46rem 0.85rem',
+      'border:1px solid rgba(106,27,154,0.22)',
+      'border-radius:999px',
+      'background:rgba(106,27,154,0.09)',
+      'color:#6a1b9a',
+      'font-size:0.92rem',
+      'font-weight:700',
+      'line-height:1.35'
+    ].join(';');
+    connectChip.innerHTML = '<i class="fa-solid fa-plug" aria-hidden="true" style="font-size:0.82rem;"></i><span>Connect IUENNA to your AI via the public Remote MCP</span>';
+    heading.insertAdjacentElement('afterend', connectChip);
   }
 
   function shuffled(items) {
