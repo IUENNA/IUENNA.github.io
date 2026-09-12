@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-09-12T06:47:26Z",
+  "status": "pass",
+  "source": {
+    "repository": "ARCHE",
+    "top_collection_arche_id": "1792170",
+    "read_mode": "relatives",
+    "format": "text/turtle"
+  },
+  "graph": {
+    "nodes": 21071,
+    "arche_backed_nodes": 21061,
+    "edges": 281851,
+    "audited_arche_object_triples": 281181,
+    "resolvable_arche_object_triples": 281159,
+    "preserved_resolvable_triples": 281159,
+    "recall_of_resolvable": 1.0,
+    "duplicate_arche_ids": 0,
+    "dangling_edges": 0
+  },
+  "corpus": {
+    "resources": 20355,
+    "collections": 434,
+    "places": 219,
+    "datasets": 9,
+    "persons": 21,
+    "organisations": 9,
+    "publications": 23
+  },
+  "documentation": {
+    "audit": "https://iuenna.github.io/data/arche_graph_audit.json",
+    "graph": "https://iuenna.github.io/data/arche_graph.json",
+    "corpus": "https://iuenna.github.io/data/arche_corpus.json",
+    "semantics": "https://github.com/IUENNA/IUENNA.github.io/blob/main/GRAPH_SEMANTICS.md"
+  }
+}
