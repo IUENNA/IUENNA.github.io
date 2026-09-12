@@ -1,12 +1,18 @@
 {
-  "version": "2026-09-12-lod-graph-runtime-1",
+  "version": "2026-09-12-lod-corpus-runtime-1",
   "authoritative_graph": "../data/arche_graph.json",
   "visualization_graph": "../data/arche_graph_macro.json",
   "lod_manifest": "../data/arche_graph_lod_manifest.json",
   "resource_shards": "../data/graph_shards/",
+  "authoritative_corpus": "../data/arche_corpus.json",
+  "browser_corpus_index": "../data/arche_corpus_browser_index.json",
   "embedded_full_graph": false,
+  "eager_full_corpus": false,
+  "node_labels_default": true,
+  "edge_labels_default": false,
   "layout_runtime": "layouts.js?v=20260912-2",
   "data_runtime": "data-source.js?v=20260912-3",
-  "mode": "macro-plus-resource-shards",
+  "corpus_runtime": "corpus-data.js?v=20260912-2",
+  "mode": "macro-plus-resource-shards-and-lazy-corpus-index",
   "status": "release-marker"
 }
