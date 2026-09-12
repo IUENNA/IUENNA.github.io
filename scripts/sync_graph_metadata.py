@@ -3,7 +3,7 @@
 
 The graph audit is the quantitative authority for graph-facing descriptions.
 This script updates human- and machine-facing entry points without changing the
-graph itself.  It deliberately distinguishes primary resources, ARCHE-backed
+graph itself. It deliberately distinguishes primary resources, ARCHE-backed
 graph entities, total graph nodes, and graph edges instead of collapsing them
 into one ambiguous "record" count.
 """
@@ -20,8 +20,7 @@ TEXT_TARGETS = [
     "DOKUMENTATION.md",
     "llms.txt",
     "byoai.html",
-    "mcp/index.mjs",
-    "mcp/server.py",
+    "mcp-remote/src/server.js",
     "scripts/export_arche_graph_ttl.py",
     "scripts/iuenna-chat.js",
 ]
@@ -74,7 +73,6 @@ def main() -> None:
 
     changed: list[str] = []
 
-    # Normalize legacy graph-count strings in explanatory source files.
     for rel in TEXT_TARGETS:
         path = ROOT / rel
         text = path.read_text(encoding="utf-8")
@@ -86,15 +84,14 @@ def main() -> None:
             text = text.replace(old, new)
         write_if_changed(path, original, text, changed)
 
-    # BYOAI: remove the ambiguous historical "20,788 ARCHE records" wording.
     path = ROOT / "byoai.html"
     text = path.read_text(encoding="utf-8")
     original = text
     new_dc = (
         f'Bring your own AI to the IUENNA archaeological research repository. Open interfaces for an authoritative '
         f'corpus of {en_resources} primary resources and a provenance-aware graph projection of {en_nodes} nodes '
-        f'({en_arche} ARCHE-backed entities plus {helpers} curated helper nodes), with MCP, OpenAPI-style endpoints, '
-        f'llms.txt, and reproducible code recipes.'
+        f'({en_arche} ARCHE-backed entities plus {helpers} curated helper nodes), with a public Remote MCP, '
+        f'OpenAPI-style endpoints, llms.txt, and reproducible code recipes.'
     )
     text = re.sub(
         r'(<meta name="DC\.description" content=")[^"]*(">)',
@@ -107,10 +104,10 @@ def main() -> None:
         f'alongside a provenance-aware Knowledge Graph with <strong>{en_nodes} nodes</strong>, including '
         f'<strong>{en_arche} ARCHE-backed entities</strong> and {helpers} curated helper nodes, together with '
         f'<strong>{en_places} georeferenced findspots</strong>, <strong>{en_collections} collections</strong>, and '
-        f'<strong>{en_datasets} curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.'
+        f'<strong>{en_datasets} curated GeoPackages</strong> — directly from your own AI client or research script.'
     )
     text = re.sub(
-        r'Query an authoritative machine-readable corpus of <strong>[\d,]+ primary archaeological resources</strong>.*?directly from your own AI client, local agent, or research script\.',
+        r'Query an authoritative machine-readable corpus of <strong>[\d,]+ primary archaeological resources</strong>.*?directly from your own AI client(?:, local agent,)? or research script\.',
         subtitle,
         text,
         count=1,
@@ -120,7 +117,6 @@ def main() -> None:
     text = text.replace("Complete semantic knowledge graph", "Provenance-aware semantic graph projection")
     write_if_changed(path, original, text, changed)
 
-    # llms.txt: state the same quantities and semantic scope used by BYOAI.
     path = ROOT / "llms.txt"
     text = path.read_text(encoding="utf-8")
     original = text
@@ -129,7 +125,7 @@ def main() -> None:
         f"Its authoritative primary-resource corpus contains {en_resources} archived files organized within {en_collections} collections. "
         f"The validated provenance-aware graph projection contains {en_nodes} nodes and {en_edges} directed edges, including "
         f"{en_arche} ARCHE-backed entities and {helpers} curated helper nodes. IUENNA also exposes {en_places} archaeological findspots, "
-        f"{en_datasets} curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and an MCP server for AI agents."
+        f"{en_datasets} curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and a public Remote MCP for AI agents."
     )
     text = re.sub(r'^> IUENNA is an archaeological open-science.*$', intro, text, count=1, flags=re.MULTILINE)
     text = re.sub(
@@ -140,7 +136,6 @@ def main() -> None:
     )
     write_if_changed(path, original, text, changed)
 
-    # OpenAPI: update descriptions and machine-readable examples structurally.
     path = ROOT / "data" / "openapi.json"
     spec = json.loads(path.read_text(encoding="utf-8"))
     original = json.dumps(spec, ensure_ascii=False, indent=2) + "\n"
@@ -176,7 +171,6 @@ def main() -> None:
         path.write_text(updated, encoding="utf-8")
         changed.append("data/openapi.json")
 
-    # Documentation: normalize currently published validated counts if present.
     path = ROOT / "DOKUMENTATION.md"
     text = path.read_text(encoding="utf-8")
     original = text
@@ -186,7 +180,6 @@ def main() -> None:
                   f"Der Audit weist **{de_asserted}/{de_resolvable}** auflösbare konfigurierte ARCHE-Tripel", text)
     write_if_changed(path, original, text, changed)
 
-    # Guard the AI-facing surfaces against known obsolete graph/record claims.
     forbidden = (
         "20,788 ARCHE records",
         "20,788 repository records",
@@ -195,8 +188,12 @@ def main() -> None:
         "38,696 edges",
         "21.080 Knoten",
         "38.696 Kanten",
+        "mcp/server.py",
+        "mcp/index.mjs",
+        "MCP stdio",
+        "JSON-RPC 2.0 over stdio",
     )
-    for rel in ("byoai.html", "llms.txt", "data/openapi.json", "mcp/server.py", "mcp/index.mjs"):
+    for rel in ("byoai.html", "llms.txt", "DOKUMENTATION.md", "data/openapi.json", "mcp-remote/README.md"):
         value = (ROOT / rel).read_text(encoding="utf-8")
         hits = [token for token in forbidden if token in value]
         if hits:
