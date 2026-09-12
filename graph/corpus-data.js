@@ -23,8 +23,13 @@
         if (countEl && Number.isFinite(count)) countEl.textContent = count.toLocaleString("de-DE");
         if (!pill) return;
 
-        if (mode === "loading") {
-            pill.title = "Der kompakte Korpusindex wird bei Bedarf geladen.";
+        if (mode === "idle") {
+            pill.title = "Der kompakte Korpusindex wird erst bei Bedarf geladen.";
+            pill.style.background = "#F7F5F0";
+            pill.style.borderColor = "#D8D1C7";
+            pill.style.color = "#655F57";
+        } else if (mode === "loading") {
+            pill.title = "Der kompakte Korpusindex wird geladen …";
             pill.style.background = "#F7F5F0";
             pill.style.borderColor = "#D8D1C7";
             pill.style.color = "#655F57";
@@ -105,8 +110,24 @@
         return data;
     }
 
+    // Guard every direct corpus entry point, including buttons created later by
+    // the tree view. This prevents an empty catalogue even when an entry point
+    // bypasses the persistent toolbar button below.
+    const originalOpenCorpusModal = typeof window.openCorpusModal === "function"
+        ? window.openCorpusModal
+        : null;
+    if (originalOpenCorpusModal) {
+        window.openCorpusModal = function (...args) {
+            if (ready) return originalOpenCorpusModal.apply(this, args);
+            return loadIndex("catalogue")
+                .then(() => originalOpenCorpusModal.apply(this, args))
+                .catch(() => undefined);
+        };
+    }
+
     // The generated explorer binds the main button before this runtime is
-    // injected. Capture the click first so it never opens an empty catalogue.
+    // injected. Capture the click first so even a stored direct function
+    // reference cannot open the catalogue before the index is ready.
     const btnOpenCorpus = document.getElementById("btnOpenCorpus");
     if (btnOpenCorpus) {
         btnOpenCorpus.addEventListener("click", async event => {
@@ -115,7 +136,7 @@
             event.stopImmediatePropagation();
             try {
                 await loadIndex("catalogue");
-                if (typeof openCorpusModal === "function") openCorpusModal();
+                if (originalOpenCorpusModal) originalOpenCorpusModal();
             } catch (_) {}
         }, true);
     }
@@ -146,7 +167,7 @@
                 if (input) input.value = q;
             }
             if (params.get("open") === "corpus") {
-                if (typeof openCorpusModal === "function") openCorpusModal();
+                if (originalOpenCorpusModal) originalOpenCorpusModal();
             } else if (q && typeof filterCorpus === "function") {
                 filterCorpus();
             }
@@ -156,7 +177,7 @@
         }).catch(() => {});
     }
 
-    setPill("loading");
+    setPill("idle");
 
     window.IUENNACorpusDataSource = {
         url: INDEX_URL,
