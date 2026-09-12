@@ -10,8 +10,10 @@ on:
       - 'scripts/build_authoritative_corpus.py'
       - 'scripts/build_arche_graph.py'
       - 'scripts/sync_graph_metadata.py'
+      - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
       - 'scripts/build_ai_stack.py'
+      - 'scripts/generate_synthetic_qa.py'
       - 'byoai.html'
       - 'llms.txt'
       - 'data/openapi.json'
@@ -25,6 +27,7 @@ on:
       - main
     paths:
       - 'scripts/sync_graph_metadata.py'
+      - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
       - 'scripts/build_ai_stack.py'
       - '.github/workflows/test_arche_graph.yml'
@@ -64,6 +67,7 @@ jobs:
           python -m py_compile scripts/build_authoritative_corpus.py
           python -m py_compile scripts/build_arche_graph.py
           python -m py_compile scripts/sync_graph_metadata.py
+          python -m py_compile scripts/sync_ai_text_corpus.py
           python -m py_compile scripts/build_chat_kb.py
           python -m py_compile scripts/build_ai_stack.py
 
@@ -118,6 +122,7 @@ jobs:
           assert kb['build_metadata']['graph_edges'] == expected_edges
           assert kb['build_metadata']['audit_status'] == 'pass'
           assert kb['build_metadata']['configured_arche_recall'] == 1.0
+          assert '20,788 digital resources' not in Path('data/iuenna_kb.json').read_text(encoding='utf-8')
 
           print(json.dumps(audit['invariants'], indent=2))
           print(f"Published graph size: {graph_size / 1024 / 1024:.2f} MiB")
@@ -143,6 +148,10 @@ jobs:
             data/arche_datasets.json
             data/arche_search_index.json
             data/iuenna_kb.json
+            data/iuenna_synthetic_qa.json
+            data/iuenna_finetune_alpaca.json
+            data/iuenna_finetune_chatml.jsonl
+            data/iuenna_finetune_sharegpt.json
             byoai.html
             llms.txt
             data/openapi.json
@@ -165,12 +174,17 @@ jobs:
             data/arche_datasets.json \
             data/arche_search_index.json \
             data/iuenna_kb.json \
+            data/iuenna_synthetic_qa.json \
+            data/iuenna_finetune_alpaca.json \
+            data/iuenna_finetune_chatml.jsonl \
+            data/iuenna_finetune_sharegpt.json \
             DOKUMENTATION.md \
             llms.txt \
             byoai.html \
             data/openapi.json \
             mcp/index.mjs \
             mcp/server.py \
+            scripts/generate_synthetic_qa.py \
             scripts/export_arche_graph_ttl.py \
             scripts/iuenna-chat.js
           if git diff --cached --quiet; then
