@@ -74,7 +74,6 @@
 
       if (!projectLink) return;
 
-      const separator = document.createTextNode(' | ');
       const repositoryLink = document.createElement('a');
       repositoryLink.href = repositoryUrl;
       repositoryLink.target = '_blank';
