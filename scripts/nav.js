@@ -37,11 +37,8 @@
 
     navToggle.addEventListener('click', function (event) {
       event.stopPropagation();
-      if (navMenu.classList.contains('is-active')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      if (navMenu.classList.contains('is-active')) closeMenu();
+      else openMenu();
     });
 
     navMenu.querySelectorAll('.nav-link').forEach(function (link) {
@@ -64,22 +61,17 @@
 
   function ensureRepositoryFooterLink() {
     const repositoryUrl = 'https://github.com/IUENNA/IUENNA.github.io';
-
     document.querySelectorAll('footer').forEach(function (footer) {
       if (footer.querySelector('a[href="' + repositoryUrl + '"]')) return;
-
       const projectLink = Array.from(footer.querySelectorAll('a')).find(function (link) {
         return link.textContent.trim() === 'IUENNA Project';
       });
-
       if (!projectLink) return;
-
       const repositoryLink = document.createElement('a');
       repositoryLink.href = repositoryUrl;
       repositoryLink.target = '_blank';
       repositoryLink.rel = 'noopener noreferrer';
       repositoryLink.textContent = 'GitHub Repository';
-
       projectLink.insertAdjacentText('afterend', ' | ');
       projectLink.nextSibling.after(repositoryLink);
     });
@@ -89,15 +81,11 @@
     const overviewHeading = Array.from(document.querySelectorAll('.card h2')).find(function (heading) {
       return heading.textContent.trim() === 'Project Overview';
     });
-
     if (!overviewHeading) return;
-
     const overviewCard = overviewHeading.closest('.card');
     if (!overviewCard || overviewCard.querySelector('.project-focus-callout')) return;
-
     const paragraphs = overviewCard.querySelectorAll(':scope > p');
     if (paragraphs.length < 2) return;
-
     const originalFocusParagraph = paragraphs[1];
     const callout = document.createElement('div');
     callout.className = 'project-focus-callout';
@@ -111,7 +99,6 @@
       'background: linear-gradient(135deg, rgba(168, 68, 46, 0.085), rgba(184, 142, 62, 0.045))',
       'box-shadow: var(--shadow-sm)'
     ].join(';');
-
     callout.innerHTML = `
       <div style="display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:0.9rem;align-items:start;">
         <i class="fa-solid fa-location-dot" aria-hidden="true" style="color:var(--primary);font-size:1.25rem;line-height:1.5;"></i>
@@ -130,9 +117,7 @@
             Go!Digital 3.0 programme <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:0.72em;margin-left:0.2rem;"></i>
           </a>
         </div>
-      </div>
-    `;
-
+      </div>`;
     originalFocusParagraph.replaceWith(callout);
   }
 
@@ -140,9 +125,7 @@
     const copy = items.slice();
     for (let i = copy.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
-      const tmp = copy[i];
-      copy[i] = copy[j];
-      copy[j] = tmp;
+      const tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
     }
     return copy;
   }
@@ -156,7 +139,6 @@
       { query: 'Magdalena Srienc', label: 'Magdalena Srienc' },
       { query: 'Hans Winkler', label: 'Hans Winkler' }
     ];
-
     const topics = [
       { query: 'Hemmaberg', label: 'Hemmaberg', icon: 'fa-location-dot' },
       { query: 'Globasnitz', label: 'Globasnitz', icon: 'fa-location-dot' },
@@ -167,7 +149,6 @@
       { query: 'GeoPackage', label: 'GeoPackages', icon: 'fa-database' },
       { query: 'publications Hemmaberg', label: 'Publications', icon: 'fa-book' }
     ];
-
     const peopleCount = Math.random() < 0.5 ? 1 : 2;
     const topicCount = Math.random() < 0.5 ? 1 : 2;
     const personChips = shuffled(people).slice(0, peopleCount).map(function (item) {
@@ -176,9 +157,27 @@
     const topicChips = shuffled(topics).slice(0, topicCount).map(function (item) {
       return `<button type="button" class="chat-chip" data-query="${item.query}"><i class="fa-solid ${item.icon}"></i> ${item.label}</button>`;
     });
-
     return personChips.concat(topicChips).join('') +
       '<button type="button" class="chat-chip chat-chip-byoai" data-query="__byoai"><i class="fa-solid fa-microchip"></i> BYOAI / Remote MCP</button>';
+  }
+
+  function bindRotatingAssistantChips(container) {
+    if (!container) return;
+    container.querySelectorAll('.chat-chip').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const query = button.dataset.query || '';
+        if (query === '__byoai') {
+          const byoaiLink = document.querySelector('#iuenna-chat-window .chat-header-byoai-badge');
+          if (byoaiLink && byoaiLink.href) window.location.href = byoaiLink.href;
+          return;
+        }
+        const input = document.getElementById('chat-input-field');
+        const send = document.getElementById('chat-send-btn');
+        if (!input || !send) return;
+        input.value = query;
+        send.click();
+      });
+    });
   }
 
   function rotateAssistantWelcomeChips(root) {
@@ -190,6 +189,7 @@
       const container = bubble.querySelector('.chat-chips-container');
       if (!container) return;
       container.innerHTML = rotatingAssistantChipsHtml();
+      bindRotatingAssistantChips(container);
       bubble.dataset.rotatingSuggestions = '1';
     });
   }
@@ -215,7 +215,6 @@
     if (!heading) return;
     const headingText = heading.textContent.trim();
     if (headingText !== 'Metadata matches' && headingText !== 'Archived-file matches') return;
-
     const cards = Array.from(bubble.querySelectorAll('article'));
     if (!cards.length) return;
     const firstCard = cards[0];
@@ -225,7 +224,6 @@
     const summary = document.createElement('p');
     summary.className = 'chat-grounded-summary';
     summary.style.cssText = 'margin:0 0 9px 0;font-size:.84rem;line-height:1.5;';
-
     if (headingText === 'Metadata matches') {
       const details = [];
       if (rows.Type) details.push(rows.Type);
@@ -241,7 +239,6 @@
       const extra = cards.length > 1 ? ` ${cards.length} top matching archived resources are shown below.` : ' The matching archived resource is shown below.';
       summary.innerHTML = `The archived-file search points first to <strong>${title || 'the first resource shown below'}</strong>${details.length ? ` (${details.join(' · ')})` : ''}.${extra}`;
     }
-
     const firstParagraph = bubble.querySelector('p');
     if (firstParagraph) bubble.insertBefore(summary, firstParagraph);
     else bubble.prepend(summary);
@@ -253,7 +250,6 @@
     if (!win) return;
     const actions = win.querySelector('.chat-header-actions');
     if (!actions || actions.querySelector('#chat-minimize-btn')) return;
-
     const button = document.createElement('button');
     button.id = 'chat-minimize-btn';
     button.type = 'button';
@@ -268,7 +264,6 @@
       const trigger = document.getElementById('iuenna-chat-trigger');
       if (trigger) trigger.focus();
     });
-
     const close = actions.querySelector('#chat-close-btn');
     if (close) actions.insertBefore(button, close);
     else actions.appendChild(button);
@@ -288,9 +283,7 @@
       mutations.forEach(function (mutation) {
         mutation.addedNodes.forEach(function (node) {
           if (!(node instanceof Element)) return;
-          if (node.id === 'iuenna-chat-window' || node.closest('#iuenna-chat-window') || node.querySelector('#iuenna-chat-window')) {
-            assistantTouched = true;
-          }
+          if (node.id === 'iuenna-chat-window' || node.closest('#iuenna-chat-window') || node.querySelector('#iuenna-chat-window')) assistantTouched = true;
         });
       });
       if (assistantTouched) enhanceAssistant(document);
@@ -305,9 +298,6 @@
     initAssistantEnhancements();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
