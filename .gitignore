@@ -3,4 +3,5 @@
 **/ .DS_Store
 *.ttl
 data/*.ttl
+!data/arche_full_metadata.ttl
 
