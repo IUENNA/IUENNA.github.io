@@ -4,9 +4,11 @@
 Pipeline:
   arche_graph_audit.json -> public AI metadata sync -> iuenna_kb.json -> validation
 
-The canonical graph remains data/arche_graph.json.  This script does not build
+The canonical graph remains data/arche_graph.json. This script does not build
 or mutate that graph; it ensures BYOAI, llms.txt, OpenAPI, MCP descriptions and
 the client-side chat knowledge base describe and index the same validated state.
+It is also the CI contract that prevents the AI-facing surfaces from drifting
+away from the audited graph after future ARCHE refreshes.
 """
 from __future__ import annotations
 
