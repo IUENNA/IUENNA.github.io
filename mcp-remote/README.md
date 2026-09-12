@@ -10,6 +10,8 @@ The root URL exposes a small health response:
 
 `https://iuenna-mcp.dominik-hagmann13.workers.dev/`
 
+Production was verified on 2026-09-12 with the Cloudflare AI Playground: the MCP connected successfully and executed `get_corpus_statistics` against live IUENNA data.
+
 ## Architecture
 
 - **Runtime:** Cloudflare Workers Free
