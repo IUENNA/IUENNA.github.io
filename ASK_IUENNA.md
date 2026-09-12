@@ -79,7 +79,7 @@ Im aktuellen ARCHE-abgeleiteten Datenbestand ist die Ortsentität **Sankt Stefan
 
 Ask IUENNA zeigt indexierte Metadaten und Links zu ARCHE, Knowledge Graph und – soweit räumliche Metadaten vorhanden sind – Web Mapping. Ergebnislisten können weitere rangierte Treffer enthalten; diese sind Discovery-Hinweise und keine automatisch erzeugte archäologische Interpretation.
 
-Bezeichnungen wie „closest match“ sind für deterministisch aufgelöste Entitäten zu vermeiden. Die Oberfläche soll zwischen einem **explizit aufgelösten ARCHE-Ergebnis** und nachgeordneten **ranked matches** unterscheiden.
+Die frühere Zusammenfassung „The closest ARCHE-derived match is …“ wurde entfernt, weil sie auch bei deterministisch aufgelösten Entitäten fälschlich eine bloße Ähnlichkeitssuche suggerierte. Die Oberfläche verwendet nun neutral **„ARCHE-derived result: …“**; weitere Treffer werden weiterhin ausdrücklich als *ranked matches* bezeichnet.
 
 ## Fachliche Nachnutzung
 
@@ -88,5 +88,8 @@ Für Zitation, Rechte, Zugriffsbeschränkungen und dauerhafte Identifikatoren is
 ## Implementierungsstand
 
 - Entity-/Dialog-Fix: `scripts/iuenna-chat.js`
-- Commit: `a3bc1522111d2111350118d1cc2250d84d766607`
+- Ergebnisformulierung: `scripts/nav.js`
+- Entity-/Dialog-Commit: `a3bc1522111d2111350118d1cc2250d84d766607`
+- UI-Commit: `1b672127e74606c78a9336f3ce12a92c5accbde3`
+- Dokumentation: `ASK_IUENNA.md`, verlinkt aus `README.md`
 - Datum: 12. September 2026
