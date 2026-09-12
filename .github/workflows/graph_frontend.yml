@@ -8,6 +8,7 @@ on:
       - 'graph/index.html'
       - 'graph/layouts.js'
       - 'graph/data-source.js'
+      - 'graph/runtime-version.json'
       - 'scripts/inject_graph_layout_module.py'
       - 'scripts/patch_graph_layout_runtime.py'
       - '.github/workflows/graph_frontend.yml'
@@ -44,14 +45,18 @@ jobs:
       - name: Canonicalize generated graph frontend
         run: python scripts/inject_graph_layout_module.py graph/index.html
 
-      - name: Validate canonical frontend architecture
+      - name: Validate LOD frontend architecture
         run: |
+          node --check graph/data-source.js
           node --check graph/layouts.js
           grep -q 'IUENNA graph runtime: start' graph/index.html
-          grep -q './data-source.js?v=20260912-1' graph/index.html
+          grep -q './data-source.js?v=20260912-3' graph/index.html
           grep -q './layouts.js?v=20260912-2' graph/index.html
-          grep -q 'source: "arche_graph.json"' graph/index.html
+          grep -q 'source: "arche_graph_macro.json"' graph/index.html
+          grep -q 'authoritative_source: "arche_graph.json"' graph/index.html
           ! grep -q 'Fetch Live Updates if Available' graph/index.html
+          grep -q 'arche_graph_macro.json' graph/data-source.js
+          grep -q 'arche_graph_lod_manifest.json' graph/data-source.js
           python - <<'PY'
           from pathlib import Path
           p = Path('graph/index.html')
@@ -66,8 +71,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add graph/index.html graph/layouts.js
           if git diff --cached --quiet; then
-            echo "Graph frontend already uses the canonical runtime source."
+            echo "Graph frontend already uses the LOD runtime."
           else
-            git commit -m "fix(graph): use canonical graph runtime source"
+            git commit -m "fix(graph): activate LOD graph runtime"
             git push origin HEAD:main
           fi
