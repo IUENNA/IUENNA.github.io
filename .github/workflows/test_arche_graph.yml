@@ -8,6 +8,7 @@ on:
       - 'scripts/build_complete_arche_graph.py'
       - 'scripts/compact_arche_graph.py'
       - 'scripts/build_graph_lod.py'
+      - 'scripts/build_corpus_browser_index.py'
       - 'scripts/build_authoritative_corpus.py'
       - 'scripts/build_arche_graph.py'
       - 'scripts/sync_graph_metadata.py'
@@ -28,6 +29,7 @@ on:
       - main
     paths:
       - 'scripts/build_graph_lod.py'
+      - 'scripts/build_corpus_browser_index.py'
       - 'scripts/sync_graph_metadata.py'
       - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
@@ -67,6 +69,7 @@ jobs:
           python -m py_compile scripts/build_complete_arche_graph.py
           python -m py_compile scripts/compact_arche_graph.py
           python -m py_compile scripts/build_graph_lod.py
+          python -m py_compile scripts/build_corpus_browser_index.py
           python -m py_compile scripts/build_authoritative_corpus.py
           python -m py_compile scripts/build_arche_graph.py
           python -m py_compile scripts/sync_graph_metadata.py
@@ -86,6 +89,9 @@ jobs:
       - name: Rebuild authoritative resource corpus
         run: python scripts/build_authoritative_corpus.py
 
+      - name: Build compact browser corpus index
+        run: python scripts/build_corpus_browser_index.py
+
       - name: Rebuild provenance-aware knowledge graph and audit
         run: python scripts/build_complete_arche_graph.py
 
@@ -102,6 +108,7 @@ jobs:
         run: |
           test -s data/arche_full_metadata.ttl
           test -s data/arche_corpus.json
+          test -s data/arche_corpus_browser_index.json
           test -s data/arche_graph.json
           test -s data/arche_graph_audit.json
           test -s data/arche_graph_macro.json
@@ -117,6 +124,18 @@ jobs:
           assert audit['invariants']['one_arche_id_one_node'] is True
           assert audit['invariants']['no_dangling_edges'] is True
           assert audit['invariants']['all_resolvable_ttl_relations_preserved'] is True
+
+          corpus_path = Path('data/arche_corpus.json')
+          corpus_index_path = Path('data/arche_corpus_browser_index.json')
+          corpus = json.loads(corpus_path.read_text(encoding='utf-8'))
+          corpus_index = json.loads(corpus_index_path.read_text(encoding='utf-8'))
+          assert corpus_index['metadata']['mode'] == 'browser-discovery-index'
+          assert corpus_index['metadata']['authoritative_source'] == 'arche_corpus.json'
+          assert corpus_index['metadata']['non_authoritative_projection'] is True
+          assert len(corpus_index['resources']) == len(corpus['resources'])
+          assert corpus_index['metadata']['total_resources'] == len(corpus['resources'])
+          assert corpus_index_path.stat().st_size < corpus_path.stat().st_size
+          assert corpus_index_path.stat().st_size < 15 * 1024 * 1024, 'Browser corpus index exceeds 15 MiB performance budget'
 
           graph_path = Path('data/arche_graph.json')
           graph_size = graph_path.stat().st_size
@@ -158,6 +177,8 @@ jobs:
           assert '20,788 digital resources' not in Path('data/iuenna_kb.json').read_text(encoding='utf-8')
 
           print(json.dumps(audit['invariants'], indent=2))
+          print(f"Authoritative corpus: {len(corpus['resources']):,} resources / {corpus_path.stat().st_size / 1024 / 1024:.2f} MiB")
+          print(f"Browser corpus index: {len(corpus_index['resources']):,} resources / {corpus_index_path.stat().st_size / 1024 / 1024:.2f} MiB")
           print(f"Authoritative graph: {full_nodes:,} nodes / {full_edges:,} edges / {graph_size / 1024 / 1024:.2f} MiB")
           print(f"Browser macro graph: {macro_nodes:,} nodes / {macro_edges:,} edges / {macro_path.stat().st_size / 1024 / 1024:.2f} MiB")
           print(f"Lazy resources: {lazy:,} across {manifest['shard_count']:,} collection shards")
@@ -173,6 +194,7 @@ jobs:
           path: |
             data/arche_full_metadata.ttl
             data/arche_corpus.json
+            data/arche_corpus_browser_index.json
             data/arche_graph.json
             data/arche_graph_audit.json
             data/arche_graph_macro.json
@@ -202,6 +224,7 @@ jobs:
           git add \
             data/arche_full_metadata.ttl \
             data/arche_corpus.json \
+            data/arche_corpus_browser_index.json \
             data/arche_graph.json \
             data/arche_graph_audit.json \
             data/arche_graph_macro.json \
