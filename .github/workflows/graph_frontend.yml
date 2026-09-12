@@ -8,6 +8,7 @@ on:
       - 'graph/index.html'
       - 'graph/layouts.js'
       - 'graph/data-source.js'
+      - 'graph/corpus-data.js'
       - 'graph/runtime-version.json'
       - 'scripts/inject_graph_layout_module.py'
       - 'scripts/patch_graph_layout_runtime.py'
@@ -37,6 +38,7 @@ jobs:
           python -m py_compile scripts/inject_graph_layout_module.py
           python -m py_compile scripts/patch_graph_layout_runtime.py
           node --check graph/data-source.js
+          node --check graph/corpus-data.js
           node --check graph/layouts.js
 
       - name: Refresh layout preset hook
@@ -48,15 +50,22 @@ jobs:
       - name: Validate LOD frontend architecture
         run: |
           node --check graph/data-source.js
+          node --check graph/corpus-data.js
           node --check graph/layouts.js
           grep -q 'IUENNA graph runtime: start' graph/index.html
           grep -q './data-source.js?v=20260912-3' graph/index.html
+          grep -q './corpus-data.js?v=20260912-1' graph/index.html
           grep -q './layouts.js?v=20260912-2' graph/index.html
           grep -q 'source: "arche_graph_macro.json"' graph/index.html
           grep -q 'authoritative_source: "arche_graph.json"' graph/index.html
+          grep -q 'let edgeLabelsVisible = false;' graph/index.html
+          grep -q 'Kantentexte einblenden' graph/index.html
           ! grep -q 'Fetch Live Updates if Available' graph/index.html
+          ! grep -q 'fetch("../data/arche_corpus.json")' graph/index.html
           grep -q 'arche_graph_macro.json' graph/data-source.js
           grep -q 'arche_graph_lod_manifest.json' graph/data-source.js
+          grep -q 'arche_corpus_browser_index.json' graph/corpus-data.js
+          grep -q 'authoritativeUrl: "../data/arche_corpus.json"' graph/corpus-data.js
           python - <<'PY'
           from pathlib import Path
           p = Path('graph/index.html')
@@ -71,8 +80,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add graph/index.html graph/layouts.js
           if git diff --cached --quiet; then
-            echo "Graph frontend already uses the LOD runtime."
+            echo "Graph frontend already uses the graph/corpus LOD runtimes."
           else
-            git commit -m "fix(graph): activate LOD graph runtime"
+            git commit -m "fix(graph): activate lazy corpus and label defaults"
             git push origin HEAD:main
           fi
