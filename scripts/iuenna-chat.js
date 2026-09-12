@@ -126,6 +126,8 @@
           <div class="chat-chips-container" style="margin-top: 8px;">
             <button type="button" class="chat-chip chat-chip-byoai" data-query="Was ist BYOAI?"><i class="fa-solid fa-microchip"></i> Was ist BYOAI?</button>
             <button type="button" class="chat-chip" data-query="Welche Literatur gibt es?" style="background: rgba(192, 57, 43, 0.07); border-color: rgba(192, 57, 43, 0.25); color: #c0392b; font-weight: 600;"><i class="fa-solid fa-book-bookmark"></i> 📚 Literatur (Zotero)</button>
+            <button type="button" class="chat-chip" data-query="Wer ist Franziska Reiner?">👤 Franziska Reiner</button>
+            <button type="button" class="chat-chip" data-query="Wer ist Dominik Hagmann?">👤 Dominik Hagmann</button>
             <button type="button" class="chat-chip" data-query="Wer war Sabine Ladstätter?">👤 Sabine Ladstätter</button>
             <button type="button" class="chat-chip" data-query="Wer ist Michaela Binder?">👤 Michaela Binder</button>
             <button type="button" class="chat-chip" data-query="Wer ist Elke Profant?">👤 Elke Profant</button>
@@ -197,7 +199,7 @@
       <!-- Input Area -->
       <div class="chat-input-area">
         <div class="chat-input-row">
-          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Suchbegriff eingeben (z.B. 'Münzen', 'Sabine Ladstätter', 'Michaela Binder', 'Hans Winkler')..." autocomplete="off">
+          <input type="text" id="chat-input-field" class="chat-input-field" placeholder="Suchbegriff eingeben (z.B. 'Münzen', 'Franziska Reiner', 'Dominik Hagmann', 'Sabine Ladstätter', 'Michaela Binder')..." autocomplete="off">
           <button id="chat-send-btn" class="chat-send-btn" aria-label="Senden" title="Senden">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
@@ -897,8 +899,11 @@
       if (comb.includes('srienc')) {
         return 'Dr. Magdalena Srienc erforscht als Archäologin die spätantike und frühmittelalterliche Siedlungslandschaft sowie materielle Kulturzeugnisse im südlichen Jauntal.';
       }
-      if (comb.includes('hagmann') || comb.includes('reiner')) {
-        return 'Dr. Dominik Hagmann (kärnten.museum) und Franziska Reiner (ÖAI / ÖAW) leiten das Projekt IUENNA. Ihre Publikationen und Datenkurationen verbinden archäologische Feldforschung, Langzeitarchivierung in ARCHE und moderne Web-GIS-Infrastrukturen.';
+      if (comb.includes('reiner') || comb.includes('waldhart')) {
+        return 'Franziska Reiner (geb. Waldhart, MA, ÖAI / ÖAW) ist Archäologin und Co-Projektleiterin von IUENNA. Sie leitet die geophysikalischen Prospektionen, die numismatische Auswertung der spätantiken Münzfunde (u. a. des 322 Münzen zählenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung und Langzeitarchivierung in ARCHE.';
+      }
+      if (comb.includes('hagmann')) {
+        return 'Dr. Dominik Hagmann (kärnten.museum / ÖAI) ist Archäologe, Digital-Humanities-Spezialist und Gesamtleiter des Projekts IUENNA. Er konzipierte die Langzeitarchivierung nach FAIR- und CARE-Prinzipien für ARCHE, die Web-GIS-Infrastruktur sowie die forschungsgeschichtliche Gesamterschließung der über 200 Fundstellen des südlichen Jauntals.';
       }
       const personTemplates = [
         `**${cleanTitle}** ist als zentrale Persönlichkeit der archäologischen Erforschung des Jauntals verzeichnet. Das Archiv bewahrt zugehörige Dokumente, Forschungsberichte und Nachlassakten.`,

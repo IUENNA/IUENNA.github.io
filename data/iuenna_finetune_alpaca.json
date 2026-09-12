@@ -791,6 +791,41 @@
   },
   {
     "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Wer ist Franziska Reiner und welche Rolle spielt sie im IUENNA-Projekt?",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Wer ist Franziska Reiner?",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Franziska Reiner",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Franziska Waldhart",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Projektleitung Franziska Reiner",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Reiner IUENNA",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
+    "input": "Was forscht Franziska Reiner?",
+    "output": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE."
+  },
+  {
+    "instruction": "Beantworte die folgende Frage zum archäologischen Projekt IUENNA und der Mikroregion Jauntal präzise und wissenschaftlich fundiert.",
     "input": "Was ist über die frühmittelalterliche Fußprothese vom Hemmaberg bekannt?",
     "output": "2013 wurde im Gräberfeld auf dem Gipfelplateau des Hemmabergs (6. Jh. n. Chr.) das Skelett eines erwachsenen Mannes mit einer Fußprothese entdeckt (Binder et al. 2016). Dem Individuum war der linke Fuß im Knöchelbereich amputiert worden; die Wunde verheilte vollständig. Anstelle des Fußes trug er eine kunstvolle Konstruktion aus einem Holzstumpf mit Eisenring, die ihm das Gehen ermöglichte, was durch sekundäre Arthrosen an Knien und Schultergürtel bestätigt wird. Es handelt sich um eine der ältesten nachgewiesenen Prothesen des Frühmittelalters in Europa und ein herausragendes Zeugnis spätantiker medizinischer Versorgung und sozialer Fürsorge."
   },

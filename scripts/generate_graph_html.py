@@ -1558,7 +1558,7 @@ def generate():
             <!-- Search Autocomplete -->
             <div class="search-box-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="21.070 ARCHE-Einträge durchsuchen (z.B. Sabine Ladstätter, Michaela Binder, Bioarchäologie, Jauntal)..." autocomplete="off">
+                <input type="text" id="searchInput" class="search-input" placeholder="21.070 ARCHE-Einträge durchsuchen (z.B. Franziska Reiner, Dominik Hagmann, Sabine Ladstätter, Michaela Binder)..." autocomplete="off">
                 <div id="searchDropdown" class="search-dropdown"></div>
             </div>
 

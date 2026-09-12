@@ -1799,7 +1799,8 @@
       "answer": "Dr. Dominik Hagmann ist Archäologe und Digital-Humanities-Spezialist am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Gesamtleiter des Projekts IUENNA ('Von der analogen Grabungsdokumentation zur FAIRen Forschungsdateninfrastruktur'). Gemeinsam mit Franziska Reiner (geb. Waldhart) und Nicola Math leitete und konzipierte er die digitale Rettung und Erschließung der über 20.000 analogen Grabungsdokumente aus dem Jauntal nach den FAIR- und CARE-Prinzipien für das Repositorium ARCHE.",
       "citations": [
         "Hagmann & Reiner (2023)",
-        "Hagmann & Waldhart (2023)"
+        "Hagmann & Reiner (2025)",
+        "Hagmann et al. (2024)"
       ],
       "keywords": [
         "dominik hagmann",
@@ -1811,7 +1812,43 @@
         "retrodigitalisierung",
         "arche"
       ],
-      "graph_node_id": "top_iuenna"
+      "graph_node_id": "per_1756729"
+    },
+    {
+      "id": "qa_person_franziska_reiner",
+      "lang": "de",
+      "category": "Forschungsgeschichte & Personen",
+      "question": "Wer ist Franziska Reiner und welche Rolle spielt sie im IUENNA-Projekt?",
+      "variations": [
+        "Wer ist Franziska Reiner?",
+        "Franziska Reiner",
+        "Franziska Waldhart",
+        "Projektleitung Franziska Reiner",
+        "Reiner IUENNA",
+        "Was forscht Franziska Reiner?"
+      ],
+      "answer": "Franziska Reiner (geb. Waldhart, MA) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE.",
+      "citations": [
+        "Hagmann & Reiner (2023)",
+        "Reiner & Profant (2025)",
+        "Schwaiger & Reiner (2022)",
+        "Hagmann & Reiner (2025)"
+      ],
+      "keywords": [
+        "franziska reiner",
+        "reiner",
+        "franziska waldhart",
+        "waldhart",
+        "projektleiterin",
+        "archäologin",
+        "öai",
+        "öaw",
+        "geophysik",
+        "numismatik",
+        "prospektion",
+        "arche"
+      ],
+      "graph_node_id": "per_1756730"
     },
     {
       "id": "qa_bioarch_fuss_prothese",

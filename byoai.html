@@ -71,14 +71,18 @@
                 <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
                 <span class="nav-title">IUENNA</span>
             </a>
-            <nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="wma/wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="graph/index.html" class="nav-link">Knowledge Graph</a></li>
-                    <li><a href="byoai.html" class="nav-link active"><i class="fa-solid fa-microchip"></i> BYOAI</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color:white;padding:6px 16px;">ARCHE Data</a></li>
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="wma/wma.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
+                    <li><a href="graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
+                    <li><a href="byoai.html" class="nav-link active"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
+                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color:white;padding:6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
                 </ul>
             </nav>
         </div>
@@ -269,5 +273,7 @@ print(json.dumps(hits[:20], ensure_ascii=False, indent=2))</code></pre></div>
             }).catch(err => console.error('Failed to copy text: ', err));
         }
     </script>
+    <!-- Responsive Navigation Burger Menu -->
+    <script src="scripts/nav.js?v=2.4.0" defer></script>
 </body>
 </html>

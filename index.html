@@ -30,14 +30,18 @@
                 <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
                 <span class="nav-title">IUENNA</span>
             </a>
-            <nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="wma/wma.html" class="nav-link">Web Mapping</a></li>
-                    <li><a href="graph/index.html" class="nav-link">Knowledge Graph</a></li>
-                    <li><a href="byoai.html" class="nav-link"><i class="fa-solid fa-microchip"></i> BYOAI</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link">Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;">ARCHE Data</a></li>
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="wma/wma.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
+                    <li><a href="graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
+                    <li><a href="byoai.html" class="nav-link"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
+                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,8 +56,8 @@
             <h1 class="hero-title">IUENNA</h1>
             <p class="hero-subtitle">openIng the soUthErn jauNtal as a micro-regioN for future Archaeology</p>
             <div class="btn-group">
-                <a href="wma/wma.html" class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i> Web Mapping Portal</a>
-                <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);"><i class="fa-solid fa-circle-nodes"></i> IUENNA Knowledge Graph</a>
+                <a href="wma/wma.html" class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a>
+                <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a>
                 <a href="byoai.html" class="btn btn-primary" style="background-color: #6a1b9a; border-color: #6a1b9a;"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a>
                 <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-database"></i> ARCHE Repository</a>
                 <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a>
@@ -373,7 +377,7 @@
                 </p>
                 <div style="text-align: center; margin-top: 1.5rem; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
                     <a href="graph/index.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);">
-                        <i class="fa-solid fa-circle-nodes"></i> IUENNA Knowledge Graph
+                        <i class="fa-solid fa-circle-nodes"></i> Knowledge Graph
                     </a>
                     <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i> Explore Data on ARCHE
@@ -2862,6 +2866,8 @@
         })();
     </script>
 
+    <!-- Responsive Navigation Burger Menu -->
+    <script src="scripts/nav.js?v=2.4.0" defer></script>
     <!-- IUENNA Interactive Search & Research Assistant -->
     <script src="scripts/iuenna-chat.js?v=2.2.0" defer></script>
 </body>
