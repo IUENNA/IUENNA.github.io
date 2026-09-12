@@ -1,5 +1,8 @@
 /**
- * IUENNA Navigation & Responsive Burger Menu
+ * IUENNA Navigation & Burger Menu
+ *
+ * The burger control is intentionally used at every viewport width so the
+ * header remains compact and consistent across all public IUENNA pages.
  */
 (function () {
   'use strict';
@@ -32,53 +35,29 @@
       }
     }
 
-    function toggleMenu() {
-      const isOpen = navMenu.classList.contains('is-active');
-      if (isOpen) {
+    navToggle.addEventListener('click', function (event) {
+      event.stopPropagation();
+      if (navMenu.classList.contains('is-active')) {
         closeMenu();
       } else {
         openMenu();
       }
-    }
-
-    // Toggle button click
-    navToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      toggleMenu();
     });
 
-    // Close when clicking nav links
-    const navLinks = navMenu.querySelectorAll('.nav-link');
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (window.innerWidth <= 900) {
-          closeMenu();
-        }
-      });
+    navMenu.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
     });
 
-    // Close on click outside
-    document.addEventListener('click', function (e) {
-      if (navMenu.classList.contains('is-active')) {
-        const header = document.querySelector('.nav-header');
-        if (header && !header.contains(e.target)) {
-          closeMenu();
-        }
-      }
+    document.addEventListener('click', function (event) {
+      if (!navMenu.classList.contains('is-active')) return;
+      const header = document.querySelector('.nav-header');
+      if (header && !header.contains(event.target)) closeMenu();
     });
 
-    // Close on Escape key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && navMenu.classList.contains('is-active')) {
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && navMenu.classList.contains('is-active')) {
         closeMenu();
         navToggle.focus();
-      }
-    });
-
-    // Auto close on window resize above 1024px
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 1024 && navMenu.classList.contains('is-active')) {
-        closeMenu();
       }
     });
   }
