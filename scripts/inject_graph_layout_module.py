@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Prepare the generated IUENNA graph explorer for canonical runtime loading.
+"""Prepare the generated IUENNA graph explorer for the LOD runtime.
 
-The historical generator embedded the full graph JSON directly into graph/index.html
-and then fetched data/arche_graph.json a second time without applying it to Cytoscape.
-This post-processing step makes data/arche_graph.json the single graph payload used
-by the browser, removes the legacy duplicate fetch block, and injects the standalone
-canonical loader plus the repaired topology-aware layout runtime.
+The complete ``data/arche_graph.json`` remains the authoritative graph for
+BYOAI/MCP. The browser shell is intentionally empty and is populated at runtime
+from ``data/arche_graph_macro.json`` plus collection-scoped resource shards.
+This post-processor removes the historical embedded full graph and duplicate
+live fetch, then injects the LOD loader and topology-aware layout runtime.
 """
 from __future__ import annotations
 
@@ -17,9 +17,9 @@ START = "<!-- IUENNA graph runtime: start -->"
 END = "<!-- IUENNA graph runtime: end -->"
 LEGACY_START = "<!-- IUENNA graph layout runtime: start -->"
 LEGACY_END = "<!-- IUENNA graph layout runtime: end -->"
-BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-1"></script>\n<script src="./layouts.js?v=20260912-2"></script>\n{END}'''
+BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-3"></script>\n<script src="./layouts.js?v=20260912-2"></script>\n{END}'''
 
-GRAPH_SHELL = 'let graphData = { elements: { nodes: [], edges: [] }, metadata: { source: "arche_graph.json" } };'
+GRAPH_SHELL = 'let graphData = { elements: { nodes: [], edges: [] }, metadata: { source: "arche_graph_macro.json", authoritative_source: "arche_graph.json", mode: "lod" } };'
 
 
 def strip_embedded_graph(text: str) -> str:
@@ -44,8 +44,8 @@ def remove_legacy_graph_fetch(text: str) -> str:
         re.DOTALL,
     )
     replacement = (
-        "// Canonical graph payload is loaded and applied by ./data-source.js.\n"
-        "        // This avoids the historical second download that updated graphData but not Cytoscape.\n\n"
+        "// Graph visualization is loaded by ./data-source.js in LOD mode.\n"
+        "        // The complete authoritative graph is not downloaded into Cytoscape.\n\n"
         "        " + end_marker
     )
     updated, count = pattern.subn(replacement, text, count=1)
@@ -55,7 +55,6 @@ def remove_legacy_graph_fetch(text: str) -> str:
 
 
 def inject_runtime(text: str) -> str:
-    # Remove the earlier one-script layout block if present.
     legacy_pattern = re.compile(
         re.escape(LEGACY_START) + r".*?" + re.escape(LEGACY_END),
         re.DOTALL,
@@ -75,8 +74,8 @@ def validate(text: str) -> None:
         raise RuntimeError("Generated frontend still contains an embedded graph payload")
     if "Fetch Live Updates if Available" in text:
         raise RuntimeError("Legacy duplicate graph fetch block is still present")
-    if './data-source.js?v=20260912-1' not in text:
-        raise RuntimeError("Canonical graph loader was not injected")
+    if './data-source.js?v=20260912-3' not in text:
+        raise RuntimeError("LOD graph loader was not injected")
     if './layouts.js?v=20260912-2' not in text:
         raise RuntimeError("Layout runtime was not injected")
 
@@ -100,7 +99,7 @@ def main() -> None:
     path = Path(args.path)
     changed = inject(path)
     print(
-        f"[{'✓' if changed else '='}] {path}: canonical graph runtime "
+        f"[{'✓' if changed else '='}] {path}: LOD graph runtime "
         f"{'injected/updated' if changed else 'already current'}"
     )
 
