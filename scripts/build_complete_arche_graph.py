@@ -1,699 +1,454 @@
 #!/usr/bin/env python3
 """
 build_complete_arche_graph.py
-Builds the complete Cytoscape Knowledge Graph containing:
- - All 434 Collections (L0 - L6)
- - All 21 Persons (with ORCID, Wikidata, affiliation)
- - All 9 Organisations (with ROR, Wikidata)
- - All 23 Publications (with authors, year, publisher, pages, URL)
- - Primary Places, Epochs, Subjects, Licenses
- - Full semantic edge network (isPartOf, hasCreator, hasContributor, hasAuthor, documents, isMemberOf, hasSpatialCoverage)
-"""
 
+Build the IUENNA Cytoscape Knowledge Graph as a provenance-aware projection of
+ARCHE metadata.
+
+Core invariants:
+  * all graph nodes are created before semantic ARCHE relations are resolved;
+  * one ARCHE identifier maps to exactly one graph node;
+  * curated dataset records enrich matching ARCHE Resource nodes instead of
+    creating duplicate dts_* nodes;
+  * asserted, inherited, aggregated, curated, and synthetic relations retain
+    explicit provenance;
+  * a machine-readable graph audit is emitted for every build.
+"""
+from __future__ import annotations
+import json
+import math
 import os
 import re
-import json
 import time
-import math
+from collections import Counter, defaultdict
+from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 import networkx as nx
+SCHEMA_BASE = 'https://vocabs.acdh.oeaw.ac.at/schema#'
+ARCHE_API_BASE = 'https://arche.acdh.oeaw.ac.at/api/'
+TOP_COLLECTION_ID = '1792170'
+TTL_TARGET_PREDS = {'isPartOf', 'hasHosting', 'hasOwner', 'hasLicensor', 'hasRightsHolder', 'hasCurator', 'hasDepositor', 'hasMetadataCreator', 'hasCreator', 'hasContributor', 'hasAuthor', 'documents', 'hasDigitisingAgent', 'hasSpatialCoverage', 'isMemberOf'}
+STATUS_PRIORITY = {'synthetic': 0, 'aggregated': 1, 'inherited': 2, 'curated': 3, 'asserted': 4}
+LEVEL_COLORS = {0: '#8B2616', 1: '#C85A32', 2: '#D48B38', 3: '#3D7068', 4: '#5B8296', 5: '#6A5D7B', 6: '#8A6D5D'}
+LEVEL_LABELS = {0: 'Top-Collection', 1: 'Subcollection (L1)', 2: 'Hauptkategorie (L2)', 3: 'Fachordner (L3)', 4: 'Teilsammlung (L4)', 5: 'Befundordner (L5)', 6: 'Detailordner (L6)'}
+LEVEL_ICONS = {0: 'fa-landmark', 1: 'fa-folder-tree', 2: 'fa-folder-open', 3: 'fa-folder', 4: 'fa-folder-minus', 5: 'fa-box-archive', 6: 'fa-camera'}
+RES_TYPE_INFO = {'image': ('ARCHE-Bild', '#2A9D8F', 'fa-image'), 'vector': ('ARCHE-Plan/Vektor', '#E76F51', 'fa-draw-polygon'), 'document': ('ARCHE-Dokument/PDF', '#457B9D', 'fa-file-lines'), 'database': ('ARCHE-Datenbank/Tabelle', '#1D3557', 'fa-table'), 'model': ('ARCHE-3D-Modell', '#F4A261', 'fa-cube'), '3d': ('ARCHE-3D-Modell', '#F4A261', 'fa-cube'), 'audio': ('ARCHE-Audio', '#E9C46A', 'fa-volume-high'), 'other': ('ARCHE-Datei', '#3D7068', 'fa-file')}
 
 def format_size(size_bytes):
     if not size_bytes:
-        return "0 B"
+        return '0 B'
     try:
         size = float(size_bytes)
     except (ValueError, TypeError):
         return str(size_bytes)
-    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+    for unit in ('B', 'KB', 'MB', 'GB', 'TB'):
         if size < 1024.0:
-            return f"{size:.1f} {unit}" if unit in ['MB', 'GB'] else f"{int(size)} {unit}"
+            return f'{size:.1f} {unit}' if unit in ('MB', 'GB') else f'{int(size)} {unit}'
         size /= 1024.0
-    return f"{size:.1f} PB"
+    return f'{size:.1f} PB'
 
-LEVEL_COLORS = {
-    0: "#8B2616",  # TopCollection (L0): Rich Terracotta
-    1: "#C85A32",  # Subcollection (L1): Warm Rust
-    2: "#D48B38",  # Hauptkategorie (L2): Golden Amber
-    3: "#3D7068",  # Fachordner (L3): Forest Teal
-    4: "#5B8296",  # Teilsammlung (L4): Slate Blue
-    5: "#6A5D7B",  # Befundordner (L5): Dusty Purple
-    6: "#8A6D5D",  # Detailordner (L6): Warm Muted Umber
-}
+def ordered_unique(values: Iterable) -> List[str]:
+    seen: Set[str] = set()
+    out: List[str] = []
+    for value in values or []:
+        value = str(value)
+        if value and value not in seen:
+            seen.add(value)
+            out.append(value)
+    return out
 
-LEVEL_LABELS = {
-    0: "Top-Collection",
-    1: "Subcollection (L1)",
-    2: "Hauptkategorie (L2)",
-    3: "Fachordner (L3)",
-    4: "Teilsammlung (L4)",
-    5: "Befundordner (L5)",
-    6: "Detailordner (L6)",
-}
+def emptyish(value) -> bool:
+    return value is None or value == '' or value == [] or (value == {})
 
-LEVEL_ICONS = {
-    0: "fa-landmark",
-    1: "fa-folder-tree",
-    2: "fa-folder-open",
-    3: "fa-folder",
-    4: "fa-folder-minus",
-    5: "fa-box-archive",
-    6: "fa-camera",
-}
+def flatten_collection_tree(root_tree: dict) -> List[dict]:
+    root_node = root_tree.get('root', root_tree)
+    collections: List[dict] = []
+    def walk(node: dict, parent_id: Optional[str]=None):
+        current = dict(node)
+        current['parent_id'] = parent_id
+        children = current.pop('children', [])
+        collections.append(current)
+        for child in children:
+            walk(child, str(node['arche_id']))
+    walk(root_node)
+    return collections
 
-def build_graph():
-    start_time = time.time()
-    data_dir = "data"
-    
-    # 1. Load inputs
-    tree_file = os.path.join(data_dir, "arche_collections_tree.json")
-    entities_file = os.path.join(data_dir, "arche_resolved_entities.json")
-    creators_file = os.path.join(data_dir, "arche_collection_creators.json")
-    pubs_file = os.path.join(data_dir, "arche_publications.json")
-    places_file = os.path.join(data_dir, "arche_places.json")
-    datasets_file = os.path.join(data_dir, "arche_datasets.json")
-    corpus_file = os.path.join(data_dir, "arche_corpus.json")
+class NodeRegistry:
+    """Canonical node registry enforcing one ARCHE ID -> one graph node."""
+    def __init__(self):
+        self.nodes_by_id: Dict[str, dict] = {}
+        self.arche_to_node_id: Dict[str, str] = {}
+    def add(self, node_data: dict, *, role: Optional[str]=None, arche_id: Optional[str]=None, prefer_incoming: Sequence[str]=()) -> str:
+        node_data = dict(node_data)
+        aid = str(arche_id or node_data.get('arche_id') or '').strip() or None
+        proposed_id = str(node_data['id'])
+        if aid and aid in self.arche_to_node_id:
+            node_id = self.arche_to_node_id[aid]
+            existing = self.nodes_by_id[node_id]
+            incoming = dict(node_data)
+            incoming.pop('id', None)
+            incoming.pop('arche_id', None)
+            for key, value in incoming.items():
+                if key == 'roles':
+                    continue
+                if key in prefer_incoming and (not emptyish(value)):
+                    existing[key] = value
+                elif key not in existing or emptyish(existing[key]):
+                    existing[key] = value
+            roles = set(existing.get('roles', []))
+            roles.update(node_data.get('roles', []))
+            if role:
+                roles.add(role)
+            existing['roles'] = sorted(roles)
+            return node_id
+        if proposed_id in self.nodes_by_id:
+            raise ValueError(f'Duplicate graph node id: {proposed_id}')
+        if aid:
+            node_data['arche_id'] = aid
+        roles = set(node_data.get('roles', []))
+        if role:
+            roles.add(role)
+        if roles:
+            node_data['roles'] = sorted(roles)
+        self.nodes_by_id[proposed_id] = node_data
+        if aid:
+            self.arche_to_node_id[aid] = proposed_id
+        return proposed_id
+    def get_by_arche_id(self, arche_id: str) -> Optional[dict]:
+        node_id = self.arche_to_node_id.get(str(arche_id))
+        return self.nodes_by_id.get(node_id) if node_id else None
+    def node_id_for_arche_id(self, arche_id: str) -> Optional[str]:
+        return self.arche_to_node_id.get(str(arche_id))
+    def as_cytoscape_nodes(self) -> List[dict]:
+        return [{'data': data} for data in self.nodes_by_id.values()]
 
-    print(f"[*] Loading datasets from {data_dir}...")
-    with open(tree_file, "r", encoding="utf-8") as f:
-        root_tree = json.load(f)
-    with open(entities_file, "r", encoding="utf-8") as f:
-        entities_data = json.load(f)
-        persons = entities_data.get("persons", {})
-        organisations = entities_data.get("organisations", {})
-    with open(creators_file, "r", encoding="utf-8") as f:
-        col_creators = json.load(f)
-    with open(pubs_file, "r", encoding="utf-8") as f:
-        publications = json.load(f)
-    with open(places_file, "r", encoding="utf-8") as f:
-        places_data = json.load(f)
-    with open(datasets_file, "r", encoding="utf-8") as f:
-        datasets_data = json.load(f)
-    with open(corpus_file, "r", encoding="utf-8") as f:
-        corpus_data = json.load(f)
-        corpus = corpus_data.get("resources", [])
+class EdgeRegistry:
+    """Deduplicate graph edges while retaining all derivation/provenance paths."""
+    def __init__(self):
+        self.by_triple: Dict[Tuple[str, str, str], dict] = {}
+    @staticmethod
+    def _edge_id(source: str, target: str, label: str) -> str:
+        safe_label = re.sub('[^A-Za-z0-9_]+', '_', label).strip('_')
+        return f'edge_{safe_label}_{source}_{target}'
+    def add(self, source: str, target: str, label: str, *, predicate: Optional[str]=None, provenance: str, relation_status: str, semantic: bool=True, derivation: Optional[dict]=None) -> dict:
+        key = (str(source), str(target), str(label))
+        predicate = predicate or f'{SCHEMA_BASE}{label}'
+        derivation_entry = {'provenance': provenance, 'relation_status': relation_status}
+        if derivation:
+            derivation_entry.update(derivation)
+        if key not in self.by_triple:
+            edge = {'id': self._edge_id(*key), 'source': key[0], 'target': key[1], 'label': key[2], 'predicate': predicate, 'provenance': provenance, 'provenance_sources': [provenance], 'relation_status': relation_status, 'semantic': bool(semantic), 'derivations': [derivation_entry]}
+            self.by_triple[key] = edge
+            return edge
+        edge = self.by_triple[key]
+        if provenance not in edge['provenance_sources']:
+            edge['provenance_sources'].append(provenance)
+        if derivation_entry not in edge['derivations']:
+            edge['derivations'].append(derivation_entry)
+        current_priority = STATUS_PRIORITY.get(edge.get('relation_status'), -1)
+        incoming_priority = STATUS_PRIORITY.get(relation_status, -1)
+        if incoming_priority > current_priority:
+            edge['provenance'] = provenance
+            edge['relation_status'] = relation_status
+            edge['predicate'] = predicate
+        edge['semantic'] = bool(edge.get('semantic', True) or semantic)
+        return edge
+    def as_cytoscape_edges(self) -> List[dict]:
+        return [{'data': edge} for edge in self.by_triple.values()]
 
-    # Flatten collection tree
-    root_node = root_tree.get("root", root_tree)
-    collections = []
-    def flatten_tree(node, parent_id=None):
-        c = dict(node)
-        c["parent_id"] = parent_id
-        children = c.pop("children", [])
-        collections.append(c)
-        for ch in children:
-            flatten_tree(ch, node["arche_id"])
+def parse_arche_relation_triples(ttl_file: str) -> Set[Tuple[str, str, str]]:
+    """Extract configured ARCHE-to-ARCHE object relations from Turtle subject blocks."""
+    if not os.path.exists(ttl_file):
+        return set()
+    with open(ttl_file, 'r', encoding='utf-8', errors='ignore') as fh:
+        content = fh.read()
+    blocks = re.split('(?m)^<https://arche\\.acdh\\.oeaw\\.ac\\.at/api/', content)
+    triples: Set[Tuple[str, str, str]] = set()
+    for block in blocks[1:]:
+        head = re.match('(\\d+)>', block)
+        if not head:
+            continue
+        source_id = head.group(1)
+        for pred in TTL_TARGET_PREDS:
+            pattern = re.compile(f'n2:{re.escape(pred)}\\s+(.*?)(?=(?:\\s*;\\s*(?:n2:|a\\s)|\\s*\\.\\s*(?:$|\\n)))', re.DOTALL | re.MULTILINE)
+            for match in pattern.finditer(block):
+                object_chunk = match.group(1)
+                target_ids = re.findall('https://arche\\.acdh\\.oeaw\\.ac\\.at/api/(\\d+)', object_chunk)
+                for target_id in target_ids:
+                    triples.add((source_id, pred, target_id))
+    return triples
 
-    flatten_tree(root_node)
-    print(f"[✓] Flattened {len(collections)} collections from tree.")
+def provenance_edge(edges: EdgeRegistry, source: Optional[str], target: Optional[str], label: str, provenance: str, relation_status: str, *, semantic: bool=True, derivation: Optional[dict]=None):
+    if source and target:
+        edges.add(source, target, label, predicate=f'{SCHEMA_BASE}{label}', provenance=provenance, relation_status=relation_status, semantic=semantic, derivation=derivation)
 
-    nodes = []
-    edges = []
-    seen_edge_ids = set()
-    seen_edge_triples = set()
-
-    def add_edge(edge_data):
-        e_id = edge_data["id"]
-        triple = (edge_data["source"], edge_data["target"], edge_data["label"])
-        if e_id not in seen_edge_ids and triple not in seen_edge_triples:
-            seen_edge_ids.add(e_id)
-            seen_edge_triples.add(triple)
-            edges.append({"data": edge_data})
-
-    # 2. Add Collection Nodes & isPartOf Edges
-    for col in collections:
-        lvl = col.get("level", 1)
-        arche_id = col["arche_id"]
-        node_id = "iuenna_root" if arche_id == "1792170" else col["id"]
-        parent_id = col.get("parent_id")
-
-        ntype = "root" if lvl == 0 else ("subcollection" if lvl == 1 else f"folder_l{lvl}")
-        col_meta = root_tree.get("collections", {}).get(arche_id, col)
-        label = col_meta.get("title") or col.get("title") or col.get("name") or arche_id
-        alt_label = col_meta.get("alternative_title") or col_meta.get("filename") or col.get("alt_title") or col.get("name") or ""
-
-        node_data = {
-            "id": node_id,
-            "arche_id": arche_id,
-            "label": label,
-            "title": col_meta.get("title") or col.get("title") or label,
-            "full_title": col_meta.get("title") or col.get("title") or label,
-            "alt_title": alt_label,
-            "filename": col_meta.get("filename") or col.get("filename") or "",
-            "level": lvl,
-            "type": ntype,
-            "type_label": LEVEL_LABELS.get(lvl, f"Ebene L{lvl}"),
-            "color": LEVEL_COLORS.get(lvl, "#5A6B7C"),
-            "icon": LEVEL_ICONS.get(lvl, "fa-folder"),
-            "items": col.get("items", 0),
-            "size": col.get("formatted_size", "0 B"),
-            "formatted_size": col.get("formatted_size", "0 B"),
-            "size_bytes": col.get("size_bytes", 0),
-            "pid": col.get("pid", ""),
-            "license": col.get("license", ""),
-            "license_summary": col.get("license", ""),
-            "access": col.get("access", ""),
-            "access_restriction": col.get("access", ""),
-            "campaign_years": col.get("campaign_years"),
-            "creators": col_creators.get(arche_id, {}).get("creators", []),
-            "contributors": col_creators.get(arche_id, {}).get("contributors", []),
-            "uri": f"https://arche.acdh.oeaw.ac.at/api/{arche_id}"
-        }
-        nodes.append({"data": node_data})
-
-        # Add isPartOf edge
-        if parent_id:
-            parent_node_id = "iuenna_root" if parent_id == "1792170" else f"col_{parent_id}"
-            add_edge({
-                "id": f"edge_part_{node_id}_{parent_node_id}",
-                "source": node_id,
-                "target": parent_node_id,
-                "label": "isPartOf",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
-            })
-
-        # Add Spatial Coverage edges (both direct and from collection resources)
-        all_spatial = set(col_meta.get("spatial_ids", []))
-        all_spatial.update(col_meta.get("item_spatial_ids", []))
-        all_spatial.update(col.get("item_spatial_ids", []))
-        for sid in all_spatial:
-            sid_str = str(sid)
-            if sid_str in places_data:
-                add_edge({
-                    "id": f"edge_spat_{node_id}_plc_{sid_str}",
-                    "source": node_id,
-                    "target": f"plc_{sid_str}",
-                    "label": "hasSpatialCoverage",
-                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
-                })
-
-        # Add Creator & Contributor edges
-        for cr in col_creators.get(arche_id, {}).get("creators", []):
-            target_id = cr["id"]
-            add_edge({
-                "id": f"edge_creator_{node_id}_{target_id}",
-                "source": node_id,
-                "target": target_id,
-                "label": "hasCreator",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasCreator"
-            })
-
-        for ct in col_creators.get(arche_id, {}).get("contributors", []):
-            target_id = ct["id"]
-            add_edge({
-                "id": f"edge_contrib_{node_id}_{target_id}",
-                "source": node_id,
-                "target": target_id,
-                "label": "hasContributor",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasContributor"
-            })
-
-    # 2b. Add Dataset Nodes & Edges (GeoPackages & Research Datasets)
-    print(f"[*] Adding {len(datasets_data)} primary research datasets...")
-    for d_id, d in datasets_data.items():
-        node_id = f"dts_{d_id}"
-        parent_id = d.get("parent_id")
-        parent_node_id = "iuenna_root" if parent_id == "1792170" else f"col_{parent_id}"
-
-        node_data = {
-            "id": node_id,
-            "arche_id": str(d_id),
-            "label": d["filename"],
-            "title": d["filename"],
-            "full_title": d.get("title") or d["filename"],
-            "filename": d["filename"],
-            "type": "dataset",
-            "type_label": "Forschungsdatensatz / GeoPackage",
-            "category": "Geodaten & Forschungsdaten",
-            "color": "#1B4965",
-            "icon": "fa-database",
-            "items": len(d.get("spatial_ids", [])),
-            "size": d.get("formatted_size", "0 B"),
-            "formatted_size": d.get("formatted_size", "0 B"),
-            "size_bytes": d.get("size_bytes", 0),
-            "pid": d.get("pid", ""),
-            "license": d.get("license_summary", ""),
-            "license_summary": d.get("license_summary", ""),
-            "access": d.get("access_restriction", ""),
-            "access_restriction": d.get("access_restriction", ""),
-            "description": d.get("description", ""),
-            "citation": d.get("citation", ""),
-            "creators": d.get("creators", []),
-            "contributors": d.get("contributors", []),
-            "spatial_ids": d.get("spatial_ids", []),
-            "parent_id": parent_id,
-            "uri": d.get("uri", f"https://arche.acdh.oeaw.ac.at/api/{d_id}")
-        }
-        nodes.append({"data": node_data})
-
-        # isPartOf edge to parent collection
-        if parent_id:
-            add_edge({
-                "id": f"edge_part_{node_id}_{parent_node_id}",
-                "source": node_id,
-                "target": parent_node_id,
-                "label": "isPartOf",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isPartOf"
-            })
-
-        # hasCreator edges
-        for cr in d.get("creators", []):
-            cr_target = cr["id"]
-            add_edge({
-                "id": f"edge_creator_{node_id}_{cr_target}",
-                "source": node_id,
-                "target": cr_target,
-                "label": "hasCreator",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasCreator"
-            })
-
-        # hasSpatialCoverage edges (e.g. 140 places for 1804081!)
-        for sid in d.get("spatial_ids", []):
-            sid_str = str(sid)
-            if sid_str in places_data:
-                add_edge({
-                    "id": f"edge_spat_{node_id}_plc_{sid_str}",
-                    "source": node_id,
-                    "target": f"plc_{sid_str}",
-                    "label": "hasSpatialCoverage",
-                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasSpatialCoverage"
-                })
-
-        # documents edges
-        for doc_id in d.get("documented_ids", []):
-            if doc_id in publications:
-                add_edge({
-                    "id": f"edge_doc_{node_id}_pub_{doc_id}",
-                    "source": node_id,
-                    "target": f"pub_{doc_id}",
-                    "label": "documents",
-                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#documents"
-                })
-
-    # 3. Add Person Nodes
-    for p_id, p in persons.items():
-        node_data = {
-            "id": p["id"],
-            "arche_id": p_id,
-            "label": p["name"],
-            "name": p["name"],
-            "first_name": p.get("first_name", ""),
-            "last_name": p.get("last_name", ""),
-            "academic_title": p.get("academic_title", ""),
-            "type": "person",
-            "type_label": "Forscher:in",
-            "category": "Akteur",
-            "email": p.get("email", ""),
-            "orcid": p.get("orcid"),
-            "wikidata": p.get("wikidata"),
-            "viaf": p.get("viaf"),
-            "gnd": p.get("gnd"),
-            "affiliation": p.get("affiliation"),
-            "affiliation_id": p.get("affiliation_id"),
-            "color": "#C85A32",
-            "icon": "fa-user",
-            "uri": p["uri"]
-        }
-        nodes.append({"data": node_data})
-
-        # isMemberOf edge
-        if p.get("affiliation_id"):
-            aff_org_id = f"org_{p['affiliation_id']}"
-            add_edge({
-                "id": f"edge_member_{p['id']}_{aff_org_id}",
-                "source": p["id"],
-                "target": aff_org_id,
-                "label": "isMemberOf",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-            })
-
-    # 4. Add Organisation Nodes
-    for o_id, org in organisations.items():
-        node_data = {
-            "id": org["id"],
-            "arche_id": o_id,
-            "label": org.get("short_name") or org["name"],
-            "name": org["name"],
-            "full_name": org["name"],
-            "short_name": org.get("short_name", ""),
-            "type": "organization",
-            "type_label": "Institution / Partner",
-            "category": "Trägerorganisation",
-            "city": org.get("city", ""),
-            "country": org.get("country", ""),
-            "url": org.get("url", ""),
-            "wikidata": org.get("wikidata"),
-            "ror": org.get("ror"),
-            "color": "#3B5266",
-            "icon": "fa-building-columns",
-            "uri": org["uri"]
-        }
-        nodes.append({"data": node_data})
-
-        # parent org edge
-        if org.get("parent_org_id"):
-            parent_org_node = f"org_{org['parent_org_id']}"
-            add_edge({
-                "id": f"edge_org_member_{org['id']}_{parent_org_node}",
-                "source": org["id"],
-                "target": parent_org_node,
-                "label": "isMemberOf",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#isMemberOf"
-            })
-
-    # 5. Add Publication Nodes
-    for pub_id, pub in publications.items():
-        node_data = {
-            "id": pub["id"],
-            "arche_id": pub_id,
-            "label": pub["title"],
-            "title": pub["title"],
-            "type": "publication",
-            "type_label": "Publikation",
-            "category": "Fachpublikation",
-            "year": pub.get("year", "–"),
-            "issued_date": pub.get("issued_date", ""),
-            "authors": pub.get("authors_formatted", ""),
-            "publisher": pub.get("publisher", ""),
-            "series": pub.get("series", ""),
-            "pages": pub.get("pages", ""),
-            "url": pub.get("url", ""),
-            "color": "#7B4F36",
-            "icon": "fa-book-open",
-            "uri": pub["uri"]
-        }
-        nodes.append({"data": node_data})
-
-        # hasAuthor edges
-        for a_id in pub.get("author_ids", []):
-            if a_id in persons:
-                author_node_id = f"per_{a_id}"
-                add_edge({
-                    "id": f"edge_pub_author_{pub['id']}_{author_node_id}",
-                    "source": pub["id"],
-                    "target": author_node_id,
-                    "label": "hasAuthor",
-                    "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#hasAuthor"
-                })
-
-        # documents edges
-        for d_id in pub.get("documents", []):
-            doc_target = "iuenna_root" if d_id == "1792170" else f"col_{d_id}"
-            add_edge({
-                "id": f"edge_pub_doc_{pub['id']}_{doc_target}",
-                "source": pub["id"],
-                "target": doc_target,
-                "label": "documents",
-                "predicate": "https://vocabs.acdh.oeaw.ac.at/schema#documents"
-            })
-
-    # 6. Places (authoritative from arche_places.json)
-    for p_id, pl in places_data.items():
-        node_id = f"plc_{p_id}"
-        node_data = {
-            "id": node_id,
-            "arche_id": str(p_id),
-            "label": pl.get("title") or f"Ort {p_id}",
-            "title": pl.get("title") or f"Ort {p_id}",
-            "type": "place",
-            "type_label": "Fundort / Ort",
-            "category": "Geographischer Fundort",
-            "latitude": pl.get("latitude"),
-            "longitude": pl.get("longitude"),
-            "wkt": pl.get("wkt"),
-            "geonames": pl.get("geonames", ""),
-            "color": "#2D6A4F",
-            "icon": "fa-location-dot",
-            "uri": pl.get("uri", f"https://arche.acdh.oeaw.ac.at/api/{p_id}")
-        }
-        nodes.append({"data": node_data})
-
-    # Spatial edge for root
-    for r_sid in ["1756730", "1756735", "1756731", "138176"]:
-        if r_sid in places_data:
-            add_edge({"id": f"edge_spat_root_{r_sid}", "source": "iuenna_root", "target": f"plc_{r_sid}", "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-
-    # Verify and ensure 100% graph connectivity for all places
-    place_node_ids = set(f"plc_{pid}" for pid in places_data)
-    connected_places = set(e["data"]["target"] for e in edges if e["data"]["target"] in place_node_ids)
-    connected_places.update(e["data"]["source"] for e in edges if e["data"]["source"] in place_node_ids)
-    unconnected = place_node_ids - connected_places
-    if unconnected:
-        print(f"[*] Connecting {len(unconnected)} remaining places to root fallback...")
-        for u in sorted(unconnected):
-            add_edge({"id": f"edge_spat_fallback_{u}", "source": "iuenna_root", "target": u, "label": "hasSpatialCoverage", "predicate": "schema:hasSpatialCoverage"})
-    print(f"[✓] Place connectivity verified: {len(place_node_ids)} / {len(place_node_ids)} places connected (0 isolated).")
-
-    # 7. Epochs
-    epochs = [
-        {"id": "epc_roman", "label": "Römische Kaiserzeit", "type": "epoch", "type_label": "Zeitepoche", "uri": "http://n2t.net/ark:/99152/p0qhb66t32q", "range": "15 v. Chr. – 476 n. Chr.", "color": "#5A6B7C", "icon": "fa-hourglass-half"},
-        {"id": "epc_early_medieval", "label": "Frühmittelalter", "type": "epoch", "type_label": "Zeitepoche", "uri": "http://n2t.net/ark:/99152/p0qhb66h52w", "range": "ca. 500 – 1050 n. Chr.", "color": "#5A6B7C", "icon": "fa-clock"}
-    ]
-    for ep in epochs:
-        nodes.append({"data": ep})
-        add_edge({"id": f"edge_epc_{ep['id']}_root", "source": "iuenna_root", "target": ep["id"], "label": "hasTemporalCoverage", "predicate": "schema:hasTemporalCoverage"})
-
-    # 8. Subjects & Licenses
-    subjects = [
-        {"id": "sbj_arch_data", "label": "Archäologische Daten", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-tag"},
-        {"id": "sbj_fieldwork", "label": "Grabungsdokumentation", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-book-open"},
-        {"id": "sbj_roman_arch", "label": "Römische Archäologie", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-monument"},
-        {"id": "sbj_dh", "label": "Digitale Geisteswissenschaften", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-laptop-code"},
-        {"id": "sbj_dig_arch", "label": "Dokumentarfotografien", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-camera"},
-        {"id": "sbj_reprografie", "label": "Reprografien & Aufmaße", "type": "subject", "type_label": "Fachschlagwort", "color": "#7E6B8F", "icon": "fa-pen-ruler"}
-    ]
-    for sb in subjects:
-        nodes.append({"data": sb})
-        add_edge({"id": f"edge_sbj_{sb['id']}_root", "source": "iuenna_root", "target": sb["id"], "label": "hasSubject", "predicate": "schema:hasSubject"})
-
-    licenses = [
-        {"id": "lic_inc", "label": "In Copyright (InC 1.0)", "type": "license", "type_label": "Lizenz / Nutzungsrechte", "desc": "Urheberrechtlich geschützte Archivbestände des kärnten.museums und ÖAI.", "color": "#437F97", "icon": "fa-shield-halved"},
-        {"id": "lic_ccby", "label": "Creative Commons Attribution 4.0 (CC BY 4.0)", "type": "license", "type_label": "Open Access Lizenz", "desc": "Open Access Forschungsdaten des Go!Digital-Projekts IUENNA.", "color": "#3D7068", "icon": "fa-creative-commons"}
-    ]
-    for lc in licenses:
-        nodes.append({"data": lc})
-        add_edge({"id": f"edge_lic_{lc['id']}_root", "source": "iuenna_root", "target": lc["id"], "label": "hasLicense", "predicate": "schema:hasLicense"})
-
-    # 8.2 Extract comprehensive semantic relations from arche_full_metadata.ttl
-    ttl_file = os.path.join(data_dir, "arche_full_metadata.ttl")
-    if os.path.exists(ttl_file):
-        print("[*] Extracting comprehensive semantic relations from arche_full_metadata.ttl...")
-        node_id_map = {}
-        for c in collections:
-            aid = str(c.get("arche_id"))
-            node_id_map[aid] = "iuenna_root" if aid == "1792170" else c.get("id") or f"col_{aid}"
-        for d_id in datasets_data:
-            node_id_map[str(d_id)] = f"dts_{d_id}"
-        for p_id in persons:
-            node_id_map[str(p_id)] = f"per_{p_id}"
-        for o_id in organisations:
-            node_id_map[str(o_id)] = f"org_{o_id}"
-        for pub_id in publications:
-            node_id_map[str(pub_id)] = f"pub_{pub_id}"
-        for plc_id in places_data:
-            node_id_map[str(plc_id)] = f"plc_{plc_id}"
-
-        ttl_target_preds = {
-            "hasHosting": "hasHosting",
-            "hasOwner": "hasOwner",
-            "hasLicensor": "hasLicensor",
-            "hasRightsHolder": "hasRightsHolder",
-            "hasCurator": "hasCurator",
-            "hasDepositor": "hasDepositor",
-            "hasMetadataCreator": "hasMetadataCreator",
-            "hasCreator": "hasCreator",
-            "hasContributor": "hasContributor",
-            "documents": "documents",
-            "hasDigitisingAgent": "hasDigitisingAgent",
-            "hasSpatialCoverage": "hasSpatialCoverage"
-        }
-
-        ttl_edges_added = 0
-        with open(ttl_file, "r", encoding="utf-8") as f:
-            curr_subj = None
-            for line in f:
-                m_subj = re.match(r"^<https://arche.acdh.oeaw.ac.at/api/(\d+)>", line)
-                if m_subj:
-                    curr_subj = m_subj.group(1)
-                if curr_subj and curr_subj in node_id_map:
-                    source_nid = node_id_map[curr_subj]
-                    for pred, target_aid in re.findall(r"n2:([a-zA-Z0-9_]+)\s+<https://arche.acdh.oeaw.ac.at/api/(\d+)>", line):
-                        if pred in ttl_target_preds and target_aid in node_id_map:
-                            target_nid = node_id_map[target_aid]
-                            if source_nid != target_nid:
-                                edge_lbl = ttl_target_preds[pred]
-                                add_edge({
-                                    "id": f"edge_ttl_{pred}_{source_nid}_{target_nid}",
-                                    "source": source_nid,
-                                    "target": target_nid,
-                                    "label": edge_lbl,
-                                    "predicate": f"https://vocabs.acdh.oeaw.ac.at/schema#{pred}"
-                                })
-                                ttl_edges_added += 1
-        print(f"[✓] Successfully injected {ttl_edges_added} semantic edges from ARCHE TTL.")
-
-    # 8.5 Add all 20,355 ARCHE Resources (arche:Resource)
-    print(f"[*] Integrating {len(corpus)} ARCHE Resources into Knowledge Graph...")
-    RES_TYPE_INFO = {
-        'image': ('ARCHE-Bild', '#2A9D8F', 'fa-image'),
-        'vector': ('ARCHE-Plan/Vektor', '#E76F51', 'fa-draw-polygon'),
-        'document': ('ARCHE-Dokument/PDF', '#457B9D', 'fa-file-lines'),
-        'database': ('ARCHE-Datenbank/Tabelle', '#1D3557', 'fa-table'),
-        'model': ('ARCHE-3D-Modell', '#F4A261', 'fa-cube'),
-        'audio': ('ARCHE-Audio', '#E9C46A', 'fa-volume-high'),
-        'other': ('ARCHE-Datei', '#3D7068', 'fa-file')
-    }
-
-    place_node_ids = set(f"plc_{pid}" for pid in places_data)
-    collection_id_set = set(c["id"] for c in collections)
-    collection_id_set.add("iuenna_root")
-
-    # Group resources by parent collection for radial clustering
-    col_to_resources = {}
+def build_input_role_index(collections: Sequence[dict], corpus: Sequence[dict], datasets: dict, persons: dict, organisations: dict, publications: dict, places: dict) -> Dict[str, Set[str]]:
+    role_index: Dict[str, Set[str]] = defaultdict(set)
+    for c in collections:
+        role_index[str(c.get('arche_id'))].add('collection')
     for r in corpus:
-        col_id = r.get("col_id") or f"col_{r.get('col')}"
-        if col_id == "col_1792170" or col_id not in collection_id_set:
-            col_id = "iuenna_root"
-        if col_id not in col_to_resources:
-            col_to_resources[col_id] = []
-        col_to_resources[col_id].append(r)
+        role_index[str(r.get('arche_id'))].add('resource')
+    for aid in datasets:
+        role_index[str(aid)].add('dataset')
+    for aid in persons:
+        role_index[str(aid)].add('person')
+    for aid in organisations:
+        role_index[str(aid)].add('organization')
+    for aid in publications:
+        role_index[str(aid)].add('publication')
+    for aid in places:
+        role_index[str(aid)].add('place')
+    role_index.pop('None', None)
+    role_index.pop('', None)
+    return role_index
 
-    # Compute macro layout positions using NetworkX for structural nodes
-    print("[*] Computing macro graph layout positions with NetworkX...")
-    G_macro = nx.Graph()
-    for n in nodes:
-        G_macro.add_node(n["data"]["id"])
-    for e in edges:
-        G_macro.add_edge(e["data"]["source"], e["data"]["target"])
-
-    pos_macro = nx.spring_layout(G_macro, k=0.18, iterations=60, seed=42)
-    SCALE = 3500.0
-    macro_positions = {}
-    for nid, p in pos_macro.items():
-        macro_positions[nid] = (p[0] * SCALE, p[1] * SCALE)
-
-    # Assign positions to macro nodes
-    for n in nodes:
-        nid = n["data"]["id"]
-        if nid in macro_positions:
-            px, py = macro_positions[nid]
-            n["position"] = {"x": round(px, 1), "y": round(py, 1)}
-
-    # Now add all resources with positions clustered around their parent collection
-    added_res_count = 0
-    added_res_spatial_edges = 0
-
-    for col_id, res_list in col_to_resources.items():
-        cx, cy = macro_positions.get(col_id, (0.0, 0.0))
-
-        for i, r in enumerate(res_list):
-            rid = r["id"]
-            arche_id = r.get("arche_id")
-            ftype = r.get("type", "other")
-            t_lbl, col, icon = RES_TYPE_INFO.get(ftype, ("ARCHE-Datei", "#3D7068", "fa-file"))
-
-            # Golden spiral positioning around parent collection
+def build_graph(data_dir: Optional[str]=None):
+    started = time.time()
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, '..'))
+    data_dir = data_dir or os.path.join(project_root, 'data')
+    def load_json(filename):
+        path = os.path.join(data_dir, filename)
+        with open(path, 'r', encoding='utf-8') as fh:
+            return json.load(fh)
+    print(f'[*] Loading graph inputs from {data_dir}...')
+    root_tree = load_json('arche_collections_tree.json')
+    entities_data = load_json('arche_resolved_entities.json')
+    persons = entities_data.get('persons', {})
+    organisations = entities_data.get('organisations', {})
+    col_creators = load_json('arche_collection_creators.json')
+    publications = load_json('arche_publications.json')
+    places_data = load_json('arche_places.json')
+    datasets_data = load_json('arche_datasets.json')
+    corpus_data = load_json('arche_corpus.json')
+    corpus = corpus_data.get('resources', [])
+    ttl_file = os.path.join(data_dir, 'arche_full_metadata.ttl')
+    collections = flatten_collection_tree(root_tree)
+    collection_meta = root_tree.get('collections', {})
+    print(f'[✓] Loaded {len(collections)} collections and {len(corpus)} resources.')
+    input_role_index = build_input_role_index(collections, corpus, datasets_data, persons, organisations, publications, places_data)
+    source_role_overlaps = {aid: sorted(roles) for aid, roles in input_role_index.items() if len(roles) > 1}
+    registry = NodeRegistry()
+    for col in collections:
+        aid = str(col['arche_id'])
+        lvl = int(col.get('level', 1))
+        node_id = 'iuenna_root' if aid == TOP_COLLECTION_ID else col.get('id') or f'col_{aid}'
+        meta = collection_meta.get(aid, col)
+        label = meta.get('title') or col.get('title') or col.get('name') or aid
+        alt_label = meta.get('alternative_title') or meta.get('filename') or col.get('alt_title') or col.get('name') or ''
+        registry.add({'id': node_id, 'arche_id': aid, 'label': label, 'title': meta.get('title') or col.get('title') or label, 'full_title': meta.get('title') or col.get('title') or label, 'alt_title': alt_label, 'filename': meta.get('filename') or col.get('filename') or '', 'level': lvl, 'type': 'root' if lvl == 0 else 'subcollection' if lvl == 1 else f'folder_l{lvl}', 'type_label': LEVEL_LABELS.get(lvl, f'Ebene L{lvl}'), 'color': LEVEL_COLORS.get(lvl, '#5A6B7C'), 'icon': LEVEL_ICONS.get(lvl, 'fa-folder'), 'items': col.get('items', 0), 'size': col.get('formatted_size', '0 B'), 'formatted_size': col.get('formatted_size', '0 B'), 'size_bytes': col.get('size_bytes', 0), 'pid': col.get('pid', ''), 'license': col.get('license', col.get('license_summary', '')), 'license_summary': col.get('license_summary', col.get('license', '')), 'access': col.get('access', col.get('access_restriction', '')), 'access_restriction': col.get('access_restriction', col.get('access', '')), 'campaign_years': col.get('campaign_years'), 'creators': col_creators.get(aid, {}).get('creators', []), 'contributors': col_creators.get(aid, {}).get('contributors', []), 'parent_arche_id': str(col.get('parent_id')) if col.get('parent_id') else None, 'uri': f'{ARCHE_API_BASE}{aid}'}, role='collection')
+    for aid, person in persons.items():
+        aid = str(aid)
+        registry.add({'id': person.get('id') or f'per_{aid}', 'arche_id': aid, 'label': person.get('name') or f'Person {aid}', 'name': person.get('name') or f'Person {aid}', 'first_name': person.get('first_name', ''), 'last_name': person.get('last_name', ''), 'academic_title': person.get('academic_title', ''), 'type': 'person', 'type_label': 'Forscher:in', 'category': 'Akteur', 'email': person.get('email', ''), 'orcid': person.get('orcid'), 'wikidata': person.get('wikidata'), 'viaf': person.get('viaf'), 'gnd': person.get('gnd'), 'affiliation': person.get('affiliation'), 'affiliation_id': person.get('affiliation_id'), 'color': '#C85A32', 'icon': 'fa-user', 'uri': person.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='person')
+    for aid, org in organisations.items():
+        aid = str(aid)
+        registry.add({'id': org.get('id') or f'org_{aid}', 'arche_id': aid, 'label': org.get('short_name') or org.get('name') or f'Organisation {aid}', 'name': org.get('name') or f'Organisation {aid}', 'full_name': org.get('name') or f'Organisation {aid}', 'short_name': org.get('short_name', ''), 'type': 'organization', 'type_label': 'Institution / Partner', 'category': 'Trägerorganisation', 'city': org.get('city', ''), 'country': org.get('country', ''), 'url': org.get('url', ''), 'wikidata': org.get('wikidata'), 'ror': org.get('ror'), 'parent_org_id': org.get('parent_org_id'), 'color': '#3B5266', 'icon': 'fa-building-columns', 'uri': org.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='organization')
+    for aid, pub in publications.items():
+        aid = str(aid)
+        registry.add({'id': pub.get('id') or f'pub_{aid}', 'arche_id': aid, 'label': pub.get('title') or f'Publikation {aid}', 'title': pub.get('title') or f'Publikation {aid}', 'type': 'publication', 'type_label': 'Publikation', 'category': 'Fachpublikation', 'year': pub.get('year', '–'), 'issued_date': pub.get('issued_date', ''), 'authors': pub.get('authors_formatted', ''), 'publisher': pub.get('publisher', ''), 'series': pub.get('series', ''), 'pages': pub.get('pages', ''), 'url': pub.get('url', ''), 'author_ids': pub.get('author_ids', []), 'documents': pub.get('documents', []), 'color': '#7B4F36', 'icon': 'fa-book-open', 'uri': pub.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='publication')
+    for aid, place in places_data.items():
+        aid = str(aid)
+        registry.add({'id': f'plc_{aid}', 'arche_id': aid, 'label': place.get('title') or f'Ort {aid}', 'title': place.get('title') or f'Ort {aid}', 'type': 'place', 'type_label': 'Fundort / Ort', 'category': 'Geographischer Fundort', 'latitude': place.get('latitude'), 'longitude': place.get('longitude'), 'wkt': place.get('wkt'), 'geonames': place.get('geonames', ''), 'color': '#2D6A4F', 'icon': 'fa-location-dot', 'uri': place.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='place')
+    collection_node_ids = {registry.node_id_for_arche_id(str(c['arche_id'])) for c in collections}
+    collection_node_ids.discard(None)
+    for resource in corpus:
+        aid = str(resource.get('arche_id'))
+        rid = resource.get('id') or f'res_{aid}'
+        ftype = resource.get('type', 'other')
+        type_label, color, icon = RES_TYPE_INFO.get(ftype, RES_TYPE_INFO['other'])
+        parent_aid = str(resource.get('col')) if resource.get('col') else None
+        parent_node = registry.node_id_for_arche_id(parent_aid) if parent_aid else None
+        if not parent_node or parent_node not in collection_node_ids:
+            parent_node = 'iuenna_root'
+        registry.add({'id': rid, 'arche_id': aid, 'label': resource.get('title') or resource.get('filename') or rid, 'title': resource.get('title') or resource.get('filename') or rid, 'filename': resource.get('filename', ''), 'type': 'resource', 'type_label': type_label, 'ftype': ftype, 'parent_col': parent_node, 'parent_arche_id': parent_aid, 'pid': resource.get('pid', ''), 'place': resource.get('place', ''), 'spatial_ids': resource.get('spatial_ids', []), 'spatial_ids_direct': resource.get('spatial_ids_direct', []), 'spatial_ids_inherited': resource.get('spatial_ids_inherited', []), 'spatial_relation_status': resource.get('spatial_relation_status'), 'spatial_inherited_from': resource.get('spatial_inherited_from'), 'subjs': resource.get('subjs', []), 'path': resource.get('path', []), 'date': resource.get('date', ''), 'size_bytes': resource.get('size_bytes', 0), 'formatted_size': format_size(resource.get('size_bytes', 0)), 'thumb_url': resource.get('thumb_url', ''), 'coords': resource.get('coords'), 'description': resource.get('description', ''), 'color': color, 'icon': icon, 'uri': resource.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='resource')
+    dataset_prefer = ('type', 'type_label', 'category', 'color', 'icon', 'citation', 'license', 'license_summary', 'access', 'access_restriction', 'creators', 'contributors', 'dataset_spatial_ids', 'documented_ids')
+    for aid, dataset in datasets_data.items():
+        aid = str(aid)
+        existing_id = registry.node_id_for_arche_id(aid)
+        proposed_id = existing_id or f'dts_{aid}'
+        registry.add({'id': proposed_id, 'arche_id': aid, 'label': dataset.get('filename') or dataset.get('title') or proposed_id, 'title': dataset.get('filename') or dataset.get('title') or proposed_id, 'full_title': dataset.get('title') or dataset.get('filename') or proposed_id, 'filename': dataset.get('filename', ''), 'type': 'dataset', 'type_label': 'Forschungsdatensatz / GeoPackage', 'category': 'Geodaten & Forschungsdaten', 'color': '#1B4965', 'icon': 'fa-database', 'dataset_spatial_ids': dataset.get('spatial_ids', []), 'documented_ids': dataset.get('documented_ids', []), 'creators': dataset.get('creators', []), 'contributors': dataset.get('contributors', []), 'citation': dataset.get('citation', ''), 'license': dataset.get('license_summary', ''), 'license_summary': dataset.get('license_summary', ''), 'access': dataset.get('access_restriction', ''), 'access_restriction': dataset.get('access_restriction', ''), 'dataset_parent_arche_id': dataset.get('parent_id'), 'dataset_size_bytes': dataset.get('size_bytes', 0), 'dataset_formatted_size': dataset.get('formatted_size', '0 B'), 'uri': dataset.get('uri', f'{ARCHE_API_BASE}{aid}')}, role='dataset', prefer_incoming=dataset_prefer)
+    epochs = [{'id': 'epc_roman', 'label': 'Römische Kaiserzeit', 'type': 'epoch', 'type_label': 'Zeitepoche', 'uri': 'http://n2t.net/ark:/99152/p0qhb66t32q', 'range': '15 v. Chr. – 476 n. Chr.', 'color': '#5A6B7C', 'icon': 'fa-hourglass-half', 'roles': ['curated-helper']}, {'id': 'epc_early_medieval', 'label': 'Frühmittelalter', 'type': 'epoch', 'type_label': 'Zeitepoche', 'uri': 'http://n2t.net/ark:/99152/p0qhb66h52w', 'range': 'ca. 500 – 1050 n. Chr.', 'color': '#5A6B7C', 'icon': 'fa-clock', 'roles': ['curated-helper']}]
+    subjects = [{'id': 'sbj_arch_data', 'label': 'Archäologische Daten', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-tag', 'roles': ['curated-helper']}, {'id': 'sbj_fieldwork', 'label': 'Grabungsdokumentation', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-book-open', 'roles': ['curated-helper']}, {'id': 'sbj_roman_arch', 'label': 'Römische Archäologie', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-monument', 'roles': ['curated-helper']}, {'id': 'sbj_dh', 'label': 'Digitale Geisteswissenschaften', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-laptop-code', 'roles': ['curated-helper']}, {'id': 'sbj_dig_arch', 'label': 'Dokumentarfotografien', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-camera', 'roles': ['curated-helper']}, {'id': 'sbj_reprografie', 'label': 'Reprografien & Aufmaße', 'type': 'subject', 'type_label': 'Fachschlagwort', 'color': '#7E6B8F', 'icon': 'fa-pen-ruler', 'roles': ['curated-helper']}]
+    licenses = [{'id': 'lic_inc', 'label': 'In Copyright (InC 1.0)', 'type': 'license', 'type_label': 'Lizenz / Nutzungsrechte', 'desc': 'Urheberrechtlich geschützte Archivbestände des kärnten.museums und ÖAI.', 'color': '#437F97', 'icon': 'fa-shield-halved', 'roles': ['curated-helper']}, {'id': 'lic_ccby', 'label': 'Creative Commons Attribution 4.0 (CC BY 4.0)', 'type': 'license', 'type_label': 'Open Access Lizenz', 'desc': 'Open Access Forschungsdaten des Go!Digital-Projekts IUENNA.', 'color': '#3D7068', 'icon': 'fa-creative-commons', 'roles': ['curated-helper']}]
+    for helper in epochs + subjects + licenses:
+        registry.add(helper)
+    node_id_map = dict(registry.arche_to_node_id)
+    final_arche_counts = Counter((str(node.get('arche_id')) for node in registry.nodes_by_id.values() if node.get('arche_id')))
+    duplicate_arche_ids_final = sorted((aid for aid, count in final_arche_counts.items() if count > 1))
+    if duplicate_arche_ids_final:
+        raise RuntimeError('Canonical node invariant violated; duplicate ARCHE IDs remain: ' + ', '.join(duplicate_arche_ids_final[:20]))
+    print(f'[✓] PASS 1 complete: {len(registry.nodes_by_id)} canonical nodes; {len(source_role_overlaps)} source-role overlaps merged.')
+    edges = EdgeRegistry()
+    for col in collections:
+        aid = str(col['arche_id'])
+        source = node_id_map.get(aid)
+        parent_aid = str(col.get('parent_id')) if col.get('parent_id') else None
+        parent = node_id_map.get(parent_aid) if parent_aid else None
+        provenance_edge(edges, source, parent, 'isPartOf', 'IUENNA-collection-index', 'curated', derivation={'source': 'arche_collections_tree.json'})
+        meta = collection_meta.get(aid, col)
+        direct_spatial = ordered_unique(meta.get('spatial_ids', []))
+        aggregated_spatial = ordered_unique(list(meta.get('item_spatial_ids', [])) + list(col.get('item_spatial_ids', [])))
+        for sid in direct_spatial:
+            provenance_edge(edges, source, node_id_map.get(sid), 'hasSpatialCoverage', 'IUENNA-collection-index', 'curated', derivation={'source': 'collection.spatial_ids'})
+        for sid in aggregated_spatial:
+            provenance_edge(edges, source, node_id_map.get(sid), 'hasSpatialCoverage', 'IUENNA-derived', 'aggregated', derivation={'method': 'aggregated-from-children', 'source': 'item_spatial_ids'})
+        for relation_name, key in (('hasCreator', 'creators'), ('hasContributor', 'contributors')):
+            for entity in col_creators.get(aid, {}).get(key, []):
+                target_aid = str(entity.get('arche_id') or '')
+                target = node_id_map.get(target_aid) or entity.get('id')
+                provenance_edge(edges, source, target if target in registry.nodes_by_id else None, relation_name, 'IUENNA-resolved-index', 'curated', derivation={'source': 'arche_collection_creators.json'})
+    for resource in corpus:
+        aid = str(resource.get('arche_id'))
+        source = node_id_map.get(aid)
+        parent_aid = str(resource.get('col')) if resource.get('col') else None
+        parent = node_id_map.get(parent_aid) if parent_aid else node_id_map.get(TOP_COLLECTION_ID)
+        provenance_edge(edges, source, parent, 'isPartOf', 'ARCHE-corpus', 'asserted', derivation={'source': 'arche_corpus.json', 'field': 'col'})
+        direct_spatial = ordered_unique(resource.get('spatial_ids_direct', []))
+        inherited_spatial = ordered_unique(resource.get('spatial_ids_inherited', []))
+        effective_spatial = ordered_unique(resource.get('spatial_ids', []))
+        if not direct_spatial and (not inherited_spatial) and effective_spatial:
+            if resource.get('spatial_relation_status') == 'asserted':
+                direct_spatial = effective_spatial
+            elif resource.get('spatial_relation_status') == 'inherited':
+                inherited_spatial = effective_spatial
+            else:
+                inherited_spatial = effective_spatial
+        for sid in direct_spatial:
+            provenance_edge(edges, source, node_id_map.get(sid), 'hasSpatialCoverage', 'ARCHE-corpus', 'asserted', derivation={'source': 'resource.hasSpatialCoverage'})
+        for sid in inherited_spatial:
+            provenance_edge(edges, source, node_id_map.get(sid), 'hasSpatialCoverage', 'IUENNA-derived', 'inherited', derivation={'method': 'inherited-from-parent', 'inherited_from': resource.get('spatial_inherited_from') or parent_aid})
+    for aid, person in persons.items():
+        source = node_id_map.get(str(aid))
+        aff_aid = str(person.get('affiliation_id')) if person.get('affiliation_id') else None
+        provenance_edge(edges, source, node_id_map.get(aff_aid) if aff_aid else None, 'isMemberOf', 'IUENNA-resolved-index', 'curated', derivation={'source': 'arche_resolved_entities.json'})
+    for aid, org in organisations.items():
+        source = node_id_map.get(str(aid))
+        parent_aid = str(org.get('parent_org_id')) if org.get('parent_org_id') else None
+        provenance_edge(edges, source, node_id_map.get(parent_aid) if parent_aid else None, 'isMemberOf', 'IUENNA-resolved-index', 'curated', derivation={'source': 'arche_resolved_entities.json'})
+    for aid, pub in publications.items():
+        source = node_id_map.get(str(aid))
+        for author_aid in pub.get('author_ids', []):
+            provenance_edge(edges, source, node_id_map.get(str(author_aid)), 'hasAuthor', 'IUENNA-publication-index', 'curated', derivation={'source': 'arche_publications.json'})
+        for documented_aid in pub.get('documents', []):
+            provenance_edge(edges, source, node_id_map.get(str(documented_aid)), 'documents', 'IUENNA-publication-index', 'curated', derivation={'source': 'arche_publications.json'})
+    for aid, dataset in datasets_data.items():
+        source = node_id_map.get(str(aid))
+        parent_aid = str(dataset.get('parent_id')) if dataset.get('parent_id') else None
+        provenance_edge(edges, source, node_id_map.get(parent_aid) if parent_aid else None, 'isPartOf', 'IUENNA-dataset-index', 'curated', derivation={'source': 'arche_datasets.json'})
+        for creator_aid in dataset.get('creator_ids', []):
+            provenance_edge(edges, source, node_id_map.get(str(creator_aid)), 'hasCreator', 'IUENNA-dataset-index', 'curated', derivation={'source': 'arche_datasets.json'})
+        for contributor_aid in dataset.get('contributor_ids', []):
+            provenance_edge(edges, source, node_id_map.get(str(contributor_aid)), 'hasContributor', 'IUENNA-dataset-index', 'curated', derivation={'source': 'arche_datasets.json'})
+        for sid in dataset.get('spatial_ids', []):
+            provenance_edge(edges, source, node_id_map.get(str(sid)), 'hasSpatialCoverage', 'IUENNA-dataset-index', 'curated', derivation={'source': 'arche_datasets.json'})
+    ttl_triples = parse_arche_relation_triples(ttl_file)
+    unresolved_source_ids: Set[str] = set()
+    unresolved_target_ids: Set[str] = set()
+    resolvable_ttl_triples: Set[Tuple[str, str, str]] = set()
+    if ttl_triples:
+        print(f'[*] Injecting {len(ttl_triples)} unique ARCHE object triples...')
+        for source_aid, pred, target_aid in sorted(ttl_triples):
+            source = node_id_map.get(source_aid)
+            target = node_id_map.get(target_aid)
+            if not source:
+                unresolved_source_ids.add(source_aid)
+                continue
+            if not target:
+                unresolved_target_ids.add(target_aid)
+                continue
+            resolvable_ttl_triples.add((source_aid, pred, target_aid))
+            provenance_edge(edges, source, target, pred, 'ARCHE-direct', 'asserted', derivation={'source': 'arche_full_metadata.ttl'})
+        print(f'[✓] ARCHE pass: {len(resolvable_ttl_triples)} resolvable triples; {len(unresolved_source_ids)} unresolved sources; {len(unresolved_target_ids)} unresolved targets.')
+    else:
+        print('[!] arche_full_metadata.ttl not present or no target triples extracted; TTL audit disabled.')
+    root_id = node_id_map.get(TOP_COLLECTION_ID, 'iuenna_root')
+    for helper in epochs:
+        edges.add(root_id, helper['id'], 'hasTemporalCoverage', predicate=f'{SCHEMA_BASE}hasTemporalCoverage', provenance='IUENNA-curated', relation_status='curated', semantic=False, derivation={'method': 'curated-helper'})
+    for helper in subjects:
+        edges.add(root_id, helper['id'], 'hasSubject', predicate=f'{SCHEMA_BASE}hasSubject', provenance='IUENNA-curated', relation_status='curated', semantic=False, derivation={'method': 'curated-helper'})
+    for helper in licenses:
+        edges.add(root_id, helper['id'], 'hasLicense', predicate=f'{SCHEMA_BASE}hasLicense', provenance='IUENNA-curated', relation_status='curated', semantic=False, derivation={'method': 'curated-helper'})
+    place_node_ids = {node_id_map[str(aid)] for aid in places_data if str(aid) in node_id_map}
+    connected_places = {edge['target'] for edge in edges.by_triple.values() if edge['target'] in place_node_ids} | {edge['source'] for edge in edges.by_triple.values() if edge['source'] in place_node_ids}
+    for place_node in sorted(place_node_ids - connected_places):
+        edges.add(root_id, place_node, 'connectedForNavigation', predicate='https://iuenna.github.io/vocab#connectedForNavigation', provenance='IUENNA-navigation', relation_status='synthetic', semantic=False, derivation={'method': 'layout-connectivity-fallback'})
+    node_ids = set(registry.nodes_by_id)
+    all_edges = list(edges.by_triple.values())
+    dangling = [edge for edge in all_edges if edge['source'] not in node_ids or edge['target'] not in node_ids]
+    if dangling:
+        for edge in dangling:
+            edges.by_triple.pop((edge['source'], edge['target'], edge['label']), None)
+    macro_ids = {node_id for node_id, node in registry.nodes_by_id.items() if 'resource' not in node.get('roles', []) or 'dataset' in node.get('roles', [])}
+    macro_graph = nx.Graph()
+    macro_graph.add_nodes_from(macro_ids)
+    for edge in edges.by_triple.values():
+        if edge['source'] in macro_ids and edge['target'] in macro_ids:
+            macro_graph.add_edge(edge['source'], edge['target'])
+    print(f'[*] Computing macro layout for {len(macro_ids)} structural nodes...')
+    pos_macro = nx.spring_layout(macro_graph, k=0.18, iterations=60, seed=42)
+    scale = 3500.0
+    macro_positions = {node_id: (coords[0] * scale, coords[1] * scale) for node_id, coords in pos_macro.items()}
+    cytoscape_nodes = registry.as_cytoscape_nodes()
+    cytoscape_by_id = {item['data']['id']: item for item in cytoscape_nodes}
+    for node_id, (x, y) in macro_positions.items():
+        cytoscape_by_id[node_id]['position'] = {'x': round(x, 1), 'y': round(y, 1)}
+    resources_by_parent: Dict[str, List[str]] = defaultdict(list)
+    for aid, resource in ((str(r.get('arche_id')), r) for r in corpus):
+        node_id = node_id_map.get(aid)
+        if not node_id:
+            continue
+        roles = registry.nodes_by_id[node_id].get('roles', [])
+        if 'dataset' in roles:
+            continue
+        parent = registry.nodes_by_id[node_id].get('parent_col') or root_id
+        resources_by_parent[parent].append(node_id)
+    for parent, resource_ids in resources_by_parent.items():
+        cx, cy = macro_positions.get(parent, (0.0, 0.0))
+        for i, node_id in enumerate(resource_ids):
             theta = i * 2.3999632
             radius = 35.0 + 14.0 * math.sqrt(i + 1)
-            rx = cx + radius * math.cos(theta)
-            ry = cy + radius * math.sin(theta)
-
-            size_b = r.get("size_bytes", 0)
-            res_node = {
-                "data": {
-                    "id": rid,
-                    "arche_id": str(arche_id),
-                    "label": r.get("title") or r.get("filename") or rid,
-                    "title": r.get("title") or r.get("filename") or rid,
-                    "filename": r.get("filename", ""),
-                    "type": "resource",
-                    "type_label": t_lbl,
-                    "ftype": ftype,
-                    "parent_col": col_id,
-                    "pid": r.get("pid", ""),
-                    "place": r.get("place", ""),
-                    "spatial_ids": r.get("spatial_ids", []),
-                    "subjs": r.get("subjs", []),
-                    "path": r.get("path", []),
-                    "date": r.get("date", ""),
-                    "size_bytes": size_b,
-                    "formatted_size": format_size(size_b),
-                    "thumb_url": r.get("thumb_url", ""),
-                    "coords": r.get("coords"),
-                    "description": r.get("description", ""),
-                    "color": col,
-                    "icon": icon
-                },
-                "position": {
-                    "x": round(rx, 1),
-                    "y": round(ry, 1)
-                }
-            }
-            nodes.append(res_node)
-            added_res_count += 1
-
-            # 1. isPartOf edge to parent collection
-            add_edge({
-                "id": f"edge_{rid}_partof_{col_id}",
-                "source": rid,
-                "target": col_id,
-                "label": "isPartOf",
-                "predicate": "arche:isPartOf"
-            })
-
-            # 2. hasSpatialCoverage edges to places
-            for sid in r.get("spatial_ids", []):
-                plc_target = f"plc_{sid}"
-                if plc_target in place_node_ids:
-                    add_edge({
-                        "id": f"edge_{rid}_spat_{sid}",
-                        "source": rid,
-                        "target": plc_target,
-                        "label": "hasSpatialCoverage",
-                        "predicate": "arche:hasSpatialCoverage"
-                    })
-                    added_res_spatial_edges += 1
-
-    print(f"[✓] Added {added_res_count} resource nodes and {added_res_spatial_edges} spatial coverage edges.")
-
-    # Ensure 100% graph referential integrity: no edge can reference a non-existent node
-    node_id_set = set(n["data"]["id"] for n in nodes)
-    valid_edges = [e for e in edges if e["data"]["source"] in node_id_set and e["data"]["target"] in node_id_set]
-    edges = valid_edges
-
-    # 9. Assemble Graph Payload
-    graph_payload = {
-        "metadata": {
-            "title": "IUENNA Complete ARCHE Knowledge Graph",
-            "arche_uri": "https://id.acdh.oeaw.ac.at/iuenna",
-            "top_collection_id": "1792170",
-            "pid": "https://hdl.handle.net/21.11115/0000-0016-7B39-F",
-            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "total_nodes": len(nodes),
-            "total_edges": len(edges),
-            "total_collections": len(collections),
-            "total_datasets": len(datasets_data),
-            "total_persons": len(persons),
-            "total_organisations": len(organisations),
-            "total_publications": len(publications),
-            "total_places": len(places_data),
-            "total_items": 20788,
-            "total_resources": added_res_count,
-            "total_size": "356.68 GB",
-            "duration_seconds": round(time.time() - start_time, 3)
-        },
-        "elements": {
-            "nodes": nodes,
-            "edges": edges
-        }
-    }
-
-    out_file = os.path.join(data_dir, "arche_graph.json")
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(graph_payload, f, ensure_ascii=False)
-
-    print(f"[✓] Knowledge Graph successfully generated: {out_file}")
-    print(f"[✓] Summary: {len(nodes)} Nodes, {len(edges)} Edges | Collections: {len(collections)} | Datasets: {len(datasets_data)} | Resources: {added_res_count} | Persons: {len(persons)} | Orgs: {len(organisations)} | Pubs: {len(publications)} | Places: {len(places_data)}")
+            cytoscape_by_id[node_id]['position'] = {'x': round(cx + radius * math.cos(theta), 1), 'y': round(cy + radius * math.sin(theta), 1)}
+    cytoscape_edges = edges.as_cytoscape_edges()
+    graph_asserted_arche_triples = set()
+    for source_aid, pred, target_aid in resolvable_ttl_triples:
+        source = node_id_map[source_aid]
+        target = node_id_map[target_aid]
+        edge = edges.by_triple.get((source, target, pred))
+        if edge and 'ARCHE-direct' in edge.get('provenance_sources', []):
+            graph_asserted_arche_triples.add((source_aid, pred, target_aid))
+    predicate_audit = {}
+    for pred in sorted(TTL_TARGET_PREDS):
+        ttl_for_pred = {t for t in ttl_triples if t[1] == pred}
+        resolvable_for_pred = {t for t in resolvable_ttl_triples if t[1] == pred}
+        graph_for_pred = {t for t in graph_asserted_arche_triples if t[1] == pred}
+        predicate_audit[pred] = {'ttl_triples': len(ttl_for_pred), 'resolvable_ttl_triples': len(resolvable_for_pred), 'graph_asserted_edges': len(graph_for_pred), 'recall_of_resolvable': round(len(graph_for_pred) / len(resolvable_for_pred), 6) if resolvable_for_pred else None}
+    role_counts = Counter()
+    type_counts = Counter()
+    for node in registry.nodes_by_id.values():
+        type_counts[str(node.get('type', 'unknown'))] += 1
+        for role in node.get('roles', []):
+            role_counts[role] += 1
+    provenance_counts = Counter((edge['provenance'] for edge in edges.by_triple.values()))
+    status_counts = Counter((edge['relation_status'] for edge in edges.by_triple.values()))
+    label_counts = Counter((edge['label'] for edge in edges.by_triple.values()))
+    final_arche_node_count = sum((1 for node in registry.nodes_by_id.values() if node.get('arche_id')))
+    helper_node_count = len(registry.nodes_by_id) - final_arche_node_count
+    audit = {'generated_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'status': 'pass', 'invariants': {'one_arche_id_one_node': len(duplicate_arche_ids_final) == 0, 'no_dangling_edges': len(dangling) == 0, 'all_resolvable_ttl_relations_preserved': len(graph_asserted_arche_triples) == len(resolvable_ttl_triples) if ttl_triples else None}, 'inputs': {'collections': len(collections), 'resources': len(corpus), 'datasets': len(datasets_data), 'persons': len(persons), 'organisations': len(organisations), 'publications': len(publications), 'places': len(places_data), 'unique_arche_ids_across_input_roles': len(input_role_index), 'source_role_overlaps': source_role_overlaps, 'source_role_overlap_count': len(source_role_overlaps)}, 'graph': {'nodes': len(registry.nodes_by_id), 'arche_backed_nodes': final_arche_node_count, 'curated_helper_nodes': helper_node_count, 'edges': len(edges.by_triple), 'node_role_counts': dict(sorted(role_counts.items())), 'node_type_counts': dict(sorted(type_counts.items())), 'edge_label_counts': dict(sorted(label_counts.items())), 'edge_provenance_counts': dict(sorted(provenance_counts.items())), 'edge_relation_status_counts': dict(sorted(status_counts.items())), 'duplicate_arche_ids_final': duplicate_arche_ids_final, 'dangling_edges_removed': len(dangling)}, 'ttl_semantics': {'ttl_available': os.path.exists(ttl_file), 'target_predicates': sorted(TTL_TARGET_PREDS), 'unique_target_triples': len(ttl_triples), 'resolvable_target_triples': len(resolvable_ttl_triples), 'graph_asserted_target_edges': len(graph_asserted_arche_triples), 'unresolved_source_ids': sorted(unresolved_source_ids), 'unresolved_target_ids': sorted(unresolved_target_ids), 'predicate_audit': predicate_audit}}
+    if duplicate_arche_ids_final or dangling:
+        audit['status'] = 'fail'
+    if ttl_triples and len(graph_asserted_arche_triples) != len(resolvable_ttl_triples):
+        audit['status'] = 'fail'
+    graph_payload = {'metadata': {'title': 'IUENNA ARCHE Knowledge Graph', 'description': 'Provenance-aware graph projection of IUENNA ARCHE metadata for discovery and exploration.', 'arche_uri': 'https://id.acdh.oeaw.ac.at/iuenna', 'top_collection_id': TOP_COLLECTION_ID, 'pid': 'https://hdl.handle.net/21.11115/0000-0016-7B39-F', 'generated_at': audit['generated_at'], 'total_nodes': len(registry.nodes_by_id), 'total_edges': len(edges.by_triple), 'total_arche_entities': final_arche_node_count, 'total_collections': len(collections), 'total_datasets': len(datasets_data), 'total_dataset_nodes': role_counts.get('dataset', 0), 'total_resources': role_counts.get('resource', 0), 'total_persons': len(persons), 'total_organisations': len(organisations), 'total_publications': len(publications), 'total_places': len(places_data), 'source_role_overlap_count': len(source_role_overlaps), 'ttl_semantic_recall': round(len(graph_asserted_arche_triples) / len(resolvable_ttl_triples), 6) if resolvable_ttl_triples else None, 'total_size': '356.68 GB', 'duration_seconds': round(time.time() - started, 3)}, 'elements': {'nodes': cytoscape_nodes, 'edges': cytoscape_edges}}
+    out_file = os.path.join(data_dir, 'arche_graph.json')
+    audit_file = os.path.join(data_dir, 'arche_graph_audit.json')
+    with open(out_file, 'w', encoding='utf-8') as fh:
+        json.dump(graph_payload, fh, ensure_ascii=False)
+    with open(audit_file, 'w', encoding='utf-8') as fh:
+        json.dump(audit, fh, ensure_ascii=False, indent=2)
+    print(f'[✓] Knowledge Graph written to {out_file}')
+    print(f"[✓] Graph audit written to {audit_file} (status={audit['status']})")
+    print(f"[✓] Summary: {len(registry.nodes_by_id)} nodes, {len(edges.by_triple)} edges | resources={role_counts.get('resource', 0)} | datasets={role_counts.get('dataset', 0)} | merged source-role overlaps={len(source_role_overlaps)}")
+    if audit['status'] != 'pass':
+        raise RuntimeError('Graph audit failed; inspect data/arche_graph_audit.json')
     return graph_payload
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     build_graph()
