@@ -73,10 +73,12 @@ def main() -> None:
             path.write_text(text, encoding="utf-8")
             changed.append(str(path.relative_to(ROOT)))
 
+    # This stage only guards the legacy claims it owns. Broader BYOAI/llms/OpenAPI
+    # wording is normalized immediately afterwards by sync_graph_metadata.py and
+    # validated again by build_ai_stack.py.
     forbidden = (
         "20,788 digital resources",
         "20,788 repository records",
-        "20,788 ARCHE records",
     )
     for path in TEXT_TARGETS:
         if not path.exists():
