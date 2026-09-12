@@ -62,9 +62,38 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNav);
-  } else {
+  function ensureRepositoryFooterLink() {
+    const repositoryUrl = 'https://github.com/IUENNA/IUENNA.github.io';
+
+    document.querySelectorAll('footer').forEach(function (footer) {
+      if (footer.querySelector('a[href="' + repositoryUrl + '"]')) return;
+
+      const projectLink = Array.from(footer.querySelectorAll('a')).find(function (link) {
+        return link.textContent.trim() === 'IUENNA Project';
+      });
+
+      if (!projectLink) return;
+
+      const separator = document.createTextNode(' | ');
+      const repositoryLink = document.createElement('a');
+      repositoryLink.href = repositoryUrl;
+      repositoryLink.target = '_blank';
+      repositoryLink.rel = 'noopener noreferrer';
+      repositoryLink.textContent = 'GitHub Repository';
+
+      projectLink.insertAdjacentText('afterend', ' | ');
+      projectLink.nextSibling.after(repositoryLink);
+    });
+  }
+
+  function init() {
     initNav();
+    ensureRepositoryFooterLink();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();
