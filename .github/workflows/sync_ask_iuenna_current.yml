@@ -1,0 +1,44 @@
+name: Synchronize Ask IUENNA current state
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/sync_ask_iuenna_current.py'
+      - '.github/workflows/sync_ask_iuenna_current.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Synchronize implementation and documentation
+        run: |
+          python scripts/sync_ask_iuenna_current.py
+          python scripts/enable_ask_iuenna_sitewide.py
+      - name: Validate current state
+        run: |
+          node --check scripts/iuenna-chat.js
+          python -m py_compile scripts/sync_ask_iuenna_current.py scripts/enable_ask_iuenna_sitewide.py scripts/refresh_site_ui.py scripts/generate_graph_html.py
+          grep -q 'Ask IUENNA' scripts/iuenna-chat.js
+          grep -q 'arche_search_index.json' scripts/iuenna-chat.js
+          ! grep -q 'formatArchaeologicalSummary' scripts/iuenna-chat.js
+          grep -q 'graph/graph.html' scripts/enable_ask_iuenna_sitewide.py
+          grep -q 'Ask IUENNA – siteweite ARCHE-Metadatensuche' DOKUMENTATION.md
+          grep -q 'Hagmann, D., &amp; Waldhart, F. (Eds.). (2025).' byoai.html
+          grep -q 'Ask IUENNA (clientseitige Metadatensuche)' impressum-datenschutz.html
+          grep -q 'scripts/iuenna-chat.js?v=3.0.0' graph/graph.html
+      - name: Commit synchronized state and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/sync_ask_iuenna_current.yml
+          git add scripts/iuenna-chat.js scripts/enable_ask_iuenna_sitewide.py scripts/sync_ask_iuenna_current.py scripts/refresh_site_ui.py scripts/generate_graph_html.py DOKUMENTATION.md impressum-datenschutz.html impressum-datenschutz.md byoai.html index.html styles.css wma/wma.html wma/genai-wma-home.html wma/qgis2web-home.html graph/index.html graph/graph.html
+          git commit -m "refactor(assistant): align Ask IUENNA provenance, privacy and site coverage"
+          git pull --rebase origin main
+          git push origin HEAD:main
