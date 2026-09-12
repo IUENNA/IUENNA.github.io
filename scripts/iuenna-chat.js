@@ -66,15 +66,15 @@
   const STOPWORDS = new Set([
     'a','an','and','any','are','as','at','be','by','can','could','do','does','for','from','give','how','i','in','is','it','me','of','on','or','please','show','tell','the','there','to','us','was','were','what','where','which','who','with','would','you',
     'aber','als','am','an','auch','auf','aus','bei','bitte','da','das','dass','dem','den','der','des','die','dort','du','ein','eine','einem','einen','einer','eines','er','es','für','gib','gibt','haben','hat','hier','ich','im','in','ist','kann','können','man','mehr','mir','mit','nach','noch','oder','sag','sie','sind','so','über','um','und','uns','von','vom','war','was','welche','welcher','welches','wer','wie','wir','wo','zu','zum','zur'
-  ]);
+  ].map(normalize));
 
   const FOLLOWUP_WORDS = new Set([
     'also','and','auch','dazu','davon','diese','diesem','diesen','dort','mehr','more','other','related','them','there','these','those','weitere','weiteres','whatabout'
-  ]);
+  ].map(normalize));
 
   const FILE_HINTS = new Set([
     'archive','archived','bild','bilder','datei','dateien','document','documents','file','files','foto','fotos','image','images','plan','plans','photo','photograph','photographs','scan','scans','tif','tiff','jpg','jpeg','pdf','geopackage','gpkg','dxf','xlsx','csv','txt'
-  ]);
+  ].map(normalize));
 
   const SYNONYM_GROUPS = [
     ['foto','fotos','photo','photos','photograph','photographs','image','images','bild','bilder'],
@@ -90,7 +90,8 @@
   const SYNONYM_MAP = (() => {
     const map = new Map();
     SYNONYM_GROUPS.forEach(group => {
-      group.forEach(term => map.set(term, group));
+      const normalizedGroup = group.map(normalize);
+      normalizedGroup.forEach(term => map.set(term, normalizedGroup));
     });
     return map;
   })();
@@ -443,8 +444,6 @@
     dialogueState.lastResultKind = 'resource';
     dialogueState.lastArcheUrl = archeUrlForResource(item);
     dialogueState.lastCreators = [];
-    dialogueState.lastLat = null;
-    dialogueState.lastLon = null;
     persistDialogueState();
   }
 
@@ -665,6 +664,10 @@
       appendMessage(`<p><strong>${escapeHtml(label)}</strong> can be opened directly in IUENNA Web Mapping.</p>${renderContextNotice(query, resolvedQuery)}<p style="margin-top:8px;"><a class="btn btn-secondary" style="padding:6px 10px;font-size:.75rem;" href="${href}"><i class="fa-solid fa-map-location-dot"></i> Open Web Mapping</a></p>`, 'bot');
       return true;
     }
+    if (intent === 'creator' && dialogueState.lastResultKind === 'resource') {
+      appendMessage(`<p><strong>Creator metadata is not included in the compact file-discovery index.</strong></p><p style="font-size:.78rem;margin-top:5px;">Open the linked ARCHE record for the file-level source metadata, or ask for people related to ${escapeHtml(contextLabel() || 'the current context')}.</p>`, 'bot');
+      return true;
+    }
     if (intent === 'creator' && dialogueState.lastResultKind === 'entity' && dialogueState.lastCreators && dialogueState.lastCreators.length) {
       const label = contextLabel() || dialogueState.lastEntityLabel || 'current record';
       appendMessage(`<p><strong>Creator / author metadata for ${escapeHtml(label)}</strong></p><p style="margin-top:6px;">${escapeHtml(dialogueState.lastCreators.join(', '))}</p>${renderContextNotice(query, resolvedQuery)}<p style="font-size:.7rem;color:var(--text-muted);margin-top:8px;">This is metadata from the previously matched ARCHE-derived record, not an inferred attribution.</p>`, 'bot');
@@ -677,7 +680,8 @@
     const input = document.getElementById('chat-input-field');
     const query = (input.value || '').trim();
     if (!query) return;
-    const intent = detectIntent(query);
+    let intent = detectIntent(query);
+    if (intent === 'discover' && dialogueState.lastResultKind === 'resource' && looksLikeFollowUp(query)) intent = 'find_files';
     const resolvedQuery = resolveQuery(query, intent);
     appendMessage(`<p>${escapeHtml(query)}</p>`, 'user');
     input.value = '';
