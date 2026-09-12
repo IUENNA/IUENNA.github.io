@@ -703,29 +703,29 @@
     "id": "qa_person_elke_profant",
     "lang": "de",
     "category": "Forschungsgeschichte & Personen",
-    "question": "Wer ist Elke Profant und welche Bedeutung haben ihre numismatischen Arbeiten für IUENNA?",
+    "question": "Wer ist Elke Profant und welchen Beitrag leistet sie im IUENNA-Projekt?",
     "variations": [
       "Wer ist Elke Profant?",
       "Elke Profant",
-      "Numismatik Elke Profant",
-      "Profant Münzschatz Globasnitz",
-      "Was hat Elke Profant erforscht?"
+      "Forschung Elke Profant",
+      "Was hat Elke Profant erforscht?",
+      "Elke Profant ÖAI"
     ],
-    "answer": "Elke Profant ist Forscherin und Numismatikerin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW, die maßgeblich an der Aufarbeitung und numismatischen Katalogisierung von Fundmünzen des Jauntals beteiligt ist. Gemeinsam mit Franziska Reiner publizierte sie die umfassende numismatische Neubearbeitung des 1946 geborgenen Hortfundes von 322 römischen Münzen aus Globasnitz ('Der spätantike Münzhort von Globasnitz / Iuenna', 2025). Ihre numismatischen Analysen sind ein wesentlicher Schlüssel zum Verständnis der spätantiken Geldwirtschaft und Chronologie des vicus.",
+    "answer": "Elke Profant ist Forscherin am Österreichischen Archäologischen Institut (ÖAI) der ÖAW. Im Rahmen des Projekts IUENNA erforschte sie gemeinsam mit Franziska Reiner die zerstörungsfreie geophysikalische Prospektion im Jauntal (Reiner & Profant 2025: 'Iuenna und Umgebung − Geophysikalische Prospektion im Jauntal') und ist als Co-Autorin an der Aufbereitung der offenen Geodaten (tal_geodaten_open.gpkg) in ARCHE beteiligt.",
     "citations": [
       "Reiner & Profant (2025)",
-      "Hagmann & Reiner (2023)"
+      "Gugl et al. (2025)"
     ],
     "keywords": [
       "elke profant",
       "profant",
-      "numismatik",
-      "münzen",
-      "hortfund",
-      "322 münzen",
-      "globasnitz",
-      "reiner",
-      "geldwirtschaft"
+      "geophysik",
+      "prospektion",
+      "geodaten",
+      "geopackage",
+      "öai",
+      "öaw",
+      "jauntal"
     ],
     "graph_node_id": "per_1756742"
   },
@@ -861,7 +861,7 @@
       "Reiner IUENNA",
       "Was forscht Franziska Reiner?"
     ],
-    "answer": "Franziska Reiner (geb. Waldhart) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan), die numismatische Erschließung spätantiker Münzfunde (u. a. des 322 Münzen umfassenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE.",
+    "answer": "Franziska Reiner (geb. Waldhart) ist Archäologin und Forscherin am Österreichischen Archäologischen Institut (ÖAI / ÖAW) und Co-Leiterin des Projekts IUENNA. Ihre Forschungsschwerpunkte umfassen die geophysikalische Prospektion im Jauntal (mit Georadar und Geomagnetik in Globasnitz und St. Stefan; Reiner & Profant 2025), die Dokumentation spätantiker und frühmittelalterlicher Fundkomplexe sowie die Datenstandardisierung, Kuration und Langzeitarchivierung der über 20.000 Jauntaler Primärressourcen in ARCHE.",
     "citations": [
       "Hagmann & Reiner (2023)",
       "Reiner & Profant (2025)",
@@ -878,7 +878,6 @@
       "öai",
       "öaw",
       "geophysik",
-      "numismatik",
       "prospektion",
       "arche"
     ],
@@ -1029,9 +1028,8 @@
       "322 Münzen Globasnitz",
       "Münzhort Globasnitz 1946"
     ],
-    "answer": "1946 wurde im Ortszentrum von Globasnitz (im Bereich des römischen vicus) ein Hortfund von 322 römischen Münzen geborgen (Reiner & Profant 2025). Der Fundkomplex besteht überwiegend aus Bronzemünzen des 3. und 4. Jahrhunderts n. Chr. und belegt sowohl die florierende Geldwirtschaft an der Kreuzung lokaler Verkehrswege als auch Krisen und Verbergungshorizonte in der Spätantike.",
+    "answer": "1946 wurde im Ortszentrum von Globasnitz (im Bereich des römischen vicus) ein Hortfund von 322 römischen Münzen geborgen (Piccottini 1978). Der Fundkomplex besteht überwiegend aus Bronzemünzen des 3. und 4. Jahrhunderts n. Chr. und belegt sowohl die florierende Geldwirtschaft an der Kreuzung lokaler Verkehrswege als auch Krisen und Verbergungshorizonte in der Spätantike.",
     "citations": [
-      "Reiner & Profant (2025)",
       "Piccottini (1978)"
     ],
     "keywords": [
@@ -1041,8 +1039,8 @@
       "globasnitz",
       "vicus",
       "spätantike",
-      "reiner",
-      "profant"
+      "piccottini",
+      "geldwirtschaft"
     ],
     "graph_node_id": "col_1792169"
   },

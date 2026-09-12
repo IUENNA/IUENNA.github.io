@@ -53,8 +53,6 @@ def load_foundations(path):
                                     elif kw.lower() in ["pollak", "marianne pollak"]:
                                         if "magdalena srienc" not in clean_kw:
                                             clean_kw.append("magdalena srienc")
-                                        if "elke profant" not in clean_kw:
-                                            clean_kw.append("elke profant")
                                     else:
                                         clean_kw.append(kw)
                                 item["keywords"] = clean_kw
