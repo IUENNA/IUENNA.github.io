@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYOAI – Bring Your Own AI | IUENNA Archaeological Research</title>
-    <!-- Favicon / Tab Icon -->
     <link rel="icon" type="image/jpeg" href="media/LOGO_IUENNA.jpg">
     <link rel="apple-touch-icon" href="media/LOGO_IUENNA.jpg">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -19,264 +17,139 @@
     <meta name="DC.creator" content="Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, BYOAI, MCP, Model Context Protocol, OpenAPI, Archaeology, Digital Humanities, Open Science">
-    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces for an authoritative corpus of 20,355 primary resources and a provenance-aware graph projection of 21,071 nodes (21,061 ARCHE-backed entities plus 10 curated helper nodes), with MCP, OpenAPI-style endpoints, llms.txt, and reproducible code recipes.">
+    <meta name="DC.description" content="Bring your own AI to the IUENNA archaeological research repository. Open interfaces for an authoritative corpus of 20,355 primary resources and a provenance-aware graph projection of 21,071 nodes (21,061 ARCHE-backed entities plus 10 curated helper nodes), with a public Remote MCP, OpenAPI-style endpoints, llms.txt, and reproducible code recipes.">
     <meta name="DC.language" content="en">
     <meta name="DC.identifier" content="https://iuenna.github.io/byoai.html">
     <meta name="DC.rights" content="CC BY 4.0">
 
     <style>
-        :root {
-            --code-bg: #1e1e24;
-            --code-text: #e0e2ec;
-        }
+        :root { --code-bg:#1e1e24; --code-text:#e0e2ec; }
         .byoai-hero { text-align:center; padding:3.5rem 1.5rem 2.5rem; max-width:920px; margin:0 auto; }
         .byoai-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(168,68,46,.08); border:1px solid rgba(168,68,46,.2); color:var(--primary); font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:1.2rem; }
         .byoai-title { font-size:clamp(2.2rem,5vw,3.2rem); margin-bottom:1rem; color:var(--text-dark); }
         .byoai-subtitle { font-size:1.15rem; color:var(--text-muted); max-width:820px; margin:0 auto 1.8rem; line-height:1.65; }
-        .pill-container { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:2rem; }
+        .pill-container { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
         .pill-tag { display:inline-flex; align-items:center; gap:6px; background:var(--bg-card); border:1px solid var(--border-color); padding:5px 12px; border-radius:var(--radius-sm); font-size:.82rem; font-weight:600; color:var(--text-dark); box-shadow:var(--shadow-sm); }
-        .pill-tag i { color:var(--secondary); }
         .byoai-section { background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:2.2rem; margin-bottom:2.5rem; box-shadow:var(--shadow-sm); }
         .byoai-section h2 { display:flex; align-items:center; gap:12px; font-size:1.6rem; margin-bottom:.8rem; }
         .byoai-section h2::after { display:none; }
-        .byoai-section-icon { width:42px; height:42px; border-radius:10px; background:var(--bg-main); border:1px solid var(--border-color); display:inline-flex; align-items:center; justify-content:center; color:var(--primary); font-size:1.25rem; flex-shrink:0; }
-        .manifesto-box { background:linear-gradient(135deg,rgba(184,142,62,.08) 0%,rgba(168,68,46,.06) 100%); border-left:4px solid var(--secondary); border-radius:0 var(--radius-md) var(--radius-md) 0; padding:1.4rem 1.8rem; margin:1.5rem 0 2rem; }
-        .manifesto-box p { font-size:1.05rem; color:var(--text-dark); margin:0; font-style:italic; font-family:var(--font-header); line-height:1.6; }
+        .byoai-section-icon { width:42px; height:42px; border-radius:10px; background:var(--bg-main); border:1px solid var(--border-color); display:inline-flex; align-items:center; justify-content:center; color:var(--primary); flex-shrink:0; }
         .code-block-wrapper { position:relative; background:var(--code-bg); border-radius:var(--radius-md); overflow:hidden; margin:1.2rem 0; border:1px solid #2d2d38; }
         .code-header { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; background:#141418; border-bottom:1px solid #2d2d38; font-size:.78rem; color:#9e9ea8; font-family:'JetBrains Mono',monospace; }
-        .copy-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#fff; padding:4px 10px; border-radius:4px; font-size:.75rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
-        .copy-btn:hover { background:rgba(255,255,255,.2); }
-        .copy-btn.copied { background:#2e7d32; border-color:#2e7d32; }
+        .copy-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#fff; padding:4px 10px; border-radius:4px; font-size:.75rem; cursor:pointer; }
         pre.code-content { padding:1.2rem; margin:0; overflow-x:auto; color:var(--code-text); font-family:'JetBrains Mono',monospace; font-size:.87rem; line-height:1.55; }
         .tool-table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:.92rem; }
         .tool-table th,.tool-table td { padding:12px 16px; border:1px solid var(--border-color); text-align:left; vertical-align:top; }
-        .tool-table th { background:var(--bg-main); color:var(--text-dark); font-weight:600; }
-        .tool-table td code { font-family:'JetBrains Mono',monospace; background:var(--bg-main); padding:2px 6px; border-radius:4px; font-size:.85rem; color:var(--primary); border:1px solid var(--border-color); }
-        .endpoint-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; margin:1.5rem 0; }
-        .endpoint-card { background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; }
-        .endpoint-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
-        .endpoint-badge { background:#2e7d32; color:white; font-size:.7rem; font-weight:700; padding:2px 6px; border-radius:3px; letter-spacing:.05em; }
-        .endpoint-title { font-weight:700; font-size:.95rem; color:var(--text-dark); margin:0; }
-        .endpoint-desc { font-size:.84rem; color:var(--text-muted); margin:6px 0 12px; line-height:1.45; }
-        .endpoint-url { font-family:'JetBrains Mono',monospace; font-size:.76rem; background:#fff; padding:6px 10px; border-radius:4px; border:1px solid var(--border-color); word-break:break-all; color:var(--primary); display:flex; justify-content:space-between; align-items:center; }
-        .routing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; margin:1.2rem 0; }
-        .routing-card { border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem 1.1rem; background:var(--bg-main); }
-        .routing-card strong { display:block; margin-bottom:.35rem; color:var(--text-dark); }
-        .routing-card p { margin:0; color:var(--text-muted); font-size:.88rem; line-height:1.5; }
+        .tool-table th { background:var(--bg-main); }
+        .tool-table td code { font-family:'JetBrains Mono',monospace; background:var(--bg-main); padding:2px 6px; border-radius:4px; color:var(--primary); }
         .notice { border-left:4px solid var(--primary); background:var(--bg-main); padding:1rem 1.2rem; margin:1.2rem 0; font-size:.92rem; line-height:1.55; }
+        .endpoint-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px; margin:1.5rem 0; }
+        .endpoint-card { background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.2rem; }
+        .endpoint-card code { word-break:break-all; }
         .nav-link.active { color:var(--primary); font-weight:700; }
     </style>
 </head>
 <body>
-    <header class="nav-header">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
-                <span class="nav-title">IUENNA</span>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <nav class="nav-menu" id="navMenu">
-                <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="wma/wma.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
-                    <li><a href="graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
-                    <li><a href="byoai.html" class="nav-link active"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
-                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color:white;padding:6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
-                </ul>
-            </nav>
+<header class="nav-header">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
+            <span class="nav-title">IUENNA</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="wma/wma.html" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
+                <li><a href="graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
+                <li><a href="byoai.html" class="nav-link active"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
+                <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color:white;padding:6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width:var(--max-width);margin:0 auto;padding:0 1.5rem 4rem;">
+    <div class="byoai-hero">
+        <div class="byoai-badge"><i class="fa-solid fa-network-wired"></i> Public Remote MCP</div>
+        <h1 class="byoai-title">BYOAI: Bring Your Own AI</h1>
+        <p class="byoai-subtitle">Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> alongside a provenance-aware Knowledge Graph with <strong>21,071 nodes</strong>, including <strong>21,061 ARCHE-backed entities</strong> and 10 curated helper nodes, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client or research script.</p>
+        <div class="pill-container">
+            <span class="pill-tag"><i class="fa-solid fa-cloud"></i> Remote MCP 2.0</span>
+            <span class="pill-tag"><i class="fa-solid fa-globe"></i> Public HTTPS</span>
+            <span class="pill-tag"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</span>
+            <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
+            <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> PID-first provenance</span>
         </div>
-    </header>
+    </div>
 
-    <main style="max-width:var(--max-width);margin:0 auto;padding:0 1.5rem 4rem;">
-        <div class="byoai-hero">
-            <div class="byoai-badge"><i class="fa-solid fa-code-branch"></i> Open Interfaces &amp; Data Sovereignty</div>
-            <h1 class="byoai-title">BYOAI: Bring Your Own AI</h1>
-            <p class="byoai-subtitle">
-                Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> alongside a provenance-aware Knowledge Graph with <strong>21,071 nodes</strong>, including <strong>21,061 ARCHE-backed entities</strong> and 10 curated helper nodes, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client, local agent, or research script.
-            </p>
-            <div class="pill-container">
-                <span class="pill-tag"><i class="fa-solid fa-bolt"></i> MCP v1.2</span>
-                <span class="pill-tag"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</span>
-                <span class="pill-tag"><i class="fa-solid fa-server"></i> OpenAPI 3.1 &amp; JSON</span>
-                <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
-                <span class="pill-tag"><i class="fa-solid fa-laptop-code"></i> Local AI compatible</span>
-                <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> PID-first provenance</span>
-            </div>
+    <section class="byoai-section" id="mcp">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-plug"></i></span>Connect IUENNA to your AI</h2>
+        <p>IUENNA exposes one canonical MCP access path: a <strong>public, read-only Remote MCP</strong> using Streamable HTTP. No local server, Python installation, Node setup, project-specific API key, or authentication is required.</p>
+        <div class="code-block-wrapper">
+            <div class="code-header"><span>IUENNA Remote MCP endpoint</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div>
+            <pre class="code-content"><code>https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp</code></pre>
         </div>
+        <p>In any compatible AI client, add this URL as a custom Remote MCP server. The service is stateless and reads only public IUENNA research data.</p>
+        <div class="notice"><strong>Data architecture:</strong> ARCHE remains the authoritative long-term repository. IUENNA's full corpus and graph remain the canonical machine-readable layers on GitHub Pages. The Remote MCP uses compact, reproducibly generated query projections only for efficient retrieval; these projections are non-authoritative and disposable.</div>
+    </section>
 
-        <section class="byoai-section">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-compass-drafting"></i></div>The BYOAI Philosophy</h2>
-            <p>IUENNA separates the <strong>research data</strong> from the <strong>AI model</strong>. The project provides authoritative repository metadata, persistent identifiers, explicit relationships, and open machine-readable interfaces. Researchers can then use the AI environment of their choice without depending on a single commercial platform.</p>
-            <div class="manifesto-box"><p>“We provide the archaeological data, provenance, persistent identifiers, and open interfaces. You bring the AI engine.”</p></div>
-            <p style="margin-bottom:0;">ARCHE remains the authoritative long-term repository. The IUENNA web layer is a discovery and retrieval interface derived from ARCHE metadata and is designed to make archaeological research data easier to query reproducibly.</p>
-        </section>
+    <section class="byoai-section">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>Available MCP tools</h2>
+        <div style="overflow-x:auto;">
+            <table class="tool-table">
+                <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td><code>search_iuenna_corpus</code></td><td>Search the complete 20,355-file primary-resource corpus.</td></tr>
+                    <tr><td><code>get_findspot_details</code></td><td>Retrieve findspot metadata and associated curated datasets.</td></tr>
+                    <tr><td><code>get_related_resources</code></td><td>Resolve a place, dataset, collection, or publication and return related archived files and entities.</td></tr>
+                    <tr><td><code>get_graph_neighborhood</code></td><td>Traverse the semantic graph around an indexed node, with optional predicate and direction filtering.</td></tr>
+                    <tr><td><code>get_geodata_catalog</code></td><td>List the 9 curated archaeological GeoPackages.</td></tr>
+                    <tr><td><code>get_corpus_statistics</code></td><td>Return collection-level repository metrics plus explicitly separate primary-resource-corpus metadata.</td></tr>
+                    <tr><td><code>get_project_bibliography</code></td><td>Query the public IUENNA Zotero library.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="notice"><strong>Counts:</strong> the ARCHE collection statistic <code>total_items</code> is a collection-wide repository item/entity count. It is <strong>not</strong> the primary-file count. The canonical primary-resource corpus contains <strong>20,355 archived files</strong>.</div>
+    </section>
 
-        <section class="byoai-section" id="mcp">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-network-wired"></i></div>1. Model Context Protocol (MCP) v1.2</h2>
-            <p>The IUENNA MCP server implements JSON-RPC 2.0 over stdio and runs with zero third-party runtime dependencies. Version <strong>1.2.0</strong> exposes seven research tools and now integrates semantic knowledge graph traversal alongside entity discovery and exhaustive primary-resource retrieval.</p>
+    <section class="byoai-section">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-database"></i></span>Open machine-readable data</h2>
+        <p>The MCP is only one access layer. The underlying machine-readable resources remain openly available and independently reusable.</p>
+        <div class="endpoint-grid">
+            <div class="endpoint-card"><strong>Primary-resource corpus</strong><p>20,355 archived files.</p><code>https://iuenna.github.io/data/arche_corpus.json</code></div>
+            <div class="endpoint-card"><strong>Knowledge Graph</strong><p>21,071 nodes and 281,851 directed edges.</p><code>https://iuenna.github.io/data/arche_graph.json</code></div>
+            <div class="endpoint-card"><strong>Findspots</strong><p>219 georeferenced archaeological places.</p><code>https://iuenna.github.io/data/arche_places.json</code></div>
+            <div class="endpoint-card"><strong>GeoPackages</strong><p>9 curated GIS datasets.</p><code>https://iuenna.github.io/data/arche_datasets.json</code></div>
+            <div class="endpoint-card"><strong>AI discovery</strong><p>Canonical routing and provenance guidance.</p><code>https://iuenna.github.io/llms.txt</code></div>
+            <div class="endpoint-card"><strong>OpenAPI</strong><p>Machine-readable endpoint description.</p><code>https://iuenna.github.io/data/openapi.json</code></div>
+        </div>
+    </section>
 
-            <h3 style="font-size:1.15rem;margin:1.5rem 0 .6rem;">Setup for Claude Desktop / Cursor / compatible MCP clients</h3>
-            <div class="code-block-wrapper">
-                <div class="code-header"><span>claude_desktop_config.json</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy Config</button></div>
-                <pre class="code-content"><code>{
-  "mcpServers": {
-    "iuenna": {
-      "command": "python3",
-      "args": [
-        "-c",
-        "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/main/mcp/server.py').read().decode())"
-      ]
-    }
-  }
-}</code></pre>
-            </div>
-            <p style="font-size:.85rem;color:var(--text-muted);"><em>Alternative:</em> Clone the repository and run <code>python3 mcp/server.py</code> or <code>node mcp/index.mjs</code>.</p>
+    <section class="byoai-section">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-landmark"></i></span>Provenance, citation and rights</h2>
+        <p>ARCHE is the authoritative long-term repository. The top-level IUENNA collection is persistently identified by <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">21.11115/0000-0016-7B39-F</a>.</p>
+        <div class="notice"><strong>Access and reuse:</strong> open discovery metadata does not mean that every archived binary resource is openly downloadable or licensed identically. Inspect the metadata, rights statement and access conditions of the specific ARCHE record before reuse.</div>
+        <p>When using a specific dataset, document, image, GeoPackage, or other archived resource, cite its <strong>individual ARCHE PID and metadata</strong> rather than only the project homepage.</p>
+    </section>
+</main>
 
-            <h3 style="font-size:1.15rem;margin:1.8rem 0 .6rem;">Available MCP Tools</h3>
-            <div style="overflow-x:auto;">
-                <table class="tool-table">
-                    <thead><tr><th>Tool</th><th>Purpose</th><th>Key arguments</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>search_iuenna_corpus</code></td><td>Searches the authoritative <code>arche_corpus.json</code> across 20,355 primary files, including titles, filenames, descriptions, collection paths, places, subjects, and PIDs.</td><td><code>query</code>, <code>limit</code></td></tr>
-                        <tr><td><code>get_findspot_details</code></td><td>Returns findspot metadata and directly associated curated datasets.</td><td><code>name_or_id</code></td></tr>
-                        <tr><td><code>get_related_resources</code></td><td>Resolves a place, dataset, collection, or publication and traverses related datasets, collections, publications, and primary files. Recommended for questions such as “all data about Hemmaberg”.</td><td><code>name_or_id</code>, optional <code>query</code>, <code>limit</code></td></tr>
-                        <tr><td><code>get_graph_neighborhood</code></td><td>Explores the semantic knowledge graph (21,071 nodes, 281,851 edges) around any entity, place, person, dataset, or publication by 1–2 hop neighborhood with optional predicate filtering.</td><td><code>node_or_id</code>, optional <code>hops</code> (1–2), <code>predicate</code>, <code>limit</code></td></tr>
-                        <tr><td><code>get_geodata_catalog</code></td><td>Lists the 9 curated authoritative archaeological GeoPackages.</td><td><em>None</em></td></tr>
-                        <tr><td><code>get_corpus_statistics</code></td><td>Returns repository-level metrics together with separate metadata for the primary-resource corpus.</td><td><em>None</em></td></tr>
-                        <tr><td><code>get_project_bibliography</code></td><td>Queries the public IUENNA Zotero library for project publications, excavation literature, authors, DOIs, and bibliographic metadata.</td><td>optional <code>query</code>, <code>limit</code></td></tr>
-                    </tbody>
-                </table>
-            </div>
+<footer>
+    <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="impressum-datenschutz.html">Legal Notice</a> &amp; <a href="impressum-datenschutz.html">Privacy Policy</a></p>
+    <p>IUENNA BYOAI | Remote MCP 2.0 &bull; OpenAPI 3.1 &bull; Knowledge Graph &bull; llms.txt &bull; ARCHE PIDs</p>
+</footer>
 
-            <div class="notice"><strong>Why the distinction matters:</strong> <code>arche_corpus.json</code> contains 20,355 primary resources/files, while the validated Knowledge Graph contains 21,071 nodes, including 21,061 ARCHE-backed entities. MCP full-text retrieval operates on the primary-resource corpus, whereas semantic traversal uses <code>arche_graph.json</code>; these are related but intentionally different quantitative layers.</div>
-        </section>
-
-        <section class="byoai-section" id="routing">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-route"></i></div>2. Recommended AI Routing</h2>
-            <div class="routing-grid">
-                <div class="routing-card"><strong>Find an entity</strong><p>Use <code>arche_search_index.json</code> for compact discovery of persons, organisations, collections, publications, places, and curated datasets.</p></div>
-                <div class="routing-card"><strong>Find a site</strong><p>Use <code>arche_places.json</code>, then resolve linked curated geodata via <code>arche_datasets.json</code>.</p></div>
-                <div class="routing-card"><strong>Find all files</strong><p>Use <code>arche_corpus.json</code>. This is the exhaustive primary-resource layer containing 20,355 files.</p></div>
-                <div class="routing-card"><strong>Explore semantic networks</strong><p>Use <code>arche_graph.json</code> or MCP <code>get_graph_neighborhood</code> to query multi-hop actor-place-publication networks.</p></div>
-                <div class="routing-card"><strong>Reconstruct provenance</strong><p>Use <code>arche_collections_tree.json</code> and relationships such as <code>parent_id</code>, <code>col</code>, and <code>spatial_ids</code>.</p></div>
-                <div class="routing-card"><strong>Ask “everything about X”</strong><p>Prefer MCP <code>get_related_resources</code>, which combines place, dataset, collection, publication, and file-level relationships.</p></div>
-                <div class="routing-card"><strong>Cite a result</strong><p>Prefer the individual ARCHE Handle PID of the dataset or file actually used, not only the IUENNA web page.</p></div>
-            </div>
-        </section>
-
-        <section class="byoai-section" id="openapi">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-server"></i></div>3. Machine-Readable JSON &amp; OpenAPI</h2>
-            <p>IUENNA publishes static JSON snapshots over HTTPS. They require no project-specific API key. ARCHE remains authoritative for current repository metadata, access conditions, and rights information.</p>
-            <p><a href="data/openapi.json" target="_blank" class="btn btn-secondary" style="font-size:.85rem;padding:6px 14px;"><i class="fa-solid fa-file-code"></i> View openapi.json</a></p>
-
-            <div class="endpoint-grid">
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Complete Primary-Resource Corpus</h4><p class="endpoint-desc">20,355 primary archived resources with ARCHE IDs, PIDs, titles, filenames, collection context, hierarchical paths, spatial relationships, subjects, dates, types, coordinates, and descriptions.</p></div><div class="endpoint-url"><span>/data/arche_corpus.json</span><a href="data/arche_corpus.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Semantic Discovery Index</h4><p class="endpoint-desc">Compact entity-level discovery index. Use it to identify persons, institutions, collections, publications, places, and curated datasets — not as the exhaustive file corpus.</p></div><div class="endpoint-url"><span>/data/arche_search_index.json</span><a href="data/arche_search_index.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Archaeological Findspots</h4><p class="endpoint-desc">219 georeferenced sites with titles, coordinates/WKT, Geonames identifiers, periods, and spatial relationships.</p></div><div class="endpoint-url"><span>/data/arche_places.json</span><a href="data/arche_places.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Collection Hierarchy</h4><p class="endpoint-desc">434 collections and archival dossiers with parent-child relationships, PIDs, counts, and provenance context.</p></div><div class="endpoint-url"><span>/data/arche_collections_tree.json</span><a href="data/arche_collections_tree.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Curated GeoPackages</h4><p class="endpoint-desc">Metadata, spatial coverage, creators, layer descriptions, and PIDs for 9 primary GIS datasets.</p></div><div class="endpoint-url"><span>/data/arche_datasets.json</span><a href="data/arche_datasets.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Semantic Knowledge Graph</h4><p class="endpoint-desc">21,071 nodes and 281,851 directed edges connecting collections, resources, places, persons, institutions, and publications via formal ARCHE ontology predicates.</p></div><div class="endpoint-url"><span>/data/arche_graph.json</span><a href="data/arche_graph.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge">GET</span></div><h4 class="endpoint-title">Corpus Statistics</h4><p class="endpoint-desc">Repository-level counts and storage metrics. Use together with <code>arche_corpus.json</code> when distinguishing repository entities from primary files.</p></div><div class="endpoint-url"><span>/data/arche_stats.json</span><a href="data/arche_stats.json" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-                <div class="endpoint-card"><div><div class="endpoint-header"><span class="endpoint-badge" style="background:#c0392b;">ZOTERO API</span></div><h4 class="endpoint-title">Project Bibliography</h4><p class="endpoint-desc">Live bibliographic catalogue for IUENNA, excavation reports, and research literature in JSON, BibTeX, and CSL-compatible formats.</p></div><div class="endpoint-url"><span>api.zotero.org/groups/4910727/items</span><a href="https://www.zotero.org/groups/4910727/iuenna/library" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
-            </div>
-        </section>
-
-        <section class="byoai-section" id="llmstxt">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-file-lines"></i></div>4. llms.txt for LLM &amp; Agent Discovery</h2>
-            <p>The canonical <code>llms.txt</code> acts as a routing and provenance layer. It tells AI systems which endpoint to use for which type of question, establishes ARCHE as the authoritative repository, and specifies PID-first citation and rights handling.</p>
-            <div class="code-block-wrapper"><div class="code-header"><span>Canonical llms.txt</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy URL</button></div><pre class="code-content"><code>https://iuenna.github.io/llms.txt</code></pre></div>
-            <p style="font-size:.9rem;">For exhaustive prompts such as “all files”, “all documentation”, or “all data concerning X”, an agent is explicitly instructed not to stop at the curated dataset catalogue or semantic discovery index, but to use <code>arche_corpus.json</code> and the collection hierarchy as well.</p>
-        </section>
-
-        <section class="byoai-section" id="cookbook">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-kitchen-set"></i></div>5. Minimal Research Recipes</h2>
-            <h3 style="font-size:1.15rem;">Python: query places</h3>
-            <div class="code-block-wrapper"><div class="code-header"><span>query_places.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
-import urllib.request
-
-url = "https://iuenna.github.io/data/arche_places.json"
-with urllib.request.urlopen(url) as response:
-    places = list(json.loads(response.read().decode("utf-8")).values())
-
-hemmaberg = [p for p in places if "hemmaberg" in p.get("title", "").lower()]
-print(json.dumps(hemmaberg, ensure_ascii=False, indent=2))</code></pre></div>
-
-            <h3 style="font-size:1.15rem;">Python: explore semantic knowledge graph</h3>
-            <div class="code-block-wrapper"><div class="code-header"><span>query_graph.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
-import urllib.request
-
-url = "https://iuenna.github.io/data/arche_graph.json"
-with urllib.request.urlopen(url) as response:
-    graph = json.loads(response.read().decode("utf-8"))
-
-nodes = {n["data"]["id"]: n["data"] for n in graph["elements"]["nodes"]}
-edges = graph["elements"]["edges"]
-
-# Find all publications authored by Sabine Ladstätter
-ladstaetter_id = next((nid for nid, d in nodes.items() if "ladstätter" in d.get("label", "").lower()), None)
-authored = [e["data"]["target"] for e in edges if e["data"]["source"] == ladstaetter_id and e["data"]["predicate"] == "hasAuthor"]
-
-for pub_id in authored:
-    pub = nodes.get(pub_id, {})
-    print(f"- {pub.get('label')} (PID: {pub.get('pid')})")</code></pre></div>
-
-            <h3 style="font-size:1.15rem;">Python: exhaustive file-level search</h3>
-            <div class="code-block-wrapper"><div class="code-header"><span>query_corpus.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>import json
-import urllib.request
-
-url = "https://iuenna.github.io/data/arche_corpus.json"
-with urllib.request.urlopen(url) as response:
-    corpus = json.loads(response.read().decode("utf-8"))["resources"]
-
-hits = [r for r in corpus if "georadar" in (
-    f"{r.get('title','')} {r.get('filename','')} {r.get('description','')}".lower()
-)]
-print(json.dumps(hits[:20], ensure_ascii=False, indent=2))</code></pre></div>
-
-            <h3 style="font-size:1.15rem;">MCP: relational query</h3>
-            <div class="code-block-wrapper"><div class="code-header"><span>Example tool call</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>{
-  "name": "get_related_resources",
-  "arguments": {
-    "name_or_id": "Hemmaberg",
-    "query": "Georadar",
-    "limit": 50
-  }
-}</code></pre></div>
-        </section>
-
-        <section class="byoai-section">
-            <h2><div class="byoai-section-icon"><i class="fa-solid fa-landmark"></i></div>6. Provenance, Citation &amp; Rights</h2>
-            <p>ARCHE is the authoritative long-term repository. The top-level IUENNA collection is persistently identified by <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" rel="noopener">21.11115/0000-0016-7B39-F</a>.</p>
-            <div class="notice"><strong>Access and reuse:</strong> the IUENNA web discovery interfaces are openly accessible, but this does <strong>not</strong> mean that every archived binary resource is openly downloadable or licensed under the same terms. Individual ARCHE resources may have different access restrictions, rights holders, and licences. Always inspect the metadata of the specific ARCHE record before reuse.</div>
-            <p><strong>Recommended project-level citation:</strong></p>
-            <div class="code-block-wrapper"><div class="code-header"><span>Project citation</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="code-content"><code>Hagmann, D., &amp; Waldhart, F. (Eds.). (2025). IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology. ARCHE – Austrian Research Culture Heritage Extended. https://hdl.handle.net/21.11115/0000-0016-7B39-F</code></pre></div>
-            <p>When using a specific dataset, document, image, GeoPackage, or other archived resource, cite its <strong>individual ARCHE PID and metadata</strong> rather than only the project homepage.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="impressum-datenschutz.html">Legal Notice</a> &amp; <a href="impressum-datenschutz.html">Privacy Policy</a></p>
-        <p>IUENNA BYOAI | MCP v1.2 &bull; OpenAPI 3.1 &bull; Knowledge Graph &bull; llms.txt &bull; ARCHE PIDs</p>
-    </footer>
-
-    <script>
-        function copyCode(btn) {
-            const wrapper = btn.closest('.code-block-wrapper');
-            const codeEl = wrapper.querySelector('code');
-            const textToCopy = codeEl ? codeEl.innerText : '';
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalHtml = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2000);
-            }).catch(err => console.error('Failed to copy text: ', err));
-        }
-    </script>
-    <!-- Responsive Navigation Burger Menu -->
-    <script src="scripts/nav.js?v=2.4.0" defer></script>
+<script>
+function copyCode(btn) {
+    const codeEl = btn.closest('.code-block-wrapper').querySelector('code');
+    navigator.clipboard.writeText(codeEl.innerText).then(() => {
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+        setTimeout(() => { btn.innerHTML = old; }, 1600);
+    });
+}
+</script>
+<script src="scripts/nav.js?v=2.4.0" defer></script>
 </body>
 </html>
