@@ -1,12 +1,15 @@
-name: Test ARCHE Graph Semantics
+name: Test and Build ARCHE Graph Semantics
 
 on:
   pull_request:
     paths:
+      - 'scripts/fetch_arche_full_metadata.py'
+      - 'scripts/parse_arche_full_ttl.py'
       - 'scripts/build_complete_arche_graph.py'
       - 'scripts/build_authoritative_corpus.py'
       - 'scripts/build_arche_graph.py'
       - 'tests/**'
+      - '.gitignore'
       - '.github/workflows/test_arche_graph.yml'
   workflow_dispatch:
 
@@ -14,8 +17,9 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,11 +32,59 @@ jobs:
       - name: Install graph dependency
         run: python -m pip install networkx
 
-      - name: Compile graph builders
+      - name: Compile graph pipeline
         run: |
+          python -m py_compile scripts/fetch_arche_full_metadata.py
+          python -m py_compile scripts/parse_arche_full_ttl.py
           python -m py_compile scripts/build_complete_arche_graph.py
           python -m py_compile scripts/build_authoritative_corpus.py
           python -m py_compile scripts/build_arche_graph.py
 
       - name: Run semantic regression tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Fetch authoritative IUENNA metadata from ARCHE
+        run: python scripts/fetch_arche_full_metadata.py
+
+      - name: Rebuild parsed ARCHE indexes
+        run: python scripts/parse_arche_full_ttl.py
+
+      - name: Rebuild authoritative resource corpus
+        run: python scripts/build_authoritative_corpus.py
+
+      - name: Rebuild provenance-aware knowledge graph and audit
+        run: python scripts/build_complete_arche_graph.py
+
+      - name: Validate generated outputs
+        run: |
+          test -s data/arche_full_metadata.ttl
+          test -s data/arche_corpus.json
+          test -s data/arche_graph.json
+          test -s data/arche_graph_audit.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          audit = json.loads(Path('data/arche_graph_audit.json').read_text(encoding='utf-8'))
+          assert audit['status'] == 'pass', audit
+          assert audit['invariants']['one_arche_id_one_node'] is True
+          assert audit['invariants']['no_dangling_edges'] is True
+          assert audit['invariants']['all_resolvable_ttl_relations_preserved'] is True
+          print(json.dumps(audit['invariants'], indent=2))
+          PY
+
+      - name: Publish authoritative graph build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iuenna-arche-authoritative-graph-${{ github.sha }}
+          retention-days: 30
+          compression-level: 6
+          path: |
+            data/arche_full_metadata.ttl
+            data/arche_corpus.json
+            data/arche_graph.json
+            data/arche_graph_audit.json
+            data/arche_collections_tree.json
+            data/arche_resolved_entities.json
+            data/arche_publications.json
+            data/arche_places.json
+            data/arche_datasets.json
