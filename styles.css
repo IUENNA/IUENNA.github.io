@@ -1890,3 +1890,79 @@ input:checked + .slider:before {
     font-size: 0.88rem;
   }
 }
+
+
+/* IUENNA sitewide compact burger navigation */
+.nav-toggle {
+  display: inline-flex !important;
+}
+
+.nav-menu {
+  position: absolute !important;
+  top: calc(100% + 0.7rem) !important;
+  right: 0 !important;
+  left: auto !important;
+  width: min(410px, calc(100vw - 2rem)) !important;
+  background-color: rgba(250, 248, 245, 0.985) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 0.65rem !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-6px);
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, transform 0.2s ease !important;
+  z-index: 1100 !important;
+}
+
+.nav-menu.is-active {
+  max-height: min(620px, calc(100vh - 100px)) !important;
+  overflow-y: auto !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0);
+}
+
+.nav-menu .nav-links {
+  width: 100% !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+}
+
+.nav-menu .nav-link {
+  display: flex !important;
+  width: 100% !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  font-size: 0.92rem !important;
+  border: 1px solid transparent;
+}
+
+.nav-menu .nav-link i {
+  width: 22px;
+  text-align: center;
+  flex: 0 0 22px;
+}
+
+.nav-menu .nav-link.btn {
+  justify-content: center !important;
+  margin-top: 4px !important;
+}
+
+@media (max-width: 900px) {
+  .nav-menu {
+    top: calc(100% + 1px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+  }
+}

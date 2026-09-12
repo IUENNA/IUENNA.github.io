@@ -71,7 +71,7 @@ def generate():
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css?v=2.4.0">
+    <link rel="stylesheet" href="../styles.css?v=2.5.0">
 
     <!-- Cytoscape.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
@@ -2070,7 +2070,7 @@ def generate():
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
         </p>
         <p>
-            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a>, <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>, and <a href="https://chatgpt.com" target="_blank">ChatGPT 5.6</a>) | Website Version 2.1.7
+            Human-reviewed AI-assisted development workflow | Go!Digital 3.0 Project IUENNA
         </p>
     </footer>
 
@@ -5676,7 +5676,7 @@ def generate():
         }})();
     </script>
     <!-- Responsive Navigation Burger Menu -->
-    <script src="../scripts/nav.js?v=2.4.0" defer></script>
+    <script src="../scripts/nav.js?v=2.5.0" defer></script>
 </body>
 </html>
 '''

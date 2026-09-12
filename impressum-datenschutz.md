@@ -99,9 +99,14 @@ Die Verarbeitung der IP-Adresse erfolgt auf Grundlage unseres berechtigten Inter
 **Hinweis:**
 Falls Sie nicht möchten, dass Ihre IP-Adresse an jsdelivr.net übermittelt wird, können Sie die Nutzung durch entsprechende Einstellungen in Ihrem Browser verhindern (z. B. durch Blockieren von JavaScript). Dies kann jedoch dazu führen, dass die Diagramme nicht angezeigt werden.
 
-#### **3. Interaktiver Sammlungs-Assistent (Client-Side In-Browser KI)**
+#### **3. Interaktiver Sammlungs-Assistent und lokaler Browser-Speicher**
 
-Unser interaktiver Sammlungs-Assistent (»Frag IUENNA«) wird zu 100 % lokal im Webbrowser Ihres Endgeräts ausgeführt (Client-Side AI). Ihre Suchanfragen und Texteingaben werden zu keinem Zeitpunkt an unsere Server oder an Drittanbieter übertragen und nicht gespeichert. Sofern Sie optional die lokale Browser-KI (SmolLM2 via Transformers.js) aktivieren, wird die komprimierte Modelldatei einmalig über ein Content Delivery Network geladen und im lokalen Browser-Cache Ihres Geräts abgelegt (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO). Es werden keine Nutzerdaten erfasst oder für KI-Modelltrainings verwendet.
+Der interaktive Sammlungs-Assistent (»Frag IUENNA«) durchsucht und synthetisiert veröffentlichte IUENNA-Metadaten clientseitig im Browser; Chatfragen werden nicht an einen externen LLM-Anbieter gesendet. Zur Sitzungsfortsetzung speichert die Oberfläche den Öffnungszustand und den Chatverlauf im `sessionStorage` des aktuellen Browser-Tabs (`iuenna_chat_open`, `iuenna_chat_history`). Diese Daten werden durch den IUENNA-Code nicht als serverseitige Chat-Historie gespeichert und nicht für Modelltraining verwendet. Die Speicherung endet grundsätzlich mit der Browser-Seitensitzung; Browser-Funktionen zur Sitzungswiederherstellung können eine Sitzung technisch wiederherstellen.
+
+In der AI-assisted Web-Mapping-Anwendung können Nutzer*innen Filterauswahlen ausdrücklich über »Save Query« im `localStorage` unter `iuenna_saved_queries` speichern. Gespeichert werden ausgewählte Themen, Orte und gegebenenfalls der Freitext-Suchbegriff. Diese Informationen bleiben lokal im Browser, bis sie in der Anwendung gelöscht oder der Browser-Speicher geleert wird. Die Funktion dient nicht dem Tracking; Freitextfelder sollten nicht für personenbezogene oder vertrauliche Angaben verwendet werden.
+
+IUENNA bietet außerdem einen öffentlichen, lesenden Remote-MCP-Endpunkt über Cloudflare Workers (`https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`). Bei einem Aufruf durch einen externen MCP-Client wird eine Netzwerkverbindung zu Cloudflare hergestellt; hierbei können insbesondere IP-Adresse und technische Verbindungsdaten beim Hostinganbieter verarbeitet werden. Der IUENNA-MCP-Code richtet keine Benutzerkonten ein und führt keine projektseitige Chat-Historie.
+
 
 ### **5. Nutzung von Google Fonts und anderen externen Diensten**
 Unsere Website verwendet **Google Fonts** und **Cloudflare** *(siehe oben)*, um eine einheitliche und ansprechende Darstellung von Schriftarten sowie eine optimierte Ladegeschwindigkeit der Inhalte zu gewährleisten. Beim Aufruf einer Seite lädt der Browser gegebenenfalls die benötigten Schriftarten, Styles und Ressourcen direkt von den Servern der entsprechenden Anbieter. Im Fall von Google Fonts wird dabei die IP-Adresse der Besucher*innen an Google übertragen.
@@ -121,8 +126,9 @@ Besucher*innen können in den Browser-Einstellungen die Nutzung externer Ressour
 **Hinweis:**
 Wenn Sie nicht möchten, dass Google Ihre Daten speichert, können Sie die Nutzung von Google Fonts verhindern, indem Sie entsprechende Add-ons (z. B. NoScript) verwenden oder den Zugriff auf die Google-Server blockieren.
 
-### **6. Verwendung von Cookies**
-Diese Website verwendet keine Cookies zur Erhebung personenbezogener Daten.
+### **6. Cookies und lokaler Browser-Speicher**
+IUENNA setzt nach aktuellem Stand keine eigenen Analyse-, Marketing- oder Tracking-Cookies. Für ausdrücklich bereitgestellte Funktionen werden die oben beschriebenen lokalen Browser-Speicher `sessionStorage` und `localStorage` verwendet. Sie dienen ausschließlich der Sitzungsfortsetzung beziehungsweise dem vom Nutzer ausdrücklich gewünschten Speichern einer WMA-Auswahl.
+
 
 ### **7. Rechte der betroffenen Personen**
 Sie haben das Recht auf:
@@ -146,10 +152,8 @@ Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit anzupassen
 
 ## **KI-Erklärung**
 
-Einige Inhalte auf dieser Website wurden mit Hilfe von generativer Künstlicher Intelligenz (KI) und Large Language Models (LLMs) erstellt oder optimiert. Diese Tools unterstützen uns bei der effizienten Erstellung hochwertiger Inhalte. Die Website selbst verwendet jedoch keine KI-Technologien für ihre Funktionalität oder den Betrieb. Die Schwerpunkte in Bezug auf die Verwendung von KI liegen auf unserer Seite im Bereich der
+Bei der Entwicklung und redaktionellen Überarbeitung dieser Website wurden generative KI- und Large-Language-Model-Werkzeuge als Programmier-, Strukturierungs- und Formulierungshilfen eingesetzt. Dazu gehörten allgemeine Coding-Assistenten sowie der projektspezifische IUENNA Refiner. Kommerzielle Modellbezeichnungen und Versionsnummern werden bewusst nicht als dauerhafte wissenschaftliche Provenienz geführt, da sich diese Systeme und ihre Konfigurationen laufend ändern.
 
-- **Inhaltserstellung**: Generative KI-Tools und Large Language Models (LLMs) (OpenAI ChatGPT 5.6, ChatGPT-4o und ChatGPT o1, Google Gemini 1.5 Pro sowie das für die Datenstrukturierung und -bereinigung entwickelte, auf dem **ChatGPT 5.5 Instant** basierende Custom GPT [IUENNA Refiner](https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner)) wurden genutzt, um bestimmte Inhalte dieser Website zu verfassen, zu optimieren oder zu verbessern.
-- **Kontrolle**: Alle KI-generierten Inhalte werden von unserem Team geprüft und validiert, um Genauigkeit, Relevanz und die Einhaltung ethischer Standards zu gewährleisten.
-- **Transparenz**: Wir legen großen Wert darauf, die Nutzung von KI in unserem Inhaltsprozess offen und transparent zu kommunizieren.
+KI-Werkzeuge sind keine Quelle für die archäologischen Forschungsdaten. Maßgeblich bleiben die publizierten Projektquellen, die im Repository versionierten Transformations- und Auswertungsskripte sowie die in ARCHE archivierten Datensätze und Metadaten. KI-gestützte Code- und Textvorschläge werden vor der Veröffentlichung menschlich geprüft; automatisierte Vorschläge ersetzen keine fachwissenschaftliche Quellenkritik oder Validierung.
 
-Bei Fragen oder Anliegen zur Nutzung von KI können Sie uns unter [dominik.hagmann@univie.ac.at](mailto:dominik.hagmann@univie.ac.at) kontaktieren.
+Bei Fragen zur Website wenden Sie sich an [dominik.hagmann@univie.ac.at](mailto:dominik.hagmann@univie.ac.at).
