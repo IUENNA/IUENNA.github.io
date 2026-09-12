@@ -158,8 +158,44 @@
         });
     }
 
+    function normalizeSearchLabel(value) {
+        return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+    }
+
+    function autoOpenGraphSearchResult(query) {
+        const input = document.getElementById("searchInput");
+        if (!input || !query) return;
+
+        input.value = query;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+
+        const expected = normalizeSearchLabel(query);
+        const deadline = Date.now() + 6500;
+
+        function chooseResult() {
+            const dropdown = document.getElementById("searchDropdown");
+            const items = dropdown ? Array.from(dropdown.querySelectorAll(".search-item")) : [];
+            if (!items.length) {
+                if (Date.now() < deadline) setTimeout(chooseResult, 120);
+                return;
+            }
+
+            const exact = items.find(item => normalizeSearchLabel(item.getAttribute("data-target-title")) === expected);
+            const startsWith = items.find(item => normalizeSearchLabel(item.getAttribute("data-target-title")).startsWith(expected));
+            const target = exact || startsWith || items[0];
+            if (target) target.click();
+        }
+
+        setTimeout(chooseResult, 260);
+    }
+
     // Deep links formerly depended on the eager 29+ MiB corpus fetch.
     const params = new URLSearchParams(window.location.search);
+    const graphSearch = params.get("search") || params.get("s");
+    if (graphSearch) {
+        autoOpenGraphSearchResult(graphSearch);
+    }
+
     if (params.get("open") === "corpus" || params.get("q") || params.get("res")) {
         loadIndex("deep-link").then(() => {
             const q = params.get("q");
