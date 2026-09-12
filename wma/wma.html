@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Mapping with the IUENNA Project</title>
-    <!-- Favicon / Tab Icons -->
+    <title>Web Mapping with IUENNA</title>
+    <!-- IUENNA favicon / browser-tab icons -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="alternate icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
     <link rel="alternate icon" type="image/png" sizes="16x16" href="../media/favicon-16x16.png">
@@ -13,23 +13,20 @@
     <link rel="manifest" href="../site.webmanifest">
     <meta name="theme-color" content="#A8442E">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=2.1.7">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../styles.css?v=2.5.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Dublin Core Metatags -->
-    <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
+    <meta name="DC.title" content="Web Mapping with IUENNA">
     <meta name="DC.creator" content="Dominik Hagmann; Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
-    <meta name="DC.subject" content="IUENNA, Archaeology, GenAI, Web Mapping, Jauntal Valley">
-    <meta name="DC.description" content="Interactive analysis and presentation of the Jauntal Valley, created using GenAI technologies.">
-    <meta name="DC.date" content="2025-01-27">
-    <meta name="DC.language" content="de">
-    <meta name="DC.identifier" content="https://iuenna.github.io/">
-    <meta name="DC.rights" content="CC BY 4.0">
-    
+    <meta name="DC.subject" content="IUENNA, Archaeology, GIS, Web Mapping, QGIS, qgis2web, Jauntal">
+    <meta name="DC.description" content="Overview of IUENNA web-mapping workflows and public map interfaces for archaeological project data.">
+    <meta name="DC.language" content="en">
+    <meta name="DC.identifier" content="https://iuenna.github.io/wma/wma.html">
+    <meta name="DC.rights" content="CC BY 4.0 where indicated; archived resources retain record-specific rights and access conditions">
+
     <style>
-        /* Specific Leaflet map styling */
         #live-map {
             margin-top: 1rem;
             height: 500px;
@@ -40,8 +37,7 @@
         }
         #live-map.fullscreen {
             position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
+            inset: 0 !important;
             width: 100vw !important;
             height: 100vh !important;
             margin: 0 !important;
@@ -58,7 +54,7 @@
             margin-bottom: 0.5rem;
         }
         .btn-fullscreen-toggle {
-            background: var(--bg-alt);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: 6px 14px;
             border-radius: var(--radius-md);
@@ -68,26 +64,24 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: var(--text-color);
+            color: var(--text-dark);
             transition: all 0.2s;
         }
         .btn-fullscreen-toggle:hover {
-            background: var(--primary-color);
-            color: #FFFFFF;
-            border-color: var(--primary-color);
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
         }
     </style>
 </head>
 <body>
-
-    <!-- Sticky Navigation Header -->
     <header class="nav-header">
         <div class="nav-container">
             <a href="../index.html" class="nav-brand">
                 <img src="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/refs/heads/main/media/LOGO_IUENNA.jpg" alt="IUENNA Logo" class="nav-logo">
                 <span class="nav-title">IUENNA</span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <nav class="nav-menu" id="navMenu">
@@ -96,251 +90,160 @@
                     <li><a href="wma.html" class="nav-link active"><i class="fa-solid fa-map-location-dot"></i> Web Mapping</a></li>
                     <li><a href="../graph/index.html" class="nav-link"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</a></li>
                     <li><a href="../byoai.html" class="nav-link"><i class="fa-solid fa-microchip"></i> BYOAI (AI Connect)</a></li>
-                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
-                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
-                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
+                    <li><a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" rel="noopener" class="nav-link"><i class="fa-solid fa-robot"></i> IUENNA Refiner</a></li>
+                    <li><a href="https://iuenna.hypotheses.org/" target="_blank" rel="noopener" class="nav-link"><i class="fa-solid fa-square-rss"></i> Project Blog</a></li>
+                    <li><a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" rel="noopener" class="nav-link btn btn-secondary" style="color: white; padding: 6px 16px;"><i class="fa-solid fa-database"></i> ARCHE Repository</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Container -->
     <main>
-        
-        <!-- Hero Header -->
         <section class="hero-section">
-            <h1 class="hero-title">Web Mapping with the IUENNA Project</h1>
-            <p class="hero-subtitle">Learn how we visualize, analyze, and publish geospatial data for future archaeology.</p>
+            <h1 class="hero-title">Web Mapping with IUENNA</h1>
+            <p class="hero-subtitle">Public map interfaces for exploring selected spatial metadata and project geodata from the Jauntal/Podjuna research area.</p>
             <div class="btn-group">
-                <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" class="btn btn-secondary">
-                    <i class="fa-solid fa-database"></i> Find Our Data on ARCHE
-                </a>
-                <a href="../index.html" class="btn btn-outline">
-                    <i class="fa-solid fa-house"></i> Home
-                </a>
+                <a href="https://id.acdh.oeaw.ac.at/iuenna" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-solid fa-database"></i> Explore IUENNA in ARCHE</a>
+                <a href="../index.html" class="btn btn-outline"><i class="fa-solid fa-house"></i> Home</a>
             </div>
-            
             <div class="btn-group" style="margin-top: 1.5rem;">
-                <a href="#steps" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">General Steps</a>
-                <a href="#examples" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Examples</a>
-                <a href="#example-code" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Example Code</a>
-                <a href="#ai-tools" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">GenAI Tools</a>
-                <a href="#benefits" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Benefits &amp; Drawbacks</a>
+                <a href="#workflow" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Workflow</a>
+                <a href="#examples" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Interfaces</a>
+                <a href="#example-code" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">Leaflet Example</a>
+                <a href="#ai-tools" class="btn btn-outline" style="font-size: 0.85rem; padding: 8px 16px;">AI-assisted Development</a>
             </div>
         </section>
 
-        <!-- Overview & Steps -->
         <div class="grid-container">
             <section class="card">
                 <h2>Overview</h2>
-                <p>This web mapping project demonstrates how to create Web Mapping Applications (WMAs) effectively using <strong><a href="https://qgis.org/en/site/" target="_blank">QGIS</a></strong>, the <strong><a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank">qgis2web</a></strong> plugin, and Artificial Intelligence (AI) tools, such as <strong><a href="https://openai.com/chatgpt/" target="_blank">OpenAI's ChatGPT</a></strong> and <strong>Google Antigravity</strong>.</p>
-                <p>WMAs are versatile tools for visualizing spatial data, making them invaluable in fields like archaeology. They enhance the accessibility and management of archaeological datasets by providing intuitive, interactive maps. With features like layers and markers, WMAs allow researchers and the public to explore, analyze, and interact with large collections of archaeological data.</p>
-                <p>For the IUENNA project, WMAs served as gateways to navigate archaeological records from the Jauntal region. They enabled users to gain an overview of the dataset or perform targeted searches for specific resources or groups of objects. By complementing the <a href="https://arche.acdh.oeaw.ac.at/" target="_blank">ARCHE repository</a>, these applications added customizable, interactive layers tailored to specific tasks, simplifying daily workflows and improving usability.</p>
+                <p>IUENNA uses browser-based maps as discovery interfaces for spatially referenced archaeological records. The maps complement, rather than replace, the archived datasets and metadata in <a href="https://arche.acdh.oeaw.ac.at/" target="_blank" rel="noopener">ARCHE</a>.</p>
+                <p>The project combines established GIS workflows in <a href="https://qgis.org/" target="_blank" rel="noopener"><strong>QGIS</strong></a> with lightweight web technologies such as <strong>Leaflet</strong> and, for one export, the <a href="https://plugins.qgis.org/plugins/qgis2web/" target="_blank" rel="noopener"><strong>qgis2web</strong></a> plugin. A separate experimental interface was iteratively developed with generative-AI coding assistance; its archaeological source data remain project data, not AI-generated content.</p>
+                <p>For citation, licensing, reuse, and provenance, users should follow the persistent identifiers and record-level information supplied by ARCHE.</p>
             </section>
 
-            <section class="card" id="steps">
-                <h2>General Steps to Create a WMA</h2>
+            <section class="card" id="workflow">
+                <h2>Typical publishing workflow</h2>
                 <ol style="margin-left: 20px; color: var(--text-muted); line-height: 1.7;">
-                    <li style="margin-bottom: 0.6rem;">Download and install <strong>QGIS</strong> on your computer to start working with geospatial data.</li>
-                    <li style="margin-bottom: 0.6rem;">Prepare your data in QGIS by adding vector data (e.g., Shapefiles) or raster data. Ensure that your data is properly projected and organized.</li>
-                    <li style="margin-bottom: 0.6rem;">Export your data from QGIS as <strong>GeoJSON</strong> (WGS84), a widely used format for web mapping.</li>
-                    <li style="margin-bottom: 0.6rem;">Install the <strong>qgis2web</strong> plugin through the QGIS Plugin Manager.</li>
-                    <li style="margin-bottom: 0.6rem;">Export your project as a web map using the plugin. Choose wether to render with <strong>Leaflet</strong> or <strong>OpenLayers</strong>.</li>
-                    <li style="margin-bottom: 0.6rem;">Upload the exported files (HTML, CSS, JS) to a hosting platform (e.g., GitHub Pages).</li>
-                    <li style="margin-bottom: 0.6rem;">Activate GitHub Pages in your repository settings to make the map publicly available.</li>
-                    <li style="margin-bottom: 0.6rem;">Enhance your WMA by customizing the code. GenAI tools can assist in writing filters, search features, and export functions.</li>
+                    <li style="margin-bottom: 0.6rem;">Prepare and validate spatial data in QGIS, including coordinate reference systems and attribute fields.</li>
+                    <li style="margin-bottom: 0.6rem;">Choose a web-suitable representation, for example GeoJSON for selected vector data or a qgis2web export for a configured QGIS project.</li>
+                    <li style="margin-bottom: 0.6rem;">Review which attributes may be published and retain persistent links to the authoritative repository records.</li>
+                    <li style="margin-bottom: 0.6rem;">Publish the static web assets through GitHub Pages and test map behaviour, accessibility, and browser performance.</li>
+                    <li style="margin-bottom: 0.6rem;">Where code-generation tools are used, review their output manually and keep archaeological assertions separate from generated interface code.</li>
                 </ol>
             </section>
         </div>
 
-        <!-- Examples Section -->
         <section class="card" id="examples" style="margin-bottom: 3rem;">
-            <h2>Examples Using GenAI and qgis2web</h2>
-            <p>Below are two interactive Web Mapping Applications (WMAs) created using cutting-edge tools: GenAI and the qgis2web plugin. These applications provide access to IUENNA's comprehensive dataset, demonstrating how digital tools enhance the exploration and management of archaeological data:</p>
-            
+            <h2>IUENNA map interfaces</h2>
+            <p>The two interfaces below serve different purposes. The qgis2web map is a direct GIS-to-web export for selected Globasnitz data. The AI-assisted map is an experimental custom interface developed with generative-AI coding support and additional filtering/export functions.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
                 <div style="padding: 1.5rem; border: 2px solid var(--primary); border-radius: var(--radius-lg); background-color: rgba(168, 68, 46, 0.03); display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <h3 style="margin-bottom: 0.5rem; color: var(--primary);">GenAI WMA</h3>
-                        <p style="font-size: 0.9rem;">Explore a Web Mapping Application created and enhanced with GenAI. This WMA showcases how AI can automate and enhance interactive mapping for complex datasets.</p>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--primary);">AI-assisted WMA</h3>
+                        <p style="font-size: 0.9rem;">Custom Leaflet interface with filters, list/map synchronization, selection tools, and data export. Generative AI assisted the software-development process; published archaeological data remain source-controlled project data.</p>
                     </div>
-                    <a href="https://iuenna.github.io/wma/genai-wma-home.html" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
-                        <i class="fa-solid fa-robot"></i> Explore the GenAI WMA
-                    </a>
+                    <a href="genai-wma-home.html" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-robot"></i> Open AI-assisted WMA</a>
                 </div>
-                
                 <div style="padding: 1.5rem; border: 2px solid var(--secondary); border-radius: var(--radius-lg); background-color: rgba(184, 142, 62, 0.03); display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                         <h3 style="margin-bottom: 0.5rem; color: var(--secondary);">qgis2web WMA</h3>
-                        <p style="font-size: 0.9rem;">Explore a Web Mapping Application created using QGIS and the qgis2web plugin. This WMA demonstrates the power of open-source tools for interactive mapping.</p>
+                        <p style="font-size: 0.9rem;">Static Leaflet export produced from QGIS/qgis2web for selected Globasnitz geodata, with the source dataset linked through its ARCHE persistent identifier.</p>
                     </div>
-                    <a href="https://iuenna.github.io/wma/qgis2web-home.html" target="_blank" class="btn btn-secondary" style="margin-top: 1rem;">
-                        <i class="fa-solid fa-map-location"></i> Explore the qgis2web WMA
-                    </a>
+                    <a href="qgis2web-home.html" class="btn btn-secondary" style="margin-top: 1rem;"><i class="fa-solid fa-map-location"></i> Open qgis2web WMA</a>
                 </div>
             </div>
         </section>
 
-        <!-- Example Code & Live WMA -->
         <div class="grid-container">
             <section class="card" id="example-code">
-                <h2>Example Code</h2>
-                <p>The following HTML code shows a minimalist web mapping integration using Leaflet:</p>
-                <pre style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.85rem; overflow-x: auto; color: var(--text-dark); font-family: monospace;">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Example Map&lt;/title&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="map" style="width: 100%; height: 500px;"&gt;&lt;/div&gt;
-    &lt;script&gt;
-        var map = L.map('map').setView([46.5647, 14.8222], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'OpenStreetMap contributors'
-        }).addTo(map);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                </pre>
+                <h2>Minimal Leaflet example</h2>
+                <p>This deliberately small example shows the technical pattern only. It does not represent an archaeological interpretation.</p>
+                <pre style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.85rem; overflow-x: auto; color: var(--text-dark); font-family: monospace;">&lt;div id="map" style="width:100%;height:500px"&gt;&lt;/div&gt;
+&lt;script&gt;
+const map = L.map('map').setView([46.55694, 14.70278], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&amp;copy; OpenStreetMap contributors'
+}).addTo(map);
+&lt;/script&gt;</pre>
             </section>
 
             <section class="card" id="live-map-section">
                 <div class="map-header-bar">
-                    <h2 style="margin: 0;">Live Demo WMA</h2>
-                    <button id="btnToggleLiveMapFullscreen" class="btn-fullscreen-toggle" title="Karte auf Vollbild vergrößern (oder Esc zum Beenden)">
-                        <i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>
+                    <h2 style="margin: 0;">Location example from ARCHE place metadata</h2>
+                    <button id="btnToggleLiveMapFullscreen" class="btn-fullscreen-toggle" title="Open the map in fullscreen; press Escape to exit">
+                        <i class="fa-solid fa-expand"></i> <span>Open fullscreen</span>
                     </button>
                 </div>
-                <p>Below is an embedded example of a live web mapping application powered by Leaflet. Use the layers button in the top right to filter details or expand to fullscreen for a detailed view:</p>
+                <p>The three markers use coordinates published in the IUENNA ARCHE-derived place index for Globasnitz, Jaunstein, and Hemmaberg. They are shown as location references only; no archaeological zones or significance are inferred from the marker geometry.</p>
                 <div id="live-map"></div>
             </section>
         </div>
 
-        <!-- AI Tools & Benefits -->
         <div class="grid-container" style="margin-top: 2rem;">
             <section class="card" id="ai-tools">
-                <h2>Using GenAI Tools</h2>
-                <p>GenAI tools like ChatGPT by OpenAI, Claude by Anthropic, and Gemini by Google DeepMind (orchestrated via agentic frameworks like <strong>Google Antigravity</strong>) are transformative technologies. In web mapping workflows, developers can export GeoJSON data from QGIS and leverage AI to implement autocomplete search bars, data filters, and map statistics automatically, saving hours of manual scripting.</p>
-                <p>To support the data preparation phase, we developed the custom GPT <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank"><strong>IUENNA Refiner</strong></a>. This specialized tool assists researchers and developers in refining, cleaning, and validating the geo-attributes and metadata entries to match the target database and mapping schema perfectly.</p>
-                <p>GenAI lowers the entry barrier for beginners by offering step-by-step templates and scripts. This accelerates digital development and allows humanities projects to focus on interpretation, curation, and open-science dissemination.</p>
+                <h2>AI-assisted development</h2>
+                <p>Generative-AI tools were used as coding and editing aids in parts of the web-mapping workflow, for example when drafting interface logic, refactoring JavaScript, or reviewing text. Generated suggestions were subject to human review.</p>
+                <p>The project-specific <a href="https://chatgpt.com/g/g-Mckkm4Mjh-iuenna-refiner" target="_blank" rel="noopener"><strong>IUENNA Refiner</strong></a> was tested for metadata-cleaning and formatting support. Its output is not authoritative unless checked against the project data and source records.</p>
             </section>
-
             <section class="card" id="benefits">
-                <h2>Benefits and Drawbacks</h2>
-                <p><strong>Benefits:</strong></p>
-                <ul style="padding-left: 20px; margin-bottom: 1rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.4rem;">High cost-efficiency through free and open-source software (QGIS, Leaflet) and free hosting on GitHub Pages.</li>
-                    <li style="margin-bottom: 0.4rem;">Democratizes access to cultural heritage by providing a globally accessible, structured digital twin of the datasets.</li>
-                </ul>
-                <p><strong>Drawbacks:</strong></p>
-                <ul style="padding-left: 20px; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.4rem;">Basic understanding of GIS concepts is still required to pre-process data.</li>
-                    <li style="margin-bottom: 0.4rem;">Browsers may struggle to render very large GeoJSON datasets on low-resource mobile devices.</li>
-                </ul>
+                <h2>Technical strengths and limitations</h2>
+                <p><strong>Strengths:</strong> static hosting keeps the deployment simple; QGIS, Leaflet, and qgis2web are open-source tools; persistent repository links preserve a clear route back to source metadata.</p>
+                <p><strong>Limitations:</strong> large client-side vector layers can affect browser performance; qgis2web exports may need manual adjustment; and interactive discovery maps are not substitutes for the archived datasets or their documentation.</p>
             </section>
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>
-            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
-            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; 
-            <a href="../impressum-datenschutz.html">Privacy Policy</a> | 
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-        </p>
-        <p>
-            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a>, <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>, and <a href="https://chatgpt.com" target="_blank">ChatGPT 5.6</a>) | Website Version 2.1.7
-        </p>
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; <a href="../impressum-datenschutz.html">Privacy Policy</a> | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Website/discovery layer: CC BY 4.0 where indicated</a></p>
+        <p>Research data are archived in ARCHE; rights and access conditions must be checked at record level. | Go!Digital 3.0 Project IUENNA</p>
     </footer>
 
-    <!-- Leaflet Script for Live Map -->
     <script>
-        var liveMap = L.map('live-map').setView([46.5647, 14.8222], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors | IUENNA Project'
+        const liveMap = L.map('live-map').setView([46.55694, 14.685], 12);
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(liveMap);
 
-        // Adding marker points
-        var marker1 = L.marker([46.5647, 14.8222]).addTo(liveMap);
-        marker1.bindPopup("<b>Globasnitz</b><br>A key location in archaeological Jauntal valley research.");
+        const places = [
+            { name: 'Globasnitz', lat: 46.55694, lng: 14.70278, source: 'ARCHE-derived IUENNA place index' },
+            { name: 'Jaunstein', lat: 46.55936, lng: 14.67102, source: 'ARCHE-derived IUENNA place index' },
+            { name: 'Hemmaberg', lat: 46.55269, lng: 14.66768, source: 'ARCHE-derived IUENNA place index' }
+        ];
+        const placeLayer = L.layerGroup(places.map(place =>
+            L.marker([place.lat, place.lng]).bindPopup(`<strong>${place.name}</strong><br>${place.source}`)
+        )).addTo(liveMap);
+        L.control.layers({ 'OpenStreetMap': osm }, { 'IUENNA place references': placeLayer }).addTo(liveMap);
 
-        var marker2 = L.marker([46.5747, 14.8122]).addTo(liveMap);
-        marker2.bindPopup("<b>Jaunstein</b><br>Another important reference point.");
-
-        // Adding a circle
-        var circle = L.circle([46.559, 14.83], {
-            color: '#A8442E', /* Terracotta */
-            fillColor: '#FAF8F5',
-            fillOpacity: 0.4,
-            radius: 500
-        }).addTo(liveMap);
-        circle.bindPopup("Globasnitz core archaeological zone.");
-
-        // Adding a polygon
-        var polygon = L.polygon([
-            [46.562, 14.82],
-            [46.565, 14.83],
-            [46.561, 14.84]
-        ], {
-            color: '#B88E3E' /* Antique Gold */
-        }).addTo(liveMap);
-        polygon.bindPopup("Antiquities preservation zone boundary.");
-
-        // Adding map controls
-        var baseMaps = {
-            "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-        };
-
-        var overlays = {
-            "Markers": L.layerGroup([marker1, marker2]),
-            "Features": L.layerGroup([circle, polygon])
-        };
-
-        L.control.layers(baseMaps, overlays).addTo(liveMap);
-
-        // Fullscreen toggle logic
-        var btnToggleFullscreen = document.getElementById('btnToggleLiveMapFullscreen');
-        var liveMapEl = document.getElementById('live-map');
-        if (btnToggleFullscreen && liveMapEl) {
-            btnToggleFullscreen.addEventListener('click', function() {
-                liveMapEl.classList.toggle('fullscreen');
-                var isFull = liveMapEl.classList.contains('fullscreen');
-                btnToggleFullscreen.innerHTML = isFull 
-                    ? '<i class="fa-solid fa-compress"></i> <span>Vollbild beenden (Esc)</span>' 
-                    : '<i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>';
-                setTimeout(function() {
-                    liveMap.invalidateSize();
-                }, 120);
-            });
-            window.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && liveMapEl.classList.contains('fullscreen')) {
-                    liveMapEl.classList.remove('fullscreen');
-                    btnToggleFullscreen.innerHTML = '<i class="fa-solid fa-expand"></i> <span>Karte vergrößern / Vollbild</span>';
-                    setTimeout(function() {
-                        liveMap.invalidateSize();
-                    }, 120);
-                }
-            });
+        const btnToggleFullscreen = document.getElementById('btnToggleLiveMapFullscreen');
+        const liveMapEl = document.getElementById('live-map');
+        function setFullscreenState(isFull) {
+            btnToggleFullscreen.innerHTML = isFull
+                ? '<i class="fa-solid fa-compress"></i> <span>Exit fullscreen</span>'
+                : '<i class="fa-solid fa-expand"></i> <span>Open fullscreen</span>';
+            setTimeout(() => liveMap.invalidateSize(), 120);
         }
+        btnToggleFullscreen.addEventListener('click', function () {
+            liveMapEl.classList.toggle('fullscreen');
+            setFullscreenState(liveMapEl.classList.contains('fullscreen'));
+        });
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && liveMapEl.classList.contains('fullscreen')) {
+                liveMapEl.classList.remove('fullscreen');
+                setFullscreenState(false);
+            }
+        });
 
-        // Handle URL coordinates query parameters (e.g. from Graph Explorer: ?lat=46.5647&lng=14.8222&zoom=15)
-        var urlParams = new URLSearchParams(window.location.search);
-        var pLat = parseFloat(urlParams.get('lat'));
-        var pLng = parseFloat(urlParams.get('lng'));
-        var pZoom = parseInt(urlParams.get('zoom')) || 15;
-        if (!isNaN(pLat) && !isNaN(pLng)) {
+        const params = new URLSearchParams(window.location.search);
+        const pLat = parseFloat(params.get('lat'));
+        const pLng = parseFloat(params.get('lng'));
+        const pZoom = parseInt(params.get('zoom'), 10) || 15;
+        if (!Number.isNaN(pLat) && !Number.isNaN(pLng)) {
             liveMap.setView([pLat, pLng], pZoom);
-            var queryMarker = L.marker([pLat, pLng]).addTo(liveMap);
-            queryMarker.bindPopup("<b>Fokussierter Fundort</b><br>" + pLat.toFixed(5) + "°, " + pLng.toFixed(5) + "°").openPopup();
+            L.marker([pLat, pLng]).addTo(liveMap)
+                .bindPopup(`<strong>Linked coordinates</strong><br>${pLat.toFixed(5)}°, ${pLng.toFixed(5)}°`).openPopup();
         }
     </script>
-    <!-- Responsive Navigation Burger Menu -->
-    <script src="../scripts/nav.js?v=2.4.0" defer></script>
+    <script src="../scripts/nav.js?v=2.5.0" defer></script>
 </body>
 </html>
