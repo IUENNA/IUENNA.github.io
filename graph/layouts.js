@@ -183,9 +183,11 @@
         const len = Math.sqrt(len2);
         const px = point.x - source.x;
         const py = point.y - source.y;
+        const rawDistance = (px * (-dy) + py * dx) / len;
+        const maxOffset = Math.min(120, len * 0.20);
         return {
-            weight: Math.max(0.08, Math.min(0.92, (px * dx + py * dy) / len2)),
-            distance: (px * (-dy) + py * dx) / len
+            weight: Math.max(0.15, Math.min(0.85, (px * dx + py * dy) / len2)),
+            distance: Math.max(-maxOffset, Math.min(maxOffset, rawDistance * 0.42))
         };
     }
 

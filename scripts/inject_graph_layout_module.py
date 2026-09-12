@@ -21,7 +21,7 @@ START = "<!-- IUENNA graph runtime: start -->"
 END = "<!-- IUENNA graph runtime: end -->"
 LEGACY_START = "<!-- IUENNA graph layout runtime: start -->"
 LEGACY_END = "<!-- IUENNA graph layout runtime: end -->"
-BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-4"></script>\n<script src="./corpus-data.js?v=20260912-2"></script>\n<script src="./layouts.js?v=20260912-3"></script>\n{END}'''
+BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-4"></script>\n<script src="./corpus-data.js?v=20260912-2"></script>\n<script src="./layouts.js?v=20260912-4"></script>\n{END}'''
 
 GRAPH_SHELL = 'let graphData = { elements: { nodes: [], edges: [] }, metadata: { source: "arche_graph_macro.json", authoritative_source: "arche_graph.json", mode: "lod" } };'
 
@@ -128,7 +128,7 @@ def validate(text: str) -> None:
         raise RuntimeError("LOD graph loader was not injected")
     if './corpus-data.js?v=20260912-2' not in text:
         raise RuntimeError("Lazy corpus loader was not injected")
-    if './layouts.js?v=20260912-3' not in text:
+    if './layouts.js?v=20260912-4' not in text:
         raise RuntimeError("Layout runtime was not injected")
     if "let edgeLabelsVisible = false;" not in text:
         raise RuntimeError("Edge labels are not disabled by default")
