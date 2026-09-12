@@ -1,0 +1,265 @@
+{
+  "generated_at": "2026-09-12T00:18:12Z",
+  "status": "pass",
+  "invariants": {
+    "one_arche_id_one_node": true,
+    "no_dangling_edges": true,
+    "all_resolvable_ttl_relations_preserved": true
+  },
+  "inputs": {
+    "collections": 434,
+    "resources": 20355,
+    "datasets": 9,
+    "persons": 21,
+    "organisations": 9,
+    "publications": 23,
+    "places": 219,
+    "unique_arche_ids_across_input_roles": 21061,
+    "source_role_overlaps": {
+      "1795453": [
+        "dataset",
+        "resource"
+      ],
+      "1795454": [
+        "dataset",
+        "resource"
+      ],
+      "1798920": [
+        "dataset",
+        "resource"
+      ],
+      "1798921": [
+        "dataset",
+        "resource"
+      ],
+      "1803840": [
+        "dataset",
+        "resource"
+      ],
+      "1804065": [
+        "dataset",
+        "resource"
+      ],
+      "1804081": [
+        "dataset",
+        "resource"
+      ],
+      "1804082": [
+        "dataset",
+        "resource"
+      ],
+      "1804083": [
+        "dataset",
+        "resource"
+      ]
+    },
+    "source_role_overlap_count": 9
+  },
+  "graph": {
+    "nodes": 21071,
+    "arche_backed_nodes": 21061,
+    "curated_helper_nodes": 10,
+    "edges": 281851,
+    "node_role_counts": {
+      "collection": 434,
+      "curated-helper": 10,
+      "dataset": 9,
+      "organization": 9,
+      "person": 21,
+      "place": 219,
+      "publication": 23,
+      "resource": 20355
+    },
+    "node_type_counts": {
+      "dataset": 9,
+      "epoch": 2,
+      "folder_l2": 67,
+      "folder_l3": 200,
+      "folder_l4": 38,
+      "folder_l5": 120,
+      "folder_l6": 2,
+      "license": 2,
+      "organization": 9,
+      "person": 21,
+      "place": 219,
+      "publication": 23,
+      "resource": 20346,
+      "root": 1,
+      "subcollection": 6,
+      "subject": 6
+    },
+    "edge_label_counts": {
+      "documents": 28825,
+      "hasAuthor": 37,
+      "hasContributor": 18,
+      "hasCreator": 26117,
+      "hasCurator": 20789,
+      "hasDepositor": 20790,
+      "hasDigitisingAgent": 9009,
+      "hasHosting": 20789,
+      "hasLicense": 2,
+      "hasLicensor": 20879,
+      "hasMetadataCreator": 50606,
+      "hasOwner": 20877,
+      "hasRightsHolder": 20882,
+      "hasSpatialCoverage": 21416,
+      "hasSubject": 6,
+      "hasTemporalCoverage": 2,
+      "isMemberOf": 19,
+      "isPartOf": 20788
+    },
+    "edge_provenance_counts": {
+      "ARCHE-corpus": 40896,
+      "ARCHE-direct": 240263,
+      "IUENNA-curated": 10,
+      "IUENNA-derived": 682
+    },
+    "edge_relation_status_counts": {
+      "aggregated": 675,
+      "asserted": 281159,
+      "curated": 10,
+      "inherited": 7
+    },
+    "duplicate_arche_ids_final": [],
+    "dangling_edges_removed": 0
+  },
+  "ttl_semantics": {
+    "ttl_available": true,
+    "target_predicates": [
+      "documents",
+      "hasAuthor",
+      "hasContributor",
+      "hasCreator",
+      "hasCurator",
+      "hasDepositor",
+      "hasDigitisingAgent",
+      "hasHosting",
+      "hasLicensor",
+      "hasMetadataCreator",
+      "hasOwner",
+      "hasRightsHolder",
+      "hasSpatialCoverage",
+      "isMemberOf",
+      "isPartOf"
+    ],
+    "unique_target_triples": 281181,
+    "resolvable_target_triples": 281159,
+    "graph_asserted_target_edges": 281159,
+    "unresolved_source_ids": [
+      "215203",
+      "48508",
+      "48512",
+      "48515",
+      "48516",
+      "48519",
+      "48521",
+      "48522",
+      "48527",
+      "48529",
+      "48534",
+      "48551",
+      "48910",
+      "50310",
+      "66154"
+    ],
+    "unresolved_target_ids": [
+      "1756785",
+      "41760",
+      "46220",
+      "48505",
+      "504765"
+    ],
+    "predicate_audit": {
+      "documents": {
+        "ttl_triples": 28825,
+        "resolvable_ttl_triples": 28825,
+        "graph_asserted_edges": 28825,
+        "recall_of_resolvable": 1.0
+      },
+      "hasAuthor": {
+        "ttl_triples": 39,
+        "resolvable_ttl_triples": 37,
+        "graph_asserted_edges": 37,
+        "recall_of_resolvable": 1.0
+      },
+      "hasContributor": {
+        "ttl_triples": 18,
+        "resolvable_ttl_triples": 18,
+        "graph_asserted_edges": 18,
+        "recall_of_resolvable": 1.0
+      },
+      "hasCreator": {
+        "ttl_triples": 26117,
+        "resolvable_ttl_triples": 26117,
+        "graph_asserted_edges": 26117,
+        "recall_of_resolvable": 1.0
+      },
+      "hasCurator": {
+        "ttl_triples": 20789,
+        "resolvable_ttl_triples": 20789,
+        "graph_asserted_edges": 20789,
+        "recall_of_resolvable": 1.0
+      },
+      "hasDepositor": {
+        "ttl_triples": 20790,
+        "resolvable_ttl_triples": 20790,
+        "graph_asserted_edges": 20790,
+        "recall_of_resolvable": 1.0
+      },
+      "hasDigitisingAgent": {
+        "ttl_triples": 9009,
+        "resolvable_ttl_triples": 9009,
+        "graph_asserted_edges": 9009,
+        "recall_of_resolvable": 1.0
+      },
+      "hasHosting": {
+        "ttl_triples": 20789,
+        "resolvable_ttl_triples": 20789,
+        "graph_asserted_edges": 20789,
+        "recall_of_resolvable": 1.0
+      },
+      "hasLicensor": {
+        "ttl_triples": 20879,
+        "resolvable_ttl_triples": 20879,
+        "graph_asserted_edges": 20879,
+        "recall_of_resolvable": 1.0
+      },
+      "hasMetadataCreator": {
+        "ttl_triples": 50606,
+        "resolvable_ttl_triples": 50606,
+        "graph_asserted_edges": 50606,
+        "recall_of_resolvable": 1.0
+      },
+      "hasOwner": {
+        "ttl_triples": 20877,
+        "resolvable_ttl_triples": 20877,
+        "graph_asserted_edges": 20877,
+        "recall_of_resolvable": 1.0
+      },
+      "hasRightsHolder": {
+        "ttl_triples": 20882,
+        "resolvable_ttl_triples": 20882,
+        "graph_asserted_edges": 20882,
+        "recall_of_resolvable": 1.0
+      },
+      "hasSpatialCoverage": {
+        "ttl_triples": 20734,
+        "resolvable_ttl_triples": 20734,
+        "graph_asserted_edges": 20734,
+        "recall_of_resolvable": 1.0
+      },
+      "isMemberOf": {
+        "ttl_triples": 24,
+        "resolvable_ttl_triples": 19,
+        "graph_asserted_edges": 19,
+        "recall_of_resolvable": 1.0
+      },
+      "isPartOf": {
+        "ttl_triples": 20803,
+        "resolvable_ttl_triples": 20788,
+        "graph_asserted_edges": 20788,
+        "recall_of_resolvable": 1.0
+      }
+    }
+  }
+}
