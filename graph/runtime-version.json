@@ -1,0 +1,9 @@
+{
+  "version": "2026-09-12-canonical-graph-runtime-1",
+  "graph_source": "../data/arche_graph.json",
+  "embedded_full_graph": false,
+  "layout_runtime": "layouts.js?v=20260912-2",
+  "data_runtime": "data-source.js?v=20260912-1",
+  "generated_frontend_commit": "2093d01622951e58db38b43f1067465971b7a61b",
+  "status": "release-marker"
+}
