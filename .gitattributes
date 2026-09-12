@@ -1,0 +1,6 @@
+# Large generated ARCHE snapshots: keep them versioned/downloadable, but avoid
+# rendering enormous textual diffs in pull requests.
+data/arche_full_metadata.ttl -diff linguist-generated=true
+data/arche_corpus.json -diff linguist-generated=true
+data/arche_graph.json -diff linguist-generated=true
+data/arche_graph_audit.json linguist-generated=true
