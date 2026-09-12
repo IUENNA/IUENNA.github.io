@@ -51,7 +51,7 @@
     const navLinks = navMenu.querySelectorAll('.nav-link');
     navLinks.forEach(function (link) {
       link.addEventListener('click', function () {
-        if (window.innerWidth <= 1024) {
+        if (window.innerWidth <= 900) {
           closeMenu();
         }
       });

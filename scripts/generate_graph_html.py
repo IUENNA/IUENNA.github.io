@@ -43,14 +43,19 @@ def generate():
     embedded_pubs_json = json.dumps(pubs_data, ensure_ascii=False)
 
     html_content = f'''<!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IUENNA – Knowledge Graph &amp; Corpus Explorer</title>
-    <!-- Favicon / Tab Icon -->
-    <link rel="icon" type="image/jpeg" href="../media/LOGO_IUENNA.jpg">
-    <link rel="apple-touch-icon" href="../media/LOGO_IUENNA.jpg">
+    <!-- Favicon / Tab Icons -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
+    <link rel="alternate icon" type="image/png" sizes="16x16" href="../media/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../media/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="theme-color" content="#A8442E">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA – Knowledge Graph &amp; Corpus Explorer">
@@ -58,14 +63,15 @@ def generate():
     <meta name="DC.creator" content="Franziska Waldhart">
     <meta name="DC.publisher" content="Go!Digital 3.0 Project IUENNA">
     <meta name="DC.subject" content="IUENNA, ARCHE, Knowledge Graph, Cytoscape, Linked Open Data, Archaeology, Corpus">
-    <meta name="DC.description" content="Interaktive Wissensgraph- und Korpus-Visualisierung der archäologischen Bestände von IUENNA im Repositorium ARCHE (ACDH-CH / ÖAW). Umfasst alle 20.788 Einträge, 190 Sammlungen/Ordner und 20.541 Primärressourcen mit Live-Dateivorschau.">
+    <meta name="DC.description" content="Interactive knowledge graph and corpus explorer for the archaeological holdings of IUENNA in the ARCHE repository (ACDH-CH / ÖAW). Covers all 21,080 entries, 434 collections and folders, and 20,355 primary resources with live file preview.">
+    <meta name="DC.language" content="en">
     
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css?v=2.1.8">
+    <link rel="stylesheet" href="../styles.css?v=2.4.0">
 
     <!-- Cytoscape.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
@@ -96,11 +102,79 @@ def generate():
         }}
 
         body {{
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            background-color: var(--bg-main);
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 24px 24px;
+            overflow-x: hidden;
+        }}
+
+        /* Graph Page Main Container (1200px max width to match site) */
+        .graph-main-container {{
+            max-width: var(--max-width);
+            margin: 1.5rem auto 3rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }}
+
+        /* Graph Application Card Wrapper */
+        .graph-app-card {{
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
             overflow: hidden;
-            background-color: var(--graph-bg);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            transition: box-shadow 0.25s ease;
+        }}
+        .graph-app-card:hover {{
+            box-shadow: var(--shadow-md);
+        }}
+
+        /* Fullscreen handling */
+        .graph-app-card:fullscreen,
+        .graph-app-card:-webkit-full-screen {{
+            width: 100vw !important;
+            height: 100vh !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }}
+        .graph-app-card:fullscreen .stage-container,
+        .graph-app-card:-webkit-full-screen .stage-container {{
+            flex: 1;
+            height: auto !important;
+            min-height: 0 !important;
+        }}
+
+        .graph-app-card.fullscreen-fallback {{
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99999 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+        }}
+        .graph-app-card.fullscreen-fallback .stage-container {{
+            flex: 1;
+            height: auto !important;
+            min-height: 0 !important;
         }}
 
         /* Header Bar */
@@ -481,6 +555,8 @@ def generate():
             flex: 1;
             position: relative;
             width: 100%;
+            height: clamp(580px, 72vh, 850px);
+            min-height: 520px;
             overflow: hidden;
             background: radial-gradient(#E6E2DB 1px, transparent 1px);
             background-size: 24px 24px;
@@ -660,7 +736,7 @@ def generate():
             right: 15px;
             bottom: 15px;
             width: 420px;
-            max-width: 95vw;
+            max-width: calc(100% - 30px);
             background: var(--panel-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--panel-border);
@@ -681,7 +757,7 @@ def generate():
             transform: translateX(0);
         }}
         .inspector-drawer.expanded {{
-            width: min(880px, 92vw);
+            width: min(880px, calc(100% - 30px));
         }}
 
         .drawer-resize-handle {{
@@ -1488,514 +1564,534 @@ def generate():
         </div>
     </header>
 
-    <!-- App Bar & Collection Stats -->
-    <div class="graph-header-bar">
-        <div class="graph-title-group">
-            <h1><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> IUENNA Knowledge Graph &amp; Corpus Explorer</h1>
-            <p>Vollständiges semantisches Netzwerk &amp; Archiv-Korpus des IUENNA-Repositoriums auf ARCHE (ACDH-CH / ÖAW)</p>
-        </div>
-        <div class="stats-pills">
-            <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">21.080</strong> ARCHE-Einträge</span>
-            <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20.355</strong> Primärressourcen</span>
-            <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">434</strong> Sammlungen &amp; Ordner</span>
-            <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">21</strong> Forscher:innen</span>
-            <span class="stat-pill"><i class="fa-solid fa-book-open"></i> <strong id="pillPubs">23</strong> Publikationen</span>
-            <span class="stat-pill"><i class="fa-solid fa-map-pin"></i> <strong id="pillPlaces">219</strong> Fundorte</span>
-            <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">9</strong> Institutionen</span>
-            <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
-            <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">21.080</strong> im Graphen</span>
-            <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
-                <i class="fa-solid fa-database"></i> <strong id="corpusStatusCount">20.355</strong> Korpus-Ressourcen
-            </span>
-            <span class="stat-pill"><i class="fa-solid fa-link"></i> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" title="Persistent Identifier auf ARCHE">PID: 21.11115/0000-0016-7B39-F</a></span>
-        </div>
-    </div>
+    <!-- Main Application Container (1200px max-width) -->
+    <main class="graph-main-container">
+        <div class="graph-app-card" id="graphAppCard">
 
-    <!-- Controls Toolbar -->
-    <div class="graph-toolbar">
-        <div class="toolbar-left">
-            <!-- Layout Selector -->
-            <label for="layoutSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark);">Layout:</label>
-            <select id="layoutSelect" class="tool-select">
-                <option value="preset" selected>Vorberechnetes Cluster-Layout (Schnell)</option>
-                <option value="cose">Force-Directed (Organisch)</option>
-                <option value="concentric">Konzentrisch (Hierarchie-Ringe)</option>
-                <option value="breadthfirst">Baum-Hierarchie (Tree)</option>
-                <option value="circle">Kreis (Zirkulär)</option>
-            </select>
-
-            <!-- Hierarchie-Ebenen Schieberegler (LOD Slider) -->
-            <div class="lod-slider-wrapper" title="Hierarchie-Tiefe (Level of Detail) schrittweise anpassen">
-                <div class="lod-slider-header">
-                    <label for="lodSlider" class="lod-slider-label">
-                        <i class="fa-solid fa-layer-group" style="color: var(--secondary);"></i> <span>Ebene:</span>
-                    </label>
-                    <span class="lod-slider-badge" id="lodLevelBadge">L1–L6 (Alle 434 Ordner)</span>
+            <!-- App Bar & Collection Stats -->
+            <div class="graph-header-bar">
+                <div class="graph-title-group">
+                    <h1><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> IUENNA Knowledge Graph &amp; Corpus Explorer</h1>
+                    <p>Complete semantic network &amp; archival corpus of the IUENNA repository on ARCHE (ACDH-CH / ÖAW)</p>
                 </div>
-                <div class="lod-slider-track-wrap">
-                    <input type="range" id="lodSlider" min="1" max="6" value="6" step="1" class="lod-range-slider" list="lodTickmarks" aria-label="Hierarchie-Ebene">
-                    <datalist id="lodTickmarks">
-                        <option value="1" label="L1"></option>
-                        <option value="2" label="L2"></option>
-                        <option value="3" label="L3"></option>
-                        <option value="4" label="L4"></option>
-                        <option value="5" label="L5"></option>
-                        <option value="6" label="L6"></option>
-                    </datalist>
+                <div class="stats-pills">
+                    <span class="stat-pill"><i class="fa-solid fa-box-archive"></i> <strong id="pillItems">21,080</strong> ARCHE Entries</span>
+                    <span class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong id="pillResources">20,355</strong> Primary Resources</span>
+                    <span class="stat-pill"><i class="fa-solid fa-folder-tree"></i> <strong id="pillCollections">434</strong> Collections &amp; Folders</span>
+                    <span class="stat-pill"><i class="fa-solid fa-user-group"></i> <strong id="pillResearchers">21</strong> Researchers</span>
+                    <span class="stat-pill"><i class="fa-solid fa-book-open"></i> <strong id="pillPubs">23</strong> Publications</span>
+                    <span class="stat-pill"><i class="fa-solid fa-map-pin"></i> <strong id="pillPlaces">219</strong> Sites &amp; Places</span>
+                    <span class="stat-pill"><i class="fa-solid fa-building-columns"></i> <strong id="pillOrgs">9</strong> Institutions</span>
+                    <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="pillSize">356.68 GB</strong></span>
+                    <span class="stat-pill"><i class="fa-solid fa-network-wired"></i> <strong id="pillVisibleNodes">21,080</strong> in Graph</span>
+                    <span class="stat-pill" id="pillCorpusStatus" style="background: #EBF3ED; border-color: #B5D5BD; color: #2E6038;">
+                        <i class="fa-solid fa-database"></i> <strong id="corpusStatusCount">20,355</strong> Corpus Resources
+                    </span>
+                    <span class="stat-pill"><i class="fa-solid fa-link"></i> <a href="https://hdl.handle.net/21.11115/0000-0016-7B39-F" target="_blank" title="Persistent Identifier on ARCHE">PID: 21.11115/0000-0016-7B39-F</a></span>
                 </div>
             </div>
 
-            <!-- Selection Bookmark Buttons (Merkliste) -->
-            <button id="btnBookmarkCurrent" class="tool-btn" title="Aktuell ausgewählten Eintrag zur temporären Merkliste hinzufügen">
-                <i class="fa-regular fa-bookmark" style="color: var(--secondary);"></i> <span>Auswahl merken</span>
-            </button>
-            <button id="btnOpenBookmarks" class="tool-btn" title="Gespeicherte Merkliste öffnen">
-                <i class="fa-solid fa-bookmark" style="color: var(--primary);"></i> Merkliste (<span id="bookmarkCountPill">0</span>)
-            </button>
+            <!-- Controls Toolbar -->
+            <div class="graph-toolbar">
+                <div class="toolbar-left">
+                    <!-- Layout Selector -->
+                    <label for="layoutSelect" style="font-size: 0.76rem; font-weight: 600; color: var(--text-dark);">Layout:</label>
+                    <select id="layoutSelect" class="tool-select">
+                        <option value="preset" selected>Precomputed Cluster Layout (Fast)</option>
+                        <option value="cose">Force-Directed (Organic)</option>
+                        <option value="concentric">Concentric (Hierarchy Rings)</option>
+                        <option value="breadthfirst">Tree Hierarchy (Breadthfirst)</option>
+                        <option value="circle">Circle (Circular)</option>
+                    </select>
 
-            <!-- Ordnerbaum Button -->
-            <button id="btnOpenTreeModal" class="tool-btn secondary-btn" title="Vollständigen ARCHE-Archivbaum aller 434 Ordner erkunden">
-                <i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> Ordnerbaum (434)
-            </button>
-
-            <!-- Corpus Catalog Drawer Button -->
-            <button id="btnOpenCorpus" class="tool-btn primary-btn" title="Katalog aller 20.555 ARCHE-Ressourcen durchsuchen">
-                <i class="fa-solid fa-database"></i> Corpus-Katalog (20.555)
-            </button>
-
-            <!-- Search Autocomplete -->
-            <div class="search-box-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="21.070 ARCHE-Einträge durchsuchen (z.B. Franziska Reiner, Dominik Hagmann, Sabine Ladstätter, Michaela Binder)..." autocomplete="off">
-                <div id="searchDropdown" class="search-dropdown"></div>
-            </div>
-
-            <!-- Entity Filter Chips -->
-            <div class="filter-group">
-                <span class="filter-chip active" data-type="all">Alle</span>
-                <span class="filter-chip active" data-type="subcollection"><span class="chip-dot" style="background: var(--color-l1);"></span>Subcollections</span>
-                <span class="filter-chip active" data-type="folder"><span class="chip-dot" style="background: var(--color-l2);"></span>Ordner</span>
-                <span class="filter-chip active" data-type="dataset"><span class="chip-dot" style="background: #1B4965;"></span>Datensätze</span>
-                <span class="filter-chip active" data-type="publication"><span class="chip-dot" style="background: #7B4F36;"></span>Publikationen</span>
-                <span class="filter-chip active" data-type="resource"><span class="chip-dot" style="background: var(--color-resource);"></span>Ressourcen</span>
-                <span class="filter-chip active" data-type="place"><span class="chip-dot" style="background: var(--color-place);"></span>Fundorte</span>
-                <span class="filter-chip active" data-type="organization"><span class="chip-dot" style="background: var(--color-organization);"></span>Institutionen</span>
-                <span class="filter-chip active" data-type="person"><span class="chip-dot" style="background: var(--color-person);"></span>Personen</span>
-                <span class="filter-chip active" data-type="period"><span class="chip-dot" style="background: var(--color-period);"></span>Epochen</span>
-                <span class="filter-chip active" data-type="subject"><span class="chip-dot" style="background: var(--color-subject);"></span>Schlagworte</span>
-                <span class="filter-chip active" data-type="license"><span class="chip-dot" style="background: var(--color-license);"></span>Lizenzen</span>
-            </div>
-        </div>
-
-        <div class="toolbar-right">
-            <button id="btnToggleEdges" class="tool-btn" title="Alle Kanten im Graphen ein- oder ausblenden">
-                <i class="fa-solid fa-bezier-curve"></i> <span id="btnToggleEdgesText">Kanten verbergen</span>
-            </button>
-            <button id="btnToggleNodeLabels" class="tool-btn" title="Knotenbeschriftungen ein- oder ausblenden">
-                <i class="fa-solid fa-tag"></i> <span id="btnToggleNodeLabelsText">Knotentexte verbergen</span>
-            </button>
-            <button id="btnToggleEdgeLabels" class="tool-btn" title="Kantenbeschriftungen (Relationen) ein- oder ausblenden">
-                <i class="fa-solid fa-font"></i> <span id="btnToggleEdgeLabelsText">Kantentexte verbergen</span>
-            </button>
-            <button id="btnFit" class="tool-btn" title="Ansicht einpassen"><i class="fa-solid fa-expand"></i> Zentrieren</button>
-            <button id="btnZoomIn" class="tool-btn" title="Vergrößern"><i class="fa-solid fa-plus"></i></button>
-            <button id="btnZoomOut" class="tool-btn" title="Verkleinern"><i class="fa-solid fa-minus"></i></button>
-            <button id="btnExportPng" class="tool-btn" title="Graph als Bild exportieren"><i class="fa-solid fa-camera"></i> PNG</button>
-            <button id="btnFullscreen" class="tool-btn" title="Vollbild umschalten"><i class="fa-solid fa-maximize"></i></button>
-        </div>
-    </div>
-
-    <!-- Main Graph Canvas Stage -->
-    <main class="stage-container" id="stageContainer">
-        <div id="cy"></div>
-
-        <!-- Graph Loading Overlay -->
-        <div id="graphLoadingOverlay" class="graph-loading-overlay">
-            <div class="graph-loading-card">
-                <div class="graph-loading-spinner-wrap">
-                    <div class="graph-loading-ring"></div>
-                    <i class="fa-solid fa-circle-nodes graph-loading-icon"></i>
-                </div>
-                <h3 class="graph-loading-title" id="graphLoadingTitle">Lade Knowledge Graph...</h3>
-                <p class="graph-loading-sub" id="graphLoadingStatus">21.080 ARCHE-Knoten &amp; 35.597 Relationen werden initialisiert...</p>
-                <div class="graph-loading-progress-track">
-                    <div class="graph-loading-progress-bar" id="graphLoadingBar" style="width: 55%;"></div>
-                </div>
-                <div class="graph-loading-meta">
-                    <span><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> 21.080 Knoten</span>
-                    <span>&bull;</span>
-                    <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> 434 Sammlungen</span>
-                    <span>&bull;</span>
-                    <span><i class="fa-solid fa-file-lines" style="color: #2A9D8F;"></i> 20.355 Ressourcen</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Legend -->
-        <div class="legend-card" id="legendCard">
-            <div class="legend-header" id="legendToggle">
-                <span><i class="fa-solid fa-layer-group"></i> Hierarchie &amp; Typen</span>
-                <i class="fa-solid fa-chevron-up" id="legendChevron"></i>
-            </div>
-            <ul class="legend-list" id="legendBody">
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l0);"></span> Top-Collection (L0)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l1);"></span> Subcollections (L1)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l2);"></span> Hauptkategorien (L2)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l3);"></span> Fachordner (L3)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l4);"></span> Teilsammlungen (L4)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-l5);"></span> Befundordner (L5/L6)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: #1B4965;"></span> Forschungsdatensatz / GeoPackage</li>
-                <li class="legend-item"><span class="legend-icon" style="background: #7B4F36;"></span> Fachpublikation (Literaturnachweis)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-resource);"></span> ARCHE-Datei (Ressource)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-place);"></span> Geographischer Fundort</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-organization);"></span> Institution / Partner</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-person);"></span> Forscher:in (PI)</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-period);"></span> Zeitepoche</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-subject);"></span> Fachschlagwort</li>
-                <li class="legend-item"><span class="legend-icon" style="background: var(--color-license);"></span> Lizenz (InC / CC BY)</li>
-            </ul>
-        </div>
-
-        <!-- Hint Overlay -->
-        <div class="hint-overlay" style="position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.9); padding: 5px 12px; border-radius: 20px; font-size: 0.72rem; color: var(--text-muted); pointer-events: none; border: 1px solid var(--panel-border);">
-            <i class="fa-solid fa-hand-pointer"></i> Klicken zum Inspizieren &amp; Vorschau • Doppelklick zum Aufklappen von Ressourcen
-        </div>
-
-        <!-- Node Inspector Drawer -->
-        <aside class="inspector-drawer" id="inspectorDrawer">
-            <div class="drawer-resize-handle" id="drawerResizeHandle" title="Ziehen zum Vergrößern / Doppelklick zum Umschalten"></div>
-
-            <div class="drawer-header">
-                <div class="drawer-header-top">
-                    <span class="drawer-badge" id="drawerBadge">KNOTEN</span>
-                    <div style="display: flex; align-items: center; gap: 5px;">
-                        <button class="drawer-header-btn" id="drawerToggleExpandBtn" title="Popup vergrößern / verkleinern (Breitbildansicht)">
-                            <i class="fa-solid fa-expand" id="drawerToggleExpandIcon"></i>
-                        </button>
-                        <button class="drawer-close-btn" id="drawerCloseBtn" title="Schließen">&times;</button>
-                    </div>
-                </div>
-                <nav id="drawerBreadcrumb" class="drawer-breadcrumb"></nav>
-                <h2 class="drawer-title" id="drawerTitle">Knoten-Titel</h2>
-            </div>
-
-            <div class="drawer-body">
-                <!-- Left Column: Attributes, Metadata, Preview -->
-                <div class="drawer-col drawer-col-left">
-                    <!-- Person / Organisation Profile Box -->
-                    <div id="drawerEntityProfileBox" class="entity-profile-box" style="display: none;">
-                        <div class="drawer-section-title">
-                            <span><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> <span id="drawerEntityProfileHeading">Forscher:innen-Profil</span></span>
+                    <!-- Hierarchie-Ebenen Schieberegler (LOD Slider) -->
+                    <div class="lod-slider-wrapper" title="Adjust hierarchy depth (Level of Detail)">
+                        <div class="lod-slider-header">
+                            <label for="lodSlider" class="lod-slider-label">
+                                <i class="fa-solid fa-layer-group" style="color: var(--secondary);"></i> <span>Level:</span>
+                            </label>
+                            <span class="lod-slider-badge" id="lodLevelBadge">L1–L6 (All 434 Folders)</span>
                         </div>
-                        <div class="entity-profile-details">
-                            <div id="drawerEntityAffiliationRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-building-columns"></i> Institution:</span>
-                                <span id="drawerEntityAffiliationVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerEntityOrcidRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-brands fa-orcid" style="color: #A6CE39;"></i> ORCID:</span>
-                                <span class="entity-prop-val"><a id="drawerEntityOrcidLink" href="#" target="_blank" class="external-id-link orcid-link"><i class="fa-brands fa-orcid"></i> <span id="drawerEntityOrcidVal"></span> ↗</a></span>
-                            </div>
-                            <div id="drawerEntityWikidataRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-barcode"></i> Wikidata:</span>
-                                <span class="entity-prop-val"><a id="drawerEntityWikidataLink" href="#" target="_blank" class="external-id-link wikidata-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerEntityWikidataVal"></span> ↗</a></span>
-                            </div>
+                        <div class="lod-slider-track-wrap">
+                            <input type="range" id="lodSlider" min="1" max="6" value="6" step="1" class="lod-range-slider" list="lodTickmarks" aria-label="Hierarchy level">
+                            <datalist id="lodTickmarks">
+                                <option value="1" label="L1"></option>
+                                <option value="2" label="L2"></option>
+                                <option value="3" label="L3"></option>
+                                <option value="4" label="L4"></option>
+                                <option value="5" label="L5"></option>
+                                <option value="6" label="L6"></option>
+                            </datalist>
                         </div>
                     </div>
 
-                    <!-- Publication Profile Box -->
-                    <div id="drawerPublicationBox" class="entity-profile-box" style="display: none; border-left: 4px solid #7B4F36;">
-                        <div class="drawer-section-title">
-                            <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> <span id="drawerPubHeading">Publikationsdetails</span></span>
-                        </div>
-                        <div class="entity-profile-details">
-                            <div id="drawerPubAuthorsRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-user-pen"></i> Autor:innen:</span>
-                                <span id="drawerPubAuthorsVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerPubYearRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-calendar-day"></i> Erscheinungsjahr:</span>
-                                <span id="drawerPubYearVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerPubJournalRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-newspaper"></i> Verlag / Zeitschrift:</span>
-                                <span id="drawerPubJournalVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerPubPagesRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-file-lines"></i> Seiten:</span>
-                                <span id="drawerPubPagesVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerPubUrlRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Volltext / Link:</span>
-                                <span class="entity-prop-val"><a id="drawerPubUrlLink" href="#" target="_blank" class="external-id-link" style="color: #7B4F36;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPubUrlVal">Online öffnen</span> ↗</a></span>
-                            </div>
-                        </div>
+                    <!-- Selection Bookmark Buttons -->
+                    <button id="btnBookmarkCurrent" class="tool-btn" title="Add currently selected entry to temporary bookmarks">
+                        <i class="fa-regular fa-bookmark" style="color: var(--secondary);"></i> <span>Bookmark Selection</span>
+                    </button>
+                    <button id="btnOpenBookmarks" class="tool-btn" title="Open saved bookmarks">
+                        <i class="fa-solid fa-bookmark" style="color: var(--primary);"></i> Bookmarks (<span id="bookmarkCountPill">0</span>)
+                    </button>
+
+                    <!-- Ordnerbaum Button -->
+                    <button id="btnOpenTreeModal" class="tool-btn secondary-btn" title="Explore complete ARCHE archive tree of all 434 folders">
+                        <i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> Archive Tree (434)
+                    </button>
+
+                    <!-- Corpus Catalog Drawer Button -->
+                    <button id="btnOpenCorpus" class="tool-btn primary-btn" title="Search catalog of all 20,355 ARCHE resources">
+                        <i class="fa-solid fa-database"></i> Corpus Catalog (20,355)
+                    </button>
+
+                    <!-- Search Autocomplete -->
+                    <div class="search-box-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search 21,080 ARCHE entries (e.g. Franziska Reiner, Dominik Hagmann, Sabine Ladstätter, Michaela Binder)..." autocomplete="off">
+                        <div id="searchDropdown" class="search-dropdown"></div>
                     </div>
 
-                    <!-- Dataset Profile Box (when Forschungsdatensatz / GeoPackage is selected) -->
-                    <div id="drawerDatasetBox" class="entity-profile-box" style="display: none; border-left: 4px solid #1B4965; background: #F0F4F8;">
-                        <div class="drawer-section-title" style="margin-bottom: 8px;">
-                            <span><i class="fa-solid fa-database" style="color: #1B4965;"></i> <span id="drawerDatasetHeading">Forschungsdatensatz / GeoPackage</span></span>
+                    <!-- Entity Filter Chips -->
+                    <div class="filter-group">
+                        <span class="filter-chip active" data-type="all">All</span>
+                        <span class="filter-chip active" data-type="subcollection"><span class="chip-dot" style="background: var(--color-l1);"></span>Subcollections</span>
+                        <span class="filter-chip active" data-type="folder"><span class="chip-dot" style="background: var(--color-l2);"></span>Folders</span>
+                        <span class="filter-chip active" data-type="dataset"><span class="chip-dot" style="background: #1B4965;"></span>Datasets</span>
+                        <span class="filter-chip active" data-type="publication"><span class="chip-dot" style="background: #7B4F36;"></span>Publications</span>
+                        <span class="filter-chip active" data-type="resource"><span class="chip-dot" style="background: var(--color-resource);"></span>Resources</span>
+                        <span class="filter-chip active" data-type="place"><span class="chip-dot" style="background: var(--color-place);"></span>Sites &amp; Places</span>
+                        <span class="filter-chip active" data-type="organization"><span class="chip-dot" style="background: var(--color-organization);"></span>Institutions</span>
+                        <span class="filter-chip active" data-type="person"><span class="chip-dot" style="background: var(--color-person);"></span>Researchers</span>
+                        <span class="filter-chip active" data-type="period"><span class="chip-dot" style="background: var(--color-period);"></span>Periods</span>
+                        <span class="filter-chip active" data-type="subject"><span class="chip-dot" style="background: var(--color-subject);"></span>Subjects</span>
+                        <span class="filter-chip active" data-type="license"><span class="chip-dot" style="background: var(--color-license);"></span>Licenses</span>
+                    </div>
+                </div>
+
+                <div class="toolbar-right">
+                    <button id="btnToggleEdges" class="tool-btn" title="Show or hide all edges in graph">
+                        <i class="fa-solid fa-bezier-curve"></i> <span id="btnToggleEdgesText">Hide Edges</span>
+                    </button>
+                    <button id="btnToggleNodeLabels" class="tool-btn" title="Show or hide node labels">
+                        <i class="fa-solid fa-tag"></i> <span id="btnToggleNodeLabelsText">Hide Node Labels</span>
+                    </button>
+                    <button id="btnToggleEdgeLabels" class="tool-btn" title="Show or hide edge labels (relations)">
+                        <i class="fa-solid fa-font"></i> <span id="btnToggleEdgeLabelsText">Hide Edge Labels</span>
+                    </button>
+                    <button id="btnFit" class="tool-btn" title="Center view"><i class="fa-solid fa-expand"></i> Center</button>
+                    <button id="btnZoomIn" class="tool-btn" title="Zoom in"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btnZoomOut" class="tool-btn" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
+                    <button id="btnExportPng" class="tool-btn" title="Export graph as PNG image"><i class="fa-solid fa-camera"></i> PNG</button>
+                    <button id="btnFullscreen" class="tool-btn" title="Toggle Fullscreen"><i class="fa-solid fa-maximize"></i></button>
+                </div>
+            </div>
+
+            <!-- Main Graph Canvas Stage -->
+            <div class="stage-container" id="stageContainer">
+                <div id="cy"></div>
+
+                <!-- Graph Loading Overlay -->
+                <div id="graphLoadingOverlay" class="graph-loading-overlay">
+                    <div class="graph-loading-card">
+                        <div class="graph-loading-spinner-wrap">
+                            <div class="graph-loading-ring"></div>
+                            <i class="fa-solid fa-circle-nodes graph-loading-icon"></i>
                         </div>
-                        <div class="entity-profile-details">
-                            <div id="drawerDatasetCitationRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-                                <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 700;"><i class="fa-solid fa-quote-left"></i> Zitationsempfehlung (APA):</span>
-                                <div id="drawerDatasetCitationVal" style="font-size: 0.73rem; line-height: 1.45; color: #1E293B; background: white; padding: 7px 9px; border-radius: 4px; border: 1px solid #CBD5E1; width: 100%; box-sizing: border-box; font-family: Georgia, serif;"></div>
+                        <h3 class="graph-loading-title" id="graphLoadingTitle">Loading Knowledge Graph...</h3>
+                        <p class="graph-loading-sub" id="graphLoadingStatus">Initializing 21,080 ARCHE nodes &amp; 35,597 relations...</p>
+                        <div class="graph-loading-progress-track">
+                            <div class="graph-loading-progress-bar" id="graphLoadingBar" style="width: 55%;"></div>
+                        </div>
+                        <div class="graph-loading-meta">
+                            <span><i class="fa-solid fa-circle-nodes" style="color: var(--primary);"></i> 21,080 Nodes</span>
+                            <span>&bull;</span>
+                            <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> 434 Collections</span>
+                            <span>&bull;</span>
+                            <span><i class="fa-solid fa-file-lines" style="color: #2A9D8F;"></i> 20,355 Resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Legend -->
+                <div class="legend-card" id="legendCard">
+                    <div class="legend-header" id="legendToggle">
+                        <span><i class="fa-solid fa-layer-group"></i> Hierarchy &amp; Types</span>
+                        <i class="fa-solid fa-chevron-up" id="legendChevron"></i>
+                    </div>
+                    <ul class="legend-list" id="legendBody">
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l0);"></span> Top-Collection (L0)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l1);"></span> Subcollections (L1)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l2);"></span> Main Categories (L2)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l3);"></span> Subject Folders (L3)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l4);"></span> Sub-Collections (L4)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-l5);"></span> Context Folders (L5/L6)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: #1B4965;"></span> Research Dataset / GeoPackage</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: #7B4F36;"></span> Scholarly Publication (Literature Reference)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-resource);"></span> ARCHE File (Resource)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-place);"></span> Geographical Site / Findspot</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-organization);"></span> Institution / Partner</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-person);"></span> Researcher (PI / Contributor)</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-period);"></span> Time Period / Chronology</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-subject);"></span> Subject Keyword</li>
+                        <li class="legend-item"><span class="legend-icon" style="background: var(--color-license);"></span> License (InC / CC BY)</li>
+                    </ul>
+                </div>
+
+                <!-- Hint Overlay -->
+                <div class="hint-overlay" style="position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.9); padding: 5px 12px; border-radius: 20px; font-size: 0.72rem; color: var(--text-muted); pointer-events: none; border: 1px solid var(--panel-border);">
+                    <i class="fa-solid fa-hand-pointer"></i> Click to inspect &amp; preview • Double-click to expand resources
+                </div>
+
+                <!-- Node Inspector Drawer -->
+                <aside class="inspector-drawer" id="inspectorDrawer">
+                    <div class="drawer-resize-handle" id="drawerResizeHandle" title="Drag to resize / Double-click to toggle width"></div>
+
+                    <div class="drawer-header">
+                        <div class="drawer-header-top">
+                            <span class="drawer-badge" id="drawerBadge">NODE</span>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <button class="drawer-header-btn" id="drawerToggleExpandBtn" title="Expand / collapse drawer (widescreen view)">
+                                    <i class="fa-solid fa-expand" id="drawerToggleExpandIcon"></i>
+                                </button>
+                                <button class="drawer-close-btn" id="drawerCloseBtn" title="Close">&times;</button>
                             </div>
-                            <div id="drawerDatasetCreatorsRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-user-group"></i> Urheber:innen / Beteiligte:</span>
-                                <div id="drawerDatasetCreatorsChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
-                            </div>
-                            <div id="drawerDatasetParentRow" class="entity-prop-row" style="margin-top: 4px;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Zugehörige Sammlung:</span>
-                                <span class="entity-prop-val"><a id="drawerDatasetParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
-                            </div>
-                            <div id="drawerDatasetPidRow" class="entity-prop-row">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Handle / PID:</span>
-                                <span class="entity-prop-val"><a id="drawerDatasetPidLink" href="#" target="_blank" class="external-id-link" style="color: #1B4965;"><span id="drawerDatasetPidVal">–</span> ↗</a></span>
-                            </div>
-                            <div id="drawerDatasetPlacesRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
-                                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                                    <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Erfasste Fundorte:</span>
-                                    <span id="drawerDatasetPlacesCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #D9E8DD; color: #2D6A4F; font-weight: 700;">0</span>
+                        </div>
+                        <nav id="drawerBreadcrumb" class="drawer-breadcrumb"></nav>
+                        <h2 class="drawer-title" id="drawerTitle">Node Details</h2>
+                    </div>
+
+                    <div class="drawer-body">
+                        <!-- Left Column: Attributes, Metadata, Preview -->
+                        <div class="drawer-col drawer-col-left">
+                            <!-- Person / Organisation Profile Box -->
+                            <div id="drawerEntityProfileBox" class="entity-profile-box" style="display: none;">
+                                <div class="drawer-section-title">
+                                    <span><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> <span id="drawerEntityProfileHeading">Researcher Profile</span></span>
                                 </div>
-                                <ul id="drawerDatasetPlacesList" class="relations-list" style="max-height: 150px; overflow-y: auto; width: 100%;"></ul>
+                                <div class="entity-profile-details">
+                                    <div id="drawerEntityAffiliationRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-building-columns"></i> Institution:</span>
+                                        <span id="drawerEntityAffiliationVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerEntityOrcidRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-brands fa-orcid" style="color: #A6CE39;"></i> ORCID:</span>
+                                        <span class="entity-prop-val"><a id="drawerEntityOrcidLink" href="#" target="_blank" class="external-id-link orcid-link"><i class="fa-brands fa-orcid"></i> <span id="drawerEntityOrcidVal"></span> ↗</a></span>
+                                    </div>
+                                    <div id="drawerEntityWikidataRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-barcode"></i> Wikidata:</span>
+                                        <span class="entity-prop-val"><a id="drawerEntityWikidataLink" href="#" target="_blank" class="external-id-link wikidata-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerEntityWikidataVal"></span> ↗</a></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Place Profile Box (when Fundort / Place is selected) -->
-                    <div id="drawerPlaceBox" class="entity-profile-box" style="display: none; border-left: 4px solid #2D6A4F; background: #F4F8F5;">
-                        <div class="drawer-section-title" style="margin-bottom: 8px;">
-                            <span><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> <span id="drawerPlaceHeading">Fundort-Details</span></span>
-                        </div>
-                        <div class="entity-profile-details">
-                            <div id="drawerPlaceCoordsRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-compass"></i> Koordinaten:</span>
-                                <span id="drawerPlaceCoordsVal" class="entity-prop-val"></span>
+                            <!-- Publication Profile Box -->
+                            <div id="drawerPublicationBox" class="entity-profile-box" style="display: none; border-left: 4px solid #7B4F36;">
+                                <div class="drawer-section-title">
+                                    <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> <span id="drawerPubHeading">Publication Details</span></span>
+                                </div>
+                                <div class="entity-profile-details">
+                                    <div id="drawerPubAuthorsRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-user-pen"></i> Authors:</span>
+                                        <span id="drawerPubAuthorsVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerPubYearRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-calendar-day"></i> Publication Year:</span>
+                                        <span id="drawerPubYearVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerPubJournalRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-newspaper"></i> Publisher / Journal:</span>
+                                        <span id="drawerPubJournalVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerPubPagesRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-file-lines"></i> Pages:</span>
+                                        <span id="drawerPubPagesVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerPubUrlRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Full Text / Link:</span>
+                                        <span class="entity-prop-val"><a id="drawerPubUrlLink" href="#" target="_blank" class="external-id-link" style="color: #7B4F36;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPubUrlVal">Open Online</span> ↗</a></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="drawerPlaceGeonamesRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-earth-americas"></i> Geonames:</span>
-                                <span class="entity-prop-val"><a id="drawerPlaceGeonamesLink" href="#" target="_blank" class="external-id-link" style="color: #2D6A4F;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPlaceGeonamesVal">Geonames URI</span> ↗</a></span>
+
+                            <!-- Dataset Profile Box (when Forschungsdatensatz / GeoPackage is selected) -->
+                            <div id="drawerDatasetBox" class="entity-profile-box" style="display: none; border-left: 4px solid #1B4965; background: #F0F4F8;">
+                                <div class="drawer-section-title" style="margin-bottom: 8px;">
+                                    <span><i class="fa-solid fa-database" style="color: #1B4965;"></i> <span id="drawerDatasetHeading">Research Dataset / GeoPackage</span></span>
+                                </div>
+                                <div class="entity-profile-details">
+                                    <div id="drawerDatasetCitationRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                                        <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 700;"><i class="fa-solid fa-quote-left"></i> Citation Recommendation (APA):</span>
+                                        <div id="drawerDatasetCitationVal" style="font-size: 0.73rem; line-height: 1.45; color: #1E293B; background: white; padding: 7px 9px; border-radius: 4px; border: 1px solid #CBD5E1; width: 100%; box-sizing: border-box; font-family: Georgia, serif;"></div>
+                                    </div>
+                                    <div id="drawerDatasetCreatorsRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-user-group"></i> Creators / Contributors:</span>
+                                        <div id="drawerDatasetCreatorsChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+                                    </div>
+                                    <div id="drawerDatasetParentRow" class="entity-prop-row" style="margin-top: 4px;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Associated Collection:</span>
+                                        <span class="entity-prop-val"><a id="drawerDatasetParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
+                                    </div>
+                                    <div id="drawerDatasetPidRow" class="entity-prop-row">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-link"></i> Handle / PID:</span>
+                                        <span class="entity-prop-val"><a id="drawerDatasetPidLink" href="#" target="_blank" class="external-id-link" style="color: #1B4965;"><span id="drawerDatasetPidVal">–</span> ↗</a></span>
+                                    </div>
+                                    <div id="drawerDatasetPlacesRow" class="entity-prop-row" style="flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 6px;">
+                                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                            <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Recorded Sites &amp; Places:</span>
+                                            <span id="drawerDatasetPlacesCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #D9E8DD; color: #2D6A4F; font-weight: 700;">0</span>
+                                        </div>
+                                        <ul id="drawerDatasetPlacesList" class="relations-list" style="max-height: 150px; overflow-y: auto; width: 100%;"></ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="drawerPlaceDatasetRow" class="entity-prop-row" style="display: none; margin-top: 6px; padding: 6px 8px; background: white; border-radius: 4px; border: 1px solid #D9E8DD; flex-direction: column; align-items: flex-start; gap: 4px;">
-                                <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 600;"><i class="fa-solid fa-database"></i> Erfasst in Forschungsdatensatz:</span>
-                                <div id="drawerPlaceDatasetChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+
+                            <!-- Place Profile Box (when Fundort / Place is selected) -->
+                            <div id="drawerPlaceBox" class="entity-profile-box" style="display: none; border-left: 4px solid #2D6A4F; background: #F4F8F5;">
+                                <div class="drawer-section-title" style="margin-bottom: 8px;">
+                                    <span><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> <span id="drawerPlaceHeading">Site / Location Details</span></span>
+                                </div>
+                                <div class="entity-profile-details">
+                                    <div id="drawerPlaceCoordsRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-compass"></i> Coordinates:</span>
+                                        <span id="drawerPlaceCoordsVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerPlaceGeonamesRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-earth-americas"></i> Geonames:</span>
+                                        <span class="entity-prop-val"><a id="drawerPlaceGeonamesLink" href="#" target="_blank" class="external-id-link" style="color: #2D6A4F;"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="drawerPlaceGeonamesVal">Geonames URI</span> ↗</a></span>
+                                    </div>
+                                    <div id="drawerPlaceDatasetRow" class="entity-prop-row" style="display: none; margin-top: 6px; padding: 6px 8px; background: white; border-radius: 4px; border: 1px solid #D9E8DD; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                        <span class="entity-prop-lbl" style="color: #1B4965; font-weight: 600;"><i class="fa-solid fa-database"></i> Recorded in Research Dataset:</span>
+                                        <div id="drawerPlaceDatasetChips" style="display: flex; flex-wrap: wrap; gap: 4px; width: 100%;"></div>
+                                    </div>
+                                    <!-- Interactive Place Map Card -->
+                                    <div id="drawerPlaceMapCard" style="display: none; margin-top: 8px; border: 1px solid #C8DDD0; border-radius: 8px; overflow: hidden; background: #FFFFFF;">
+                                        <div style="padding: 5px 10px; background: #EBF3ED; border-bottom: 1px solid #D9E8DD; display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: #2D6A4F; display: flex; align-items: center; gap: 5px;">
+                                                <i class="fa-solid fa-map-location-dot"></i> Site Map
+                                            </span>
+                                            <button id="btnEnlargePlaceMap" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px; background: white;" title="Enlarge map view">
+                                                <i class="fa-solid fa-expand"></i> Enlarge
+                                            </button>
+                                        </div>
+                                        <div id="drawerPlaceMap" style="height: 155px; width: 100%; z-index: 1;"></div>
+                                        <div style="padding: 4px 10px; background: #FAF8F5; font-size: 0.68rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
+                                            <span id="drawerPlaceMapCoordsText">–</span>
+                                            <a id="drawerPlaceWmaLink" href="../wma/wma.html" target="_blank" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">
+                                                In Web Mapping ↗
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Interactive Place Map Card -->
-                            <div id="drawerPlaceMapCard" style="display: none; margin-top: 8px; border: 1px solid #C8DDD0; border-radius: 8px; overflow: hidden; background: #FFFFFF;">
-                                <div style="padding: 5px 10px; background: #EBF3ED; border-bottom: 1px solid #D9E8DD; display: flex; justify-content: space-between; align-items: center;">
-                                    <span style="font-size: 0.72rem; font-weight: 700; color: #2D6A4F; display: flex; align-items: center; gap: 5px;">
-                                        <i class="fa-solid fa-map-location-dot"></i> Fundort-Karte
+
+                            <!-- ARCHE Resource Profile Box (when arche:Resource is selected) -->
+                            <div id="drawerResourceBox" class="entity-profile-box" style="display: none; border-left: 4px solid var(--primary); background: #FAF8F5;">
+                                <div class="drawer-section-title" style="margin-bottom: 8px;">
+                                    <span><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> <span>ARCHE Resource</span></span>
+                                </div>
+                                <div class="entity-profile-details">
+                                    <div id="drawerResTypeRow" class="entity-prop-row">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-shapes"></i> File Type:</span>
+                                        <span id="drawerResTypeVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerResSizeRow" class="entity-prop-row">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-weight-hanging"></i> File Size:</span>
+                                        <span id="drawerResSizeVal" class="entity-prop-val"></span>
+                                    </div>
+                                    <div id="drawerResParentRow" class="entity-prop-row">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Collection / Folder:</span>
+                                        <span class="entity-prop-val"><a id="drawerResParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
+                                    </div>
+                                    <div id="drawerResPlaceRow" class="entity-prop-row" style="display: none;">
+                                        <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Site / Location:</span>
+                                        <span class="entity-prop-val"><a id="drawerResPlaceLink" href="#" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">–</a></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Provenance / Researchers & Contributors Box (for collections/folders) -->
+                            <div id="drawerProvenanceBox" class="provenance-box" style="display: none;">
+                                <div class="drawer-section-title">
+                                    <span><i class="fa-solid fa-user-group" style="color: var(--primary);"></i> Participating Researchers &amp; Institutions</span>
+                                </div>
+                                <div id="drawerCreatorsGroup" style="margin-bottom: 8px;">
+                                    <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Creators</div>
+                                    <div id="drawerCreatorsChips" class="provenance-chips-group"></div>
+                                </div>
+                                <div id="drawerContributorsGroup" style="display: none;">
+                                    <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Contributors</div>
+                                    <div id="drawerContributorsChips" class="provenance-chips-group"></div>
+                                </div>
+                            </div>
+
+                            <!-- Temporal / Excavation Campaign Box -->
+                            <div id="drawerTemporalBox" class="temporal-box" style="display: none;">
+                                <div class="drawer-section-title">
+                                    <span><i class="fa-solid fa-clock-rotate-left" style="color: var(--secondary);"></i> Chronology &amp; Excavation Campaigns</span>
+                                </div>
+                                <div class="temporal-details">
+                                    <div id="drawerTemporalCampaign" class="temporal-pill-row"></div>
+                                    <div id="drawerTemporalEpoch" style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <div class="drawer-section-title">Description / Context</div>
+                                <p class="drawer-desc" id="drawerDesc"></p>
+                            </div>
+
+                            <!-- Live ARCHE Preview Card (Collapsible, Default: Collapsed) -->
+                            <div id="drawerPreviewBox" class="drawer-preview-box">
+                                <div class="drawer-preview-header" id="drawerPreviewToggle" style="cursor: pointer; user-select: none;" title="Toggle ARCHE file preview">
+                                    <span style="display: flex; align-items: center; gap: 6px;">
+                                        <i id="previewCollapseIcon" class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); transition: transform 0.2s ease; transform: rotate(-90deg);"></i>
+                                        <i class="fa-solid fa-eye" style="color: var(--primary);"></i> ARCHE File Preview
                                     </span>
-                                    <button id="btnEnlargePlaceMap" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px; background: white;" title="Karte im Großformat vergrößern">
-                                        <i class="fa-solid fa-expand"></i> Vergrößern
-                                    </button>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <span id="previewStatusBadge" style="font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; background: #E8F5E9; color: #2E7D32;">Live from ARCHE</span>
+                                        <span id="previewToggleText" style="font-size: 0.68rem; color: var(--text-muted); font-weight: 500;">(Expand)</span>
+                                    </div>
                                 </div>
-                                <div id="drawerPlaceMap" style="height: 155px; width: 100%; z-index: 1;"></div>
-                                <div style="padding: 4px 10px; background: #FAF8F5; font-size: 0.68rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
-                                    <span id="drawerPlaceMapCoordsText">–</span>
-                                    <a id="drawerPlaceWmaLink" href="../wma/wma.html" target="_blank" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">
-                                        Im Web Mapping ↗
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ARCHE Resource Profile Box (when arche:Resource is selected) -->
-                    <div id="drawerResourceBox" class="entity-profile-box" style="display: none; border-left: 4px solid var(--primary); background: #FAF8F5;">
-                        <div class="drawer-section-title" style="margin-bottom: 8px;">
-                            <span><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> <span>ARCHE-Ressource</span></span>
-                        </div>
-                        <div class="entity-profile-details">
-                            <div id="drawerResTypeRow" class="entity-prop-row">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-shapes"></i> Dateityp:</span>
-                                <span id="drawerResTypeVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerResSizeRow" class="entity-prop-row">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-weight-hanging"></i> Dateigröße:</span>
-                                <span id="drawerResSizeVal" class="entity-prop-val"></span>
-                            </div>
-                            <div id="drawerResParentRow" class="entity-prop-row">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-folder-tree"></i> Sammlung/Ordner:</span>
-                                <span class="entity-prop-val"><a id="drawerResParentLink" href="#" style="color: var(--secondary); font-weight: 600; text-decoration: none;">–</a></span>
-                            </div>
-                            <div id="drawerResPlaceRow" class="entity-prop-row" style="display: none;">
-                                <span class="entity-prop-lbl"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> Fundort:</span>
-                                <span class="entity-prop-val"><a id="drawerResPlaceLink" href="#" style="color: #2D6A4F; font-weight: 600; text-decoration: none;">–</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Provenance / Researchers & Contributors Box (for collections/folders) -->
-                    <div id="drawerProvenanceBox" class="provenance-box" style="display: none;">
-                        <div class="drawer-section-title">
-                            <span><i class="fa-solid fa-user-group" style="color: var(--primary);"></i> Beteiligte Forscher:innen &amp; Institutionen</span>
-                        </div>
-                        <div id="drawerCreatorsGroup" style="margin-bottom: 8px;">
-                            <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Urheber:innen (Creators)</div>
-                            <div id="drawerCreatorsChips" class="provenance-chips-group"></div>
-                        </div>
-                        <div id="drawerContributorsGroup" style="display: none;">
-                            <div style="font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Mitwirkende (Contributors)</div>
-                            <div id="drawerContributorsChips" class="provenance-chips-group"></div>
-                        </div>
-                    </div>
-
-                    <!-- Temporal / Excavation Campaign Box -->
-                    <div id="drawerTemporalBox" class="temporal-box" style="display: none;">
-                        <div class="drawer-section-title">
-                            <span><i class="fa-solid fa-clock-rotate-left" style="color: var(--secondary);"></i> Zeitliche Einordnung &amp; Kampagnen</span>
-                        </div>
-                        <div class="temporal-details">
-                            <div id="drawerTemporalCampaign" class="temporal-pill-row"></div>
-                            <div id="drawerTemporalEpoch" style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;"></div>
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-                    <div>
-                        <div class="drawer-section-title">Beschreibung / Kontext</div>
-                        <p class="drawer-desc" id="drawerDesc"></p>
-                    </div>
-
-                    <!-- Live ARCHE Preview Card (Collapsible, Default: Eingeklappt) -->
-                    <div id="drawerPreviewBox" class="drawer-preview-box">
-                        <div class="drawer-preview-header" id="drawerPreviewToggle" style="cursor: pointer; user-select: none;" title="ARCHE Dateivorschau auf- oder einklappen">
-                            <span style="display: flex; align-items: center; gap: 6px;">
-                                <i id="previewCollapseIcon" class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); transition: transform 0.2s ease; transform: rotate(-90deg);"></i>
-                                <i class="fa-solid fa-eye" style="color: var(--primary);"></i> ARCHE Dateivorschau
-                            </span>
-                            <div style="display: flex; align-items: center; gap: 6px;">
-                                <span id="previewStatusBadge" style="font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; background: #E8F5E9; color: #2E7D32;">Live von ARCHE</span>
-                                <span id="previewToggleText" style="font-size: 0.68rem; color: var(--text-muted); font-weight: 500;">(Ausklappen)</span>
-                            </div>
-                        </div>
-                        <div id="drawerPreviewCollapseBody" style="display: none;">
-                            <div id="drawerPreviewMedia" class="drawer-preview-media" style="cursor: pointer; position: relative;" title="Klicken für interaktive Vergrößerung &amp; Zoom">
-                                <img id="drawerPreviewImg" class="drawer-preview-img" alt="ARCHE Preview" />
-                                <div class="preview-hover-overlay">
-                                    <span class="preview-hover-badge"><i class="fa-solid fa-magnifying-glass-plus"></i> Vergrößern</span>
-                                </div>
-                                <div id="drawerPreviewFallback" class="drawer-preview-fallback">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <div style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">ARCHE-Zugriffsschutz (InC)</div>
-                                    <div style="font-size: 0.72rem; color: #BBB; line-height: 1.35; max-width: 280px; margin-bottom: 10px;">Vollansicht und Download im Repositorium nach Login verfügbar.</div>
-                                    <a id="drawerPreviewFallbackLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.72rem; padding: 4px 10px;">Auf ARCHE öffnen ↗</a>
+                                <div id="drawerPreviewCollapseBody" style="display: none;">
+                                    <div id="drawerPreviewMedia" class="drawer-preview-media" style="cursor: pointer; position: relative;" title="Click for interactive enlargement &amp; zoom">
+                                        <img id="drawerPreviewImg" class="drawer-preview-img" alt="ARCHE Preview" />
+                                        <div class="preview-hover-overlay">
+                                            <span class="preview-hover-badge"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom &amp; Enlarge</span>
+                                        </div>
+                                        <div id="drawerPreviewFallback" class="drawer-preview-fallback">
+                                            <i class="fa-solid fa-lock"></i>
+                                            <div style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">ARCHE Access Protection (InC)</div>
+                                            <div style="font-size: 0.72rem; color: #BBB; line-height: 1.35; max-width: 280px; margin-bottom: 10px;">Full resolution and download available in repository after login.</div>
+                                            <a id="drawerPreviewFallbackLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.72rem; padding: 4px 10px;">Open on ARCHE ↗</a>
+                                        </div>
+                                    </div>
+                                    <div class="drawer-preview-footer">
+                                        <span id="drawerPreviewDimensions"><i class="fa-solid fa-image"></i> Preview</span>
+                                        <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;" title="Enlarge image in zoom viewer"><i class="fa-solid fa-magnifying-glass-plus"></i> Enlarge</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="drawer-preview-footer">
-                                <span id="drawerPreviewDimensions"><i class="fa-solid fa-image"></i> Vorschau</span>
-                                <button id="btnOpenFullPreview" class="tool-btn" style="font-size: 0.68rem; padding: 2px 7px;" title="Bild im Zoom-Viewer vergrößern"><i class="fa-solid fa-magnifying-glass-plus"></i> Vergrößern</button>
+
+                            <!-- Identifiers -->
+                            <div>
+                                <div class="drawer-section-title">ARCHE Identifiers</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">ARCHE ID: <strong id="drawerArcheId" style="color: var(--text-dark); font-family: monospace;">–</strong></div>
+                                <div id="drawerPidContainer" style="display: none; font-size: 0.75rem; color: var(--text-muted);">Handle PID: <a id="drawerPidLink" href="#" target="_blank" style="color: var(--primary); word-break: break-all;">–</a></div>
+                            </div>
+
+                            <!-- Metrics Grid -->
+                            <div class="drawer-stats-grid" id="drawerStatsGrid">
+                                <div class="drawer-stat-card">
+                                    <div class="drawer-stat-val" id="drawerStatItems">0</div>
+                                    <div class="drawer-stat-lbl">Contained Items</div>
+                                </div>
+                                <div class="drawer-stat-card">
+                                    <div class="drawer-stat-val" id="drawerStatSize">–</div>
+                                    <div class="drawer-stat-lbl">Storage Volume</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Connected Relations & Hierarchies -->
+                        <div class="drawer-col drawer-col-right">
+                            <!-- Connected Relations -->
+                            <div>
+                                <div class="drawer-section-title">
+                                    <span>Connected Entities</span>
+                                    <span id="relationCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
+                                </div>
+                                <ul class="relations-list" id="relationsList" style="max-height: 480px; overflow-y: auto;"></ul>
+                            </div>
+
+                            <!-- Sub-Folders Box (if folder has child collections) -->
+                            <div id="drawerChildFoldersBox" style="display: none;">
+                                <div class="drawer-section-title">
+                                    <span>Subfolders at this Level</span>
+                                    <span id="drawerChildFolderCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
+                                </div>
+                                <ul id="drawerChildFoldersList" class="relations-list" style="max-height: 150px; overflow-y: auto;"></ul>
+                                <button id="btnFocusAllChildren" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-folder-tree"></i> Focus All Subfolders</button>
+                            </div>
+
+                            <!-- Resource Expansion Box -->
+                            <div id="drawerResourceExpansionBox" style="display: none; background: #FAF8F5; border: 1px solid var(--panel-border); border-radius: 6px; padding: 10px;">
+                                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+                                    <span><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> Files in Graph</span>
+                                    <span id="drawerResCountBadge" style="background: var(--primary); color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.68rem;">0</span>
+                                </div>
+                                <p id="drawerResHelpText" style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 8px 0;">Display files of this folder as nodes in the graph:</p>
+                                <div style="display: flex; gap: 6px;">
+                                    <button id="btnExpandResources" class="tool-btn primary-btn" style="font-size: 0.72rem; flex: 1;"><i class="fa-solid fa-plus"></i> Expand Resources</button>
+                                    <button id="btnCollapseResources" class="tool-btn" style="font-size: 0.72rem; flex: 1; display: none;"><i class="fa-solid fa-minus"></i> Collapse</button>
+                                </div>
+                            </div>
+
+                            <!-- Associated Collections (for Person / Organisation / Place) -->
+                            <div id="drawerEntityCollectionsBox" style="display: none;">
+                                <div class="drawer-section-title">
+                                    <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> <span id="drawerEntityCollectionsHeading">Associated Collections</span></span>
+                                    <span id="drawerEntityCollectionsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
+                                </div>
+                                <ul id="drawerEntityCollectionsList" class="relations-list" style="max-height: 180px; overflow-y: auto;"></ul>
+                                <button id="btnFocusEntityCollections" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-crosshairs"></i> Focus All Associated Holdings</button>
+                            </div>
+
+                            <!-- Linked Publications Box (for collections/folders documented by publications) -->
+                            <div id="drawerLinkedPubsBox" style="display: none; background: #FAF5F2; border: 1px solid #E4D5CE; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+                                <div class="drawer-section-title" style="margin-bottom: 6px;">
+                                    <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> Associated Scholarly Publications</span>
+                                    <span id="drawerLinkedPubsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EBDAD2; color: #7B4F36; font-weight: 700;">0</span>
+                                </div>
+                                <ul id="drawerLinkedPubsList" class="relations-list" style="max-height: 140px; overflow-y: auto;"></ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Identifiers -->
-                    <div>
-                        <div class="drawer-section-title">ARCHE Identifikatoren</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">ARCHE ID: <strong id="drawerArcheId" style="color: var(--text-dark); font-family: monospace;">–</strong></div>
-                        <div id="drawerPidContainer" style="display: none; font-size: 0.75rem; color: var(--text-muted);">Handle PID: <a id="drawerPidLink" href="#" target="_blank" style="color: var(--primary); word-break: break-all;">–</a></div>
+                    <div class="drawer-footer">
+                        <a href="#" target="_blank" class="tool-btn primary-btn" id="drawerArcheBtn" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in ARCHE Repository
+                        </a>
+                        <button class="tool-btn" id="drawerFocusNeighborsBtn" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-crosshairs"></i> Focus Neighborhood
+                        </button>
                     </div>
+                </aside>
+            </div><!-- #stageContainer -->
 
-                    <!-- Metrics Grid -->
-                    <div class="drawer-stats-grid" id="drawerStatsGrid">
-                        <div class="drawer-stat-card">
-                            <div class="drawer-stat-val" id="drawerStatItems">0</div>
-                            <div class="drawer-stat-lbl">Enthaltene Elemente</div>
-                        </div>
-                        <div class="drawer-stat-card">
-                            <div class="drawer-stat-val" id="drawerStatSize">–</div>
-                            <div class="drawer-stat-lbl">Speicher-Volumen</div>
-                        </div>
-                    </div>
-                </div>
+        </div><!-- #graphAppCard -->
+    </main><!-- .graph-main-container -->
 
-                <!-- Right Column: Connected Relations & Hierarchies -->
-                <div class="drawer-col drawer-col-right">
-                    <!-- Connected Relations -->
-                    <div>
-                        <div class="drawer-section-title">
-                            <span>Verknüpfte Entitäten</span>
-                            <span id="relationCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
-                        </div>
-                        <ul class="relations-list" id="relationsList" style="max-height: 480px; overflow-y: auto;"></ul>
-                    </div>
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | 
+            <a href="../impressum-datenschutz.html">Legal Notice</a> &amp; 
+            <a href="../impressum-datenschutz.html">Privacy Policy</a> | 
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+        </p>
+        <p>
+            Developed with <a href="https://antigravity.google" target="_blank"><strong>Google Antigravity</strong></a> v1.2.0 (powered by LLMs such as <a href="https://deepmind.google" target="_blank">Gemini 3.8 Flash</a>, <a href="https://www.anthropic.com" target="_blank">Claude Opus 4.6</a>, and <a href="https://chatgpt.com" target="_blank">ChatGPT 5.6</a>) | Website Version 2.1.7
+        </p>
+    </footer>
 
-                    <!-- Sub-Folders Box (if folder has child collections) -->
-                    <div id="drawerChildFoldersBox" style="display: none;">
-                        <div class="drawer-section-title">
-                            <span>Unterordner dieser Ebene</span>
-                            <span id="drawerChildFolderCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
-                        </div>
-                        <ul id="drawerChildFoldersList" class="relations-list" style="max-height: 150px; overflow-y: auto;"></ul>
-                        <button id="btnFocusAllChildren" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-folder-tree"></i> Alle Unterordner fokussieren</button>
-                    </div>
-
-                    <!-- Resource Expansion Box -->
-                    <div id="drawerResourceExpansionBox" style="display: none; background: #FAF8F5; border: 1px solid var(--panel-border); border-radius: 6px; padding: 10px;">
-                        <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
-                            <span><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> Dateien im Graphen</span>
-                            <span id="drawerResCountBadge" style="background: var(--primary); color: white; padding: 1px 6px; border-radius: 10px; font-size: 0.68rem;">0</span>
-                        </div>
-                        <p id="drawerResHelpText" style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 8px 0;">Dateien dieses Ordners als Knoten in den Graphen einblenden:</p>
-                        <div style="display: flex; gap: 6px;">
-                            <button id="btnExpandResources" class="tool-btn primary-btn" style="font-size: 0.72rem; flex: 1;"><i class="fa-solid fa-plus"></i> Ressourcen aufklappen</button>
-                            <button id="btnCollapseResources" class="tool-btn" style="font-size: 0.72rem; flex: 1; display: none;"><i class="fa-solid fa-minus"></i> Zuklappen</button>
-                        </div>
-                    </div>
-
-                    <!-- Associated Collections (for Person / Organisation / Place) -->
-                    <div id="drawerEntityCollectionsBox" style="display: none;">
-                        <div class="drawer-section-title">
-                            <span><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> <span id="drawerEntityCollectionsHeading">Zugeordnete Sammlungen</span></span>
-                            <span id="drawerEntityCollectionsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EDE8E0; color: var(--text-dark);">0</span>
-                        </div>
-                        <ul id="drawerEntityCollectionsList" class="relations-list" style="max-height: 180px; overflow-y: auto;"></ul>
-                        <button id="btnFocusEntityCollections" class="tool-btn" style="width: 100%; margin-top: 6px; font-size: 0.72rem; justify-content: center; background: white;"><i class="fa-solid fa-crosshairs"></i> Alle zugehörigen Bestände fokussieren</button>
-                    </div>
-
-                    <!-- Linked Publications Box (for collections/folders documented by publications) -->
-                    <div id="drawerLinkedPubsBox" style="display: none; background: #FAF5F2; border: 1px solid #E4D5CE; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
-                        <div class="drawer-section-title" style="margin-bottom: 6px;">
-                            <span><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> Zugeordnete Fachpublikationen</span>
-                            <span id="drawerLinkedPubsCount" style="font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; background: #EBDAD2; color: #7B4F36; font-weight: 700;">0</span>
-                        </div>
-                        <ul id="drawerLinkedPubsList" class="relations-list" style="max-height: 140px; overflow-y: auto;"></ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="drawer-footer">
-                <a href="#" target="_blank" class="tool-btn primary-btn" id="drawerArcheBtn" style="width: 100%; justify-content: center;">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Im ARCHE-Repositorium öffnen
-                </a>
-                <button class="tool-btn" id="drawerFocusNeighborsBtn" style="width: 100%; justify-content: center;">
-                    <i class="fa-solid fa-crosshairs"></i> Nachbarschaft fokussieren
-                </button>
-            </div>
-        </aside>
-    </main>
-
-    <!-- Bookmarks (Merkliste) Modal -->
+    <!-- Bookmarks Modal -->
     <div id="bookmarksModal" class="modal-backdrop">
         <div class="modal-card" style="max-width: 680px; max-height: 80vh; display: flex; flex-direction: column;">
             <div class="modal-header">
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <i class="fa-solid fa-bookmark" style="color: var(--secondary); font-size: 1.15rem;"></i>
                     <div>
-                        <h2 style="font-size: 1.1rem; margin: 0;">Gespeicherte Merkliste</h2>
-                        <p style="font-size: 0.76rem; color: var(--text-muted); margin: 2px 0 0 0;">Im Browser gemerkte Sammlungen, Forscher:innen, Fundorte &amp; Ressourcen</p>
+                        <h2 style="font-size: 1.1rem; margin: 0;">Saved Bookmarks</h2>
+                        <p style="font-size: 0.76rem; color: var(--text-muted); margin: 2px 0 0 0;">Bookmarked collections, researchers, sites &amp; resources in this browser</p>
                     </div>
                 </div>
                 <button id="btnCloseBookmarksModal" class="drawer-close-btn">&times;</button>
             </div>
             <div style="padding: 10px 20px; background: #FAF8F5; border-bottom: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <span id="bookmarksModalCount" class="stat-pill" style="font-weight: 700; background: #EDE8E0;">0 Einträge</span>
+                <span id="bookmarksModalCount" class="stat-pill" style="font-weight: 700; background: #EDE8E0;">0 entries</span>
                 <div style="display: flex; gap: 6px;">
-                    <button id="btnCopyBookmarksLink" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-share-nodes"></i> Link kopieren</button>
-                    <button id="btnClearBookmarks" class="tool-btn" style="font-size: 0.74rem; color: #C0392B;"><i class="fa-solid fa-trash-can"></i> Alle leeren</button>
+                    <button id="btnCopyBookmarksLink" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-share-nodes"></i> Copy Link</button>
+                    <button id="btnClearBookmarks" class="tool-btn" style="font-size: 0.74rem; color: #C0392B;"><i class="fa-solid fa-trash-can"></i> Clear All</button>
                 </div>
             </div>
             <div id="bookmarksListContainer" style="padding: 14px 20px; overflow-y: auto; flex: 1;">
@@ -2004,23 +2100,23 @@ def generate():
         </div>
     </div>
 
-    <!-- Archiv-Ordnerbaum Modal (434 Sammlungen & Ordner) -->
+    <!-- Archive Hierarchy Tree Modal (434 Collections & Folders) -->
     <div id="treeModal" class="modal-backdrop">
         <div class="modal-card" style="max-width: 980px;">
             <div class="modal-header">
                 <div>
-                    <h2><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> ARCHE Archiv-Hierarchie: Alle 434 Sammlungen &amp; Ordner</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Vollständiger Verzeichnisbaum von IUENNA im ARCHE-Repositorium (Ebenen 0 bis 6)</p>
+                    <h2><i class="fa-solid fa-folder-tree" style="color: var(--secondary);"></i> ARCHE Archive Hierarchy: All 434 Collections &amp; Folders</h2>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Complete directory tree of IUENNA in the ARCHE repository (Levels 0 to 6)</p>
                 </div>
                 <button id="btnTreeClose" class="drawer-close-btn">&times;</button>
             </div>
             <div style="padding: 10px 24px; background: #FAF8F5; border-bottom: 1px solid var(--panel-border); display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <div style="position: relative; flex: 1; min-width: 250px;">
                     <i class="fa-solid fa-search" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: #888;"></i>
-                    <input type="text" id="treeSearchInput" placeholder="Ordner nach Namen filtern (z.B. Fotos, Drohne, Befunde, SE 2001, Keramik)..." style="width: 100%; padding: 6px 10px 6px 28px; font-size: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border); outline: none;" />
+                    <input type="text" id="treeSearchInput" placeholder="Filter folders by name (e.g. photos, drone, finds, SE 2001, ceramics)..." style="width: 100%; padding: 6px 10px 6px 28px; font-size: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border); outline: none;" />
                 </div>
-                <button id="btnTreeExpandAll" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-folder-open"></i> Alle aufklappen</button>
-                <button id="btnTreeCollapseAll" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-folder"></i> Alle zuklappen</button>
+                <button id="btnTreeExpandAll" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-folder-open"></i> Expand All</button>
+                <button id="btnTreeCollapseAll" class="tool-btn" style="font-size: 0.74rem;"><i class="fa-solid fa-folder"></i> Collapse All</button>
             </div>
             <div id="treeContainer" class="tree-scroll-area">
                 <!-- Rendered dynamically -->
@@ -2028,13 +2124,13 @@ def generate():
         </div>
     </div>
 
-    <!-- Corpus Catalog Modal (20.355 Ressourcen) -->
+    <!-- Corpus Catalog Modal (20,355 Resources) -->
     <div id="corpusModal" class="modal-backdrop">
         <div class="modal-card">
             <div class="modal-header">
                 <div>
-                    <h2><i class="fa-solid fa-database" style="color: var(--primary);"></i> ARCHE Corpus-Katalog: Alle 20.355 Primärressourcen</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Vollständiger Index aller digitalen Dateien und Grabungsfunde mit Live-Dateivorschau</p>
+                    <h2><i class="fa-solid fa-database" style="color: var(--primary);"></i> ARCHE Corpus Catalog: All 20,355 Primary Resources</h2>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0;">Complete index of all digital files and archaeological finds with live file preview</p>
                 </div>
                 <button id="btnCorpusClose" class="drawer-close-btn">&times;</button>
             </div>
@@ -2042,35 +2138,35 @@ def generate():
             <div style="padding: 10px 24px; background: #FFFFFF; border-bottom: 1px solid var(--panel-border); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <div style="position: relative; flex: 1; min-width: 220px;">
                     <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-muted);"></i>
-                    <input type="text" id="corpusSearchInput" class="search-input" style="width: 100%;" placeholder="Titel, PID, Dateiname, Fundort, Ordner durchsuchen..." />
+                    <input type="text" id="corpusSearchInput" class="search-input" style="width: 100%;" placeholder="Search title, PID, filename, site, folder..." />
                 </div>
                 <select id="corpusColSelect" class="tool-select">
-                    <option value="all">Alle Sammlungen &amp; Bestände</option>
+                    <option value="all">All Collections &amp; Holdings</option>
                 </select>
                 <select id="corpusTypeSelect" class="tool-select">
-                    <option value="all">Alle Medientypen</option>
-                    <option value="image">Bilder &amp; Scans (.tif, .jpg)</option>
-                    <option value="vector">GIS-Vektordaten (.shp, .gpkg)</option>
-                    <option value="3d">3D-Modelle (.ply, .obj)</option>
-                    <option value="database">Datenbanken (.accdb, .sqlite)</option>
-                    <option value="document">Dokumente &amp; PDFs</option>
+                    <option value="all">All Media Types</option>
+                    <option value="image">Images &amp; Scans (.tif, .jpg)</option>
+                    <option value="vector">GIS Vector Data (.shp, .gpkg)</option>
+                    <option value="3d">3D Models (.ply, .obj)</option>
+                    <option value="database">Databases (.accdb, .sqlite)</option>
+                    <option value="document">Documents &amp; PDFs</option>
                 </select>
                 <select id="corpusPlaceSelect" class="tool-select">
-                    <option value="all">Alle Fundorte (Lade...)</option>
+                    <option value="all">All Sites (Loading...)</option>
                 </select>
-                <button id="btnResetCorpusFilters" class="tool-btn"><i class="fa-solid fa-rotate-left"></i> Zurücksetzen</button>
+                <button id="btnResetCorpusFilters" class="tool-btn"><i class="fa-solid fa-rotate-left"></i> Reset Filters</button>
             </div>
 
             <div class="corpus-table-container">
                 <table class="corpus-table">
                     <thead>
                         <tr>
-                            <th style="width: 60px;">Vorschau</th>
-                            <th>Dateiname / Ressource</th>
-                            <th>Pfad &amp; Archiv-Ordner</th>
-                            <th>Fundort &amp; Datum</th>
-                            <th>Schlagworte</th>
-                            <th style="width: 140px; text-align: right;">Aktionen</th>
+                            <th style="width: 60px;">Preview</th>
+                            <th>Filename / Resource</th>
+                            <th>Path &amp; Archive Folder</th>
+                            <th>Site &amp; Date</th>
+                            <th>Keywords</th>
+                            <th style="width: 140px; text-align: right;">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="corpusTableBody">
@@ -2080,11 +2176,11 @@ def generate():
             </div>
 
             <div style="padding: 10px 24px; background: #FAF8F5; border-top: 1px solid var(--panel-border); display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem;">
-                <div id="corpusPageInfo">Zeige 1–50 von 20.541 Ressourcen</div>
+                <div id="corpusPageInfo">Showing 1–50 of 20,355 resources</div>
                 <div style="display: flex; gap: 6px; align-items: center;">
-                    <button id="btnCorpusPrev" class="tool-btn"><i class="fa-solid fa-chevron-left"></i> Zurück</button>
+                    <button id="btnCorpusPrev" class="tool-btn"><i class="fa-solid fa-chevron-left"></i> Previous</button>
                     <span id="corpusCurrentPage" style="font-weight: 700; padding: 0 8px;">1 / 411</span>
-                    <button id="btnCorpusNext" class="tool-btn">Weiter <i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="btnCorpusNext" class="tool-btn">Next <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -2097,13 +2193,13 @@ def generate():
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <i class="fa-solid fa-map-location-dot" id="quickPreviewTypeIcon" style="color: var(--primary); font-size: 1.1rem;"></i>
                     <div>
-                        <h3 id="quickPreviewTitle" style="font-size: 1.05rem; margin: 0; color: var(--text-dark);">Dateiname</h3>
+                        <h3 id="quickPreviewTitle" style="font-size: 1.05rem; margin: 0; color: var(--text-dark);">Filename</h3>
                         <div id="quickPreviewBreadcrumb" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;"></div>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 6px;">
-                    <button id="btnToggleFullscreenPreview" class="tool-btn" style="font-size: 0.75rem; padding: 4px 8px;" title="Vollbild umschalten (Vergrößern)">
-                        <i id="previewFullscreenIcon" class="fa-solid fa-expand"></i> <span id="previewFullscreenText">Vollbild</span>
+                    <button id="btnToggleFullscreenPreview" class="tool-btn" style="font-size: 0.75rem; padding: 4px 8px;" title="Toggle fullscreen">
+                        <i id="previewFullscreenIcon" class="fa-solid fa-expand"></i> <span id="previewFullscreenText">Fullscreen</span>
                     </button>
                     <button id="btnQuickPreviewClose" class="drawer-close-btn">&times;</button>
                 </div>
@@ -2111,44 +2207,44 @@ def generate():
             <div class="quick-preview-stage" id="quickPreviewStage">
                 <!-- Floating Zoom Controls -->
                 <div class="preview-zoom-toolbar">
-                    <button id="btnZoomInPreview" class="zoom-tool-btn" title="Vergrößern (oder Mausrad)"><i class="fa-solid fa-plus"></i></button>
-                    <button id="btnZoomOutPreview" class="zoom-tool-btn" title="Verkleinern (oder Mausrad)"><i class="fa-solid fa-minus"></i></button>
+                    <button id="btnZoomInPreview" class="zoom-tool-btn" title="Zoom in (or mouse wheel)"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btnZoomOutPreview" class="zoom-tool-btn" title="Zoom out (or mouse wheel)"><i class="fa-solid fa-minus"></i></button>
                     <span id="previewZoomLevel" class="zoom-level-badge">100%</span>
-                    <button id="btnZoomResetPreview" class="zoom-tool-btn" title="Ansicht zurücksetzen (1:1)"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button id="btnZoomResetPreview" class="zoom-tool-btn" title="Reset zoom (1:1)"><i class="fa-solid fa-rotate-left"></i></button>
                 </div>
 
                 <!-- Canvas / Image Wrapper with Pan & Drag -->
-                <div class="preview-canvas-wrapper" id="previewCanvasWrapper" title="Klicken und Ziehen zum Verschieben, Mausrad zum Zoomen">
+                <div class="preview-canvas-wrapper" id="previewCanvasWrapper" title="Click and drag to pan, mouse wheel to zoom">
                     <img id="quickPreviewImg" src="" alt="Live Preview" class="zoomable-preview-img" style="display: none;" />
                 </div>
 
                 <div id="quickPreviewProtectedMsg" style="display: none; color: #FFF; text-align: center; padding: 30px 20px; z-index: 5;">
                     <i class="fa-solid fa-lock" style="font-size: 2.2rem; color: #E0A96D; margin-bottom: 12px; display: block;"></i>
-                    <h4 style="font-size: 1rem; margin-bottom: 6px;">ARCHE-Zugriffsbeschränkung (InC-Lizenz)</h4>
-                    <p style="font-size: 0.8rem; color: #BBB; max-width: 440px; margin: 0 auto 16px auto;">Diese historische Primärressource ist urheberrechtlich geschützt. Die Vollauflösung kann nach Login direkt im ARCHE-Repositorium eingesehen werden.</p>
-                    <a id="quickPreviewArcheLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.8rem; padding: 7px 16px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Im ARCHE-Repositorium öffnen</a>
+                    <h4 style="font-size: 1rem; margin-bottom: 6px;">ARCHE Access Restriction (InC License)</h4>
+                    <p style="font-size: 0.8rem; color: #BBB; max-width: 440px; margin: 0 auto 16px auto;">This historic primary resource is copyright protected. Full resolution can be viewed in the ARCHE repository after login.</p>
+                    <a id="quickPreviewArcheLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.8rem; padding: 7px 16px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open in ARCHE Repository</a>
                 </div>
             </div>
             <div style="padding: 10px 18px; background: #FAF8F5; border-top: 1px solid var(--panel-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <div style="font-size: 0.74rem; color: var(--text-muted);" id="quickPreviewMeta"></div>
                 <div style="display: flex; gap: 8px;">
-                    <button id="btnQuickPreviewInGraph" class="tool-btn secondary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-circle-nodes"></i> Im Graphen fokussieren</button>
-                    <a id="quickPreviewFullResLink" href="#" target="_blank" class="tool-btn" style="font-size: 0.75rem;" title="ARCHE Bildressource in neuem Tab öffnen"><i class="fa-solid fa-arrow-up-right-from-square"></i> Vollauflösung</a>
+                    <button id="btnQuickPreviewInGraph" class="tool-btn secondary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-circle-nodes"></i> Focus in Graph</button>
+                    <a id="quickPreviewFullResLink" href="#" target="_blank" class="tool-btn" style="font-size: 0.75rem;" title="Open ARCHE image resource in new tab"><i class="fa-solid fa-arrow-up-right-from-square"></i> Full Resolution</a>
                     <a id="quickPreviewDirectLink" href="#" target="_blank" class="tool-btn primary-btn" style="font-size: 0.75rem;"><i class="fa-solid fa-link"></i> ARCHE Handle</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Large Geographical Place Map Modal (Fundort-Karte Großansicht) -->
+    <!-- Large Geographical Place Map Modal (Site Map Large View) -->
     <div id="largePlaceMapModal" class="modal-backdrop" style="z-index: 1350;">
         <div class="large-map-dialog" style="background: white; border-radius: 12px; width: 92vw; max-width: 1100px; height: 85vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
             <div class="modal-header" style="padding: 10px 20px;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <i class="fa-solid fa-map-location-dot" style="color: #2D6A4F; font-size: 1.2rem;"></i>
                     <div>
-                        <h3 id="largePlaceMapTitle" style="font-size: 1.1rem; margin: 0; color: var(--text-dark);">Fundort-Karte</h3>
-                        <div id="largePlaceMapSub" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Archäologische Lokalisierung im Jauntal (Kärnten)</div>
+                        <h3 id="largePlaceMapTitle" style="font-size: 1.1rem; margin: 0; color: var(--text-dark);">Site Map</h3>
+                        <div id="largePlaceMapSub" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Archaeological localization in the Jauntal (Carinthia)</div>
                     </div>
                 </div>
                 <button id="btnLargePlaceMapClose" class="drawer-close-btn">&times;</button>
@@ -2158,7 +2254,7 @@ def generate():
                 <div style="font-size: 0.76rem; color: var(--text-muted);" id="largePlaceMapFooterInfo"></div>
                 <div style="display: flex; gap: 8px;">
                     <a id="largePlaceMapWmaLink" href="../wma/wma.html" target="_blank" class="tool-btn primary-btn" style="font-size: 0.76rem; background: #2D6A4F; border-color: #2D6A4F;">
-                        <i class="fa-solid fa-layer-group"></i> Im Web Mapping Portal (WMA) öffnen ↗
+                        <i class="fa-solid fa-layer-group"></i> Open in Web Mapping Portal (WMA) ↗
                     </a>
                 </div>
             </div>
@@ -2236,6 +2332,34 @@ def generate():
             document: "#437F97",
             other: "#888888"
         }};
+
+        const typeLabelMap = {{
+            "Forschungsdatensatz / GeoPackage": "Research Dataset / GeoPackage",
+            "Zeitepoche": "Time Period / Epoch",
+            "Hauptkategorie (L2)": "Main Category (L2)",
+            "Fachordner (L3)": "Subject Folder (L3)",
+            "Teilsammlung (L4)": "Sub-Collection (L4)",
+            "Befundordner (L5)": "Context Folder (L5)",
+            "Detailordner (L6)": "Detail Folder (L6)",
+            "Lizenz / Nutzungsrechte": "License / Rights",
+            "Open Access Lizenz": "Open Access License",
+            "Institution / Partner": "Institution / Partner",
+            "Forscher:in": "Researcher",
+            "Fundort / Ort": "Findspot / Site",
+            "Publikation": "Publication",
+            "ARCHE-Bild": "ARCHE Image",
+            "ARCHE-Datei": "ARCHE File",
+            "ARCHE-Datenbank/Tabelle": "ARCHE Database / Table",
+            "ARCHE-Dokument/PDF": "ARCHE Document / PDF",
+            "ARCHE-Plan/Vektor": "ARCHE Plan / CAD Vector",
+            "Top-Collection": "Top-Collection",
+            "Subcollection (L1)": "Sub-Collection (L1)",
+            "Fachschlagwort": "Subject / Keyword"
+        }};
+        function formatTypeLabel(raw) {{
+            if (!raw) return "";
+            return typeLabelMap[raw] || raw;
+        }}
 
         const layoutConfigs = {{
             preset: {{
@@ -2760,7 +2884,7 @@ def generate():
                     const bar = document.getElementById("graphLoadingBar");
                     if (bar) bar.style.width = "100%";
                     const status = document.getElementById("graphLoadingStatus");
-                    if (status) status.textContent = "Wissensgraph erfolgreich aufgebaut!";
+                    if (status) status.textContent = "Knowledge graph loaded successfully!";
                     setTimeout(hideGraphLoading, 250);
                 }});
                 setTimeout(hideGraphLoading, 1200);
@@ -2848,7 +2972,7 @@ def generate():
             }}
         }}
 
-        // Bookmarks / Merkliste Logic
+        // Bookmarks / Favorites Logic
         let bookmarks = [];
         try {{
             const saved = localStorage.getItem("iuenna_graph_bookmarks");
@@ -2870,11 +2994,11 @@ def generate():
         function updateBookmarksUI() {{
             const btnOpen = document.getElementById("btnOpenBookmarks");
             if (btnOpen) {{
-                btnOpen.innerHTML = '<i class="fa-solid fa-bookmark" style="color: var(--secondary);"></i> Merkliste (' + bookmarks.length + ')';
+                btnOpen.innerHTML = '<i class="fa-solid fa-bookmark" style="color: var(--secondary);"></i> Bookmarks (' + bookmarks.length + ')';
             }}
             const modalCount = document.getElementById("bookmarksModalCount");
             if (modalCount) {{
-                modalCount.textContent = bookmarks.length + (bookmarks.length === 1 ? ' Eintrag' : ' Einträge');
+                modalCount.textContent = bookmarks.length + (bookmarks.length === 1 ? ' entry' : ' entries');
             }}
         }}
 
@@ -2883,7 +3007,7 @@ def generate():
                 if (selectedNode) {{
                     nodeOrData = selectedNode.data();
                 }} else {{
-                    showNotification("Bitte zuerst einen Eintrag im Graphen oder Korpus auswählen.", "warning");
+                    showNotification("Please select an entry in the graph or corpus first.", "warning");
                     return;
                 }}
             }}
@@ -2891,7 +3015,7 @@ def generate():
             const bId = String(data.id || data.arche_id);
             const exists = bookmarks.find(b => String(b.id) === bId || (data.arche_id && String(b.arche_id) === String(data.arche_id)));
             if (exists) {{
-                showNotification(`"${{data.label || data.title}}" ist bereits in der Merkliste.`, "info", 2000);
+                showNotification(`"${{data.label || data.title}}" is already in your bookmarks.`, "info", 2000);
                 return;
             }}
             const item = {{
@@ -2899,14 +3023,14 @@ def generate():
                 arche_id: data.arche_id || bId.replace(/^[a-z]+_/, ''),
                 label: data.label || data.title || bId,
                 type: data.type || "folder",
-                type_label: data.type_label || (data.type === "place" ? "Fundort" : (data.type === "person" ? "Forscher:in" : "Ordner")),
+                type_label: formatTypeLabel(data.type_label) || (data.type === "place" ? "Site" : (data.type === "person" ? "Researcher" : "Folder")),
                 color: data.color || typeColors[data.type] || "#888",
                 pid: data.pid || "",
                 timestamp: Date.now()
             }};
             bookmarks.push(item);
             saveBookmarks();
-            showNotification(`"${{item.label}}" zur Merkliste hinzugefügt.`, "success", 2500);
+            showNotification(`"${{item.label}}" added to bookmarks.`, "success", 2500);
         }}
 
         function removeBookmark(id) {{
@@ -2925,32 +3049,26 @@ def generate():
         }}
 
         function renderBookmarksList() {{
-            const list = document.getElementById("bookmarksList");
-            if (!list) return;
-            list.innerHTML = "";
+            const listEl = document.getElementById("bookmarksList");
+            const countEl = document.getElementById("bookmarksCount");
+            const badgeEl = document.getElementById("navBookmarksBadge");
+            if (countEl) countEl.textContent = bookmarks.length;
+            if (badgeEl) {{
+                badgeEl.textContent = bookmarks.length;
+                badgeEl.style.display = bookmarks.length > 0 ? "inline-block" : "none";
+            }}
+            if (!listEl) return;
+
+            listEl.innerHTML = "";
             if (bookmarks.length === 0) {{
-                list.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
-                        <i class="fa-regular fa-bookmark" style="font-size: 2.2rem; opacity: 0.4; margin-bottom: 12px; display: block;"></i>
-                        <p style="margin: 0; font-size: 0.9rem; font-weight: 500;">Die Merkliste ist aktuell leer.</p>
-                        <p style="margin: 4px 0 0 0; font-size: 0.76rem;">Wählen Sie einen Knoten im Graphen oder eine Ressource aus und klicken Sie auf <strong>"Auswahl merken"</strong>.</p>
-                    </div>
-                `;
+                listEl.innerHTML = '<li style="padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.88rem;">Your bookmark list is currently empty.<br><span style="font-size: 0.78rem; opacity: 0.8;">Click the bookmark icon in the inspector to save elements.</span></li>';
                 return;
             }}
 
             bookmarks.forEach(b => {{
                 const li = document.createElement("li");
-                li.className = "relation-item";
-                li.style.justifyContent = "space-between";
-                li.style.padding = "8px 12px";
-
-                let iconClass = "fa-folder";
-                if (b.type === "person") iconClass = "fa-user";
-                else if (b.type === "organization") iconClass = "fa-building-columns";
-                else if (b.type === "place") iconClass = "fa-location-dot";
-                else if (b.type === "publication") iconClass = "fa-book-open";
-                else if (b.type === "resource") iconClass = "fa-file";
+                li.style.cssText = "display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border-color); gap: 10px;";
+                const iconClass = ftypeIcons[b.type] || typeIcons[b.type] || "fa-circle-nodes";
 
                 li.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
@@ -2959,15 +3077,15 @@ def generate():
                         </span>
                         <div style="min-width: 0; flex: 1;">
                             <div style="font-weight: 600; font-size: 0.82rem; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${{b.label}}</div>
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">${{b.type_label}} &bull; ARCHE #${{b.arche_id}}</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">${{formatTypeLabel(b.type_label)}} &bull; ARCHE #${{b.arche_id}}</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 6px; margin-left: 8px;">
-                        <button class="tool-btn btn-bm-focus" title="Im Graphen fokussieren" style="font-size: 0.72rem; padding: 3px 8px;">
+                        <button class="tool-btn btn-bm-focus" title="Focus in graph" style="font-size: 0.72rem; padding: 3px 8px;">
                             <i class="fa-solid fa-circle-nodes"></i>
                         </button>
-                        ${{b.pid ? `<a href="${{b.pid}}" target="_blank" class="tool-btn" title="Auf ARCHE öffnen" style="font-size: 0.72rem; padding: 3px 8px;"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}}
-                        <button class="tool-btn btn-bm-delete" title="Aus Merkliste entfernen" style="font-size: 0.72rem; padding: 3px 8px; color: #C0392B;">
+                        ${{b.pid ? `<a href="${{b.pid}}" target="_blank" class="tool-btn" title="Open on ARCHE" style="font-size: 0.72rem; padding: 3px 8px;"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}}
+                        <button class="tool-btn btn-bm-delete" title="Remove from bookmarks" style="font-size: 0.72rem; padding: 3px 8px; color: #C0392B;">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
@@ -3015,26 +3133,26 @@ def generate():
         const btnClearBm = document.getElementById("btnClearBookmarks");
         if (btnClearBm) btnClearBm.addEventListener("click", () => {{
             if (bookmarks.length === 0) return;
-            if (confirm("Möchten Sie wirklich die gesamte Merkliste leeren?")) {{
+            if (confirm("Are you sure you want to clear all bookmarks?")) {{
                 bookmarks = [];
                 saveBookmarks();
                 renderBookmarksList();
-                showNotification("Merkliste geleert.", "info");
+                showNotification("Bookmarks cleared.", "info");
             }}
         }});
         const btnCopyBm = document.getElementById("btnCopyBookmarksLink");
         if (btnCopyBm) btnCopyBm.addEventListener("click", () => {{
             if (bookmarks.length === 0) {{
-                showNotification("Die Merkliste ist leer.", "warning");
+                showNotification("The bookmark list is empty.", "warning");
                 return;
             }}
             const ids = bookmarks.map(b => b.id).join(",");
             const url = new URL(window.location.href);
             url.searchParams.set("bookmarks", ids);
             navigator.clipboard.writeText(url.toString()).then(() => {{
-                showNotification("Link zur Merkliste kopiert!", "success");
+                showNotification("Bookmark link copied to clipboard!", "success");
             }}).catch(() => {{
-                showNotification("Kopieren nicht möglich.", "warning");
+                showNotification("Copying to clipboard failed.", "warning");
             }});
         }});
 
@@ -3043,14 +3161,14 @@ def generate():
         let nodeLabelsVisible = true;
         let edgeLabelsVisible = true;
 
-        // Hierarchie-Ebenen Mapping für LOD Slider
+        // Hierarchy level mapping for LOD Slider
         const lodLevels = {{
             1: {{ badge: "L1 (6 Subcollections)", maxLevel: 1 }},
-            2: {{ badge: "L1–L2 (74 Hauptbestände)", maxLevel: 2 }},
-            3: {{ badge: "L1–L3 (274 Fachordner)", maxLevel: 3 }},
-            4: {{ badge: "L1–L4 (312 Teilsammlungen)", maxLevel: 4 }},
-            5: {{ badge: "L1–L5 (432 Befundordner)", maxLevel: 5 }},
-            6: {{ badge: "L1–L6 (Alle 434 Ordner)", maxLevel: 99 }}
+            2: {{ badge: "L1–L2 (74 Main Holdings)", maxLevel: 2 }},
+            3: {{ badge: "L1–L3 (274 Subject Folders)", maxLevel: 3 }},
+            4: {{ badge: "L1–L4 (312 Sub-Collections)", maxLevel: 4 }},
+            5: {{ badge: "L1–L5 (432 Context Folders)", maxLevel: 5 }},
+            6: {{ badge: "L1–L6 (All 434 Folders)", maxLevel: 99 }}
         }};
 
         // Depth Filter (LOD) via Range Slider
@@ -3082,7 +3200,7 @@ def generate():
             }} else {{
                 const visNodes = cy.nodes(":visible");
                 if (visNodes.length > 1500) {{
-                    showNotification("Layout auf Makro-Knoten beschränkt (hohe Knotenanzahl)", "info", 3000);
+                    showNotification("Layout restricted to macro-nodes (high node count)", "info", 3000);
                     visNodes.filter("[type != 'resource']").layout(layoutConfigs[currentLayout] || layoutConfigs.preset).run();
                 }} else {{
                     cy.elements(":visible").layout(layoutConfigs[currentLayout] || layoutConfigs.preset).run();
@@ -3110,15 +3228,15 @@ def generate():
                 if (!edgesVisible) {{
                     cy.edges().hide();
                     this.classList.add("btn-active");
-                    if (btnText) btnText.textContent = "Kanten einblenden";
-                    showNotification("Alle Kanten ausgeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Show Edges";
+                    showNotification("All edges hidden", "info", 1800);
                 }} else {{
                     cy.edges().forEach(e => {{
                         if (e.source().visible() && e.target().visible()) e.show();
                     }});
                     this.classList.remove("btn-active");
-                    if (btnText) btnText.textContent = "Kanten verbergen";
-                    showNotification("Kanten wieder eingeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Hide Edges";
+                    showNotification("Edges visible", "info", 1800);
                 }}
             }});
         }}
@@ -3138,12 +3256,12 @@ def generate():
                 }});
                 if (!nodeLabelsVisible) {{
                     this.classList.add("btn-active");
-                    if (btnText) btnText.textContent = "Knotentexte einblenden";
-                    showNotification("Knotenbeschriftungen ausgeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Show Node Labels";
+                    showNotification("Node labels hidden", "info", 1800);
                 }} else {{
                     this.classList.remove("btn-active");
-                    if (btnText) btnText.textContent = "Knotentexte verbergen";
-                    showNotification("Knotenbeschriftungen eingeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Hide Node Labels";
+                    showNotification("Node labels visible", "info", 1800);
                 }}
             }});
         }}
@@ -3163,12 +3281,12 @@ def generate():
                 }});
                 if (!edgeLabelsVisible) {{
                     this.classList.add("btn-active");
-                    if (btnText) btnText.textContent = "Kantentexte einblenden";
-                    showNotification("Kantenbeschriftungen ausgeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Show Edge Labels";
+                    showNotification("Edge labels hidden", "info", 1800);
                 }} else {{
                     this.classList.remove("btn-active");
-                    if (btnText) btnText.textContent = "Kantentexte verbergen";
-                    showNotification("Kantenbeschriftungen eingeblendet", "info", 1800);
+                    if (btnText) btnText.textContent = "Hide Edge Labels";
+                    showNotification("Edge labels visible", "info", 1800);
                 }}
             }});
         }}
@@ -3177,7 +3295,7 @@ def generate():
             if (!cy) return;
             const layoutName = this.value;
             if (layoutName === "preset") {{
-                showGraphLoading("Cluster-Layout laden...", "Vorberechnetes Koordinatenmodell wird geladen...");
+                showGraphLoading("Loading cluster layout...", "Loading precomputed coordinate model...");
                 setTimeout(() => {{
                     cy.layout(layoutConfigs.preset).run();
                     hideGraphLoading();
@@ -3186,21 +3304,21 @@ def generate():
             }}
             const visNodes = cy.nodes(":visible");
             const layoutLabels = {{
-                cose: "Force-Directed (Organisch)",
-                concentric: "Konzentrisch",
-                breadthfirst: "Baum-Hierarchie",
-                circle: "Zirkulär"
+                cose: "Force-Directed (Organic)",
+                concentric: "Concentric",
+                breadthfirst: "Tree Hierarchy",
+                circle: "Circular"
             }};
             const labelStr = layoutLabels[layoutName] || layoutName;
             if (visNodes.length > 1500) {{
-                showNotification("Layout auf sichtbare Makro-Knoten beschränkt (hohe Knotenanzahl)", "info", 3000);
-                showGraphLoading(`Layout: ${{labelStr}}`, `Berechne Anordnung für ${{visNodes.filter("[type != 'resource']").length}} Makro-Knoten...`);
+                showNotification("Layout restricted to visible macro-nodes (high node count)", "info", 3000);
+                showGraphLoading(`Layout: ${{labelStr}}`, `Calculating layout for ${{visNodes.filter("[type != 'resource']").length}} macro-nodes...`);
                 setTimeout(() => {{
                     visNodes.filter("[type != 'resource']").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
                     hideGraphLoading();
                 }}, 50);
             }} else {{
-                showGraphLoading(`Layout: ${{labelStr}}`, `Berechne Anordnung für ${{visNodes.length}} Knoten...`);
+                showGraphLoading(`Layout: ${{labelStr}}`, `Calculating layout for ${{visNodes.length}} nodes...`);
                 setTimeout(() => {{
                     cy.elements(":visible").layout(layoutConfigs[layoutName] || layoutConfigs.preset).run();
                     hideGraphLoading();
@@ -3238,7 +3356,7 @@ def generate():
 
             // Badge
             const badge = document.getElementById("drawerBadge");
-            badge.textContent = d.type_label || d.type;
+            badge.textContent = formatTypeLabel(d.type_label) || d.type;
             badge.style.backgroundColor = d.color || typeColors[d.type] || "#888";
 
             // Breadcrumb
@@ -3261,7 +3379,7 @@ def generate():
 
             // Title & Desc
             document.getElementById("drawerTitle").textContent = d.label;
-            document.getElementById("drawerDesc").textContent = d.description || d.desc || "Keine weitere Beschreibung hinterlegt.";
+            document.getElementById("drawerDesc").textContent = d.description || d.desc || "No further description available.";
 
             // Live Preview Card
             const previewBox = document.getElementById("drawerPreviewBox");
@@ -3282,7 +3400,7 @@ def generate():
                 const sample = corpusResources.find(r => r.col_id === d.id || r.col === d.id || (r.path && r.path.includes(d.label)) || (d.arche_id && r.col_id === `col_${{d.arche_id}}`));
                 if (sample) {{
                     previewPid = sample.pid;
-                    previewTitle = `${{sample.title}} (Beispiel aus Ordner)`;
+                    previewTitle = `${{sample.title}} (Sample from folder)`;
                 }}
             }}
 
@@ -3290,11 +3408,11 @@ def generate():
                 previewBox.style.display = "block";
                 if (previewCollapseBody) previewCollapseBody.style.display = isPreviewCollapsed ? "none" : "block";
                 if (previewCollapseIcon) previewCollapseIcon.style.transform = isPreviewCollapsed ? "rotate(-90deg)" : "rotate(0deg)";
-                if (previewToggleText) previewToggleText.textContent = isPreviewCollapsed ? "(Ausklappen)" : "(Einklappen)";
+                if (previewToggleText) previewToggleText.textContent = isPreviewCollapsed ? "(Expand)" : "(Collapse)";
 
                 previewImg.style.display = "none";
                 previewFallback.style.display = "none";
-                previewStatusBadge.textContent = "Lade von ARCHE...";
+                previewStatusBadge.textContent = "Loading from ARCHE...";
                 previewStatusBadge.style.background = "#FFF3CD";
                 previewStatusBadge.style.color = "#856404";
 
@@ -3305,7 +3423,7 @@ def generate():
                 previewImg.onload = function() {{
                     previewImg.style.display = "block";
                     previewFallback.style.display = "none";
-                    previewStatusBadge.textContent = "Live von ARCHE";
+                    previewStatusBadge.textContent = "Live from ARCHE";
                     previewStatusBadge.style.background = "#E8F5E9";
                     previewStatusBadge.style.color = "#2E7D32";
                     previewDimensions.innerHTML = `<i class="fa-solid fa-check"></i> ${{previewTitle}}`;
@@ -3314,11 +3432,11 @@ def generate():
                 previewImg.onerror = function() {{
                     previewImg.style.display = "none";
                     previewFallback.style.display = "flex";
-                    previewStatusBadge.textContent = "InC-Lizenz";
+                    previewStatusBadge.textContent = "InC License";
                     previewStatusBadge.style.background = "#FBE9E7";
                     previewStatusBadge.style.color = "#D84315";
                     document.getElementById("drawerPreviewFallbackLink").href = previewPid;
-                    previewDimensions.innerHTML = `<i class="fa-solid fa-lock"></i> Zugriffsschutz`;
+                    previewDimensions.innerHTML = `<i class="fa-solid fa-lock"></i> Restricted Access`;
                 }};
             }} else {{
                 previewBox.style.display = "none";
@@ -3338,7 +3456,7 @@ def generate():
 
             if (d.type === "person" || d.type === "organization") {{
                 profileBox.style.display = "block";
-                heading.textContent = d.type === "person" ? "Forscher:innen-Profil" : "Institutions-Profil";
+                heading.textContent = d.type === "person" ? "Researcher Profile" : "Institution Profile";
 
                 if (d.affiliation || d.affiliation_name) {{
                     affilRow.style.display = "flex";
@@ -3346,7 +3464,7 @@ def generate():
                     if (d.affiliation_id) {{
                         affilVal.style.cursor = "pointer";
                         affilVal.style.color = "var(--primary)";
-                        affilVal.title = "Klicken, um Institution im Graphen zu fokussieren";
+                        affilVal.title = "Click to focus institution in graph";
                         affilVal.onclick = () => {{
                             const orgNode = cy.$id(`org_${{d.affiliation_id}}`);
                             if (orgNode && orgNode.length > 0) {{
@@ -3388,7 +3506,7 @@ def generate():
 
                 // Citation
                 const citVal = document.getElementById("drawerDatasetCitationVal");
-                if (citVal) citVal.textContent = d.citation || "Keine Zitation verfügbar.";
+                if (citVal) citVal.textContent = d.citation || "No citation available.";
 
                 // Creators Chips
                 const creatorsChips = document.getElementById("drawerDatasetCreatorsChips");
@@ -3398,7 +3516,7 @@ def generate():
                         const chip = document.createElement("span");
                         chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
                         chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
-                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.title = `Focus ${{c.name}} (${{c.type}}) in graph`;
                         chip.addEventListener("click", () => {{
                             const target = getNodeByIdFlexible(c.id);
                             if (target && target.length > 0) {{
@@ -3417,7 +3535,7 @@ def generate():
                 const parentLink = document.getElementById("drawerDatasetParentLink");
                 if (parentLink && d.parent_id) {{
                     const parentNode = getNodeByIdFlexible(d.parent_id);
-                    const pTitle = parentNode && parentNode.data("label") ? parentNode.data("label") : `Sammlung ${{d.parent_id}}`;
+                    const pTitle = parentNode && parentNode.data("label") ? parentNode.data("label") : `Collection ${{d.parent_id}}`;
                     parentLink.textContent = pTitle;
                     parentLink.onclick = (e) => {{
                         e.preventDefault();
@@ -3453,7 +3571,7 @@ def generate():
                         li.className = "relation-item";
                         li.innerHTML = `
                             <span class="relation-target"><i class="fa-solid fa-location-dot" style="color: #2D6A4F;"></i> ${{plcNode.data("label")}}</span>
-                            <span class="relation-label">Fundort</span>
+                            <span class="relation-label">Site / Findspot</span>
                         `;
                         li.addEventListener("click", () => {{
                             plcNode.show();
@@ -3522,7 +3640,7 @@ def generate():
                             chip.style.color = "#1B4965";
                             chip.style.background = "#F0F4F8";
                             chip.innerHTML = `<i class="fa-solid fa-database" style="color: #1B4965;"></i> ${{dts.data("label")}}`;
-                            chip.title = `${{dts.data("label")}} im Graphen anzeigen`;
+                            chip.title = `Show ${{dts.data("label")}} in graph`;
                             chip.addEventListener("click", () => {{
                                 dts.show();
                                 cy.center(dts);
@@ -3545,7 +3663,7 @@ def generate():
             if (d.type === "resource") {{
                 if (resDrawerBox) resDrawerBox.style.display = "block";
                 const typeVal = document.getElementById("drawerResTypeVal");
-                if (typeVal) typeVal.textContent = d.type_label || d.ftype || "ARCHE-Datei";
+                if (typeVal) typeVal.textContent = formatTypeLabel(d.type_label) || d.ftype || "ARCHE File";
                 const sizeVal = document.getElementById("drawerResSizeVal");
                 if (sizeVal) sizeVal.textContent = d.formatted_size || (d.size_bytes ? `${{(d.size_bytes / 1024).toFixed(1)}} KB` : "–");
 
@@ -3553,7 +3671,7 @@ def generate():
                 if (parentLink && (d.parent_col || d.col_id || d.col)) {{
                     const pColId = d.parent_col || d.col_id || `col_${{d.col}}`;
                     const parentNode = cy.$id(pColId);
-                    const pTitle = (parentNode && parentNode.length > 0) ? parentNode.data("label") : `Sammlung ${{pColId}}`;
+                    const pTitle = (parentNode && parentNode.length > 0) ? parentNode.data("label") : `Collection ${{pColId}}`;
                     parentLink.textContent = pTitle;
                     parentLink.onclick = (e) => {{
                         e.preventDefault();
@@ -3668,7 +3786,7 @@ def generate():
                         li.className = "relation-item";
                         li.innerHTML = `
                             <span class="relation-target"><i class="fa-solid fa-book-open" style="color: #7B4F36;"></i> ${{pubNode.data("label")}}</span>
-                            <span class="relation-label">${{pubNode.data("year") || "Publikation"}}</span>
+                            <span class="relation-label">${{pubNode.data("year") || "Publication"}}</span>
                         `;
                         li.addEventListener("click", () => {{
                             pubNode.show();
@@ -3693,7 +3811,7 @@ def generate():
             if (d.temporal || d.epoch) {{
                 tempBox.style.display = "block";
                 tempCamp.innerHTML = d.temporal ? `<span class="temporal-badge"><i class="fa-solid fa-calendar-check"></i> ${{d.temporal}}</span>` : "";
-                tempEpoch.innerHTML = d.epoch ? `<i class="fa-solid fa-hourglass-half" style="color: #7E6B8F;"></i> Epoche: <strong>${{d.epoch}}</strong>` : "";
+                tempEpoch.innerHTML = d.epoch ? `<i class="fa-solid fa-hourglass-half" style="color: #7E6B8F;"></i> Epoch: <strong>${{d.epoch}}</strong>` : "";
             }} else {{
                 tempBox.style.display = "none";
             }}
@@ -3717,7 +3835,7 @@ def generate():
                         const chip = document.createElement("span");
                         chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
                         chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
-                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.title = `Focus ${{c.name}} (${{c.type}}) in graph`;
                         chip.addEventListener("click", () => {{
                             const target = getNodeByIdFlexible(c.id);
                             if (target && target.length > 0) {{
@@ -3741,7 +3859,7 @@ def generate():
                         const chip = document.createElement("span");
                         chip.className = `provenance-chip ${{c.type === "Person" ? "person-chip" : "org-chip"}}`;
                         chip.innerHTML = `<i class="fa-solid ${{c.type === "Person" ? "fa-user" : "fa-building-columns"}}"></i> ${{c.name}}`;
-                        chip.title = `${{c.name}} (${{c.type}}) im Graphen fokussieren`;
+                        chip.title = `Focus ${{c.name}} (${{c.type}}) in graph`;
                         chip.addEventListener("click", () => {{
                             const target = getNodeByIdFlexible(c.id);
                             if (target && target.length > 0) {{
@@ -3780,9 +3898,9 @@ def generate():
                     entColBox.style.display = "block";
                     entColCount.textContent = colNodes.length;
                     if (d.type === "place") {{
-                        entColHeading.textContent = "Verortete Sammlungen & Datensätze";
+                        entColHeading.textContent = "Located Collections & Datasets";
                     }} else {{
-                        entColHeading.textContent = d.type === "person" ? "Beteiligte Sammlungen & Ordner" : "Zugeordnete Sammlungen & Bestände";
+                        entColHeading.textContent = d.type === "person" ? "Associated Collections & Folders" : "Associated Collections & Holdings";
                     }}
                     colNodes.slice(0, 35).forEach(col => {{
                         const li = document.createElement("li");
@@ -3790,7 +3908,7 @@ def generate():
                         const isDts = col.data("type") === "dataset";
                         const colIcon = isDts ? "fa-database" : "fa-folder";
                         const colColor = isDts ? "#1B4965" : (col.data("color") || "#888");
-                        const colBadge = isDts ? "GeoPackage" : (col.data("items") ? col.data("items").toLocaleString() + " Items" : "Ordner");
+                        const colBadge = isDts ? "GeoPackage" : (col.data("items") ? col.data("items").toLocaleString() + " Items" : "Folder");
                         li.innerHTML = `
                             <span class="relation-target"><i class="fa-solid ${{colIcon}}" style="color: ${{colColor}};"></i> ${{col.data("label")}}</span>
                             <span class="relation-label">${{colBadge}}</span>
@@ -3810,7 +3928,7 @@ def generate():
                             colNodes.show();
                             cy.fit(colNodes.union(node), 60);
                             highlightNeighbors(node);
-                            showNotification(`${{colNodes.length}} Sammlungen von ${{d.label}} im Graphen fokussiert.`, "info", 2500);
+                            showNotification(`${{colNodes.length}} collections of ${{d.label}} focused in graph.`, "info", 2500);
                         }};
                     }}
                 }} else {{
@@ -3847,7 +3965,7 @@ def generate():
                     const isDts = child.data("type") === "dataset";
                     const childIcon = isDts ? "fa-database" : "fa-folder";
                     const childColor = isDts ? "#1B4965" : (child.data("color") || "#888");
-                    const childBadge = isDts ? "GeoPackage" : (child.data("items") ? child.data("items") + " Items" : "Ordner");
+                    const childBadge = isDts ? "GeoPackage" : (child.data("items") ? child.data("items") + " Items" : "Folder");
                     li.innerHTML = `
                         <span class="relation-target"><i class="fa-solid ${{childIcon}}" style="color: ${{childColor}};"></i> ${{child.data("label")}}</span>
                         <span class="relation-label">${{childBadge}}</span>
@@ -3869,7 +3987,7 @@ def generate():
                         childNodes.show();
                         cy.fit(childNodes.union(node), 80);
                         highlightNeighbors(node);
-                        showNotification(`${{childNodes.length}} Unterordner im Graphen fokussiert.`, "info", 2500);
+                        showNotification(`${{childNodes.length}} sub-folders focused in graph.`, "info", 2500);
                     }};
                 }}
             }} else {{
@@ -3908,13 +4026,13 @@ def generate():
 
                 if (uniqueLocalCount > 0) {{
                     resCountBadge.textContent = uniqueLocalCount.toLocaleString();
-                    if (resHelpText) resHelpText.textContent = "Direkte Dateien dieses Ordners als Knoten in den Graphen einblenden:";
+                    if (resHelpText) resHelpText.textContent = "Display direct files of this folder as nodes in graph:";
                 }} else if (childEdges.length > 0) {{
-                    resCountBadge.textContent = `${{(d.items || 0).toLocaleString()}} (in Unterordnern)`;
-                    if (resHelpText) resHelpText.textContent = "Überordner: Einzeldateien sind in den Unterordnern organisiert.";
+                    resCountBadge.textContent = `${{(d.items || 0).toLocaleString()}} (in sub-folders)`;
+                    if (resHelpText) resHelpText.textContent = "Parent folder: individual files are organized in sub-folders.";
                 }} else {{
                     resCountBadge.textContent = (d.items || 0).toLocaleString();
-                    if (resHelpText) resHelpText.textContent = "Dateien dieses Ordners von ARCHE abrufen und einblenden:";
+                    if (resHelpText) resHelpText.textContent = "Fetch and display files of this folder from ARCHE:";
                 }}
 
                 if (expandedNodesMap.has(node.id())) {{
@@ -3950,25 +4068,25 @@ def generate():
 
             const relationMeta = {{
                 "hasHosting": {{ label: "Hosting", color: "#202226", bg: "#EDEAE6", icon: "fa-server", order: 1 }},
-                "hasOwner": {{ label: "Eigentümer", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-landmark", order: 2 }},
-                "hasLicensor": {{ label: "Lizenzgeber", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-shield-halved", order: 3 }},
-                "hasRightsHolder": {{ label: "Rechteinhaber", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-copyright", order: 4 }},
-                "hasCurator": {{ label: "Kurator:in", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-tie", order: 5 }},
-                "hasCreator": {{ label: "Urheber:in", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-pen", order: 6 }},
-                "hasPrincipalInvestigator": {{ label: "Projektleitung", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-gear", order: 7 }},
-                "hasContributor": {{ label: "Mitwirkende:r", color: "#4A5568", bg: "#EDF2F7", icon: "fa-user-group", order: 8 }},
-                "hasDepositor": {{ label: "Einpflegende:r", color: "#A8442E", bg: "#FAF0EC", icon: "fa-upload", order: 9 }},
-                "hasMetadataCreator": {{ label: "Metadaten-Ersteller:in", color: "#A8442E", bg: "#FAF0EC", icon: "fa-id-card", order: 10 }},
-                "hasDigitisingAgent": {{ label: "Digitalisierer:in", color: "#A8442E", bg: "#FAF0EC", icon: "fa-camera", order: 11 }},
-                "documents": {{ label: "Dokumentiert in", color: "#7B4F36", bg: "#F7F2EF", icon: "fa-book", order: 12 }},
-                "hasAuthor": {{ label: "Autor:in", color: "#A8442E", bg: "#FAF0EC", icon: "fa-feather", order: 13 }},
-                "hasSpatialCoverage": {{ label: "Fundort", color: "#2D6A4F", bg: "#EAF3ED", icon: "fa-location-dot", order: 14 }},
-                "hasTemporalCoverage": {{ label: "Zeitraum", color: "#8C6A3E", bg: "#FAF6F0", icon: "fa-clock", order: 15 }},
-                "isPartOf": {{ label: "Teil von", color: "#3D7068", bg: "#E9F2F0", icon: "fa-folder-tree", order: 16 }},
-                "isPartOfResource": {{ label: "Teildatei von", color: "#3D7068", bg: "#E9F2F0", icon: "fa-file", order: 17 }},
-                "isMemberOf": {{ label: "Mitglied von", color: "#3E5C76", bg: "#E7EEF4", icon: "fa-sitemap", order: 18 }},
-                "hasLicense": {{ label: "Lizenz", color: "#37535E", bg: "#F0F5F7", icon: "fa-shield", order: 19 }},
-                "hasSubject": {{ label: "Schlagwort", color: "#5C4B75", bg: "#F5EFF8", icon: "fa-tag", order: 20 }}
+                "hasOwner": {{ label: "Owner", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-landmark", order: 2 }},
+                "hasLicensor": {{ label: "Licensor", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-shield-halved", order: 3 }},
+                "hasRightsHolder": {{ label: "Rights Holder", color: "#2E5B88", bg: "#E5EDF4", icon: "fa-copyright", order: 4 }},
+                "hasCurator": {{ label: "Curator", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-tie", order: 5 }},
+                "hasCreator": {{ label: "Creator", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-pen", order: 6 }},
+                "hasPrincipalInvestigator": {{ label: "Principal Investigator", color: "#A8442E", bg: "#FAF0EC", icon: "fa-user-gear", order: 7 }},
+                "hasContributor": {{ label: "Contributor", color: "#4A5568", bg: "#EDF2F7", icon: "fa-user-group", order: 8 }},
+                "hasDepositor": {{ label: "Depositor", color: "#A8442E", bg: "#FAF0EC", icon: "fa-upload", order: 9 }},
+                "hasMetadataCreator": {{ label: "Metadata Creator", color: "#A8442E", bg: "#FAF0EC", icon: "fa-id-card", order: 10 }},
+                "hasDigitisingAgent": {{ label: "Digitising Agent", color: "#A8442E", bg: "#FAF0EC", icon: "fa-camera", order: 11 }},
+                "documents": {{ label: "Documented in", color: "#7B4F36", bg: "#F7F2EF", icon: "fa-book", order: 12 }},
+                "hasAuthor": {{ label: "Author", color: "#A8442E", bg: "#FAF0EC", icon: "fa-feather", order: 13 }},
+                "hasSpatialCoverage": {{ label: "Site / Findspot", color: "#2D6A4F", bg: "#EAF3ED", icon: "fa-location-dot", order: 14 }},
+                "hasTemporalCoverage": {{ label: "Time Period", color: "#8C6A3E", bg: "#FAF6F0", icon: "fa-clock", order: 15 }},
+                "isPartOf": {{ label: "Part of", color: "#3D7068", bg: "#E9F2F0", icon: "fa-folder-tree", order: 16 }},
+                "isPartOfResource": {{ label: "Part file of", color: "#3D7068", bg: "#E9F2F0", icon: "fa-file", order: 17 }},
+                "isMemberOf": {{ label: "Member of", color: "#3E5C76", bg: "#E7EEF4", icon: "fa-sitemap", order: 18 }},
+                "hasLicense": {{ label: "License", color: "#37535E", bg: "#F0F5F7", icon: "fa-shield", order: 19 }},
+                "hasSubject": {{ label: "Subject", color: "#5C4B75", bg: "#F5EFF8", icon: "fa-tag", order: 20 }}
             }};
 
             // Convert to array and sort by priority order
@@ -4000,7 +4118,7 @@ def generate():
                 li.className = "relation-item";
                 li.innerHTML = `
                     <div class="relation-item-left">
-                        <span class="relation-type-badge" style="color: ${{meta.color}}; background: ${{meta.bg}};" title="Prädikat: ${{rawPredicate}}">
+                        <span class="relation-type-badge" style="color: ${{meta.color}}; background: ${{meta.bg}};" title="Predicate: ${{rawPredicate}}">
                             <i class="fa-solid ${{meta.icon}}"></i> ${{meta.label}}
                         </span>
                         <span class="relation-target" title="${{targetLabel}}">
@@ -4008,7 +4126,7 @@ def generate():
                             ${{targetLabel}}
                         </span>
                     </div>
-                    <i class="fa-solid ${{isOutgoing ? "fa-arrow-right" : "fa-arrow-left"}} relation-dir-icon" title="${{isOutgoing ? "Ausgehend" : "Eingehend"}}"></i>
+                    <i class="fa-solid ${{isOutgoing ? "fa-arrow-right" : "fa-arrow-left"}} relation-dir-icon" title="${{isOutgoing ? "Outgoing" : "Incoming"}}"></i>
                 `;
                 li.addEventListener("click", () => {{
                     targetNode.show();
@@ -4023,7 +4141,7 @@ def generate():
             if (connectedEdges.length > 80) {{
                 const moreLi = document.createElement("li");
                 moreLi.style.cssText = "font-size: 0.72rem; color: var(--text-muted); text-align: center; padding: 6px;";
-                moreLi.textContent = `... und ${{(connectedEdges.length - 80).toLocaleString()}} weitere Verknüpfungen`;
+                moreLi.textContent = `... and ${{(connectedEdges.length - 80).toLocaleString()}} more connections`;
                 relationsList.appendChild(moreLi);
             }}
 
@@ -4052,11 +4170,11 @@ def generate():
                 if (isPreviewCollapsed) {{
                     previewCollapseBody.style.display = "none";
                     if (previewCollapseIcon) previewCollapseIcon.style.transform = "rotate(-90deg)";
-                    if (previewToggleText) previewToggleText.textContent = "(Ausklappen)";
+                    if (previewToggleText) previewToggleText.textContent = "(Expand)";
                 }} else {{
                     previewCollapseBody.style.display = "block";
                     if (previewCollapseIcon) previewCollapseIcon.style.transform = "rotate(0deg)";
-                    if (previewToggleText) previewToggleText.textContent = "(Einklappen)";
+                    if (previewToggleText) previewToggleText.textContent = "(Collapse)";
                 }}
             }});
         }}
@@ -4069,7 +4187,7 @@ def generate():
             const d = parentNode.data();
             const archeId = String(d.arche_id || (d.id ? d.id.replace("col_", "") : ""));
             const btnExpand = document.getElementById("btnExpandResources");
-            const originalBtnHtml = btnExpand ? btnExpand.innerHTML : '<i class="fa-solid fa-plus"></i> Ressourcen aufklappen';
+            const originalBtnHtml = btnExpand ? btnExpand.innerHTML : '<i class="fa-solid fa-plus"></i> Expand Resources';
 
             // 1. Check local matches in corpusResources
             let matches = corpusResources.filter(r => {{
@@ -4096,7 +4214,7 @@ def generate():
             if (matches.length === 0 && archeId && /^\\d+$/.test(archeId)) {{
                 try {{
                     if (btnExpand) {{
-                        btnExpand.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Lade von ARCHE...';
+                        btnExpand.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading from ARCHE...';
                         btnExpand.disabled = true;
                     }}
                     const searchUrl = `https://arche.acdh.oeaw.ac.at/api/search?property%5B0%5D=https%3A%2F%2Fvocabs.acdh.oeaw.ac.at%2Fschema%23isPartOf&value%5B0%5D=https%3A%2F%2Farche.acdh.oeaw.ac.at%2Fapi%2F${{archeId}}`;
@@ -4145,7 +4263,7 @@ def generate():
                                     thumb_url: pid ? `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(pid)}}&width=360` : "",
                                     date: "n/a",
                                     type: ftype,
-                                    description: desc || `ARCHE-Ressource: ${{title}}`
+                                    description: desc || `ARCHE Resource: ${{title}}`
                                 }};
                                 fetched.push(resObj);
                                 corpusResources.push(resObj);
@@ -4167,9 +4285,9 @@ def generate():
             if (matches.length === 0) {{
                 const childEdges = cy.edges(`[target = "${{nodeId}}"][label = 'isPartOf']`);
                 if (childEdges.length > 0) {{
-                    showNotification(`Dieser Überordner enthält ${{childEdges.length}} Unterordner. Einzeldateien befinden sich in den jeweiligen Unterordnern.`, "info", 4500);
+                    showNotification(`This parent folder contains ${{childEdges.length}} sub-folders. Individual files are located in the respective sub-folders.`, "info", 4500);
                 }} else {{
-                    showNotification("Keine individuellen Ressourcen für diesen Ordner auf ARCHE hinterlegt.", "warning", 3500);
+                    showNotification("No individual resources found on ARCHE for this folder.", "warning", 3500);
                 }}
                 return;
             }}
@@ -4193,7 +4311,7 @@ def generate():
                         id: res.id,
                         label: res.title,
                         type: "resource",
-                        type_label: `ARCHE-Datei (${{res.type}})`,
+                        type_label: `ARCHE File (${{res.type}})`,
                         ftype: res.type,
                         pid: res.pid,
                         place: res.place,
@@ -4201,7 +4319,7 @@ def generate():
                         path: res.path,
                         date: res.date,
                         col: res.col,
-                        description: res.description || `ARCHE-Ressource: ${{res.title}} | Fundort: ${{res.place}}`,
+                        description: res.description || `ARCHE Resource: ${{res.title}} | Site: ${{res.place}}`,
                         color: ftypeColors[res.type] || "#3D7068"
                     }},
                     position: {{ x: px, y: py }}
@@ -4228,7 +4346,7 @@ def generate():
                 expandedNodesMap.set(nodeId, addedIds);
                 updateVisibleNodesCount();
                 openInspector(parentNode);
-                showNotification(`${{addedIds.size}} Ressource(n) im Graphen aufgespannt.`, "success", 3000);
+                showNotification(`${{addedIds.size}} resource(s) expanded in graph.`, "success", 3000);
             }}
         }}
 
@@ -4243,7 +4361,7 @@ def generate():
             updateVisibleNodesCount();
             const parentNode = cy.$id(nodeId);
             if (parentNode.length > 0) openInspector(parentNode);
-            showNotification("Ressourcen eingeklappt.", "info", 2000);
+            showNotification("Resources collapsed.", "info", 2000);
         }}
 
         function focusResourceInGraph(resId) {{
@@ -4257,7 +4375,7 @@ def generate():
             if (!node || node.length === 0) {{
                 const res = corpusResources.find(r => r.id === resId || r.id === `res_${{resId}}` || r.arche_id === resId);
                 if (!res) {{
-                    showNotification(`Ressource [${{resId}}] nicht im Graphen gefunden.`, "warning", 3000);
+                    showNotification(`Resource [${{resId}}] not found in graph.`, "warning", 3000);
                     return;
                 }}
                 const parentColNode = getNodeByIdFlexible(res.col_id) || getNodeByIdFlexible(res.col) || cy.$id("iuenna_root");
@@ -4271,14 +4389,14 @@ def generate():
                             arche_id: res.arche_id,
                             label: res.title,
                             type: "resource",
-                            type_label: `ARCHE-Datei (${{res.type}})`,
+                            type_label: `ARCHE File (${{res.type}})`,
                             ftype: res.type,
                             pid: res.pid,
                             place: res.place,
                             subjs: res.subjs,
                             path: res.path,
                             date: res.date,
-                            description: `ARCHE-Ressource: ${{res.title}} | Fundort: ${{res.place}}`,
+                            description: `ARCHE Resource: ${{res.title}} | Site: ${{res.place}}`,
                             color: ftypeColors[res.type] || "#3D7068"
                         }},
                         position: {{ x: parentPos.x + 80, y: parentPos.y + 80 }}
@@ -4355,7 +4473,7 @@ def generate():
             titleEl.textContent = res.title;
             const rawPath = res.path || ["IUENNA", res.col];
             breadcrumbEl.textContent = rawPath.map(p => p === 'col_ret' ? 'Retrodigitalisat-Collection (RET)' : p).join(" › ");
-            metaEl.innerHTML = `<strong>Fundort:</strong> ${{res.place || "–"}} &bull; <strong>Typ:</strong> ${{res.type || "ARCHE-Resource"}} &bull; <strong>PID:</strong> ${{res.pid}}`;
+            metaEl.innerHTML = `<strong>Site:</strong> ${{res.place || "–"}} &bull; <strong>Type:</strong> ${{res.type || "ARCHE Resource"}} &bull; <strong>PID:</strong> ${{res.pid}}`;
 
             archeLink.href = res.pid;
             directLink.href = res.pid;
@@ -4431,7 +4549,7 @@ def generate():
                 quickPreviewDialog.classList.toggle("is-fullscreen");
                 const isFull = quickPreviewDialog.classList.contains("is-fullscreen");
                 btnToggleFullscreen.innerHTML = isFull ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
-                btnToggleFullscreen.title = isFull ? "Vollbild beenden" : "Vollbildmodus aktivieren";
+                btnToggleFullscreen.title = isFull ? "Exit Fullscreen" : "Enter Fullscreen";
             }});
         }}
 
@@ -4489,11 +4607,11 @@ def generate():
             const footerEl = document.getElementById("largePlaceMapFooterInfo");
             const wmaLink = document.getElementById("largePlaceMapWmaLink");
 
-            titleEl.textContent = `Fundort: ${{placeData.label || 'Fundort'}}`;
-            subEl.textContent = placeData.geonames ? `Geonames: ${{placeData.geonames}}` : 'Archäologische Fundstelle im Jauntal';
+            titleEl.textContent = `Site: ${{placeData.label || 'Site'}}`;
+            subEl.textContent = placeData.geonames ? `Geonames: ${{placeData.geonames}}` : 'Archaeological findspot in Jauntal';
             const latStr = typeof placeData.latitude === 'number' ? placeData.latitude.toFixed(5) : placeData.latitude;
             const lonStr = typeof placeData.longitude === 'number' ? placeData.longitude.toFixed(5) : placeData.longitude;
-            footerEl.innerHTML = `<strong>Koordinaten:</strong> ${{latStr}}°, ${{lonStr}}° &bull; <strong>Typ:</strong> Fundort (Place)`;
+            footerEl.innerHTML = `<strong>Coordinates:</strong> ${{latStr}}°, ${{lonStr}}° &bull; <strong>Type:</strong> Archaeological Site (Place)`;
             wmaLink.href = `../wma/wma.html?lat=${{placeData.latitude}}&lng=${{placeData.longitude}}&zoom=15`;
 
             modal.classList.add("open");
@@ -4514,7 +4632,7 @@ def generate():
                     osmLayer.addTo(largePlaceMap);
                     L.control.layers({{
                         "OpenStreetMap (Standard)": osmLayer,
-                        "OpenTopoMap (Topographie)": topoLayer
+                        "OpenTopoMap (Topography)": topoLayer
                     }}).addTo(largePlaceMap);
                 }}
                 if (largePlaceMarker) {{
@@ -4522,7 +4640,7 @@ def generate():
                 }}
                 largePlaceMap.setView([placeData.latitude, placeData.longitude], 14);
                 largePlaceMarker = L.marker([placeData.latitude, placeData.longitude]).addTo(largePlaceMap);
-                largePlaceMarker.bindPopup(`<b>${{placeData.label || 'Fundort'}}</b><br>${{latStr}}°, ${{lonStr}}°`).openPopup();
+                largePlaceMarker.bindPopup(`<b>${{placeData.label || 'Site'}}</b><br>${{latStr}}°, ${{lonStr}}°`).openPopup();
                 largePlaceMap.invalidateSize();
             }}, 180);
         }}
@@ -4570,7 +4688,7 @@ def generate():
             }}
         }});
 
-        // Ordnerbaum (Archiv-Hierarchie Modal) Logic
+        // Archive Hierarchy Tree Modal Logic
         const treeModal = document.getElementById("treeModal");
         const btnOpenTreeModal = document.getElementById("btnOpenTreeModal");
         const btnTreeClose = document.getElementById("btnTreeClose");
@@ -4599,7 +4717,7 @@ def generate():
             if (rootCol) {{
                 const treeDom = buildTreeNodeDom(rootCol, filter);
                 if (treeDom) treeContainer.appendChild(treeDom);
-                else treeContainer.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-muted);">Kein Ordner entspricht diesem Suchfilter.</div>';
+                else treeContainer.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-muted);">No folder matches this search filter.</div>';
             }}
         }}
 
@@ -4641,8 +4759,8 @@ def generate():
 
             const btnFocus = document.createElement("button");
             btnFocus.className = "tree-action-btn";
-            btnFocus.innerHTML = '<i class="fa-solid fa-crosshairs"></i> Im Graph';
-            btnFocus.title = "Diesen Ordner im Graphen fokussieren";
+            btnFocus.innerHTML = '<i class="fa-solid fa-crosshairs"></i> In Graph';
+            btnFocus.title = "Focus this folder in graph";
             btnFocus.onclick = (e) => {{
                 e.stopPropagation();
                 treeModal.classList.remove("open");
@@ -4651,8 +4769,8 @@ def generate():
 
             const btnCorpus = document.createElement("button");
             btnCorpus.className = "tree-action-btn";
-            btnCorpus.innerHTML = '<i class="fa-solid fa-database"></i> Korpus';
-            btnCorpus.title = "Dateien dieses Ordners im Korpus anzeigen";
+            btnCorpus.innerHTML = '<i class="fa-solid fa-database"></i> Corpus';
+            btnCorpus.title = "Show files of this folder in corpus";
             btnCorpus.onclick = (e) => {{
                 e.stopPropagation();
                 treeModal.classList.remove("open");
@@ -4705,7 +4823,7 @@ def generate():
                 const slider = document.getElementById("lodSlider");
                 if (slider) slider.value = 6;
                 const badge = document.getElementById("lodLevelBadge");
-                if (badge) badge.textContent = "L1–L6 (Alle 434 Ordner)";
+                if (badge) badge.textContent = "L1–L6 (All 434 Folders)";
                 applyDepthFilter("all");
                 node = getNodeByIdFlexible(archeId);
             }}
@@ -4717,7 +4835,7 @@ def generate():
                 openInspector(node);
                 highlightNeighbors(node);
             }} else {{
-                showNotification(`Eintrag [${{archeId}}] im Graphen nicht gefunden.`, "warning");
+                showNotification(`Entry [${{archeId}}] not found in graph.`, "warning");
             }}
         }}
 
@@ -4776,7 +4894,7 @@ def generate():
             }});
 
             const currentPlace = corpusPlaceSelect.value;
-            corpusPlaceSelect.innerHTML = '<option value="all">Alle Fundorte (' + Object.keys(placeCounts).length + ' Orte)</option>';
+            corpusPlaceSelect.innerHTML = '<option value="all">All Sites (' + Object.keys(placeCounts).length + ' sites)</option>';
             sortedPlaces.forEach(p => {{
                 const opt = document.createElement("option");
                 opt.value = p;
@@ -4801,7 +4919,7 @@ def generate():
 
             const sortedCols = Object.keys(colCounts).sort((a, b) => colCounts[b] - colCounts[a]);
             const currentCol = corpusColSelect.value;
-            corpusColSelect.innerHTML = '<option value="all">Alle Sammlungen &amp; Bestände (' + Object.keys(colCounts).length + ')</option>';
+            corpusColSelect.innerHTML = '<option value="all">All Collections &amp; Holdings (' + Object.keys(colCounts).length + ')</option>';
             sortedCols.forEach(cid => {{
                 const opt = document.createElement("option");
                 opt.value = cid;
@@ -4865,22 +4983,22 @@ def generate():
             const endIdx = Math.min(total, startIdx + CORPUS_PAGE_SIZE);
             const pageItems = filteredCorpusItems.slice(startIdx, endIdx);
 
-            document.getElementById("corpusPageInfo").textContent = `Zeige ${{total === 0 ? 0 : startIdx + 1}}–${{endIdx}} von ${{total.toLocaleString()}} Ressourcen`;
+            document.getElementById("corpusPageInfo").textContent = `Showing ${{total === 0 ? 0 : startIdx + 1}}–${{endIdx}} of ${{total.toLocaleString()}} resources`;
             document.getElementById("corpusCurrentPage").textContent = `${{corpusCurrentPageIdx}} / ${{totalPages}}`;
 
             document.getElementById("btnCorpusPrev").disabled = corpusCurrentPageIdx <= 1;
             document.getElementById("btnCorpusNext").disabled = corpusCurrentPageIdx >= totalPages;
 
             if (pageItems.length === 0) {{
-                corpusTableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted);">Keine Ressourcen für diese Filterkriterien gefunden.</td></tr>`;
+                corpusTableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted);">No resources found matching these filter criteria.</td></tr>`;
                 return;
             }}
 
             corpusTableBody.innerHTML = pageItems.map(r => `
                 <tr>
                     <td style="text-align: center; vertical-align: middle;">
-                        <div class="corpus-thumb-cell btn-preview-click" data-id="${{r.id}}" title="ARCHE Dateivorschau vergrößern" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 6px; background: #F2EFE9; border: 1px solid var(--panel-border); overflow: hidden; position: relative;">
-                            <img src="${{r.thumb_url || `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(r.pid)}}&width=84`}}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Vorschau" />
+                        <div class="corpus-thumb-cell btn-preview-click" data-id="${{r.id}}" title="Enlarge ARCHE file preview" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 6px; background: #F2EFE9; border: 1px solid var(--panel-border); overflow: hidden; position: relative;">
+                            <img src="${{r.thumb_url || `https://arche-thumbnails.acdh.oeaw.ac.at/?id=${{encodeURIComponent(r.pid)}}&width=84`}}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Preview" />
                             <span style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 0.85rem; color: #8C857B;">
                                 <i class="fa-solid ${{r.type === 'image' ? 'fa-image' : (ftypeIcons[r.type] || 'fa-file')}}" style="color: ${{ftypeColors[r.type] || '#3D7068'}};"></i>
                             </span>
@@ -4903,10 +5021,10 @@ def generate():
                     </td>
                     <td style="text-align: right;">
                         <div style="display: inline-flex; gap: 4px;">
-                            <button class="tool-btn btn-graph-focus" data-id="${{r.id}}" style="font-size: 0.72rem; padding: 3px 8px;" title="Im Graphen fokussieren">
+                            <button class="tool-btn btn-graph-focus" data-id="${{r.id}}" style="font-size: 0.72rem; padding: 3px 8px;" title="Focus in graph">
                                 <i class="fa-solid fa-circle-nodes"></i>
                             </button>
-                            <a href="${{r.pid}}" target="_blank" class="tool-btn" style="font-size: 0.72rem; padding: 3px 8px;" title="Auf ARCHE öffnen">
+                            <a href="${{r.pid}}" target="_blank" class="tool-btn" style="font-size: 0.72rem; padding: 3px 8px;" title="Open on ARCHE">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
@@ -5067,17 +5185,29 @@ def generate():
 
                     // Group by categories
                     const categoryGroups = {{
-                        "Forscher:innen": [],
-                        "Sammlungen & Ordner": [],
-                        "Publikationen": [],
-                        "Institutionen": [],
-                        "Fundorte": []
+                        "Researchers": [],
+                        "Collections & Folders": [],
+                        "Research Datasets & Geodata": [],
+                        "Publications": [],
+                        "Institutions": [],
+                        "Sites & Locations": []
+                    }};
+
+                    const categoryMapping = {{
+                        "Forscher:innen": "Researchers",
+                        "Sammlungen & Ordner": "Collections & Folders",
+                        "Forschungsdatensätze & Geodaten": "Research Datasets & Geodata",
+                        "Publikationen": "Publications",
+                        "Institutionen": "Institutions",
+                        "Fundorte & Orte": "Sites & Locations",
+                        "Fundorte": "Sites & Locations"
                     }};
 
                     const seenIds = new Set();
 
                     matchedEntities.forEach(ent => {{
-                        const cat = ent.category || "Sammlungen & Ordner";
+                        const rawCat = ent.category || "Sammlungen & Ordner";
+                        const cat = categoryMapping[rawCat] || "Collections & Folders";
                         if (!categoryGroups[cat]) categoryGroups[cat] = [];
                         if (!seenIds.has(ent.arche_id || ent.id)) {{
                             seenIds.add(ent.arche_id || ent.id);
@@ -5097,7 +5227,7 @@ def generate():
                     let totalMatches = Object.values(categoryGroups).reduce((sum, g) => sum + g.length, 0) + corpusMatches.length;
 
                     if (totalMatches === 0) {{
-                        searchDropdown.innerHTML = '<div class="search-no-results"><i class="fa-solid fa-magnifying-glass" style="margin-bottom: 6px; font-size: 1.2rem; display: block; opacity: 0.5;"></i>Keine passenden ARCHE-Einträge gefunden</div>';
+                        searchDropdown.innerHTML = '<div class="search-no-results"><i class="fa-solid fa-magnifying-glass" style="margin-bottom: 6px; font-size: 1.2rem; display: block; opacity: 0.5;"></i>No matching ARCHE entries found</div>';
                         searchDropdown.style.display = "block";
                         return;
                     }}
@@ -5105,11 +5235,12 @@ def generate():
                     let globalIndex = 0;
 
                     const catIcons = {{
-                        "Forscher:innen": "fa-user-tie",
-                        "Sammlungen & Ordner": "fa-folder-tree",
-                        "Publikationen": "fa-book-open",
-                        "Institutionen": "fa-building-columns",
-                        "Fundorte": "fa-map-pin"
+                        "Researchers": "fa-user-tie",
+                        "Collections & Folders": "fa-folder-tree",
+                        "Research Datasets & Geodata": "fa-database",
+                        "Publications": "fa-book-open",
+                        "Institutions": "fa-building-columns",
+                        "Sites & Locations": "fa-map-pin"
                     }};
 
                     Object.keys(categoryGroups).forEach(catName => {{
@@ -5152,7 +5283,7 @@ def generate():
                     if (corpusMatches.length > 0) {{
                         const header = document.createElement("div");
                         header.className = "search-category-header";
-                        header.innerHTML = `<span><i class="fa-solid fa-file-lines"></i> Dateien &amp; Primärressourcen</span> <span>${{corpusMatches.length}}</span>`;
+                        header.innerHTML = `<span><i class="fa-solid fa-file-lines"></i> Files &amp; Primary Resources</span> <span>${{corpusMatches.length}}</span>`;
                         searchDropdown.appendChild(header);
 
                         corpusMatches.forEach(res => {{
@@ -5175,7 +5306,7 @@ def generate():
                                     <div class="search-item-title">${{highlightedTitle}}</div>
                                     <div class="search-item-sub">${{highlightedSub}}</div>
                                 </div>
-                                <span class="search-item-badge">Ressource</span>
+                                <span class="search-item-badge">Resource</span>
                             `;
 
                             itemEl.addEventListener("click", () => selectItem(itemEl));
@@ -5243,11 +5374,50 @@ def generate():
         document.getElementById("btnZoomIn").addEventListener("click", () => cy && cy.zoom({{ level: cy.zoom() * 1.25, renderedPosition: {{ x: cy.width() / 2, y: cy.height() / 2 }} }}));
         document.getElementById("btnZoomOut").addEventListener("click", () => cy && cy.zoom({{ level: cy.zoom() * 0.8, renderedPosition: {{ x: cy.width() / 2, y: cy.height() / 2 }} }}));
 
-        document.getElementById("btnFullscreen").addEventListener("click", () => {{
-            const container = document.getElementById("stageContainer");
-            if (!document.fullscreenElement) container.requestFullscreen();
-            else document.exitFullscreen();
+        const btnFullscreen = document.getElementById("btnFullscreen");
+        const graphAppCard = document.getElementById("graphAppCard");
+        if (btnFullscreen) {{
+            btnFullscreen.addEventListener("click", () => {{
+                const isFullscreen = !!document.fullscreenElement || (graphAppCard && graphAppCard.classList.contains("fullscreen-fallback"));
+                if (!isFullscreen) {{
+                    if (graphAppCard && graphAppCard.requestFullscreen) {{
+                        graphAppCard.requestFullscreen().catch(() => {{
+                            if (graphAppCard) graphAppCard.classList.add("fullscreen-fallback");
+                            triggerCyResize();
+                        }});
+                    }} else if (graphAppCard) {{
+                        graphAppCard.classList.add("fullscreen-fallback");
+                        triggerCyResize();
+                    }}
+                }} else {{
+                    if (document.fullscreenElement) {{
+                        document.exitFullscreen();
+                    }} else if (graphAppCard) {{
+                        graphAppCard.classList.remove("fullscreen-fallback");
+                        triggerCyResize();
+                    }}
+                }}
+            }});
+        }}
+
+        document.addEventListener("fullscreenchange", () => {{
+            const isFull = !!document.fullscreenElement;
+            if (btnFullscreen) {{
+                btnFullscreen.classList.toggle("active", isFull);
+                const icon = btnFullscreen.querySelector("i");
+                if (icon) icon.className = isFull ? "fa-solid fa-compress" : "fa-solid fa-expand";
+            }}
+            triggerCyResize();
         }});
+
+        function triggerCyResize() {{
+            setTimeout(() => {{
+                if (cy) {{
+                    cy.resize();
+                    cy.fit(undefined, 30);
+                }}
+            }}, 100);
+        }}
 
         document.getElementById("btnExportPng").addEventListener("click", () => {{
             if (!cy) return;
@@ -5276,7 +5446,7 @@ def generate():
             }}
             if (btnToggleExpand) {{
                 btnToggleExpand.classList.toggle("active", isExp);
-                btnToggleExpand.title = isExp ? "Auf Standardbreite verkleinern" : "Popup vergrößern (Breitbildansicht)";
+                btnToggleExpand.title = isExp ? "Restore standard width" : "Expand inspector (widescreen view)";
             }}
         }}
 
@@ -5418,7 +5588,7 @@ def generate():
                 console.warn("Could not load arche_corpus.json in background:", err);
                 const pill = document.getElementById("pillCorpusStatus");
                 if (pill) {{
-                    pill.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Korpus lokal';
+                    pill.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Corpus local';
                     pill.style.background = "#FFF3CD";
                     pill.style.color = "#856404";
                 }}
@@ -5515,6 +5685,12 @@ def generate():
         f.write(html_content)
         
     print(f"[✓] Successfully generated complete {out_html} ({os.path.getsize(out_html) / 1024:.1f} KB)")
+
+    out_graph_html = os.path.join(project_root, "graph", "graph.html")
+    with open(out_graph_html, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"[✓] Successfully generated complete {out_graph_html} ({os.path.getsize(out_graph_html) / 1024:.1f} KB)")
 
 if __name__ == "__main__":
     generate()
