@@ -245,6 +245,49 @@
     bubble.dataset.groundedSummary = '1';
   }
 
+  function ensureAssistantContrastStyles() {
+    if (document.getElementById('iuenna-assistant-contrast-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'iuenna-assistant-contrast-styles';
+    style.textContent = `
+      #iuenna-chat-trigger,
+      #iuenna-chat-trigger * {
+        color: #FFFFFF !important;
+      }
+
+      #iuenna-chat-window .chat-header,
+      #iuenna-chat-window .chat-header .chat-header-title,
+      #iuenna-chat-window .chat-header .chat-header-sub,
+      #iuenna-chat-window .chat-header p,
+      #iuenna-chat-window .chat-header strong,
+      #iuenna-chat-window .chat-header span,
+      #iuenna-chat-window .chat-header i,
+      #iuenna-chat-window .chat-header button,
+      #iuenna-chat-window .chat-header button i {
+        color: #FFFFFF !important;
+      }
+
+      #iuenna-chat-window .chat-header-sub {
+        color: rgba(255, 255, 255, 0.88) !important;
+      }
+
+      #iuenna-chat-window .chat-header-byoai-badge,
+      #iuenna-chat-window .chat-header-byoai-badge * {
+        color: #FFFFFF !important;
+      }
+
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble,
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble p,
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble strong,
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble span,
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble a,
+      #iuenna-chat-window .chat-msg.user .chat-msg-bubble i {
+        color: #FFFFFF !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function addAssistantMinimizeButton() {
     const win = document.getElementById('iuenna-chat-window');
     if (!win) return;
@@ -270,6 +313,7 @@
   }
 
   function enhanceAssistant(root) {
+    ensureAssistantContrastStyles();
     addAssistantMinimizeButton();
     rotateAssistantWelcomeChips(root);
     const scope = root || document;
