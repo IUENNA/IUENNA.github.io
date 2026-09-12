@@ -21,7 +21,7 @@ START = "<!-- IUENNA graph runtime: start -->"
 END = "<!-- IUENNA graph runtime: end -->"
 LEGACY_START = "<!-- IUENNA graph layout runtime: start -->"
 LEGACY_END = "<!-- IUENNA graph layout runtime: end -->"
-BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-3"></script>\n<script src="./corpus-data.js?v=20260912-2"></script>\n<script src="./layouts.js?v=20260912-2"></script>\n{END}'''
+BLOCK = f'''{START}\n<script src="./data-source.js?v=20260912-4"></script>\n<script src="./corpus-data.js?v=20260912-2"></script>\n<script src="./layouts.js?v=20260912-3"></script>\n{END}'''
 
 GRAPH_SHELL = 'let graphData = { elements: { nodes: [], edges: [] }, metadata: { source: "arche_graph_macro.json", authoritative_source: "arche_graph.json", mode: "lod" } };'
 
@@ -94,6 +94,11 @@ def apply_visual_defaults(text: str) -> str:
         '<span id="btnToggleEdgeLabelsText">Kantentexte einblenden</span>',
         1,
     )
+    text = text.replace(
+        '<span id="btnToggleEdgeLabelsText">Hide Edge Labels</span>',
+        '<span id="btnToggleEdgeLabelsText">Show Edge Labels</span>',
+        1,
+    )
     return text
 
 
@@ -119,15 +124,16 @@ def validate(text: str) -> None:
         raise RuntimeError("Legacy duplicate graph fetch block is still present")
     if 'fetch("../data/arche_corpus.json")' in text or "fetch('../data/arche_corpus.json')" in text:
         raise RuntimeError("Generated frontend still eagerly fetches the authoritative corpus")
-    if './data-source.js?v=20260912-3' not in text:
+    if './data-source.js?v=20260912-4' not in text:
         raise RuntimeError("LOD graph loader was not injected")
     if './corpus-data.js?v=20260912-2' not in text:
         raise RuntimeError("Lazy corpus loader was not injected")
-    if './layouts.js?v=20260912-2' not in text:
+    if './layouts.js?v=20260912-3' not in text:
         raise RuntimeError("Layout runtime was not injected")
     if "let edgeLabelsVisible = false;" not in text:
         raise RuntimeError("Edge labels are not disabled by default")
-    if '<span id="btnToggleEdgeLabelsText">Kantentexte einblenden</span>' not in text:
+    if ('<span id="btnToggleEdgeLabelsText">Show Edge Labels</span>' not in text
+            and '<span id="btnToggleEdgeLabelsText">Kantentexte einblenden</span>' not in text):
         raise RuntimeError("Edge-label button does not reflect the hidden default")
 
 

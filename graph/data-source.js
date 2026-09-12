@@ -13,9 +13,12 @@
     const MACRO_URL = "../data/arche_graph_macro.json";
     const MANIFEST_URL = "../data/arche_graph_lod_manifest.json";
     const DATA_PREFIX = "../data/";
+    const INITIAL_MACRO_DEPTH = 2;
     const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 
     let manifestPromise = null;
+    let macroPayload = null;
+    let macroDepth = INITIAL_MACRO_DEPTH;
     const loadedShards = new Map();
     const pendingEdges = new Map();
 
@@ -82,6 +85,99 @@
             if (typeof edgeLabelsVisible !== "undefined" && !edgeLabelsVisible) scope.edges().addClass("no-label");
             if (typeof edgesVisible !== "undefined" && !edgesVisible) scope.edges().hide();
         } catch (_) {}
+    }
+
+    function macroNodeDepth(node) {
+        const d = (node && node.data) || {};
+        const level = Number(d.level);
+        if (Number.isFinite(level)) return level;
+        if (d.type === "root") return 0;
+        if (d.type === "subcollection") return 1;
+        return null;
+    }
+
+    function keepMacroNode(node, depth) {
+        const d = (node && node.data) || {};
+        const level = macroNodeDepth(node);
+        if (level !== null) return level <= depth;
+        // Keep the small scholarly context layer in the overview, while places
+        // join from L3 onwards to avoid a dense first paint.
+        if (d.type === "place") return depth >= 3;
+        if (["dataset", "person", "organization", "publication", "root"].includes(d.type)) return true;
+        return depth >= 4;
+    }
+
+    function macroEdgeId(edge) {
+        const d = (edge && edge.data) || {};
+        return String(d.id || `${d.source}|${d.label || ""}|${d.target}`);
+    }
+
+    function setMacroDepth(depth, options = {}) {
+        const c = getGraph();
+        if (!c || !macroPayload) return null;
+        const nextDepth = Math.max(1, Math.min(6, Number(depth) || INITIAL_MACRO_DEPTH));
+        macroDepth = nextDepth;
+
+        const desiredNodes = macroPayload.nodes.filter(node => keepMacroNode(node, nextDepth));
+        const desiredIds = new Set(desiredNodes.map(node => String(node.data.id)));
+        const desiredEdges = macroPayload.edges.filter(edge => {
+            const d = edge.data || {};
+            return desiredIds.has(String(d.source)) && desiredIds.has(String(d.target));
+        });
+        const desiredEdgeIds = new Set(desiredEdges.map(macroEdgeId));
+
+        // Resource shards whose parent disappears must be removed from both
+        // Cytoscape and the loader registry. Otherwise a later re-expansion
+        // would incorrectly treat an absent shard as already loaded.
+        for (const [collectionId, state] of Array.from(loadedShards.entries())) {
+            if (desiredIds.has(String(collectionId))) continue;
+            state.resourceIds.forEach(id => {
+                const node = c.$id(String(id));
+                if (node.length) c.remove(node);
+            });
+            loadedShards.delete(collectionId);
+            try {
+                if (typeof expandedNodesMap !== "undefined" && expandedNodesMap && typeof expandedNodesMap.delete === "function") {
+                    expandedNodesMap.delete(collectionId);
+                }
+            } catch (_) {}
+        }
+
+        c.batch(() => {
+            c.edges().filter(edge => edge.data("lod_macro") === true && !desiredEdgeIds.has(edge.id())).remove();
+            c.nodes().filter(node => node.data("lod_macro") === true && !desiredIds.has(node.id())).remove();
+
+            const newNodes = desiredNodes.filter(node => !c.$id(String(node.data.id)).length).map(node => {
+                const clone = JSON.parse(JSON.stringify(node));
+                clone.data.lod_macro = true;
+                return clone;
+            });
+            if (newNodes.length) c.add({ nodes: newNodes });
+
+            const newEdges = desiredEdges.filter(edge => !c.$id(macroEdgeId(edge)).length).map(edge => {
+                const clone = JSON.parse(JSON.stringify(edge));
+                clone.data.id = macroEdgeId(clone);
+                clone.data.lod_macro = true;
+                return clone;
+            });
+            if (newEdges.length) c.add({ edges: newEdges });
+            flushPendingEdges(c);
+        });
+
+        applyVisibilityState(c);
+        updateMetadata((macroPayload.raw && macroPayload.raw.metadata) || {}, c.nodes().length);
+        try { if (typeof updateVisibleNodesCount === "function") updateVisibleNodesCount(); } catch (_) {}
+
+        const detail = {
+            depth: nextDepth,
+            nodes: c.nodes().length,
+            edges: c.edges().length,
+            macroNodes: desiredNodes.length,
+            macroEdges: desiredEdges.length
+        };
+        window.dispatchEvent(new CustomEvent("iuenna:macro-depth-changed", { detail }));
+        if (options.fit !== false) c.fit(c.elements(":visible"), 45);
+        return detail;
     }
 
     async function getManifest() {
@@ -293,10 +389,9 @@
             const data = await response.json();
             const validated = validatePayload(data, "arche_graph_macro.json");
 
-            c.batch(() => {
-                c.elements().remove();
-                c.add({ nodes: validated.nodes, edges: validated.edges });
-            });
+            c.batch(() => c.elements().remove());
+            macroPayload = { nodes: validated.nodes, edges: validated.edges, raw: data };
+            setMacroDepth(INITIAL_MACRO_DEPTH, { fit: false });
 
             try { graphData = data; } catch (_) {}
             try {
@@ -310,7 +405,7 @@
             try { if (typeof closeInspector === "function") closeInspector(); } catch (_) {}
 
             applyVisibilityState(c);
-            updateMetadata(data.metadata || {}, validated.nodes.length);
+            updateMetadata(data.metadata || {}, c.nodes().length);
             try { if (typeof updateVisibleNodesCount === "function") updateVisibleNodesCount(); } catch (_) {}
 
             const lod = (data.metadata && data.metadata.lod) || {};
@@ -319,8 +414,11 @@
                 url: "../data/arche_graph.json",
                 visualizationUrl: MACRO_URL,
                 mode: "macro-plus-resource-shards",
-                nodes: validated.nodes.length,
-                edges: validated.edges.length,
+                nodes: c.nodes().length,
+                edges: c.edges().length,
+                macroNodes: validated.nodes.length,
+                macroEdges: validated.edges.length,
+                initialDepth: INITIAL_MACRO_DEPTH,
                 fullNodes: manifest.full_nodes || lod.full_nodes,
                 fullEdges: manifest.full_edges || lod.full_edges,
                 lazyResources: manifest.lazy_resource_nodes || lod.lazy_resource_nodes,
@@ -335,8 +433,8 @@
             c.layout({ name: "preset", fit: true, padding: 40 }).run();
             hideLoading();
             notify(
-                `Performance-Modus: ${validated.nodes.length.toLocaleString("de-DE")} Strukturknoten geladen; ` +
-                `${Number(manifest.lazy_resource_nodes || 0).toLocaleString("de-DE")} Ressourcen werden collectionweise nachgeladen.`,
+                `Progressive mode: ${c.nodes().length.toLocaleString("en-US")} overview nodes materialised; ` +
+                `${Number(manifest.lazy_resource_nodes || 0).toLocaleString("en-US")} resources remain collection-scoped and load on demand.`,
                 "success",
                 4200
             );
@@ -366,6 +464,8 @@
         unloadCollection,
         ensureResource,
         getManifest,
+        setMacroDepth,
+        getMacroDepth: () => macroDepth,
         loadedCollections: () => Array.from(loadedShards.keys())
     };
 

@@ -51,9 +51,10 @@
 
     function capturePresetPositions() {
         const c = graph();
-        if (!c || presetPositions) return;
-        presetPositions = new Map();
+        if (!c) return;
+        if (!presetPositions) presetPositions = new Map();
         c.nodes().forEach(node => {
+            if (presetPositions.has(node.id())) return;
             const p = node.position();
             presetPositions.set(node.id(), { x: p.x, y: p.y });
         });
@@ -76,8 +77,9 @@
             c.nodes().positions(node => presetPositions.get(node.id()) || node.position());
         });
         c.fit(c.elements(":visible"), 40);
+        scheduleEdgeBundling();
         hideLoading();
-        notify("Vorberechnetes Cluster-Layout wiederhergestellt.", "success", 1800);
+        notify("Precomputed cluster layout restored.", "success", 1800);
     }
 
     function nodesAndConnectingEdges(nodes) {
@@ -108,6 +110,123 @@
         if (type === "place") return 58;
         if (type === "publication") return 48;
         return 30;
+    }
+
+    function installHomepagePalette() {
+        const c = graph();
+        if (!c) return;
+        const cyEl = document.getElementById("cy");
+        if (cyEl) {
+            cyEl.style.backgroundColor = "#FAF8F5";
+            cyEl.style.backgroundImage = "radial-gradient(#E6E2DB 1px, transparent 1px)";
+            cyEl.style.backgroundSize = "24px 24px";
+        }
+        c.style()
+            .selector("edge")
+            .style({
+                "line-color": "#BDB6AC",
+                "target-arrow-color": "#BDB6AC",
+                "opacity": 0.16,
+                "width": 1.0,
+                "target-arrow-shape": "none"
+            })
+            .selector("edge[label = 'isPartOf']")
+            .style({
+                "line-color": "#CFC7BC",
+                "opacity": 0.24,
+                "width": 1.15
+            })
+            .selector("edge.highlighted")
+            .style({
+                "line-color": "#A8442E",
+                "target-arrow-color": "#A8442E",
+                "opacity": 0.92,
+                "width": 2.4,
+                "z-index": 999
+            })
+            .selector("node:selected")
+            .style({
+                "border-color": "#A8442E",
+                "border-width": 4
+            })
+            .update();
+    }
+
+    function parentMap() {
+        const c = graph();
+        const map = new Map();
+        if (!c) return map;
+        c.edges("[label = 'isPartOf']").forEach(edge => map.set(edge.source().id(), edge.target().id()));
+        return map;
+    }
+
+    function topHub(id, parents) {
+        let current = id;
+        let previous = id;
+        const seen = new Set();
+        while (parents.has(current) && !seen.has(current)) {
+            seen.add(current);
+            previous = current;
+            current = parents.get(current);
+            if (current === "iuenna_root") return previous;
+        }
+        return previous;
+    }
+
+    function controlPoint(edge, point) {
+        const source = edge.source().position();
+        const target = edge.target().position();
+        const dx = target.x - source.x;
+        const dy = target.y - source.y;
+        const len2 = dx * dx + dy * dy;
+        if (!len2) return null;
+        const len = Math.sqrt(len2);
+        const px = point.x - source.x;
+        const py = point.y - source.y;
+        return {
+            weight: Math.max(0.08, Math.min(0.92, (px * dx + py * dy) / len2)),
+            distance: (px * (-dy) + py * dx) / len
+        };
+    }
+
+    function applyHierarchicalEdgeBundling() {
+        const c = graph();
+        if (!c) return;
+        installHomepagePalette();
+        const parents = parentMap();
+        const root = c.$id("iuenna_root");
+        const rootPos = root.length ? root.position() : null;
+
+        c.edges().forEach(edge => {
+            if (edge.data("label") === "isPartOf") {
+                edge.removeStyle("control-point-weights control-point-distances");
+                edge.style("curve-style", "bezier");
+                return;
+            }
+            const sHubId = topHub(edge.source().id(), parents);
+            const tHubId = topHub(edge.target().id(), parents);
+            const sHub = c.$id(sHubId);
+            const tHub = c.$id(tHubId);
+            const points = [];
+            if (sHub.length && sHubId !== edge.source().id()) points.push(sHub.position());
+            if (sHubId !== tHubId && rootPos) points.push(rootPos);
+            if (tHub.length && tHubId !== edge.target().id()) points.push(tHub.position());
+
+            const controls = points.map(point => controlPoint(edge, point)).filter(Boolean);
+            if (!controls.length) {
+                edge.removeStyle("control-point-weights control-point-distances");
+                edge.style("curve-style", "bezier");
+                return;
+            }
+            edge.style("curve-style", "unbundled-bezier");
+            edge.style("control-point-weights", controls.map(c => c.weight).join(" "));
+            edge.style("control-point-distances", controls.map(c => c.distance).join(" "));
+        });
+    }
+
+    function scheduleEdgeBundling() {
+        window.clearTimeout(scheduleEdgeBundling.timer);
+        scheduleEdgeBundling.timer = window.setTimeout(applyHierarchicalEdgeBundling, 40);
     }
 
     function layoutConfig(name, workingNodes) {
@@ -249,7 +368,7 @@
         const elements = nodesAndConnectingEdges(workingNodes);
 
         if (!workingNodes.length) {
-            notify("Für das gewählte Layout sind keine sichtbaren Knoten vorhanden.", "warning");
+            notify("No visible nodes are available for this layout.", "warning");
             return;
         }
 
@@ -271,6 +390,7 @@
                 activeLayout.one("layoutstop", () => {
                     if (macroMode) anchorVisibleResources();
                     c.fit(c.elements(":visible"), 45);
+                    scheduleEdgeBundling();
                     activeLayout = null;
                     hideLoading();
                     if (macroMode && options.notify !== false) {
@@ -290,30 +410,21 @@
     function applyDepthFilterFixed(depth) {
         const c = graph();
         if (!c) return;
-        const maxLevel = depth === "all" ? 99 : parseInt(depth, 10);
-        c.batch(() => {
-            c.nodes().forEach(node => {
-                const level = node.data("level");
-                if (level !== undefined && level !== null) {
-                    if (Number(level) <= maxLevel) node.show();
+        const value = depth === "all" ? 6 : Math.max(1, Math.min(6, parseInt(depth, 10) || 2));
+        if (window.IUENNAGraphDataSource && typeof window.IUENNAGraphDataSource.setMacroDepth === "function") {
+            window.IUENNAGraphDataSource.setMacroDepth(value, { fit: false });
+            capturePresetPositions();
+            scheduleEdgeBundling();
+        } else {
+            c.batch(() => {
+                c.nodes().forEach(node => {
+                    const level = Number(node.data("level"));
+                    if (!Number.isFinite(level) || level <= value) node.show();
                     else node.hide();
-                } else {
-                    node.show();
-                }
+                });
             });
-            c.edges().forEach(edge => {
-                const endpointsVisible = edge.source().visible() && edge.target().visible();
-                let shouldShow = endpointsVisible;
-                try {
-                    if (typeof edgesVisible !== "undefined" && !edgesVisible) shouldShow = false;
-                } catch (_) {}
-                if (shouldShow) edge.show();
-                else edge.hide();
-            });
-        });
-        try {
-            if (typeof updateVisibleNodesCount === "function") updateVisibleNodesCount();
-        } catch (_) {}
+        }
+        try { if (typeof updateVisibleNodesCount === "function") updateVisibleNodesCount(); } catch (_) {}
         const select = document.getElementById("layoutSelect");
         runLayout(select ? select.value : "preset", { notify: false });
     }
@@ -338,16 +449,19 @@
 
         const slider = document.getElementById("lodSlider");
         if (slider) {
+            slider.value = "2";
+            const initialBadge = document.getElementById("lodLevelBadge");
+            if (initialBadge) initialBadge.textContent = "L1–L2 · overview";
             slider.addEventListener("input", event => {
                 event.stopImmediatePropagation();
-                const value = Math.max(1, Math.min(6, parseInt(slider.value, 10) || 6));
+                const value = Math.max(1, Math.min(6, parseInt(slider.value, 10) || 2));
                 const labels = {
-                    1: "L1 (6 Subcollections)",
-                    2: "L1–L2 (74 Hauptbestände)",
-                    3: "L1–L3 (274 Fachordner)",
-                    4: "L1–L4 (312 Teilsammlungen)",
-                    5: "L1–L5 (432 Befundordner)",
-                    6: "L1–L6 (Alle 434 Ordner)"
+                    1: "L1 · 6 subcollections",
+                    2: "L1–L2 · overview",
+                    3: "L1–L3 · places + subject folders",
+                    4: "L1–L4 · detailed collections",
+                    5: "L1–L5 · near-complete structure",
+                    6: "L1–L6 · all 434 folders"
                 };
                 const badge = document.getElementById("lodLevelBadge");
                 if (badge) badge.textContent = labels[value];
@@ -361,17 +475,22 @@
             run: runLayout,
             restorePreset,
             capturePresetPositions,
-            resetPresetPositions
+            resetPresetPositions,
+            bundleEdges: applyHierarchicalEdgeBundling
         };
 
         // Clarify the force implementation in the UI.
         const forceOption = select.querySelector('option[value="cose"]');
-        if (forceOption) forceOption.textContent = "Force-Directed (COSE, Topologie)";
+        if (forceOption) forceOption.textContent = "Force-directed (COSE)";
     }
 
     window.addEventListener("iuenna:canonical-graph-loaded", () => {
         resetPresetPositions();
+        scheduleEdgeBundling();
     });
+    window.addEventListener("iuenna:macro-depth-changed", scheduleEdgeBundling);
+    window.addEventListener("iuenna:lod-shard-loaded", scheduleEdgeBundling);
+    window.addEventListener("iuenna:lod-shard-unloaded", scheduleEdgeBundling);
 
     install();
 })();
