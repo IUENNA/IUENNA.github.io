@@ -6,10 +6,10 @@ Pipeline:
   iuenna_kb.json -> validation
 
 The canonical graph remains data/arche_graph.json. This script does not build
-or mutate that graph; it ensures BYOAI, llms.txt, OpenAPI, MCP descriptions and
-the client-side chat knowledge base describe and index the same validated state.
-It is also the CI contract that prevents the AI-facing surfaces from drifting
-away from the audited graph after future ARCHE refreshes.
+or mutate that graph; it ensures BYOAI, llms.txt, OpenAPI, Remote MCP
+descriptions and the client-side chat knowledge base describe and index the
+same validated state. It is also the CI contract that prevents the AI-facing
+surfaces from drifting away from the audited graph after future ARCHE refreshes.
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "data" / "arche_graph_audit.json"
 GRAPH = ROOT / "data" / "arche_graph.json"
 KB = ROOT / "data" / "iuenna_kb.json"
+REMOTE_MCP_MANIFEST = ROOT / "data" / "mcp_remote" / "manifest.json"
 
 
 def run(script: str) -> None:
@@ -76,8 +77,7 @@ def main() -> None:
         "byoai.html": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
         "llms.txt": [f"{graph_nodes:,}", f"{arche_backed:,}", f"{resources:,}"],
         "data/openapi.json": [f"{graph_nodes:,}", f"{graph_edges:,}"],
-        "mcp/server.py": [f"{graph_nodes:,}", f"{graph_edges:,}"],
-        "mcp/index.mjs": [f"{graph_nodes:,}", f"{graph_edges:,}"],
+        "mcp-remote/src/server.js": ["IUENNA Remote MCP", "search_iuenna_corpus", "get_graph_neighborhood"],
     }
     forbidden = (
         "20,788 ARCHE records",
@@ -86,6 +86,9 @@ def main() -> None:
         "20,788 digital resources",
         "21,080 nodes",
         "38,696 edges",
+        "mcp/server.py",
+        "mcp/index.mjs",
+        "MCP stdio",
     )
     for rel, required in public_checks.items():
         text = (ROOT / rel).read_text(encoding="utf-8")
@@ -94,8 +97,15 @@ def main() -> None:
         if missing or stale:
             raise SystemExit(f"AI metadata validation failed for {rel}: missing={missing}, stale={stale}")
 
+    if REMOTE_MCP_MANIFEST.exists():
+        manifest = json.loads(REMOTE_MCP_MANIFEST.read_text(encoding="utf-8"))
+        assert manifest.get("non_authoritative_projection") is True
+        assert int(manifest["resources"]) == resources
+        assert int(manifest["graph_nodes"]) == graph_nodes
+        assert int(manifest["graph_edges"]) == graph_edges
+
     kb_text = KB.read_text(encoding="utf-8")
-    stale_kb = [token for token in forbidden if token in kb_text]
+    stale_kb = [token for token in forbidden[:6] if token in kb_text]
     if stale_kb:
         raise SystemExit(f"Stale quantitative claims remain in data/iuenna_kb.json: {stale_kb}")
 
