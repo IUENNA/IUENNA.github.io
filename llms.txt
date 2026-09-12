@@ -1,13 +1,13 @@
 # IUENNA – openIng the soUthErn jauNtal as a micro-regioN for future Archaeology
 
-> IUENNA is an archaeological open-science and research-data project for the Jauntal/Podjuna micro-region in Carinthia, Austria. Its authoritative primary-resource corpus contains 20,355 archived files organized within 434 collections. The validated provenance-aware graph projection contains 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities and 10 curated helper nodes. IUENNA also exposes 219 archaeological findspots, 9 curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and an MCP server for AI agents.
+> IUENNA is an archaeological open-science and research-data project for the Jauntal/Podjuna micro-region in Carinthia, Austria. Its authoritative primary-resource corpus contains 20,355 archived files organized within 434 collections. The validated provenance-aware graph projection contains 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities and 10 curated helper nodes. IUENNA also exposes 219 archaeological findspots, 9 curated GeoPackages, resolved actors, publications, collection relationships, an OpenAPI description, and a public Remote MCP for AI agents.
 
 ## Source priority for AI systems
 
 Use sources in this order:
 1. ARCHE persistent resources and PIDs – authoritative archived data and metadata.
 2. IUENNA machine-readable JSON endpoints – discovery and retrieval layer derived from ARCHE.
-3. IUENNA MCP tools – agent-oriented retrieval across places, datasets, collections, publications, and primary files.
+3. IUENNA Remote MCP – agent-oriented retrieval across places, datasets, collections, publications, primary files, bibliography, and graph relationships.
 4. IUENNA Knowledge Graph and Web Mapping Application – semantic and spatial exploration.
 5. IUENNA homepage and research blog – project context, methodology, and interpretation.
 
@@ -19,6 +19,8 @@ Prefer individual ARCHE PIDs (`https://hdl.handle.net/...`) for scholarly citati
 - ARCHE top-level collection: https://id.acdh.oeaw.ac.at/iuenna
 - Persistent collection PID: https://hdl.handle.net/21.11115/0000-0016-7B39-F
 - BYOAI / MCP documentation: https://iuenna.github.io/byoai.html
+- Remote MCP endpoint: https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp
+- Remote MCP health endpoint: https://iuenna-mcp.dominik-hagmann13.workers.dev/
 - Knowledge Graph Explorer: https://iuenna.github.io/graph/index.html
 - Web Mapping Application: https://iuenna.github.io/wma/wma.html
 - Research blog: https://iuenna.hypotheses.org/
@@ -84,7 +86,7 @@ Provenance-aware graph projection of the IUENNA ARCHE metadata in Cytoscape-comp
 
 https://iuenna.github.io/data/arche_stats.json
 
-Contains high-level statistics for the full IUENNA ARCHE collection. Distinguish these collection-wide statistics from the 20,355-file primary-resource corpus in `arche_corpus.json`.
+Contains high-level statistics for the full IUENNA ARCHE collection. `collection.total_items` is a collection-wide ARCHE item/entity count and must not be treated as the number of primary archived files. The canonical primary-resource corpus contains 20,355 files and is defined by `arche_corpus.json`.
 
 ### Zotero bibliography
 
@@ -100,20 +102,27 @@ OpenAPI 3.1 description of the core IUENNA machine-readable endpoints.
 
 ## Model Context Protocol (MCP)
 
-IUENNA provides an MCP stdio server for AI clients and agents.
+IUENNA exposes one canonical MCP access path: a public, read-only, stateless Remote MCP using Streamable HTTP.
 
-Repository implementations:
-- `python3 mcp/server.py`
-- `node mcp/index.mjs`
+Endpoint:
+https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp
+
+Authentication: none.
+Runtime: Cloudflare Workers Free.
+Canonical data source: IUENNA/ARCHE-derived public data under https://iuenna.github.io/data/.
+
+The Remote MCP runtime uses compact, reproducibly generated query projections under `data/mcp_remote/`; these projections are non-authoritative and disposable. The full IUENNA/ARCHE-derived corpus and graph remain the canonical data layers.
 
 Current tools:
 - `search_iuenna_corpus` – search the complete 20,355-file primary-resource corpus across titles, filenames, descriptions, collection paths, places, subjects, and PIDs.
 - `get_findspot_details` – retrieve a findspot and its associated curated datasets.
 - `get_related_resources` – resolve a place, dataset, collection, or publication and retrieve related datasets, collections, publications, and primary archived files.
-- `get_graph_neighborhood` – explore the semantic knowledge graph (nodes and directed edges) around any entity, place, person, dataset, or publication by 1–2 hop neighborhood with optional predicate filtering.
+- `get_graph_neighborhood` – traverse the semantic knowledge graph around an indexed node, optionally filtering by predicate and direction (`all`, `outgoing`, `incoming`).
 - `get_geodata_catalog` – list the 9 curated GeoPackages.
-- `get_corpus_statistics` – retrieve high-level IUENNA collection metrics plus primary-resource-corpus metadata.
+- `get_corpus_statistics` – retrieve high-level IUENNA collection metrics plus explicitly separate primary-resource-corpus metadata.
 - `get_project_bibliography` – query the official IUENNA Zotero library.
+
+The former local Python/Node stdio MCP implementations have been retired. AI clients should connect directly to the Remote MCP endpoint above.
 
 For questions such as “all documentation related to Hemmaberg”, “all Georadar resources”, “all files belonging to this dataset”, or “what resources are related to this publication?”, prefer `get_related_resources` over simple keyword search.
 
@@ -121,7 +130,7 @@ For questions such as “all documentation related to Hemmaberg”, “all Geora
 
 For general entity discovery, search `arche_search_index.json`, resolve the relevant entity, and preserve its ARCHE ID and PID.
 
-For network, provenance, or relationship queries (e.g. “which datasets and publications are connected to person X?”, “what is the multi-hop semantic neighborhood of place Y?”), use MCP `get_graph_neighborhood` or traverse `arche_graph.json`.
+For network, provenance, or relationship queries (e.g. “which datasets and publications are connected to person X?”, “what is the semantic neighborhood of place Y?”), use MCP `get_graph_neighborhood` or traverse `arche_graph.json`.
 
 For exhaustive file-level questions, identify the relevant place, dataset, collection, or publication; use MCP `get_related_resources` when available; otherwise query `arche_corpus.json` and follow `spatial_ids`, `col`, `parent_id`, and `path` relationships. Use `arche_collections_tree.json` to reconstruct archival context and cite individual ARCHE PIDs when reporting specific resources.
 
