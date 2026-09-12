@@ -7,6 +7,7 @@ on:
       - 'scripts/parse_arche_full_ttl.py'
       - 'scripts/build_complete_arche_graph.py'
       - 'scripts/compact_arche_graph.py'
+      - 'scripts/build_graph_lod.py'
       - 'scripts/build_authoritative_corpus.py'
       - 'scripts/build_arche_graph.py'
       - 'scripts/sync_graph_metadata.py'
@@ -26,13 +27,14 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/build_graph_lod.py'
       - 'scripts/sync_graph_metadata.py'
       - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
       - 'scripts/build_ai_stack.py'
       - '.github/workflows/test_arche_graph.yml'
   schedule:
-    # Weekly canonical ARCHE -> graph -> BYOAI/Chat-KB refresh.
+    # Weekly canonical ARCHE -> graph -> LOD/BYOAI/Chat-KB refresh.
     - cron: '0 2 * * 0'
   workflow_dispatch:
 
@@ -64,6 +66,7 @@ jobs:
           python -m py_compile scripts/parse_arche_full_ttl.py
           python -m py_compile scripts/build_complete_arche_graph.py
           python -m py_compile scripts/compact_arche_graph.py
+          python -m py_compile scripts/build_graph_lod.py
           python -m py_compile scripts/build_authoritative_corpus.py
           python -m py_compile scripts/build_arche_graph.py
           python -m py_compile scripts/sync_graph_metadata.py
@@ -89,6 +92,9 @@ jobs:
       - name: Compact published graph representation
         run: python scripts/compact_arche_graph.py data/arche_graph.json
 
+      - name: Build browser LOD graph projection
+        run: python scripts/build_graph_lod.py
+
       - name: Build and validate BYOAI / Chat knowledge stack
         run: python scripts/build_ai_stack.py
 
@@ -98,6 +104,9 @@ jobs:
           test -s data/arche_corpus.json
           test -s data/arche_graph.json
           test -s data/arche_graph_audit.json
+          test -s data/arche_graph_macro.json
+          test -s data/arche_graph_lod_manifest.json
+          test -d data/graph_shards
           test -s data/iuenna_kb.json
           python - <<'PY'
           import json
@@ -109,10 +118,34 @@ jobs:
           assert audit['invariants']['no_dangling_edges'] is True
           assert audit['invariants']['all_resolvable_ttl_relations_preserved'] is True
 
-          graph_size = Path('data/arche_graph.json').stat().st_size
+          graph_path = Path('data/arche_graph.json')
+          graph_size = graph_path.stat().st_size
           assert graph_size < 100 * 1024 * 1024, f'arche_graph.json exceeds GitHub 100 MiB limit: {graph_size}'
-          graph = json.loads(Path('data/arche_graph.json').read_text(encoding='utf-8'))
+          graph = json.loads(graph_path.read_text(encoding='utf-8'))
           assert 'edge_encoding' in graph['metadata']
+
+          macro_path = Path('data/arche_graph_macro.json')
+          macro = json.loads(macro_path.read_text(encoding='utf-8'))
+          manifest = json.loads(Path('data/arche_graph_lod_manifest.json').read_text(encoding='utf-8'))
+          full_nodes = len(graph['elements']['nodes'])
+          full_edges = len(graph['elements']['edges'])
+          macro_nodes = len(macro['elements']['nodes'])
+          macro_edges = len(macro['elements']['edges'])
+          lazy = manifest['lazy_resource_nodes']
+          assert manifest['full_nodes'] == full_nodes == audit['graph']['nodes']
+          assert manifest['full_edges'] == full_edges == audit['graph']['edges']
+          assert manifest['macro_nodes'] == macro_nodes
+          assert manifest['macro_edges'] == macro_edges
+          assert macro_nodes + lazy == full_nodes
+          assert len(manifest['resource_to_collection']) == lazy
+          assert manifest['shard_count'] == len(manifest['collections'])
+          assert manifest['shard_count'] > 0
+          assert macro_nodes < 2000, f'Macro graph unexpectedly large: {macro_nodes}'
+          assert macro_path.stat().st_size < 15 * 1024 * 1024, 'Macro graph exceeds 15 MiB performance budget'
+          assert sum(v['resource_count'] for v in manifest['collections'].values()) == lazy
+          for entry in manifest['collections'].values():
+              shard = Path('data') / entry['url']
+              assert shard.is_file() and shard.stat().st_size > 0, shard
 
           kb = json.loads(Path('data/iuenna_kb.json').read_text(encoding='utf-8'))
           expected_nodes = audit['graph']['nodes']
@@ -125,7 +158,9 @@ jobs:
           assert '20,788 digital resources' not in Path('data/iuenna_kb.json').read_text(encoding='utf-8')
 
           print(json.dumps(audit['invariants'], indent=2))
-          print(f"Published graph size: {graph_size / 1024 / 1024:.2f} MiB")
+          print(f"Authoritative graph: {full_nodes:,} nodes / {full_edges:,} edges / {graph_size / 1024 / 1024:.2f} MiB")
+          print(f"Browser macro graph: {macro_nodes:,} nodes / {macro_edges:,} edges / {macro_path.stat().st_size / 1024 / 1024:.2f} MiB")
+          print(f"Lazy resources: {lazy:,} across {manifest['shard_count']:,} collection shards")
           print(f"AI KB graph entities: {len(kb['graph_entities']):,}")
           PY
 
@@ -140,6 +175,9 @@ jobs:
             data/arche_corpus.json
             data/arche_graph.json
             data/arche_graph_audit.json
+            data/arche_graph_macro.json
+            data/arche_graph_lod_manifest.json
+            data/graph_shards/
             data/arche_collections_tree.json
             data/arche_resolved_entities.json
             data/arche_collection_creators.json
@@ -166,6 +204,9 @@ jobs:
             data/arche_corpus.json \
             data/arche_graph.json \
             data/arche_graph_audit.json \
+            data/arche_graph_macro.json \
+            data/arche_graph_lod_manifest.json \
+            data/graph_shards \
             data/arche_collections_tree.json \
             data/arche_resolved_entities.json \
             data/arche_collection_creators.json \
@@ -188,8 +229,8 @@ jobs:
             scripts/export_arche_graph_ttl.py \
             scripts/iuenna-chat.js
           if git diff --cached --quiet; then
-            echo "Authoritative ARCHE graph and AI stack already up to date."
+            echo "Authoritative ARCHE graph, LOD projection and AI stack already up to date."
           else
-            git commit -m "chore(data): refresh authoritative ARCHE graph and AI stack"
+            git commit -m "chore(data): refresh authoritative ARCHE graph, LOD and AI stack"
             git push origin HEAD:${{ github.head_ref || github.ref_name }}
           fi
