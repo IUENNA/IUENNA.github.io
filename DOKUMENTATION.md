@@ -137,58 +137,33 @@ tree.json (434)     entities.json   tions.json (23) json (219)      json (9 GPKG
     - **Interaktiver Resize-Handle (`.drawer-resize-handle`):** Der linke Rand des Drawers kann mit der Maus stufenlos von 380px bis fast zur vollen Fensterbreite gezogen werden. Ein Doppelklick toggelt die Breitbildansicht.
     - **Tastatursteuerung:** `Escape` schließt oder verkleinert das geöffnete Panel.
 
-### 3.7 Interaktiver IUENNA Sammlungs-Assistent & Metadaten-Recherche-Engine
+### 3.7 Ask IUENNA – siteweite ARCHE-Metadatensuche
 
-Zur intuitiven, niederschwelligen Erkundung des 20.000+ Objekte umfassenden IUENNA-Bestands wurde ein 100 % clientseitiger Recherche-Assistent entwickelt (`scripts/iuenna-chat.js`).
+**Ask IUENNA** (`scripts/iuenna-chat.js`) ist die englischsprachige, clientseitige Discovery-Oberfläche der Website. Sie ist auf allen öffentlichen IUENNA-Hauptseiten eingebunden: Startseite, Web-Mapping-Übersicht, beide WMA-Wrapper, Knowledge Graph (`graph/index.html` und `graph/graph.html`), BYOAI sowie Legal/Privacy. Die eingebetteten Karten-Dokumente innerhalb der WMA werden bewusst nicht mit einer zweiten Instanz versehen, damit der Assistent in `iframe`-Ansichten nicht doppelt erscheint.
 
-#### 1. Entwicklungsschritte & Architektur-Evolution:
-* **Ursprünglicher experimenteller Ansatz:** Test eines browserinternen Small Language Models (SLM: *Qwen 2.5 0.5B Instruct* via HuggingFace Transformers.js, WebGPU und WASM).
-* **Praktische Hürden von In-Browser-LLMs im Praxiseinsatz:**
-  1. **Hohes Downloadvolumen:** Das Modell erforderte rund 250–300 MB an ONNX-Gewichten, was auf mobilen Endgeräten oder bei schwächerem Empfang zu langen Ladezeiten oder Speicherabstürzen führte.
-  2. **Parametrische Halluzinationen:** Ein 0.5B-Modell verfügt über kein fundiertes archäologisches Spezialwissen über Kärntner Mikroregionen. Ohne exakte Grounding-Metadaten neigte es dazu, frei erfundene Bezüge zu Großbritannien, Weltkriegen oder falschen Jahrhunderten zu fabulieren.
-  3. **Wissenschaftliche Zielsetzung:** Besucher:innen und Forschende erwarten keine spekulativen KI-Aufsätze, sondern **schnelle, präzise Fakten** und **sofortige Verlinkungen zu den Primärquellen**.
-* **Die finale Lösung:** Vollständige Ablösung der ressourcenhungrigen KI-Laufzeit durch eine deterministische, blitzschnelle **Client-Side Metadaten-Synthese-Engine**.
+#### Datenbasis und Provenienz
+* **Entitätssuche:** `data/arche_search_index.json` (ca. 0,5 MB), reproduzierbar direkt aus dem vollständigen ARCHE-RDF/TTL-Metadatenexport erzeugt. Der Index enthält Personen, Organisationen, Sammlungen/Ordner, Publikationen, Fundorte und kuratierte Forschungsdatensätze.
+* **Dateisuche:** `data/arche_corpus_browser_index.json`, eine kompakte, ausdrücklich nicht-autoritative Browserprojektion des autoritativen `data/arche_corpus.json` mit aktuell 20.355 Primärressourcen. Sie wird erst bei einer Dateisuche bzw. bei ausbleibenden Entitätstreffern nachgeladen.
+* **Source of record:** Ergebnislisten verlinken zurück nach ARCHE sowie – je nach Entität – in den Knowledge Graph und das Web Mapping. Für Zitation, Rechte und Zugriffsbedingungen bleibt der jeweilige ARCHE-Datensatz maßgeblich.
 
-#### 2. Funktionsweise der finalen Engine:
-* **Morphologische Relevanz-Suche (`searchKnowledgeBase`):**
-  * **Stopword-Filterung:** Bereinigung deutscher Fragestrukturen und Modalverben (*„gab es“*, *„welche“*, *„erzähle mir etwas über“*, *„wer war“*, *„gibt es“*).
-  * **Morphologischer Stammformer (`getGermanStem`):** Suffix-Stripping (z. B. *„Münzen“* $\rightarrow$ *„Münz“*), um Flexionen zielsicher auf die echten Katalogtitel abzubilden.
-  * **Exaktes Wortgrenzen-Matching:** Verhindert falsche Teilwort-Treffer (z. B. Treffer von *„aufgabe“* bei der Frage *„gab es?“*).
-* **Zero-Hit Guard (Gegen Falschinformationen):**
-  * Liefert die Suche 0 Treffer (z. B. bei Abfragen wie *„Gibt es Meilensteine?“*, *„Gab es hier Awaren?“*, *„Erzähle mir von den Langobarden“*), wird **kein KI-Text generiert**.
-  * Stattdessen erfolgt eine sofortige, variierende Höflichkeitsrückmeldung (z. B. *„Die Anfrage lieferte leider keine Ergebnisse in den Beständen.“* / *„Dazu konnte ich in den IUENNA-Beständen leider keinen passenden Eintrag finden.“*) mitsamt thematischen Schnellwahl-Chips (*Hemmaberg*, *Globasnitz*, *Hans Winkler*).
-* **Erweiterte Textglättung & Metadaten-Synthese (`cleanArchaeologicalText` & `formatArchaeologicalSummary`):**
-  * **Metadaten-Rauschfilter:** Automatische Bereinigung von technischen Dateiendungen (`.pdf`, `.tif`, `.gpkg`), Ordner-Präfixen (`01_02_`, `HB_`, `GLO_`, `RET_`), Zählklammern, Hierarchie-Tags (`(L1)` bis `(L6)`) und Unterstrichen.
-  * **Tautologie- & Dopplungsvermeidung:** Erkennt redundante Ortsnennungen (verhindert *„Münzschatzfund von Globasnitz in Globasnitz“*).
-  * **Grammatische Präzision:** Satzmuster verwenden sauber gebeugte Mengenangaben und akkusative Prädikate (*„umfasst 322 römische Münzen“*, *„erschließt 440 Gräber“*).
-  * **Kategorienspezifische Synthese:** Maßgeschneiderte Formulierungen für *Münzen/Hortfunde, Bestattungen, Architektur/Befunde, Pläne/Zeichnungen, Personen/Nachlässe und Publikationen*.
+#### Keine generative Fachauskunft
+Ask IUENNA führt **kein Sprachmodell** aus und formuliert **keine eigenständigen archäologischen Synthesen**. Frühere experimentelle hart codierte bzw. synthetisch erzeugte Fachtexte sind nicht mehr Teil der Antwortlogik. Die Oberfläche zeigt ausschließlich indexierte Metadatenfelder (z. B. Titel, Typ, ARCHE-ID, PID, Bestandsumfang, Datierung, Urheber:innen, Dateiformat, Fundort) und kennzeichnet die Ergebnisse als Metadata Discovery.
 
-* **Kontextsensitive Aktions-Buttons (Smart Action Links):**
-  * Statt starrer Dreier-Buttons erzeugt die Engine zielgenaue Aktionen nach Entitätstyp:
-    * **Archäologische Befunde & Fundstellen:** `Im Wissensgraphen zeigen 🕸️` + `In Web-GIS ansehen 🗺️` (nur mit gültigen Koordinaten) + `In ARCHE öffnen ↗` (mit Subcollection-PID statt Root-Handle).
-    * **Personen & Forscher:innen (z. B. Dr. Hans Winkler):** `Nachlass im Wissensgraphen 🕸️` + `Archivalien in ARCHE ↗` + `Publikationen (Zotero) 📚` + optional gezielter GIS-Link zu konkreten Grabungsorten.
-    * **Publikationen & Fachliteratur:** `In Zotero öffnen 📚` (Web-URL zur Zotero-Gruppe 4910727) + `Volltext (PDF) 📄` (falls Direkt-PDF vorhanden) + `Im Wissensgraphen zeigen 🕸️`.
-  * **Klickbare Zitations-Referenzen:** Zitate im Ergebniskärtchen (*Referenz: ...*) sind nun anklickbare Links, die direkt den entsprechenden Zotero-Titel oder DOI öffnen.
-  * **Resistenz gegen Root-Fallbacks:** Mappt Fundstellen und Ressourcen auf die zuständigen Sammlungs-PIDs (HB, GLO, JAU, STEF, RET, BIO).
+#### Suche und Performance
+* Der kleine ARCHE-Discovery-Index wird beim Laden von Ask IUENNA vorbereitet.
+* Die Suche normalisiert Schreibweisen und gewichtet exakte Titel-/Code-/ARCHE-ID-Treffer höher als Teiltreffer.
+* Der größere Primärressourcen-Index wird lazy geladen, um die normale Seitennutzung nicht mit einem ca. 12,8-MB-Download zu belasten.
+* Ergebnisse sind limitiert und dienen der Discovery; exhaustive Retrieval-Aufgaben können über den öffentlichen Remote MCP oder den vollständigen autoritativen Korpus erfolgen.
 
-#### 3. Datenschutz & DSGVO (Zero-Data-Footprint):
-* **100 % Client-Side:** Die gesamte Abfrage und Aufbereitung geschieht ausschließlich im Arbeitsspeicher des Browsers.
-* **Nur ephemerer Sitzungszustand:** Chatfenster-Status und Chatverlauf werden ausschließlich im `sessionStorage` des aktuellen Browser-Tabs gehalten, um die Navigation innerhalb der IUENNA-Seiten zu überstehen. Es gibt keine serverseitige Chat-Historie; mit dem Ende der Browser-Sitzung wird dieser Zustand verworfen.
-* **Keine Übermittlung von Chatfragen an LLM-Anbieter:** Die Recherche und Metadaten-Synthese läuft clientseitig; Suchtexte werden nicht an einen externen LLM-Dienst gesendet. Normale Webserver-/Hosting-Zugriffe auf IUENNA-Daten bleiben davon unberührt.
+#### Datenschutz
+* Die Suche läuft clientseitig; Suchtexte werden von Ask IUENNA nicht an einen externen LLM-Anbieter gesendet.
+* Öffnungszustand und dargestellter Suchverlauf werden zur Navigation innerhalb derselben Browser-Sitzung in `sessionStorage` unter `iuenna_chat_open` und `iuenna_chat_history` gehalten.
+* Es gibt keine projektseitige serverseitige Chat-Historie und kein Modelltraining mit den Suchanfragen.
+* Normale Netzwerkzugriffe auf GitHub Pages/ARCHE sowie die gesondert dokumentierten externen Karten-, CDN- und MCP-Dienste bleiben davon unberührt.
 
-#### 4. Vollständige Eliminierung synthetischer KI-Texte (Historische Faktentreue):
-* **Ursache historischer Fehlangaben:** In einem frühen Zwischenschritt wurden über ein externes Vorbereitungsskript synthetische Frage-Antwort-Paare (`synthetic_qa`) erzeugt. Dabei generierte ein Sprachmodell fälschlicherweise die Aussage, Notar Hans Winkler sei erst in den *„1920er und 1930er Jahren“* im Jauntal tätig gewesen. Historisch begann Winklers archäologische Feldforschung jedoch bereits **1906** auf dem Hemmaberg (1913 Globasnitz Friedhof, 1930 Badeanlage St. Stefan).
-* **Konsequente Bereinigung:** Synthetische Textbausteine wurden vollständig aus dem Suchindex verbannt. Bei Personen- oder Themenanfragen (wie *„Wer war Hans Winkler?“*) liefert die Engine nun ausnahmslos die **originalen ARCHE-Sammlungen** (*Archivalien Hans Winkler*, `col_1792783`, 475 Items; *Skizzenbuch I* `col_1792849`; *Skizzenbuch II* `col_1792850`) mit geprüften Archiv- und Metadatenattributen (*Signatur, Bestandsumfang, Datierung, Ort*).
+#### BYOAI-Abgrenzung
+Ask IUENNA ist die leichte Website-Discovery. Wer IUENNA mit einem eigenen LLM oder Agenten abfragen möchte, nutzt den öffentlichen, read-only Remote MCP unter `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`; die Dokumentation befindet sich auf `byoai.html`.
 
-#### 5. Resiliente Deep-Link-Architektur (100 % funktionale Aktions-Links):
-* **Wissensgraph-Navigation mit Dual-Modus:**
-  * Klicks auf `Im Wissensgraphen zeigen 🕸️` und `[Im Graph 🕸️]` prüfen zunächst, ob der Knoten im Showcase-Graphen der Startseite (`homeCy`, 58 kuratierte Knoten) vorhanden ist.
-  * Falls ja, wird die Kamera dort flüssig zentriert.
-  * Falls nein (oder bei Rechtsklick / Neuem Tab), öffnet das Element als valides HTML-`<a>`-Tag mit `target="_blank"` direkt den vollständigen Knowledge Graph Explorer (`graph/index.html?col=${id}&search=${title}`), wo alle 21.071 Knoten des IUENNA-Gesamtbestands instant fokussiert werden.
-* **Web-GIS mit Zielkoordinaten:**
-  * Der Button `In Web-GIS ansehen 🗺️` übergibt die exakten WGS84-Koordinaten des Fundorts (`wma/wma.html?lat=${lat}&lng=${lng}&zoom=16`), z. B. für Hemmaberg, Globasnitz oder St. Stefan.
-* **Echte Handle-PIDs:**
-  * `In ARCHE öffnen ↗` verlinkt persistent auf den geprüften Handle-PID des Datensatzes (`https://hdl.handle.net/21.11115/...`).
 
 ---
 

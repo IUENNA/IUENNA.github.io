@@ -187,7 +187,6 @@
 
   function archeUrlForEntity(item) {
     if (item && item.meta && item.meta.pid) return item.meta.pid;
-    if (item && item.meta && item.meta.url && /^https?:\/\//.test(item.meta.url)) return item.meta.url;
     const id = String(item && item.arche_id || '').replace(/^.*\//, '');
     if (/^\d+$/.test(id)) return ARCHE_BROWSER + encodeURIComponent(id);
     return ARCHE_ROOT;
@@ -213,7 +212,6 @@
     const archeHref = archeUrlForEntity(item);
     const rows = [
       valueRow('Type', item.type || item.category),
-      valueRow('Context', item.sublabel),
       valueRow('Items', meta.items),
       valueRow('Size', meta.size),
       valueRow('Years', meta.years || meta.year),
@@ -481,7 +479,7 @@
       }
       appendMessage(`
         <p><strong>Archived-file matches</strong></p>
-        <p style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">File results come from the compact browser projection of the authoritative 20,355-resource corpus. Use the linked ARCHE record as the source of record.</p>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">File results come from the compact browser projection of the authoritative ${corpusIndex.length.toLocaleString()}-resource corpus. Use the linked ARCHE record as the source of record.</p>
         ${resources.map(renderResource).join('')}
         <p style="font-size:.7rem;color:var(--text-muted);margin-top:8px;">Rights and access conditions can differ by record; verify them in ARCHE before reuse.</p>
       `, 'bot');

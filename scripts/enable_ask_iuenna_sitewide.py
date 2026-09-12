@@ -20,6 +20,7 @@ SUB_PAGES = [
     "wma/genai-wma-home.html",
     "wma/qgis2web-home.html",
     "graph/index.html",
+    "graph/graph.html",
 ]
 
 
