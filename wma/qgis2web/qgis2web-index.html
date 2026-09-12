@@ -250,36 +250,31 @@
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
                 this._div.innerHTML = `
-    <strong>Weitere Literatur:</strong><br /><br />
+    <strong>Further reading:</strong><br /><br />
     Reiner, F., & Schwaiger, H. (2022). Geophysikalische Messungen in und um Globasnitz/Globasnica. 
     <em>Rudolfinum – Jahrbuch des Landesmuseums für Kärnten 2021</em>, 66–74. 
     <a href="https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf" target="_blank">https://www.zobodat.at/pdf/Rudolfinum_2021_0066-0074.pdf</a><br /><br />
 
-    <strong>Beschreibung:</strong><br /><br />
-    Dieses GeoPackage enthält die gesammelten Daten zu den Georadar- und Magnetikprospektionen 
-    sowie die vektorisierten Umzeichnungen der Ausgrabung des Gräberfeldes von Globasnitz auf 
-    Basis des Gesamtplans, wie auch die Verortung bestimmter Fundzonen. Es umfasst folgende Datensätze:<br /><br />
+    <strong>Description:</strong><br /><br />
+    This GeoPackage brings together processed ground-penetrating-radar and magnetometry results, 
+    vectorized excavation documentation for the Globasnitz cemetery, and selected find-zone locations. 
+    The web map presents the following source layers:<br /><br />
 
     <ul>
-        <li><strong>Georadar-Daten</strong> (<code>glo20_georadar [EPSG:32633]</code>, <code>glo24_georadar_all [EPSG:32633]</code>): 
-            Enthält die prozessierten Endergebnisse der Untersuchungen mittels Georadar 
-            (2020: Teilergebnisse, 2024: Gesamtergebnisse) in Globasnitz.</li>
-        <li><strong>Geomagnetik-Daten</strong> (<code>glo24_geomagnetik_all [EPSG:32633]</code>): 
-            Beinhaltet die prozessierten Endergebnisse der Untersuchungen mittels Geomagnetik 
-            in Globasnitz mit Stand 2024.</li>
-        <li><strong>Vektorisierte Ausgrabungsdaten</strong> (<code>glo_ausgrabung_features</code>): 
-            Enthält die vektorisierte Umzeichnung der Grabungsergebnisse der Ausgrabungen im 
-            Gräberfeld Globasnitz gemäß dem Gesamtplan von J. Eitler.</li>
-        <li><strong>Interpretation der geophysikalischen Messungen</strong> (<code>glo_geophysik_features</code>): 
-            Dokumentiert die interpretierten Ergebnisse der geophysikalischen Untersuchungen.</li>
-        <li><strong>Fundzonendaten (Glaser 1979)</strong> (<code>glo_Glaser_1979_features</code>): 
-            Teilweise veraltetes Verzeichnis der Fundzonen nach den Grabungen der Jahre 
-            1913, 1914, 1922, 1923, 1924, 1925, 1928, 1968 und 1976 in Globasnitz nach 
-            der von F. Glaser (1979) angefertigten Fundstellenskizze 
-            (für die aktuellste Ausführung siehe Glaser 2021, S. 54, Abb. 2).</li>
+        <li><strong>Ground-penetrating-radar data</strong> (<code>glo20_georadar [EPSG:32633]</code>, <code>glo24_georadar_all [EPSG:32633]</code>): 
+            processed results from the 2020 and 2024 GPR surveys in Globasnitz.</li>
+        <li><strong>Magnetometry data</strong> (<code>glo24_geomagnetik_all [EPSG:32633]</code>): 
+            processed magnetometry results, current to the 2024 project dataset.</li>
+        <li><strong>Vectorized excavation data</strong> (<code>glo_ausgrabung_features</code>): 
+            vectorized excavation features from the Globasnitz cemetery based on the project plan.</li>
+        <li><strong>Geophysical interpretation</strong> (<code>glo_geophysik_features</code>): 
+            interpreted features derived from the geophysical survey data.</li>
+        <li><strong>Find-zone data (Glaser 1979)</strong> (<code>glo_Glaser_1979_features</code>): 
+            a historical find-zone register derived from Glaser's 1979 sketch and therefore retained as a legacy layer; 
+            for a later published plan, see Glaser 2021, p. 54, fig. 2.</li>
     </ul><br />
 
-    <strong>Zitieren als:</strong><br /><br />
+    <strong>Cite as:</strong><br /><br />
     Hagmann, D., Reiner, F., Austrian Archaeological Institute | Austrian Academy of Sciences, & kärnten.museum. (2025). 
     <em>glo_geodaten_open.gpkg</em>. 
     <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4" target="_blank">https://hdl.handle.net/21.11115/0000-0015-EBEF-4</a>
@@ -296,7 +291,30 @@
             primaryLengthUnit: 'meters',
             secondaryLengthUnit: 'kilometers',
             primaryAreaUnit: 'sqmeters',
-            secondaryAreaUnit: 'hectares'
+            secondaryAreaUnit: 'hectares',
+            labels: {
+                measure: 'Measure',
+                measureDistancesAndAreas: 'Measure distances and areas',
+                createNewMeasurement: 'Create a new measurement',
+                startCreating: 'Add points to the map to measure distance or area.',
+                finishMeasurement: 'Finish measurement',
+                lastPoint: 'Last point',
+                area: 'Area',
+                perimeter: 'Perimeter',
+                pointLocation: 'Point location',
+                areaMeasurement: 'Area',
+                linearMeasurement: 'Distance',
+                pathDistance: 'Distance',
+                centerOnArea: 'Center on this area',
+                centerOnLine: 'Center on this line',
+                centerOnLocation: 'Center on this location',
+                cancel: 'Cancel',
+                delete: 'Delete',
+                kilometers: 'Kilometers',
+                hectares: 'Hectares',
+                meters: 'Meters',
+                sqmeters: 'Square meters'
+            }
         });
         measureControl.addTo(map);
         document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
@@ -306,10 +324,10 @@
         }
         map.createPane('pane_OSMStandard_0');
         map.getPane('pane_OSMStandard_0').style.zIndex = 400;
-        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var layer_OSMStandard_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             pane: 'pane_OSMStandard_0',
             opacity: 0.3,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a> | <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4">IUENNA, CC BY 4.0</a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> | <a href="https://hdl.handle.net/21.11115/0000-0015-EBEF-4">IUENNA dataset (ARCHE)</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,

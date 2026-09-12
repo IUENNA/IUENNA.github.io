@@ -83,6 +83,10 @@ Die Verarbeitung der IP-Adresse erfolgt auf Grundlage unseres berechtigten Inter
 **Hinweis:**
 Falls Sie nicht möchten, dass Ihre IP-Adresse an diese Drittanbieter übermittelt wird, können Sie die Nutzung durch entsprechende Einstellungen in Ihrem Browser verhindern (z. B. durch Blockieren von JavaScript). Dies kann jedoch dazu führen, dass die interaktiven Karten nicht funktionieren.
 
+#### **Kartenkacheln, Geokodierung und OpenTopoMap**
+
+Interaktive Karten laden je nach Ansicht Kartenkacheln von **OpenStreetMap** und teilweise **OpenTopoMap**. Dabei wird technisch eine Verbindung zu den jeweiligen Servern hergestellt und insbesondere die IP-Adresse übertragen. Die AI-assisted Web-Mapping-Anwendung bietet außerdem eine Orts-/Adresssuche über Leaflet Control Geocoder; in der derzeitigen Standardkonfiguration werden eingegebene Suchbegriffe bei Nutzung dieser Funktion an den OpenStreetMap-Nominatim-Dienst übermittelt. Bitte geben Sie dort keine personenbezogenen oder vertraulichen Informationen ein.
+
 #### **2. Nutzung von Chart.js**
 
 Diese Website verwendet **Chart.js**, eine JavaScript-Bibliothek zur Erstellung von Diagrammen und Grafiken. Chart.js wird über ein **Content Delivery Network (CDN)** von **jsdelivr.net** geladen.
