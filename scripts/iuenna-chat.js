@@ -918,13 +918,13 @@
         return 'Michaela Binder (ÖAI / ÖAW) leitet die bioarchäologischen und anthropologischen Untersuchungen im Gräberfeld auf dem Hemmaberg. Zu ihren international beachteten Entdeckungen zählt der Nachweis einer frühmittelalterlichen Fußprothese aus dem 6. Jahrhundert n. Chr.';
       }
       if (comb.includes('profant')) {
-        return 'Elke Profant (ÖAI / ÖAW) führt großflächige geophysikalische Prospektionen und Geomagnetik-Messungen im Jauntal durch, die verborgene römische Straßen, Großbauten und Gräber in Globasnitz und St. Stefan zerstörungsfrei sichtbar machen.';
+        return 'Elke Profant (ÖAI / ÖAW) erforscht im IUENNA-Projekt zerstörungsfreie Prospektionsmethoden (Reiner & Profant 2025) und ist Co-Autorin der offenen Geodaten (tal_geodaten_open.gpkg) in ARCHE.';
       }
       if (comb.includes('srienc')) {
         return 'Magdalena Srienc erforscht als Archäologin die spätantike und frühmittelalterliche Siedlungslandschaft sowie materielle Kulturzeugnisse im südlichen Jauntal.';
       }
       if (comb.includes('reiner') || comb.includes('waldhart')) {
-        return 'Franziska Reiner (geb. Waldhart, ÖAI / ÖAW) ist Archäologin und Co-Projektleiterin von IUENNA. Sie leitet die geophysikalischen Prospektionen, die numismatische Auswertung der spätantiken Münzfunde (u. a. des 322 Münzen zählenden Globasnitzer Hortes mit E. Profant 2025) sowie die Datenstandardisierung und Langzeitarchivierung in ARCHE.';
+        return 'Franziska Reiner (geb. Waldhart, ÖAI / ÖAW) ist Archäologin und Co-Projektleiterin von IUENNA. Sie leitet die geophysikalischen Prospektionen (Reiner & Profant 2025) sowie die Datenstandardisierung, Kuration und Langzeitarchivierung von über 20.000 Primärressourcen in ARCHE.';
       }
       if (comb.includes('hagmann')) {
         return 'Dominik Hagmann (kärnten.museum / ÖAI) ist Archäologe, Digital-Humanities-Spezialist und Gesamtleiter des Projekts IUENNA. Er konzipierte die Langzeitarchivierung nach FAIR- und CARE-Prinzipien für ARCHE, die Web-GIS-Infrastruktur sowie die forschungsgeschichtliche Gesamterschließung der über 200 Fundstellen des südlichen Jauntals.';
