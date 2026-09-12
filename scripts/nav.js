@@ -81,44 +81,58 @@
     const overviewHeading = Array.from(document.querySelectorAll('.card h2')).find(function (heading) {
       return heading.textContent.trim() === 'Project Overview';
     });
-    if (!overviewHeading) return;
+    const leadershipHeading = Array.from(document.querySelectorAll('.card h2')).find(function (heading) {
+      return heading.textContent.trim() === 'Project Leadership';
+    });
+
+    if (!overviewHeading || !leadershipHeading) return;
+
     const overviewCard = overviewHeading.closest('.card');
-    if (!overviewCard || overviewCard.querySelector('.project-focus-callout')) return;
-    const paragraphs = overviewCard.querySelectorAll(':scope > p');
-    if (paragraphs.length < 2) return;
-    const originalFocusParagraph = paragraphs[1];
-    const callout = document.createElement('div');
-    callout.className = 'project-focus-callout';
-    callout.setAttribute('aria-label', 'Project focus and funding');
-    callout.style.cssText = [
-      'margin-top: 1.65rem',
-      'padding: 1.35rem 1.4rem',
-      'border: 1px solid rgba(168, 68, 46, 0.22)',
-      'border-left: 4px solid var(--primary)',
-      'border-radius: var(--radius-md)',
-      'background: linear-gradient(135deg, rgba(168, 68, 46, 0.085), rgba(184, 142, 62, 0.045))',
-      'box-shadow: var(--shadow-sm)'
-    ].join(';');
-    callout.innerHTML = `
-      <div style="display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:0.9rem;align-items:start;">
-        <i class="fa-solid fa-location-dot" aria-hidden="true" style="color:var(--primary);font-size:1.25rem;line-height:1.5;"></i>
-        <p style="margin:0;color:var(--text-dark);font-size:1.04rem;line-height:1.65;">
-          At the heart of IUENNA was the archaeological micro-region of the
-          <strong style="color:var(--primary);font-weight:800;">Jauntal/Podjuna Valley</strong>
-          in Carinthia, Austria.
+    const leadershipCard = leadershipHeading.closest('.card');
+    if (!overviewCard || !leadershipCard) return;
+
+    if (!overviewCard.querySelector('.area-of-interest-block')) {
+      const paragraphs = overviewCard.querySelectorAll(':scope > p');
+      if (paragraphs.length >= 2) {
+        const originalFocusParagraph = paragraphs[1];
+        const areaBlock = document.createElement('div');
+        areaBlock.className = 'area-of-interest-block';
+        areaBlock.style.cssText = 'margin-top:1.55rem;';
+        areaBlock.innerHTML = `
+          <h3 style="font-size:1.15rem;margin:0 0 0.55rem;color:var(--text-dark);">Area of Interest</h3>
+          <p style="margin:0;color:var(--text-muted);line-height:1.7;">
+            At the heart of IUENNA was the archaeological micro-region of the <strong>Jauntal/Podjuna Valley</strong> in Carinthia, Austria.
+          </p>`;
+        originalFocusParagraph.replaceWith(areaBlock);
+      }
+    }
+
+    if (!leadershipCard.querySelector('.project-funding-card')) {
+      const fundingCard = document.createElement('div');
+      fundingCard.className = 'project-funding-card';
+      fundingCard.setAttribute('aria-label', 'Project funding');
+      fundingCard.style.cssText = [
+        'margin-top:1.55rem',
+        'padding:1.35rem 1.45rem',
+        'border:2px solid rgba(168,68,46,0.34)',
+        'border-radius:var(--radius-md)',
+        'background:linear-gradient(135deg, rgba(168,68,46,0.12), rgba(184,142,62,0.06))',
+        'box-shadow:var(--shadow-sm)'
+      ].join(';');
+      fundingCard.innerHTML = `
+        <h3 style="display:flex;align-items:center;gap:0.65rem;font-size:1.25rem;margin:0 0 0.9rem;color:var(--primary);">
+          <i class="fa-solid fa-landmark" aria-hidden="true" style="font-size:1rem;"></i>
+          Funding
+        </h3>
+        <p style="margin:0 0 0.45rem;color:var(--text-dark);font-size:1.02rem;line-height:1.6;">
+          Funded by the <strong style="color:var(--primary);font-weight:800;">Austrian Academy of Sciences (ÖAW)</strong>
         </p>
-      </div>
-      <div style="display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:0.9rem;align-items:start;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(168, 68, 46, 0.18);">
-        <i class="fa-solid fa-landmark" aria-hidden="true" style="color:var(--primary);font-size:1.1rem;line-height:1.6;"></i>
-        <div>
-          <div style="margin-bottom:0.25rem;color:var(--text-muted);font-size:0.76rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Funded by</div>
-          <div style="color:var(--primary);font-weight:800;line-height:1.45;">Austrian Academy of Sciences (ÖAW)</div>
-          <a href="https://www.oeaw.ac.at/foerderungen/godigital/godigital-30" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:0.15rem;color:var(--primary);font-weight:800;text-decoration:none;line-height:1.45;">
-            Go!Digital 3.0 programme <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:0.72em;margin-left:0.2rem;"></i>
-          </a>
-        </div>
-      </div>`;
-    originalFocusParagraph.replaceWith(callout);
+        <a href="https://www.oeaw.ac.at/foerderungen/godigital/godigital-30" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.35rem;color:var(--primary);font-size:1.08rem;font-weight:800;text-decoration:none;line-height:1.45;">
+          Go!Digital 3.0 programme
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:0.68em;"></i>
+        </a>`;
+      leadershipCard.appendChild(fundingCard);
+    }
   }
 
   function shuffled(items) {
