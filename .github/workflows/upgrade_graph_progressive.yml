@@ -29,6 +29,9 @@ jobs:
           python scripts/fix_graph_progressive_runtime.py
           python scripts/inject_graph_layout_module.py graph/index.html
           if [ -f graph/graph.html ]; then python scripts/inject_graph_layout_module.py graph/graph.html; fi
+          # Workflow files are maintained separately because the Actions token
+          # intentionally has no workflows permission.
+          git restore .github/workflows/graph_frontend.yml
       - name: Validate runtime
         run: |
           python -m py_compile scripts/upgrade_graph_progressive.py scripts/fix_graph_progressive_runtime.py scripts/inject_graph_layout_module.py
@@ -44,12 +47,11 @@ jobs:
           grep -q './data-source.js?v=20260912-4' graph/index.html
           grep -q './layouts.js?v=20260912-3' graph/index.html
           grep -q 'Show Edge Labels' graph/index.html
-      - name: Commit upgraded graph and remove migration workflow
+      - name: Commit upgraded graph
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm -f .github/workflows/upgrade_graph_progressive.yml
-          git add graph/data-source.js graph/layouts.js graph/index.html scripts/inject_graph_layout_module.py .github/workflows/graph_frontend.yml scripts/upgrade_graph_progressive.py scripts/fix_graph_progressive_runtime.py
+          git add graph/data-source.js graph/layouts.js graph/index.html scripts/inject_graph_layout_module.py scripts/upgrade_graph_progressive.py scripts/fix_graph_progressive_runtime.py
           if [ -f graph/graph.html ]; then git add graph/graph.html; fi
           git commit -m "feat(graph): restore progressive LOD and hierarchy-aware edge bundling"
           git pull --rebase origin main
