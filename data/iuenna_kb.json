@@ -233729,7 +233729,7 @@
     "canonical_graph": "data/arche_graph.json",
     "graph_audit": "data/arche_graph_audit.json",
     "audit_status": "pass",
-    "audit_generated_at": "2026-09-12T07:49:30Z",
+    "audit_generated_at": "2026-09-12T08:07:10Z",
     "graph_nodes": 21071,
     "graph_edges": 281851,
     "arche_backed_graph_entities": 21061,
