@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - 'graph/index.html'
       - 'graph/layouts.js'
       - 'scripts/inject_graph_layout_module.py'
       - '.github/workflows/graph_frontend.yml'
