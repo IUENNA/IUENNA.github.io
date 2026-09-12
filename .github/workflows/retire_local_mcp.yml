@@ -1,0 +1,93 @@
+name: Retire Local MCP
+
+on:
+  push:
+    paths:
+      - '.github/workflows/retire_local_mcp.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  retire-local-mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Replace local-MCP documentation and clarify statistics
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          doc = Path('DOKUMENTATION.md')
+          text = doc.read_text(encoding='utf-8')
+
+          replacements = {
+              '* **MCP-Version:** `1.2.0` (Python und Node, JSON-RPC 2.0 über Stdio, ohne externe Laufzeitabhängigkeiten).':
+              '* **MCP-Version:** `2.0.0` als öffentlicher, read-only Remote MCP über Streamable HTTP: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`.',
+
+              '     - Leichtgewichtiger, lokaler MCP-Server (`mcp/server.py` und `mcp/index.mjs`) mit JSON-RPC 2.0 über Stdio ohne externe Abhängigkeiten.\n     - Kompatibel mit Claude Desktop, Open-WebUI, LibreChat, Cursor, Zed, Antigravity und Python-Agenten.':
+              '     - Öffentlicher, zustandsloser Remote MCP unter `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp` mit Streamable HTTP.\n     - Kein lokaler Server, keine Python-/Node-Installation und kein projektspezifischer API-Key erforderlich; kompatible AI-Clients verbinden sich direkt mit der HTTPS-URL.\n     - Laufzeit über Cloudflare Workers Free; kanonische Forschungsdaten verbleiben auf IUENNA/ARCHE, die Remote-Query-Projektionen unter `data/mcp_remote/` sind nicht-autoritativ und reproduzierbar.',
+
+              '       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.071 Knoten, 281.851 Kanten) im 1–2-Hop-Umfeld um beliebige Entitäten mit optionaler Prädikatsfilterung.':
+              '       - `get_graph_neighborhood`: Traversierung des semantischen Wissensgraphen (21.071 Knoten, 281.851 Kanten) um beliebige indexierte Entitäten mit optionaler Prädikats- und Richtungsfilterung (`all`, `outgoing`, `incoming`).',
+
+              '       - `get_corpus_statistics`: Gesamtstatistik inklusive separater Metadaten zum Primärressourcen-Korpus.':
+              '       - `get_corpus_statistics`: Gesamtstatistik mit expliziter Trennung zwischen dem ARCHE-weiten `total_items`-Wert und dem kanonischen Primärressourcen-Korpus von 20.355 Dateien.',
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Expected documentation text not found: {old[:100]}')
+              text = text.replace(old, new, 1)
+
+          doc.write_text(text, encoding='utf-8')
+
+          server = Path('mcp-remote/src/server.js')
+          src = server.read_text(encoding='utf-8')
+          old = '''async function getCorpusStatistics() {
+            const [stats, manifest] = await Promise.all([fetchData("arche_stats.json"), fetchIndex("manifest.json")]);
+            return { ...stats, primary_resource_corpus: manifest.corpus_metadata ?? {} };
+          }'''
+          new = '''async function getCorpusStatistics() {
+            const [stats, manifest] = await Promise.all([fetchData("arche_stats.json"), fetchIndex("manifest.json")]);
+            const corpus = manifest.corpus_metadata ?? {};
+            return {
+              ...stats,
+              count_semantics: {
+                arche_collection_total_items: stats?.collection?.total_items ?? null,
+                primary_resource_files: corpus.total_resources ?? manifest.resources ?? null,
+                note: "ARCHE collection.total_items is a collection-wide repository item/entity count; it is not the number of primary archived files. Use primary_resource_files for the canonical file corpus."
+              },
+              primary_resource_corpus: corpus
+            };
+          }'''
+          if old not in src:
+              raise SystemExit('Expected getCorpusStatistics implementation not found')
+          server.write_text(src.replace(old, new, 1), encoding='utf-8')
+
+          public = [Path('DOKUMENTATION.md'), Path('llms.txt'), Path('byoai.html'), Path('mcp-remote/README.md')]
+          forbidden = ('mcp/server.py', 'mcp/index.mjs', 'MCP stdio', 'JSON-RPC 2.0 über Stdio', 'JSON-RPC 2.0 over stdio')
+          for path in public:
+              value = path.read_text(encoding='utf-8')
+              hits = [token for token in forbidden if token in value]
+              if hits:
+                  raise SystemExit(f'Stale local MCP references remain in {path}: {hits}')
+          PY
+
+      - name: Remove retired local MCP implementations
+        run: |
+          git rm -f mcp/server.py mcp/index.mjs mcp/package.json
+          git rm -f .github/workflows/retire_local_mcp.yml
+
+      - name: Commit migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add DOKUMENTATION.md mcp-remote/src/server.js
+          git commit -m "refactor(mcp): make Remote MCP the sole supported endpoint"
+          git pull --rebase origin main
+          git push origin HEAD:main
