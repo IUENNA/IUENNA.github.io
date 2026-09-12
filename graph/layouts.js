@@ -59,6 +59,11 @@
         });
     }
 
+    function resetPresetPositions() {
+        presetPositions = null;
+        capturePresetPositions();
+    }
+
     function restorePreset() {
         const c = graph();
         if (!c) return;
@@ -355,13 +360,18 @@
         window.IUENNAGraphLayouts = {
             run: runLayout,
             restorePreset,
-            capturePresetPositions
+            capturePresetPositions,
+            resetPresetPositions
         };
 
         // Clarify the force implementation in the UI.
         const forceOption = select.querySelector('option[value="cose"]');
         if (forceOption) forceOption.textContent = "Force-Directed (COSE, Topologie)";
     }
+
+    window.addEventListener("iuenna:canonical-graph-loaded", () => {
+        resetPresetPositions();
+    });
 
     install();
 })();
