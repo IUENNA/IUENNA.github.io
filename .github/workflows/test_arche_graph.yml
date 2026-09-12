@@ -19,7 +19,9 @@ on:
       - 'byoai.html'
       - 'llms.txt'
       - 'data/openapi.json'
-      - 'mcp/**'
+      - 'mcp-remote/**'
+      - 'scripts/build_remote_mcp_index.py'
+      - 'data/mcp_remote/**'
       - 'tests/**'
       - '.gitignore'
       - '.gitattributes'
@@ -34,6 +36,10 @@ on:
       - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
       - 'scripts/build_ai_stack.py'
+      - 'byoai.html'
+      - 'llms.txt'
+      - 'DOKUMENTATION.md'
+      - 'mcp-remote/**'
       - '.github/workflows/test_arche_graph.yml'
   schedule:
     # Weekly canonical ARCHE -> graph -> LOD/BYOAI/Chat-KB refresh.
@@ -115,6 +121,8 @@ jobs:
           test -s data/arche_graph_lod_manifest.json
           test -d data/graph_shards
           test -s data/iuenna_kb.json
+          test -s data/mcp_remote/manifest.json
+          test -s mcp-remote/src/server.js
           python - <<'PY'
           import json
           from pathlib import Path
@@ -176,6 +184,12 @@ jobs:
           assert kb['build_metadata']['configured_arche_recall'] == 1.0
           assert '20,788 digital resources' not in Path('data/iuenna_kb.json').read_text(encoding='utf-8')
 
+          remote = json.loads(Path('data/mcp_remote/manifest.json').read_text(encoding='utf-8'))
+          assert remote['non_authoritative_projection'] is True
+          assert remote['resources'] == len(corpus['resources'])
+          assert remote['graph_nodes'] == expected_nodes
+          assert remote['graph_edges'] == expected_edges
+
           print(json.dumps(audit['invariants'], indent=2))
           print(f"Authoritative corpus: {len(corpus['resources']):,} resources / {corpus_path.stat().st_size / 1024 / 1024:.2f} MiB")
           print(f"Browser corpus index: {len(corpus_index['resources']):,} resources / {corpus_index_path.stat().st_size / 1024 / 1024:.2f} MiB")
@@ -183,6 +197,7 @@ jobs:
           print(f"Browser macro graph: {macro_nodes:,} nodes / {macro_edges:,} edges / {macro_path.stat().st_size / 1024 / 1024:.2f} MiB")
           print(f"Lazy resources: {lazy:,} across {manifest['shard_count']:,} collection shards")
           print(f"AI KB graph entities: {len(kb['graph_entities']):,}")
+          print(f"Remote MCP projection: {remote['resources']:,} resources / {remote['graph_nodes']:,} graph nodes")
           PY
 
       - name: Publish authoritative graph and AI build artifact
@@ -212,6 +227,8 @@ jobs:
             data/iuenna_finetune_alpaca.json
             data/iuenna_finetune_chatml.jsonl
             data/iuenna_finetune_sharegpt.json
+            data/mcp_remote/
+            mcp-remote/
             byoai.html
             llms.txt
             data/openapi.json
@@ -242,12 +259,13 @@ jobs:
             data/iuenna_finetune_alpaca.json \
             data/iuenna_finetune_chatml.jsonl \
             data/iuenna_finetune_sharegpt.json \
+            data/mcp_remote \
             DOKUMENTATION.md \
             llms.txt \
             byoai.html \
             data/openapi.json \
-            mcp/index.mjs \
-            mcp/server.py \
+            mcp-remote/src/server.js \
+            mcp-remote/README.md \
             scripts/generate_synthetic_qa.py \
             scripts/export_arche_graph_ttl.py \
             scripts/iuenna-chat.js
