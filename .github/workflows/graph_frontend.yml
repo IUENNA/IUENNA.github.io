@@ -1,0 +1,54 @@
+name: Build Graph Frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'graph/layouts.js'
+      - 'scripts/inject_graph_layout_module.py'
+      - '.github/workflows/graph_frontend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-graph-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate layout runtime
+        run: |
+          python -m py_compile scripts/inject_graph_layout_module.py
+          node --check graph/layouts.js
+
+      - name: Inject repaired layout runtime
+        run: python scripts/inject_graph_layout_module.py graph/index.html
+
+      - name: Validate generated frontend hook
+        run: |
+          grep -q 'IUENNA graph layout runtime: start' graph/index.html
+          grep -q './layouts.js?v=20260912-1' graph/index.html
+
+      - name: Commit generated frontend
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add graph/index.html
+          if git diff --cached --quiet; then
+            echo "Graph frontend already contains the repaired layout runtime."
+          else
+            git commit -m "fix(graph): activate topology-aware layouts"
+            git push origin HEAD:main
+          fi
