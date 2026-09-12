@@ -237,7 +237,16 @@ async function getGeodataCatalog() {
 }
 async function getCorpusStatistics() {
   const [stats, manifest] = await Promise.all([fetchData("arche_stats.json"), fetchIndex("manifest.json")]);
-  return { ...stats, primary_resource_corpus: manifest.corpus_metadata ?? {} };
+  const corpus = manifest.corpus_metadata ?? {};
+  return {
+    ...stats,
+    count_semantics: {
+      arche_collection_total_items: stats?.collection?.total_items ?? null,
+      primary_resource_files: corpus.total_resources ?? manifest.resources ?? null,
+      note: "ARCHE collection.total_items is a collection-wide repository item/entity count; it is not the number of primary archived files. Use primary_resource_files for the canonical file corpus."
+    },
+    primary_resource_corpus: corpus
+  };
 }
 async function getProjectBibliography(args) {
   const query = String(args.query ?? "").trim();
