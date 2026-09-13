@@ -59,8 +59,10 @@
     const profileCards = leadershipCard.querySelectorAll('.profile-card');
     if (profileCards.length >= 2) {
       profileCards.forEach(function (profileCard) {
+        profileCard.style.flex = '1 1 auto';
         profileCard.style.minHeight = '0';
         profileCard.style.padding = '1rem 1.1rem';
+        profileCard.style.gap = '0.9rem';
       });
 
       const dominikInfo = profileCards[0].querySelector('.profile-info');
