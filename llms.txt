@@ -179,7 +179,7 @@ Top-level archival groups include Hemmaberg (HB), Globasnitz (GLO), Jaunstein (J
 
 ## Project context
 
-IUENNA was funded through the Go!Digital 3.0 programme of the Austrian Academy of Sciences (ÖAW). Project partners and contributing institutions include kärnten.museum, the Austrian Archaeological Institute (ÖAI/ÖAW), ACDH-CH/ÖAW, the Austrian Federal Monuments Authority (BDA), and ARDIG – Archäologischer Dienst GesmbH.
+IUENNA was funded through the Go!Digital 3.0 programme of the Austrian Academy of Sciences (OeAW). The project was jointly hosted by kärnten.museum and the Austrian Archaeological Institute (OeAI) at the OeAW. Further project partners and contributing institutions include ACDH/OeAW, the Austrian Federal Monuments Authority (BDA), and ARDIG – Archäologischer Dienst GesmbH.
 
 The project follows FAIR-oriented research-data-management principles and uses ARCHE for sustainable long-term preservation.
 
