@@ -75,6 +75,21 @@ class ArcheGraphSemanticsTest(unittest.TestCase):
         self.assertIn(("9001", "hasRightsHolder", "2001"), triples)
         self.assertIn(("9001", "hasSpatialCoverage", "3001"), triples)
 
+    def test_authority_nodes_added_without_arche_id_collision(self):
+        registry = NodeRegistry()
+        registry.add({
+            "id": "lod_geo_2782113",
+            "label": "GeoNames: Globasnitz",
+            "type": "authority",
+            "type_label": "Normdaten / GeoNames",
+            "authority_source": "GeoNames",
+            "authority_id": "2782113",
+            "roles": ["external-authority"]
+        })
+        self.assertIn("lod_geo_2782113", registry.nodes_by_id)
+        self.assertEqual(registry.nodes_by_id["lod_geo_2782113"]["type"], "authority")
+        self.assertIsNone(registry.node_id_for_arche_id("2782113"))
+
 
 if __name__ == "__main__":
     unittest.main()

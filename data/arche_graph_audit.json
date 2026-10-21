@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T15:31:22Z",
+  "generated_at": "2026-10-21T18:06:58Z",
   "status": "pass",
   "invariants": {
     "one_arche_id_one_node": true,
@@ -10,11 +10,11 @@
     "collections": 434,
     "resources": 20355,
     "datasets": 9,
-    "persons": 21,
-    "organisations": 9,
+    "persons": 23,
+    "organisations": 12,
     "publications": 23,
     "places": 219,
-    "unique_arche_ids_across_input_roles": 21061,
+    "unique_arche_ids_across_input_roles": 21066,
     "source_role_overlaps": {
       "1795453": [
         "dataset",
@@ -56,21 +56,23 @@
     "source_role_overlap_count": 9
   },
   "graph": {
-    "nodes": 21071,
-    "arche_backed_nodes": 21061,
-    "curated_helper_nodes": 10,
-    "edges": 281851,
+    "nodes": 21332,
+    "arche_backed_nodes": 21066,
+    "curated_helper_nodes": 266,
+    "edges": 282116,
     "node_role_counts": {
       "collection": 434,
       "curated-helper": 10,
       "dataset": 9,
-      "organization": 9,
-      "person": 21,
+      "external-authority": 256,
+      "organization": 12,
+      "person": 23,
       "place": 219,
       "publication": 23,
       "resource": 20355
     },
     "node_type_counts": {
+      "authority": 256,
       "dataset": 9,
       "epoch": 2,
       "folder_l2": 67,
@@ -79,8 +81,8 @@
       "folder_l5": 120,
       "folder_l6": 2,
       "license": 2,
-      "organization": 9,
-      "person": 21,
+      "organization": 12,
+      "person": 23,
       "place": 219,
       "publication": 23,
       "resource": 20346,
@@ -90,12 +92,13 @@
     },
     "edge_label_counts": {
       "documents": 28825,
-      "hasAuthor": 37,
+      "hasAuthor": 39,
       "hasContributor": 18,
       "hasCreator": 26117,
       "hasCurator": 20789,
       "hasDepositor": 20790,
       "hasDigitisingAgent": 9009,
+      "hasExternalAuthority": 256,
       "hasHosting": 20789,
       "hasLicense": 2,
       "hasLicensor": 20879,
@@ -105,18 +108,19 @@
       "hasSpatialCoverage": 21416,
       "hasSubject": 6,
       "hasTemporalCoverage": 2,
-      "isMemberOf": 19,
+      "isMemberOf": 26,
       "isPartOf": 20788
     },
     "edge_provenance_counts": {
       "ARCHE-corpus": 40896,
-      "ARCHE-direct": 240263,
+      "ARCHE-direct": 240272,
       "IUENNA-curated": 10,
-      "IUENNA-derived": 682
+      "IUENNA-derived": 682,
+      "IUENNA-lod": 256
     },
     "edge_relation_status_counts": {
       "aggregated": 675,
-      "asserted": 281159,
+      "asserted": 281424,
       "curated": 10,
       "inherited": 7
     },
@@ -142,9 +146,9 @@
       "isMemberOf",
       "isPartOf"
     ],
-    "unique_target_triples": 281181,
-    "resolvable_target_triples": 281159,
-    "graph_asserted_target_edges": 281159,
+    "unique_target_triples": 281183,
+    "resolvable_target_triples": 281168,
+    "graph_asserted_target_edges": 281168,
     "unresolved_source_ids": [
       "215203",
       "48508",
@@ -162,13 +166,7 @@
       "50310",
       "66154"
     ],
-    "unresolved_target_ids": [
-      "1756785",
-      "41760",
-      "46220",
-      "48505",
-      "504765"
-    ],
+    "unresolved_target_ids": [],
     "predicate_audit": {
       "documents": {
         "ttl_triples": 28825,
@@ -178,8 +176,8 @@
       },
       "hasAuthor": {
         "ttl_triples": 39,
-        "resolvable_ttl_triples": 37,
-        "graph_asserted_edges": 37,
+        "resolvable_ttl_triples": 39,
+        "graph_asserted_edges": 39,
         "recall_of_resolvable": 1.0
       },
       "hasContributor": {
@@ -249,9 +247,9 @@
         "recall_of_resolvable": 1.0
       },
       "isMemberOf": {
-        "ttl_triples": 24,
-        "resolvable_ttl_triples": 19,
-        "graph_asserted_edges": 19,
+        "ttl_triples": 26,
+        "resolvable_ttl_triples": 26,
+        "graph_asserted_edges": 26,
         "recall_of_resolvable": 1.0
       },
       "isPartOf": {

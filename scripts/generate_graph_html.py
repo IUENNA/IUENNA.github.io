@@ -2526,6 +2526,20 @@ def generate():
                         }}
                     }},
                     {{
+                        selector: "node[type = 'authority']",
+                        style: {{
+                            "shape": "round-rectangle",
+                            "width": 20,
+                            "height": 20,
+                            "border-width": 1.5,
+                            "border-color": "#FFFFFF",
+                            "min-zoomed-font-size": 11,
+                            "background-color": function(ele) {{
+                                return ele.data("color") || "#2B7A78";
+                            }}
+                        }}
+                    }},
+                    {{
                         selector: "edge",
                         style: {{
                             "width": 0.8,
@@ -2742,6 +2756,22 @@ def generate():
                             "color": "#37535E",
                             "text-border-color": "#A8B8BF",
                             "text-background-color": "#F2F6F8"
+                        }}
+                    }},
+                    {{
+                        selector: "edge[label = 'hasExternalAuthority']",
+                        style: {{
+                            "width": 0.85,
+                            "line-color": "#2B7A78",
+                            "target-arrow-color": "#2B7A78",
+                            "target-arrow-shape": "none",
+                            "curve-style": "bezier",
+                            "control-point-step-size": 14,
+                            "line-style": "dashed",
+                            "opacity": 0.50,
+                            "color": "#2B7A78",
+                            "text-border-color": "#B4D5D3",
+                            "text-background-color": "#F0F7F7"
                         }}
                     }},
                     {{
@@ -4086,7 +4116,8 @@ def generate():
                 "isPartOfResource": {{ label: "Part file of", color: "#3D7068", bg: "#E9F2F0", icon: "fa-file", order: 17 }},
                 "isMemberOf": {{ label: "Member of", color: "#3E5C76", bg: "#E7EEF4", icon: "fa-sitemap", order: 18 }},
                 "hasLicense": {{ label: "License", color: "#37535E", bg: "#F0F5F7", icon: "fa-shield", order: 19 }},
-                "hasSubject": {{ label: "Subject", color: "#5C4B75", bg: "#F5EFF8", icon: "fa-tag", order: 20 }}
+                "hasSubject": {{ label: "Subject", color: "#5C4B75", bg: "#F5EFF8", icon: "fa-tag", order: 20 }},
+                "hasExternalAuthority": {{ label: "External Authority / LOD", color: "#2B7A78", bg: "#EAF3F2", icon: "fa-arrow-up-right-from-square", order: 21 }}
             }};
 
             // Convert to array and sort by priority order

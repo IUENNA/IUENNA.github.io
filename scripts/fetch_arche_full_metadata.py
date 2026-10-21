@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import tempfile
 import urllib.parse
 import urllib.request
@@ -17,6 +18,15 @@ ARCHE_API_BASE = "https://arche.acdh.oeaw.ac.at/api"
 TOP_COLLECTION_ID = "1792170"
 DEFAULT_OUTPUT = os.path.join("data", "arche_full_metadata.ttl")
 MIN_EXPECTED_BYTES = 1_000_000
+
+# Entities referenced by IUENNA resources/publications/affiliations located outside the collection tree:
+REFERENCED_EXTERNAL_ENTITIES = [
+    "1756785",  # Dr. Georg Tiefengraber (Person, Author of 1756783)
+    "46220",    # Mag. Dr. Alice Waldner (Person, Author of 1756890)
+    "48505",    # Austrian Centre for Digital Humanities and Cultural Heritage (Organisation)
+    "41760",    # Universität Wien (Organisation)
+    "504765",   # Ludwig Boltzmann Gesellschaft (Organisation)
+]
 
 
 def build_url(resource_id: str = TOP_COLLECTION_ID) -> str:
@@ -64,6 +74,28 @@ def fetch(output_path: str, resource_id: str = TOP_COLLECTION_ID) -> str:
         expected_uri = f"{ARCHE_API_BASE}/{resource_id}"
         if expected_uri not in head:
             raise RuntimeError(f"Downloaded Turtle does not contain expected top collection URI {expected_uri}")
+
+        if REFERENCED_EXTERNAL_ENTITIES:
+            print(f"[*] Appending {len(REFERENCED_EXTERNAL_ENTITIES)} external referenced ARCHE entities...")
+            with open(tmp_path, "a", encoding="utf-8") as out:
+                out.write("\n# --- IUENNA External Referenced Entities ---\n")
+                for ext_id in REFERENCED_EXTERNAL_ENTITIES:
+                    ext_url = f"{ARCHE_API_BASE}/{ext_id}/metadata?format=text/turtle"
+                    try:
+                        ext_req = urllib.request.Request(ext_url, headers={"Accept": "text/turtle"})
+                        with urllib.request.urlopen(ext_req, timeout=30) as ext_resp:
+                            ext_ttl = ext_resp.read().decode("utf-8")
+                        lines = [line for line in ext_ttl.splitlines() if not line.strip().startswith("@prefix")]
+                        body = "\n".join(lines).strip()
+                        body = re.sub(r"\bn\d+:", "n2:", body)
+                        m_type = re.search(r"a\s+n2:(\w+);?", body)
+                        ent_type = m_type.group(1) if m_type else "Resource"
+                        cleaned_body = re.sub(r"a\s+n2:\w+;?", "", body)
+                        cleaned_body = re.sub(r"^\s*<https://arche\.acdh\.oeaw\.ac\.at/api/\d+>\s*", "", cleaned_body).strip()
+                        block = f"\n<https://arche.acdh.oeaw.ac.at/api/{ext_id}> a n2:{ent_type};\n    {cleaned_body}\n"
+                        out.write(block)
+                    except Exception as err:
+                        print(f"  [!] Warning: could not fetch external entity {ext_id}: {err}")
 
         os.replace(tmp_path, output_path)
     except Exception:

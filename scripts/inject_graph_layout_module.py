@@ -153,14 +153,16 @@ def inject(path: Path) -> bool:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("path", nargs="?", default="graph/index.html")
+    parser.add_argument("path", nargs="*", default=["graph/index.html", "graph/graph.html"])
     args = parser.parse_args()
-    path = Path(args.path)
-    changed = inject(path)
-    print(
-        f"[{'✓' if changed else '='}] {path}: graph/corpus LOD runtime "
-        f"{'injected/updated' if changed else 'already current'}"
-    )
+    for p in args.path:
+        path = Path(p)
+        if path.exists():
+            changed = inject(path)
+            print(
+                f"[{'✓' if changed else '='}] {path}: graph/corpus LOD runtime "
+                f"{'injected/updated' if changed else 'already current'}"
+            )
 
 
 if __name__ == "__main__":

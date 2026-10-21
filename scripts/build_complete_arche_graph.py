@@ -271,6 +271,75 @@ def build_graph(data_dir: Optional[str]=None):
     licenses = [{'id': 'lic_inc', 'label': 'In Copyright (InC 1.0)', 'type': 'license', 'type_label': 'Lizenz / Nutzungsrechte', 'desc': 'Urheberrechtlich geschützte Archivbestände des kärnten.museums und ÖAI.', 'color': '#437F97', 'icon': 'fa-shield-halved', 'roles': ['curated-helper']}, {'id': 'lic_ccby', 'label': 'Creative Commons Attribution 4.0 (CC BY 4.0)', 'type': 'license', 'type_label': 'Open Access Lizenz', 'desc': 'Open Access Forschungsdaten des Go!Digital-Projekts IUENNA.', 'color': '#3D7068', 'icon': 'fa-creative-commons', 'roles': ['curated-helper']}]
     for helper in epochs + subjects + licenses:
         registry.add(helper)
+
+    lod_nodes: List[dict] = []
+    lod_authority_edges: List[Tuple[str, str, str, str, str]] = []
+
+    for aid, place in places_data.items():
+        gn_uri = place.get('geonames')
+        if gn_uri:
+            m = re.search(r'/(\d+)/?$', gn_uri)
+            gn_id = m.group(1) if m else gn_uri.rstrip('/').split('/')[-1]
+            node_id = f'lod_geo_{gn_id}'
+            title = place.get('title')
+            label = f'GeoNames: {title}' if title else f'GeoNames {gn_id}'
+            lod_nodes.append({
+                'id': node_id, 'label': label, 'title': label, 'name': label,
+                'type': 'authority', 'type_label': 'Normdaten / GeoNames',
+                'authority_source': 'GeoNames', 'authority_id': gn_id,
+                'category': 'Externe Referenz', 'color': '#2B7A78', 'icon': 'fa-globe',
+                'uri': gn_uri, 'roles': ['external-authority']
+            })
+            lod_authority_edges.append((f'plc_{aid}', node_id, 'hasExternalAuthority', 'GeoNames', 'http://www.w3.org/2000/01/rdf-schema#seeAlso'))
+
+    for aid, person in persons.items():
+        orcid = person.get('orcid')
+        if orcid:
+            safe_orcid = orcid.replace('-', '_')
+            node_id = f'lod_orcid_{safe_orcid}'
+            pname = person.get('name')
+            label = f'ORCID: {pname}' if pname else f'ORCID {orcid}'
+            lod_nodes.append({
+                'id': node_id, 'label': label, 'title': label, 'name': label,
+                'type': 'authority', 'type_label': 'Normdaten / ORCID',
+                'authority_source': 'ORCID', 'authority_id': orcid,
+                'category': 'Externe Referenz', 'color': '#3D7068', 'icon': 'fa-id-badge',
+                'uri': f'https://orcid.org/{orcid}', 'roles': ['external-authority']
+            })
+            lod_authority_edges.append((person.get('id') or f'per_{aid}', node_id, 'hasExternalAuthority', 'ORCID', 'http://www.w3.org/2002/07/owl#sameAs'))
+
+    for aid, org in organisations.items():
+        ror = org.get('ror')
+        if ror:
+            ror_id = ror.rstrip('/').split('/')[-1]
+            node_id = f'lod_ror_{ror_id}'
+            oname = org.get('short_name') or org.get('name')
+            label = f'ROR: {oname}' if oname else f'ROR {ror_id}'
+            lod_nodes.append({
+                'id': node_id, 'label': label, 'title': label, 'name': label,
+                'type': 'authority', 'type_label': 'Normdaten / ROR',
+                'authority_source': 'ROR', 'authority_id': ror_id,
+                'category': 'Externe Referenz', 'color': '#536B78', 'icon': 'fa-building-columns',
+                'uri': ror, 'roles': ['external-authority']
+            })
+            lod_authority_edges.append((org.get('id') or f'org_{aid}', node_id, 'hasExternalAuthority', 'ROR', 'http://www.w3.org/2002/07/owl#sameAs'))
+
+        wd = org.get('wikidata')
+        if wd:
+            node_id = f'lod_wd_{wd}'
+            oname = org.get('short_name') or org.get('name')
+            label = f'Wikidata: {oname}' if oname else f'Wikidata {wd}'
+            lod_nodes.append({
+                'id': node_id, 'label': label, 'title': label, 'name': label,
+                'type': 'authority', 'type_label': 'Normdaten / Wikidata',
+                'authority_source': 'Wikidata', 'authority_id': wd,
+                'category': 'Externe Referenz', 'color': '#990000', 'icon': 'fa-barcode',
+                'uri': f'https://www.wikidata.org/entity/{wd}', 'roles': ['external-authority']
+            })
+            lod_authority_edges.append((org.get('id') or f'org_{aid}', node_id, 'hasExternalAuthority', 'Wikidata', 'http://www.w3.org/2002/07/owl#sameAs'))
+
+    for node in lod_nodes:
+        registry.add(node)
     node_id_map = dict(registry.arche_to_node_id)
     final_arche_counts = Counter((str(node.get('arche_id')) for node in registry.nodes_by_id.values() if node.get('arche_id')))
     duplicate_arche_ids_final = sorted((aid for aid, count in final_arche_counts.items() if count > 1))
@@ -371,6 +440,8 @@ def build_graph(data_dir: Optional[str]=None):
     connected_places = {edge['target'] for edge in edges.by_triple.values() if edge['target'] in place_node_ids} | {edge['source'] for edge in edges.by_triple.values() if edge['source'] in place_node_ids}
     for place_node in sorted(place_node_ids - connected_places):
         edges.add(root_id, place_node, 'connectedForNavigation', predicate='https://iuenna.github.io/vocab#connectedForNavigation', provenance='IUENNA-navigation', relation_status='synthetic', semantic=False, derivation={'method': 'layout-connectivity-fallback'})
+    for src, tgt, lbl, auth_src, pred in lod_authority_edges:
+        edges.add(src, tgt, lbl, predicate=pred, provenance='IUENNA-lod', relation_status='asserted', semantic=True, derivation={'method': 'lod-authority-link', 'authority': auth_src})
     node_ids = set(registry.nodes_by_id)
     all_edges = list(edges.by_triple.values())
     dangling = [edge for edge in all_edges if edge['source'] not in node_ids or edge['target'] not in node_ids]

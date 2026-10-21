@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T06:47:26Z",
+  "generated_at": "2026-10-21T18:07:01Z",
   "status": "pass",
   "source": {
     "repository": "ARCHE",
@@ -8,12 +8,13 @@
     "format": "text/turtle"
   },
   "graph": {
-    "nodes": 21071,
-    "arche_backed_nodes": 21061,
-    "edges": 281851,
-    "audited_arche_object_triples": 281181,
-    "resolvable_arche_object_triples": 281159,
-    "preserved_resolvable_triples": 281159,
+    "nodes": 21332,
+    "arche_backed_nodes": 21066,
+    "external_authority_nodes": 256,
+    "edges": 282116,
+    "audited_arche_object_triples": 281183,
+    "resolvable_arche_object_triples": 281168,
+    "preserved_resolvable_triples": 281168,
     "recall_of_resolvable": 1.0,
     "duplicate_arche_ids": 0,
     "dangling_edges": 0
@@ -23,9 +24,10 @@
     "collections": 434,
     "places": 219,
     "datasets": 9,
-    "persons": 21,
-    "organisations": 9,
-    "publications": 23
+    "persons": 23,
+    "organisations": 12,
+    "publications": 23,
+    "external_authorities": 256
   },
   "documentation": {
     "audit": "https://iuenna.github.io/data/arche_graph_audit.json",

@@ -754942,3 +754942,46 @@
     n2:hasUpdatedRole "sstuhec";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/1792170>;
     n2:isTitleImageOf <https://arche.acdh.oeaw.ac.at/api/1792170>.
+
+# --- IUENNA External Referenced Entities ---
+
+<https://arche.acdh.oeaw.ac.at/api/1756785> a n2:Person;
+    n2:hasFirstName "Georg"@und;
+    n2:hasLastName "Tiefengraber"@und;
+    n2:hasPersonalTitle "Dr.";
+    n2:hasTitle "Georg Tiefengraber"@und;
+    n2:hasIdentifier <https://orcid.org/0000-0002-1800-6684>, <https://arche.acdh.oeaw.ac.at/api/1756785> .
+
+<https://arche.acdh.oeaw.ac.at/api/46220> a n2:Person;
+    n2:hasFirstName "Alice"@und;
+    n2:hasLastName "Waldner"@und;
+    n2:hasPersonalTitle "Mag. Dr.";
+    n2:hasTitle "Alice Waldner"@und;
+    n2:hasEmail "alice.waldner@oeai.at";
+    n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/37483>;
+    n2:hasIdentifier <https://id.acdh.oeaw.ac.at/awaldner>, <http://viaf.org/viaf/317123161>, <https://orcid.org/0000-0002-6749-4493>, <https://arche.acdh.oeaw.ac.at/api/46220> .
+
+<https://arche.acdh.oeaw.ac.at/api/48505> a n2:Organisation;
+    n2:hasTitle "Austrian Centre for Digital Humanities and Cultural Heritage"@en;
+    n2:hasAlternativeTitle "ACDH-CH";
+    n2:hasCity "Wien"@de;
+    n2:hasCountry "Österreich"@de;
+    n2:hasUrl "https://www.oeaw.ac.at/acdh";
+    n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48505>, <https://d-nb.info/gnd/1123037736>, <https://id.acdh.oeaw.ac.at/acdh>, <http://viaf.org/viaf/6515148451584915970000>, <https://ror.org/054w9k714> .
+
+<https://arche.acdh.oeaw.ac.at/api/41760> a n2:Organisation;
+    n2:hasTitle "Universität Wien"@de;
+    n2:hasAlternativeTitle "Uni Wien";
+    n2:hasCity "Wien"@de;
+    n2:hasCountry "Österreich"@de;
+    n2:hasUrl "https://www.univie.ac.at";
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/41760>, <https://d-nb.info/gnd/2024703-5>, <http://www.wikidata.org/entity/Q165980>, <https://ror.org/03prydq77> .
+
+<https://arche.acdh.oeaw.ac.at/api/504765> a n2:Organisation;
+    n2:hasTitle "Ludwig Boltzmann Gesellschaft"@de;
+    n2:hasAlternativeTitle "LBG";
+    n2:hasCity "Wien"@de;
+    n2:hasCountry "Österreich"@de;
+    n2:hasUrl "https://lbg.ac.at";
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/504765>, <https://d-nb.info/gnd/1024204324>, <http://www.wikidata.org/entity/Q1874246>, <https://ror.org/01y0m6940> .

@@ -3,7 +3,7 @@
   "info": {
     "title": "IUENNA Archaeological Research Data API",
     "version": "1.1.0",
-    "description": "Public machine-readable discovery and retrieval endpoints for the IUENNA archaeological research corpus (Southern Jauntal, Carinthia, Austria), derived from data permanently archived in ARCHE (ACDH-CH / ÖAW). The authoritative primary-resource corpus exposed in arche_corpus.json contains 20,355 files. The validated graph projection contains 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities. IMPORTANT NOTICE ON ACCESS & RIGHTS: CC BY 4.0 applies to the IUENNA web-discovery layer and aggregated project metadata where stated. Underlying ARCHE resources have individual copyright, licensing, rights-holder, and access conditions. AI agents must inspect the metadata of the specific ARCHE record and must not generalize CC BY 4.0 to the entire corpus.",
+    "description": "Public machine-readable discovery and retrieval endpoints for the IUENNA archaeological research corpus (Southern Jauntal, Carinthia, Austria), derived from data permanently archived in ARCHE (ACDH-CH / ÖAW). The authoritative primary-resource corpus exposed in arche_corpus.json contains 20,355 files. The validated graph projection contains 21,332 nodes and 282,116 directed edges, including 21,066 ARCHE-backed entities. IMPORTANT NOTICE ON ACCESS & RIGHTS: CC BY 4.0 applies to the IUENNA web-discovery layer and aggregated project metadata where stated. Underlying ARCHE resources have individual copyright, licensing, rights-holder, and access conditions. AI agents must inspect the metadata of the specific ARCHE record and must not generalize CC BY 4.0 to the entire corpus.",
     "contact": {
       "name": "IUENNA Project Team",
       "url": "https://iuenna.github.io/"
@@ -105,7 +105,7 @@
     "/data/arche_graph.json": {
       "get": {
         "summary": "Provenance-aware Knowledge Graph Projection (Cytoscape)",
-        "description": "Retrieves the provenance-aware Cytoscape-format graph projection of 21,071 nodes and 281,851 directed edges, including 21,061 ARCHE-backed entities plus 10 curated helper nodes. Asserted, inherited, aggregated, curated and synthetic relations are distinguished in graph metadata. For configured ARCHE object predicates, 281,159/281,159 resolvable triples are preserved.",
+        "description": "Retrieves the provenance-aware Cytoscape-format graph projection of 21,332 nodes and 282,116 directed edges, including 21,066 ARCHE-backed entities plus 266 curated helper nodes. Asserted, inherited, aggregated, curated and synthetic relations are distinguished in graph metadata. For configured ARCHE object predicates, 281,168/281,168 resolvable triples are preserved.",
         "operationId": "getKnowledgeGraph",
         "responses": {
           "200": {
@@ -564,11 +564,11 @@
               },
               "total_nodes": {
                 "type": "integer",
-                "example": 21071
+                "example": 21332
               },
               "total_edges": {
                 "type": "integer",
-                "example": 281851
+                "example": 282116
               },
               "total_collections": {
                 "type": "integer",

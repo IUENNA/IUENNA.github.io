@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "total_persons": 21,
-    "total_organisations": 9,
+    "total_persons": 23,
+    "total_organisations": 12,
     "source": "ARCHE RDF TTL 2026",
-    "generated_at": "2026-10-21T15:31:08Z"
+    "generated_at": "2026-10-21T20:04:01Z"
   },
   "persons": {
     "10238": {
@@ -57,8 +57,8 @@
       "viaf": null,
       "gnd": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/66763",
-      "affiliation": null,
-      "affiliation_short": null
+      "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage",
+      "affiliation_short": "ACDH-CH"
     },
     "75187": {
       "id": "per_75187",
@@ -327,8 +327,8 @@
       "viaf": null,
       "gnd": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1756752",
-      "affiliation": null,
-      "affiliation_short": null
+      "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage",
+      "affiliation_short": "ACDH-CH"
     },
     "1756754": {
       "id": "per_1756754",
@@ -345,8 +345,8 @@
       "viaf": "http://viaf.org/viaf/276144782965586550430",
       "gnd": null,
       "uri": "https://arche.acdh.oeaw.ac.at/api/1756754",
-      "affiliation": null,
-      "affiliation_short": null
+      "affiliation": "Universität Wien",
+      "affiliation_short": "Uni Wien"
     },
     "1756755": {
       "id": "per_1756755",
@@ -383,6 +383,42 @@
       "uri": "https://arche.acdh.oeaw.ac.at/api/1756756",
       "affiliation": "Bundesdenkmalamt",
       "affiliation_short": "BDA"
+    },
+    "1756785": {
+      "id": "per_1756785",
+      "arche_id": "1756785",
+      "type": "Person",
+      "first_name": "Georg",
+      "last_name": "Tiefengraber",
+      "academic_title": "Dr.",
+      "name": "Georg Tiefengraber",
+      "email": "",
+      "affiliation_id": null,
+      "orcid": "0000-0002-1800-6684",
+      "wikidata": null,
+      "viaf": null,
+      "gnd": null,
+      "uri": "https://arche.acdh.oeaw.ac.at/api/1756785",
+      "affiliation": null,
+      "affiliation_short": null
+    },
+    "46220": {
+      "id": "per_46220",
+      "arche_id": "46220",
+      "type": "Person",
+      "first_name": "Alice",
+      "last_name": "Waldner",
+      "academic_title": "Mag. Dr.",
+      "name": "Alice Waldner",
+      "email": "alice.waldner@oeai.at",
+      "affiliation_id": "37483",
+      "orcid": "0000-0002-6749-4493",
+      "wikidata": null,
+      "viaf": "http://viaf.org/viaf/317123161",
+      "gnd": null,
+      "uri": "https://arche.acdh.oeaw.ac.at/api/46220",
+      "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+      "affiliation_short": "ÖAI"
     }
   },
   "organisations": {
@@ -511,6 +547,48 @@
       "wikidata": "Q771432",
       "ror": "https://ror.org/03k7r0z51",
       "uri": "https://arche.acdh.oeaw.ac.at/api/1756813"
+    },
+    "48505": {
+      "id": "org_48505",
+      "arche_id": "48505",
+      "type": "Organisation",
+      "name": "Austrian Centre for Digital Humanities and Cultural Heritage",
+      "short_name": "ACDH-CH",
+      "city": "Wien",
+      "country": "Österreich",
+      "url": "https://www.oeaw.ac.at/acdh",
+      "parent_org_id": "21003",
+      "wikidata": null,
+      "ror": "https://ror.org/054w9k714",
+      "uri": "https://arche.acdh.oeaw.ac.at/api/48505"
+    },
+    "41760": {
+      "id": "org_41760",
+      "arche_id": "41760",
+      "type": "Organisation",
+      "name": "Universität Wien",
+      "short_name": "Uni Wien",
+      "city": "Wien",
+      "country": "Österreich",
+      "url": "https://www.univie.ac.at",
+      "parent_org_id": null,
+      "wikidata": "Q165980",
+      "ror": "https://ror.org/03prydq77",
+      "uri": "https://arche.acdh.oeaw.ac.at/api/41760"
+    },
+    "504765": {
+      "id": "org_504765",
+      "arche_id": "504765",
+      "type": "Organisation",
+      "name": "Ludwig Boltzmann Gesellschaft",
+      "short_name": "LBG",
+      "city": "Wien",
+      "country": "Österreich",
+      "url": "https://lbg.ac.at",
+      "parent_org_id": null,
+      "wikidata": "Q1874246",
+      "ror": "https://ror.org/01y0m6940",
+      "uri": "https://arche.acdh.oeaw.ac.at/api/504765"
     }
   }
 }

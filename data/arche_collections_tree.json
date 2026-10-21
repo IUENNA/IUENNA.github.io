@@ -1,5 +1,5 @@
 {
-  "crawl_timestamp": "2026-10-21T15:31:08Z",
+  "crawl_timestamp": "2026-10-21T18:04:01Z",
   "total_collections": 434,
   "collections": {
     "1792167": {
@@ -15233,7 +15233,7 @@
         "name": "Nina Richards",
         "type": "Person",
         "orcid": "0000-0002-4911-8451",
-        "affiliation": null
+        "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
       },
       {
         "id": "per_1756754",
@@ -15241,7 +15241,7 @@
         "name": "Sylvia Kirchengast",
         "type": "Person",
         "orcid": "0000-0002-3220-7271",
-        "affiliation": null
+        "affiliation": "Universität Wien"
       },
       {
         "id": "per_1756755",
@@ -16601,7 +16601,7 @@
                 "name": "Nina Richards",
                 "type": "Person",
                 "orcid": "0000-0002-4911-8451",
-                "affiliation": null
+                "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
               },
               {
                 "id": "per_1756755",
@@ -16724,7 +16724,7 @@
                     "name": "Nina Richards",
                     "type": "Person",
                     "orcid": "0000-0002-4911-8451",
-                    "affiliation": null
+                    "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
                   },
                   {
                     "id": "per_1756755",
@@ -17817,7 +17817,7 @@
                         "name": "Nina Richards",
                         "type": "Person",
                         "orcid": "0000-0002-4911-8451",
-                        "affiliation": null
+                        "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
                       },
                       {
                         "id": "org_1756813",
@@ -17863,7 +17863,7 @@
                             "name": "Nina Richards",
                             "type": "Person",
                             "orcid": "0000-0002-4911-8451",
-                            "affiliation": null
+                            "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
                           },
                           {
                             "id": "org_1756813",
@@ -18221,7 +18221,7 @@
                 "name": "Nina Richards",
                 "type": "Person",
                 "orcid": "0000-0002-4911-8451",
-                "affiliation": null
+                "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
               },
               {
                 "id": "org_255675",
@@ -18304,7 +18304,7 @@
                 "name": "Nina Richards",
                 "type": "Person",
                 "orcid": "0000-0002-4911-8451",
-                "affiliation": null
+                "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
               },
               {
                 "id": "per_1756755",
@@ -18623,7 +18623,7 @@
                     "name": "Nina Richards",
                     "type": "Person",
                     "orcid": "0000-0002-4911-8451",
-                    "affiliation": null
+                    "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
                   },
                   {
                     "id": "org_37483",
@@ -21945,7 +21945,7 @@
                 "name": "Nina Richards",
                 "type": "Person",
                 "orcid": "0000-0002-4911-8451",
-                "affiliation": null
+                "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
               },
               {
                 "id": "per_1756754",
@@ -21953,7 +21953,7 @@
                 "name": "Sylvia Kirchengast",
                 "type": "Person",
                 "orcid": "0000-0002-3220-7271",
-                "affiliation": null
+                "affiliation": "Universität Wien"
               },
               {
                 "id": "per_75187",
@@ -21995,7 +21995,7 @@
                     "name": "Nina Richards",
                     "type": "Person",
                     "orcid": "0000-0002-4911-8451",
-                    "affiliation": null
+                    "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
                   },
                   {
                     "id": "per_1756754",
@@ -22003,7 +22003,7 @@
                     "name": "Sylvia Kirchengast",
                     "type": "Person",
                     "orcid": "0000-0002-3220-7271",
-                    "affiliation": null
+                    "affiliation": "Universität Wien"
                   },
                   {
                     "id": "per_75187",

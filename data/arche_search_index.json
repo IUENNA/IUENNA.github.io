@@ -51,7 +51,7 @@
     "type": "person",
     "category": "Forscher:innen",
     "label": "Seta Štuhec",
-    "sublabel": "Archäologe / Forscher:in",
+    "sublabel": "Austrian Centre for Digital Humanities and Cultural Heritage",
     "icon": "fa-user",
     "color": "#C85A32",
     "tokens": [
@@ -59,13 +59,13 @@
       "Seta",
       "Štuhec",
       "0000-0002-1218-9635",
-      ""
+      "Austrian Centre for Digital Humanities and Cultural Heritage"
     ],
     "meta": {
       "orcid": "0000-0002-1218-9635",
       "wikidata": null,
       "email": "seta.stuhec@oeaw.ac.at",
-      "affiliation": null
+      "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
     }
   },
   {
@@ -396,7 +396,7 @@
     "type": "person",
     "category": "Forscher:innen",
     "label": "Nina Richards",
-    "sublabel": "Archäologe / Forscher:in",
+    "sublabel": "Austrian Centre for Digital Humanities and Cultural Heritage",
     "icon": "fa-user",
     "color": "#C85A32",
     "tokens": [
@@ -404,13 +404,13 @@
       "Nina",
       "Richards",
       "0000-0002-4911-8451",
-      ""
+      "Austrian Centre for Digital Humanities and Cultural Heritage"
     ],
     "meta": {
       "orcid": "0000-0002-4911-8451",
       "wikidata": null,
       "email": "nina.richards@oeaw.ac.at",
-      "affiliation": null
+      "affiliation": "Austrian Centre for Digital Humanities and Cultural Heritage"
     }
   },
   {
@@ -419,7 +419,7 @@
     "type": "person",
     "category": "Forscher:innen",
     "label": "Sylvia Kirchengast",
-    "sublabel": "Archäologe / Forscher:in",
+    "sublabel": "Universität Wien",
     "icon": "fa-user",
     "color": "#C85A32",
     "tokens": [
@@ -427,13 +427,13 @@
       "Sylvia",
       "Kirchengast",
       "0000-0002-3220-7271",
-      ""
+      "Universität Wien"
     ],
     "meta": {
       "orcid": "0000-0002-3220-7271",
       "wikidata": "Q90706800",
       "email": "",
-      "affiliation": null
+      "affiliation": "Universität Wien"
     }
   },
   {
@@ -480,6 +480,52 @@
       "wikidata": null,
       "email": "",
       "affiliation": "Bundesdenkmalamt"
+    }
+  },
+  {
+    "id": "per_1756785",
+    "arche_id": "1756785",
+    "type": "person",
+    "category": "Forscher:innen",
+    "label": "Georg Tiefengraber",
+    "sublabel": "Archäologe / Forscher:in",
+    "icon": "fa-user",
+    "color": "#C85A32",
+    "tokens": [
+      "Georg Tiefengraber",
+      "Georg",
+      "Tiefengraber",
+      "0000-0002-1800-6684",
+      ""
+    ],
+    "meta": {
+      "orcid": "0000-0002-1800-6684",
+      "wikidata": null,
+      "email": "",
+      "affiliation": null
+    }
+  },
+  {
+    "id": "per_46220",
+    "arche_id": "46220",
+    "type": "person",
+    "category": "Forscher:innen",
+    "label": "Alice Waldner",
+    "sublabel": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften",
+    "icon": "fa-user",
+    "color": "#C85A32",
+    "tokens": [
+      "Alice Waldner",
+      "Alice",
+      "Waldner",
+      "0000-0002-6749-4493",
+      "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
+    ],
+    "meta": {
+      "orcid": "0000-0002-6749-4493",
+      "wikidata": null,
+      "email": "alice.waldner@oeai.at",
+      "affiliation": "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"
     }
   },
   {
@@ -660,6 +706,66 @@
       "wikidata": "Q771432",
       "ror": "https://ror.org/03k7r0z51",
       "url": "https://www.fhwn.ac.at"
+    }
+  },
+  {
+    "id": "org_48505",
+    "arche_id": "48505",
+    "type": "organization",
+    "category": "Institutionen",
+    "label": "Austrian Centre for Digital Humanities and Cultural Heritage",
+    "sublabel": "Wien, Österreich",
+    "icon": "fa-building-columns",
+    "color": "#3B5266",
+    "tokens": [
+      "Austrian Centre for Digital Humanities and Cultural Heritage",
+      "ACDH-CH",
+      "Wien"
+    ],
+    "meta": {
+      "wikidata": null,
+      "ror": "https://ror.org/054w9k714",
+      "url": "https://www.oeaw.ac.at/acdh"
+    }
+  },
+  {
+    "id": "org_41760",
+    "arche_id": "41760",
+    "type": "organization",
+    "category": "Institutionen",
+    "label": "Universität Wien",
+    "sublabel": "Wien, Österreich",
+    "icon": "fa-building-columns",
+    "color": "#3B5266",
+    "tokens": [
+      "Universität Wien",
+      "Uni Wien",
+      "Wien"
+    ],
+    "meta": {
+      "wikidata": "Q165980",
+      "ror": "https://ror.org/03prydq77",
+      "url": "https://www.univie.ac.at"
+    }
+  },
+  {
+    "id": "org_504765",
+    "arche_id": "504765",
+    "type": "organization",
+    "category": "Institutionen",
+    "label": "Ludwig Boltzmann Gesellschaft",
+    "sublabel": "Wien, Österreich",
+    "icon": "fa-building-columns",
+    "color": "#3B5266",
+    "tokens": [
+      "Ludwig Boltzmann Gesellschaft",
+      "LBG",
+      "Wien"
+    ],
+    "meta": {
+      "wikidata": "Q1874246",
+      "ror": "https://ror.org/01y0m6940",
+      "url": "https://lbg.ac.at"
     }
   },
   {
@@ -13834,18 +13940,18 @@
     "type": "publication",
     "category": "Publikationen",
     "label": "Ausgrabungen im Westbereich der Straßenstation Iuenna (Globasnitz) im Jahr 2020",
-    "sublabel": "Autor 1756785 (2021)",
+    "sublabel": "Georg Tiefengraber (2021)",
     "icon": "fa-book-open",
     "color": "#7B4F36",
     "tokens": [
       "Ausgrabungen im Westbereich der Straßenstation Iuenna (Globasnitz) im Jahr 2020",
-      "Autor 1756785",
+      "Georg Tiefengraber",
       "2021",
       "Rudolfinum - Jahrbuch des Landesmuseums für Kärnten"
     ],
     "meta": {
       "year": "2021",
-      "authors": "Autor 1756785",
+      "authors": "Georg Tiefengraber",
       "publisher": "Rudolfinum - Jahrbuch des Landesmuseums für Kärnten",
       "pages": "72-79",
       "url": ""
@@ -14087,18 +14193,18 @@
     "type": "publication",
     "category": "Publikationen",
     "label": "Bericht über die Grabungen an der Wallanlage der Spätantiken Höhensiedlung Hemmaberg in Globasnitz/Kärnten.",
-    "sublabel": "Autor 46220, Helmut Schwaiger (2024)",
+    "sublabel": "Alice Waldner, Helmut Schwaiger (2024)",
     "icon": "fa-book-open",
     "color": "#7B4F36",
     "tokens": [
       "Bericht über die Grabungen an der Wallanlage der Spätantiken Höhensiedlung Hemmaberg in Globasnitz/Kärnten.",
-      "Autor 46220, Helmut Schwaiger",
+      "Alice Waldner, Helmut Schwaiger",
       "2024",
       "Fundberichte aus Österreich"
     ],
     "meta": {
       "year": "2024",
-      "authors": "Autor 46220, Helmut Schwaiger",
+      "authors": "Alice Waldner, Helmut Schwaiger",
       "publisher": "Fundberichte aus Österreich",
       "pages": "D2429-D2445",
       "url": ""
