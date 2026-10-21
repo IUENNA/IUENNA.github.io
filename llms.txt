@@ -124,6 +124,14 @@ Current tools:
 
 The former local Python/Node stdio MCP implementations have been retired. AI clients should connect directly to the Remote MCP endpoint above.
 
+### Agent Skills (SEP-2640 & agentskills.io)
+
+IUENNA implements the Skills Over MCP standard (SEP-2640 / `io.modelcontextprotocol/skills`) and adheres to the `agentskills.io` specification. Clients supporting the extension can automatically discover and progressively load official IUENNA skills via `skills/list`, `skills/get`, and `skill://` resource URIs:
+
+- Resource URI: `skill://iuenna-research/SKILL.md`
+- HTTP URL: `https://iuenna.github.io/skills/iuenna-research/SKILL.md`
+- Scope: Authoritative archaeological research workflow for the IUENNA micro-region; enforces source priority (ARCHE PIDs first), findspot identification, GeoPackage exploration, graph traversal, and Zotero bibliography resolution.
+
 For questions such as “all documentation related to Hemmaberg”, “all Georadar resources”, “all files belonging to this dataset”, or “what resources are related to this publication?”, prefer `get_related_resources` over simple keyword search.
 
 ## Recommended routing strategy

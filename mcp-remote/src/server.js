@@ -1,10 +1,11 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { createMcpHandler } from "agents/mcp/server";
 import { z } from "zod";
+import { getSkillsList, getSkillByUri, getSkillResource } from "./skills.js";
 
 const DATA_BASE = "https://iuenna.github.io/data";
 const INDEX_BASE = `${DATA_BASE}/mcp_remote`;
-const VERSION = "2.0.0";
+const VERSION = "2.1.0";
 const RESOURCE_FIELDS = [
   "arche_id", "title", "filename", "type", "date", "place", "spatial_ids",
   "col", "col_id", "folder", "path", "pid", "description", "formatted_size", "size_bytes"
@@ -300,6 +301,47 @@ async function getGraphNeighborhood(args) {
 function toolResult(value) { return { content: [{ type: "text", text: JSON.stringify(value, null, 2) }] }; }
 function createServer() {
   const server = new McpServer({ name: "IUENNA Remote MCP", version: VERSION });
+
+  // Declare SEP-2640 Skills Extension capability
+  server.server.registerCapabilities({
+    extensions: {
+      "io.modelcontextprotocol/skills": {}
+    }
+  });
+
+  // Register authoritative IUENNA Research Skill resource (agentskills.io / SEP-2640)
+  server.registerResource(
+    "iuenna-research",
+    "skill://iuenna-research/SKILL.md",
+    {
+      mimeType: "text/markdown",
+      description: "Authoritative archaeological research workflow for the IUENNA micro-region (Jauntal/Podjuna, Carinthia, Austria). Enforces source priority (ARCHE PIDs first), findspot lookup, GeoPackage exploration, knowledge graph traversal, and Zotero bibliography resolution."
+    },
+    async (uri) => {
+      const res = getSkillResource(uri);
+      if (!res) throw new Error(`Resource "${uri}" not found`);
+      return res;
+    }
+  );
+
+  // Register SEP-2640 skills/list method
+  server.server.setRequestHandler(
+    "skills/list",
+    { params: z.object({ cursor: z.string().optional() }).passthrough().optional() },
+    async () => getSkillsList()
+  );
+
+  // Register SEP-2640 skills/get method
+  server.server.setRequestHandler(
+    "skills/get",
+    { params: z.object({ uri: z.string().min(1) }).passthrough() },
+    async (params) => {
+      const entry = getSkillByUri(params?.uri);
+      if (!entry) throw new Error(`Skill "${params?.uri}" not found`);
+      return entry;
+    }
+  );
+
   server.registerTool("search_iuenna_corpus", {
     description: "Search the authoritative IUENNA primary-resource corpus across titles, filenames, descriptions, collection paths, places, subjects, and identifiers.",
     inputSchema: { query: z.string().min(2), limit: z.number().int().min(1).max(30).optional() }
@@ -332,7 +374,12 @@ export default {
     if (url.pathname === "/" && request.method === "GET") return Response.json({
       name: "IUENNA Remote MCP", version: VERSION, status: "ok", endpoint: "/mcp",
       documentation: "https://iuenna.github.io/byoai.html", transport: "Streamable HTTP",
-      authentication: "none", access: "public read-only"
+      authentication: "none", access: "public read-only",
+      capabilities: {
+        tools: 7,
+        resources: ["skill://iuenna-research/SKILL.md"],
+        extensions: ["io.modelcontextprotocol/skills (SEP-2640)"]
+      }
     });
     return new Response("Not found", { status: 404 });
   }

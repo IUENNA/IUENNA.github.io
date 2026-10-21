@@ -82,7 +82,8 @@
         <h1 class="byoai-title">BYOAI: Bring Your Own AI</h1>
         <p class="byoai-subtitle">Query an authoritative machine-readable corpus of <strong>20,355 primary archaeological resources</strong> alongside a provenance-aware Knowledge Graph with <strong>21,071 nodes</strong>, including <strong>21,061 ARCHE-backed entities</strong> and 10 curated helper nodes, together with <strong>219 georeferenced findspots</strong>, <strong>434 collections</strong>, and <strong>9 curated GeoPackages</strong> — directly from your own AI client or research script.</p>
         <div class="pill-container">
-            <span class="pill-tag"><i class="fa-solid fa-cloud"></i> Remote MCP 2.0</span>
+            <span class="pill-tag"><i class="fa-solid fa-cloud"></i> Remote MCP 2.1</span>
+            <span class="pill-tag"><i class="fa-solid fa-graduation-cap"></i> SEP-2640 Skills</span>
             <span class="pill-tag"><i class="fa-solid fa-globe"></i> Public HTTPS</span>
             <span class="pill-tag"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</span>
             <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
@@ -121,6 +122,43 @@
     </section>
 
     <section class="byoai-section">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-graduation-cap"></i></span>Agent Skills (SEP-2640 / agentskills.io)</h2>
+        <p>IUENNA implements the open <strong>Agent Skills standard</strong> (<a href="https://agentskills.io" target="_blank" rel="noopener">SEP-2640</a>) for autonomous AI workflows. The skill encodes verified research methodologies, tool execution priority, source hierarchy (ARCHE PIDs first), and coordinate handling.</p>
+        
+        <div class="endpoint-grid" style="grid-template-columns:1fr; margin-top:1.2rem;">
+            <div class="endpoint-card" style="border-left:4px solid var(--primary);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                    <div>
+                        <strong style="font-size:1.1rem; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-book-atlas" style="color:var(--primary);"></i>
+                            <code>iuenna-research</code>
+                        </strong>
+                        <p style="margin:6px 0 0; color:var(--text-muted); font-size:0.9rem;">Authoritative archaeological research workflow for the IUENNA micro-region (Jauntal/Podjuna, Carinthia, Austria).</p>
+                    </div>
+                    <span class="pill-tag" style="background:var(--bg-main);"><i class="fa-solid fa-certificate"></i> Verified Standard</span>
+                </div>
+                <div style="margin-top:1rem; padding-top:0.8rem; border-top:1px solid var(--border-color); display:flex; flex-wrap:wrap; gap:12px; font-size:0.82rem;">
+                    <div><span style="color:var(--text-muted);">Skill URI:</span> <code style="user-select:all;">skill://iuenna-research/SKILL.md</code></div>
+                    <div><span style="color:var(--text-muted);">Format:</span> <code>Markdown + YAML frontmatter</code></div>
+                    <div><span style="color:var(--text-muted);">Version:</span> <code>2.1.0</code></div>
+                </div>
+                <div style="margin-top:0.8rem; display:flex; gap:8px;">
+                    <a href="skills/iuenna-research/SKILL.md" target="_blank" class="copy-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> View SKILL.md</a>
+                    <a href="https://raw.githubusercontent.com/IUENNA/IUENNA.github.io/main/skills/iuenna-research/SKILL.md" download="SKILL.md" class="copy-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px;"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="notice" style="margin-top:1.5rem;">
+            <strong>How to use with your AI client:</strong>
+            <ul style="margin:0.5rem 0 0 1.2rem; padding:0; line-height:1.6;">
+                <li><strong>Automatic (SEP-2640 aware clients):</strong> Clients supporting <code>io.modelcontextprotocol/skills</code> (e.g. <code>fast-agent</code>) automatically fetch and verify the skill via MCP methods <code>skills/list</code>, <code>skills/get</code>, and <code>skill://iuenna-research/SKILL.md</code>.</li>
+                <li><strong>Manual install (Claude Desktop, Cursor, Antigravity, Copilot):</strong> Copy <a href="skills/iuenna-research/SKILL.md" target="_blank"><code>SKILL.md</code></a> into your workspace's <code>.claude/skills/iuenna-research/</code> or <code>.gemini/config/skills/iuenna-research/</code> directory to guide the AI assistant on IUENNA methodology.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="byoai-section">
         <h2><span class="byoai-section-icon"><i class="fa-solid fa-database"></i></span>Open machine-readable data</h2>
         <p>The MCP is only one access layer. The underlying machine-readable resources remain openly available and independently reusable.</p>
         <div class="endpoint-grid">
@@ -148,7 +186,7 @@
 
 <footer>
     <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://iuenna.hypotheses.org/">IUENNA Project</a> | <a href="impressum-datenschutz.html">Legal Notice</a> &amp; <a href="impressum-datenschutz.html">Privacy Policy</a></p>
-    <p>IUENNA BYOAI | Remote MCP 2.0 &bull; OpenAPI 3.1 &bull; Knowledge Graph &bull; llms.txt &bull; ARCHE PIDs</p>
+    <p>IUENNA BYOAI | Remote MCP 2.1 &bull; SEP-2640 Skills &bull; OpenAPI 3.1 &bull; Knowledge Graph &bull; llms.txt &bull; ARCHE PIDs</p>
 </footer>
 
 <script>

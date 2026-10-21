@@ -1,6 +1,6 @@
 {
   "name": "@iuenna/remote-mcp",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "description": "Public read-only Remote MCP for the IUENNA archaeological research repository",
