@@ -237588,7 +237588,7 @@
     "canonical_graph": "data/arche_graph.json",
     "graph_audit": "data/arche_graph_audit.json",
     "audit_status": "pass",
-    "audit_generated_at": "2026-10-21T18:06:58Z",
+    "audit_generated_at": "2026-10-25T08:10:04Z",
     "graph_nodes": 21332,
     "graph_edges": 282116,
     "arche_backed_graph_entities": 21066,

@@ -86,7 +86,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "ARCHE"@en;
-    n2:hasUpdatedDate "2026-10-12T10:23:35.608856"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-10-22T10:52:12.009668"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:hasUrl "https://arche.acdh.oeaw.ac.at/browser/"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/48505>.
@@ -118,7 +118,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Österreichische Akademie der Wissenschaften"@de, "Austrian Academy of Sciences"@en;
-    n2:hasUpdatedDate "2026-10-12T10:23:35.045259"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-10-22T10:52:10.779837"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init".
 <https://arche.acdh.oeaw.ac.at/api/24299> a n2:Place;
     n2:aclRead "public";
@@ -170,7 +170,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"@de, "Austrian Archaeological Institute | Austrian Academy of Sciences"@en;
-    n2:hasUpdatedDate "2026-10-12T10:23:35.543263"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-10-22T10:52:12.048217"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>.
 <https://arche.acdh.oeaw.ac.at/api/46850> a n2:Place;
@@ -184,7 +184,7 @@
     n2:hasLatitude "48.2082"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "16.37169"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Wien"@de, "Vienna"@en, "Wien"@und;
-    n2:hasUpdatedDate "2026-10-12T10:23:35.052019"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-10-22T10:52:10.589191"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:hasWKT "POLYGON((16.17214967496693 48.330386951958005,16.596496598795056 48.330386951958005,16.596496598795056 48.101623224512316,16.17214967496693 48.101623224512316,16.17214967496693 48.330386951958005))".
 <https://arche.acdh.oeaw.ac.at/api/48508> n15:source "CLARIN";
@@ -395,7 +395,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Seta Štuhec"@und;
-    n2:hasUpdatedDate "2026-10-12T10:23:36.319798"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-10-22T10:52:14.453435"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/48505>.
 <https://arche.acdh.oeaw.ac.at/api/75187> a n2:Person;
@@ -754950,7 +754950,18 @@
     n2:hasLastName "Tiefengraber"@und;
     n2:hasPersonalTitle "Dr.";
     n2:hasTitle "Georg Tiefengraber"@und;
-    n2:hasIdentifier <https://orcid.org/0000-0002-1800-6684>, <https://arche.acdh.oeaw.ac.at/api/1756785> .
+    n2:hasIdentifier <https://orcid.org/0000-0002-1800-6684>, <https://arche.acdh.oeaw.ac.at/api/1756785>;
+    n2:hasUpdatedRole "init";
+    n2:hasLastName "Tiefengraber"@und;
+    n2:hasFirstName "Georg"@und;
+    
+    n2:createdBy "sstuhec";
+    
+    n2:aclRead "sstuhec";
+    n2:hasAvailableDate "2025-02-14T21:57:12+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasTitle "Georg Tiefengraber"@und;
+    n2:aclWrite "sstuhec";
+    n2:hasUpdatedDate "2025-05-28T13:15:47.981066"^^<http://www.w3.org/2001/XMLSchema#dateTime>.
 
 <https://arche.acdh.oeaw.ac.at/api/46220> a n2:Person;
     n2:hasFirstName "Alice"@und;
@@ -754959,7 +754970,21 @@
     n2:hasTitle "Alice Waldner"@und;
     n2:hasEmail "alice.waldner@oeai.at";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/37483>;
-    n2:hasIdentifier <https://id.acdh.oeaw.ac.at/awaldner>, <http://viaf.org/viaf/317123161>, <https://orcid.org/0000-0002-6749-4493>, <https://arche.acdh.oeaw.ac.at/api/46220> .
+    n2:hasIdentifier <https://id.acdh.oeaw.ac.at/awaldner>, <http://viaf.org/viaf/317123161>, <https://orcid.org/0000-0002-6749-4493>, <https://arche.acdh.oeaw.ac.at/api/46220>;
+    n2:hasPersonalTitle "Mag. Dr.";
+    n2:hasUpdatedDate "2020-02-20T17:45:05.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/37483>;
+    n2:aclRead "public";
+    n2:hasTitle "Alice Waldner"@und;
+    
+    n2:hasLastName "Waldner"@und;
+    n2:hasFirstName "Alice"@und;
+    n2:hasAvailableDate "2018-12-14T10:44:01.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    
+    n2:hasBinaryUpdatedRole "admin";
+    n2:hasUpdatedRole "admin";
+    n2:hasEmail "alice.waldner@oeai.at";
+    n2:createdBy "admin".
 
 <https://arche.acdh.oeaw.ac.at/api/48505> a n2:Organisation;
     n2:hasTitle "Austrian Centre for Digital Humanities and Cultural Heritage"@en;
@@ -754968,7 +754993,24 @@
     n2:hasCountry "Österreich"@de;
     n2:hasUrl "https://www.oeaw.ac.at/acdh";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48505>, <https://d-nb.info/gnd/1123037736>, <https://id.acdh.oeaw.ac.at/acdh>, <http://viaf.org/viaf/6515148451584915970000>, <https://ror.org/054w9k714> .
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48505>, <https://d-nb.info/gnd/1123037736>, <https://id.acdh.oeaw.ac.at/acdh>, <http://viaf.org/viaf/6515148451584915970000>, <https://ror.org/054w9k714>, <https://id.acdh.oeaw.ac.at/acdh-oeaw>;
+    n2:createdBy "admin";
+    n2:hasRegion "Wien"@de, "Vienna"@en;
+    n2:aclRead "public";
+    
+    n2:hasCountry "Austria"@en, "Österreich"@de;
+    n2:hasBinaryUpdatedRole "admin";
+    n2:hasPostcode "1010";
+    n2:hasCity "Wien"@de, "Vienna"@en;
+    n2:hasUpdatedDate "2026-10-22T10:52:10.789814"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasAddressLine1 "Bäckerstraße 13";
+    n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>;
+    
+    n2:hasAvailableDate "2017-12-16T16:17:30.92Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasEmail "ACDH-Office@oeaw.ac.at";
+    n2:hasTitle "Austrian Centre for Digital Humanities"@en;
+    n2:hasAlternativeTitle "ACDH"@en;
+    n2:hasUpdatedRole "init".
 
 <https://arche.acdh.oeaw.ac.at/api/41760> a n2:Organisation;
     n2:hasTitle "Universität Wien"@de;
@@ -754976,7 +755018,21 @@
     n2:hasCity "Wien"@de;
     n2:hasCountry "Österreich"@de;
     n2:hasUrl "https://www.univie.ac.at";
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/41760>, <https://d-nb.info/gnd/2024703-5>, <http://www.wikidata.org/entity/Q165980>, <https://ror.org/03prydq77> .
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/41760>, <https://d-nb.info/gnd/2024703-5>, <http://www.wikidata.org/entity/Q165980>, <https://ror.org/03prydq77>, <https://id.acdh.oeaw.ac.at/universitaet-wien>, <https://sws.geonames.org/6354993/>, <https://d-nb.info/gnd/4192690-0>, <https://isni.org/isni/0000000122861424>, <http://id.loc.gov/rwo/agents/n80126255>, <http://viaf.org/viaf/131901031>, <https://d-nb.info/gnd/108619344X>, <https://d-nb.info/gnd/1065432089>;
+    n2:hasPostcode "1010";
+    
+    n2:hasTitle "Universität Wien "@de, "Universität Wien"@und;
+    n2:hasCountry "Österreich"@de, "Austria"@en;
+    n2:createdBy "admin";
+    n2:hasRegion "Wien"@de, "Vienna"@en;
+    n2:hasBinaryUpdatedRole "admin";
+    n2:hasAddressLine1 "Universitätsring 1";
+    n2:aclRead "public";
+    n2:hasAvailableDate "2017-10-16T12:22:57.108Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasCity "Wien"@de, "Vienna"@en;
+    n2:hasUrl "https://www.univie.ac.at"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
+    n2:hasUpdatedRole "sstuhec";
+    n2:hasUpdatedDate "2023-03-28T09:17:52.008241"^^<http://www.w3.org/2001/XMLSchema#dateTime>.
 
 <https://arche.acdh.oeaw.ac.at/api/504765> a n2:Organisation;
     n2:hasTitle "Ludwig Boltzmann Gesellschaft"@de;
@@ -754984,4 +755040,21 @@
     n2:hasCity "Wien"@de;
     n2:hasCountry "Österreich"@de;
     n2:hasUrl "https://lbg.ac.at";
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/504765>, <https://d-nb.info/gnd/1024204324>, <http://www.wikidata.org/entity/Q1874246>, <https://ror.org/01y0m6940> .
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/504765>, <https://d-nb.info/gnd/1024204324>, <http://www.wikidata.org/entity/Q1874246>, <https://ror.org/01y0m6940>, <https://id.acdh.oeaw.ac.at/lbg>, <http://id.loc.gov/rwo/agents/no2006091207>, <https://isni.org/isni/0000000108606806>, <https://d-nb.info/gnd/1090617771>;
+    n2:aclWrite "sstuhec";
+    n2:hasEmail "office@lbg.ac.at";
+    n2:hasRegion "Vienna"@en, "Wien"@de;
+    
+    
+    n2:hasUrl "https://lbg.ac.at"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
+    n2:hasAvailableDate "2023-03-28T09:17:51.614239"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasCountry "Austria"@en, "Österreich"@de;
+    n2:hasAddressLine1 "Nußdorfer Straße 64";
+    n2:hasAddressLine2 "6. Stock";
+    n2:hasPostcode "1090";
+    n2:hasTitle "Ludwig Boltzmann Gesellschaft"@de;
+    n2:createdBy "sstuhec";
+    n2:hasUpdatedRole "sstuhec";
+    n2:hasCity "Vienna"@en, "Wien"@de;
+    n2:aclRead "sstuhec";
+    n2:hasUpdatedDate "2023-03-28T09:17:51.614239"^^<http://www.w3.org/2001/XMLSchema#dateTime>.
