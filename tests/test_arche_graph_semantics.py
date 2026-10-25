@@ -10,6 +10,7 @@ if SCRIPTS not in sys.path:
 
 from build_authoritative_corpus import extract_arche_uris
 from build_complete_arche_graph import NodeRegistry, parse_arche_relation_triples
+from fetch_arche_full_metadata import normalize_external_entity_ttl
 
 
 class ArcheGraphSemanticsTest(unittest.TestCase):
@@ -89,6 +90,19 @@ class ArcheGraphSemanticsTest(unittest.TestCase):
         self.assertIn("lod_geo_2782113", registry.nodes_by_id)
         self.assertEqual(registry.nodes_by_id["lod_geo_2782113"]["type"], "authority")
         self.assertIsNone(registry.node_id_for_arche_id("2782113"))
+
+    def test_external_entity_ttl_preserves_wikidata_and_ror_authorities(self):
+        raw_univie_ttl = """@prefix n0: <https://arche.acdh.oeaw.ac.at/api/>.
+@prefix n2: <https://vocabs.acdh.oeaw.ac.at/schema#>.
+@prefix n9: <http://www.wikidata.org/entity/>.
+<https://arche.acdh.oeaw.ac.at/api/41760> a n2:Organisation;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/41760>, n9:Q165980;
+    n2:hasTitle "Universität Wien "@de.
+"""
+        normalized = normalize_external_entity_ttl("41760", raw_univie_ttl)
+        self.assertIn("<http://www.wikidata.org/entity/Q165980>", normalized)
+        self.assertIn("<https://ror.org/03prydq77>", normalized)
+        self.assertNotIn("n2:Q165980", normalized)
 
 
 if __name__ == "__main__":

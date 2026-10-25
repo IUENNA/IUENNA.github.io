@@ -30,11 +30,15 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/fetch_arche_full_metadata.py'
+      - 'scripts/parse_arche_full_ttl.py'
+      - 'scripts/build_complete_arche_graph.py'
       - 'scripts/build_graph_lod.py'
       - 'scripts/build_corpus_browser_index.py'
       - 'scripts/sync_graph_metadata.py'
       - 'scripts/sync_ai_text_corpus.py'
       - 'scripts/build_chat_kb.py'
+      - 'scripts/build_remote_mcp_index.py'
       - 'scripts/build_ai_stack.py'
       - 'byoai.html'
       - 'llms.txt'
@@ -81,6 +85,7 @@ jobs:
           python -m py_compile scripts/sync_graph_metadata.py
           python -m py_compile scripts/sync_ai_text_corpus.py
           python -m py_compile scripts/build_chat_kb.py
+          python -m py_compile scripts/build_remote_mcp_index.py
           python -m py_compile scripts/build_ai_stack.py
 
       - name: Run semantic regression tests

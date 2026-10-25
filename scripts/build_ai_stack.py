@@ -33,6 +33,7 @@ def main() -> None:
     run("sync_ai_text_corpus.py")
     run("sync_graph_metadata.py")
     run("build_chat_kb.py")
+    run("build_remote_mcp_index.py")
 
     audit = json.loads(AUDIT.read_text(encoding="utf-8"))
     graph = json.loads(GRAPH.read_text(encoding="utf-8"))
