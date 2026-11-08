@@ -14,8 +14,10 @@
     <meta name="theme-color" content="#A8442E">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.3.0">
+    <link rel="preload" href="fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.6.0">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology">
@@ -421,9 +423,14 @@
                         Connect a compatible AI client directly to IUENNA's public, read-only Remote MCP. It provides agent-oriented access to the canonical corpus of 20,355 primary resources and the provenance-aware Knowledge Graph — without a local server, API key, or authentication.
                     </p>
                     <p style="margin: 0 0 0.8rem 0; font-size: 0.82rem; color: var(--text-muted); word-break: break-all;"><strong>Remote MCP:</strong> <code>https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp</code></p>
-                    <a href="byoai.html" class="btn btn-primary" style="background-color: #6a1b9a; border-color: #6a1b9a; font-size: 0.85rem; padding: 6px 16px;">
-                        <i class="fa-solid fa-network-wired"></i> Open Remote MCP &amp; BYOAI Guide &rarr;
-                    </a>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 0.8rem;">
+                        <a href="byoai.html" class="btn btn-primary" style="background-color: #6a1b9a; border-color: #6a1b9a; font-size: 0.85rem; padding: 6px 16px;">
+                            <i class="fa-solid fa-network-wired"></i> Open Remote MCP &amp; BYOAI Guide &rarr;
+                        </a>
+                        <a href="byoai.html#use-cases" class="btn btn-secondary" style="font-size: 0.85rem; padding: 6px 16px;">
+                            <i class="fa-solid fa-lightbulb"></i> Practical Examples &amp; Code Recipes &rarr;
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>

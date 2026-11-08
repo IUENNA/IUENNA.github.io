@@ -12,11 +12,10 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#A8442E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.5.0">
+    <link rel="preload" href="fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.6.0">
 
     <meta name="DC.title" content="BYOAI – Bring Your Own AI | IUENNA Archaeological Research">
     <meta name="DC.creator" content="Dominik Hagmann">
@@ -88,6 +87,7 @@
             <span class="pill-tag"><i class="fa-solid fa-circle-nodes"></i> Knowledge Graph</span>
             <span class="pill-tag"><i class="fa-solid fa-file-lines"></i> llms.txt</span>
             <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> PID-first provenance</span>
+            <a href="#use-cases" class="pill-tag" style="text-decoration:none; color:var(--primary);"><i class="fa-solid fa-lightbulb"></i> Use Cases &amp; Recipes</a>
         </div>
     </div>
 
@@ -158,12 +158,151 @@
         </div>
     </section>
 
+    <section class="byoai-section" id="use-cases">
+        <h2><span class="byoai-section-icon"><i class="fa-solid fa-lightbulb"></i></span>What Can You Do with the Data? Practical Examples &amp; Recipes</h2>
+        <p>The IUENNA data ecosystem bridges primary excavation archives, spatial GIS layers, bioarchaeological databases, and linked open knowledge graphs. Below are four reproducible recipes illustrating how researchers, developers, and students can explore and analyze the data:</p>
+
+        <!-- Recipe 1: AI Agent / Remote MCP -->
+        <div style="margin-top:1.8rem; padding:1.4rem; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                <h3 style="margin:0; font-size:1.15rem; color:var(--text-dark); display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-robot" style="color:var(--primary);"></i> Recipe 1: Query Excavation Archives via AI Agent (MCP)
+                </h3>
+                <span class="pill-tag"><i class="fa-solid fa-cloud"></i> Remote MCP</span>
+            </div>
+            <p style="margin:8px 0 12px; font-size:0.92rem; color:var(--text-muted);">
+                <strong>Scenario:</strong> You are researching the Late Antique double churches on the Hemmaberg and need original field diaries, sketches, and excavation reports with persistent identifiers (PIDs).
+            </p>
+            <p style="margin:0 0 6px; font-size:0.85rem; font-weight:600; color:var(--text-dark);">Example prompt to paste into Claude Desktop, Cursor, or ChatGPT:</p>
+            <div class="code-block-wrapper">
+                <div class="code-header"><span>AI Agent Prompt (Natural Language)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                <pre class="code-content"><code>Using the IUENNA Remote MCP server:
+1. Search the corpus for primary excavation documentation (field diaries, plans, photos) regarding the Hemmaberg double churches ("Doppelkirchen").
+2. Retrieve the archaeological findspot metadata for "Hemmaberg".
+3. Return the persistent ARCHE PIDs, dates, creators (e.g. Franz Glaser), and direct download URLs for the top 5 primary resources.</code></pre>
+            </div>
+            <p style="margin:8px 0 4px; font-size:0.82rem; color:var(--text-muted);">
+                <strong>Behind the scenes:</strong> The AI invokes <code>search_iuenna_corpus(query="Hemmaberg Doppelkirchen Grabungstagebuch", limit=5)</code> and <code>get_findspot_details(findspot_id="hemmaberg")</code>, returning verified ARCHE PIDs such as <code>https://hdl.handle.net/21.11115/0000-0016-0E37-C</code> directly from the canonical archive.
+            </p>
+        </div>
+
+        <!-- Recipe 2: Python / Data Science -->
+        <div style="margin-top:1.5rem; padding:1.4rem; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                <h3 style="margin:0; font-size:1.15rem; color:var(--text-dark); display:flex; align-items:center; gap:8px;">
+                    <i class="fa-brands fa-python" style="color:#3776ab;"></i> Recipe 2: Filter Findspots &amp; Coordinates via Python (Zero Dependencies)
+                </h3>
+                <span class="pill-tag"><i class="fa-solid fa-code"></i> Python 3 Standard Library</span>
+            </div>
+            <p style="margin:8px 0 12px; font-size:0.92rem; color:var(--text-muted);">
+                <strong>Scenario:</strong> You want to programmatically inspect all 219 georeferenced archaeological sites in the Jauntal micro-region, filter for sites in Globasnitz or Sittersdorf, and print their coordinates and ARCHE PIDs.
+            </p>
+            <div class="code-block-wrapper">
+                <div class="code-header"><span>query_iuenna_places.py</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                <pre class="code-content"><code>import urllib.request
+import json
+
+# 1. Fetch the open georeferenced findspots dataset
+url = "https://iuenna.github.io/data/arche_places.json"
+req = urllib.request.Request(url, headers={"User-Agent": "IUENNA-Research-Script/1.0"})
+
+with urllib.request.urlopen(req) as resp:
+    places = json.loads(resp.read().decode("utf-8"))
+
+print(f"Loaded {len(places)} archaeological findspots from IUENNA.")
+
+# 2. Filter for findspots in Globasnitz with documented coordinates
+globasnitz_sites = [
+    p for p in places
+    if "Globasnitz" in p.get("municipality", "") or "Globasnitz" in p.get("name", "")
+]
+
+print(f"\nFound {len(globasnitz_sites)} findspots in Globasnitz:")
+for site in globasnitz_sites[:5]:
+    name = site.get("name", "Unnamed")
+    coords = site.get("coordinates", [])
+    pid = site.get("arche_pid", "N/A")
+    print(f" • {name} | Coordinates (WGS84): {coords} | ARCHE PID: {pid}")</code></pre>
+            </div>
+        </div>
+
+        <!-- Recipe 3: GIS & Bioarchaeology -->
+        <div style="margin-top:1.5rem; padding:1.4rem; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                <h3 style="margin:0; font-size:1.15rem; color:var(--text-dark); display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-map-location-dot" style="color:#2e7d32;"></i> Recipe 3: Spatial Analysis &amp; Bioarchaeology in QGIS / GeoPandas
+                </h3>
+                <span class="pill-tag"><i class="fa-solid fa-layer-group"></i> OGC GeoPackage</span>
+            </div>
+            <p style="margin:8px 0 12px; font-size:0.92rem; color:var(--text-muted);">
+                <strong>Scenario:</strong> You are investigating the Ostrogothic / Late Antique cemetery of Globasnitz and need grave geometries linked to bioarchaeological attributes (radiocarbon dates, stable isotopes, sex, age-at-death, cranial deformation, grave goods) alongside georadar prospections.
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:12px;">
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:12px; border-radius:var(--radius-sm);">
+                    <strong style="color:var(--text-dark); font-size:0.9rem;"><i class="fa-solid fa-desktop" style="color:var(--primary);"></i> In QGIS (GUI):</strong>
+                    <ol style="margin:6px 0 0 1.2rem; padding:0; font-size:0.84rem; color:var(--text-muted); line-height:1.5;">
+                        <li>Download <code>glo_graeber-anthropologie.gpkg</code> (<a href="https://hdl.handle.net/21.11115/0000-0015-EBF0-1" target="_blank" rel="noopener">ARCHE PID</a>).</li>
+                        <li>Drag &amp; drop the file into QGIS (EPSG:32633).</li>
+                        <li>Open the bundled QGIS project file (<code>.qgs</code>) for pre-styled thematic choropleth maps (e.g. sex distribution, grave goods).</li>
+                    </ol>
+                </div>
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:12px; border-radius:var(--radius-sm);">
+                    <strong style="color:var(--text-dark); font-size:0.9rem;"><i class="fa-brands fa-python" style="color:#3776ab;"></i> In GeoPandas:</strong>
+                    <div class="code-block-wrapper" style="margin:6px 0 0;">
+                        <pre class="code-content" style="padding:8px 12px; font-size:0.8rem;"><code>import geopandas as gpd
+
+# Load graves layer directly
+gdf = gpd.read_file("glo_graeber-anthropologie.gpkg")
+# Inspect cranial deformation and age
+print(gdf[["Grabnummer", "Geschlecht", "Sterbealter", "Schädeldeformation"]].dropna().head())</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe 4: Semantic Graph & LOD -->
+        <div style="margin-top:1.5rem; padding:1.4rem; background:var(--bg-main); border:1px solid var(--border-color); border-radius:var(--radius-md);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                <h3 style="margin:0; font-size:1.15rem; color:var(--text-dark); display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-circle-nodes" style="color:#d97706;"></i> Recipe 4: Semantic Network &amp; Citation Traversal (Knowledge Graph)
+                </h3>
+                <span class="pill-tag"><i class="fa-solid fa-share-nodes"></i> 21,332 Nodes &bull; 282,116 Edges</span>
+            </div>
+            <p style="margin:8px 0 12px; font-size:0.92rem; color:var(--text-muted);">
+                <strong>Scenario:</strong> You want to explore how historical actors (e.g. Franz Glaser), research institutions (e.g. Landesmuseum Kärnten, Austrian Archaeological Institute), findspots, and archived primary files are interconnected.
+            </p>
+            <div class="code-block-wrapper">
+                <div class="code-header"><span>Remote MCP JSON-RPC call or Cytoscape import</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                <pre class="code-content"><code>// Call via Remote MCP to fetch immediate graph neighborhood
+{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "get_graph_neighborhood",
+    "arguments": {
+      "node_id": "https://id.acdh.oeaw.ac.at/iuenna/hemmaberg",
+      "radius": 1,
+      "max_neighbors": 25
+    }
+  },
+  "id": "graph-query-1"
+}
+
+// Or download the complete graph for Gephi / Cytoscape:
+// https://iuenna.github.io/data/arche_graph.json</code></pre>
+            </div>
+            <p style="margin:8px 0 0; font-size:0.84rem; color:var(--text-muted);">
+                Explore the complete graph interactively in your browser via our <a href="graph/index.html"><strong>Interactive Knowledge Graph Explorer</strong></a>.
+            </p>
+        </div>
+    </section>
+
     <section class="byoai-section">
         <h2><span class="byoai-section-icon"><i class="fa-solid fa-database"></i></span>Open machine-readable data</h2>
         <p>The MCP is only one access layer. The underlying machine-readable resources remain openly available and independently reusable.</p>
         <div class="endpoint-grid">
             <div class="endpoint-card"><strong>Primary-resource corpus</strong><p>20,355 archived files.</p><code>https://iuenna.github.io/data/arche_corpus.json</code></div>
-            <div class="endpoint-card"><strong>Knowledge Graph</strong><p>21,071 nodes and 281,851 directed edges.</p><code>https://iuenna.github.io/data/arche_graph.json</code></div>
+            <div class="endpoint-card"><strong>Knowledge Graph</strong><p>21,332 nodes and 282,116 directed edges.</p><code>https://iuenna.github.io/data/arche_graph.json</code></div>
             <div class="endpoint-card"><strong>Findspots</strong><p>219 georeferenced archaeological places.</p><code>https://iuenna.github.io/data/arche_places.json</code></div>
             <div class="endpoint-card"><strong>GeoPackages</strong><p>9 curated GIS datasets.</p><code>https://iuenna.github.io/data/arche_datasets.json</code></div>
             <div class="endpoint-card"><strong>AI discovery</strong><p>Canonical routing and provenance guidance.</p><code>https://iuenna.github.io/llms.txt</code></div>

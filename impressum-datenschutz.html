@@ -12,8 +12,10 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#A8442E">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.5.0">
+    <link rel="preload" href="fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.6.0">
     
     <!-- Dublin Core Metatags -->
     <meta name="DC.title" content="Impressum & Datenschutzerklärung – IUENNA">
@@ -139,8 +141,8 @@
             <h4>IUENNA Remote MCP</h4>
             <p>IUENNA stellt zusätzlich einen öffentlichen, lesenden Remote-MCP-Endpunkt über Cloudflare Workers bereit (<code>https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp</code>). Wenn ein externer MCP-Client diesen Dienst aufruft, wird eine Netzwerkverbindung zu Cloudflare hergestellt; hierbei können insbesondere IP-Adresse und technische Verbindungsdaten beim Hostinganbieter verarbeitet werden. Der IUENNA-MCP-Code richtet keine Benutzerkonten ein und führt keine projektseitige Chat-Historie. Weitere Informationen zur Verarbeitung durch Cloudflare finden Sie in der Datenschutzerklärung von Cloudflare.</p>
 
-            <h3>5. Google Fonts</h3>
-            <p>Zur einheitlichen Darstellung von Schriftarten verwenden wir <strong>Google Fonts</strong>, gehostet auf Google-Servern. Dabei wird die IP-Adresse an Google übertragen (<a href="https://policies.google.com/privacy" target="_blank">Google Datenschutzerklärung</a>). Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+            <h3>5. Lokale Bereitstellung von Schriftarten (Webfonts)</h3>
+            <p>Zur einheitlichen Darstellung von Text- und Symbolschriftarten (<strong>Lora</strong>, <strong>Plus Jakarta Sans</strong>, <strong>JetBrains Mono</strong> sowie <strong>Font Awesome</strong>) werden sämtliche Schriftdateien lokal auf demselben Webserver bereitgestellt. Beim Aufruf dieser Website findet <strong>keine Verbindung zu Servern von Google Fonts</strong> oder externen Schriftart-CDNs statt.</p>
 
             <h3>6. Cookies und lokaler Browser-Speicher</h3>
             <p>IUENNA setzt nach aktuellem Stand keine eigenen Analyse-, Marketing- oder Tracking-Cookies. Für ausdrücklich bereitgestellte Funktionen werden jedoch die oben beschriebenen lokalen Browser-Speicher <code>sessionStorage</code> und <code>localStorage</code> verwendet. Diese funktionalen Speicherungen dienen ausschließlich der Sitzungsfortsetzung beziehungsweise dem vom Nutzer ausdrücklich gewünschten Speichern einer WMA-Auswahl.</p>

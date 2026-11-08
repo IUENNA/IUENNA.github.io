@@ -27,6 +27,22 @@ This page provides simple and reusable web applications to demonstrate practical
 - **[Ask IUENNA – technical documentation](ASK_IUENNA.md)**: Client-side conversational discovery over ARCHE-derived metadata with deterministic entity resolution, multilingual place aliases, intent detection and session-based dialogue context.
 - **[ARCHE Repository Collection](https://id.acdh.oeaw.ac.at/iuenna)**: Direct access to the authoritative, FAIR-compliant long-term archive repository ([PID: 21.11115/0000-0016-7B39-F](https://hdl.handle.net/21.11115/0000-0016-7B39-F)).
 
+## What Can You Do with the Data? (Practical Use Cases)
+
+The IUENNA project provides open, citable, and machine-readable archaeological data structured for diverse research and computational workflows:
+
+1. **AI Agents & LLMs (Remote MCP & BYOAI)**:
+   - Connect your AI assistant (Claude Desktop, Cursor, Antigravity, ChatGPT) to the public Remote MCP endpoint: `https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`
+   - Ask complex natural language research questions, retrieve primary excavation documentation with persistent identifiers (ARCHE PIDs), and traverse graph neighborhoods without API keys.
+2. **Quantitative Data Science & Python Scripting**:
+   - Query all 219 georeferenced archaeological findspots via [`data/arche_places.json`](https://iuenna.github.io/data/arche_places.json) or the 20,355-file corpus via [`data/arche_corpus.json`](https://iuenna.github.io/data/arche_corpus.json) using Python's standard library (`urllib.request`, `json`) without external dependencies.
+3. **Spatial GIS & Bioarchaeological Modeling (QGIS & GeoPandas)**:
+   - Load the 9 curated OGC GeoPackages (e.g. `glo_graeber-anthropologie.gpkg` with radiocarbon dates, cranial deformations, and grave goods, or `glo_geodaten_open.gpkg` with georadar prospections) directly into QGIS or GeoPandas.
+4. **Knowledge Graphs & Semantic Network Analysis**:
+   - Explore and analyze the 21,332-node and 282,116-edge semantic graph in Cytoscape or Gephi to trace connections between archaeologists, institutions, findspots, and archival records.
+
+👉 For copy-paste ready prompts and code recipes, see the **[BYOAI Guide & Recipes](https://iuenna.github.io/byoai.html#use-cases)**.
+
 ## Learn More on Our Website
 
 Visit our dedicated project page at [iuenna.hypotheses.org](https://iuenna.hypotheses.org).

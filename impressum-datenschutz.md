@@ -113,23 +113,8 @@ In der AI-assisted Web-Mapping-Anwendung können Nutzer*innen Filterauswahlen au
 IUENNA bietet außerdem einen öffentlichen, lesenden Remote-MCP-Endpunkt über Cloudflare Workers (`https://iuenna-mcp.dominik-hagmann13.workers.dev/mcp`). Bei einem Aufruf durch einen externen MCP-Client wird eine Netzwerkverbindung zu Cloudflare hergestellt; hierbei können insbesondere IP-Adresse und technische Verbindungsdaten beim Hostinganbieter verarbeitet werden. Der IUENNA-MCP-Code richtet keine Benutzerkonten ein und führt keine projektseitige Chat-Historie.
 
 
-### **5. Nutzung von Google Fonts und anderen externen Diensten**
-Unsere Website verwendet **Google Fonts** und **Cloudflare** *(siehe oben)*, um eine einheitliche und ansprechende Darstellung von Schriftarten sowie eine optimierte Ladegeschwindigkeit der Inhalte zu gewährleisten. Beim Aufruf einer Seite lädt der Browser gegebenenfalls die benötigten Schriftarten, Styles und Ressourcen direkt von den Servern der entsprechenden Anbieter. Im Fall von Google Fonts wird dabei die IP-Adresse der Besucher*innen an Google übertragen.
-
-#### **Quellen und Anbieter**
-- **Google Fonts:**
-    - URL: [https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap)
-    - Anbieter: **Google LLC**
-    - Anschrift: 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
-    - Datenschutzerklärung: [https://policies.google.com/privacy](https://policies.google.com/privacy)
-
-Die Nutzung von Google Fonts und Cloudflare erfolgt auf Grundlage unseres berechtigten Interesses an einer konsistenten und ansprechenden Darstellung unserer Website sowie einer verbesserten Nutzererfahrung (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO).
-
-#### **Hinweis**
-Besucher*innen können in den Browser-Einstellungen die Nutzung externer Ressourcen blockieren oder einschränken. Dies kann jedoch die Darstellung und Funktionalität der Website beeinträchtigen.
-
-**Hinweis:**
-Wenn Sie nicht möchten, dass Google Ihre Daten speichert, können Sie die Nutzung von Google Fonts verhindern, indem Sie entsprechende Add-ons (z. B. NoScript) verwenden oder den Zugriff auf die Google-Server blockieren.
+### **5. Lokale Bereitstellung von Schriftarten (Webfonts)**
+Zur einheitlichen und datenschutzfreundlichen Darstellung von Text- und Symbolschriftarten (**Lora**, **Plus Jakarta Sans**, **JetBrains Mono** sowie **Font Awesome**) sind sämtliche Schriftdateien (`.woff2`) lokal in diesem Webangebot hinterlegt. Beim Aufruf unserer Seiten wird **keine Verbindung zu Servern von Google Fonts** (`fonts.googleapis.com` / `fonts.gstatic.com`) hergestellt und keine IP-Adresse an Google übermittelt.
 
 ### **6. Cookies und lokaler Browser-Speicher**
 IUENNA setzt nach aktuellem Stand keine eigenen Analyse-, Marketing- oder Tracking-Cookies. Für ausdrücklich bereitgestellte Funktionen werden die oben beschriebenen lokalen Browser-Speicher `sessionStorage` und `localStorage` verwendet. Sie dienen ausschließlich der Sitzungsfortsetzung beziehungsweise dem vom Nutzer ausdrücklich gewünschten Speichern einer WMA-Auswahl.
