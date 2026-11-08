@@ -14392,6 +14392,25 @@
     }
   },
   {
+    "id": "plc_22065",
+    "arche_id": "22065",
+    "type": "place",
+    "category": "Fundorte & Orte",
+    "label": "Laibach",
+    "sublabel": "Fundort 46.0511, 14.5051",
+    "icon": "fa-location-dot",
+    "color": "#2D6A4F",
+    "tokens": [
+      "Laibach",
+      "22065"
+    ],
+    "meta": {
+      "lat": 46.05108,
+      "lon": 14.50513,
+      "geonames": "https://sws.geonames.org/3196359/"
+    }
+  },
+  {
     "id": "plc_24299",
     "arche_id": "24299",
     "type": "place",
@@ -14446,7 +14465,7 @@
     "meta": {
       "lat": 47.06667,
       "lon": 15.45,
-      "geonames": "https://sws.geonames.org/2778067/"
+      "geonames": "https://sws.geonames.org/2778058/"
     }
   },
   {
@@ -14693,7 +14712,7 @@
     "meta": {
       "lat": 46.61254,
       "lon": 13.8529,
-      "geonames": "https://sws.geonames.org/7871492/"
+      "geonames": "https://sws.geonames.org/2762372/"
     }
   },
   {
@@ -14735,25 +14754,6 @@
     }
   },
   {
-    "id": "plc_1056240",
-    "arche_id": "1056240",
-    "type": "place",
-    "category": "Fundorte & Orte",
-    "label": "Ljubljana",
-    "sublabel": "Fundort 46.0592, 14.5092",
-    "icon": "fa-location-dot",
-    "color": "#2D6A4F",
-    "tokens": [
-      "Ljubljana",
-      "1056240"
-    ],
-    "meta": {
-      "lat": 46.05918,
-      "lon": 14.50916,
-      "geonames": "https://sws.geonames.org/3239318/"
-    }
-  },
-  {
     "id": "plc_1449105",
     "arche_id": "1449105",
     "type": "place",
@@ -14769,7 +14769,7 @@
     "meta": {
       "lat": 48.21415,
       "lon": 14.47783,
-      "geonames": "https://sws.geonames.org/7872050/"
+      "geonames": "https://sws.geonames.org/2780048/"
     }
   },
   {
@@ -15461,12 +15461,12 @@
     "arche_id": "1757064",
     "type": "place",
     "category": "Fundorte & Orte",
-    "label": "Gurk",
+    "label": "Gurk (stream)",
     "sublabel": "Fundort 46.6064, 14.5236",
     "icon": "fa-location-dot",
     "color": "#2D6A4F",
     "tokens": [
-      "Gurk",
+      "Gurk (stream)",
       "1757064"
     ],
     "meta": {
@@ -17676,7 +17676,7 @@
     "meta": {
       "lat": 46.50783,
       "lon": 13.30612,
-      "geonames": "https://sws.geonames.org/6538383/"
+      "geonames": "https://sws.geonames.org/3170297/"
     }
   },
   {
@@ -17752,7 +17752,7 @@
     "meta": {
       "lat": 46.7843,
       "lon": 15.54887,
-      "geonames": "https://sws.geonames.org/7872406/"
+      "geonames": "https://sws.geonames.org/2772753/"
     }
   },
   {
@@ -17866,7 +17866,7 @@
     "meta": {
       "lat": 52.5233,
       "lon": 13.41377,
-      "geonames": "https://sws.geonames.org/6547383/"
+      "geonames": "https://sws.geonames.org/2950159/"
     }
   },
   {
@@ -18132,7 +18132,7 @@
     "meta": {
       "lat": 46.82803,
       "lon": 12.75184,
-      "geonames": "https://sws.geonames.org/7873678/"
+      "geonames": "https://sws.geonames.org/2772505/"
     }
   },
   {
@@ -18436,7 +18436,7 @@
     "meta": {
       "lat": 47.26842,
       "lon": 10.66977,
-      "geonames": "https://sws.geonames.org/7873584/"
+      "geonames": "https://sws.geonames.org/2775307/"
     }
   },
   {

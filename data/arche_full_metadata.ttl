@@ -20,43 +20,43 @@
 
 @prefix n10: <http://id.loc.gov/rwo/agents/>.
 
-@prefix n11: <https://isni.org/isni/>.
+@prefix n11: <http://vocab.getty.edu/tgn/>.
 
-@prefix n12: <http://vocab.getty.edu/tgn/>.
+@prefix n12: <https://id.acdh.oeaw.ac.at/maechtekongresse/place/>.
 
-@prefix n13: <https://id.acdh.oeaw.ac.at/maechtekongresse/place/>.
+@prefix n13: <https://id.acdh.oeaw.ac.at/ofmgraz/>.
 
-@prefix n14: <https://id.acdh.oeaw.ac.at/ofmgraz/>.
+@prefix n14: <https://isni.org/isni/>.
 
-@prefix n15: <http://purl.org/dc/elements/1.1/>.
+@prefix n15: <https://id.acdh.oeaw.ac.at/daacda/places/>.
 
-@prefix n16: <http://www.w3.org/2004/02/skos/core#>.
+@prefix n16: <http://purl.org/dc/elements/1.1/>.
 
-@prefix n17: <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/>.
+@prefix n17: <http://www.w3.org/2004/02/skos/core#>.
 
-@prefix n18: <http://purl.org/dc/dcmitype/>.
+@prefix n18: <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/>.
 
-@prefix n19: <https://vocabs.acdh.oeaw.ac.at/archecategory/>.
+@prefix n19: <http://purl.org/dc/dcmitype/>.
 
-@prefix n20: <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/>.
+@prefix n20: <https://vocabs.acdh.oeaw.ac.at/archecategory/>.
 
-@prefix n21: <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/>.
+@prefix n21: <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/>.
 
-@prefix n22: <https://vocabs.acdh.oeaw.ac.at/iso6391/>.
+@prefix n22: <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/>.
 
-@prefix n23: <https://vocabs.acdh.oeaw.ac.at/iso6393/>.
+@prefix n23: <https://vocabs.acdh.oeaw.ac.at/iso6391/>.
 
-@prefix n24: <http://purl.org/dc/terms/>.
+@prefix n24: <https://vocabs.acdh.oeaw.ac.at/iso6393/>.
 
-@prefix n25: <https://creativecommons.org/licenses/by/>.
+@prefix n25: <http://purl.org/dc/terms/>.
 
-@prefix n26: <https://vocabs.acdh.oeaw.ac.at/archelicenses/>.
+@prefix n26: <https://creativecommons.org/licenses/by/>.
 
-@prefix n27: <http://rightsstatements.org/vocab/InC/>.
+@prefix n27: <https://vocabs.acdh.oeaw.ac.at/archelicenses/>.
 
-@prefix n28: <https://vocabs.acdh.oeaw.ac.at/archeoaisets/>.
+@prefix n28: <http://rightsstatements.org/vocab/InC/>.
 
-@prefix n29: <https://id.acdh.oeaw.ac.at/daacda/places/>.
+@prefix n29: <https://vocabs.acdh.oeaw.ac.at/archeoaisets/>.
 
 <https://arche.acdh.oeaw.ac.at/api/3013> a n2:Place;
     n2:aclRead "public";
@@ -120,6 +120,20 @@
     n2:hasTitle "Österreichische Akademie der Wissenschaften"@de, "Austrian Academy of Sciences"@en;
     n2:hasUpdatedDate "2026-10-28T08:26:30.001731"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init".
+<https://arche.acdh.oeaw.ac.at/api/22065> a n2:Place;
+    n2:aclRead "public";
+    n2:aclWrite "fernando";
+    n2:createdBy "admin";
+    n2:hasAvailableDate "2019-07-16T12:53:32.002Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasBinaryUpdatedRole "admin";
+    n2:hasCountry "Slowenien"@de, "Slovenia"@en;
+    n2:hasIdentifier n10:n50052801, <http://viaf.org/viaf/155815338>, <http://vocab.getty.edu/tgn/7012986>, n7:Q437, <https://arche.acdh.oeaw.ac.at/api/22065>, <https://d-nb.info/gnd/1028469-2>, <https://d-nb.info/gnd/4073953-3>, n3:ljubljana, <https://id.acdh.oeaw.ac.at/maechtekongresse/place/loc.65>, n13:ljubljana, <https://sws.geonames.org/3196359/>, <https://sws.geonames.org/3239318/>;
+    n2:hasLatitude "46.05108"^^<http://www.w3.org/2001/XMLSchema#float>;
+    n2:hasLongitude "14.50513"^^<http://www.w3.org/2001/XMLSchema#float>;
+    n2:hasTitle "Laibach"@de, "Ljubljana"@en, "Ljubljana"@und;
+    n2:hasUpdatedDate "2025-09-29T08:22:24.253052"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedRole "sstuhec";
+    n2:hasWKT "POINT(14.50513 46.05108)".
 <https://arche.acdh.oeaw.ac.at/api/24299> a n2:Place;
     n2:aclRead "public";
     n2:createdBy "admin";
@@ -180,58 +194,59 @@
     n2:hasAvailableDate "2017-10-16T12:45:39.222Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasBinaryUpdatedRole "admin";
     n2:hasCountry "Österreich"@de, "Austria"@en;
-    n2:hasIdentifier <http://viaf.org/viaf/155870729>, <http://viaf.org/viaf/238999862>, <http://viaf.org/viaf/45145424500086831364>, <http://vocab.getty.edu/tgn/7003030>, <http://vocab.getty.edu/tgn/7003321>, n7:Q1741, <https://arche.acdh.oeaw.ac.at/api/46850>, <https://d-nb.info/gnd/1012345-3>, <https://d-nb.info/gnd/4066009-6>, <https://id.acdh.oeaw.ac.at/maechtekongresse/place/loc.7>, n14:vienna, n3:vienn, n3:vienna, <https://sws.geonames.org/2761367/>;
+    n2:hasIdentifier <http://viaf.org/viaf/155870729>, <http://viaf.org/viaf/238999862>, <http://viaf.org/viaf/45145424500086831364>, <http://vocab.getty.edu/tgn/7003030>, <http://vocab.getty.edu/tgn/7003321>, n7:Q1741, <https://arche.acdh.oeaw.ac.at/api/46850>, <https://d-nb.info/gnd/1012345-3>, <https://d-nb.info/gnd/4066009-6>, <https://id.acdh.oeaw.ac.at/daacda/places/167>, <https://id.acdh.oeaw.ac.at/maechtekongresse/place/loc.7>, n13:vienna, n3:vienn, n3:vienna, <https://sws.geonames.org/2761367/>, <https://sws.geonames.org/2761369/>;
     n2:hasLatitude "48.2082"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "16.37169"^^<http://www.w3.org/2001/XMLSchema#float>;
+    n2:hasNonLinkedIdentifier "Legalkraus-Id: pmb50";
     n2:hasTitle "Wien"@de, "Vienna"@en, "Wien"@und;
     n2:hasUpdatedDate "2026-10-28T08:26:30.042274"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:hasWKT "POLYGON((16.17214967496693 48.330386951958005,16.596496598795056 48.330386951958005,16.596496598795056 48.101623224512316,16.17214967496693 48.101623224512316,16.17214967496693 48.330386951958005))".
-<https://arche.acdh.oeaw.ac.at/api/48508> n15:source "CLARIN";
-    a n16:Concept;
-    n16:definition "Öffentliche Ressourcen sind ohne Einschränkungen zugänglich."@de, "Public resources are accessible without any further restrictions."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67340>;
-    n16:prefLabel "öffentlich"@de, "public"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67340>;
+<https://arche.acdh.oeaw.ac.at/api/48508> n16:source "CLARIN";
+    a n17:Concept;
+    n17:definition "Öffentliche Ressourcen sind ohne Einschränkungen zugänglich."@de, "Public resources are accessible without any further restrictions."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67340>;
+    n17:prefLabel "öffentlich"@de, "public"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67340>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-07-31T12:16:21.054791"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48508>, n17:public;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48508>, n18:public;
     n2:hasTitle "öffentlich"@de, "public"@en;
     n2:hasUpdatedDate "2023-02-16T11:35:25.478661"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67340>.
-<https://arche.acdh.oeaw.ac.at/api/48512> a n16:Concept;
-    n16:definition "Eine visuelle Darstellung, die nicht Text ist. Digitalisierte oder digitale Bilder, Zeichnungen, Gemälde oder Fotografien."@de, "A visual representation other than text. Digitised or born digital images, drawings, paintings or photographs."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
-    n16:narrower <https://arche.acdh.oeaw.ac.at/api/139815>;
-    n16:prefLabel "Bild"@de, "Image"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
+<https://arche.acdh.oeaw.ac.at/api/48512> a n17:Concept;
+    n17:definition "Eine visuelle Darstellung, die nicht Text ist. Digitalisierte oder digitale Bilder, Zeichnungen, Gemälde oder Fotografien."@de, "A visual representation other than text. Digitised or born digital images, drawings, paintings or photographs."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
+    n17:narrower <https://arche.acdh.oeaw.ac.at/api/139815>;
+    n17:prefLabel "Bild"@de, "Image"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
     n2:createdBy "init";
     n2:hasAvailableDate "2021-07-26T17:56:38.143735"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier n18:StillImage, <https://arche.acdh.oeaw.ac.at/api/48512>, n19:image;
+    n2:hasIdentifier n19:StillImage, <https://arche.acdh.oeaw.ac.at/api/48512>, n20:image;
     n2:hasTitle "Bild"@de, "Image"@en;
     n2:hasUpdatedDate "2022-08-18T10:23:09.375847"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "zozlak";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67344>.
-<https://arche.acdh.oeaw.ac.at/api/48515> a n16:Concept;
-    n16:definition "An einem abgeschlossenen Objekt wird nicht mehr gearbeitet und die Ergebnisse können als final betrachtet werden."@de, "A complete object is not longer worked on and results are final."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67342>;
-    n16:prefLabel "abgeschlossen"@de, "completed"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67342>;
+<https://arche.acdh.oeaw.ac.at/api/48515> a n17:Concept;
+    n17:definition "An einem abgeschlossenen Objekt wird nicht mehr gearbeitet und die Ergebnisse können als final betrachtet werden."@de, "A complete object is not longer worked on and results are final."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67342>;
+    n17:prefLabel "abgeschlossen"@de, "completed"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67342>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-07-31T12:16:34.124493"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48515>, n20:completed;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48515>, n21:completed;
     n2:hasTitle "abgeschlossen"@de, "completed"@en;
     n2:hasUpdatedDate "2023-02-16T11:35:42.064148"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67342>.
-<https://arche.acdh.oeaw.ac.at/api/48516> a n16:Concept;
-    n16:broader <https://arche.acdh.oeaw.ac.at/api/50071>;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67346>;
-    n16:notation "601003";
-    n16:prefLabel "Archäologie"@de, "Archaeology"@en;
+<https://arche.acdh.oeaw.ac.at/api/48516> a n17:Concept;
+    n17:broader <https://arche.acdh.oeaw.ac.at/api/50071>;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67346>;
+    n17:notation "601003";
+    n17:prefLabel "Archäologie"@de, "Archaeology"@en;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-09-22T06:26:31.372546"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -240,136 +255,136 @@
     n2:hasUpdatedDate "2024-01-18T13:37:13.313946"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67346>.
-<https://arche.acdh.oeaw.ac.at/api/48519> n15:source "CLARIN";
-    a n16:Concept;
-    n16:definition "Beschränkter Zugang erfordert eine Registrierung und die Erlaubnis des Dateninhabers."@de, "Restricted access requires registration and an a permission from the owner."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67340>;
-    n16:prefLabel "eingeschränkt"@de, "restricted"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67340>;
+<https://arche.acdh.oeaw.ac.at/api/48519> n16:source "CLARIN";
+    a n17:Concept;
+    n17:definition "Beschränkter Zugang erfordert eine Registrierung und die Erlaubnis des Dateninhabers."@de, "Restricted access requires registration and an a permission from the owner."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67340>;
+    n17:prefLabel "eingeschränkt"@de, "restricted"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67340>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-07-31T12:16:22.702502"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48519>, n17:restricted;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48519>, n18:restricted;
     n2:hasTitle "eingeschränkt"@de, "restricted"@en;
     n2:hasUpdatedDate "2023-02-16T11:35:23.326738"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67340>.
-<https://arche.acdh.oeaw.ac.at/api/48521> a n16:Concept;
-    n16:definition "Daten, deren Kodierung einer definierten Struktur folgt, wie etwa Daten aus Messreihen."@de, "Data encoded in a defined structure. Could be data from measurements."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
-    n16:narrower <https://arche.acdh.oeaw.ac.at/api/105587>, <https://arche.acdh.oeaw.ac.at/api/139813>;
-    n16:prefLabel "Datenset"@de, "Dataset"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
+<https://arche.acdh.oeaw.ac.at/api/48521> a n17:Concept;
+    n17:definition "Daten, deren Kodierung einer definierten Struktur folgt, wie etwa Daten aus Messreihen."@de, "Data encoded in a defined structure. Could be data from measurements."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
+    n17:narrower <https://arche.acdh.oeaw.ac.at/api/105587>, <https://arche.acdh.oeaw.ac.at/api/139813>;
+    n17:prefLabel "Datenset"@de, "Dataset"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
     n2:createdBy "init";
     n2:hasAvailableDate "2021-07-26T17:56:36.779094"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier n18:Dataset, <https://arche.acdh.oeaw.ac.at/api/48521>, n19:dataset;
+    n2:hasIdentifier n19:Dataset, <https://arche.acdh.oeaw.ac.at/api/48521>, n20:dataset;
     n2:hasTitle "Datenset"@de, "Dataset"@en;
     n2:hasUpdatedDate "2022-08-18T10:23:11.628168"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "zozlak";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67344>.
-<https://arche.acdh.oeaw.ac.at/api/48522> a n16:Concept;
-    n16:definition "Eine Ressource, die hauptsächlich aus Wörtern zum Lesen besteht."@de, "A resource consisting primarily of words for reading."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
-    n16:narrower <https://arche.acdh.oeaw.ac.at/api/48511>;
-    n16:prefLabel "Text"@de, "Text"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
+<https://arche.acdh.oeaw.ac.at/api/48522> a n17:Concept;
+    n17:definition "Eine Ressource, die hauptsächlich aus Wörtern zum Lesen besteht."@de, "A resource consisting primarily of words for reading."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
+    n17:narrower <https://arche.acdh.oeaw.ac.at/api/48511>;
+    n17:prefLabel "Text"@de, "Text"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
     n2:createdBy "init";
     n2:hasAvailableDate "2021-07-26T17:56:44.418906"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier n18:Text, <https://arche.acdh.oeaw.ac.at/api/48522>, n19:text;
+    n2:hasIdentifier n19:Text, <https://arche.acdh.oeaw.ac.at/api/48522>, n20:text;
     n2:hasTitle "Text"@und;
     n2:hasUpdatedDate "2022-08-18T10:23:11.301426"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "zozlak";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67344>.
-<https://arche.acdh.oeaw.ac.at/api/48527> a n16:Concept;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67345>;
-    n16:prefLabel "Englisch"@de, "English"@en, "anglais"@fr;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67345>;
+<https://arche.acdh.oeaw.ac.at/api/48527> a n17:Concept;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67345>;
+    n17:prefLabel "Englisch"@de, "English"@en, "anglais"@fr;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67345>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-07-31T13:58:40.217965"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48527>, n22:en, n23:eng;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48527>, n23:en, n24:eng;
     n2:hasTitle "Englisch"@de, "English"@en, "anglais"@fr;
     n2:hasUpdatedDate "2023-02-16T17:46:19.612661"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67345>.
-<https://arche.acdh.oeaw.ac.at/api/48529> a n16:Concept;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67345>;
-    n16:prefLabel "Deutsch"@de, "German"@en, "allemand"@fr;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67345>;
+<https://arche.acdh.oeaw.ac.at/api/48529> a n17:Concept;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67345>;
+    n17:prefLabel "Deutsch"@de, "German"@en, "allemand"@fr;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67345>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-07-31T13:58:39.428401"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48529>, n22:de, n23:deu;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48529>, n23:de, n24:deu;
     n2:hasTitle "Deutsch"@de, "German"@en, "allemand"@fr;
     n2:hasUpdatedDate "2023-02-16T17:46:19.419749"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67345>.
-<https://arche.acdh.oeaw.ac.at/api/48534> n24:created "2020-02-29T15:06:19.522758+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n24:modified "2024-04-15T10:08:53.318304+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    a n16:Concept;
-    n16:altLabel "Namensnennung 4.0 International (CC BY 4.0)"@de, "Attribution 4.0 International (CC BY 4.0)"@en;
-    n16:definition "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67343>;
-    n16:prefLabel "CC BY 4.0"@de, "CC BY 4.0"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67343>;
+<https://arche.acdh.oeaw.ac.at/api/48534> n25:created "2020-02-29T15:06:19.522758+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n25:modified "2024-04-15T10:08:53.318304+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    a n17:Concept;
+    n17:altLabel "Namensnennung 4.0 International (CC BY 4.0)"@de, "Attribution 4.0 International (CC BY 4.0)"@en;
+    n17:definition "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67343>;
+    n17:prefLabel "CC BY 4.0"@de, "CC BY 4.0"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67343>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-09-30T11:06:20.479556"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48534>, <https://creativecommons.org/licenses/by/4.0/>, n26:cc-by-4-0;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48534>, <https://creativecommons.org/licenses/by/4.0/>, n27:cc-by-4-0;
     n2:hasTitle "CC BY 4.0"@de, "CC BY 4.0"@en;
     n2:hasUpdatedDate "2024-04-24T06:22:28.946001"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67343>.
-<https://arche.acdh.oeaw.ac.at/api/48551> a n16:Concept;
-    n16:definition "Eine Sammlung von Ressourcen unterschiedlicher Typen. Wenn die Sammlung aus Ressourcen eines einzigen Typs besteht, sollte dieser Ressourcentyp verwendet werden."@de, "An aggregation of resources of various types. If a collection consists of a single type, use the single type to describe it."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
-    n16:narrower <https://arche.acdh.oeaw.ac.at/api/139811>;
-    n16:prefLabel "Datensammlung"@de, "Collection"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
+<https://arche.acdh.oeaw.ac.at/api/48551> a n17:Concept;
+    n17:definition "Eine Sammlung von Ressourcen unterschiedlicher Typen. Wenn die Sammlung aus Ressourcen eines einzigen Typs besteht, sollte dieser Ressourcentyp verwendet werden."@de, "An aggregation of resources of various types. If a collection consists of a single type, use the single type to describe it."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67344>;
+    n17:narrower <https://arche.acdh.oeaw.ac.at/api/139811>;
+    n17:prefLabel "Datensammlung"@de, "Collection"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67344>;
     n2:createdBy "init";
     n2:hasAvailableDate "2021-07-26T17:56:35.279203"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48551>, n19:collection;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48551>, n20:collection;
     n2:hasTitle "Datensammlung"@de, "Collection"@en;
     n2:hasUpdatedDate "2022-08-18T10:23:07.713742"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "zozlak";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67344>.
-<https://arche.acdh.oeaw.ac.at/api/48910> n24:created "2020-02-29T15:29:01.168314+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n24:modified "2024-04-15T10:08:53.992419+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    a n16:Concept;
-    n16:altLabel "Urheberrechtsschutz"@de, "In Copyright"@en;
-    n16:definition "Dieser Rechtehinweis kann für Objekte verwendet werden, die urheberrechtlich geschützt sind. Die Benutzung des Rechtehinweises setzt voraus, dass die Institution, die das Objekt zugänglich macht, festgestellt hat, dass dieses urheberrechtlich geschützt ist, und sie entweder selbst Rechteinhaber ist, die Erlaubnis der/des Rechteinhaber(s) erhalten hat deren/dessen Werk(e) zugänglich zu machen, oder aber das Objekt berechtigterweise auf der Grundlage einer urheberrechtlichen Ausnahme- oder Schrankenbestimmung (einschließlich Fair Use) zugänglich macht."@de, "This Rights Statement can be used for an Item that is in copyright. Using this statement implies that the organization making this Item available has determined that the Item is in copyright and either is the rights-holder, has obtained permission from the rights-holder(s) to make their Work(s) available, or makes the Item available under an exception or limitation to copyright (including Fair Use) that entitles it to make the Item available."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67343>;
-    n16:prefLabel "InC"@de, "InC"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67343>;
+<https://arche.acdh.oeaw.ac.at/api/48910> n25:created "2020-02-29T15:29:01.168314+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n25:modified "2024-04-15T10:08:53.992419+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    a n17:Concept;
+    n17:altLabel "Urheberrechtsschutz"@de, "In Copyright"@en;
+    n17:definition "Dieser Rechtehinweis kann für Objekte verwendet werden, die urheberrechtlich geschützt sind. Die Benutzung des Rechtehinweises setzt voraus, dass die Institution, die das Objekt zugänglich macht, festgestellt hat, dass dieses urheberrechtlich geschützt ist, und sie entweder selbst Rechteinhaber ist, die Erlaubnis der/des Rechteinhaber(s) erhalten hat deren/dessen Werk(e) zugänglich zu machen, oder aber das Objekt berechtigterweise auf der Grundlage einer urheberrechtlichen Ausnahme- oder Schrankenbestimmung (einschließlich Fair Use) zugänglich macht."@de, "This Rights Statement can be used for an Item that is in copyright. Using this statement implies that the organization making this Item available has determined that the Item is in copyright and either is the rights-holder, has obtained permission from the rights-holder(s) to make their Work(s) available, or makes the Item available under an exception or limitation to copyright (including Fair Use) that entitles it to make the Item available."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67343>;
+    n17:prefLabel "InC"@de, "InC"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67343>;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-09-30T11:06:09.549006"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <http://rightsstatements.org/vocab/InC/1.0/>, <https://arche.acdh.oeaw.ac.at/api/48910>, n26:inc;
+    n2:hasIdentifier <http://rightsstatements.org/vocab/InC/1.0/>, <https://arche.acdh.oeaw.ac.at/api/48910>, n27:inc;
     n2:hasTitle "InC"@de, "InC"@en;
     n2:hasUpdatedDate "2024-04-24T06:22:31.620135"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67343>.
-<https://arche.acdh.oeaw.ac.at/api/50310> n15:creator "Martina Trognitz";
-    n24:created "2020-02-06T13:58:40.992257+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n24:modified "2020-02-07T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    a n16:Concept;
-    n16:definition "Kennzeichnet jene Sammlungen und Ressourchen in ARCHE, die durch ARIADNEplus (https://ariadne-infrastructure.eu) aggregiert werden sollen.\r\nKriterien für die Aufnahme: Bezug zur Archäologie, z.B. hasRelatedDiscipline ist 6010 oder eine der Subkategorien in ÖFOS 2012 (https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/6010)."@de, "Denotes any Collections or Resources in ARCHE that should be harvested by ARIADNEplus (https://ariadne-infrastructure.eu).\r\nCriteria for inclusion: relation to archaeology, e.g. hasRelatedDiscipline is 6010 or one of subcategories in ÖFOS 2012 (https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/6010)."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67341>;
-    n16:notation "ariadne";
-    n16:prefLabel "ARIADNE"@de, "ARIADNE"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67341>;
+<https://arche.acdh.oeaw.ac.at/api/50310> n16:creator "Martina Trognitz";
+    n25:created "2020-02-06T13:58:40.992257+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n25:modified "2020-02-07T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    a n17:Concept;
+    n17:definition "Kennzeichnet jene Sammlungen und Ressourchen in ARCHE, die durch ARIADNEplus (https://ariadne-infrastructure.eu) aggregiert werden sollen.\r\nKriterien für die Aufnahme: Bezug zur Archäologie, z.B. hasRelatedDiscipline ist 6010 oder eine der Subkategorien in ÖFOS 2012 (https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/6010)."@de, "Denotes any Collections or Resources in ARCHE that should be harvested by ARIADNEplus (https://ariadne-infrastructure.eu).\r\nCriteria for inclusion: relation to archaeology, e.g. hasRelatedDiscipline is 6010 or one of subcategories in ÖFOS 2012 (https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/6010)."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67341>;
+    n17:notation "ariadne";
+    n17:prefLabel "ARIADNE"@de, "ARIADNE"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67341>;
     n2:createdBy "init";
     n2:hasAvailableDate "2022-05-20T05:59:47.962627"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/50310>, n28:ariadne;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/50310>, n29:ariadne;
     n2:hasTitle "ARIADNE"@und;
     n2:hasUpdatedDate "2023-02-16T17:46:40.104565"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/67341>.
-<https://arche.acdh.oeaw.ac.at/api/66154> a n16:Concept;
-    n16:broader <https://arche.acdh.oeaw.ac.at/api/50071>;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67346>;
-    n16:notation "601024";
-    n16:prefLabel "Archäologische Prospektion"@de, "Archaeological prospection"@en;
+<https://arche.acdh.oeaw.ac.at/api/66154> a n17:Concept;
+    n17:broader <https://arche.acdh.oeaw.ac.at/api/50071>;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67346>;
+    n17:notation "601024";
+    n17:prefLabel "Archäologische Prospektion"@de, "Archaeological prospection"@en;
     n2:aclRead "public";
     n2:createdBy "init";
     n2:hasAvailableDate "2020-09-22T06:26:16.367067"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -438,9 +453,11 @@
     n2:aclWrite "pandorfer";
     n2:createdBy "pandorfer";
     n2:hasAvailableDate "2021-02-03T10:34:01.879249"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/94580>, <https://id.acdh.oeaw.ac.at/daacda/places/95>, <https://sws.geonames.org/2778067/>;
+    n2:hasCountry "Österreich"@de, "Austria"@en;
+    n2:hasIdentifier n10:n79064653, <http://viaf.org/viaf/160255975>, n7:Q13298, <https://arche.acdh.oeaw.ac.at/api/94580>, <https://d-nb.info/gnd/2028261-8>, <https://d-nb.info/gnd/4021912-4>, <https://id.acdh.oeaw.ac.at/daacda/places/95>, n3:graz, n13:graz, <https://sws.geonames.org/2778058/>, <https://sws.geonames.org/2778067/>, <https://sws.geonames.org/7871499/>;
     n2:hasLatitude "47.06667"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "15.45"^^<http://www.w3.org/2001/XMLSchema#float>;
+    n2:hasNonLinkedIdentifier "Legalkraus-Id: pmb860";
     n2:hasTitle "Graz"@de, "Graz"@und;
     n2:hasUpdatedDate "2026-06-30T15:40:08.841397"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "uczeitschner";
@@ -562,7 +579,7 @@
     n2:aclWrite "pandorfer";
     n2:createdBy "pandorfer";
     n2:hasAvailableDate "2022-04-19T18:09:56.860099"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/180744>, <https://sws.geonames.org/2774321/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/180744>, <https://id.acdh.oeaw.ac.at/daacda/places/63>, <https://sws.geonames.org/2774321/>, <https://sws.geonames.org/2774326/>;
     n2:hasLatitude "46.63333"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "14.3"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Klagenfurt"@und;
@@ -606,18 +623,18 @@
     n2:hasUpdatedDate "2025-03-03T18:46:42.847914"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:hasWKT "POINT(13.84806 44.86833)".
-<https://arche.acdh.oeaw.ac.at/api/215203> n15:creator "Mateusz Żółtak";
-    n24:created "2022-05-19T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n24:modified "2022-05-19T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    a n16:Concept;
-    n16:definition "Denotes any Collections or Resources in ARCHE that should be harvested by the OpenAIRE (https://www.openaire.eu/).\r\nCriteria for inclusion: all top collections."@en;
-    n16:inScheme <https://arche.acdh.oeaw.ac.at/api/67341>;
-    n16:notation "openaire_data";
-    n16:prefLabel "OpenAIRE"@de, "OpenAIRE"@en;
-    n16:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67341>;
+<https://arche.acdh.oeaw.ac.at/api/215203> n16:creator "Mateusz Żółtak";
+    n25:created "2022-05-19T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n25:modified "2022-05-19T10:55:59.502484+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    a n17:Concept;
+    n17:definition "Denotes any Collections or Resources in ARCHE that should be harvested by the OpenAIRE (https://www.openaire.eu/).\r\nCriteria for inclusion: all top collections."@en;
+    n17:inScheme <https://arche.acdh.oeaw.ac.at/api/67341>;
+    n17:notation "openaire_data";
+    n17:prefLabel "OpenAIRE"@de, "OpenAIRE"@en;
+    n17:topConceptOf <https://arche.acdh.oeaw.ac.at/api/67341>;
     n2:createdBy "init";
     n2:hasAvailableDate "2022-05-20T05:59:48.542914"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/215203>, n28:openaire_data;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/215203>, n29:openaire_data;
     n2:hasTitle "OpenAIRE"@und;
     n2:hasUpdatedDate "2023-02-16T17:46:40.073303"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
@@ -646,7 +663,7 @@
     n2:aclWrite "pandorfer";
     n2:createdBy "pandorfer";
     n2:hasAvailableDate "2024-09-20T08:06:52+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/561162>, <https://sws.geonames.org/7871492/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/561162>, <https://id.acdh.oeaw.ac.at/daacda/places/750>, <https://sws.geonames.org/2762372/>, <https://sws.geonames.org/7871492/>;
     n2:hasLatitude "46.61254"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "13.8529"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Villach"@und;
@@ -677,25 +694,12 @@
     n2:hasUpdatedDate "2025-03-03T18:46:05.097839"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:hasWKT "POINT(14.58611 46.60472)".
-<https://arche.acdh.oeaw.ac.at/api/1056240> a n2:Place;
-    n2:aclRead "fernando";
-    n2:aclWrite "fernando";
-    n2:createdBy "fernando";
-    n2:hasAvailableDate "2024-11-26T09:26:51+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasCountry "Slowenien"@de, "Slovenia"@en;
-    n2:hasIdentifier n10:n50052801, <http://viaf.org/viaf/155815338>, <http://vocab.getty.edu/tgn/7012986>, n7:Q437, <https://arche.acdh.oeaw.ac.at/api/1056240>, <https://d-nb.info/gnd/1028469-2>, <https://d-nb.info/gnd/4073953-3>, n3:ljubljana, n14:ljubljana, <https://sws.geonames.org/3239318/>;
-    n2:hasLatitude "46.05918"^^<http://www.w3.org/2001/XMLSchema#float>;
-    n2:hasLongitude "14.50916"^^<http://www.w3.org/2001/XMLSchema#float>;
-    n2:hasTitle "Ljubljana"@de, "Ljubljana"@en, "Ljubljana"@und;
-    n2:hasUpdatedDate "2025-03-03T18:46:33.744031"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasUpdatedRole "sstuhec";
-    n2:hasWKT "POINT(14.50916 46.05918)".
 <https://arche.acdh.oeaw.ac.at/api/1449105> a n2:Place;
     n2:aclRead "pandorfer";
     n2:aclWrite "pandorfer";
     n2:createdBy "pandorfer";
     n2:hasAvailableDate "2025-01-13T12:55:10+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1449105>, <https://sws.geonames.org/7872050/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1449105>, <https://id.acdh.oeaw.ac.at/daacda/places/123>, <https://sws.geonames.org/2780048/>, <https://sws.geonames.org/7872050/>;
     n2:hasLatitude "48.21415"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "14.47783"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Enns"@und;
@@ -1757,7 +1761,7 @@
     n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757064>, <https://sws.geonames.org/2777236/>;
     n2:hasLatitude "46.60639"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "14.52361"^^<http://www.w3.org/2001/XMLSchema#float>;
-    n2:hasTitle "Gurk"@und;
+    n2:hasTitle "Gurk (stream)"@und;
     n2:hasUpdatedDate "2025-03-03T18:46:04.357815"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:hasWKT "POINT(14.52361 46.60639)".
@@ -3114,7 +3118,7 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:08+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757339>, <https://sws.geonames.org/3192240/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757339>, <https://id.acdh.oeaw.ac.at/daacda/places/926>, <https://sws.geonames.org/3192240/>, <https://sws.geonames.org/3192241/>;
     n2:hasLatitude "46.43417"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "15.87667"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Ptuj"@und;
@@ -3162,7 +3166,7 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:08+0000"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757343>, <https://sws.geonames.org/6538383/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757343>, <https://sws.geonames.org/3170297/>, <https://sws.geonames.org/6538383/>;
     n2:hasLatitude "46.50783"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "13.30612"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Pontebba"@und;
@@ -3210,7 +3214,7 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:12.083190"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757362>, <https://sws.geonames.org/7872406/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757362>, <https://id.acdh.oeaw.ac.at/daacda/places/117>, <https://sws.geonames.org/2772753/>, <https://sws.geonames.org/7872406/>;
     n2:hasLatitude "46.7843"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "15.54887"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Leibnitz"@und;
@@ -3282,9 +3286,11 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:34.806470"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757368>, <https://sws.geonames.org/6547383/>;
+    n2:hasBinaryUpdatedRole "admin";
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757368>, <https://id.acdh.oeaw.ac.at/maechtekongresse/place/loc.9>, <https://sws.geonames.org/2950159/>, <https://sws.geonames.org/6547383/>;
     n2:hasLatitude "52.5233"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "13.41377"^^<http://www.w3.org/2001/XMLSchema#float>;
+    n2:hasNonLinkedIdentifier "Legalkraus-Id: pmb168";
     n2:hasTitle "Berlin"@und;
     n2:hasUpdatedDate "2025-03-03T18:46:32.246144"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
@@ -3450,7 +3456,7 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:40.832414"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757407>, <https://sws.geonames.org/7873678/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757407>, <https://id.acdh.oeaw.ac.at/daacda/places/424>, <https://sws.geonames.org/2772505/>, <https://sws.geonames.org/7873678/>;
     n2:hasLatitude "46.82803"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "12.75184"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Lienz"@und;
@@ -3642,7 +3648,7 @@
     n2:aclWrite "sstuhec";
     n2:createdBy "sstuhec";
     n2:hasAvailableDate "2025-02-14T22:04:42.614046"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
-    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757423>, <https://sws.geonames.org/7873584/>;
+    n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/1757423>, <https://id.acdh.oeaw.ac.at/daacda/places/522>, <https://sws.geonames.org/2775307/>, <https://sws.geonames.org/7873584/>;
     n2:hasLatitude "47.26842"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasLongitude "10.66977"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasTitle "Imst"@und;
@@ -3821,7 +3827,7 @@
     n2:hasTemporalCoverage "Frühmittelalter"@de, "Römische Antike (römisches Noricum)"@de, "Early Middle Ages"@en, "Roman antiquity (Roman Noricum)"@en;
     n2:hasTemporalCoverageIdentifier "http://n2t.net/ark:/99152/p0cwwznw938 "^^<http://www.w3.org/2001/XMLSchema#anyURI>, "http://n2t.net/ark:/99152/p0s84tq9w22"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:hasTitle "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology"@de, "IUENNA - openIng the soUthErn jauNtal as a micro-regioN for future Archaeology"@en;
-    n2:hasUpdatedDate "2025-03-05T12:15:28.000065+01"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-02T17:51:41.068"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "zozlak";
     n2:hasUrl "https://iuenna.hypotheses.org"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:hasVersion "1.0.0".
@@ -9551,7 +9557,7 @@
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>, <https://arche.acdh.oeaw.ac.at/api/21003>;
     n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1756735>;
     n2:hasTitle "Retrodigitalisat-Collection (RET)"@de;
-    n2:hasUpdatedDate "2025-03-05T09:48:01.679675"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-02T17:51:41.068"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/1792170>.
 <https://arche.acdh.oeaw.ac.at/api/1792573> a n2:Collection;
@@ -13318,7 +13324,7 @@
     n2:hasPid "https://hdl.handle.net/21.11115/0000-0016-2D7E-A"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
     n2:hasTitle "Hemmaberg: Tafelentwürfe für Publikation \"F. Glaser, Das frühchristliche Pilgerheiligtum auf dem Hemmaberg (1991)\""@de;
-    n2:hasUpdatedDate "2025-03-05T09:44:08.840219"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-02T17:51:41.068"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/1792572>.
 <https://arche.acdh.oeaw.ac.at/api/1792739> a n2:Collection;
@@ -13423,7 +13429,7 @@
     n2:hasPid "https://hdl.handle.net/21.11115/0000-0016-2BFC-D"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
     n2:hasTitle "Nachlass Dr. Winkler"@de;
-    n2:hasUpdatedDate "2025-03-05T09:43:27.399521"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-02T17:51:41.068"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
     n2:isPartOf <https://arche.acdh.oeaw.ac.at/api/1792731>.
 <https://arche.acdh.oeaw.ac.at/api/1792753> a n2:Collection;
@@ -695368,7 +695374,7 @@
     n2:hasPixelWidth "6357"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "49023998"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6709_01.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:40:49.608766"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -695405,7 +695411,7 @@
     n2:hasPixelWidth "6477"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "50129494"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6709_02.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:40:54.594345"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -695590,7 +695596,7 @@
     n2:hasPixelWidth "6838"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "130739192"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6712.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:41:34.537280"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -695701,7 +695707,7 @@
     n2:hasPixelWidth "6622"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "54959532"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6715.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:41:54.185676"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -695775,7 +695781,7 @@
     n2:hasPixelWidth "6766"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "71719980"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6717.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:42:06.118621"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696108,7 +696114,7 @@
     n2:hasPixelWidth "3587"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "27924110"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Geschäftsbriefe"@de, "Reprografien"@de;
     n2:hasTitle "6722_01.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:00.210500"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696145,7 +696151,7 @@
     n2:hasPixelWidth "7079"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "54784848"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Geschäftsbriefe"@de, "Reprografien"@de;
     n2:hasTitle "6722_02.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:04.873670"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696367,7 +696373,7 @@
     n2:hasPixelWidth "3419"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "33928042"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Geschäftsbriefe"@de, "Reprografien"@de;
     n2:hasTitle "6725_01.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:23.682225"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696404,7 +696410,7 @@
     n2:hasPixelWidth "3515"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "33801780"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Geschäftsbriefe"@de, "Reprografien"@de;
     n2:hasTitle "6725_02.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:27.273460"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696515,7 +696521,7 @@
     n2:hasPixelWidth "5056"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "63062636"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6728_01.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:43.900819"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696552,7 +696558,7 @@
     n2:hasPixelWidth "6670"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "123197300"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6728_02.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:46.194714"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -696589,7 +696595,7 @@
     n2:hasPixelWidth "5032"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "64390770"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6728_03.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:43:51.681759"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -698143,7 +698149,7 @@
     n2:hasPixelWidth "9144"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "82838368"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6733.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:49:00.603481"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -698291,7 +698297,7 @@
     n2:hasPixelWidth "2648"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "21132242"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6735.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:50:22.193435"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -698439,7 +698445,7 @@
     n2:hasPixelWidth "6886"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "132296102"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6738.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:50:37.825467"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -698476,7 +698482,7 @@
     n2:hasPixelWidth "3636"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "34849532"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6739_01.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:50:41.202417"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -698513,7 +698519,7 @@
     n2:hasPixelWidth "3708"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "36172740"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6739_02.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:50:44.584440"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -699253,7 +699259,7 @@
     n2:hasPixelWidth "6766"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "128973302"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6748.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:52:22.304063"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
@@ -700252,7 +700258,7 @@
     n2:hasPixelWidth "1974"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRawBinarySize "4677002"^^<http://www.w3.org/2001/XMLSchema#positiveInteger>;
     n2:hasRightsHolder <https://arche.acdh.oeaw.ac.at/api/1756728>;
-    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/1056240>;
+    n2:hasSpatialCoverage <https://arche.acdh.oeaw.ac.at/api/22065>;
     n2:hasSubject "Reprografien"@de, "Zeitungsartikel"@de;
     n2:hasTitle "6761.tif"@und;
     n2:hasUpdatedDate "2025-03-04T22:54:04.054802"^^<http://www.w3.org/2001/XMLSchema#dateTime>;

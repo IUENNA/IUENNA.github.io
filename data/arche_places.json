@@ -13,6 +13,18 @@
     "geonames": "https://sws.geonames.org/2782113/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/3013"
   },
+  "22065": {
+    "id": "place_22065",
+    "arche_id": "22065",
+    "type": "Place",
+    "title": "Laibach",
+    "alternative_titles": [],
+    "latitude": 46.05108,
+    "longitude": 14.50513,
+    "wkt": "POINT(14.50513 46.05108)",
+    "geonames": "https://sws.geonames.org/3196359/",
+    "uri": "https://arche.acdh.oeaw.ac.at/api/22065"
+  },
   "24299": {
     "id": "place_24299",
     "arche_id": "24299",
@@ -48,7 +60,7 @@
     "latitude": 47.06667,
     "longitude": 15.45,
     "wkt": "POINT(15.45 47.06667)",
-    "geonames": "https://sws.geonames.org/2778067/",
+    "geonames": "https://sws.geonames.org/2778058/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/94580"
   },
   "95647": {
@@ -204,7 +216,7 @@
     "latitude": 46.61254,
     "longitude": 13.8529,
     "wkt": "POINT(13.8529 46.61254)",
-    "geonames": "https://sws.geonames.org/7871492/",
+    "geonames": "https://sws.geonames.org/2762372/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/561162"
   },
   "563528": {
@@ -231,18 +243,6 @@
     "geonames": "https://sws.geonames.org/2773923/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/565454"
   },
-  "1056240": {
-    "id": "place_1056240",
-    "arche_id": "1056240",
-    "type": "Place",
-    "title": "Ljubljana",
-    "alternative_titles": [],
-    "latitude": 46.05918,
-    "longitude": 14.50916,
-    "wkt": "POINT(14.50916 46.05918)",
-    "geonames": "https://sws.geonames.org/3239318/",
-    "uri": "https://arche.acdh.oeaw.ac.at/api/1056240"
-  },
   "1449105": {
     "id": "place_1449105",
     "arche_id": "1449105",
@@ -252,7 +252,7 @@
     "latitude": 48.21415,
     "longitude": 14.47783,
     "wkt": "POINT(14.47783 48.21415)",
-    "geonames": "https://sws.geonames.org/7872050/",
+    "geonames": "https://sws.geonames.org/2780048/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1449105"
   },
   "1756731": {
@@ -691,7 +691,7 @@
     "id": "place_1757064",
     "arche_id": "1757064",
     "type": "Place",
-    "title": "Gurk",
+    "title": "Gurk (stream)",
     "alternative_titles": [],
     "latitude": 46.60639,
     "longitude": 14.52361,
@@ -2088,7 +2088,7 @@
     "latitude": 46.50783,
     "longitude": 13.30612,
     "wkt": "POINT(13.30612 46.50783)",
-    "geonames": "https://sws.geonames.org/6538383/",
+    "geonames": "https://sws.geonames.org/3170297/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1757343"
   },
   "1757344": {
@@ -2136,7 +2136,7 @@
     "latitude": 46.7843,
     "longitude": 15.54887,
     "wkt": "POINT(15.54887 46.7843)",
-    "geonames": "https://sws.geonames.org/7872406/",
+    "geonames": "https://sws.geonames.org/2772753/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1757362"
   },
   "1757363": {
@@ -2208,7 +2208,7 @@
     "latitude": 52.5233,
     "longitude": 13.41377,
     "wkt": "POINT(13.41377 52.5233)",
-    "geonames": "https://sws.geonames.org/6547383/",
+    "geonames": "https://sws.geonames.org/2950159/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1757368"
   },
   "1757372": {
@@ -2376,7 +2376,7 @@
     "latitude": 46.82803,
     "longitude": 12.75184,
     "wkt": "POINT(12.75184 46.82803)",
-    "geonames": "https://sws.geonames.org/7873678/",
+    "geonames": "https://sws.geonames.org/2772505/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1757407"
   },
   "1757408": {
@@ -2568,7 +2568,7 @@
     "latitude": 47.26842,
     "longitude": 10.66977,
     "wkt": "POINT(10.66977 47.26842)",
-    "geonames": "https://sws.geonames.org/7873584/",
+    "geonames": "https://sws.geonames.org/2775307/",
     "uri": "https://arche.acdh.oeaw.ac.at/api/1757423"
   },
   "1757425": {

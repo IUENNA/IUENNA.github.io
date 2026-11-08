@@ -8355,6 +8355,17 @@
       "color": "#2D6A4F"
     },
     {
+      "id": "plc_22065",
+      "label": "Laibach",
+      "type": "place",
+      "type_label": "Fundort / Ort",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#2D6A4F"
+    },
+    {
       "id": "plc_24299",
       "label": "Deutschland",
       "type": "place",
@@ -8544,17 +8555,6 @@
     {
       "id": "plc_565454",
       "label": "Klopeiner See",
-      "type": "place",
-      "type_label": "Fundort / Ort",
-      "description": "",
-      "items": null,
-      "size": null,
-      "arche_url": "",
-      "color": "#2D6A4F"
-    },
-    {
-      "id": "plc_1056240",
-      "label": "Ljubljana",
       "type": "place",
       "type_label": "Fundort / Ort",
       "description": "",
@@ -8972,7 +8972,7 @@
     },
     {
       "id": "plc_1757064",
-      "label": "Gurk",
+      "label": "Gurk (stream)",
       "type": "place",
       "type_label": "Fundort / Ort",
       "description": "",
@@ -234779,6 +234779,17 @@
       "color": "#2B7A78"
     },
     {
+      "id": "lod_geo_3196359",
+      "label": "GeoNames: Laibach",
+      "type": "authority",
+      "type_label": "Normdaten / GeoNames",
+      "description": "",
+      "items": null,
+      "size": null,
+      "arche_url": "",
+      "color": "#2B7A78"
+    },
+    {
       "id": "lod_geo_2921044",
       "label": "GeoNames: Deutschland",
       "type": "authority",
@@ -234801,7 +234812,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_2778067",
+      "id": "lod_geo_2778058",
       "label": "GeoNames: Graz",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -234944,7 +234955,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_7871492",
+      "id": "lod_geo_2762372",
       "label": "GeoNames: Villach",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -234977,18 +234988,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_3239318",
-      "label": "GeoNames: Ljubljana",
-      "type": "authority",
-      "type_label": "Normdaten / GeoNames",
-      "description": "",
-      "items": null,
-      "size": null,
-      "arche_url": "",
-      "color": "#2B7A78"
-    },
-    {
-      "id": "lod_geo_7872050",
+      "id": "lod_geo_2780048",
       "label": "GeoNames: Enns",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -235396,7 +235396,7 @@
     },
     {
       "id": "lod_geo_2777236",
-      "label": "GeoNames: Gurk",
+      "label": "GeoNames: Gurk (stream)",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
       "description": "",
@@ -236671,7 +236671,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_6538383",
+      "id": "lod_geo_3170297",
       "label": "GeoNames: Pontebba",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -236715,7 +236715,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_7872406",
+      "id": "lod_geo_2772753",
       "label": "GeoNames: Leibnitz",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -236781,7 +236781,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_6547383",
+      "id": "lod_geo_2950159",
       "label": "GeoNames: Berlin",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -236935,7 +236935,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_7873678",
+      "id": "lod_geo_2772505",
       "label": "GeoNames: Lienz",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -237111,7 +237111,7 @@
       "color": "#2B7A78"
     },
     {
-      "id": "lod_geo_7873584",
+      "id": "lod_geo_2775307",
       "label": "GeoNames: Imst",
       "type": "authority",
       "type_label": "Normdaten / GeoNames",
@@ -237588,7 +237588,7 @@
     "canonical_graph": "data/arche_graph.json",
     "graph_audit": "data/arche_graph_audit.json",
     "audit_status": "pass",
-    "audit_generated_at": "2026-11-01T08:17:22Z",
+    "audit_generated_at": "2026-11-08T08:10:43Z",
     "graph_nodes": 21332,
     "graph_edges": 282116,
     "arche_backed_graph_entities": 21066,
