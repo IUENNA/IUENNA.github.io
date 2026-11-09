@@ -86,7 +86,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "ARCHE"@en;
-    n2:hasUpdatedDate "2026-10-28T08:26:30.885609"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-09T08:42:07.135778"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:hasUrl "https://arche.acdh.oeaw.ac.at/browser/"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/48505>.
@@ -118,7 +118,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Österreichische Akademie der Wissenschaften"@de, "Austrian Academy of Sciences"@en;
-    n2:hasUpdatedDate "2026-10-28T08:26:30.001731"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-09T08:42:06.702161"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init".
 <https://arche.acdh.oeaw.ac.at/api/22065> a n2:Place;
     n2:aclRead "public";
@@ -184,7 +184,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Österreichisches Archäologisches Institut | Österreichische Akademie der Wissenschaften"@de, "Austrian Archaeological Institute | Austrian Academy of Sciences"@en;
-    n2:hasUpdatedDate "2026-10-28T08:26:30.426878"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-09T08:42:07.093371"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>.
 <https://arche.acdh.oeaw.ac.at/api/46850> a n2:Place;
@@ -199,7 +199,7 @@
     n2:hasLongitude "16.37169"^^<http://www.w3.org/2001/XMLSchema#float>;
     n2:hasNonLinkedIdentifier "Legalkraus-Id: pmb50";
     n2:hasTitle "Wien"@de, "Vienna"@en, "Wien"@und;
-    n2:hasUpdatedDate "2026-10-28T08:26:30.042274"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-09T08:42:06.572009"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:hasWKT "POLYGON((16.17214967496693 48.330386951958005,16.596496598795056 48.330386951958005,16.596496598795056 48.101623224512316,16.17214967496693 48.101623224512316,16.17214967496693 48.330386951958005))".
 <https://arche.acdh.oeaw.ac.at/api/48508> n16:source "CLARIN";
@@ -410,7 +410,7 @@
     n2:hasPostcode "1010";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:hasTitle "Seta Štuhec"@und;
-    n2:hasUpdatedDate "2026-10-28T08:26:31.287490"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    n2:hasUpdatedDate "2026-11-09T08:42:07.891623"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "init";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/48505>.
 <https://arche.acdh.oeaw.ac.at/api/75187> a n2:Person;
@@ -755000,11 +755000,11 @@
     n2:hasUrl "https://www.oeaw.ac.at/acdh";
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/21003>;
     n2:hasIdentifier <https://arche.acdh.oeaw.ac.at/api/48505>, <https://d-nb.info/gnd/1123037736>, <https://id.acdh.oeaw.ac.at/acdh>, <http://viaf.org/viaf/6515148451584915970000>, <https://ror.org/054w9k714>, <https://id.acdh.oeaw.ac.at/acdh-oeaw>;
+    n2:hasUpdatedDate "2026-11-09T08:42:06.613759"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:createdBy "admin";
     n2:hasRegion "Wien"@de, "Vienna"@en;
     n2:aclRead "public";
     
-    n2:hasUpdatedDate "2026-10-28T08:26:30.033354"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasCountry "Austria"@en, "Österreich"@de;
     n2:hasBinaryUpdatedRole "admin";
     n2:hasPostcode "1010";
