@@ -179,7 +179,7 @@
                 <pre class="code-content"><code>Using the IUENNA Remote MCP server:
 1. Search the corpus for primary excavation documentation (field diaries, plans, photos) regarding the Hemmaberg double churches ("Doppelkirchen").
 2. Retrieve the archaeological findspot metadata for "Hemmaberg".
-3. Return the persistent ARCHE PIDs, dates, creators (e.g. Franz Glaser), and direct download URLs for the top 5 primary resources.</code></pre>
+3. Return the persistent ARCHE PIDs, dates, creators (e.g. Christian Gugl, Josef Eitler), and direct download URLs for the top 5 primary resources.</code></pre>
             </div>
             <p style="margin:8px 0 4px; font-size:0.82rem; color:var(--text-muted);">
                 <strong>Behind the scenes:</strong> The AI invokes <code>search_iuenna_corpus(query="Hemmaberg Doppelkirchen Grabungstagebuch", limit=5)</code> and <code>get_findspot_details(findspot_id="hemmaberg")</code>, returning verified ARCHE PIDs such as <code>https://hdl.handle.net/21.11115/0000-0016-0E37-C</code> directly from the canonical archive.
@@ -269,7 +269,7 @@ print(gdf[["Grabnummer", "Geschlecht", "Sterbealter", "Schädeldeformation"]].dr
                 <span class="pill-tag"><i class="fa-solid fa-share-nodes"></i> 21,332 Nodes &bull; 282,116 Edges</span>
             </div>
             <p style="margin:8px 0 12px; font-size:0.92rem; color:var(--text-muted);">
-                <strong>Scenario:</strong> You want to explore how historical actors (e.g. Franz Glaser), research institutions (e.g. Landesmuseum Kärnten, Austrian Archaeological Institute), findspots, and archived primary files are interconnected.
+                <strong>Scenario:</strong> You want to explore how researchers and curators (e.g. Christian Gugl, Josef Eitler), research institutions (e.g. kärnten.museum, Austrian Archaeological Institute), findspots, and archived primary files are interconnected.
             </p>
             <div class="code-block-wrapper">
                 <div class="code-header"><span>Remote MCP JSON-RPC call or Cytoscape import</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div>
