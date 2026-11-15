@@ -168,7 +168,6 @@
     n2:hasTitle "Nicola Math"@und;
     n2:hasUpdatedDate "2025-03-03T18:45:27.073889"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
-    n2:hasUrl "https://www.oeaw.ac.at/oeai/institut/team/member/math-nicola"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/37483>.
 <https://arche.acdh.oeaw.ac.at/api/37483> a n2:Organisation;
     n2:aclRead "public";
@@ -446,7 +445,6 @@
     n2:hasTitle "Helmut Schwaiger"@und;
     n2:hasUpdatedDate "2025-03-03T18:45:29.306609"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "sstuhec";
-    n2:hasUrl "https://www.oeaw.ac.at/oeai/institut/team/member/schwaiger-helmut"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/37483>.
 <https://arche.acdh.oeaw.ac.at/api/94580> a n2:Place;
     n2:aclRead "pandorfer", "public";
@@ -978,7 +976,6 @@
     n2:hasTitle "Nina Richards"@und;
     n2:hasUpdatedDate "2025-09-02T14:48:51.284425"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
     n2:hasUpdatedRole "uczeitschner";
-    n2:hasUrl "https://www.oeaw.ac.at/acdh/institute/team/staff-members/nina-richards"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
     n2:isMemberOf <https://arche.acdh.oeaw.ac.at/api/48505>.
 <https://arche.acdh.oeaw.ac.at/api/1756754> a n2:Person;
     n2:aclRead "sstuhec";
